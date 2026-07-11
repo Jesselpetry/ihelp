@@ -18,8 +18,8 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const SITE_URL = "https://pscp.chatann.dev";
-const TITLE = "<i>help — PSCP Learning-Log Maker";
+const SITE_URL = "https://pscp.chatann.in.th";
+const TITLE = "<i>Help";
 const DESCRIPTION =
   "Step-by-step submission.md / ai_reflection.md maker for IT KMITL PSCP students. Pick a problem, follow the guided wizard, download your Learning Log.";
 
@@ -27,10 +27,10 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: TITLE,
-    template: "%s · <i>help",
+    template: "%s · <i>Help",
   },
   description: DESCRIPTION,
-  applicationName: "<i>help",
+  applicationName: "<i>Help",
   keywords: [
     "PSCP",
     "IT KMITL",
@@ -69,9 +69,7 @@ export const metadata: Metadata = {
     siteName: "<i>help — PSCP Learning-Log Maker",
     title: TITLE,
     description: DESCRIPTION,
-    images: [
-      { url: "/og.png", width: 1200, height: 630, alt: TITLE },
-    ],
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: TITLE }],
   },
   twitter: {
     card: "summary_large_image",

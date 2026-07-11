@@ -1,6 +1,6 @@
-# \<i\>help — PSCP Learning-Log Maker
+# \<i\>Help — PSCP Learning-Log Maker
 
-![<i>help — PSCP Learning-Log Maker](./public/og.png)
+![<i>Help — PSCP Learning-Log Maker](./public/og.png)
 
 Step-by-step `submission.md` / `ai_reflection.md` maker for IT KMITL PSCP
 students, styled after [iJudge](https://ijudge.it.kmitl.ac.th).
@@ -35,7 +35,7 @@ setup.
   **Week 1**, the next = **Week 2**, and so on, with a week filter bar.
   Expired dates show in red.
 - **Step-by-step md maker** — one wizard per file, one template section per
-  step, with the official guidance text and collapsible *examples* excerpted
+  step, with the official guidance text and collapsible _examples_ excerpted
   from the course example files (shown only to illustrate the expected level
   of detail).
 - **Download to your machine** — preview the generated markdown, then
@@ -62,11 +62,11 @@ setup.
 
 ## Credits
 
-Built and maintained by **chatann_**.
+Built and maintained by **chatann\_**.
 
 - GitHub: [@Jesselpetry](https://github.com/Jesselpetry)
-- Instagram: [@chatann_](https://instagram.com/chatann_)
+- Instagram: [@chatann\_](https://instagram.com/chatann_)
 
 ## License
 
-Released under the [MIT License](./LICENSE) — © 2026 chatann_.
+Released under the [MIT License](./LICENSE) — © 2026 chatann\_.
