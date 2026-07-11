@@ -89,9 +89,6 @@ export function DisclaimerModal() {
         onInteractOutside={(e) => e.preventDefault()}
       >
         <DialogHeader>
-          <span className="inline-flex size-10 items-center justify-center rounded-full bg-primary/10 text-primary">
-            <ShieldCheck className="size-5" />
-          </span>
           <DialogTitle className="text-lg">{t(L.title, locale)}</DialogTitle>
           <DialogDescription>{t(L.intro, locale)}</DialogDescription>
         </DialogHeader>
