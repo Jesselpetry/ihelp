@@ -1,6 +1,6 @@
 # \<i\>Help — PSCP Learning-Log Maker
 
-![<i>Help — PSCP Learning-Log Maker](./public/og.png)
+![<i>Help — PSCP Learning-Log Maker](./public/og-image.png)
 
 Step-by-step `submission.md` / `ai_reflection.md` maker for IT KMITL PSCP
 students, styled after [iJudge](https://ijudge.it.kmitl.ac.th).
