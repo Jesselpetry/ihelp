@@ -7,6 +7,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { FileLanguagePicker, WizardFrame } from "@/components/wizard/wizard-frame";
 import { ChoiceBadges, TextField } from "@/components/form-fields";
+import { MarkdownPreview } from "@/components/md-preview";
 
 const STATUS_COLORS = { Pass: "green", "Not Pass": "red", "Not Submit": "gray" } as const;
 const POLICY_COLORS = { Yes: "green", No: "red", "Not Applicable": "gray" } as const;
@@ -17,6 +18,7 @@ import {
 } from "@/lib/statements";
 import { REFLECTION_STEPS } from "@/lib/wizard-content";
 import { useDraft, downloadMarkdown } from "@/lib/draft";
+import { addHistoryEntry } from "@/lib/history";
 import { useLocale, t } from "@/lib/i18n";
 
 const STEP_KEYS = [
@@ -159,6 +161,14 @@ export function ReflectionWizard({ problemId, ojTitle }: { problemId: string; oj
     });
     const data = await res.json();
     if (!res.ok) throw new Error(data.error || "generation failed");
+    addHistoryEntry({
+      kind: "reflection",
+      problemId,
+      ojTitle: draft.oj_title,
+      fileLocale: draft.file_locale,
+      fileName: "ai_reflection.md",
+      markdown: data.markdown,
+    });
     return data.markdown;
   }
 
@@ -194,7 +204,9 @@ export function ReflectionWizard({ problemId, ojTitle }: { problemId: string; oj
       stepIndex={stepIndex}
       onStepChange={(i) => {
         setStepIndex(i);
-        if (STEP_KEYS[i] === "download") setPreview("");
+        // arriving at the last step generates right away, which also saves
+        // the file into the local history
+        if (STEP_KEYS[i] === "download") refreshPreview();
       }}
     >
       {key === "language" && (
@@ -356,11 +368,7 @@ export function ReflectionWizard({ problemId, ojTitle }: { problemId: string; oj
           </div>
           {error && <p className="text-sm text-destructive">{error}</p>}
           <p className="text-xs text-muted-foreground">{t(L.draftNote, locale)}</p>
-          {preview && (
-            <pre className="text-xs bg-background rounded-lg border p-4 whitespace-pre-wrap max-h-[50vh] overflow-y-auto">
-              {preview}
-            </pre>
-          )}
+          {preview && <MarkdownPreview markdown={preview} />}
         </div>
       )}
     </WizardFrame>

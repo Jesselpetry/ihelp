@@ -7,8 +7,18 @@ import {
 } from "@/components/social-icons";
 
 const SOCIALS = [
-  { label: "GitHub", handle: "/Jesselpetry", href: GITHUB_URL, icon: <GithubIcon /> },
-  { label: "Instagram", handle: "@chatann_", href: INSTAGRAM_URL, icon: <InstagramIcon /> },
+  {
+    label: "GitHub",
+    handle: "/Jesselpetry",
+    href: GITHUB_URL,
+    icon: <GithubIcon />,
+  },
+  {
+    label: "Instagram",
+    handle: "@chatann_",
+    href: INSTAGRAM_URL,
+    icon: <InstagramIcon />,
+  },
 ];
 
 export function Footer() {
@@ -17,10 +27,8 @@ export function Footer() {
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 py-6 sm:flex-row">
         <p className="text-xs text-muted-foreground">
           Built for{" "}
-          <span className="font-medium text-foreground">
-            PSCP · IT KMITL
-          </span>{" "}
-          · © {new Date().getFullYear()} chatann_
+          <span className="font-medium text-foreground">PSCP · IT KMITL</span> ·
+          © {new Date().getFullYear()} Chatan Petry
         </p>
         <div className="flex items-center gap-2">
           {SOCIALS.map((s) => (

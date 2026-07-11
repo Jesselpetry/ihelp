@@ -1,7 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { Star, Clock, TriangleAlert } from "lucide-react";
+import {
+  Star,
+  Clock,
+  TriangleAlert,
+  ChartColumn,
+  Folder,
+  FolderOpen,
+  GraduationCap,
+  ExternalLink,
+} from "lucide-react";
 import { useMemo, useState } from "react";
 import type { MasterProblem } from "@/lib/master";
 import { Badge } from "@/components/ui/badge";
@@ -16,12 +25,15 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { WeekBadge } from "@/components/week-badge";
+import { Shortcuts } from "@/components/shortcuts";
+import { COURSE } from "@/lib/course";
 import { useLocale, t, type LText } from "@/lib/i18n";
 
 const L: Record<string, LText> = {
-  breadcrumb: {
-    th: "Courses / [2026] Problem Solving and Computer Programming (IT)",
-    en: "Courses / [2026] Problem Solving and Computer Programming (IT)",
+  crumbCourses: { th: "Courses", en: "Courses" },
+  crumbCourse: {
+    th: "[2026] Problem Solving and Computer Programming (IT)",
+    en: "[2026] Problem Solving and Computer Programming (IT)",
   },
   heading: { th: "Problems", en: "Problems" },
   intro: {
@@ -50,6 +62,8 @@ const L: Record<string, LText> = {
     en: "No problems match the filter.",
   },
   all: { th: "All", en: "All" },
+  stats: { th: "สถิติ", en: "Stats" },
+  coursePage: { th: "หน้ารายวิชา", en: "Course page" },
 };
 
 // Raw expire label is English ("31 July 2026, 00:00"); render it in the
@@ -136,34 +150,115 @@ export function ProblemsView({ problems }: { problems: MasterProblem[] }) {
     <main className="max-w-6xl mx-auto px-6 py-8 w-full">
       <div className="mb-6">
         <p className="text-sm text-muted-foreground mb-1">
-          {t(L.breadcrumb, locale)}
+          {t(L.crumbCourses, locale)} / {t(L.crumbCourse, locale)}
         </p>
         <h1 className="text-4xl font-bold">{t(L.heading, locale)}</h1>
         <p className="text-sm text-muted-foreground mt-2">
           {t(L.intro, locale)}
         </p>
+
+        {/* official course facts */}
+        <div className="mt-4 rounded-xl border bg-card/60 px-4 py-3.5">
+          <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1.5">
+            <Badge className="bg-primary/10 text-primary font-mono font-semibold">
+              {COURSE.code}
+            </Badge>
+            <span className="text-sm font-semibold">{t(COURSE.name, locale)}</span>
+            <span className="text-xs text-muted-foreground">
+              {t(COURSE.credits, locale)} · {t(COURSE.degree, locale)}
+            </span>
+            <a
+              href={COURSE.url}
+              target="_blank"
+              rel="noreferrer"
+              className="ml-auto inline-flex items-center gap-1 text-xs font-medium text-muted-foreground hover:text-primary transition-colors"
+            >
+              {t(L.coursePage, locale)}
+              <ExternalLink className="size-3" />
+            </a>
+          </div>
+          <p className="text-xs text-muted-foreground leading-relaxed mt-2">
+            {t(COURSE.description, locale)}
+          </p>
+          <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted-foreground mt-1.5">
+            <GraduationCap className="size-3.5 text-primary/70" />
+            {COURSE.instructors.map((ins, i) => (
+              <span key={ins.url} className="inline-flex items-center gap-x-2">
+                {i > 0 && <span className="text-border">·</span>}
+                <a
+                  href={ins.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="underline underline-offset-4 decoration-border hover:text-primary hover:decoration-current transition-colors"
+                >
+                  {t(ins.name, locale)}
+                </a>
+              </span>
+            ))}
+          </p>
+        </div>
       </div>
 
-      {/* Stats */}
-      <div className="grid grid-cols-2 gap-4 mb-6">
-        {[
-          { label: t(L.total, locale), value: problems.length },
-          {
-            label: t(L.logs, locale),
-            value: problems.filter((p) => p.learningLog).length,
-          },
-        ].map((s) => (
-          <div
-            key={s.label}
-            className="bg-card rounded-2xl border shadow-sm px-5 py-4"
-          >
-            <p className="text-xs text-muted-foreground font-medium uppercase tracking-wide">
-              {s.label}
-            </p>
-            <p className="text-2xl font-bold mt-1">{s.value}</p>
+      {/* Stats + weekly shortcuts share one card, split into two columns */}
+      <div className="bg-card rounded-2xl border shadow-sm mb-6 grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x">
+        <div className="p-5 flex flex-col">
+          <h2 className="flex items-center gap-2 text-xs font-semibold text-primary uppercase tracking-wide mb-3">
+            <ChartColumn className="size-3.5" />
+            {t(L.stats, locale)}
+          </h2>
+          <div className="grid auto-rows-fr gap-3 flex-1">
+            {[
+              { label: t(L.total, locale), value: problems.length },
+              {
+                label: t(L.logs, locale),
+                value: problems.filter((p) => p.learningLog).length,
+              },
+            ].map((s) => (
+              <div
+                key={s.label}
+                className="rounded-xl border bg-background/50 px-5 py-4 flex flex-col justify-center"
+              >
+                <p className="text-xs text-muted-foreground font-medium uppercase tracking-wide">
+                  {s.label}
+                </p>
+                <p className="text-2xl font-bold mt-1">{s.value}</p>
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
+        <Shortcuts />
       </div>
+
+      {/* folder-style week tabs: the active tab merges into the card below */}
+      {weeks.length > 0 && (
+        <div className="flex items-end gap-1 pl-4 overflow-x-auto">
+          {([["all", t(L.all, locale)] as const, ...weeks.map((w) => [w, `Week ${w}`] as const)]).map(
+            ([w, label]) => {
+              const active = weekFilter === w;
+              return (
+                <button
+                  key={String(w)}
+                  type="button"
+                  onClick={() => setWeekFilter(w)}
+                  className={
+                    "inline-flex items-center gap-1.5 whitespace-nowrap rounded-t-xl px-4 py-2 text-xs font-medium transition-colors " +
+                    (active
+                      ? "relative z-10 -mb-px border border-b-0 bg-card text-primary font-semibold"
+                      : "border border-transparent text-muted-foreground hover:bg-muted/60 hover:text-foreground")
+                  }
+                >
+                  {active ? (
+                    <FolderOpen className="size-3.5" />
+                  ) : (
+                    <Folder className="size-3.5" />
+                  )}
+                  {label}
+                </button>
+              );
+            },
+          )}
+        </div>
+      )}
 
       <div className="bg-card rounded-2xl border shadow-sm overflow-hidden">
         <div className="flex flex-wrap items-center gap-3 px-6 py-5 border-b">
@@ -177,33 +272,6 @@ export function ProblemsView({ problems }: { problems: MasterProblem[] }) {
             className="w-52"
           />
         </div>
-
-        {weeks.length > 0 && (
-          <div className="flex flex-wrap items-center gap-2 px-6 py-3 border-b bg-background/50">
-            <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide mr-1">
-              Week
-            </span>
-            <Button
-              size="sm"
-              variant={weekFilter === "all" ? "default" : "outline"}
-              className="h-7 rounded-full px-3 text-xs"
-              onClick={() => setWeekFilter("all")}
-            >
-              {t(L.all, locale)}
-            </Button>
-            {weeks.map((w) => (
-              <Button
-                key={w}
-                size="sm"
-                variant={weekFilter === w ? "default" : "outline"}
-                className="h-7 rounded-full px-3 text-xs"
-                onClick={() => setWeekFilter(w)}
-              >
-                Week {w}
-              </Button>
-            ))}
-          </div>
-        )}
 
         <div className="overflow-x-auto">
           <Table>

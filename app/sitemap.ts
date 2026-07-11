@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
 // Keep this in sync with SITE_URL in app/layout.tsx.
-const SITE_URL = "https://pscp.chatann.dev";
+const SITE_URL = "https://pscp.chatan.in.th";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();

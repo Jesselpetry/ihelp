@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { FileLanguagePicker, WizardFrame } from "@/components/wizard/wizard-frame";
 import { ChoiceBadges, TextField } from "@/components/form-fields";
+import { MarkdownPreview } from "@/components/md-preview";
 
 const STATUS_COLORS = { Pass: "green", "Not Pass": "red", "Not Submit": "gray" } as const;
 const RESULT_COLORS = { Pass: "green", "Not Pass": "red" } as const;
@@ -14,6 +15,7 @@ const COPIED_COLORS = { No: "green", Yes: "red" } as const;
 import { SUBMISSION_CERT_STATEMENTS, statementLabel } from "@/lib/statements";
 import { SUBMISSION_STEPS, TIME_OPTIONS, HOW_TO_COUNT_TIME } from "@/lib/wizard-content";
 import { useDraft, downloadMarkdown } from "@/lib/draft";
+import { addHistoryEntry } from "@/lib/history";
 import { useLocale, t } from "@/lib/i18n";
 
 const STEP_KEYS = [
@@ -163,6 +165,14 @@ export function SubmissionWizard({ problemId, ojTitle }: { problemId: string; oj
     });
     const data = await res.json();
     if (!res.ok) throw new Error(data.error || "generation failed");
+    addHistoryEntry({
+      kind: "submission",
+      problemId,
+      ojTitle: draft.oj_title,
+      fileLocale: draft.file_locale,
+      fileName: "submission.md",
+      markdown: data.markdown,
+    });
     return data.markdown;
   }
 
@@ -198,7 +208,9 @@ export function SubmissionWizard({ problemId, ojTitle }: { problemId: string; oj
       stepIndex={stepIndex}
       onStepChange={(i) => {
         setStepIndex(i);
-        if (STEP_KEYS[i] === "download") setPreview("");
+        // arriving at the last step generates right away, which also saves
+        // the file into the local history
+        if (STEP_KEYS[i] === "download") refreshPreview();
       }}
     >
       {key === "language" && (
@@ -328,11 +340,7 @@ export function SubmissionWizard({ problemId, ojTitle }: { problemId: string; oj
           <p className="text-sm rounded-lg border border-amber-300 bg-amber-50 dark:bg-amber-950 dark:border-amber-800 p-3">
             {t(L.vscodeReminder, locale)}
           </p>
-          {preview && (
-            <pre className="text-xs bg-background rounded-lg border p-4 whitespace-pre-wrap max-h-[50vh] overflow-y-auto">
-              {preview}
-            </pre>
-          )}
+          {preview && <MarkdownPreview markdown={preview} />}
         </div>
       )}
     </WizardFrame>

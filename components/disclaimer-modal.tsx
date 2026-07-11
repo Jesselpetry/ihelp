@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ShieldCheck, Check, X } from "lucide-react";
+import { Check, X } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -64,6 +64,7 @@ export function DisclaimerModal() {
 
   useEffect(() => {
     try {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time hydration from localStorage after mount (SSR-safe)
       if (!localStorage.getItem(ACK_KEY)) setOpen(true);
     } catch {
       setOpen(true);
@@ -89,7 +90,13 @@ export function DisclaimerModal() {
         onInteractOutside={(e) => e.preventDefault()}
       >
         <DialogHeader>
-          <DialogTitle className="text-lg">{t(L.title, locale)}</DialogTitle>
+          <p className="text-center font-mono text-2xl font-bold">
+            <span className="text-primary">&lt;i</span>help
+            <span className="text-primary">&gt;</span>
+          </p>
+          <DialogTitle className="text-lg text-center">
+            {t(L.title, locale)}
+          </DialogTitle>
           <DialogDescription>{t(L.intro, locale)}</DialogDescription>
         </DialogHeader>
 

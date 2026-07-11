@@ -21,7 +21,7 @@ const geistMono = Geist_Mono({
 const SITE_URL = "https://pscp.chatann.in.th";
 const TITLE = "<i>Help";
 const DESCRIPTION =
-  "Step-by-step submission.md / ai_reflection.md maker for IT KMITL PSCP students. Pick a problem, follow the guided wizard, download your Learning Log.";
+  "เครื่องมือสร้าง submission.md / ai_reflection.md แบบทีละขั้นตอน สำหรับนักศึกษา PSCP IT KMITL — เลือกโจทย์ ทำตามขั้นตอน แล้วดาวน์โหลดไฟล์ Learning Log ของคุณ";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -41,8 +41,8 @@ export const metadata: Metadata = {
     "problem solving",
     "programming",
   ],
-  authors: [{ name: "chatann_", url: "https://github.com/Jesselpetry" }],
-  creator: "chatann_",
+  authors: [{ name: "Chatan Petry", url: "https://github.com/Jesselpetry" }],
+  creator: "Chatan Petry",
   category: "education",
   alternates: { canonical: "/" },
   robots: {

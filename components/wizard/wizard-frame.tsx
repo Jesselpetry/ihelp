@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, ChevronDown, ChevronRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, ChevronDown, ChevronRight, House } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useLocale, t, type LText } from "@/lib/i18n";
@@ -11,6 +11,7 @@ const LABELS: Record<string, LText> = {
   back: { th: "ย้อนกลับ", en: "Back" },
   next: { th: "ถัดไป", en: "Next" },
   backToList: { th: "กลับหน้ารายการโจทย์", en: "Back to problems" },
+  home: { th: "กลับหน้าหลัก", en: "Return home" },
   step: { th: "ขั้นตอนที่", en: "Step" },
   of: { th: "จาก", en: "of" },
   example: { th: "ดูตัวอย่างระดับรายละเอียดที่คาดหวัง", en: "Show an example of the expected detail" },
@@ -181,7 +182,14 @@ export function WizardFrame({
             <ArrowLeft className="size-4" />
             {t(LABELS.back, locale)}
           </Button>
-          {!isLast && (
+          {isLast ? (
+            <Button asChild variant="secondary">
+              <Link href="/">
+                <House className="size-4" />
+                {t(LABELS.home, locale)}
+              </Link>
+            </Button>
+          ) : (
             <Button onClick={() => onStepChange(stepIndex + 1)}>
               {t(LABELS.next, locale)}
               <ArrowRight className="size-4" />
