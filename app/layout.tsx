@@ -19,7 +19,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const SITE_URL = "https://pscp.chatann.in.th";
+// Keep in sync with app/robots.ts and app/sitemap.ts.
+// NOTE: domain is chatan.in.th (one "n") — a typo here silently breaks
+// og:image fetches for social crawlers.
+const SITE_URL = "https://pscp.chatan.in.th";
 const TITLE = "<i>Help";
 const DESCRIPTION =
   "เครื่องมือสร้าง submission.md / ai_reflection.md แบบทีละขั้นตอน สำหรับนักศึกษา PSCP IT KMITL — เลือกโจทย์ ทำตามขั้นตอน แล้วดาวน์โหลดไฟล์ Learning Log ของคุณ";
