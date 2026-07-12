@@ -41,6 +41,11 @@ bun run dev   # http://localhost:3000
 - [Tailwind CSS](https://tailwindcss.com) + shadcn-style UI
 - [Bun](https://bun.sh) เป็น package manager
 
+## ร่วมพัฒนา
+
+Open source — อยากอัปเดตรายการโจทย์สัปดาห์ใหม่ แก้บั๊ก หรือเพิ่มฟีเจอร์
+อ่าน [CONTRIBUTING.md](./CONTRIBUTING.md)
+
 ## เครดิต
 
 สร้างและดูแลโดย **chatann\_** — GitHub: [@Jesselpetry](https://github.com/Jesselpetry) ·

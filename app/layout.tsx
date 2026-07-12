@@ -5,6 +5,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { LocaleProvider } from "@/lib/i18n";
 import { Footer } from "@/components/footer";
 import { DisclaimerModal } from "@/components/disclaimer-modal";
+import { Splash } from "@/components/splash";
 import "./globals.css";
 
 const plexThai = IBM_Plex_Sans_Thai({
@@ -91,6 +92,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <LocaleProvider>
+          <Splash />
           <DisclaimerModal />
           {children}
           <Footer />
