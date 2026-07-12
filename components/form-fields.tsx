@@ -35,7 +35,7 @@ export function TextField({
   return (
     <div className="space-y-1.5">
       <Label className="text-muted-foreground">{label}</Label>
-      {hint && <p className="text-xs text-muted-foreground/80">{hint}</p>}
+      {hint && <p className="text-xs text-muted-foreground">{hint}</p>}
       <Textarea value={value} onChange={(e) => onChange(e.target.value)} rows={rows} />
     </div>
   );

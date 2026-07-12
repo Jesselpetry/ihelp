@@ -49,25 +49,27 @@
 }
 
 :root {
-  /* iJudge palette: light gray canvas, white cards, magenta-pink primary (#de3561) */
+  /* iJudge palette: light gray canvas, white cards, magenta-pink primary.
+     Pink deepened #de3561 -> #c62d58 and muted-foreground darkened so all
+     text combos pass WCAG AA 4.5:1 (incl. primary text on primary/10 tint). */
   --background: #f4f6f8;
   --foreground: #111827;
   --card: oklch(1 0 0);
   --card-foreground: #111827;
   --popover: oklch(1 0 0);
   --popover-foreground: #111827;
-  --primary: #de3561;
+  --primary: #c62d58;
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
+  --muted-foreground: #6a6a6a;
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --border: #e2e8f0;
   --input: #e2e8f0;
-  --ring: #de3561;
+  --ring: #c62d58;
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);

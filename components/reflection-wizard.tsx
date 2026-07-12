@@ -279,7 +279,7 @@ export function ReflectionWizard({ problemId, ojTitle }: { problemId: string; oj
             <div key={s} className="rounded-lg border bg-background/50 p-3 space-y-2">
               <p className="text-sm">{statementLabel(s, locale)}</p>
               {locale === "th" && (
-                <p className="text-xs text-muted-foreground/80 break-words">{s}</p>
+                <p className="text-xs text-muted-foreground break-words">{s}</p>
               )}
               <ChoiceBadges
                 label=""
@@ -338,7 +338,7 @@ export function ReflectionWizard({ problemId, ojTitle }: { problemId: string; oj
               <span>
                 {statementLabel(s, locale)}
                 {locale === "th" && (
-                  <span className="block text-xs text-muted-foreground/80">{s}</span>
+                  <span className="block text-xs text-muted-foreground">{s}</span>
                 )}
               </span>
             </label>

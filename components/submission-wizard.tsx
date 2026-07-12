@@ -307,7 +307,7 @@ export function SubmissionWizard({ problemId, ojTitle }: { problemId: string; oj
               <span>
                 {statementLabel(s, locale)}
                 {locale === "th" && (
-                  <span className="block text-xs text-muted-foreground/80">{s}</span>
+                  <span className="block text-xs text-muted-foreground">{s}</span>
                 )}
               </span>
             </label>
