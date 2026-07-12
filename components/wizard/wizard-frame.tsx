@@ -14,6 +14,10 @@ const LABELS: Record<string, LText> = {
   home: { th: "กลับหน้าหลัก", en: "Return home" },
   step: { th: "ขั้นตอนที่", en: "Step" },
   of: { th: "จาก", en: "of" },
+  incomplete: {
+    th: "กรุณากรอกข้อมูลในขั้นตอนนี้ให้ครบก่อนไปต่อ",
+    en: "Please fill in the required fields on this step before continuing.",
+  },
   example: { th: "ดูตัวอย่างระดับรายละเอียดที่คาดหวัง", en: "Show an example of the expected detail" },
   exampleNote: {
     th: "ตัวอย่างจากไฟล์ examples ของรายวิชา — ห้ามคัดลอก ใช้ดูระดับรายละเอียดเท่านั้น",
@@ -109,6 +113,7 @@ export function WizardFrame({
   steps,
   stepIndex,
   onStepChange,
+  validate,
   children,
 }: {
   fileName: string;
@@ -116,11 +121,29 @@ export function WizardFrame({
   steps: StepContent[];
   stepIndex: number;
   onStepChange: (i: number) => void;
+  // Called before moving to a later step; return the index of the first
+  // incomplete step to block the move, or null to allow it. Backward moves
+  // are never blocked.
+  validate?: (targetIndex: number) => number | null;
   children: React.ReactNode;
 }) {
   const { locale } = useLocale();
   const step = steps[stepIndex];
   const isLast = stepIndex === steps.length - 1;
+  const [blockedIndex, setBlockedIndex] = useState<number | null>(null);
+
+  function tryChangeStep(target: number) {
+    if (target > stepIndex && validate) {
+      const firstInvalid = validate(target);
+      if (firstInvalid !== null) {
+        setBlockedIndex(firstInvalid);
+        onStepChange(firstInvalid);
+        return;
+      }
+    }
+    setBlockedIndex(null);
+    onStepChange(target);
+  }
 
   return (
     <main className="max-w-3xl mx-auto px-6 py-8 w-full">
@@ -152,7 +175,7 @@ export function WizardFrame({
               key={i}
               type="button"
               title={t(s.title, locale)}
-              onClick={() => onStepChange(i)}
+              onClick={() => tryChangeStep(i)}
               className={
                 "h-1.5 flex-1 rounded-full transition-colors " +
                 (i < stepIndex ? "bg-primary/60" : i === stepIndex ? "bg-primary" : "bg-border")
@@ -173,11 +196,14 @@ export function WizardFrame({
         </div>
         {step.example && <ExampleBox example={step.example} />}
         {children}
+        {blockedIndex === stepIndex && (
+          <p className="text-sm text-destructive">{t(LABELS.incomplete, locale)}</p>
+        )}
         <div className="flex justify-between pt-4 border-t">
           <Button
             variant="outline"
             disabled={stepIndex === 0}
-            onClick={() => onStepChange(stepIndex - 1)}
+            onClick={() => tryChangeStep(stepIndex - 1)}
           >
             <ArrowLeft className="size-4" />
             {t(LABELS.back, locale)}
@@ -190,7 +216,7 @@ export function WizardFrame({
               </Link>
             </Button>
           ) : (
-            <Button onClick={() => onStepChange(stepIndex + 1)}>
+            <Button onClick={() => tryChangeStep(stepIndex + 1)}>
               {t(LABELS.next, locale)}
               <ArrowRight className="size-4" />
             </Button>

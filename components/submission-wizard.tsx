@@ -17,6 +17,7 @@ import { SUBMISSION_STEPS, TIME_OPTIONS, HOW_TO_COUNT_TIME } from "@/lib/wizard-
 import { useDraft, downloadMarkdown } from "@/lib/draft";
 import { addHistoryEntry } from "@/lib/history";
 import { useLocale, t } from "@/lib/i18n";
+import { validateSubmissionUpTo } from "@/lib/validation";
 
 const STEP_KEYS = [
   "language", "info", "understanding", "first_plan", "final_approach",
@@ -93,8 +94,8 @@ const L = {
   stillOwn: { th: "คุณยังทำอะไรด้วยตนเอง", en: "What did you still do by yourself?" },
   copied: { th: "คุณคัดลอก code จากคนอื่นหรือไม่", en: "Did you copy any code from another person?" },
   certWarn: {
-    th: "ติ๊กเฉพาะข้อที่เป็นจริงเท่านั้น ข้อที่ไม่ติ๊กจะถูกเว้นว่างในไฟล์",
-    en: "Check only true statements. Unchecked statements stay blank in the file.",
+    th: "ต้องติ๊กครบทั้ง 7 ข้อจึงจะไปต่อได้ ถ้าข้อใดยังไม่จริง ให้กลับไปแก้งานก่อน",
+    en: "All statements must be checked to continue. If one isn't true yet, go back and fix your work first.",
   },
   preview: { th: "สร้างตัวอย่างไฟล์", en: "Generate preview" },
   download: { th: "ดาวน์โหลด submission.md", en: "Download submission.md" },
@@ -102,6 +103,10 @@ const L = {
   draftNote: {
     th: "แบบร่างถูกบันทึกในเครื่องของคุณโดยอัตโนมัติ",
     en: "Your draft is saved automatically in this browser.",
+  },
+  incomplete: {
+    th: "กรุณากรอกข้อมูลที่จำเป็นให้ครบก่อนดาวน์โหลด",
+    en: "Please fill in all required fields before downloading.",
   },
   vscodeReminder: {
     th: "อย่าลืม: เขียน รัน และทดสอบ code จริงใน VS Code และส่ง code ในระบบ OJ ด้วยตนเอง",
@@ -189,6 +194,14 @@ export function SubmissionWizard({ problemId, ojTitle }: { problemId: string; oj
   }
 
   async function download() {
+    // verify every required field is filled in before generating the file,
+    // even if the wizard was navigated straight to this step
+    const invalidIndex = validateSubmissionUpTo(draft, STEP_KEYS, STEP_KEYS.length);
+    if (invalidIndex !== null) {
+      setStepIndex(invalidIndex);
+      setError(t(L.incomplete, locale));
+      return;
+    }
     setBusy(true);
     setError("");
     try {
@@ -206,6 +219,7 @@ export function SubmissionWizard({ problemId, ojTitle }: { problemId: string; oj
       problemLabel={ojTitle}
       steps={steps}
       stepIndex={stepIndex}
+      validate={(target) => validateSubmissionUpTo(draft, STEP_KEYS, target)}
       onStepChange={(i) => {
         setStepIndex(i);
         // arriving at the last step generates right away, which also saves

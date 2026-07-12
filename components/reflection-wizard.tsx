@@ -20,6 +20,7 @@ import { REFLECTION_STEPS } from "@/lib/wizard-content";
 import { useDraft, downloadMarkdown } from "@/lib/draft";
 import { addHistoryEntry } from "@/lib/history";
 import { useLocale, t } from "@/lib/i18n";
+import { validateReflectionUpTo } from "@/lib/validation";
 
 const STEP_KEYS = [
   "language", "info", "tool", "policy", "asked", "noticed", "checked", "learned",
@@ -100,8 +101,8 @@ const L = {
   checked: { th: "ฉันตรวจสอบหรือแก้อะไรด้วยตนเอง", en: "What I checked or changed by myself" },
   learned: { th: "ฉันได้เรียนรู้อะไร (2-4 ประโยค)", en: "What I learned (2-4 sentences)" },
   certWarn: {
-    th: "ติ๊กเฉพาะข้อที่เป็นจริงเท่านั้น ข้อที่ไม่ติ๊กจะถูกเว้นว่างในไฟล์",
-    en: "Check only true statements. Unchecked statements stay blank in the file.",
+    th: "ต้องติ๊กครบทั้ง 5 ข้อจึงจะไปต่อได้ ถ้าข้อใดยังไม่จริง ให้กลับไปแก้งานก่อน",
+    en: "All statements must be checked to continue. If one isn't true yet, go back and fix your work first.",
   },
   preview: { th: "สร้างตัวอย่างไฟล์", en: "Generate preview" },
   download: { th: "ดาวน์โหลด ai_reflection.md", en: "Download ai_reflection.md" },
@@ -109,6 +110,10 @@ const L = {
   draftNote: {
     th: "แบบร่างถูกบันทึกในเครื่องของคุณโดยอัตโนมัติ",
     en: "Your draft is saved automatically in this browser.",
+  },
+  incomplete: {
+    th: "กรุณากรอกข้อมูลที่จำเป็นให้ครบก่อนดาวน์โหลด",
+    en: "Please fill in all required fields before downloading.",
   },
   ownWords: {
     th: "เขียนด้วยคำพูดของตนเอง ห้ามวาง chat log และห้ามให้ AI เขียน reflection แทน",
@@ -185,6 +190,14 @@ export function ReflectionWizard({ problemId, ojTitle }: { problemId: string; oj
   }
 
   async function download() {
+    // verify every required field is filled in before generating the file,
+    // even if the wizard was navigated straight to this step
+    const invalidIndex = validateReflectionUpTo(draft, STEP_KEYS, STEP_KEYS.length);
+    if (invalidIndex !== null) {
+      setStepIndex(invalidIndex);
+      setError(t(L.incomplete, locale));
+      return;
+    }
     setBusy(true);
     setError("");
     try {
@@ -202,6 +215,7 @@ export function ReflectionWizard({ problemId, ojTitle }: { problemId: string; oj
       problemLabel={ojTitle}
       steps={steps}
       stepIndex={stepIndex}
+      validate={(target) => validateReflectionUpTo(draft, STEP_KEYS, target)}
       onStepChange={(i) => {
         setStepIndex(i);
         // arriving at the last step generates right away, which also saves
