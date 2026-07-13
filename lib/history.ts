@@ -85,6 +85,16 @@ export function addHistoryEntry(
   persist(entries.slice(0, MAX_ENTRIES));
 }
 
+// Overwrite an entry's markdown in place, keeping its position/timestamp so
+// the list does not jump around while the student is editing.
+export function updateHistoryEntry(id: string, markdown: string): void {
+  const entries = loadHistory();
+  const entry = entries.find((e) => e.id === id);
+  if (!entry) return;
+  entry.markdown = markdown;
+  persist(entries);
+}
+
 export function deleteHistoryEntry(id: string): void {
   persist(loadHistory().filter((e) => e.id !== id));
 }

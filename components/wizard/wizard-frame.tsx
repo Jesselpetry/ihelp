@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, ChevronDown, ChevronRight, House } from "lucide-react";
+import { ArrowDown, ArrowLeft, ArrowRight, ChevronDown, ChevronRight, House } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useLocale, t, type LText } from "@/lib/i18n";
@@ -23,7 +23,26 @@ const LABELS: Record<string, LText> = {
     th: "ตัวอย่างจากไฟล์ examples ของรายวิชา — ห้ามคัดลอก ใช้ดูระดับรายละเอียดเท่านั้น",
     en: "Excerpt from the course example files — do not copy it; use it only to see the expected level of detail.",
   },
+  scrollCue: {
+    th: "เลื่อนลงอ่านไฟล์ให้ครบก่อน ปุ่มดาวน์โหลดอยู่ด้านล่างสุด",
+    en: "Scroll down and read the whole file — the download button is at the bottom.",
+  },
 };
+
+// Animated banner nudging the student to scroll to the bottom of the file
+// before the download CTA (which sits at the end) becomes usable.
+export function ScrollDownCue() {
+  const { locale } = useLocale();
+  return (
+    <div className="flex items-center gap-2.5 rounded-lg border border-primary/40 bg-primary/5 px-3 py-2.5 text-sm font-medium text-primary">
+      <span className="relative flex size-5 shrink-0 items-center justify-center">
+        <span className="absolute inline-flex size-full rounded-full bg-primary/20 animate-ping" />
+        <ArrowDown className="size-4 animate-bounce" />
+      </span>
+      {t(LABELS.scrollCue, locale)}
+    </div>
+  );
+}
 
 export function ExampleBox({ example }: { example: LText }) {
   const { locale } = useLocale();
@@ -146,7 +165,14 @@ export function WizardFrame({
   }
 
   return (
-    <main className="max-w-3xl mx-auto px-6 py-8 w-full">
+    <main
+      className={
+        "mx-auto px-6 py-8 w-full transition-[max-width] duration-300 " +
+        // the final step shows a side-by-side file preview + actions, so it
+        // gets more room than the single-column data-entry steps
+        (isLast ? "max-w-5xl" : "max-w-3xl")
+      }
+    >
       <div className="mb-6">
         <Link
           href="/"

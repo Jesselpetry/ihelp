@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, ChevronDown, ChevronRight, Download, Trash2 } from "lucide-react";
+import { ArrowLeft, ChevronDown, ChevronRight, Download, Pencil, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { downloadMarkdown } from "@/lib/draft";
@@ -10,6 +10,7 @@ import { MarkdownPreview } from "@/components/md-preview";
 import {
   loadHistory,
   deleteHistoryEntry,
+  updateHistoryEntry,
   clearHistory,
   type HistoryEntry,
   type HistoryKind,
@@ -36,6 +37,13 @@ const L = {
   showFile: { th: "ดูเนื้อหาไฟล์", en: "Show file content" },
   hideFile: { th: "ซ่อนเนื้อหาไฟล์", en: "Hide file content" },
   entries: { th: "รายการ", en: "entries" },
+  edit: { th: "แก้ไข", en: "Edit" },
+  save: { th: "บันทึก", en: "Save" },
+  cancel: { th: "ยกเลิก", en: "Cancel" },
+  editHint: {
+    th: "แก้ไขเนื้อหาไฟล์ .md ได้โดยตรง แล้วกดบันทึก การเปลี่ยนแปลงถูกเก็บในเครื่องของคุณเท่านั้น",
+    en: "Edit the .md content directly, then Save. Changes are kept in this browser only.",
+  },
 };
 
 const KIND_LABEL: Record<HistoryKind, string> = {
@@ -53,12 +61,16 @@ function formatDate(ts: number, locale: "th" | "en"): string {
 function EntryCard({
   entry,
   onDelete,
+  onSave,
 }: {
   entry: HistoryEntry;
   onDelete: (id: string) => void;
+  onSave: (id: string, markdown: string) => void;
 }) {
   const { locale } = useLocale();
   const [open, setOpen] = useState(false);
+  const [editing, setEditing] = useState(false);
+  const [text, setText] = useState(entry.markdown);
   return (
     <div className="rounded-xl border bg-card shadow-sm p-4 space-y-3">
       <div className="flex flex-wrap items-center gap-2">
@@ -85,9 +97,24 @@ function EntryCard({
           variant="ghost"
           className="text-muted-foreground"
           onClick={() => setOpen((o) => !o)}
+          disabled={editing}
         >
           {open ? <ChevronDown className="size-3.5" /> : <ChevronRight className="size-3.5" />}
           {t(open ? L.hideFile : L.showFile, locale)}
+        </Button>
+        <Button
+          size="sm"
+          variant="ghost"
+          className="text-muted-foreground"
+          onClick={() => {
+            setText(entry.markdown);
+            setEditing(true);
+            setOpen(true);
+          }}
+          disabled={editing}
+        >
+          <Pencil className="size-3.5" />
+          {t(L.edit, locale)}
         </Button>
         <Button
           size="sm"
@@ -101,7 +128,42 @@ function EntryCard({
           {t(L.delete, locale)}
         </Button>
       </div>
-      {open && <MarkdownPreview markdown={entry.markdown} />}
+      {editing ? (
+        <div className="space-y-2">
+          <p className="text-xs text-muted-foreground">{t(L.editHint, locale)}</p>
+          <textarea
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            rows={16}
+            spellCheck={false}
+            className="w-full rounded-lg border bg-background p-3 font-mono text-xs leading-relaxed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          />
+          <div className="flex gap-2">
+            <Button
+              size="sm"
+              onClick={() => {
+                onSave(entry.id, text);
+                setEditing(false);
+              }}
+            >
+              {t(L.save, locale)}
+            </Button>
+            <Button
+              size="sm"
+              variant="ghost"
+              className="text-muted-foreground"
+              onClick={() => {
+                setText(entry.markdown);
+                setEditing(false);
+              }}
+            >
+              {t(L.cancel, locale)}
+            </Button>
+          </div>
+        </div>
+      ) : (
+        open && <MarkdownPreview markdown={entry.markdown} />
+      )}
     </div>
   );
 }
@@ -185,6 +247,12 @@ export function HistoryView() {
             onDelete={(id) => {
               deleteHistoryEntry(id);
               setEntries((prev) => prev.filter((x) => x.id !== id));
+            }}
+            onSave={(id, markdown) => {
+              updateHistoryEntry(id, markdown);
+              setEntries((prev) =>
+                prev.map((x) => (x.id === id ? { ...x, markdown } : x)),
+              );
             }}
           />
         ))}

@@ -5,7 +5,7 @@ import { Check, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
-import { FileLanguagePicker, WizardFrame } from "@/components/wizard/wizard-frame";
+import { FileLanguagePicker, ScrollDownCue, WizardFrame } from "@/components/wizard/wizard-frame";
 import { ChoiceBadges, TextField } from "@/components/form-fields";
 import { MarkdownPreview } from "@/components/md-preview";
 
@@ -115,6 +115,18 @@ const L = {
     th: "กรุณากรอกข้อมูลที่จำเป็นให้ครบก่อนดาวน์โหลด",
     en: "Please fill in all required fields before downloading.",
   },
+  verifyRead: {
+    th: "ฉันได้เลื่อนอ่านไฟล์นี้จนจบแล้ว และข้อมูลถูกต้อง",
+    en: "I scrolled through and read this whole file, and it is correct.",
+  },
+  scrollHint: {
+    th: "เลื่อนอ่านตัวอย่างไฟล์ให้ถึงบรรทัดสุดท้ายก่อน จึงจะติ๊กยืนยันและดาวน์โหลดได้",
+    en: "Scroll the preview to the last line to unlock the confirm checkbox and download.",
+  },
+  previewEmpty: {
+    th: "กด “สร้างตัวอย่างไฟล์” เพื่อดูเนื้อหา",
+    en: "Press “Generate preview” to see the file.",
+  },
   ownWords: {
     th: "เขียนด้วยคำพูดของตนเอง ห้ามวาง chat log และห้ามให้ AI เขียน reflection แทน",
     en: "Write in your own words. Do not paste the chat log, and do not ask AI to write this reflection for you.",
@@ -131,6 +143,10 @@ export function ReflectionWizard({ problemId, ojTitle }: { problemId: string; oj
   const [preview, setPreview] = useState("");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
+  // The file must be read to the end (scrolled to bottom) and confirmed
+  // before it can be downloaded. Regenerating a preview resets both.
+  const [reachedBottom, setReachedBottom] = useState(false);
+  const [verified, setVerified] = useState(false);
 
   const steps = STEP_KEYS.map((k) => REFLECTION_STEPS[k]);
   const key = STEP_KEYS[stepIndex];
@@ -180,6 +196,9 @@ export function ReflectionWizard({ problemId, ojTitle }: { problemId: string; oj
   async function refreshPreview() {
     setBusy(true);
     setError("");
+    // new content: student must scroll and re-confirm before downloading
+    setReachedBottom(false);
+    setVerified(false);
     try {
       setPreview(await generate());
     } catch (e) {
@@ -190,6 +209,8 @@ export function ReflectionWizard({ problemId, ojTitle }: { problemId: string; oj
   }
 
   async function download() {
+    // the student must confirm they read the whole file first
+    if (!verified) return;
     // verify every required field is filled in before generating the file,
     // even if the wizard was navigated straight to this step
     const invalidIndex = validateReflectionUpTo(draft, STEP_KEYS, STEP_KEYS.length);
@@ -361,28 +382,65 @@ export function ReflectionWizard({ problemId, ojTitle }: { problemId: string; oj
       )}
 
       {key === "download" && (
-        <div className="space-y-4">
-          <div className="flex flex-wrap gap-2">
-            <Button variant="outline" onClick={refreshPreview} disabled={busy}>
-              {t(L.preview, locale)}
-            </Button>
-            <Button onClick={download} disabled={busy}>
-              <Download className="size-4" />
-              {t(L.download, locale)}
-            </Button>
-            <Button
-              variant="ghost"
-              className="text-muted-foreground"
-              onClick={() => {
-                if (window.confirm(t(L.clear, locale) + "?")) clearDraft();
-              }}
-            >
-              {t(L.clear, locale)}
-            </Button>
+        <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:items-start">
+          {/* left: the file to read */}
+          <div>
+            {preview ? (
+              <MarkdownPreview markdown={preview} onReachedBottom={() => setReachedBottom(true)} />
+            ) : (
+              <p className="rounded-lg border border-dashed p-8 text-center text-sm text-muted-foreground">
+                {t(L.previewEmpty, locale)}
+              </p>
+            )}
           </div>
-          {error && <p className="text-sm text-destructive">{error}</p>}
-          <p className="text-xs text-muted-foreground">{t(L.draftNote, locale)}</p>
-          {preview && <MarkdownPreview markdown={preview} />}
+
+          {/* right: confirm + actions */}
+          <div className="space-y-4 lg:sticky lg:top-6">
+            {preview && !reachedBottom && <ScrollDownCue />}
+
+            {preview && (
+              <>
+                <label
+                  className={
+                    "flex items-center gap-3 text-sm rounded-lg border bg-background px-3 py-2.5 transition-colors " +
+                    (reachedBottom ? "cursor-pointer hover:bg-muted" : "opacity-60 cursor-not-allowed")
+                  }
+                >
+                  <Checkbox
+                    checked={verified}
+                    disabled={!reachedBottom}
+                    onCheckedChange={(v) => setVerified(v === true)}
+                  />
+                  <span>{t(L.verifyRead, locale)}</span>
+                </label>
+                {!reachedBottom && (
+                  <p className="text-xs text-muted-foreground">{t(L.scrollHint, locale)}</p>
+                )}
+              </>
+            )}
+
+            {error && <p className="text-sm text-destructive">{error}</p>}
+
+            <div className="flex flex-col gap-2 border-t pt-4">
+              <Button onClick={download} disabled={busy || !verified} className="w-full">
+                <Download className="size-4" />
+                {t(L.download, locale)}
+              </Button>
+              <Button variant="outline" onClick={refreshPreview} disabled={busy} className="w-full">
+                {t(L.preview, locale)}
+              </Button>
+              <Button
+                variant="ghost"
+                className="w-full text-muted-foreground"
+                onClick={() => {
+                  if (window.confirm(t(L.clear, locale) + "?")) clearDraft();
+                }}
+              >
+                {t(L.clear, locale)}
+              </Button>
+            </div>
+            <p className="text-xs text-muted-foreground">{t(L.draftNote, locale)}</p>
+          </div>
         </div>
       )}
     </WizardFrame>
