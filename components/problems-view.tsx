@@ -64,6 +64,14 @@ const L: Record<string, LText> = {
   all: { th: "All", en: "All" },
   stats: { th: "สถิติ", en: "Stats" },
   coursePage: { th: "หน้ารายวิชา", en: "Course page" },
+  week3BannerTitle: {
+    th: "โจทย์ Week 3 มาแล้วว!",
+    en: "Week 3 Problems are here!",
+  },
+  week3BannerDesc: {
+    th: "เริ่มทำโจทย์ประจำสัปดาห์นี้และสร้างบันทึกประวัติการส่ง (Learning Log) ได้เลย",
+    en: "Start solving this week's problems and create your Learning Logs.",
+  },
 };
 
 // Raw expire label is English ("31 July 2026, 00:00"); render it in the
@@ -136,18 +144,47 @@ export function ProblemsView({ problems }: { problems: MasterProblem[] }) {
           return p.name.toLowerCase().includes(q) || String(p.id).includes(q);
         })
         // learning-log problems first: they are the ones that require submission.md
-        .sort((a, b) =>
-          a.learningLog !== b.learningLog
-            ? a.learningLog
-              ? -1
-              : 1
-            : a.id - b.id,
-        )
+        .sort((a, b) => {
+          // 1. Learning Log first
+          if (a.learningLog !== b.learningLog) {
+            return a.learningLog ? -1 : 1;
+          }
+          // 2. Then latest week (descending)
+          const weekA = a.week ?? 0;
+          const weekB = b.week ?? 0;
+          if (weekA !== weekB) {
+            return weekB - weekA;
+          }
+          // 3. Then by ID (ascending)
+          return a.id - b.id;
+        })
     );
   }, [problems, query, weekFilter]);
 
   return (
     <main className="max-w-6xl mx-auto px-6 py-8 w-full">
+      {/* Week 3 Announcement Banner */}
+      <div className="mb-6 rounded-2xl bg-primary px-5 py-4 text-white shadow-md flex items-center justify-between gap-4 transition-all hover:brightness-105">
+        <div className="flex items-center gap-3">
+          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/20 text-white text-lg">
+            🎉
+          </span>
+          <div className="text-left">
+            <h4 className="font-bold text-base md:text-lg">
+              {t(L.week3BannerTitle, locale)}
+            </h4>
+            <p className="text-xs md:text-sm text-white/80 font-normal mt-0.5">
+              {t(L.week3BannerDesc, locale)}
+            </p>
+          </div>
+        </div>
+        <div className="hidden sm:block">
+          <span className="rounded-full bg-white/25 px-3 py-1 text-xs font-semibold backdrop-blur-sm">
+            Active
+          </span>
+        </div>
+      </div>
+
       <div className="mb-6">
         <p className="text-sm text-muted-foreground mb-1">
           {t(L.crumbCourses, locale)} / {t(L.crumbCourse, locale)}
