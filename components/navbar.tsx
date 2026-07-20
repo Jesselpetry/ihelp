@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { BookOpen, ExternalLink, History } from "lucide-react";
 import { loadHistory, HISTORY_EVENT } from "@/lib/history";
 import { useLocale, t, type LText } from "@/lib/i18n";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 const NAV_LINKS: { href: string; label: LText; icon: typeof BookOpen }[] = [
   {
@@ -32,7 +33,7 @@ export function Navbar() {
     };
   }, []);
   return (
-    <nav className="sticky top-0 z-10 h-16 bg-card border-b shadow-[0_1px_2px_0_rgba(0,0,0,0.05)]">
+    <nav className="sticky top-0 z-10 h-16 bg-card border-b shadow-[0_1px_2px_0_rgba(0,0,0,0.05)] dark:shadow-none">
       <div className="mx-auto flex h-full max-w-6xl items-center justify-between px-6">
         <div className="flex items-center gap-6">
           <Link
@@ -96,6 +97,7 @@ export function Navbar() {
               </button>
             ))}
           </div>
+          <ThemeToggle />
           <a
             href="https://ijudge.it.kmitl.ac.th"
             target="_blank"

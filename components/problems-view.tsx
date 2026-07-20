@@ -164,22 +164,22 @@ export function ProblemsView({ problems }: { problems: MasterProblem[] }) {
   return (
     <main className="max-w-6xl mx-auto px-6 py-8 w-full">
       {/* Week 3 Announcement Banner */}
-      <div className="mb-6 rounded-2xl bg-primary px-5 py-4 text-white shadow-md flex items-center justify-between gap-4 transition-all hover:brightness-105">
+      <div className="mb-6 rounded-2xl bg-primary px-5 py-4 text-primary-foreground shadow-md flex items-center justify-between gap-4 transition-all hover:brightness-105">
         <div className="flex items-center gap-3">
-          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/20 text-white text-lg">
+          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary-foreground/20 text-lg">
             🎉
           </span>
           <div className="text-left">
             <h4 className="font-bold text-base md:text-lg">
               {t(L.week3BannerTitle, locale)}
             </h4>
-            <p className="text-xs md:text-sm text-white/80 font-normal mt-0.5">
+            <p className="text-xs md:text-sm text-primary-foreground/80 font-normal mt-0.5">
               {t(L.week3BannerDesc, locale)}
             </p>
           </div>
         </div>
         <div className="hidden sm:block">
-          <span className="rounded-full bg-white/25 px-3 py-1 text-xs font-semibold backdrop-blur-sm">
+          <span className="rounded-full bg-primary-foreground/25 px-3 py-1 text-xs font-semibold backdrop-blur-sm">
             Active
           </span>
         </div>

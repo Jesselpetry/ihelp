@@ -44,10 +44,12 @@ export function TextField({
 export type BadgeTone = "green" | "red" | "gray" | "amber" | "primary";
 
 const ACTIVE_TONE: Record<BadgeTone, string> = {
-  green: "border-emerald-500 bg-emerald-500 text-white",
-  red: "border-red-500 bg-red-500 text-white",
+  green:
+    "border-emerald-500 bg-emerald-500 text-white dark:border-emerald-600 dark:bg-emerald-600",
+  red: "border-red-500 bg-red-500 text-white dark:border-red-600 dark:bg-red-600",
   gray: "border-slate-400 bg-slate-400 text-white dark:border-slate-500 dark:bg-slate-500",
-  amber: "border-amber-500 bg-amber-500 text-white",
+  amber:
+    "border-amber-500 bg-amber-500 text-white dark:border-amber-600 dark:bg-amber-600",
   primary: "border-primary bg-primary text-primary-foreground",
 };
 

@@ -3,6 +3,7 @@ import { IBM_Plex_Sans_Thai, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { LocaleProvider } from "@/lib/i18n";
+import { ThemeProvider, THEME_SCRIPT } from "@/lib/theme";
 import { Footer } from "@/components/footer";
 import { DisclaimerModal } from "@/components/disclaimer-modal";
 import { Splash } from "@/components/splash";
@@ -91,15 +92,22 @@ export default function RootLayout({
   return (
     <html
       lang="th"
+      suppressHydrationWarning
       className={`${plexThai.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        {/* Runs before paint so the theme class is set on <html> with no flash. */}
+        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
+      </head>
       <body className="min-h-full flex flex-col">
-        <LocaleProvider>
-          <Splash />
-          <DisclaimerModal />
-          {children}
-          <Footer />
-        </LocaleProvider>
+        <ThemeProvider>
+          <LocaleProvider>
+            <Splash />
+            <DisclaimerModal />
+            {children}
+            <Footer />
+          </LocaleProvider>
+        </ThemeProvider>
         <Analytics />
         <SpeedInsights />
       </body>

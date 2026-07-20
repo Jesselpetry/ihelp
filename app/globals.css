@@ -87,37 +87,42 @@
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: #e85579;
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
+  /* Mirrors the light palette's cool gray-blue cast rather than a neutral gray,
+     so both themes read as the same product. Pink is lightened #c62d58 ->
+     #f0708f to stay legible on a dark canvas; because it is now a *light*
+     color, --primary-foreground flips to dark ink (white on it is only 2.8:1).
+     All text combos verified >= WCAG AA 4.5:1, incl. primary on primary/10. */
+  --background: #0f1318;
+  --foreground: #e7eaef;
+  --card: #171c23;
+  --card-foreground: #e7eaef;
+  --popover: #171c23;
+  --popover-foreground: #e7eaef;
+  --primary: #f0708f;
+  --primary-foreground: #1a0d12;
+  --secondary: #232932;
+  --secondary-foreground: #e7eaef;
+  --muted: #232932;
+  --muted-foreground: #a2acba;
+  --accent: #232932;
+  --accent-foreground: #e7eaef;
+  --destructive: #ff6b6b;
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
+  --ring: #f0708f;
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar: #171c23;
+  --sidebar-foreground: #e7eaef;
+  --sidebar-primary: #f0708f;
+  --sidebar-primary-foreground: #1a0d12;
+  --sidebar-accent: #232932;
+  --sidebar-accent-foreground: #e7eaef;
   --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --sidebar-ring: #f0708f;
 }
 
 @layer base {
@@ -129,6 +134,53 @@
   }
   html {
     @apply font-sans;
+  }
+}
+
+/* Theme switch: the incoming theme wipes in as a circle growing from the
+   toggle button. Scoped to [data-theme-transition] so ordinary Next.js route
+   view-transitions keep their default cross-fade. Coordinates are set by
+   setTheme() in lib/theme.tsx. */
+html[data-theme-transition]::view-transition-old(root),
+html[data-theme-transition]::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+html[data-theme-transition]::view-transition-old(root) {
+  z-index: 1;
+}
+html[data-theme-transition]::view-transition-new(root) {
+  z-index: 2;
+  animation: ihelp-theme-reveal 550ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+@keyframes ihelp-theme-reveal {
+  from {
+    clip-path: circle(0 at var(--theme-x) var(--theme-y));
+  }
+  to {
+    clip-path: circle(var(--theme-r) at var(--theme-x) var(--theme-y));
+  }
+}
+
+/* The toggle itself sits above the wipe so its icon stays visible throughout. */
+.theme-toggle-icon {
+  animation: ihelp-theme-icon 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes ihelp-theme-icon {
+  from {
+    transform: rotate(-120deg) scale(0.4);
+    opacity: 0;
+  }
+  to {
+    transform: rotate(0deg) scale(1);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-theme-transition]::view-transition-new(root),
+  .theme-toggle-icon {
+    animation: none;
   }
 }
 
