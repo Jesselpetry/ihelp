@@ -16,6 +16,13 @@ import { SUBMISSION_CERT_STATEMENTS, statementLabel } from "@/lib/statements";
 import { SUBMISSION_STEPS, TIME_OPTIONS, HOW_TO_COUNT_TIME } from "@/lib/wizard-content";
 import { useDraft, downloadMarkdown } from "@/lib/draft";
 import { addHistoryEntry } from "@/lib/history";
+import { useGithub } from "@/lib/github";
+import { PushToGithubButton } from "@/components/github/push-to-github";
+import {
+  emptySubmissionDraft,
+  submissionFieldsFromDraft,
+  type SubmissionDraft as Draft,
+} from "@/lib/wizard-fields";
 import { useLocale, t } from "@/lib/i18n";
 import { validateSubmissionUpTo } from "@/lib/validation";
 
@@ -24,45 +31,7 @@ const STEP_KEYS = [
   "tests", "ai_use", "human_help", "declaration", "download",
 ] as const;
 
-interface Draft {
-  file_locale: "th" | "en";
-  oj_title: string;
-  submission_id: string;
-  oj_status: string;
-  time_spent: string;
-  understanding: string;
-  first_plan: string;
-  final_approach: string;
-  tests: { why: string; input: string; expected: string; actual: string; result: string }[];
-  used_ai: string;
-  human_help: string;
-  who_helped: string;
-  what_help: string;
-  still_own_work: string;
-  copied_code: string;
-  certs: boolean[];
-}
-
-function emptyDraft(ojTitle: string): Draft {
-  return {
-    file_locale: "th",
-    oj_title: ojTitle,
-    submission_id: "",
-    oj_status: "Pass",
-    time_spent: "15-30 minutes",
-    understanding: "",
-    first_plan: "",
-    final_approach: "",
-    tests: [0, 1, 2].map(() => ({ why: "", input: "", expected: "", actual: "", result: "Pass" })),
-    used_ai: "No",
-    human_help: "No",
-    who_helped: "",
-    what_help: "",
-    still_own_work: "",
-    copied_code: "No",
-    certs: SUBMISSION_CERT_STATEMENTS.map(() => false),
-  };
-}
+const emptyDraft = emptySubmissionDraft;
 
 const L = {
   ojTitle: { th: "หมายเลข/ชื่อโจทย์ OJ", en: "OJ problem number/title" },
@@ -128,6 +97,7 @@ const L = {
 
 export function SubmissionWizard({ problemId, ojTitle }: { problemId: string; ojTitle: string }) {
   const { locale } = useLocale();
+  const gh = useGithub();
   const [draft, setDraft, clearDraft] = useDraft<Draft>(
     `ihelp-submission-${problemId}`,
     emptyDraft(ojTitle),
@@ -151,34 +121,7 @@ export function SubmissionWizard({ problemId, ojTitle }: { problemId: string; oj
     }));
 
   async function generate(): Promise<string> {
-    const certifications: Record<string, boolean> = {};
-    SUBMISSION_CERT_STATEMENTS.forEach((s, i) => (certifications[s] = draft.certs[i]));
-    const askedHuman = draft.human_help === "Yes";
-    const fields: Record<string, unknown> = {
-      oj_title: draft.oj_title,
-      submission_id: draft.submission_id,
-      oj_status: draft.oj_status,
-      time_spent: draft.time_spent,
-      understanding: draft.understanding,
-      first_plan: draft.first_plan,
-      final_approach: draft.final_approach,
-      used_ai: draft.used_ai,
-      human_help: draft.human_help,
-      // hidden fields stay out of the file when no human help was used
-      who_helped: askedHuman ? draft.who_helped : "",
-      what_help: askedHuman ? draft.what_help : "",
-      still_own_work: askedHuman ? draft.still_own_work : "",
-      copied_code: draft.copied_code,
-      certifications,
-    };
-    draft.tests.forEach((tc, i) => {
-      const n = i + 1;
-      fields[`t${n}_why`] = tc.why;
-      fields[`t${n}_input`] = tc.input;
-      fields[`t${n}_expected`] = tc.expected;
-      fields[`t${n}_actual`] = tc.actual;
-      fields[`t${n}_result`] = tc.result;
-    });
+    const fields = submissionFieldsFromDraft(draft);
     const res = await fetch("/api/generate/submission", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -398,6 +341,18 @@ export function SubmissionWizard({ problemId, ojTitle }: { problemId: string; oj
                 <Download className="size-4" />
                 {t(L.download, locale)}
               </Button>
+              {gh.connected && preview && (
+                <PushToGithubButton
+                  problemId={problemId}
+                  kind="submission"
+                  markdown={preview}
+                  connected={gh.connected}
+                  repo={gh.repo}
+                  disabled={!verified}
+                  onPushed={gh.refreshStatus}
+                  className="w-full [&>button]:w-full"
+                />
+              )}
               <Button variant="outline" onClick={refreshPreview} disabled={busy} className="w-full">
                 {t(L.preview, locale)}
               </Button>

@@ -10,6 +10,7 @@ import {
   FolderOpen,
   GraduationCap,
   ExternalLink,
+  Check,
 } from "lucide-react";
 import { useMemo, useState } from "react";
 import type { MasterProblem } from "@/lib/master";
@@ -27,6 +28,8 @@ import {
 import { WeekBadge } from "@/components/week-badge";
 import { Shortcuts } from "@/components/shortcuts";
 import { COURSE } from "@/lib/course";
+import { GithubConnect } from "@/components/github/github-connect";
+import { useGithub } from "@/lib/github";
 import { useLocale, t, type LText } from "@/lib/i18n";
 
 const L: Record<string, LText> = {
@@ -72,6 +75,9 @@ const L: Record<string, LText> = {
     th: "เริ่มทำโจทย์ประจำสัปดาห์นี้และสร้างบันทึกประวัติการส่ง (Learning Log) ได้เลย",
     en: "Start solving this week's problems and create your Learning Logs.",
   },
+  syncedSub: { th: "submission", en: "submission" },
+  syncedRefl: { th: "reflection", en: "reflection" },
+  editOnRepo: { th: "เปิดแก้ไฟล์นี้ใน repo", en: "Open this file in the repo editor" },
 };
 
 // Raw expire label is English ("31 July 2026, 00:00"); render it in the
@@ -121,6 +127,7 @@ function DifficultyStars({ value }: { value: number }) {
 
 export function ProblemsView({ problems }: { problems: MasterProblem[] }) {
   const { locale } = useLocale();
+  const gh = useGithub();
   const [query, setQuery] = useState("");
   const [weekFilter, setWeekFilter] = useState<number | "all">("all");
 
@@ -234,6 +241,17 @@ export function ProblemsView({ problems }: { problems: MasterProblem[] }) {
             ))}
           </p>
         </div>
+      </div>
+
+      {/* Optional GitHub sync: connect a repo to push generated files */}
+      <div className="mb-6">
+        <GithubConnect
+          connected={gh.connected}
+          user={gh.user}
+          repo={gh.repo}
+          hydrated={gh.hydrated}
+          onChanged={gh.refresh}
+        />
       </div>
 
       {/* Stats + weekly shortcuts share one card, split into two columns */}
@@ -380,6 +398,22 @@ export function ProblemsView({ problems }: { problems: MasterProblem[] }) {
                             {t(expired ? L.expired : L.expires, locale)}{" "}
                             {formatExpire(p.expireIso, p.expireLabel, locale)}
                           </Badge>
+                          {gh.connected && gh.repo && gh.status[p.id]?.submission && (
+                            <Link href={`/repo?path=oj${p.id}/submission.md`} title={t(L.editOnRepo, locale)}>
+                              <Badge className="bg-green-500/10 text-green-600 dark:text-green-400 font-medium cursor-pointer hover:bg-green-500/20 transition-colors">
+                                <Check className="size-3" />
+                                {t(L.syncedSub, locale)}
+                              </Badge>
+                            </Link>
+                          )}
+                          {gh.connected && gh.repo && gh.status[p.id]?.reflection && (
+                            <Link href={`/repo?path=oj${p.id}/ai_reflection.md`} title={t(L.editOnRepo, locale)}>
+                              <Badge className="bg-green-500/10 text-green-600 dark:text-green-400 font-medium cursor-pointer hover:bg-green-500/20 transition-colors">
+                                <Check className="size-3" />
+                                {t(L.syncedRefl, locale)}
+                              </Badge>
+                            </Link>
+                          )}
                         </div>
                       </TableCell>
                       <TableCell className="py-4">

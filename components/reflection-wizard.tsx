@@ -19,6 +19,14 @@ import {
 import { REFLECTION_STEPS } from "@/lib/wizard-content";
 import { useDraft, downloadMarkdown } from "@/lib/draft";
 import { addHistoryEntry } from "@/lib/history";
+import { useGithub } from "@/lib/github";
+import { PushToGithubButton } from "@/components/github/push-to-github";
+import {
+  emptyReflectionDraft,
+  reflectionFieldsFromDraft,
+  composeAiTool,
+  type ReflectionDraft as Draft,
+} from "@/lib/wizard-fields";
 import { useLocale, t } from "@/lib/i18n";
 import { validateReflectionUpTo } from "@/lib/validation";
 
@@ -37,52 +45,7 @@ const AI_TOOL_OPTIONS = [
   "Gemini CLI",
 ];
 
-interface Draft {
-  file_locale: "th" | "en";
-  oj_title: string;
-  submission_id: string;
-  oj_status: string;
-  ai_tool: string; // legacy free text (kept for old saved drafts)
-  ai_tools: string[];
-  ai_tool_other: string;
-  policy_answers: string[];
-  policy_notes: string[];
-  policy_no_explain: string;
-  what_asked: string;
-  what_noticed: string;
-  what_checked: string;
-  what_learned: string;
-  certs: boolean[];
-}
-
-function emptyDraft(ojTitle: string): Draft {
-  return {
-    file_locale: "th",
-    oj_title: ojTitle,
-    submission_id: "",
-    oj_status: "Pass",
-    ai_tool: "",
-    ai_tools: [],
-    ai_tool_other: "",
-    policy_answers: REFLECTION_POLICY_STATEMENTS.map(() => "Yes"),
-    policy_notes: REFLECTION_POLICY_STATEMENTS.map(() => ""),
-    policy_no_explain: "",
-    what_asked: "",
-    what_noticed: "",
-    what_checked: "",
-    what_learned: "",
-    certs: REFLECTION_CERT_STATEMENTS.map(() => false),
-  };
-}
-
-function composeAiTool(draft: Draft): string {
-  const tools = [...draft.ai_tools];
-  const other = draft.ai_tool_other.trim();
-  if (other) tools.push(`Other: ${other}`);
-  // fall back to legacy free text from old saved drafts
-  if (tools.length === 0) return draft.ai_tool;
-  return tools.join("\n");
-}
+const emptyDraft = emptyReflectionDraft;
 
 const L = {
   ojTitle: { th: "หมายเลข/ชื่อโจทย์ OJ", en: "OJ problem number/title" },
@@ -135,6 +98,7 @@ const L = {
 
 export function ReflectionWizard({ problemId, ojTitle }: { problemId: string; ojTitle: string }) {
   const { locale } = useLocale();
+  const gh = useGithub();
   const [draft, setDraft, clearDraft] = useDraft<Draft>(
     `ihelp-reflection-${problemId}`,
     emptyDraft(ojTitle),
@@ -153,28 +117,7 @@ export function ReflectionWizard({ problemId, ojTitle }: { problemId: string; oj
   const patch = (p: Partial<Draft>) => setDraft((d) => ({ ...d, ...p }));
 
   async function generate(): Promise<string> {
-    const policy: Record<string, { answer: string; note: string }> = {};
-    REFLECTION_POLICY_STATEMENTS.forEach((s, i) => {
-      policy[s] = { answer: draft.policy_answers[i], note: draft.policy_notes[i] };
-    });
-    const certifications: Record<string, boolean> = {};
-    REFLECTION_CERT_STATEMENTS.forEach((s, i) => (certifications[s] = draft.certs[i]));
-    const fields = {
-      info: {
-        "OJ problem number/title": draft.oj_title,
-        "OJ submission ID, if submitted": draft.submission_id,
-        "OJ status": draft.oj_status,
-      },
-      ai_tool: composeAiTool(draft),
-      policy,
-      // only emitted when some policy answer is "No"
-      policy_no_explain: draft.policy_answers.includes("No") ? draft.policy_no_explain : "",
-      what_asked: draft.what_asked,
-      what_noticed: draft.what_noticed,
-      what_checked: draft.what_checked,
-      what_learned: draft.what_learned,
-      certifications,
-    };
+    const fields = reflectionFieldsFromDraft(draft);
     const res = await fetch("/api/generate/reflection", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -426,6 +369,18 @@ export function ReflectionWizard({ problemId, ojTitle }: { problemId: string; oj
                 <Download className="size-4" />
                 {t(L.download, locale)}
               </Button>
+              {gh.connected && preview && (
+                <PushToGithubButton
+                  problemId={problemId}
+                  kind="reflection"
+                  markdown={preview}
+                  connected={gh.connected}
+                  repo={gh.repo}
+                  disabled={!verified}
+                  onPushed={gh.refreshStatus}
+                  className="w-full [&>button]:w-full"
+                />
+              )}
               <Button variant="outline" onClick={refreshPreview} disabled={busy} className="w-full">
                 {t(L.preview, locale)}
               </Button>
