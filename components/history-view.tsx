@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { downloadMarkdown } from "@/lib/draft";
 import { MarkdownPreview } from "@/components/md-preview";
+import { useGithub } from "@/lib/github";
+import { PushToGithubButton } from "@/components/github/push-to-github";
 import {
   loadHistory,
   deleteHistoryEntry,
@@ -44,6 +46,7 @@ const L = {
     th: "แก้ไขเนื้อหาไฟล์ .md ได้โดยตรง แล้วกดบันทึก การเปลี่ยนแปลงถูกเก็บในเครื่องของคุณเท่านั้น",
     en: "Edit the .md content directly, then Save. Changes are kept in this browser only.",
   },
+  synced: { th: "อยู่บน GitHub แล้ว", en: "On GitHub" },
 };
 
 const KIND_LABEL: Record<HistoryKind, string> = {
@@ -62,10 +65,18 @@ function EntryCard({
   entry,
   onDelete,
   onSave,
+  connected,
+  repo,
+  synced,
+  onPushed,
 }: {
   entry: HistoryEntry;
   onDelete: (id: string) => void;
   onSave: (id: string, markdown: string) => void;
+  connected: boolean;
+  repo: ReturnType<typeof useGithub>["repo"];
+  synced: boolean;
+  onPushed: () => void;
 }) {
   const { locale } = useLocale();
   const [open, setOpen] = useState(false);
@@ -79,6 +90,11 @@ function EntryCard({
         </Badge>
         <Badge variant="outline">{entry.fileLocale.toUpperCase()}</Badge>
         <span className="font-medium text-sm">{entry.ojTitle || entry.problemId}</span>
+        {connected && repo && synced && (
+          <Badge className="bg-green-500/10 text-green-600 dark:text-green-400 font-medium">
+            {t(L.synced, locale)}
+          </Badge>
+        )}
         <span className="ml-auto text-xs text-muted-foreground">
           {formatDate(entry.createdAt, locale)}
         </span>
@@ -116,6 +132,16 @@ function EntryCard({
           <Pencil className="size-3.5" />
           {t(L.edit, locale)}
         </Button>
+        {connected && !editing && (
+          <PushToGithubButton
+            problemId={entry.problemId}
+            kind={entry.kind}
+            markdown={entry.markdown}
+            connected={connected}
+            repo={repo}
+            onPushed={onPushed}
+          />
+        )}
         <Button
           size="sm"
           variant="ghost"
@@ -170,6 +196,7 @@ function EntryCard({
 
 export function HistoryView() {
   const { locale } = useLocale();
+  const gh = useGithub();
   const [entries, setEntries] = useState<HistoryEntry[]>([]);
   const [filter, setFilter] = useState<HistoryKind | "all">("all");
   const [hydrated, setHydrated] = useState(false);
@@ -244,6 +271,10 @@ export function HistoryView() {
           <EntryCard
             key={e.id}
             entry={e}
+            connected={gh.connected}
+            repo={gh.repo}
+            synced={Boolean(gh.status[e.problemId]?.[e.kind])}
+            onPushed={gh.refreshStatus}
             onDelete={(id) => {
               deleteHistoryEntry(id);
               setEntries((prev) => prev.filter((x) => x.id !== id));

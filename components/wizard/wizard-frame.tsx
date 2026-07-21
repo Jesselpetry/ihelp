@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowDown, ArrowLeft, ArrowRight, ChevronDown, ChevronRight, House } from "lucide-react";
-import { useState } from "react";
+import { ArrowDown, ArrowLeft, ArrowRight, Check, ChevronDown, ChevronRight, House } from "lucide-react";
+import { Fragment, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useLocale, t, type LText } from "@/lib/i18n";
 import type { StepContent } from "@/lib/wizard-content";
@@ -195,19 +195,40 @@ export function WizardFrame({
           </span>
           <span>{t(step.title, locale)}</span>
         </div>
-        <div className="flex gap-1">
-          {steps.map((s, i) => (
-            <button
-              key={i}
-              type="button"
-              title={t(s.title, locale)}
-              onClick={() => tryChangeStep(i)}
-              className={
-                "h-1.5 flex-1 rounded-full transition-colors " +
-                (i < stepIndex ? "bg-primary/60" : i === stepIndex ? "bg-primary" : "bg-border")
-              }
-            />
-          ))}
+        {/* numbered circle stepper connected by lines */}
+        <div className="flex items-center overflow-x-auto pb-1">
+          {steps.map((s, i) => {
+            const done = i < stepIndex;
+            const current = i === stepIndex;
+            return (
+              <Fragment key={i}>
+                {i > 0 && (
+                  <span
+                    className={
+                      "h-0.5 flex-1 min-w-3 rounded-full transition-colors " +
+                      (i <= stepIndex ? "bg-primary" : "bg-border")
+                    }
+                  />
+                )}
+                <button
+                  type="button"
+                  title={`${i + 1}. ${t(s.title, locale)}`}
+                  onClick={() => tryChangeStep(i)}
+                  aria-current={current ? "step" : undefined}
+                  className={
+                    "flex size-7 shrink-0 items-center justify-center rounded-full border-2 text-xs font-semibold transition-colors " +
+                    (done
+                      ? "border-primary bg-primary text-primary-foreground hover:bg-primary/90"
+                      : current
+                        ? "border-primary bg-background text-primary ring-2 ring-primary/30"
+                        : "border-border bg-background text-muted-foreground hover:border-primary/40")
+                  }
+                >
+                  {done ? <Check className="size-3.5" /> : i + 1}
+                </button>
+              </Fragment>
+            );
+          })}
         </div>
       </div>
 
