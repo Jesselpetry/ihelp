@@ -51,6 +51,20 @@ export const CHANGELOG: VersionEntry[] = [
         },
       },
       {
+        kind: "added",
+        text: {
+          th: "ส่วนแสดงผล Avatar พร้อม AvatarBadge สำหรับผู้ร่วมพัฒนาในหน้า /version",
+          en: "Contributor avatar badges with status indicators on the /version page",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "ปรับปรุง Navbar ให้รองรับอุปกรณ์เคลื่อนที่ (Mobile Responsive) พร้อมเมนู Hamburger",
+          en: "Mobile responsive Navbar with hamburger menu navigation",
+        },
+      },
+      {
         kind: "changed",
         text: {
           th: "ปรับปรุง UI ส่วน GitHub Push และ Wizard ขั้นตอน 1–10 ให้ใช้ง่ายขึ้น",
