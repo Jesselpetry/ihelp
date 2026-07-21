@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarBadge, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { CHANGELOG, type ChangeKind } from "@/lib/changelog";
 import { useLocale, t } from "@/lib/i18n";
 
@@ -64,36 +65,51 @@ export function VersionView() {
 
       <div className="space-y-4">
         {CHANGELOG.map((v) => (
-          <div key={v.version} className="rounded-xl border bg-card shadow-sm p-4 space-y-3">
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="font-mono text-lg font-bold">v{v.version}</span>
-              {v.date && (
-                <span className="text-xs text-muted-foreground">
-                  {formatDate(v.date, locale)}
+          <div key={v.version} className="rounded-xl border bg-card shadow-xs p-5 space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b pb-3">
+              <div className="flex items-center gap-2.5">
+                <span className="font-mono text-xl font-bold text-primary">v{v.version}</span>
+                {v.date && (
+                  <span className="text-xs text-muted-foreground bg-muted px-2.5 py-1 rounded-md">
+                    {formatDate(v.date, locale)}
+                  </span>
+                )}
+              </div>
+
+              <div className="flex items-center gap-2">
+                <span className="text-xs text-muted-foreground font-medium">
+                  {t(L.contributors, locale)}:
                 </span>
-              )}
-              <span className="ml-auto flex flex-wrap items-center gap-1.5 text-xs text-muted-foreground">
-                {t(L.contributors, locale)}:
-                {v.contributors.map((c) => (
-                  <a
-                    key={c.github}
-                    href={`https://github.com/${c.github}`}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="font-medium text-foreground hover:text-primary"
-                  >
-                    {c.name}
-                  </a>
-                ))}
-              </span>
+                <div className="flex flex-wrap items-center gap-1.5">
+                  {v.contributors.map((c) => (
+                    <a
+                      key={c.github}
+                      href={`https://github.com/${c.github}`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-1.5 rounded-full border bg-card px-2 py-0.5 text-xs font-medium hover:bg-muted hover:border-primary/30 transition-all shadow-2xs"
+                    >
+                      <Avatar size="sm" className="size-5">
+                        <AvatarImage src={`https://github.com/${c.github}.png`} alt={`@${c.github}`} />
+                        <AvatarFallback className="text-[9px]">
+                          {c.github.slice(0, 2).toUpperCase()}
+                        </AvatarFallback>
+                        <AvatarBadge className="size-1.5 bg-emerald-500 ring-1 ring-background" />
+                      </Avatar>
+                      <span className="text-foreground font-mono text-[11px]">@{c.github}</span>
+                    </a>
+                  ))}
+                </div>
+              </div>
             </div>
-            <ul className="space-y-1.5">
+
+            <ul className="space-y-2 pt-1">
               {v.changes.map((change, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm">
-                  <Badge variant={KIND_VARIANT[change.kind]} className="mt-0.5 shrink-0">
+                <li key={i} className="flex items-start gap-2.5 text-sm">
+                  <Badge variant={KIND_VARIANT[change.kind]} className="mt-0.5 shrink-0 uppercase text-[10px] tracking-wider px-2 py-0.5">
                     {t(KIND_LABEL[change.kind], locale)}
                   </Badge>
-                  <span>{t(change.text, locale)}</span>
+                  <span className="text-foreground/90 leading-relaxed">{t(change.text, locale)}</span>
                 </li>
               ))}
             </ul>
@@ -103,3 +119,4 @@ export function VersionView() {
     </main>
   );
 }
+
