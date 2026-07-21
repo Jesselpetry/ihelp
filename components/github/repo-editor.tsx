@@ -44,6 +44,7 @@ import {
   type LinkedRepo,
 } from "@/lib/github";
 import { parseSubmissionMd, parseReflectionMd } from "@/lib/md-parse";
+import { basename, dirname, buildTree, type TreeNode } from "@/lib/repo-tree";
 import {
   emptySubmissionDraft,
   emptyReflectionDraft,
@@ -105,50 +106,6 @@ const L = {
   newPathLabel: { th: "ตำแหน่ง/ชื่อไฟล์", en: "File path / name" },
   newPathPlaceholder: { th: "เช่น notes.txt หรือ oj213/notes.txt", en: "e.g. notes.txt or oj213/notes.txt" },
 };
-
-function basename(path: string): string {
-  return path.slice(path.lastIndexOf("/") + 1);
-}
-
-function dirname(path: string): string {
-  const i = path.lastIndexOf("/");
-  return i === -1 ? "" : path.slice(0, i);
-}
-
-interface TreeNode {
-  name: string;
-  path: string;
-  isFile: boolean;
-  size?: number;
-  children: TreeNode[];
-}
-
-// Build a nested folder tree from flat file paths.
-function buildTree(files: RepoFile[]): TreeNode[] {
-  const root: TreeNode = { name: "", path: "", isFile: false, children: [] };
-  for (const f of files) {
-    const parts = f.path.split("/");
-    let cur = root;
-    parts.forEach((part, i) => {
-      const isFile = i === parts.length - 1;
-      const path = parts.slice(0, i + 1).join("/");
-      let child = cur.children.find((c) => c.name === part && c.isFile === isFile);
-      if (!child) {
-        child = { name: part, path, isFile, size: isFile ? f.size : undefined, children: [] };
-        cur.children.push(child);
-      }
-      cur = child;
-    });
-  }
-  const sortRec = (n: TreeNode) => {
-    n.children.sort((a, b) =>
-      a.isFile !== b.isFile ? (a.isFile ? 1 : -1) : a.name.localeCompare(b.name),
-    );
-    n.children.forEach(sortRec);
-  };
-  sortRec(root);
-  return root.children;
-}
 
 function fileKind(path: string): Kind | null {
   const b = basename(path);

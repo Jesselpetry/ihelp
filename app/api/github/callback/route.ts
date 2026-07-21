@@ -4,6 +4,7 @@ import {
   TOKEN_COOKIE,
   USER_COOKIE,
   STATE_COOKIE,
+  RETURN_COOKIE,
   clientId,
   clientSecret,
   appBaseUrl,
@@ -63,8 +64,15 @@ export async function GET(req: Request) {
       avatar: userJson.avatar_url ?? "",
     };
 
-    home.searchParams.set("github", "connected");
-    const res = NextResponse.redirect(home);
+    // Return to where the user started the flow, if it was recorded.
+    const ret = store.get(RETURN_COOKIE)?.value;
+    const dest =
+      ret && ret.startsWith("/") && !ret.startsWith("//")
+        ? new URL(ret, appBaseUrl(req))
+        : home;
+    dest.searchParams.set("github", "connected");
+    const res = NextResponse.redirect(dest);
+    res.cookies.delete(RETURN_COOKIE);
     res.cookies.set(TOKEN_COOKIE, token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",

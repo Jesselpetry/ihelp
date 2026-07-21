@@ -75,15 +75,15 @@ export function PushToGithubButton({
       <Button
         type="button"
         size={size}
-        variant="outline"
         onClick={onClick}
         disabled={busy || disabled || Boolean(blocked)}
         title={blocked || undefined}
+        className="border-transparent bg-[#1f2328] text-white hover:bg-[#1f2328]/90 hover:text-white dark:bg-[#2d333b] dark:hover:bg-[#373e47]"
       >
         {busy ? (
           <Loader2 className="size-3.5 animate-spin" />
         ) : url ? (
-          <Check className="size-3.5 text-green-600" />
+          <Check className="size-3.5 text-green-400" />
         ) : (
           <GithubIcon className="size-3.5" />
         )}

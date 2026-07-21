@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import {
   STATE_COOKIE,
+  RETURN_COOKIE,
   OAUTH_SCOPE,
   clientId,
   appBaseUrl,
@@ -29,6 +30,17 @@ export async function GET(req: Request) {
       path: "/",
       maxAge: 600, // 10 minutes to complete the flow
     });
+    // Remember where to return after the callback (relative paths only).
+    const returnTo = new URL(req.url).searchParams.get("returnTo");
+    if (returnTo && returnTo.startsWith("/") && !returnTo.startsWith("//")) {
+      res.cookies.set(RETURN_COOKIE, returnTo, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "lax",
+        path: "/",
+        maxAge: 600,
+      });
+    }
     return res;
   } catch (e) {
     return NextResponse.json({ error: (e as Error).message }, { status: 500 });

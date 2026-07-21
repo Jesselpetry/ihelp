@@ -8,6 +8,7 @@ export const TOKEN_COOKIE = "gh_token";
 export const USER_COOKIE = "gh_user"; // non-httpOnly: { login, avatar } for UI
 export const REPO_COOKIE = "gh_repo"; // non-httpOnly: { owner, repo, branch }
 export const STATE_COOKIE = "gh_oauth_state";
+export const RETURN_COOKIE = "gh_return"; // where to send the user after OAuth
 
 export const OAUTH_SCOPE = "public_repo";
 

@@ -19,8 +19,7 @@ import {
 import { REFLECTION_STEPS } from "@/lib/wizard-content";
 import { useDraft, downloadMarkdown } from "@/lib/draft";
 import { addHistoryEntry } from "@/lib/history";
-import { useGithub } from "@/lib/github";
-import { PushToGithubButton } from "@/components/github/push-to-github";
+import { GithubPushSection } from "@/components/github/github-push-section";
 import {
   emptyReflectionDraft,
   reflectionFieldsFromDraft,
@@ -98,7 +97,6 @@ const L = {
 
 export function ReflectionWizard({ problemId, ojTitle }: { problemId: string; ojTitle: string }) {
   const { locale } = useLocale();
-  const gh = useGithub();
   const [draft, setDraft, clearDraft] = useDraft<Draft>(
     `ihelp-reflection-${problemId}`,
     emptyDraft(ojTitle),
@@ -369,16 +367,12 @@ export function ReflectionWizard({ problemId, ojTitle }: { problemId: string; oj
                 <Download className="size-4" />
                 {t(L.download, locale)}
               </Button>
-              {gh.connected && preview && (
-                <PushToGithubButton
+              {preview && (
+                <GithubPushSection
                   problemId={problemId}
                   kind="reflection"
                   markdown={preview}
-                  connected={gh.connected}
-                  repo={gh.repo}
                   disabled={!verified}
-                  onPushed={gh.refreshStatus}
-                  className="w-full [&>button]:w-full"
                 />
               )}
               <Button variant="outline" onClick={refreshPreview} disabled={busy} className="w-full">
