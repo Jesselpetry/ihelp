@@ -79,11 +79,28 @@ bun run lint    # ต้องผ่าน ไม่มี error
 bun run build   # ต้อง build ผ่าน
 ```
 
+## 3) อัปเดต Changelog / Version History
+
+ทุกครั้งที่ PR มีผลต่อผู้ใช้ (ฟีเจอร์ใหม่, แก้บั๊ก, เปลี่ยนพฤติกรรม) ให้แก้ **`CHANGELOG.md`** ด้วย:
+
+1. เพิ่มรายการใต้หัวข้อ `## [Unreleased]` แบ่งตามหมวด `Added` / `Changed` / `Fixed`
+   (ตามรูปแบบ [Keep a Changelog](https://keepachangelog.com/en/1.1.0/))
+2. เขียนสั้น ๆ ว่าเปลี่ยนอะไร ผู้ใช้เห็นผลยังไง — ไม่ต้อง detail ระดับโค้ด
+3. ไม่ต้องตั้งเลขเวอร์ชันเอง — คนดูแล repo จะเป็นคนตัดสินใจตอน release ว่ารอบนี้เป็น
+   `MAJOR` (breaking change) / `MINOR` (ฟีเจอร์ใหม่) / `PATCH` (แก้บั๊ก/ปรับเล็กน้อย)
+   ตาม [Semantic Versioning](https://semver.org/lang/th/) แล้วย้าย `[Unreleased]`
+   ไปเป็นหัวข้อเวอร์ชันใหม่พร้อมวันที่
+
+ตอน release แต่ละเวอร์ชันจะมีบรรทัด **ผู้ร่วมพัฒนา** ระบุชื่อ + GitHub handle ของทุกคน
+ที่มี commit ในเวอร์ชันนั้น (ดูตัวอย่างได้ใน `CHANGELOG.md`) — ถ้า PR ของคุณถูก merge
+เข้าเวอร์ชันไหน ชื่อคุณจะไปโผล่ในเวอร์ชันนั้น
+
 ## เปิด Pull Request
 
 1. สร้าง branch จาก `main` เช่น `fix/week-badge` หรือ `data/week-3-problems`
 2. Commit สั้น ๆ ตรงประเด็น (เช่น `data: add week 3 problems`)
 3. เปิด PR อธิบายว่าแก้อะไร ทำไม พร้อม screenshot ถ้าเป็นเรื่อง UI
-4. เจอบั๊กแต่ยังไม่มีเวลาแก้ — เปิด GitHub Issue ไว้ก็ช่วยมากแล้ว
+4. แก้ `CHANGELOG.md` ตามข้อ 3) ด้านบนไว้ในรอบ PR เดียวกัน
+5. เจอบั๊กแต่ยังไม่มีเวลาแก้ — เปิด GitHub Issue ไว้ก็ช่วยมากแล้ว
 
 ขอบคุณที่ช่วยกันทำให้เครื่องมือนี้ดีขึ้น 🙌
