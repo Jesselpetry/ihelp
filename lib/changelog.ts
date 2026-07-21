@@ -22,6 +22,51 @@ export interface VersionEntry {
 // Mirrors CHANGELOG.md at the repo root — keep both in sync when releasing.
 export const CHANGELOG: VersionEntry[] = [
   {
+    version: "0.4.0",
+    date: "2026-07-21",
+    contributors: [
+      { name: "Meaookung144", github: "Meaookung144" },
+      { name: "Chatan Petry", github: "Jesselpetry" },
+    ],
+    changes: [
+      {
+        kind: "added",
+        text: {
+          th: "ระบบเชื่อมต่อ GitHub (OAuth) และ Push ไฟล์ submission.md / ai_reflection.md เข้า Repository โดยตรง",
+          en: "Direct GitHub integration (OAuth) to push submission.md / ai_reflection.md to repositories",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "ตัวแก้ไขไฟล์ออนไลน์ (/repo) สำหรับแก้ไขและดูตัวอย่างไฟล์ก่อน Push",
+          en: "Online file editor (/repo) to inspect and edit repository files before pushing",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "หน้าประวัติเวอร์ชัน (/version) และการบันทึก Changelog ของโปรเจกต์",
+          en: "Version history page (/version) and project Changelog tracking",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "ปรับปรุง UI ส่วน GitHub Push และ Wizard ขั้นตอน 1–10 ให้ใช้ง่ายขึ้น",
+          en: "Improved GitHub Push UI and step 1–10 wizard navigation",
+        },
+      },
+      {
+        kind: "fixed",
+        text: {
+          th: "แก้ไขการทำงานของ Folder Component ในหน้าจัดการ Repository",
+          en: "Fixed folder tree component handling in the repo editor",
+        },
+      },
+    ],
+  },
+  {
     version: "0.3.0",
     date: "2026-07-20",
     contributors: [{ name: "Chatan Petry", github: "Jesselpetry" }],

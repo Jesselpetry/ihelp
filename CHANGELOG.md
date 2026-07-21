@@ -10,6 +10,25 @@
 
 ยังไม่มีการเปลี่ยนแปลงที่รอปล่อยเวอร์ชันถัดไป
 
+## [0.4.0] - 2026-07-21
+
+**ผู้ร่วมพัฒนา:** Meaookung144 ([@Meaookung144](https://github.com/Meaookung144)), Chatan Petry ([@Jesselpetry](https://github.com/Jesselpetry))
+
+### Added
+
+- ระบบเชื่อมต่อ GitHub (OAuth) และ Push ไฟล์ `submission.md` / `ai_reflection.md` เข้า Repository โดยตรง
+- ตัวแก้ไขไฟล์ออนไลน์ (`/repo`) สำหรับแก้ไขและดูตัวอย่างไฟล์ใน Repository ก่อนทำการ Push
+- หน้าประวัติเวอร์ชัน (`/version`) พร้อมลิงก์ใน Navbar สำหรับดูประวัติการอัปเดตระบบ
+- ไฟล์ `CHANGELOG.md`, `lib/changelog.ts` และแนวทางปฏิบัติตาม Changelog workflow ใน `CONTRIBUTING.md`
+
+### Changed
+
+- ปรับปรุง UI ในส่วน GitHub Push และ Wizard ให้แสดงลำดับขั้นตอน (1–10) แบบคลิกได้ พร้อมปุ่มเชื่อมต่อไปยัง GitHub Repo
+
+### Fixed
+
+- แก้ไขการทำงานและการแสดงผลของ Folder Component ในหน้าจัดการ Repository
+
 ## [0.3.0] - 2026-07-20
 
 **ผู้ร่วมพัฒนา:** Chatan Petry ([@Jesselpetry](https://github.com/Jesselpetry))
@@ -67,7 +86,8 @@
 - แก้ไอคอน Instagram
 - แก้ case ของข้อความในบางจุด
 
-[Unreleased]: https://github.com/Jesselpetry/ihelp/compare/e2f4b32...HEAD
+[Unreleased]: https://github.com/Jesselpetry/ihelp/compare/06e3f6e...HEAD
+[0.4.0]: https://github.com/Jesselpetry/ihelp/compare/e2f4b32...06e3f6e
 [0.3.0]: https://github.com/Jesselpetry/ihelp/compare/9f653a5...e2f4b32
 [0.2.0]: https://github.com/Jesselpetry/ihelp/compare/1c1136f...9f653a5
 [0.1.1]: https://github.com/Jesselpetry/ihelp/compare/c288176...1c1136f
