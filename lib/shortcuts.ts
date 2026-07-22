@@ -12,26 +12,26 @@ export interface Shortcut {
 export const SHORTCUTS: Shortcut[] = [
   {
     title: {
-      th: "Feedback form — Pair Programming Week 3",
-      en: "Feedback form — Pair Programming Week 3",
+      th: "รายชื่อคู่ Pair — Week 4",
+      en: "Pair list — Week 4",
     },
     description: {
-      th: "ฟอร์มเช็คชื่อเข้า pair programming (Lab 17/07/2026)",
-      en: "Attendance check-in form for pair programming (lab of 17/07/2026)",
+      th: "ตารางรายชื่อคู่ pair programming สำหรับ Lab 24/07/2026 (เข้าด้วยอีเมลสถาบัน 69070XXX@kmitl.ac.th)",
+      en: "Pair programming pairings for the lab of 24/07/2026 (use your institute email 69070XXX@kmitl.ac.th)",
     },
-    href: "https://forms.gle/FYWmH5Rc7jiyMLkZ9",
-    date: "17/07/2026",
+    href: "https://docs.google.com/spreadsheets/d/15d46ZMJbPUtVPoiHoin5-wk6v94L6_l-X9vsi0VI688/edit?usp=sharing",
+    date: "24/07/2026",
   },
   {
     title: {
-      th: "รายชื่อคู่ Pair — Week 3",
-      en: "Pair list — Week 3",
+      th: "รายชื่อ Code Interview ครั้งที่ 1",
+      en: "Code Interview #1 list",
     },
     description: {
-      th: "ตารางรายชื่อคู่ pair programming สำหรับ Lab 17/07/2026",
-      en: "Pair programming pairings for the lab of 17/07/2026",
+      th: "เช็กชื่อ Code Interview ครั้งที่ 1 ที่แท็บ \"Code Interview\" ในชีตเดียวกัน (Lab 24/07/2026, อีเมลสถาบันเท่านั้น)",
+      en: "Check the Code Interview #1 roster in the \"Code Interview\" tab of the same sheet (lab of 24/07/2026, institute email only)",
     },
     href: "https://docs.google.com/spreadsheets/d/15d46ZMJbPUtVPoiHoin5-wk6v94L6_l-X9vsi0VI688/edit?usp=sharing",
-    date: "17/07/2026",
+    date: "24/07/2026",
   },
 ];

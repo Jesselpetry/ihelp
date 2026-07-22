@@ -21,7 +21,7 @@ export function Shortcuts() {
       <div className="grid auto-rows-fr gap-3 flex-1">
         {SHORTCUTS.map((s) => (
           <a
-            key={s.href}
+            key={s.href + s.title.en}
             href={s.href}
             target="_blank"
             rel="noreferrer"
