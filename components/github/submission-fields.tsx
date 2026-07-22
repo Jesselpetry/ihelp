@@ -1,7 +1,7 @@
 "use client";
 
 import { Checkbox } from "@/components/ui/checkbox";
-import { ChoiceBadges, SectionTitle, TextField } from "@/components/form-fields";
+import { ChoiceBadges, PlanStepsField, SectionTitle, TextField } from "@/components/form-fields";
 import { FileLanguagePicker } from "@/components/wizard/wizard-frame";
 import { SUBMISSION_CERT_STATEMENTS, statementLabel } from "@/lib/statements";
 import { SUBMISSION_STEPS, TIME_OPTIONS } from "@/lib/wizard-content";
@@ -20,6 +20,14 @@ const L = {
   time: { th: "เวลาที่ใช้คิดและทำโจทย์ด้วยตนเอง", en: "Independent time spent" },
   understanding: { th: "อธิบายโจทย์ด้วยคำพูดของตนเอง", en: "The problem in your own words" },
   firstPlan: { th: "แผนแรกของฉัน", en: "My first plan" },
+  addStep: { th: "เพิ่มขั้นตอน", en: "Add step" },
+  planStepsMode: { th: "ขั้นตอน", en: "Steps" },
+  planTextMode: { th: "ข้อความ", en: "Text" },
+  planRemark: { th: "หมายเหตุ", en: "Remark" },
+  planRemarkHint: {
+    th: "สิ่งที่ยังไม่แน่ใจหรืออยากบันทึกไว้ (ไม่บังคับ)",
+    en: "Anything you were unsure about or want to note (optional)",
+  },
   finalApproach: { th: "วิธีสุดท้ายที่ใช้จริง", en: "My final approach" },
   testWhy: { th: "ทำไมเลือก case นี้", en: "Why I chose this case" },
   input: { th: "Input", en: "Input" },
@@ -69,7 +77,17 @@ export function SubmissionFields({
       <TextField label={t(L.understanding, locale)} hint={g("understanding")} value={draft.understanding} onChange={(v) => patch({ understanding: v })} rows={6} />
 
       <SectionTitle>{t(SUBMISSION_STEPS.first_plan.title, locale)}</SectionTitle>
-      <TextField label={t(L.firstPlan, locale)} hint={g("first_plan")} value={draft.first_plan} onChange={(v) => patch({ first_plan: v })} rows={6} />
+      <PlanStepsField
+        label={t(L.firstPlan, locale)}
+        hint={g("first_plan")}
+        value={draft.first_plan}
+        onChange={(v) => patch({ first_plan: v })}
+        addLabel={t(L.addStep, locale)}
+        remarkLabel={t(L.planRemark, locale)}
+        remarkHint={t(L.planRemarkHint, locale)}
+        stepsModeLabel={t(L.planStepsMode, locale)}
+        textModeLabel={t(L.planTextMode, locale)}
+      />
 
       <SectionTitle>{t(SUBMISSION_STEPS.final_approach.title, locale)}</SectionTitle>
       <TextField label={t(L.finalApproach, locale)} hint={g("final_approach")} value={draft.final_approach} onChange={(v) => patch({ final_approach: v })} rows={6} />
