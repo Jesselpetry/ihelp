@@ -22,6 +22,20 @@ export interface VersionEntry {
 // Mirrors CHANGELOG.md at the repo root — keep both in sync when releasing.
 export const CHANGELOG: VersionEntry[] = [
   {
+    version: "Unreleased",
+    date: null,
+    contributors: [],
+    changes: [
+      {
+        kind: "changed",
+        text: {
+          th: "เปลี่ยนป้ายประกาศหน้าโจทย์จาก Week 3 เป็น Code Interview",
+          en: "Changed the problems page banner from Week 3 to Code Interview",
+        },
+      },
+    ],
+  },
+  {
     version: "0.4.0",
     date: "2026-07-21",
     contributors: [

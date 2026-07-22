@@ -68,12 +68,12 @@ const L: Record<string, LText> = {
   stats: { th: "สถิติ", en: "Stats" },
   coursePage: { th: "หน้ารายวิชา", en: "Course page" },
   week3BannerTitle: {
-    th: "โจทย์ Week 3 มาแล้วว!",
-    en: "Week 3 Problems are here!",
+    th: "Code Interview มาแล้วว!",
+    en: "Code Interview is here!",
   },
   week3BannerDesc: {
-    th: "เริ่มทำโจทย์ประจำสัปดาห์นี้และสร้างบันทึกประวัติการส่ง (Learning Log) ได้เลย",
-    en: "Start solving this week's problems and create your Learning Logs.",
+    th: "เตรียมตัวสอบสัมภาษณ์เชิงโค้ดและสร้างบันทึกประวัติการส่ง (Learning Log) ได้เลย",
+    en: "Get ready for your code interview and create your Learning Logs.",
   },
   syncedSub: { th: "submission", en: "submission" },
   syncedRefl: { th: "reflection", en: "reflection" },
