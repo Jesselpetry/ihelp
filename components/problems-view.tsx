@@ -30,7 +30,7 @@ import { Shortcuts } from "@/components/shortcuts";
 import { COURSE } from "@/lib/course";
 import { GithubConnect } from "@/components/github/github-connect";
 import { useGithub } from "@/lib/github";
-import { useLocale, t, type LText } from "@/lib/i18n";
+import { useLocale, t, type LText, type Locale } from "@/lib/i18n";
 
 const L: Record<string, LText> = {
   crumbCourses: { th: "Courses", en: "Courses" },
@@ -85,7 +85,7 @@ const L: Record<string, LText> = {
 function formatExpire(
   iso: string | null,
   label: string,
-  locale: string,
+  locale: Locale,
 ): string {
   if (!iso) return label;
   const d = new Date(iso);
@@ -122,6 +122,115 @@ function DifficultyStars({ value }: { value: number }) {
         {value}/5
       </span>
     </span>
+  );
+}
+
+function ProblemTitle({ p, locale }: { p: MasterProblem; locale: Locale }) {
+  return (
+    <div className="flex flex-wrap items-center gap-2">
+      <a
+        href={p.url}
+        target="_blank"
+        rel="noreferrer"
+        title={t(L.openProblem, locale)}
+        className="text-primary font-semibold text-base underline-offset-4 hover:underline break-words"
+      >
+        {p.name}
+      </a>
+      {p.learningLog && (
+        <Badge className="bg-primary/10 text-primary font-semibold">
+          {t(L.learningLog, locale)}
+        </Badge>
+      )}
+    </div>
+  );
+}
+
+function ProblemMeta({
+  p,
+  locale,
+  expired,
+  synced,
+}: {
+  p: MasterProblem;
+  locale: Locale;
+  expired: boolean;
+  // GitHub sync status for this problem, when a repo is connected
+  synced?: { submission?: boolean; reflection?: boolean };
+}) {
+  return (
+    <div className="flex flex-wrap items-center gap-1.5">
+      <Badge variant="outline" className="font-mono text-muted-foreground">
+        #{p.id}
+      </Badge>
+      {p.week !== null && <WeekBadge week={p.week} />}
+      <Badge
+        variant="outline"
+        className={
+          expired
+            ? "border-destructive/30 bg-destructive/10 text-destructive font-medium"
+            : "text-muted-foreground"
+        }
+      >
+        {expired ? (
+          <TriangleAlert className="size-3" />
+        ) : (
+          <Clock className="size-3" />
+        )}
+        {t(expired ? L.expired : L.expires, locale)}{" "}
+        {formatExpire(p.expireIso, p.expireLabel, locale)}
+      </Badge>
+      {synced?.submission && (
+        <Link
+          href={`/repo?path=oj${p.id}/submission.md`}
+          title={t(L.editOnRepo, locale)}
+        >
+          <Badge className="bg-green-500/10 text-green-600 dark:text-green-400 font-medium cursor-pointer hover:bg-green-500/20 transition-colors">
+            <Check className="size-3" />
+            {t(L.syncedSub, locale)}
+          </Badge>
+        </Link>
+      )}
+      {synced?.reflection && (
+        <Link
+          href={`/repo?path=oj${p.id}/ai_reflection.md`}
+          title={t(L.editOnRepo, locale)}
+        >
+          <Badge className="bg-green-500/10 text-green-600 dark:text-green-400 font-medium cursor-pointer hover:bg-green-500/20 transition-colors">
+            <Check className="size-3" />
+            {t(L.syncedRefl, locale)}
+          </Badge>
+        </Link>
+      )}
+    </div>
+  );
+}
+
+function ProblemActions({ p, locale }: { p: MasterProblem; locale: Locale }) {
+  return (
+    <div className="flex flex-wrap gap-2">
+      {p.learningLog && (
+        <Button
+          asChild
+          size="sm"
+          className="h-8 rounded-full text-xs font-medium"
+        >
+          <Link href={`/make/submission?problem=${p.id}`}>
+            {t(L.submissionBtn, locale)}
+          </Link>
+        </Button>
+      )}
+      <Button
+        asChild
+        size="sm"
+        variant="outline"
+        className="h-8 rounded-full text-xs font-medium text-muted-foreground hover:text-foreground"
+      >
+        <Link href={`/make/reflection?problem=${p.id}`}>
+          {t(L.reflectionBtn, locale)}
+        </Link>
+      </Button>
+    </div>
   );
 }
 
@@ -169,11 +278,11 @@ export function ProblemsView({ problems }: { problems: MasterProblem[] }) {
   }, [problems, query, weekFilter]);
 
   return (
-    <main className="max-w-6xl mx-auto px-6 py-8 w-full">
+    <main className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8 w-full">
       {/* Week 3 Announcement Banner */}
-      <div className="mb-6 rounded-2xl bg-primary px-5 py-4 text-primary-foreground shadow-md flex items-center justify-between gap-4 transition-all hover:brightness-105">
+      <div className="mb-6 rounded-2xl bg-primary px-4 py-3.5 sm:px-5 sm:py-4 text-primary-foreground shadow-md flex items-center justify-between gap-3 sm:gap-4 transition-all hover:brightness-105">
         <div className="flex items-center gap-3">
-          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary-foreground/20 text-lg">
+          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary-foreground/20 text-lg">
             🎉
           </span>
           <div className="text-left">
@@ -196,7 +305,7 @@ export function ProblemsView({ problems }: { problems: MasterProblem[] }) {
         <p className="text-sm text-muted-foreground mb-1">
           {t(L.crumbCourses, locale)} / {t(L.crumbCourse, locale)}
         </p>
-        <h1 className="text-4xl font-bold">{t(L.heading, locale)}</h1>
+        <h1 className="text-3xl sm:text-4xl font-bold">{t(L.heading, locale)}</h1>
         <p className="text-sm text-muted-foreground mt-2">
           {t(L.intro, locale)}
         </p>
@@ -316,19 +425,20 @@ export function ProblemsView({ problems }: { problems: MasterProblem[] }) {
       )}
 
       <div className="bg-card rounded-2xl border shadow-sm overflow-hidden">
-        <div className="flex flex-wrap items-center gap-3 px-6 py-5 border-b">
-          <h3 className="text-xl font-semibold mr-auto">
+        <div className="flex flex-col gap-3 px-4 py-4 border-b sm:flex-row sm:flex-wrap sm:items-center sm:px-6 sm:py-5">
+          <h3 className="text-lg font-semibold sm:text-xl sm:mr-auto">
             {t(L.listTitle, locale)}
           </h3>
           <Input
             placeholder={t(L.search, locale)}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="w-52"
+            className="w-full sm:w-52"
           />
         </div>
 
-        <div className="overflow-x-auto">
+        {/* Desktop: table (md and up) */}
+        <div className="hidden overflow-x-auto md:block">
           <Table>
             <TableHeader>
               <TableRow className="bg-background hover:bg-background">
@@ -358,91 +468,25 @@ export function ProblemsView({ problems }: { problems: MasterProblem[] }) {
                       data-ll={p.learningLog || undefined}
                     >
                       <TableCell className="py-4">
-                        <div className="flex flex-wrap items-center gap-2">
-                          <a
-                            href={p.url}
-                            target="_blank"
-                            rel="noreferrer"
-                            title={t(L.openProblem, locale)}
-                            className="text-primary font-semibold text-base underline-offset-4 hover:underline"
-                          >
-                            {p.name}
-                          </a>
-                          {p.learningLog && (
-                            <Badge className="bg-primary/10 text-primary font-semibold">
-                              {t(L.learningLog, locale)}
-                            </Badge>
-                          )}
-                        </div>
-                        <div className="flex flex-wrap items-center gap-1.5 mt-2">
-                          <Badge
-                            variant="outline"
-                            className="font-mono text-muted-foreground"
-                          >
-                            #{p.id}
-                          </Badge>
-                          {p.week !== null && <WeekBadge week={p.week} />}
-                          <Badge
-                            variant="outline"
-                            className={
-                              expired
-                                ? "border-destructive/30 bg-destructive/10 text-destructive font-medium"
-                                : "text-muted-foreground"
+                        <ProblemTitle p={p} locale={locale} />
+                        <div className="mt-2">
+                          <ProblemMeta
+                            p={p}
+                            locale={locale}
+                            expired={expired}
+                            synced={
+                              gh.connected && gh.repo
+                                ? gh.status[p.id]
+                                : undefined
                             }
-                          >
-                            {expired ? (
-                              <TriangleAlert className="size-3" />
-                            ) : (
-                              <Clock className="size-3" />
-                            )}
-                            {t(expired ? L.expired : L.expires, locale)}{" "}
-                            {formatExpire(p.expireIso, p.expireLabel, locale)}
-                          </Badge>
-                          {gh.connected && gh.repo && gh.status[p.id]?.submission && (
-                            <Link href={`/repo?path=oj${p.id}/submission.md`} title={t(L.editOnRepo, locale)}>
-                              <Badge className="bg-green-500/10 text-green-600 dark:text-green-400 font-medium cursor-pointer hover:bg-green-500/20 transition-colors">
-                                <Check className="size-3" />
-                                {t(L.syncedSub, locale)}
-                              </Badge>
-                            </Link>
-                          )}
-                          {gh.connected && gh.repo && gh.status[p.id]?.reflection && (
-                            <Link href={`/repo?path=oj${p.id}/ai_reflection.md`} title={t(L.editOnRepo, locale)}>
-                              <Badge className="bg-green-500/10 text-green-600 dark:text-green-400 font-medium cursor-pointer hover:bg-green-500/20 transition-colors">
-                                <Check className="size-3" />
-                                {t(L.syncedRefl, locale)}
-                              </Badge>
-                            </Link>
-                          )}
+                          />
                         </div>
                       </TableCell>
                       <TableCell className="py-4">
                         <DifficultyStars value={p.difficulty} />
                       </TableCell>
                       <TableCell className="py-4">
-                        <div className="flex flex-wrap gap-2">
-                          {p.learningLog && (
-                            <Button
-                              asChild
-                              size="sm"
-                              className="h-8 rounded-full text-xs font-medium"
-                            >
-                              <Link href={`/make/submission?problem=${p.id}`}>
-                                {t(L.submissionBtn, locale)}
-                              </Link>
-                            </Button>
-                          )}
-                          <Button
-                            asChild
-                            size="sm"
-                            variant="outline"
-                            className="h-8 rounded-full text-xs font-medium text-muted-foreground hover:text-foreground"
-                          >
-                            <Link href={`/make/reflection?problem=${p.id}`}>
-                              {t(L.reflectionBtn, locale)}
-                            </Link>
-                          </Button>
-                        </div>
+                        <ProblemActions p={p} locale={locale} />
                       </TableCell>
                     </TableRow>
                   );
@@ -451,7 +495,49 @@ export function ProblemsView({ problems }: { problems: MasterProblem[] }) {
             </TableBody>
           </Table>
         </div>
-        <p className="px-6 py-3 border-t text-xs text-muted-foreground">
+
+        {/* Mobile: stacked cards (below md) */}
+        <div className="md:hidden">
+          {filtered.length === 0 ? (
+            <p className="py-16 text-center text-sm text-muted-foreground">
+              {t(L.empty, locale)}
+            </p>
+          ) : (
+            <ul className="divide-y">
+              {filtered.map((p) => {
+                const expired =
+                  p.expireIso !== null && new Date(p.expireIso) < new Date();
+                return (
+                  <li
+                    key={p.id}
+                    className="border-l-2 border-l-transparent px-4 py-4 data-[ll=true]:border-l-primary/40"
+                    data-ll={p.learningLog || undefined}
+                  >
+                    <ProblemTitle p={p} locale={locale} />
+                    <div className="mt-2.5">
+                      <ProblemMeta
+                        p={p}
+                        locale={locale}
+                        expired={expired}
+                        synced={
+                          gh.connected && gh.repo ? gh.status[p.id] : undefined
+                        }
+                      />
+                    </div>
+                    <div className="mt-3">
+                      <DifficultyStars value={p.difficulty} />
+                    </div>
+                    <div className="mt-3">
+                      <ProblemActions p={p} locale={locale} />
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+        </div>
+
+        <p className="px-4 py-3 border-t text-xs text-muted-foreground sm:px-6">
           {t(L.llOnly, locale)}
         </p>
       </div>
