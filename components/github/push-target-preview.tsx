@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { FileText, FolderOpen, Loader2 } from "lucide-react";
 import { GithubIcon } from "@/components/social-icons";
 import { useGithub, listFiles, type RepoFile, type FileKind } from "@/lib/github";
@@ -27,6 +27,8 @@ export function PushTargetPreview({
   const { locale } = useLocale();
   const gh = useGithub();
   const [files, setFiles] = useState<RepoFile[] | null>(null);
+  const containerRef = useRef<HTMLUListElement | null>(null);
+  const targetRef = useRef<HTMLLIElement | null>(null);
 
   const fname = kind === "submission" ? "submission.md" : "ai_reflection.md";
   const pendingPath = `oj${problemId}/${fname}`;
@@ -57,6 +59,22 @@ export function PushTargetPreview({
     return buildTree(list);
   }, [files, pendingPath]);
 
+  useEffect(() => {
+    if (files && targetRef.current && containerRef.current) {
+      const timer = requestAnimationFrame(() => {
+        if (!containerRef.current || !targetRef.current) return;
+        const container = containerRef.current;
+        const target = targetRef.current;
+        const containerRect = container.getBoundingClientRect();
+        const targetRect = target.getBoundingClientRect();
+        const relativeTop = targetRect.top - containerRect.top + container.scrollTop;
+        const targetScrollTop = relativeTop - container.clientHeight / 2 + targetRect.height / 2;
+        container.scrollTo({ top: Math.max(0, targetScrollTop), behavior: "smooth" });
+      });
+      return () => cancelAnimationFrame(timer);
+    }
+  }, [files, pendingPath]);
+
   if (!gh.connected || !gh.repo || !/^\d+$/.test(problemId)) return null;
 
   function renderNodes(nodes: TreeNode[], depth: number): React.ReactNode {
@@ -65,7 +83,7 @@ export function PushTargetPreview({
       if (node.isFile) {
         const isPending = node.path === pendingPath;
         return (
-          <li key={node.path}>
+          <li key={node.path} ref={isPending ? targetRef : undefined}>
             <div
               style={indent}
               className={
@@ -116,7 +134,9 @@ export function PushTargetPreview({
           {t(L.loading, locale)}
         </div>
       ) : (
-        <ul className="max-h-56 overflow-y-auto">{renderNodes(tree, 0)}</ul>
+        <ul ref={containerRef} className="max-h-56 overflow-y-auto">
+          {renderNodes(tree, 0)}
+        </ul>
       )}
     </div>
   );
