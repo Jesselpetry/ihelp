@@ -5,7 +5,7 @@ import { Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { FileLanguagePicker, ScrollDownCue, WizardFrame } from "@/components/wizard/wizard-frame";
-import { ChoiceBadges, TextField } from "@/components/form-fields";
+import { ChoiceBadges, PlanStepsField, TextField } from "@/components/form-fields";
 import { MarkdownPreview } from "@/components/md-preview";
 
 const STATUS_COLORS = { Pass: "green", "Not Pass": "red", "Not Submit": "gray" } as const;
@@ -42,6 +42,14 @@ const L = {
     en: "The problem in your own words (input / output / constraints)",
   },
   firstPlan: { th: "แผนแรกของฉัน", en: "My first plan" },
+  addStep: { th: "เพิ่มขั้นตอน", en: "Add step" },
+  planStepsMode: { th: "ขั้นตอน", en: "Steps" },
+  planTextMode: { th: "ข้อความ", en: "Text" },
+  planRemark: { th: "หมายเหตุ", en: "Remark" },
+  planRemarkHint: {
+    th: "สิ่งที่ยังไม่แน่ใจหรืออยากบันทึกไว้ (ไม่บังคับ)",
+    en: "Anything you were unsure about or want to note (optional)",
+  },
   finalApproach: { th: "วิธีสุดท้ายที่ใช้จริง", en: "My final approach" },
   testWhy: { th: "ทำไมเลือก case นี้", en: "Why I chose this case" },
   input: { th: "Input", en: "Input" },
@@ -217,7 +225,16 @@ export function SubmissionWizard({ problemId, ojTitle }: { problemId: string; oj
       )}
 
       {key === "first_plan" && (
-        <TextField label={t(L.firstPlan, locale)} value={draft.first_plan} onChange={(v) => patch({ first_plan: v })} rows={8} />
+        <PlanStepsField
+          label={t(L.firstPlan, locale)}
+          value={draft.first_plan}
+          onChange={(v) => patch({ first_plan: v })}
+          addLabel={t(L.addStep, locale)}
+          remarkLabel={t(L.planRemark, locale)}
+          remarkHint={t(L.planRemarkHint, locale)}
+          stepsModeLabel={t(L.planStepsMode, locale)}
+          textModeLabel={t(L.planTextMode, locale)}
+        />
       )}
 
       {key === "final_approach" && (
