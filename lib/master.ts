@@ -10,17 +10,20 @@ interface RawProblem {
   difficulty: number;
   expire_date: string; // e.g. "31 July 2026, 00:00"
   is_learning_log: boolean;
+  is_recommended?: boolean;
   url: string;
 }
 
 export interface MasterProblem {
   id: number;
   name: string;
+  cleanName: string;
   difficulty: number;
   expireIso: string | null; // "YYYY-MM-DDTHH:mm"
   expireLabel: string;
   week: number | null;
   learningLog: boolean;
+  recommended: boolean;
   url: string;
 }
 
@@ -39,6 +42,17 @@ export function parseExpire(expire: string): string | null {
   return `${m[3]}-${month}-${m[1].padStart(2, "0")}T${m[4]}:${m[5]}`;
 }
 
+export function cleanProblemName(name: string): string {
+  return name
+    .replace(/\[\s*(?:LEARNING\s*LOGS?|RECOMMEND(?:ED)?)\s*\]/gi, "")
+    .trim();
+}
+
+export function isRecommendedProblem(raw: RawProblem): boolean {
+  if (raw.is_recommended !== undefined) return Boolean(raw.is_recommended);
+  return /\[\s*recommend(?:ed)?\s*\]/i.test(raw.name);
+}
+
 export function loadProblems(): MasterProblem[] {
   const raw: RawProblem[] = JSON.parse(fs.readFileSync(OJ_PROBLEMS_FILE, "utf-8"));
 
@@ -54,11 +68,13 @@ export function loadProblems(): MasterProblem[] {
     return {
       id: p.id,
       name: p.name,
+      cleanName: cleanProblemName(p.name) || p.name,
       difficulty: p.difficulty,
       expireIso: iso,
       expireLabel: p.expire_date,
       week: iso ? weekOf.get(iso)! : null,
       learningLog: p.is_learning_log,
+      recommended: isRecommendedProblem(p),
       url: p.url,
     };
   });

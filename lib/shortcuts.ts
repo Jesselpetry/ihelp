@@ -12,26 +12,26 @@ export interface Shortcut {
 export const SHORTCUTS: Shortcut[] = [
   {
     title: {
-      th: "รายชื่อคู่ Pair — Week 4",
-      en: "Pair list — Week 4",
+      th: "รายชื่อคู่ Pair — Week 7 (สัปดาห์สุดท้าย)",
+      en: "Pair list — Week 7 (Final Week)",
     },
     description: {
-      th: "ตารางรายชื่อคู่ pair programming สำหรับ Lab 24/07/2026 (เข้าด้วยอีเมลสถาบัน 69070XXX@kmitl.ac.th)",
-      en: "Pair programming pairings for the lab of 24/07/2026 (use your institute email 69070XXX@kmitl.ac.th)",
+      th: "สัปดาห์สุดท้ายของ pair programming! ดูรายชื่อเพื่อนร่วมสนุกสำหรับ Lab 14/08/2026 ที่แท็บ \"week 7\" ด้านล่าง (ใช้อีเมลสถาบัน 69070XXX@kmitl.ac.th)",
+      en: "Final week of pair programming! Check your pairing for the lab of 14/08/2026 in the \"week 7\" tab (use institute email 69070XXX@kmitl.ac.th)",
     },
     href: "https://docs.google.com/spreadsheets/d/15d46ZMJbPUtVPoiHoin5-wk6v94L6_l-X9vsi0VI688/edit?usp=sharing",
-    date: "24/07/2026",
+    date: "14/08/2026",
   },
   {
     title: {
-      th: "รายชื่อ Code Interview ครั้งที่ 1",
-      en: "Code Interview #1 list",
+      th: "Feedback Form — Pair Programming Week 6",
+      en: "Feedback Form — Pair Programming Week 6",
     },
     description: {
-      th: "เช็กชื่อ Code Interview ครั้งที่ 1 ที่แท็บ \"Code Interview\" ในชีตเดียวกัน (Lab 24/07/2026, อีเมลสถาบันเท่านั้น)",
-      en: "Check the Code Interview #1 roster in the \"Code Interview\" tab of the same sheet (lab of 24/07/2026, institute email only)",
+      th: "ฟอร์มเช็คชื่อ/ประเมินผล Pair programming week 6 (07/08/2026) คนที่ไม่ได้ทำมีตัวเลือก \"ไม่ได้ทำ\" (ใช้อีเมลสถาบัน 69070XXX@kmitl.ac.th)",
+      en: "Attendance & feedback form for Pair programming week 6 (07/08/2026). Options available for absentees (use institute email)",
     },
-    href: "https://docs.google.com/spreadsheets/d/15d46ZMJbPUtVPoiHoin5-wk6v94L6_l-X9vsi0VI688/edit?usp=sharing",
-    date: "24/07/2026",
+    href: "https://forms.gle/2UPTCgeDJGaRmLMg9",
+    date: "07/08/2026",
   },
 ];

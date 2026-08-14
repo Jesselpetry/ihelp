@@ -11,6 +11,7 @@ import {
   GraduationCap,
   ExternalLink,
   Check,
+  Sparkles,
 } from "lucide-react";
 import { useMemo, useState } from "react";
 import type { MasterProblem } from "@/lib/master";
@@ -45,6 +46,7 @@ const L: Record<string, LText> = {
   },
   total: { th: "โจทย์ทั้งหมด", en: "Total problems" },
   logs: { th: "Learning logs", en: "Learning logs" },
+  recommendedStat: { th: "โจทย์แนะนำ", en: "Recommended" },
   listTitle: { th: "รายการโจทย์ (Problems List)", en: "Problems List" },
   search: { th: "ค้นหาชื่อหรือ ID...", en: "Search name or ID..." },
   problem: { th: "ชื่อโจทย์", en: "Problem" },
@@ -53,6 +55,7 @@ const L: Record<string, LText> = {
   expires: { th: "หมดเขต", en: "Expires" },
   expired: { th: "หมดเขตแล้ว", en: "Expired" },
   learningLog: { th: "Learning Log", en: "Learning Log" },
+  recommended: { th: "แนะนำ", en: "Recommended" },
   submissionBtn: { th: "สร้าง submission.md", en: "Make submission.md" },
   reflectionBtn: { th: "สร้าง ai_reflection.md", en: "Make ai_reflection.md" },
   openProblem: { th: "เปิดโจทย์บน iJudge", en: "Open on iJudge" },
@@ -67,13 +70,14 @@ const L: Record<string, LText> = {
   all: { th: "All", en: "All" },
   stats: { th: "สถิติ", en: "Stats" },
   coursePage: { th: "หน้ารายวิชา", en: "Course page" },
-  week3BannerTitle: {
-    th: "Code Interview มาแล้วว!",
-    en: "Code Interview is here!",
+  bannerTag: { th: "ข้อสอบกลางภาค", en: "Midterm Exam" },
+  bannerTitle: {
+    th: "ข้อสอบ Midterm (10 ข้อ: 0 ดาว 4 ข้อ, 1 ดาว 6 ข้อ)",
+    en: "Midterm Exam (10 Problems: 0-Star 4, 1-Star 6)",
   },
-  week3BannerDesc: {
-    th: "เตรียมตัวสอบสัมภาษณ์เชิงโค้ดและสร้างบันทึกประวัติการส่ง (Learning Log) ได้เลย",
-    en: "Get ready for your code interview and create your Learning Logs.",
+  bannerDesc: {
+    th: "แนะนำให้มาถึงห้องสอบตั้งแต่เวลา 9:00 น. เพื่อตรวจสอบห้องสอบและที่นั่งสอบ (เข้าห้องสอบ ~9:10 น. / เริ่มสอบ 9:30 น.) — อ.โชติพัชร์",
+    en: "Please arrive by 09:00 to verify your exam room and seating (Entry ~09:10, Exam starts 09:30) — chotipat",
   },
   syncedSub: { th: "submission", en: "submission" },
   syncedRefl: { th: "reflection", en: "reflection" },
@@ -148,21 +152,28 @@ export function ProblemsView({ problems }: { problems: MasterProblem[] }) {
         .filter((p) => {
           if (weekFilter !== "all" && p.week !== weekFilter) return false;
           if (!q) return true;
-          return p.name.toLowerCase().includes(q) || String(p.id).includes(q);
+          return (
+            p.name.toLowerCase().includes(q) ||
+            p.cleanName.toLowerCase().includes(q) ||
+            String(p.id).includes(q)
+          );
         })
-        // learning-log problems first: they are the ones that require submission.md
         .sort((a, b) => {
           // 1. Learning Log first
           if (a.learningLog !== b.learningLog) {
             return a.learningLog ? -1 : 1;
           }
-          // 2. Then latest week (descending)
+          // 2. Recommended next
+          if (a.recommended !== b.recommended) {
+            return a.recommended ? -1 : 1;
+          }
+          // 3. Then latest week (descending)
           const weekA = a.week ?? 0;
           const weekB = b.week ?? 0;
           if (weekA !== weekB) {
             return weekB - weekA;
           }
-          // 3. Then by ID (ascending)
+          // 4. Then by ID (ascending)
           return a.id - b.id;
         })
     );
@@ -170,24 +181,24 @@ export function ProblemsView({ problems }: { problems: MasterProblem[] }) {
 
   return (
     <main className="max-w-6xl mx-auto px-6 py-8 w-full">
-      {/* Week 3 Announcement Banner */}
-      <div className="mb-6 rounded-2xl bg-primary px-5 py-4 text-primary-foreground shadow-md flex items-center justify-between gap-4 transition-all hover:brightness-105">
-        <div className="flex items-center gap-3">
-          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary-foreground/20 text-lg">
-            🎉
+      {/* Midterm Exam Announcement Banner */}
+      <div className="mb-6 rounded-2xl bg-gradient-to-r from-primary via-primary/95 to-primary/90 px-5 py-4 text-primary-foreground shadow-md flex items-center justify-between gap-4 transition-all hover:brightness-105">
+        <div className="flex items-center gap-3.5">
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary-foreground/20 text-xl shadow-inner">
+            📝
           </span>
           <div className="text-left">
             <h4 className="font-bold text-base md:text-lg">
-              {t(L.week3BannerTitle, locale)}
+              {t(L.bannerTitle, locale)}
             </h4>
-            <p className="text-xs md:text-sm text-primary-foreground/80 font-normal mt-0.5">
-              {t(L.week3BannerDesc, locale)}
+            <p className="text-xs md:text-sm text-primary-foreground/85 font-normal mt-0.5 leading-relaxed">
+              {t(L.bannerDesc, locale)}
             </p>
           </div>
         </div>
-        <div className="hidden sm:block">
+        <div className="hidden sm:block shrink-0">
           <span className="rounded-full bg-primary-foreground/25 px-3 py-1 text-xs font-semibold backdrop-blur-sm">
-            Active
+            {t(L.bannerTag, locale)}
           </span>
         </div>
       </div>
@@ -261,17 +272,21 @@ export function ProblemsView({ problems }: { problems: MasterProblem[] }) {
             <ChartColumn className="size-3.5" />
             {t(L.stats, locale)}
           </h2>
-          <div className="grid auto-rows-fr gap-3 flex-1">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 flex-1">
             {[
               { label: t(L.total, locale), value: problems.length },
               {
                 label: t(L.logs, locale),
                 value: problems.filter((p) => p.learningLog).length,
               },
+              {
+                label: t(L.recommendedStat, locale),
+                value: problems.filter((p) => p.recommended).length,
+              },
             ].map((s) => (
               <div
                 key={s.label}
-                className="rounded-xl border bg-background/50 px-5 py-4 flex flex-col justify-center"
+                className="rounded-xl border bg-background/50 px-4 py-3 flex flex-col justify-center"
               >
                 <p className="text-xs text-muted-foreground font-medium uppercase tracking-wide">
                   {s.label}
@@ -366,11 +381,17 @@ export function ProblemsView({ problems }: { problems: MasterProblem[] }) {
                             title={t(L.openProblem, locale)}
                             className="text-primary font-semibold text-base underline-offset-4 hover:underline"
                           >
-                            {p.name}
+                            {p.cleanName || p.name}
                           </a>
                           {p.learningLog && (
                             <Badge className="bg-primary/10 text-primary font-semibold">
                               {t(L.learningLog, locale)}
+                            </Badge>
+                          )}
+                          {p.recommended && (
+                            <Badge className="border-amber-500/30 bg-amber-500/10 text-amber-600 dark:text-amber-400 font-semibold gap-1 shadow-xs">
+                              <Sparkles className="size-3 text-amber-500 fill-amber-500/20" />
+                              {t(L.recommended, locale)}
                             </Badge>
                           )}
                         </div>
