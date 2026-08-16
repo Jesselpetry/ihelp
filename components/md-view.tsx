@@ -46,14 +46,25 @@ const mdComponents: Components = {
       <span className="h-px flex-1 bg-border" />
     </div>
   ),
-  a: ({ node: _node, ref: _ref, ...p }) => (
-    <a
-      className="text-primary underline underline-offset-4 hover:opacity-80"
-      target="_blank"
-      rel="noreferrer"
-      {...p}
-    />
-  ),
+  a: ({ node: _node, ref: _ref, href, ...p }) => {
+    let targetHref = href;
+    if (targetHref && (targetHref.startsWith("./oj") || targetHref.startsWith("oj"))) {
+      const cleanSlug = targetHref.replace(/^\.\//, "").replace(/\/$/, "");
+      targetHref = `/recommended/${cleanSlug}`;
+    }
+
+    const isExternal = targetHref?.startsWith("http://") || targetHref?.startsWith("https://");
+
+    return (
+      <a
+        className="text-primary underline underline-offset-4 hover:opacity-80"
+        href={targetHref}
+        target={isExternal ? "_blank" : undefined}
+        rel={isExternal ? "noreferrer" : undefined}
+        {...p}
+      />
+    );
+  },
   code: ({ node: _node, ref: _ref, className, ...p }) =>
     className ? (
       // fenced block content: <pre> wrapper handles the box

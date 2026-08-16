@@ -127,6 +127,7 @@ export function GithubConnect({
         </div>
       ) : !connected ? (
         <Button asChild size="sm">
+          {/* eslint-disable-next-line @next/next/no-html-link-for-pages -- OAuth redirect API endpoint requires full navigation */}
           <a href="/api/github/login">
             <GithubIcon className="size-4" />
             {t(L.connect, locale)}
