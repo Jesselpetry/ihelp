@@ -240,6 +240,45 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
             </p>
           </div>
 
+          {/* CTA Action Buttons with Shimmer */}
+          <div className="flex flex-wrap items-center gap-3 pt-1">
+            {/* 1. โจทย์ (Problems) CTA */}
+            <Button
+              asChild
+              size="default"
+              className="relative overflow-hidden rounded-full px-5 py-2.5 font-semibold text-xs sm:text-sm bg-primary text-primary-foreground hover:opacity-95 shadow-sm group"
+            >
+              <a href="#problems-section">
+                {/* Shimmer Light Sweep Layer */}
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 -translate-x-full animate-shimmer bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                />
+                <Code2 className="size-4 mr-2 shrink-0" />
+                <span>{locale === "th" ? "โจทย์ (10 ข้อ)" : "Problems (10)"}</span>
+                <ArrowRight className="size-4 ml-1.5 transition-transform group-hover:translate-x-0.5" />
+              </a>
+            </Button>
+
+            {/* 2. Books CTA */}
+            <Button
+              asChild
+              variant="outline"
+              size="default"
+              className="relative overflow-hidden rounded-full px-5 py-2.5 font-medium text-xs sm:text-sm border-border bg-card hover:bg-muted/60 hover:text-primary transition-all group shadow-none"
+            >
+              <a href="#exam-briefing">
+                {/* Subtle Shimmer */}
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 -translate-x-full animate-shimmer bg-gradient-to-r from-transparent via-primary/15 to-transparent"
+                />
+                <BookOpen className="size-4 mr-2 shrink-0 text-primary" />
+                <span>{locale === "th" ? "Books (6 เล่ม)" : "Books (6 Books)"}</span>
+              </a>
+            </Button>
+          </div>
+
           {/* Quick Stats Strip */}
           <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-5 w-full">
             <div className="rounded-2xl border bg-muted/30 px-4 py-3">
@@ -320,7 +359,7 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
       </div>
 
       {/* Control Bar: Search + Filter Tabs + View Mode */}
-      <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div id="problems-section" className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between scroll-mt-6">
         <div className="relative flex-1 max-w-md">
           <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
           <Input
@@ -610,7 +649,7 @@ function ExamBriefingCard({ locale }: { locale: "th" | "en" }) {
   const [isOpen, setIsOpen] = useState(true);
 
   return (
-    <section aria-label="Exam Announcement" className="mt-6 overflow-hidden rounded-3xl border bg-card p-5 sm:p-6 shadow-sm">
+    <section id="exam-briefing" aria-label="Exam Announcement" className="mt-6 overflow-hidden rounded-3xl border bg-card p-5 sm:p-6 shadow-sm scroll-mt-6">
       {/* Header */}
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-3">
