@@ -1,20 +1,26 @@
 """ Safe Password """
 
-def main():
-    """ Safe Password """
-    pass_char = "H"
-    pass_digit = "4567"
-    pass_char_input = input()
-    pass_digit_input = input()
+CORRECT_CHAR = "H"
+CORRECT_DIGIT = "4567"
 
-    if (pass_char_input == pass_char) and (pass_digit_input == pass_digit):
+
+def main():
+    """Safe Password"""
+    char = input()
+    digit = input()
+
+    char_ok = char == CORRECT_CHAR
+    digit_ok = digit == CORRECT_DIGIT
+
+    if char_ok and digit_ok:
         print("safe unlocked")
-    elif (pass_char_input == pass_char) and (pass_digit_input != pass_digit):
+    elif char_ok:
         print("safe locked - change digit")
-    elif (pass_char_input != pass_char) and (pass_digit_input == pass_digit):
+    elif digit_ok:
         print("safe locked - change char")
     else:
         print("safe locked")
+
 
 if __name__ == "__main__":
     main()

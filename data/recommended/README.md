@@ -16,8 +16,8 @@ This folder contains all **10 Recommended Problems** from the course curriculum.
 | **3022** | [oj3022-Temperature](./oj3022-Temperature)                 | Temperature         | 199 / 213        | 93.43%     | 17 Aug 2026, 00:00    | Hub-and-Spoke Normalization (Convert to Celsius first) |
 | **3159** | [oj3159-Factorial](./oj3159-Factorial)                     | Factorial           | 182 / 183        | 99.45%     | 04 Sep 2026, 00:00    | Product accumulator loop / `math.factorial`            |
 | **3167** | [oj3167-FizzBuzz](./oj3167-FizzBuzz)                       | FizzBuzz            | 180 / 183        | 98.36%     | 04 Sep 2026, 00:00    | Modulo `%` and condition ordering (`% 15` first)       |
-| **3226** | [oj3226-Inflation](./oj3226-Inflation)                     | Inflation           | 92 / 160         | 57.50%     | 11 Sep 2026, 00:00    | Compound growth loop / percentage accumulation         |
-| **3237** | [oj3237-Triangle](./oj3237-Triangle)                       | สามเหลี่ยม          | 161 / 167        | 96.41%     | 11 Sep 2026, 00:00    | String multiplication (`"*" * count`, `" " * spaces`)  |
+| **3226** | [oj3226-Inflation](./oj3226-Inflation)                     | Inflation           | 92 / 160         | 57.50%     | 11 Sep 2026, 00:00    | 3.81% compounding loop / yearly truncation via `//` (integer satang) |
+| **3237** | [oj3237-Triangle](./oj3237-Triangle)                       | สามเหลี่ยม          | 161 / 167        | 96.41%     | 11 Sep 2026, 00:00    | Hollow triangle, string multiplication (`"0"`/`"1"`)   |
 
 ---
 
