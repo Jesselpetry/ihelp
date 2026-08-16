@@ -755,12 +755,12 @@ function ExamBriefingCard({ locale }: { locale: "th" | "en" }) {
                     </p>
                   </div>
 
-                  <div className="mt-4 pt-3 border-t">
-                    <Button asChild size="sm" className="w-full h-8 text-xs font-medium rounded-full gap-1.5 bg-primary text-primary-foreground hover:opacity-90">
+                  <div className="mt-4 pt-3 border-t flex items-center justify-end">
+                    <Button asChild size="sm" className="h-7 px-3 text-xs font-medium rounded-full gap-1.5 bg-primary text-primary-foreground hover:opacity-90 shadow-none">
                       <a href={book.url} target="_blank" rel="noopener noreferrer">
-                        <BookOpen className="size-3.5" />
-                        <span>{locale === "th" ? `เปิดอ่าน ${book.name} (PDF)` : `Open ${book.name} (PDF)`}</span>
-                        <ExternalLink className="size-3 ml-auto opacity-70" />
+                        <BookOpen className="size-3" />
+                        <span>{locale === "th" ? "เปิดอ่าน PDF" : "Open PDF"}</span>
+                        <ExternalLink className="size-3 opacity-70" />
                       </a>
                     </Button>
                   </div>
