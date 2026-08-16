@@ -19,6 +19,7 @@ import {
   PanelLeft,
   PanelRight,
   Terminal,
+  Play,
 } from "lucide-react";
 import type { RecommendedProblemDetail } from "@/lib/recommended";
 import {
@@ -36,28 +37,29 @@ import { CodeGrader } from "@/components/code-grader";
 import { useLocale, t, type LText } from "@/lib/i18n";
 
 const L: Record<string, LText> = {
-  backToHub: { th: "กลับหน้ารวมโจทย์แนะนำ", en: "Back to Recommended Hub" },
+  backToHub: { th: "กลับหน้ารวมโจทย์", en: "Hub" },
   problemOf: { th: "ข้อที่", en: "Problem" },
   of: { th: "จาก", en: "of" },
-  tabProblem: { th: "โจทย์ & สรุปแนวคิด (problem.md)", en: "Problem & Notes (problem.md)" },
-  tabCode: { th: "โค้ด Python เฉลย (main.py)", en: "Python Reference (main.py)" },
-  makeSubmission: { th: "สร้าง submission.md", en: "Make submission.md" },
-  makeReflection: { th: "สร้าง ai_reflection.md", en: "Make ai_reflection.md" },
-  openIJudge: { th: "เปิดใน iJudge", en: "Open on iJudge" },
+  tabProblem: { th: "โจทย์ & สรุปแนวคิด", en: "Problem & Notes" },
+  tabCode: { th: "โค้ดเฉลย", en: "Solution" },
+  makeSubmission: { th: "submission.md", en: "submission.md" },
+  makeReflection: { th: "ai_reflection.md", en: "ai_reflection.md" },
+  openIJudge: { th: "iJudge", en: "iJudge" },
   keyTechnique: { th: "เทคนิคสำคัญ", en: "Key Technique" },
   prev: { th: "ข้อก่อนหน้า", en: "Previous" },
   next: { th: "ข้อถัดไป", en: "Next" },
   noCodeFound: { th: "ยังไม่มีไฟล์ main.py สำหรับข้อนี้", en: "No main.py found for this problem." },
-  markFinished: { th: "ผ่านแล้ว (Finished)", en: "Finished" },
-  markInProgress: { th: "กำลังฝึก (In Progress)", en: "In Progress" },
-  inRepo: { th: "ซิงก์ใน GitHub แล้ว", en: "Synced in GitHub" },
-  browseRepo: { th: "เปิดใน Repo Editor", en: "Open in Repo Editor" },
-  viewSplit: { th: "แบ่ง 2 หน้าจอ", en: "Split View" },
-  viewProblemOnly: { th: "โจทย์เต็มจอ", en: "Problem Only" },
-  viewGraderOnly: { th: "ตรวจโค้ดเต็มจอ", en: "Grader Only" },
+  markFinished: { th: "ผ่านแล้ว", en: "Finished" },
+  markInProgress: { th: "กำลังฝึก", en: "In Progress" },
+  inRepo: { th: "GitHub", en: "GitHub" },
+  browseRepo: { th: "Repo Editor", en: "Repo Editor" },
+  viewSplit: { th: "แบ่ง 2 ฝั่ง", en: "Split" },
+  viewProblemOnly: { th: "โจทย์เต็ม", en: "Problem" },
+  viewGraderOnly: { th: "ตรวจโค้ด", en: "Grader" },
   dragToResize: { th: "ลากเพื่อปรับขนาด (ดับเบิลคลิกเพื่อรีเซ็ต 50:50)", en: "Drag to resize (double-click to reset 50:50)" },
-  mobileTabProblem: { th: "โจทย์ & คำอธิบาย", en: "Problem & Notes" },
-  mobileTabGrader: { th: "เขียนโค้ด & ตรวจสอบ", en: "Code & Grader" },
+  mobileTabProblem: { th: "โจทย์ & สรุป", en: "Problem & Notes" },
+  mobileTabGrader: { th: "เขียนโค้ด & ตรวจ", en: "Code & Grader" },
+  goToGrader: { th: "ไปที่ตัวตรวจโค้ด", en: "Open Code Grader" },
 };
 
 type ViewMode = "split" | "problem" | "grader";
@@ -152,29 +154,29 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
   const progressPercent = ((problem.index + 1) / problem.total) * 100;
 
   return (
-    <div className="flex-1 min-h-0 flex flex-col overflow-hidden w-full max-w-[1920px] mx-auto px-2 sm:px-4 md:px-6 py-2 sm:py-3">
+    <div className="flex-1 min-h-0 flex flex-col overflow-hidden w-full max-w-[1920px] mx-auto px-2 sm:px-4 md:px-6 py-1.5 sm:py-2.5">
       {/* Top Header & Layout Switcher Bar */}
-      <div className="shrink-0 mb-2 flex flex-wrap items-center justify-between gap-2">
-        <div className="flex items-center gap-2">
+      <div className="shrink-0 mb-1.5 sm:mb-2 flex flex-wrap items-center justify-between gap-1.5 sm:gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
           <Link
             href="/recommended"
-            className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-primary transition-colors bg-muted/30 px-3 py-1 rounded-full border"
+            className="inline-flex items-center gap-1 text-xs font-medium text-muted-foreground hover:text-primary transition-colors bg-muted/30 px-2.5 py-1 rounded-full border shrink-0"
           >
             <LayoutGrid className="size-3.5" />
             <span>{t(L.backToHub, locale)}</span>
           </Link>
-          <span className="font-mono text-xs text-muted-foreground hidden sm:inline tabular-nums">
-            {t(L.problemOf, locale)} {problem.index + 1} {t(L.of, locale)} {problem.total}
+          <span className="font-mono text-[11px] sm:text-xs text-muted-foreground tabular-nums truncate">
+            OJ {problem.id} · {problem.index + 1}/{problem.total}
           </span>
         </div>
 
-        {/* View Mode & Split Presets Controls (Desktop) */}
+        {/* View Mode & Split Presets Controls (Desktop md+) */}
         <div className="hidden md:flex items-center gap-2">
           <div className="flex items-center rounded-full border bg-muted/30 p-0.5 text-xs">
             <button
               type="button"
               onClick={() => setViewMode("split")}
-              className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium transition-colors ${
+              className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium transition-colors cursor-pointer ${
                 viewMode === "split"
                   ? "bg-primary text-primary-foreground font-semibold shadow-xs"
                   : "text-muted-foreground hover:text-foreground"
@@ -187,7 +189,7 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
             <button
               type="button"
               onClick={() => setViewMode("problem")}
-              className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium transition-colors ${
+              className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium transition-colors cursor-pointer ${
                 viewMode === "problem"
                   ? "bg-primary text-primary-foreground font-semibold shadow-xs"
                   : "text-muted-foreground hover:text-foreground"
@@ -200,7 +202,7 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
             <button
               type="button"
               onClick={() => setViewMode("grader")}
-              className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium transition-colors ${
+              className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium transition-colors cursor-pointer ${
                 viewMode === "grader"
                   ? "bg-primary text-primary-foreground font-semibold shadow-xs"
                   : "text-muted-foreground hover:text-foreground"
@@ -217,7 +219,7 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
               <button
                 type="button"
                 onClick={() => setRatioPreset(50)}
-                className={`px-1.5 py-0.5 rounded hover:bg-muted transition-colors ${
+                className={`px-1.5 py-0.5 rounded hover:bg-muted transition-colors cursor-pointer ${
                   Math.round(splitRatio) === 50 ? "font-bold text-primary" : ""
                 }`}
                 title="50% / 50% split"
@@ -228,7 +230,7 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
               <button
                 type="button"
                 onClick={() => setRatioPreset(60)}
-                className={`px-1.5 py-0.5 rounded hover:bg-muted transition-colors ${
+                className={`px-1.5 py-0.5 rounded hover:bg-muted transition-colors cursor-pointer ${
                   Math.round(splitRatio) === 60 ? "font-bold text-primary" : ""
                 }`}
                 title="60% Problem, 40% Grader"
@@ -239,7 +241,7 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
               <button
                 type="button"
                 onClick={() => setRatioPreset(40)}
-                className={`px-1.5 py-0.5 rounded hover:bg-muted transition-colors ${
+                className={`px-1.5 py-0.5 rounded hover:bg-muted transition-colors cursor-pointer ${
                   Math.round(splitRatio) === 40 ? "font-bold text-primary" : ""
                 }`}
                 title="40% Problem, 60% Grader"
@@ -250,19 +252,19 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
           )}
         </div>
 
-        {/* Prev / Next Header Shortcuts */}
-        <div className="flex items-center gap-1.5">
+        {/* Prev / Next Shortcuts */}
+        <div className="flex items-center gap-1 shrink-0">
           {problem.prev && (
-            <Button asChild size="sm" variant="outline" className="h-7 text-xs rounded-full px-2.5">
-              <Link href={`/recommended/${problem.prev.slug}`}>
+            <Button asChild size="sm" variant="outline" className="h-6.5 sm:h-7 text-[11px] sm:text-xs rounded-full px-2">
+              <Link href={`/recommended/${problem.prev.slug}`} title={problem.prev.cleanName}>
                 <ArrowLeft className="size-3 text-primary" />
                 <span className="hidden sm:inline">OJ {problem.prev.id}</span>
               </Link>
             </Button>
           )}
           {problem.next && (
-            <Button asChild size="sm" variant="outline" className="h-7 text-xs rounded-full px-2.5">
-              <Link href={`/recommended/${problem.next.slug}`}>
+            <Button asChild size="sm" variant="outline" className="h-6.5 sm:h-7 text-[11px] sm:text-xs rounded-full px-2">
+              <Link href={`/recommended/${problem.next.slug}`} title={problem.next.cleanName}>
                 <span className="hidden sm:inline">OJ {problem.next.id}</span>
                 <ArrowRight className="size-3 text-primary" />
               </Link>
@@ -272,7 +274,7 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
       </div>
 
       {/* Reading Progress Line */}
-      <div className="shrink-0 mb-2 h-0.5 w-full rounded-full bg-border overflow-hidden">
+      <div className="shrink-0 mb-1.5 sm:mb-2 h-0.5 w-full rounded-full bg-border overflow-hidden">
         <div
           className="h-full bg-primary transition-all duration-300"
           style={{ width: `${progressPercent}%` }}
@@ -280,11 +282,11 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
       </div>
 
       {/* Mobile Tab Switcher (< md) */}
-      <div className="shrink-0 flex md:hidden mb-2 rounded-xl border bg-muted/30 p-1 text-xs">
+      <div className="shrink-0 flex md:hidden mb-2 rounded-xl border bg-muted/30 p-0.5 text-xs">
         <button
           type="button"
           onClick={() => setMobileTab("problem")}
-          className={`flex-1 py-1 rounded-lg font-medium transition-all flex items-center justify-center gap-1.5 ${
+          className={`flex-1 py-1.5 rounded-lg font-medium transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
             mobileTab === "problem"
               ? "bg-background text-foreground font-semibold shadow-xs"
               : "text-muted-foreground"
@@ -296,7 +298,7 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
         <button
           type="button"
           onClick={() => setMobileTab("grader")}
-          className={`flex-1 py-1 rounded-lg font-medium transition-all flex items-center justify-center gap-1.5 ${
+          className={`flex-1 py-1.5 rounded-lg font-medium transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
             mobileTab === "grader"
               ? "bg-background text-foreground font-semibold shadow-xs"
               : "text-muted-foreground"
@@ -307,7 +309,7 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
         </button>
       </div>
 
-      {/* Main Splitter Workspace (Desktop 100% Height + Independent Scrollbars) */}
+      {/* Main Splitter Workspace */}
       <div
         ref={containerRef}
         onPointerMove={isDragging ? handlePointerMove : undefined}
@@ -330,14 +332,14 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
           }}
           className={`h-full transition-none ${
             viewMode === "grader" ? "hidden" : "flex"
-          } ${mobileTab === "grader" ? "hidden md:flex" : "flex"} flex-col min-w-0 overflow-hidden`}
+          } ${mobileTab === "grader" ? "hidden md:flex" : "flex"} flex-col min-w-0 overflow-hidden w-full md:w-auto`}
         >
           <article className="h-full flex flex-col overflow-hidden rounded-2xl border bg-card shadow-xs">
             {/* Header section */}
-            <div className="shrink-0 border-b bg-muted/30 p-3 sm:p-4 lg:p-5">
-              <div className="flex flex-wrap items-center justify-between gap-2">
-                <div className="flex flex-wrap items-center gap-1.5">
-                  <span className="rounded-full border bg-muted px-2.5 py-0.5 font-mono text-xs font-bold text-primary">
+            <div className="shrink-0 border-b bg-muted/30 p-2.5 sm:p-4 lg:p-5">
+              <div className="flex flex-wrap items-center justify-between gap-1.5 sm:gap-2">
+                <div className="flex flex-wrap items-center gap-1 sm:gap-1.5">
+                  <span className="rounded-full border bg-muted px-2 sm:px-2.5 py-0.5 font-mono text-[11px] sm:text-xs font-bold text-primary">
                     OJ {problem.id}
                   </span>
 
@@ -345,7 +347,7 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
                   <button
                     type="button"
                     onClick={handleToggleStatus}
-                    className={`inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[11px] font-semibold transition-all hover:opacity-90 cursor-pointer shadow-none ${
+                    className={`inline-flex items-center gap-1 rounded-full px-2 sm:px-2.5 py-0.5 text-[10px] sm:text-[11px] font-semibold transition-all hover:opacity-90 cursor-pointer shadow-none ${
                       effectiveStatus === "passed"
                         ? "bg-primary text-primary-foreground"
                         : "bg-muted text-foreground border"
@@ -354,27 +356,27 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
                   >
                     {effectiveStatus === "passed" ? (
                       <>
-                        <CheckCircle2 className="size-3" />
+                        <CheckCircle2 className="size-2.5 sm:size-3" />
                         <span>{t(L.markFinished, locale)}</span>
                       </>
                     ) : (
                       <>
-                        <Clock className="size-3" />
+                        <Clock className="size-2.5 sm:size-3" />
                         <span>{t(L.markInProgress, locale)}</span>
                       </>
                     )}
                   </button>
 
                   {inRepo && (
-                    <Badge className="rounded-full bg-muted text-foreground border text-[10px] font-medium px-2 py-0.5 shadow-none">
-                      <FolderGit2 className="mr-1 size-2.5 text-primary" />
+                    <Badge className="rounded-full bg-muted text-foreground border text-[9px] sm:text-[10px] font-medium px-1.5 sm:px-2 py-0.5 shadow-none">
+                      <FolderGit2 className="mr-0.5 size-2.5 text-primary" />
                       {t(L.inRepo, locale)}
                     </Badge>
                   )}
 
                   {problem.learningLog && (
-                    <Badge className="rounded-full bg-primary text-primary-foreground text-[10px] font-medium px-2 py-0.5 shadow-none">
-                      <Flame className="mr-1 size-2.5" />
+                    <Badge className="rounded-full bg-primary text-primary-foreground text-[9px] sm:text-[10px] font-medium px-1.5 sm:px-2 py-0.5 shadow-none">
+                      <Flame className="mr-0.5 size-2.5" />
                       Learning Log
                     </Badge>
                   )}
@@ -382,39 +384,39 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
                   <div className="flex items-center gap-0.5 ml-0.5">
                     {problem.difficulty > 0 ? (
                       Array.from({ length: problem.difficulty }).map((_, i) => (
-                        <Star key={i} className="size-3 fill-amber-400 text-amber-400" />
+                        <Star key={i} className="size-2.5 sm:size-3 fill-amber-400 text-amber-400" />
                       ))
                     ) : (
-                      <Star className="size-3 text-muted-foreground/30" />
+                      <Star className="size-2.5 sm:size-3 text-muted-foreground/30" />
                     )}
                   </div>
                 </div>
 
                 {/* External Actions */}
-                <div className="flex items-center gap-1.5">
+                <div className="flex items-center gap-1">
                   {inRepo && (
-                    <Button asChild size="sm" variant="outline" className="h-6.5 text-[11px] gap-1 rounded-full border-primary/30 text-primary">
+                    <Button asChild size="sm" variant="outline" className="h-6 text-[10px] sm:text-[11px] gap-1 rounded-full border-primary/30 text-primary px-2">
                       <Link href={`/repo?file=recommended/${problem.folderName}/problem.md`}>
-                        <FolderGit2 className="size-3" />
+                        <FolderGit2 className="size-2.5" />
                         <span className="hidden sm:inline">{t(L.browseRepo, locale)}</span>
                       </Link>
                     </Button>
                   )}
-                  <Button asChild size="sm" variant="outline" className="h-6.5 text-[11px] gap-1 rounded-full">
+                  <Button asChild size="sm" variant="outline" className="h-6 text-[10px] sm:text-[11px] gap-1 rounded-full px-2">
                     <a href={problem.url} target="_blank" rel="noopener noreferrer">
                       <span>{t(L.openIJudge, locale)}</span>
-                      <ExternalLink className="size-3" />
+                      <ExternalLink className="size-2.5" />
                     </a>
                   </Button>
                 </div>
               </div>
 
-              <h1 className="mt-2 text-base font-bold tracking-tight text-foreground sm:text-lg lg:text-xl truncate">
+              <h1 className="mt-1.5 sm:mt-2 text-sm sm:text-lg font-bold tracking-tight text-foreground truncate">
                 {problem.cleanName}
               </h1>
 
               {problem.technique && (
-                <div className="mt-1.5 inline-flex flex-wrap items-center gap-1.5 rounded-lg sm:rounded-full border bg-muted/40 px-2.5 py-1 text-[11px] font-medium text-foreground max-w-full leading-relaxed">
+                <div className="mt-1 sm:mt-1.5 inline-flex flex-wrap items-center gap-1 sm:gap-1.5 rounded-lg sm:rounded-full border bg-muted/40 px-2 sm:px-2.5 py-0.5 text-[10px] sm:text-[11px] font-medium text-foreground max-w-full leading-relaxed">
                   <Code2 className="size-3 text-primary shrink-0" />
                   <span className="break-words">
                     <strong className="text-primary font-semibold">{t(L.keyTechnique, locale)}:</strong>{" "}
@@ -425,13 +427,13 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
 
               {/* Stats Bar */}
               {problem.stats && (
-                <div className="mt-2 flex flex-wrap items-center gap-1.5 text-[11px] font-mono text-muted-foreground">
-                  <span className="inline-flex items-center gap-1 rounded-full bg-muted px-2 py-0.5 border text-[10px]">
+                <div className="mt-1.5 flex flex-wrap items-center gap-1.5 text-[10px] sm:text-[11px] font-mono text-muted-foreground">
+                  <span className="inline-flex items-center gap-1 rounded-full bg-muted px-2 py-0.2 border text-[10px]">
                     <span className="font-bold text-primary">{problem.stats.percentage}</span>
                     <span>{locale === "th" ? "ผ่าน" : "pass"} ({problem.stats.passed}/{problem.stats.attempt})</span>
                   </span>
                   {problem.stats.expireDate && (
-                    <span className="inline-flex items-center gap-1 rounded-full bg-muted/50 px-2 py-0.5 border text-muted-foreground text-[10px]">
+                    <span className="inline-flex items-center gap-1 rounded-full bg-muted/50 px-2 py-0.2 border text-muted-foreground text-[10px]">
                       <Clock className="size-2.5 text-primary shrink-0" />
                       <span>{locale === "th" ? "กำหนดส่ง:" : "Due:"} {problem.stats.expireDate}</span>
                     </span>
@@ -440,12 +442,12 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
               )}
 
               {/* Tab Switcher: Problem vs Solution */}
-              <div className="mt-2.5 flex items-center justify-between border-t pt-2">
+              <div className="mt-2 flex items-center justify-between border-t pt-1.5 sm:pt-2">
                 <div className="flex rounded-full border bg-background p-0.5 text-xs font-medium">
                   <button
                     type="button"
                     onClick={() => setActiveTab("md")}
-                    className={`flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs transition-colors ${
+                    className={`flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[11px] sm:text-xs transition-colors cursor-pointer ${
                       activeTab === "md"
                         ? "bg-primary text-primary-foreground font-semibold shadow-xs"
                         : "text-muted-foreground hover:text-foreground"
@@ -457,7 +459,7 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
                   <button
                     type="button"
                     onClick={() => setActiveTab("code")}
-                    className={`flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs transition-colors ${
+                    className={`flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[11px] sm:text-xs transition-colors cursor-pointer ${
                       activeTab === "code"
                         ? "bg-primary text-primary-foreground font-semibold shadow-xs"
                         : "text-muted-foreground hover:text-foreground"
@@ -471,9 +473,9 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
             </div>
 
             {/* Scrollable Problem Body */}
-            <div className="flex-1 min-h-0 overflow-y-auto p-4 sm:p-5 lg:p-6 overscroll-contain">
+            <div className="flex-1 min-h-0 overflow-y-auto p-3 sm:p-5 lg:p-6 overscroll-contain">
               {activeTab === "md" ? (
-                <div className="prose prose-sm dark:prose-invert max-w-none">
+                <div className="prose prose-xs sm:prose-sm dark:prose-invert max-w-none">
                   <MdView
                     markdown={
                       locale === "th" && problem.markdownTh
@@ -493,7 +495,7 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
                       locale={locale}
                     />
                   ) : (
-                    <div className="rounded-2xl border border-dashed p-8 text-center text-sm text-muted-foreground">
+                    <div className="rounded-2xl border border-dashed p-6 text-center text-xs text-muted-foreground">
                       {t(L.noCodeFound, locale)}
                     </div>
                   )}
@@ -502,16 +504,16 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
             </div>
 
             {/* Footer actions inside problem panel */}
-            <div className="shrink-0 border-t bg-muted/20 px-3.5 py-2 flex flex-wrap items-center justify-between gap-2">
+            <div className="shrink-0 border-t bg-muted/20 px-3 py-2 flex flex-wrap items-center justify-between gap-1.5">
               <div className="flex flex-wrap items-center gap-1.5">
                 {problem.learningLog && (
-                  <Button asChild size="sm" variant="default" className="h-6.5 text-[11px] rounded-full px-2.5">
+                  <Button asChild size="sm" variant="default" className="h-6 text-[10px] sm:text-[11px] rounded-full px-2">
                     <Link href={`/make/submission?id=${problem.id}`}>
                       {t(L.makeSubmission, locale)}
                     </Link>
                   </Button>
                 )}
-                <Button asChild size="sm" variant="outline" className="h-6.5 text-[11px] rounded-full px-2.5">
+                <Button asChild size="sm" variant="outline" className="h-6 text-[10px] sm:text-[11px] rounded-full px-2">
                   <Link href={`/make/reflection?id=${problem.id}`}>
                     {t(L.makeReflection, locale)}
                   </Link>
@@ -523,11 +525,21 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
                   nextName={problem.next?.cleanName}
                   variant="outline"
                   size="sm"
-                  className="rounded-full h-6.5 text-[11px] px-2.5"
+                  className="rounded-full h-6 text-[10px] sm:text-[11px] px-2"
                 />
+                <Button
+                  type="button"
+                  onClick={() => setMobileTab("grader")}
+                  size="sm"
+                  variant="secondary"
+                  className="md:hidden rounded-full h-6 text-[10px] gap-1 px-2 cursor-pointer font-medium"
+                >
+                  <Play className="size-2.5 fill-current text-primary" />
+                  <span>{t(L.goToGrader, locale)}</span>
+                </Button>
               </div>
 
-              <span className="font-mono text-[10px] text-muted-foreground truncate">
+              <span className="font-mono text-[9px] text-muted-foreground truncate hidden sm:inline">
                 {problem.folderName}/problem.md
               </span>
             </div>
@@ -577,9 +589,9 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
           }}
           className={`h-full transition-none ${
             viewMode === "problem" ? "hidden" : "flex"
-          } ${mobileTab === "problem" ? "hidden md:flex" : "flex"} flex-col min-w-0 overflow-hidden`}
+          } ${mobileTab === "problem" ? "hidden md:flex" : "flex"} flex-col min-w-0 overflow-hidden w-full md:w-auto`}
         >
-          <div className="h-full flex-1 min-h-0 overflow-y-auto overscroll-contain pr-1">
+          <div className="h-full flex-1 min-h-0 overflow-y-auto overscroll-contain pr-0.5 sm:pr-1">
             <CodeGrader
               problemId={problem.id}
               problemName={problem.cleanName}
