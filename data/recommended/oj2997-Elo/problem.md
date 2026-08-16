@@ -2,8 +2,14 @@
 
 ## 1. Problem Understanding
 Calculate the expected score ($E$) of a player in a chess/game match using the standard Elo rating formula:
-$$E_A = \frac{1}{1 + 10^{(R_B - R_A)/400}}$$
-$$E_B = \frac{1}{1 + 10^{(R_A - R_B)/400}}$$
+
+$$
+E_A = \frac{1}{1 + 10^{(R_B - R_A)/400}}
+$$
+
+$$
+E_B = \frac{1}{1 + 10^{(R_A - R_B)/400}}
+$$
 
 ## 2. Input & Output Specification
 - **Input**:

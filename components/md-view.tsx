@@ -3,6 +3,9 @@
 
 import ReactMarkdown, { type Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
+import "katex/dist/katex.min.css";
 
 // Shared clean markdown renderer (library reader + wizard preview).
 // Roomy leading, clean tables — all inline component styling since the
@@ -100,7 +103,11 @@ const mdComponents: Components = {
 export function MdView({ markdown }: { markdown: string }) {
   return (
     <div className="text-[15px] text-foreground/90">
-      <ReactMarkdown remarkPlugins={[remarkGfm]} components={mdComponents}>
+      <ReactMarkdown
+        remarkPlugins={[remarkGfm, remarkMath]}
+        rehypePlugins={[rehypeKatex]}
+        components={mdComponents}
+      >
         {markdown}
       </ReactMarkdown>
     </div>
