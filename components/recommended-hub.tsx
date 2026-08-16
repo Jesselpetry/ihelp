@@ -850,13 +850,13 @@ function ProblemCard({
             )}
           </div>
 
-          <div className="flex items-center gap-0.5 text-amber-500">
+          <div className="flex items-center gap-0.5">
             {problem.difficulty > 0 ? (
               Array.from({ length: problem.difficulty }).map((_, i) => (
                 <Star key={i} className="size-3.5 fill-amber-400 text-amber-400" />
               ))
             ) : (
-              <span className="text-[11px] text-muted-foreground font-mono">0★</span>
+              <Star className="size-3.5 text-muted-foreground/30" />
             )}
           </div>
         </div>

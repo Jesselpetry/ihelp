@@ -150,13 +150,15 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
                 </Badge>
               )}
 
-              {problem.difficulty > 0 && (
-                <div className="flex items-center gap-0.5 ml-1 text-amber-500">
-                  {Array.from({ length: problem.difficulty }).map((_, i) => (
+              <div className="flex items-center gap-0.5 ml-1">
+                {problem.difficulty > 0 ? (
+                  Array.from({ length: problem.difficulty }).map((_, i) => (
                     <Star key={i} className="size-3.5 fill-amber-400 text-amber-400" />
-                  ))}
-                </div>
-              )}
+                  ))
+                ) : (
+                  <Star className="size-3.5 text-muted-foreground/30" />
+                )}
+              </div>
             </div>
 
             {/* External Links & Fast Actions */}
