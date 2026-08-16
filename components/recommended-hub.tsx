@@ -551,17 +551,19 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
       )}
 
       {viewMode === "table" && (
-        <div className="mt-6 overflow-hidden rounded-2xl border bg-card shadow-sm">
+        <div className="mt-6 overflow-x-auto rounded-2xl border bg-card shadow-sm">
           <Table>
             <TableHeader className="bg-muted/50">
               <TableRow>
-                <TableHead className="w-20 font-mono">OJ ID</TableHead>
+                <TableHead className="w-16 font-mono">OJ ID</TableHead>
                 <TableHead>{t(L.problemCol, locale)}</TableHead>
                 <TableHead>{t(L.technique, locale)}</TableHead>
-                <TableHead className="w-36 text-center">
+                <TableHead className="w-28 text-center">{locale === "th" ? "อัตราผ่าน" : "Pass Rate"}</TableHead>
+                <TableHead className="w-36 text-center">{locale === "th" ? "วันหมดเขต" : "Deadline"}</TableHead>
+                <TableHead className="w-32 text-center">
                   {t(L.status, locale)}
                 </TableHead>
-                <TableHead className="w-40 text-right">
+                <TableHead className="w-36 text-right">
                   {t(L.actions, locale)}
                 </TableHead>
               </TableRow>
@@ -588,7 +590,7 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
                         </Link>
                         <div className="flex items-center gap-1.5 mt-1">
                           {p.learningLog && (
-                            <Badge className="rounded-full bg-primary text-primary-foreground text-[10px] px-2 py-0 font-medium">
+                            <Badge className="rounded-full bg-primary text-primary-foreground text-[10px] px-2 py-0 font-medium shadow-none">
                               Learning Log
                             </Badge>
                           )}
@@ -600,10 +602,19 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
                         </div>
                       </div>
                     </TableCell>
-                    <TableCell className="max-w-[220px]">
+                    <TableCell className="max-w-[200px]">
                       <span className="text-xs text-muted-foreground font-mono bg-muted px-2.5 py-1 rounded-md break-words whitespace-normal inline-block leading-relaxed">
                         {p.technique || "Pattern Practice"}
                       </span>
+                    </TableCell>
+                    <TableCell className="text-center font-mono text-xs">
+                      <div className="flex flex-col items-center">
+                        <span className="font-bold text-primary">{p.stats?.percentage || "-"}</span>
+                        <span className="text-[10px] text-muted-foreground">{p.stats?.passed}/{p.stats?.attempt}</span>
+                      </div>
+                    </TableCell>
+                    <TableCell className="text-center text-xs text-muted-foreground font-mono whitespace-nowrap">
+                      {p.stats?.expireDate || "-"}
                     </TableCell>
                     <TableCell className="text-center">
                       <div className="flex flex-col items-center gap-1">
@@ -1086,6 +1097,22 @@ function ProblemCard({
               <span className="break-words min-w-0 flex-1">{problem.technique}</span>
               {takeaway && <Lightbulb className="size-3 text-primary ml-0.5 shrink-0 mt-0.5" />}
             </button>
+          </div>
+        )}
+
+        {/* Real iJudge Scraped Stats: Pass Rate & Deadline */}
+        {problem.stats && (
+          <div className="mt-3 flex flex-wrap items-center justify-between gap-2 text-[11px] font-mono text-muted-foreground">
+            <span className="inline-flex items-center gap-1 rounded-md bg-muted/60 px-2 py-0.5 border">
+              <span className="font-bold text-primary">{problem.stats.percentage}</span>
+              <span>passed ({problem.stats.passed}/{problem.stats.attempt})</span>
+            </span>
+            {problem.stats.expireDate && (
+              <span className="inline-flex items-center gap-1 text-[10px] text-muted-foreground">
+                <Clock className="size-3 text-muted-foreground/80 shrink-0" />
+                <span>{problem.stats.expireDate}</span>
+              </span>
+            )}
           </div>
         )}
       </div>

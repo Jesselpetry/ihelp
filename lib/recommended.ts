@@ -25,6 +25,26 @@ export interface ChecklistInfo {
   completed: boolean;
 }
 
+export interface ProblemStats {
+  passed: number;
+  attempt: number;
+  percentage: string;
+  expireDate: string;
+}
+
+export const IJUDGE_SCRAPED_STATS: Record<number, ProblemStats> = {
+  2996: { passed: 211, attempt: 215, percentage: "98.14%", expireDate: "16 August 2026, 23:59" },
+  2997: { passed: 211, attempt: 214, percentage: "98.60%", expireDate: "16 August 2026, 23:59" },
+  2998: { passed: 211, attempt: 214, percentage: "98.60%", expireDate: "16 August 2026, 23:59" },
+  3019: { passed: 209, attempt: 215, percentage: "97.21%", expireDate: "16 August 2026, 23:59" },
+  3020: { passed: 196, attempt: 207, percentage: "94.69%", expireDate: "17 August 2026, 00:00" },
+  3022: { passed: 199, attempt: 213, percentage: "93.43%", expireDate: "17 August 2026, 00:00" },
+  3159: { passed: 182, attempt: 183, percentage: "99.45%", expireDate: "4 September 2026, 00:00" },
+  3167: { passed: 180, attempt: 183, percentage: "98.36%", expireDate: "4 September 2026, 00:00" },
+  3226: { passed: 92, attempt: 160, percentage: "57.50%", expireDate: "11 September 2026, 00:00" },
+  3237: { passed: 161, attempt: 167, percentage: "96.41%", expireDate: "11 September 2026, 00:00" },
+};
+
 export interface RecommendedProblem {
   id: number;
   slug: string; // e.g. "oj2996-swap-characters"
@@ -36,6 +56,7 @@ export interface RecommendedProblem {
   technique: string; // e.g. "String slicing [::-1], .lower()"
   learningLog: boolean;
   difficulty: number;
+  stats: ProblemStats;
   url: string;
   hasCode: boolean;
   pythonCode: string | null;
@@ -243,6 +264,12 @@ export function loadRecommendedProblems(): RecommendedProblem[] {
       technique,
       learningLog: isLearningLog,
       difficulty: master?.difficulty ?? 0,
+      stats: IJUDGE_SCRAPED_STATS[id] || {
+        passed: 0,
+        attempt: 0,
+        percentage: "0.00%",
+        expireDate: "",
+      },
       url: master?.url ?? `https://ijudge.it.kmitl.ac.th/problems/${id}/description`,
       hasCode: Boolean(pythonCode && pythonCode.trim().length > 0),
       pythonCode,

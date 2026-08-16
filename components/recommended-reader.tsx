@@ -194,6 +194,22 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
             </div>
           )}
 
+          {/* Stats Bar: Pass rate & Deadline */}
+          {problem.stats && (
+            <div className="mt-3 flex flex-wrap items-center gap-2 text-xs font-mono text-muted-foreground">
+              <span className="inline-flex items-center gap-1 rounded-full bg-muted px-3 py-1 border">
+                <span className="font-bold text-primary">{problem.stats.percentage}</span>
+                <span>{locale === "th" ? "ผ่านแล้ว" : "pass rate"} ({problem.stats.passed}/{problem.stats.attempt})</span>
+              </span>
+              {problem.stats.expireDate && (
+                <span className="inline-flex items-center gap-1 rounded-full bg-muted/50 px-3 py-1 border text-muted-foreground">
+                  <Clock className="size-3 text-primary shrink-0" />
+                  <span>{locale === "th" ? "กำหนดส่ง:" : "Deadline:"} {problem.stats.expireDate}</span>
+                </span>
+              )}
+            </div>
+          )}
+
           {/* Tab Switcher */}
           <div className="mt-4 sm:mt-6 flex items-center justify-between border-t pt-3 sm:pt-4">
             <div className="flex rounded-full border bg-background p-1 text-xs font-medium">
