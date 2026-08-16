@@ -1092,20 +1092,8 @@ function ProblemCard({
 
       {/* Card Footer: Action Links */}
       <div className="mt-4 pt-3 border-t flex flex-wrap items-center justify-between gap-2">
+        {/* Left Side Actions */}
         <div className="flex flex-wrap items-center gap-1 sm:gap-1.5">
-          {takeaway && (
-            <Button
-              type="button"
-              size="sm"
-              variant="ghost"
-              onClick={() => setShowTakeaway(true)}
-              className="h-7.5 sm:h-8 px-2 sm:px-2.5 text-[11px] sm:text-xs text-primary hover:text-primary hover:bg-muted rounded-full gap-1 font-medium"
-              title={locale === "th" ? "ดูจุดสำคัญ & Pattern" : "View Key Takeaways"}
-            >
-              <Lightbulb className="size-3 sm:size-3.5 text-primary shrink-0" />
-              <span>{locale === "th" ? "จุดสำคัญ" : "Takeaway"}</span>
-            </Button>
-          )}
           {problem.learningLog && (
             <Button
               asChild
@@ -1128,7 +1116,27 @@ function ProblemCard({
           </Button>
         </div>
 
-        <div className="flex items-center gap-1.5">
+        {/* Right Side Actions: Shimmering Takeaway Button + Open Problem */}
+        <div className="flex items-center gap-1.5 ml-auto">
+          {takeaway && (
+            <Button
+              type="button"
+              size="sm"
+              variant="outline"
+              onClick={() => setShowTakeaway(true)}
+              className="relative overflow-hidden h-7.5 sm:h-8 px-2.5 sm:px-3 text-[11px] sm:text-xs text-primary border-primary/40 hover:bg-primary/10 rounded-full gap-1 font-medium shadow-none group"
+              title={locale === "th" ? "ดูจุดสำคัญ & Pattern" : "View Key Takeaways"}
+            >
+              {/* Shimmer Light Sweep Effect */}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 -translate-x-full animate-shimmer bg-gradient-to-r from-transparent via-primary/25 to-transparent"
+              />
+              <Lightbulb className="size-3 sm:size-3.5 text-primary shrink-0" />
+              <span>{locale === "th" ? "จุดสำคัญ" : "Takeaway"}</span>
+            </Button>
+          )}
+
           <Button
             asChild
             size="sm"
