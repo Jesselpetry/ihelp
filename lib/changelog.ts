@@ -22,15 +22,57 @@ export interface VersionEntry {
 // Mirrors CHANGELOG.md at the repo root — keep both in sync when releasing.
 export const CHANGELOG: VersionEntry[] = [
   {
-    version: "Unreleased",
-    date: null,
-    contributors: [],
+    version: "0.5.0",
+    date: "2026-08-17",
+    contributors: [{ name: "Chatan Petry", github: "Jesselpetry" }],
     changes: [
+      {
+        kind: "added",
+        text: {
+          th: "ระบบ Technique Quiz: แบบทดสอบ Active-Recall 60 ข้อ ครอบคลุม 10 โจทย์แนะนำ พร้อมเฉลย 2 ภาษา (TH/EN)",
+          en: "Technique Quiz: 60 active-recall questions covering all 10 recommended problems with bilingual explanations",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "ระบบ Client-Side Grader: ตรวจโค้ด Python ผ่าน WebAssembly (Pyodide) ใน Web Worker โดยตรงในเบราว์เซอร์",
+          en: "Client-Side Grader: evaluate and run Python code in-browser via WebAssembly (Pyodide) inside a Web Worker",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "หน้าจอ Splitter Panel Workspace (/recommended/[slug]): แบ่ง 2 หน้าจอปรับขนาดได้ ฝั่งซ้ายเป็นโจทย์ ฝั่งขวาเป็น Grader",
+          en: "Splitter Panel Workspace (/recommended/[slug]): resizable split screen with problem notes on left and Grader on right",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "ระบบ Foldable Test Cases: แสดง Expected Input / Output แบบพับได้ (Default พับ) พร้อม Diff View แสดงช่องว่าง",
+          en: "Foldable Test Cases: expandable expected I/O with whitespace diff inspector",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "ระบบตรวจสไตล์โค้ด PEP-8 & PSCP Rules และคีย์ลัด Ctrl+Enter สำหรับสั่งรันเทส",
+          en: "PEP-8 & PSCP code style linter and Ctrl+Enter execution shortcut",
+        },
+      },
       {
         kind: "changed",
         text: {
-          th: "เปลี่ยนป้ายประกาศหน้าโจทย์จาก Week 3 เป็น Code Interview",
-          en: "Changed the problems page banner from Week 3 to Code Interview",
+          th: "ปรับปรุงเลย์เอาต์หน้าโจทย์แนะนำให้ Fit-to-Screen 100% เลื่อนเฉพาะเนื้อหาแต่ละฝั่งอย่างอิสระ",
+          en: "Enhanced recommended problem reader to fit 100% viewport height with independent panel scrollbars",
+        },
+      },
+      {
+        kind: "fixed",
+        text: {
+          th: "แก้ไขการ Hydrate ข้อมูลแบบ Primitive String ใน useDraft ป้องกันข้อผิดพลาด [object Object]",
+          en: "Fixed primitive string hydration in useDraft preventing [object Object] errors",
         },
       },
     ],

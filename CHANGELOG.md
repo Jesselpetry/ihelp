@@ -6,12 +6,27 @@
 และเลขเวอร์ชันอ้างอิงจาก [Semantic Versioning](https://semver.org/lang/th/)
 (`MAJOR.MINOR.PATCH` — MAJOR = breaking change, MINOR = ฟีเจอร์ใหม่, PATCH = แก้บั๊ก/ปรับเล็กน้อย)
 
-## [Unreleased]
+## [0.5.0] - 2026-08-17
+
+**ผู้ร่วมพัฒนา:** Chatan Petry ([@Jesselpetry](https://github.com/Jesselpetry))
+
+### Added
+
+- ระบบ **Technique Quiz**: แบบทดสอบ Active-Recall 60 ข้อ สำหรับ 10 โจทย์แนะนำ PSCP พร้อมคำอธิบายเฉลย 2 ภาษา (TH/EN) และบันทึกคะแนนในตัว
+- ระบบ **Client-Side Grader**: ตรวจและรันโค้ด Python ด้วย WebAssembly (Pyodide) ภายใน Web Worker แบบ 100% Client-side
+- หน้าจอ **Splitter Panel Workspace (`/recommended/[slug]`)**: ปรับหน้าโจทย์แนะนำเป็น Split View ลากปรับขนาดได้ ฝั่งซ้ายเป็น `problem.md` (KaTeX Math) และฝั่งขวาเป็น Code Grader
+- ระบบ **Foldable Test Cases**: แสดง Expected Input / Output ของแต่ละ Testcase แบบพับ/ขยายได้ (ค่าเริ่มต้นพับไว้) พร้อมปุ่ม Unfold/Fold All และ Diff View แสดงช่องว่าง (`·`/`↵`)
+- ระบบตรวจสอบสไตล์โค้ด **PEP-8 & PSCP Rules**
+- คีย์ลัด `Ctrl+Enter` / `Cmd+Enter` สำหรับสั่งรันเทสโค้ดทันที
 
 ### Changed
 
-- เปลี่ยนป้ายประกาศหน้าโจทย์จาก Week 3 เป็น Code Interview
-- ปรับปรุง GitHub Push target preview ให้เลื่อน (scroll) ไปยังโฟลเดอร์และไฟล์เป้าหมายให้อัตโนมัติ
+- ปรับปรุงเลย์เอาต์หน้าโจทย์แนะนำ `/recommended/[slug]` ให้ Fit-to-Screen 100% ของความสูงหน้าจอ (เนื้อหาแต่ละฝั่งเลื่อนแยกกันอย่างอิสระ)
+- ปรับปรุงการเรนเดอร์สูตรและสมการคณิตศาสตร์ด้วย KaTeX
+
+### Fixed
+
+- แก้ไขการ Hydrate ข้อมูลแบบ Primitive String ใน `useDraft` ป้องกันข้อผิดพลาด `[object Object]`
 
 ## [0.4.0] - 2026-07-21
 
@@ -59,41 +74,16 @@
 
 **ผู้ร่วมพัฒนา:** Chatan Petry ([@Jesselpetry](https://github.com/Jesselpetry))
 
-### Changed
+### Fixed
 
-- ต้องกดยืนยันว่าอ่านเนื้อหาแล้วก่อนดาวน์โหลดไฟล์ `submission.md` / `ai_reflection.md`
-  (กันดาวน์โหลดไฟล์โดยไม่ได้ตรวจก่อน)
+- แก้ไข Path การสร้างไฟล์ของโจทย์ใน Week 2
 
-## [0.1.0] - 2026-07-12
-
-เปิดตัวโปรเจกต์ครั้งแรก — \<i\>Help: PSCP Learning-Log Maker
+## [0.1.0] - 2026-07-10
 
 **ผู้ร่วมพัฒนา:** Chatan Petry ([@Jesselpetry](https://github.com/Jesselpetry))
 
 ### Added
 
-- Wizard ทีละขั้นตอนสำหรับสร้าง `submission.md` / `ai_reflection.md` ตาม template ทางการ
-- รายการโจทย์จาก `data/oj_problems.json` พร้อมระดับความยาก วันหมดเขต และแท็บกรองรายสัปดาห์
-- หน้า `/library` — อ่านเอกสาร AI-Guidelines-PSCP
-- หน้า `/history` — เก็บประวัติไฟล์ที่เคยสร้างไว้ใน browser (localStorage)
-- แบบร่างบันทึกอัตโนมัติแยกตามโจทย์
-- Splash screen และไฟล์ `CONTRIBUTING.md`
-- การตรวจสอบฟอร์ม (validation) ก่อนไปขั้นตอนถัดไปของ wizard
-- Open Graph image สำหรับแชร์ลิงก์
-
-### Changed
-
-- ปรับสีทั่วเว็บให้ผ่านมาตรฐาน WCAG AA contrast
-- รีเฟรช navbar และ Open Graph image ให้เป็นเวอร์ชัน HD
-
-### Fixed
-
-- แก้ไอคอน Instagram
-- แก้ case ของข้อความในบางจุด
-
-[Unreleased]: https://github.com/Jesselpetry/ihelp/compare/06e3f6e...HEAD
-[0.4.0]: https://github.com/Jesselpetry/ihelp/compare/e2f4b32...06e3f6e
-[0.3.0]: https://github.com/Jesselpetry/ihelp/compare/9f653a5...e2f4b32
-[0.2.0]: https://github.com/Jesselpetry/ihelp/compare/1c1136f...9f653a5
-[0.1.1]: https://github.com/Jesselpetry/ihelp/compare/c288176...1c1136f
-[0.1.0]: https://github.com/Jesselpetry/ihelp/releases/tag/v0.1.0
+- ระบบสร้างไฟล์ `submission.md` และ `ai_reflection.md` แบบ Step-by-step
+- ระบบคัดลอกและดาวน์โหลดไฟล์
+- รองรับโจทย์ Week 1 และ Week 2 ของวิชา PSCP
