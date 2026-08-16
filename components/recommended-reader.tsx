@@ -5,7 +5,6 @@ import Link from "next/link";
 import {
   ArrowLeft,
   ArrowRight,
-  Sparkles,
   ExternalLink,
   Code2,
   FileText,
@@ -121,17 +120,17 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
         <div className="border-b bg-muted/30 p-6 sm:p-8">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="rounded-lg bg-primary/10 px-2.5 py-1 font-mono text-xs font-bold text-primary">
+              <span className="rounded-full border bg-muted px-3 py-1 font-mono text-xs font-bold text-primary">
                 OJ {problem.id}
               </span>
 
               {/* Status Toggle Button */}
               <button
                 onClick={handleToggleStatus}
-                className={`inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs font-semibold transition-all hover:scale-105 active:scale-95 cursor-pointer ${
+                className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold transition-all hover:opacity-90 cursor-pointer shadow-none ${
                   effectiveStatus === "passed"
-                    ? "bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 shadow-sm"
-                    : "bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20"
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-muted text-foreground border"
                 }`}
                 title="Click to toggle status"
               >
@@ -149,14 +148,14 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
               </button>
 
               {inRepo && (
-                <Badge variant="outline" className="bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20 text-xs font-medium">
-                  <FolderGit2 className="mr-1 size-3" />
+                <Badge className="rounded-full bg-muted text-foreground border text-xs font-medium px-2.5 py-0.5 shadow-none">
+                  <FolderGit2 className="mr-1 size-3 text-primary" />
                   {t(L.inRepo, locale)}
                 </Badge>
               )}
 
               {problem.learningLog && (
-                <Badge variant="secondary" className="bg-rose-500/10 text-rose-600 dark:text-rose-400 text-xs font-medium">
+                <Badge className="rounded-full bg-primary text-primary-foreground text-xs font-medium px-2.5 py-0.5 shadow-none">
                   <Flame className="mr-1 size-3" />
                   Learning Log
                 </Badge>
@@ -174,14 +173,14 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
             {/* External Links & Fast Actions */}
             <div className="flex items-center gap-2">
               {inRepo && (
-                <Button asChild size="sm" variant="ghost" className="h-8 text-xs gap-1 text-blue-600 hover:text-blue-700">
+                <Button asChild size="sm" variant="outline" className="h-8 text-xs gap-1 rounded-full border-primary/30 text-primary">
                   <Link href={`/repo?file=recommended/${problem.folderName}/problem.md`}>
                     <FolderGit2 className="size-3.5" />
                     <span>{t(L.browseRepo, locale)}</span>
                   </Link>
                 </Button>
               )}
-              <Button asChild size="sm" variant="outline" className="h-8 text-xs gap-1">
+              <Button asChild size="sm" variant="outline" className="h-8 text-xs gap-1 rounded-full">
                 <a href={problem.url} target="_blank" rel="noopener noreferrer">
                   <span>{t(L.openIJudge, locale)}</span>
                   <ExternalLink className="size-3.5" />
@@ -195,8 +194,8 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
           </h1>
 
           {problem.technique && (
-            <div className="mt-3 inline-flex items-center gap-2 rounded-xl border border-primary/20 bg-primary/[0.05] px-3.5 py-2 text-xs font-medium text-foreground">
-              <Sparkles className="size-4 text-primary shrink-0" />
+            <div className="mt-3 inline-flex items-center gap-2 rounded-full border bg-muted/40 px-4 py-1.5 text-xs font-medium text-foreground">
+              <Code2 className="size-4 text-primary shrink-0" />
               <span>
                 <strong className="text-primary font-semibold">{t(L.keyTechnique, locale)}</strong>{" "}
                 {problem.technique}

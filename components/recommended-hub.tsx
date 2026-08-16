@@ -23,7 +23,8 @@ import {
   AlertTriangle,
   ChevronDown,
   ChevronUp,
-  GraduationCap,
+  CreditCard,
+  UserCheck,
   Scale,
 } from "lucide-react";
 import type {
@@ -52,12 +53,60 @@ import { MdView } from "@/components/md-view";
 import { useLocale, t, type LText } from "@/lib/i18n";
 
 const PDF_BOOKS = [
-  { name: "ThinkPython 2", url: "https://ijudge.it.kmitl.ac.th/uploads/thinkpython2.pdf", label: "ThinkPython2.pdf" },
-  { name: "Chapter 01", url: "https://ijudge.it.kmitl.ac.th/uploads/PSCP-Book/PSCP_Chapter01-2024.pdf", label: "Intro to PSCP" },
-  { name: "Chapter 02", url: "https://ijudge.it.kmitl.ac.th/uploads/PSCP-Book/PSCP_Chapter02-2024.pdf", label: "Data Types & Expressions" },
-  { name: "Chapter 03", url: "https://ijudge.it.kmitl.ac.th/uploads/PSCP-Book/PSCP_Chapter03-2024.pdf", label: "Conditionals & Logic" },
-  { name: "Chapter 04", url: "https://ijudge.it.kmitl.ac.th/uploads/PSCP-Book/PSCP_Chapter04-2024.pdf", label: "Loops & Iteration" },
-  { name: "Chapter 05", url: "https://ijudge.it.kmitl.ac.th/uploads/PSCP-Book/PSCP_Chapter05-2024.pdf", label: "Functions & Strings" },
+  {
+    name: "ThinkPython 2",
+    badge: "Reference Book",
+    url: "https://ijudge.it.kmitl.ac.th/uploads/thinkpython2.pdf",
+    desc: {
+      th: "คู่มืออ้างอิงหลักภาษา Python 3 ฉบับสมบูรณ์ ครอบคลุมพื้นฐาน Syntax, Data Structures, OOP, Functions และ Algorithms พื้นฐาน",
+      en: "Complete Python 3 reference book covering syntax, data structures, OOP, functions, and fundamental algorithms.",
+    },
+  },
+  {
+    name: "PSCP Chapter 01",
+    badge: "Chapter 01",
+    url: "https://ijudge.it.kmitl.ac.th/uploads/PSCP-Book/PSCP_Chapter01-2024.pdf",
+    desc: {
+      th: "ปูพื้นฐานการเขียนโปรแกรมด้วย Python, การทำงานของ Interpreter, ฟังก์ชัน print(), input() และการรับส่งข้อมูลพื้นฐาน",
+      en: "Introduction to programming, Python interpreter workflow, print(), input(), and basic I/O handling.",
+    },
+  },
+  {
+    name: "PSCP Chapter 02",
+    badge: "Chapter 02",
+    url: "https://ijudge.it.kmitl.ac.th/uploads/PSCP-Book/PSCP_Chapter02-2024.pdf",
+    desc: {
+      th: "ชนิดข้อมูล (int, float, str, bool), Type Casting, ตัวดำเนินการทางคณิตศาสตร์ (+, -, *, /, //, %, **) และการจัด Format Output",
+      en: "Data types (int, float, str, bool), type casting, arithmetic operators (+, -, *, /, //, %, **), and output formatting.",
+    },
+  },
+  {
+    name: "PSCP Chapter 03",
+    badge: "Chapter 03",
+    url: "https://ijudge.it.kmitl.ac.th/uploads/PSCP-Book/PSCP_Chapter03-2024.pdf",
+    desc: {
+      th: "โครงสร้างเงื่อนไข if, elif, else, ตรรกศาสตร์บูลีน (and, or, not) และการจัดการลำดับการตรวจสอบเงื่อนไขที่ซับซ้อน",
+      en: "Decision control with if-elif-else, boolean logic (and, or, not), and nested conditional statement execution.",
+    },
+  },
+  {
+    name: "PSCP Chapter 04",
+    badge: "Chapter 04",
+    url: "https://ijudge.it.kmitl.ac.th/uploads/PSCP-Book/PSCP_Chapter04-2024.pdf",
+    desc: {
+      th: "การวนซ้ำด้วย for และ while loop, ฟังก์ชัน range(), คำสั่ง break, continue และเทคนิคการสะสมค่า (Accumulator Pattern)",
+      en: "Loop iteration with for and while loops, range() function, break/continue controls, and accumulator patterns.",
+    },
+  },
+  {
+    name: "PSCP Chapter 05",
+    badge: "Chapter 05",
+    url: "https://ijudge.it.kmitl.ac.th/uploads/PSCP-Book/PSCP_Chapter05-2024.pdf",
+    desc: {
+      th: "การสร้างและเรียกใช้ฟังก์ชัน (def, return), ขอบเขตตัวแปร (Scope), การตัดต่อสตริง (String Slicing) และ Built-in Methods สำคัญ",
+      en: "Function definitions (def, return), variable scope, string indexing and slicing [start:stop:step], and built-in methods.",
+    },
+  },
 ];
 
 const L: Record<string, LText> = {
@@ -175,18 +224,11 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
   return (
     <main className="mx-auto max-w-6xl px-4 py-8 sm:px-6 w-full">
       {/* Hero Header */}
-      <div className="relative overflow-hidden rounded-3xl border border-primary/20 bg-gradient-to-b from-primary/[0.08] via-background to-card p-6 sm:p-10 shadow-sm">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-primary/15 blur-3xl"
-        />
-        <div className="relative flex flex-col items-start gap-4">
-          <Badge
-            variant="outline"
-            className="flex items-center gap-1.5 border-primary/30 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary"
-          >
+      <div className="overflow-hidden rounded-3xl border bg-card p-6 sm:p-10 shadow-sm">
+        <div className="flex flex-col items-start gap-4">
+          <Badge className="rounded-full bg-primary text-primary-foreground font-semibold px-3 py-1 text-xs gap-1.5 shadow-none">
             <Sparkles className="size-3.5" />
-            {t(L.hubBadge, locale)}
+            <span>{t(L.hubBadge, locale)}</span>
           </Badge>
 
           <div>
@@ -200,56 +242,56 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
 
           {/* Quick Stats Strip */}
           <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-5 w-full">
-            <div className="rounded-2xl border bg-card/80 backdrop-blur px-4 py-3">
+            <div className="rounded-2xl border bg-muted/30 px-4 py-3">
               <div className="flex items-center justify-between text-xs text-muted-foreground">
                 <span>{t(L.statTotal, locale)}</span>
                 <Layers className="size-4 text-primary" />
               </div>
-              <p className="mt-1 font-mono text-2xl font-bold">{data.problems.length}</p>
+              <p className="mt-1 font-mono text-2xl font-bold text-foreground">{data.problems.length}</p>
             </div>
 
-            <div className="rounded-2xl border bg-card/80 backdrop-blur px-4 py-3">
+            <div className="rounded-2xl border bg-muted/30 px-4 py-3">
               <div className="flex items-center justify-between text-xs text-muted-foreground">
                 <span>{t(L.statPassed, locale)}</span>
-                <CheckCircle2 className="size-4 text-emerald-500" />
+                <CheckCircle2 className="size-4 text-primary" />
               </div>
-              <p className="mt-1 font-mono text-2xl font-bold text-emerald-600 dark:text-emerald-400">
+              <p className="mt-1 font-mono text-2xl font-bold text-primary">
                 {passedCount}
               </p>
             </div>
 
-            <div className="rounded-2xl border bg-card/80 backdrop-blur px-4 py-3">
+            <div className="rounded-2xl border bg-muted/30 px-4 py-3">
               <div className="flex items-center justify-between text-xs text-muted-foreground">
                 <span>{t(L.statInProgress, locale)}</span>
-                <Clock className="size-4 text-amber-500" />
+                <Clock className="size-4 text-muted-foreground" />
               </div>
-              <p className="mt-1 font-mono text-2xl font-bold text-amber-600 dark:text-amber-400">
+              <p className="mt-1 font-mono text-2xl font-bold text-foreground">
                 {inProgressCount}
               </p>
             </div>
 
-            <div className="rounded-2xl border bg-card/80 backdrop-blur px-4 py-3">
+            <div className="rounded-2xl border bg-muted/30 px-4 py-3">
               <div className="flex items-center justify-between text-xs text-muted-foreground">
                 <span>{t(L.statLL, locale)}</span>
-                <Flame className="size-4 text-rose-500" />
+                <Flame className="size-4 text-primary" />
               </div>
-              <p className="mt-1 font-mono text-2xl font-bold text-rose-600 dark:text-rose-400">
+              <p className="mt-1 font-mono text-2xl font-bold text-primary">
                 {data.learningLogCount}
               </p>
             </div>
 
             {gh.connected ? (
-              <div className="rounded-2xl border bg-card/80 backdrop-blur px-4 py-3">
+              <div className="rounded-2xl border bg-muted/30 px-4 py-3">
                 <div className="flex items-center justify-between text-xs text-muted-foreground">
                   <span>{t(L.statInRepo, locale)}</span>
-                  <FolderGit2 className="size-4 text-blue-500" />
+                  <FolderGit2 className="size-4 text-primary" />
                 </div>
-                <p className="mt-1 font-mono text-2xl font-bold text-blue-600 dark:text-blue-400">
+                <p className="mt-1 font-mono text-2xl font-bold text-primary">
                   {inRepoCount}/{data.problems.length}
                 </p>
               </div>
             ) : (
-              <div className="rounded-2xl border bg-card/80 backdrop-blur px-4 py-3">
+              <div className="rounded-2xl border bg-muted/30 px-4 py-3">
                 <div className="flex items-center justify-between text-xs text-muted-foreground">
                   <span>{t(L.statPatterns, locale)}</span>
                   <Sparkles className="size-4 text-primary" />
@@ -263,7 +305,7 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
         </div>
       </div>
 
-      {/* Exam Day Briefing Banner */}
+      {/* Clean Exam Day Briefing Banner (iHelp Pink Theme, Solid Badges, 2-Column Textbook Grid) */}
       <ExamBriefingCard locale={locale} />
 
       {/* GitHub Sync Banner */}
@@ -291,10 +333,10 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
 
         <div className="flex flex-wrap items-center gap-2">
           {/* Filter buttons */}
-          <div className="flex rounded-xl border bg-card p-1 text-xs font-medium">
+          <div className="flex rounded-full border bg-card p-1 text-xs font-medium">
             <button
               onClick={() => setFilter("all")}
-              className={`rounded-lg px-3 py-1.5 transition-colors ${
+              className={`rounded-full px-3 py-1.5 transition-colors ${
                 filter === "all"
                   ? "bg-primary text-primary-foreground font-semibold shadow-sm"
                   : "text-muted-foreground hover:text-foreground"
@@ -304,9 +346,9 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
             </button>
             <button
               onClick={() => setFilter("passed")}
-              className={`rounded-lg px-3 py-1.5 transition-colors ${
+              className={`rounded-full px-3 py-1.5 transition-colors ${
                 filter === "passed"
-                  ? "bg-emerald-600 text-white font-semibold shadow-sm"
+                  ? "bg-primary text-primary-foreground font-semibold shadow-sm"
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >
@@ -314,9 +356,9 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
             </button>
             <button
               onClick={() => setFilter("in_progress")}
-              className={`rounded-lg px-3 py-1.5 transition-colors ${
+              className={`rounded-full px-3 py-1.5 transition-colors ${
                 filter === "in_progress"
-                  ? "bg-amber-600 text-white font-semibold shadow-sm"
+                  ? "bg-primary text-primary-foreground font-semibold shadow-sm"
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >
@@ -325,9 +367,9 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
             {gh.connected && (
               <button
                 onClick={() => setFilter("in_repo")}
-                className={`rounded-lg px-3 py-1.5 transition-colors ${
+                className={`rounded-full px-3 py-1.5 transition-colors ${
                   filter === "in_repo"
-                    ? "bg-blue-600 text-white font-semibold shadow-sm"
+                    ? "bg-primary text-primary-foreground font-semibold shadow-sm"
                     : "text-muted-foreground hover:text-foreground"
                 }`}
               >
@@ -336,9 +378,9 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
             )}
             <button
               onClick={() => setFilter("ll")}
-              className={`rounded-lg px-3 py-1.5 transition-colors ${
+              className={`rounded-full px-3 py-1.5 transition-colors ${
                 filter === "ll"
-                  ? "bg-rose-600 text-white font-semibold shadow-sm"
+                  ? "bg-primary text-primary-foreground font-semibold shadow-sm"
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >
@@ -347,13 +389,13 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
           </div>
 
           {/* View mode toggle */}
-          <div className="flex rounded-xl border bg-card p-1 text-xs">
+          <div className="flex rounded-full border bg-card p-1 text-xs">
             <button
               onClick={() => setViewMode("grid")}
               title={t(L.viewGrid, locale)}
-              className={`flex items-center gap-1 rounded-lg px-2.5 py-1.5 transition-colors ${
+              className={`flex items-center gap-1 rounded-full px-3 py-1.5 transition-colors ${
                 viewMode === "grid"
-                  ? "bg-primary/10 text-primary font-semibold"
+                  ? "bg-primary text-primary-foreground font-semibold"
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >
@@ -363,9 +405,9 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
             <button
               onClick={() => setViewMode("table")}
               title={t(L.viewTable, locale)}
-              className={`flex items-center gap-1 rounded-lg px-2.5 py-1.5 transition-colors ${
+              className={`flex items-center gap-1 rounded-full px-3 py-1.5 transition-colors ${
                 viewMode === "table"
-                  ? "bg-primary/10 text-primary font-semibold"
+                  ? "bg-primary text-primary-foreground font-semibold"
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >
@@ -375,9 +417,9 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
             <button
               onClick={() => setViewMode("guide")}
               title={t(L.viewGuide, locale)}
-              className={`flex items-center gap-1 rounded-lg px-2.5 py-1.5 transition-colors ${
+              className={`flex items-center gap-1 rounded-full px-3 py-1.5 transition-colors ${
                 viewMode === "guide"
-                  ? "bg-primary/10 text-primary font-semibold"
+                  ? "bg-primary text-primary-foreground font-semibold"
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >
@@ -398,7 +440,7 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
               <Button
                 variant="outline"
                 size="sm"
-                className="mt-4"
+                className="mt-4 rounded-full"
                 onClick={() => {
                   setSearch("");
                   setFilter("all");
@@ -455,7 +497,7 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
                         </Link>
                         <div className="flex items-center gap-1.5 mt-1">
                           {p.learningLog && (
-                            <Badge variant="secondary" className="text-[10px] bg-rose-500/10 text-rose-600 dark:text-rose-400">
+                            <Badge className="rounded-full bg-primary text-primary-foreground text-[10px] px-2 py-0 font-medium">
                               Learning Log
                             </Badge>
                           )}
@@ -468,7 +510,7 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
                       </div>
                     </TableCell>
                     <TableCell>
-                      <span className="text-xs text-muted-foreground font-mono bg-muted px-2 py-1 rounded-md">
+                      <span className="text-xs text-muted-foreground font-mono bg-muted px-2.5 py-1 rounded-md">
                         {p.technique || "Pattern Practice"}
                       </span>
                     </TableCell>
@@ -476,10 +518,10 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
                       <div className="flex flex-col items-center gap-1">
                         <button
                           onClick={() => toggleStatus(p.id)}
-                          className={`inline-flex items-center gap-1 rounded-md px-2 py-1 text-xs font-semibold transition-all hover:scale-105 active:scale-95 ${
+                          className={`inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold transition-all hover:opacity-90 cursor-pointer ${
                             effStatus === "passed"
-                              ? "bg-emerald-600/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20"
-                              : "bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20"
+                              ? "bg-primary text-primary-foreground"
+                              : "bg-muted text-foreground border"
                           }`}
                           title="Click to toggle status"
                         >
@@ -496,7 +538,7 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
                           )}
                         </button>
                         {inRepo && (
-                          <span className="inline-flex items-center gap-1 text-[10px] text-blue-600 dark:text-blue-400 font-medium">
+                          <span className="inline-flex items-center gap-1 text-[10px] text-primary font-medium">
                             <FolderGit2 className="size-2.5" />
                             {t(L.inRepoBadge, locale)}
                           </span>
@@ -505,13 +547,13 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
                     </TableCell>
                     <TableCell className="text-right">
                       <div className="flex items-center justify-end gap-1.5">
-                        <Button asChild size="sm" variant="outline" className="h-8 text-xs">
+                        <Button asChild size="sm" variant="outline" className="h-8 text-xs rounded-full">
                           <Link href={`/recommended/${p.slug}`}>
                             <FileText className="mr-1 size-3.5" />
                             {t(L.openProblem, locale)}
                           </Link>
                         </Button>
-                        <Button asChild size="sm" variant="ghost" className="size-8 p-0" title="Open on iJudge">
+                        <Button asChild size="sm" variant="ghost" className="size-8 p-0 rounded-full" title="Open on iJudge">
                           <a href={p.url} target="_blank" rel="noopener noreferrer">
                             <ExternalLink className="size-3.5 text-muted-foreground" />
                           </a>
@@ -529,12 +571,12 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
       {viewMode === "guide" && (
         <div className="mt-6 rounded-2xl border bg-card p-6 sm:p-10 shadow-sm space-y-6">
           {/* Quick Rules */}
-          <div className="rounded-xl border border-primary/20 bg-primary/[0.04] p-5">
-            <h3 className="flex items-center gap-2 font-semibold text-primary">
-              <Sparkles className="size-4" />
+          <div className="rounded-xl border bg-muted/20 p-5">
+            <h3 className="flex items-center gap-2 font-semibold text-foreground">
+              <Sparkles className="size-4 text-primary" />
               {t(L.ruleTitle, locale)}
             </h3>
-            <ul className="mt-2 space-y-1.5 text-sm text-muted-foreground">
+            <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
               <li className="flex items-start gap-2">
                 <Check className="size-4 text-primary shrink-0 mt-0.5" />
                 <span>{t(L.rule1, locale)}</span>
@@ -558,31 +600,35 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
 }
 
 /**
- * Sleek, minimal, and informative Exam Briefing Component
+ * Clean & Minimal Exam Day Briefing Component
+ * - Styled strictly with iHelp Pink (--primary) and clean neutral colors
+ * - Solid badges with rounded-full
+ * - 2-Column detailed textbook grid with descriptions and CTA buttons
+ * - Lucide icons only (no emojis)
  */
 function ExamBriefingCard({ locale }: { locale: "th" | "en" }) {
   const [isOpen, setIsOpen] = useState(true);
 
   return (
-    <section aria-label="Exam Announcement" className="mt-6 overflow-hidden rounded-3xl border border-amber-500/30 bg-gradient-to-b from-amber-500/[0.07] via-background to-card p-5 sm:p-6 shadow-sm transition-all">
-      {/* Header with expand / collapse */}
+    <section aria-label="Exam Announcement" className="mt-6 overflow-hidden rounded-3xl border bg-card p-5 sm:p-6 shadow-sm">
+      {/* Header */}
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <div className="flex items-center gap-2.5">
-          <div className="flex size-9 items-center justify-center rounded-xl bg-amber-500/20 text-amber-600 dark:text-amber-400">
+        <div className="flex items-center gap-3">
+          <div className="flex size-10 items-center justify-center rounded-2xl bg-primary text-primary-foreground shrink-0 shadow-sm">
             <AlertTriangle className="size-5" />
           </div>
           <div>
             <div className="flex flex-wrap items-center gap-2">
               <h2 className="text-base font-bold text-foreground sm:text-lg">
-                {locale === "th" ? "🚨 แจ้งเตือนสำคัญก่อนวันสอบ PSCP‼️" : "🚨 Important PSCP Exam Day Briefing"}
+                {locale === "th" ? "แจ้งเตือนสำคัญก่อนวันสอบ PSCP" : "Important PSCP Exam Day Briefing"}
               </h2>
-              <Badge variant="outline" className="border-amber-500/40 bg-amber-500/10 text-amber-700 dark:text-amber-300 text-[11px] font-medium">
+              <Badge className="rounded-full bg-primary text-primary-foreground font-medium px-3 py-0.5 text-xs shadow-none">
                 {locale === "th" ? "Course iJudge ปิด 23:59 คืนนี้" : "iJudge Closes 23:59 Tonight"}
               </Badge>
             </div>
             <p className="text-xs text-muted-foreground mt-0.5">
               {locale === "th"
-                ? "Course iJudge จะปิดวันนี้เวลา 23:59 เพื่อให้น้องๆ ได้พักผ่อนก่อนสอบ 🛏️"
+                ? "Course iJudge จะปิดวันนี้เวลา 23:59 เพื่อให้น้องๆ ได้พักผ่อนก่อนสอบ"
                 : "Course iJudge will close at 23:59 tonight so everyone can rest well before the exam."}
             </p>
           </div>
@@ -590,7 +636,7 @@ function ExamBriefingCard({ locale }: { locale: "th" | "en" }) {
 
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="inline-flex items-center gap-1 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors px-2.5 py-1 rounded-lg border bg-background/80 hover:bg-muted"
+          className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors px-3 py-1.5 rounded-full border bg-muted/40 hover:bg-muted"
         >
           <span>{isOpen ? (locale === "th" ? "ย่อข้อมูล" : "Collapse") : (locale === "th" ? "แสดงรายละเอียด" : "Expand")}</span>
           {isOpen ? <ChevronUp className="size-3.5" /> : <ChevronDown className="size-3.5" />}
@@ -599,119 +645,141 @@ function ExamBriefingCard({ locale }: { locale: "th" | "en" }) {
 
       {/* Expanded Content */}
       {isOpen && (
-        <div className="mt-5 space-y-4 pt-4 border-t border-amber-500/20 text-sm">
+        <div className="mt-5 space-y-4 pt-4 border-t text-sm">
+          {/* 3 Overview Cards */}
           <div className="grid gap-3 sm:grid-cols-3">
             {/* 1. Schedule & Environment */}
-            <div className="rounded-2xl border bg-card/80 p-4">
-              <div className="flex items-center gap-2 font-semibold text-foreground text-xs uppercase tracking-wide">
-                <Clock className="size-4 text-primary" />
-                <span>{locale === "th" ? "กำหนดการ & เครื่องสอบ" : "Schedule & Lab Setup"}</span>
+            <div className="rounded-2xl border bg-muted/20 p-4 flex flex-col justify-between">
+              <div>
+                <div className="flex items-center gap-2 font-semibold text-foreground text-xs uppercase tracking-wide">
+                  <Clock className="size-4 text-primary" />
+                  <span>{locale === "th" ? "กำหนดการ & เครื่องสอบ" : "Schedule & Lab Setup"}</span>
+                </div>
+                <ul className="mt-3 space-y-2 text-xs text-muted-foreground leading-relaxed">
+                  <li className="flex items-start gap-2">
+                    <span className="font-mono font-bold text-foreground">09:10 น.</span>
+                    <span>เริ่มเข้าห้องสอบเพื่อเช็ค Python & VS Code</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="font-mono font-bold text-foreground">09:30 น.</span>
+                    <span>เริ่มทำข้อสอบ</span>
+                  </li>
+                </ul>
               </div>
-              <ul className="mt-2.5 space-y-1.5 text-xs text-muted-foreground leading-relaxed">
-                <li className="flex items-start gap-1.5">
-                  <span className="font-bold text-foreground">09:10 น.</span>
-                  <span>เริ่มเข้าห้องสอบเพื่อเช็ค Python & VS Code</span>
-                </li>
-                <li className="flex items-start gap-1.5">
-                  <span className="font-bold text-foreground">09:30 น.</span>
-                  <span>เริ่มทำข้อสอบ</span>
-                </li>
-                <li className="pt-1 text-[11px] font-medium text-amber-600 dark:text-amber-400">
-                  ⚠️ {locale === "th" ? "สามารถใช้ได้แค่ VS Code เท่านั้น" : "Only VS Code is permitted"}
-                </li>
-              </ul>
+              <div className="mt-3 pt-2.5 border-t text-[11px] font-medium text-primary flex items-center gap-1.5">
+                <AlertTriangle className="size-3.5 shrink-0" />
+                <span>{locale === "th" ? "อนุญาตให้ใช้เฉพาะ VS Code เท่านั้น" : "Only VS Code is permitted"}</span>
+              </div>
             </div>
 
             {/* 2. Regulations & ID */}
-            <div className="rounded-2xl border bg-card/80 p-4">
-              <div className="flex items-center gap-2 font-semibold text-foreground text-xs uppercase tracking-wide">
-                <GraduationCap className="size-4 text-emerald-500" />
-                <span>{locale === "th" ? "สิ่งที่ต้องเตรียมพร้อม" : "Must-Bring Checklist"}</span>
+            <div className="rounded-2xl border bg-muted/20 p-4 flex flex-col justify-between">
+              <div>
+                <div className="flex items-center gap-2 font-semibold text-foreground text-xs uppercase tracking-wide">
+                  <UserCheck className="size-4 text-primary" />
+                  <span>{locale === "th" ? "สิ่งที่ต้องเตรียมพร้อม" : "Must-Bring Checklist"}</span>
+                </div>
+                <ul className="mt-3 space-y-2 text-xs text-muted-foreground leading-relaxed">
+                  <li className="flex items-start gap-2">
+                    <CreditCard className="size-3.5 text-primary shrink-0 mt-0.5" />
+                    <span className="font-semibold text-foreground">ห้ามลืมบัตรนักศึกษา</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <UserCheck className="size-3.5 text-primary shrink-0 mt-0.5" />
+                    <span>แต่งกายตามระเบียบสถาบัน (ตรวจเข้มงวด)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <FileText className="size-3.5 text-primary shrink-0 mt-0.5" />
+                    <span>มีกระดาษ A4 ให้ในห้องสอบสำหรับทดเลข</span>
+                  </li>
+                </ul>
               </div>
-              <ul className="mt-2.5 space-y-1.5 text-xs text-muted-foreground leading-relaxed">
-                <li className="flex items-start gap-1.5">
-                  <span className="text-emerald-500 font-bold">🪪</span>
-                  <span className="font-semibold text-foreground">พกบัตรนักศึกษา</span>
-                </li>
-                <li className="flex items-start gap-1.5">
-                  <span className="text-emerald-500 font-bold">👔</span>
-                  <span>แต่งกายตามระเบียบของสถาบัน (อาจารย์คุมสอบตรวจเข้มงวด)</span>
-                </li>
-                <li className="flex items-start gap-1.5">
-                  <span className="text-emerald-500 font-bold">📄</span>
-                  <span>มีกระดาษ A4 ให้ในห้องสอบสำหรับทดเลข/คิดโจทย์</span>
-                </li>
-              </ul>
             </div>
 
             {/* 3. Score Breakdown */}
-            <div className="rounded-2xl border bg-card/80 p-4">
-              <div className="flex items-center gap-2 font-semibold text-foreground text-xs uppercase tracking-wide">
-                <Scale className="size-4 text-rose-500" />
-                <span>{locale === "th" ? "สัดส่วนคะแนนต่อ 1 ข้อ" : "Scoring per Problem"}</span>
-              </div>
-              <div className="mt-2.5 space-y-2 text-xs">
-                <div className="flex items-center justify-between rounded-xl bg-muted/60 px-3 py-1.5">
-                  <span className="text-muted-foreground">Testcases</span>
-                  <span className="font-mono font-bold text-foreground">100 คะแนน</span>
+            <div className="rounded-2xl border bg-muted/20 p-4 flex flex-col justify-between">
+              <div>
+                <div className="flex items-center gap-2 font-semibold text-foreground text-xs uppercase tracking-wide">
+                  <Scale className="size-4 text-primary" />
+                  <span>{locale === "th" ? "สัดส่วนคะแนนต่อ 1 ข้อ" : "Scoring per Problem"}</span>
                 </div>
-                <div className="flex items-center justify-between rounded-xl bg-rose-500/10 px-3 py-1.5 text-rose-600 dark:text-rose-400">
-                  <span className="font-semibold">PEP-8 Standard</span>
-                  <span className="font-mono font-bold">9,900 คะแนน</span>
+                <div className="mt-3 space-y-1.5 text-xs">
+                  <div className="flex items-center justify-between rounded-xl bg-card border px-3 py-1.5">
+                    <span className="text-muted-foreground">Testcases</span>
+                    <span className="font-mono font-bold text-foreground">100 คะแนน</span>
+                  </div>
+                  <div className="flex items-center justify-between rounded-xl bg-primary text-primary-foreground px-3 py-1.5">
+                    <span className="font-semibold">PEP-8 Standard</span>
+                    <span className="font-mono font-bold">9,900 คะแนน</span>
+                  </div>
                 </div>
-                <p className="text-[11px] text-muted-foreground">
-                  {locale === "th" ? "ระวัง PEP-8 กันดีๆ นะคับ 😸 (เว้นวรรค & การตั้งชื่อ)" : "Mind PEP-8 formatting strictly!"}
-                </p>
               </div>
+              <p className="mt-2 text-[11px] text-muted-foreground">
+                {locale === "th" ? "ตรวจเช็ค Code Style และการเว้นวรรคให้ถูกต้อง" : "Verify code styling and spacing conventions carefully"}
+              </p>
             </div>
           </div>
 
-          {/* Available Textbooks in Exam */}
-          <div className="rounded-2xl border bg-card/80 p-4">
-            <div className="flex items-center justify-between gap-2">
-              <div className="flex items-center gap-2 text-xs font-semibold text-foreground">
-                <BookOpen className="size-4 text-blue-500" />
-                <span>{locale === "th" ? "📝 สิ่งที่มีให้ในห้องสอบ — Textbooks & PSCP Books" : "Provided Exam Reference Textbooks"}</span>
+          {/* Textbooks & Reference Books: 2 Columns with Description & CTA Button */}
+          <div className="rounded-2xl border bg-card p-5">
+            <div className="flex items-center justify-between gap-2 mb-4">
+              <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
+                <BookOpen className="size-4 text-primary" />
+                <span>{locale === "th" ? "สิ่งที่มีให้ในห้องสอบ — Textbooks & PSCP Books" : "Provided Exam Reference Textbooks"}</span>
               </div>
-              <span className="text-[11px] text-muted-foreground hidden sm:inline">
-                {locale === "th" ? "(กดเพื่อเปิดอ่านไฟล์ PDF ได้ทันที)" : "(Click to open PDF)"}
-              </span>
+              <Badge variant="outline" className="rounded-full text-xs font-mono">
+                6 Books (PDF)
+              </Badge>
             </div>
 
-            <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {PDF_BOOKS.map((book) => (
-                <a
+                <div
                   key={book.name}
-                  href={book.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex flex-col justify-between rounded-xl border bg-background p-2.5 text-xs transition-all hover:border-primary/50 hover:bg-primary/[0.04] hover:shadow-sm"
+                  className="flex flex-col justify-between rounded-2xl border bg-muted/20 p-4 transition-all hover:border-primary/40 hover:bg-muted/40"
                 >
-                  <div className="flex items-center justify-between">
-                    <span className="font-semibold text-foreground group-hover:text-primary transition-colors">
-                      {book.name}
-                    </span>
-                    <ExternalLink className="size-3 text-muted-foreground group-hover:text-primary transition-colors" />
+                  <div>
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="flex items-center gap-2">
+                        <FileText className="size-4 text-primary shrink-0" />
+                        <h3 className="font-bold text-foreground text-sm">
+                          {book.name}
+                        </h3>
+                      </div>
+                      <Badge className="rounded-full bg-primary text-primary-foreground text-[10px] px-2.5 py-0.5 font-medium shadow-none">
+                        {book.badge}
+                      </Badge>
+                    </div>
+                    <p className="mt-2 text-xs text-muted-foreground leading-relaxed">
+                      {locale === "th" ? book.desc.th : book.desc.en}
+                    </p>
                   </div>
-                  <span className="mt-1 text-[10px] text-muted-foreground truncate">
-                    {book.label}
-                  </span>
-                </a>
+
+                  <div className="mt-4 pt-3 border-t">
+                    <Button asChild size="sm" className="w-full h-8 text-xs font-medium rounded-full gap-1.5 bg-primary text-primary-foreground hover:opacity-90">
+                      <a href={book.url} target="_blank" rel="noopener noreferrer">
+                        <BookOpen className="size-3.5" />
+                        <span>{locale === "th" ? `เปิดอ่าน ${book.name} (PDF)` : `Open ${book.name} (PDF)`}</span>
+                        <ExternalLink className="size-3 ml-auto opacity-70" />
+                      </a>
+                    </Button>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
 
           {/* TA Good Luck Footer */}
-          <div className="flex flex-wrap items-center justify-between gap-2 rounded-2xl bg-amber-500/10 px-4 py-2.5 text-xs text-amber-800 dark:text-amber-200">
+          <div className="flex flex-wrap items-center justify-between gap-2 rounded-2xl bg-muted/40 border px-4 py-3 text-xs text-foreground">
             <div className="flex items-center gap-2">
-              <Sparkles className="size-4 text-amber-600 dark:text-amber-400 shrink-0" />
+              <Sparkles className="size-4 text-primary shrink-0" />
               <span className="font-medium">
                 {locale === "th"
-                  ? "ขอให้น้องๆ ทุกคนทำข้อสอบได้เยอะๆ น้าา ✌️ Good Luck!"
-                  : "Good luck to everyone on the exam! You've got this ✌️"}
+                  ? "ขอให้น้องๆ ทุกคนทำข้อสอบได้คะแนนเต็มและผ่านฉลุยกันทุกคน — Good Luck!"
+                  : "Wishing all students the best of luck and full scores on the exam!"}
               </span>
             </div>
-            <span className="font-mono text-[11px] font-semibold text-amber-700 dark:text-amber-300">
+            <span className="font-mono text-xs font-semibold text-primary">
               — By พี่ TA :3
             </span>
           </div>
@@ -747,10 +815,10 @@ function ProblemCard({
             {/* Interactive Status Toggle Button */}
             <button
               onClick={onToggleStatus}
-              className={`inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-[11px] font-semibold transition-all hover:scale-105 active:scale-95 cursor-pointer ${
+              className={`inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[11px] font-semibold transition-all hover:opacity-90 cursor-pointer shadow-none ${
                 effectiveStatus === "passed"
-                  ? "bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20"
-                  : "bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20"
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-muted text-foreground border"
               }`}
               title="Click to toggle status (Finished / In Progress)"
             >
@@ -768,14 +836,15 @@ function ProblemCard({
             </button>
 
             {inRepo && (
-              <Badge variant="outline" className="bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20 text-[10px] font-medium">
-                <FolderGit2 className="mr-1 size-2.5" />
+              <Badge className="rounded-full bg-muted text-foreground border text-[10px] font-medium px-2 py-0.5 shadow-none">
+                <FolderGit2 className="mr-1 size-2.5 text-primary" />
                 {locale === "th" ? "ใน Repo" : "In Repo"}
               </Badge>
             )}
 
             {problem.learningLog && (
-              <Badge variant="secondary" className="text-[11px] bg-rose-500/10 text-rose-600 dark:text-rose-400 font-medium">
+              <Badge className="rounded-full bg-primary text-primary-foreground text-[10px] font-medium px-2 py-0.5 shadow-none">
+                <Flame className="mr-1 size-2.5" />
                 Learning Log
               </Badge>
             )}
@@ -802,8 +871,9 @@ function ProblemCard({
         {/* Technique Badge */}
         {problem.technique && (
           <div className="mt-2.5 flex items-start gap-1.5">
-            <span className="rounded-md bg-muted px-2 py-1 font-mono text-xs text-muted-foreground leading-snug">
-              💡 {problem.technique}
+            <span className="inline-flex items-center gap-1.5 rounded-md bg-muted px-2.5 py-1 font-mono text-xs text-muted-foreground leading-snug">
+              <Code2 className="size-3.5 text-primary shrink-0" />
+              <span>{problem.technique}</span>
             </span>
           </div>
         )}
@@ -813,13 +883,13 @@ function ProblemCard({
       <div className="mt-5 pt-3 border-t flex items-center justify-between gap-2">
         <div className="flex items-center gap-2">
           {problem.learningLog && (
-            <Button asChild size="sm" variant="ghost" className="h-8 px-2.5 text-xs text-rose-600 hover:text-rose-700 hover:bg-rose-50 dark:hover:bg-rose-950/30">
+            <Button asChild size="sm" variant="ghost" className="h-8 px-2.5 text-xs text-primary hover:text-primary hover:bg-muted rounded-full">
               <Link href={`/make/submission?id=${problem.id}`}>
                 + submission
               </Link>
             </Button>
           )}
-          <Button asChild size="sm" variant="ghost" className="h-8 px-2 text-xs text-muted-foreground hover:text-foreground">
+          <Button asChild size="sm" variant="ghost" className="h-8 px-2 text-xs text-muted-foreground hover:text-foreground rounded-full">
             <Link href={`/make/reflection?id=${problem.id}`}>
               + reflection
             </Link>
@@ -827,7 +897,7 @@ function ProblemCard({
         </div>
 
         <div className="flex items-center gap-1.5">
-          <Button asChild size="sm" variant="default" className="h-8 px-3 text-xs gap-1">
+          <Button asChild size="sm" variant="default" className="h-8 px-3 text-xs gap-1 rounded-full bg-primary text-primary-foreground hover:opacity-90">
             <Link href={`/recommended/${problem.slug}`}>
               <span>{t(L.openProblem, locale)}</span>
               <ArrowRight className="size-3.5" />
