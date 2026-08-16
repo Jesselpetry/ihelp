@@ -27,10 +27,7 @@ import {
   UserCheck,
   Scale,
 } from "lucide-react";
-import type {
-  RecommendedHubData,
-  RecommendedProblem,
-} from "@/lib/recommended";
+import type { RecommendedHubData, RecommendedProblem } from "@/lib/recommended";
 import {
   getStoredProblemStatuses,
   setStoredProblemStatus,
@@ -143,24 +140,43 @@ const L: Record<string, LText> = {
   difficulty: { th: "ความยาก", en: "Difficulty" },
   actions: { th: "การดำเนินการ", en: "Actions" },
   problemCol: { th: "โจทย์", en: "Problem" },
-  noMatch: { th: "ไม่พบโจทย์ที่ตรงกับคำค้นหา", en: "No problems match your search." },
+  noMatch: {
+    th: "ไม่พบโจทย์ที่ตรงกับคำค้นหา",
+    en: "No problems match your search.",
+  },
   resetFilter: { th: "ล้างตัวกรอง", en: "Reset filters" },
   markFinished: { th: "ทำเสร็จแล้ว", en: "Mark Finished" },
   markInProgress: { th: "กำลังทำ", en: "Mark In Progress" },
   inRepoBadge: { th: "มีใน Repo", en: "In Repo" },
-  ruleTitle: { th: "กฎสำคัญก่อนส่ง iJudge", en: "Quick Rules Before Submitting" },
-  rule1: { th: "ทดสอบโค้ดใน VS Code ให้ผ่านอย่างน้อย 3 กรณี (เคสปกติ, เคสขอบเขต/ค่าต่ำสุด, เคสดักทาง)", en: "Test code in VS Code across at least 3 distinct cases (normal, boundary, tricky)." },
-  rule2: { th: "ตรวจรูปแบบ output ให้ตรงเป๊ะ (ตัวพิมพ์เล็ก/ใหญ่, การเว้นวรรค, จุดทศนิยม)", en: "Ensure exact output formatting (spelling, capitalization, and decimal precision)." },
-  rule3: { th: "ต้องสามารถอธิบายโค้ดทุกบรรทัดได้ด้วยความเข้าใจของตนเอง", en: "Be able to explain every line of your code in your own words." },
+  ruleTitle: {
+    th: "กฎสำคัญก่อนส่ง iJudge",
+    en: "Quick Rules Before Submitting",
+  },
+  rule1: {
+    th: "ทดสอบโค้ดใน VS Code ให้ผ่านอย่างน้อย 3 กรณี (เคสปกติ, เคสขอบเขต/ค่าต่ำสุด, เคสดักทาง)",
+    en: "Test code in VS Code across at least 3 distinct cases (normal, boundary, tricky).",
+  },
+  rule2: {
+    th: "ตรวจรูปแบบ output ให้ตรงเป๊ะ (ตัวพิมพ์เล็ก/ใหญ่, การเว้นวรรค, จุดทศนิยม)",
+    en: "Ensure exact output formatting (spelling, capitalization, and decimal precision).",
+  },
+  rule3: {
+    th: "ต้องสามารถอธิบายโค้ดทุกบรรทัดได้ด้วยความเข้าใจของตนเอง",
+    en: "Be able to explain every line of your code in your own words.",
+  },
 };
 
 export function RecommendedHub({ data }: { data: RecommendedHubData }) {
   const { locale } = useLocale();
   const gh = useGithub();
   const [search, setSearch] = useState("");
-  const [filter, setFilter] = useState<"all" | "passed" | "in_progress" | "in_repo" | "ll">("all");
+  const [filter, setFilter] = useState<
+    "all" | "passed" | "in_progress" | "in_repo" | "ll"
+  >("all");
   const [viewMode, setViewMode] = useState<"grid" | "table" | "guide">("grid");
-  const [customStatuses, setCustomStatuses] = useState<Record<number, "passed" | "in_progress">>({});
+  const [customStatuses, setCustomStatuses] = useState<
+    Record<number, "passed" | "in_progress">
+  >({});
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time hydration from localStorage after mount (SSR-safe)
@@ -183,21 +199,28 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
   );
 
   function toggleStatus(id: number) {
-    const current = customStatuses[id] || data.problems.find((p) => p.id === id)?.status || "in_progress";
+    const current =
+      customStatuses[id] ||
+      data.problems.find((p) => p.id === id)?.status ||
+      "in_progress";
     const next = current === "passed" ? "in_progress" : "passed";
     setStoredProblemStatus(id, next);
   }
 
   const passedCount = useMemo(() => {
-    return data.problems.filter((p) => getEffectiveStatus(p) === "passed").length;
+    return data.problems.filter((p) => getEffectiveStatus(p) === "passed")
+      .length;
   }, [data.problems, getEffectiveStatus]);
 
   const inProgressCount = useMemo(() => {
-    return data.problems.filter((p) => getEffectiveStatus(p) === "in_progress").length;
+    return data.problems.filter((p) => getEffectiveStatus(p) === "in_progress")
+      .length;
   }, [data.problems, getEffectiveStatus]);
 
   const inRepoCount = useMemo(() => {
-    return data.problems.filter((p) => Boolean(gh.status[p.id]?.recommended?.inRepo)).length;
+    return data.problems.filter((p) =>
+      Boolean(gh.status[p.id]?.recommended?.inRepo),
+    ).length;
   }, [data.problems, gh.status]);
 
   const filteredProblems = useMemo(() => {
@@ -255,7 +278,9 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
                   className="pointer-events-none absolute inset-0 -translate-x-full animate-shimmer bg-gradient-to-r from-transparent via-white/30 to-transparent"
                 />
                 <Code2 className="size-4 mr-2 shrink-0" />
-                <span>{locale === "th" ? "โจทย์ (10 ข้อ)" : "Problems (10)"}</span>
+                <span>
+                  {locale === "th" ? "โจทย์ (10 ข้อ)" : "Problems (10)"}
+                </span>
                 <ArrowRight className="size-4 ml-1.5 transition-transform group-hover:translate-x-0.5" />
               </a>
             </Button>
@@ -274,7 +299,9 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
                   className="pointer-events-none absolute inset-0 -translate-x-full animate-shimmer bg-gradient-to-r from-transparent via-primary/15 to-transparent"
                 />
                 <BookOpen className="size-4 mr-2 shrink-0 text-primary" />
-                <span>{locale === "th" ? "Books (6 เล่ม)" : "Books (6 Books)"}</span>
+                <span>
+                  {locale === "th" ? "Books (6 เล่ม)" : "Books (6 Books)"}
+                </span>
               </a>
             </Button>
           </div>
@@ -286,7 +313,9 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
                 <span>{t(L.statTotal, locale)}</span>
                 <Layers className="size-4 text-primary" />
               </div>
-              <p className="mt-1 font-mono text-2xl font-bold text-foreground">{data.problems.length}</p>
+              <p className="mt-1 font-mono text-2xl font-bold text-foreground">
+                {data.problems.length}
+              </p>
             </div>
 
             <div className="rounded-2xl border bg-muted/30 px-4 py-3">
@@ -359,7 +388,10 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
       </div>
 
       {/* Control Bar: Search + Filter Tabs + View Mode */}
-      <div id="problems-section" className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between scroll-mt-6">
+      <div
+        id="problems-section"
+        className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between scroll-mt-6"
+      >
         <div className="relative flex-1 max-w-md">
           <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
           <Input
@@ -475,7 +507,9 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
           {filteredProblems.length === 0 ? (
             <div className="rounded-2xl border border-dashed p-12 text-center">
               <Info className="mx-auto size-8 text-muted-foreground/60" />
-              <p className="mt-3 text-sm text-muted-foreground">{t(L.noMatch, locale)}</p>
+              <p className="mt-3 text-sm text-muted-foreground">
+                {t(L.noMatch, locale)}
+              </p>
               <Button
                 variant="outline"
                 size="sm"
@@ -513,8 +547,12 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
                 <TableHead className="w-20 font-mono">OJ ID</TableHead>
                 <TableHead>{t(L.problemCol, locale)}</TableHead>
                 <TableHead>{t(L.technique, locale)}</TableHead>
-                <TableHead className="w-36 text-center">{t(L.status, locale)}</TableHead>
-                <TableHead className="w-40 text-right">{t(L.actions, locale)}</TableHead>
+                <TableHead className="w-36 text-center">
+                  {t(L.status, locale)}
+                </TableHead>
+                <TableHead className="w-40 text-right">
+                  {t(L.actions, locale)}
+                </TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -522,7 +560,10 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
                 const effStatus = getEffectiveStatus(p);
                 const inRepo = Boolean(gh.status[p.id]?.recommended?.inRepo);
                 return (
-                  <TableRow key={p.id} className="hover:bg-muted/40 transition-colors">
+                  <TableRow
+                    key={p.id}
+                    className="hover:bg-muted/40 transition-colors"
+                  >
                     <TableCell className="font-mono font-bold text-primary">
                       {p.id}
                     </TableCell>
@@ -586,14 +627,29 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
                     </TableCell>
                     <TableCell className="text-right">
                       <div className="flex items-center justify-end gap-1.5">
-                        <Button asChild size="sm" variant="outline" className="h-8 text-xs rounded-full">
+                        <Button
+                          asChild
+                          size="sm"
+                          variant="outline"
+                          className="h-8 text-xs rounded-full"
+                        >
                           <Link href={`/recommended/${p.slug}`}>
                             <FileText className="mr-1 size-3.5" />
                             {t(L.openProblem, locale)}
                           </Link>
                         </Button>
-                        <Button asChild size="sm" variant="ghost" className="size-8 p-0 rounded-full" title="Open on iJudge">
-                          <a href={p.url} target="_blank" rel="noopener noreferrer">
+                        <Button
+                          asChild
+                          size="sm"
+                          variant="ghost"
+                          className="size-8 p-0 rounded-full"
+                          title="Open on iJudge"
+                        >
+                          <a
+                            href={p.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
                             <ExternalLink className="size-3.5 text-muted-foreground" />
                           </a>
                         </Button>
@@ -652,7 +708,11 @@ function ExamBriefingCard({ locale }: { locale: "th" | "en" }) {
   const displayedBooks = showAllBooks ? PDF_BOOKS : PDF_BOOKS.slice(0, 2);
 
   return (
-    <section id="exam-briefing" aria-label="Exam Announcement" className="mt-6 overflow-hidden rounded-3xl border bg-card p-5 sm:p-6 shadow-sm scroll-mt-6">
+    <section
+      id="exam-briefing"
+      aria-label="Exam Announcement"
+      className="mt-6 overflow-hidden rounded-3xl border bg-card p-5 sm:p-6 shadow-sm scroll-mt-6"
+    >
       {/* Header */}
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-3">
@@ -662,10 +722,14 @@ function ExamBriefingCard({ locale }: { locale: "th" | "en" }) {
           <div>
             <div className="flex flex-wrap items-center gap-2">
               <h2 className="text-base font-bold text-foreground sm:text-lg">
-                {locale === "th" ? "แจ้งเตือนสำคัญก่อนวันสอบ PSCP" : "Important PSCP Exam Day Briefing"}
+                {locale === "th"
+                  ? "แจ้งเตือนสำคัญก่อนวันสอบ PSCP"
+                  : "Important PSCP Exam Day Briefing"}
               </h2>
               <Badge className="rounded-full bg-primary text-primary-foreground font-medium px-3 py-0.5 text-xs shadow-none">
-                {locale === "th" ? "Course iJudge ปิด 23:59 คืนนี้" : "iJudge Closes 23:59 Tonight"}
+                {locale === "th"
+                  ? "Course iJudge ปิด 23:59 คืนนี้"
+                  : "iJudge Closes 23:59 Tonight"}
               </Badge>
             </div>
             <p className="text-xs text-muted-foreground mt-0.5">
@@ -680,8 +744,20 @@ function ExamBriefingCard({ locale }: { locale: "th" | "en" }) {
           onClick={() => setIsOpen(!isOpen)}
           className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors px-3 py-1.5 rounded-full border bg-muted/40 hover:bg-muted"
         >
-          <span>{isOpen ? (locale === "th" ? "ย่อข้อมูล" : "Collapse") : (locale === "th" ? "แสดงรายละเอียด" : "Expand")}</span>
-          {isOpen ? <ChevronUp className="size-3.5" /> : <ChevronDown className="size-3.5" />}
+          <span>
+            {isOpen
+              ? locale === "th"
+                ? "ย่อข้อมูล"
+                : "Collapse"
+              : locale === "th"
+                ? "แสดงรายละเอียด"
+                : "Expand"}
+          </span>
+          {isOpen ? (
+            <ChevronUp className="size-3.5" />
+          ) : (
+            <ChevronDown className="size-3.5" />
+          )}
         </button>
       </div>
 
@@ -695,22 +771,34 @@ function ExamBriefingCard({ locale }: { locale: "th" | "en" }) {
               <div>
                 <div className="flex items-center gap-2 font-semibold text-foreground text-xs uppercase tracking-wide">
                   <Clock className="size-4 text-primary" />
-                  <span>{locale === "th" ? "กำหนดการ & เครื่องสอบ" : "Schedule & Lab Setup"}</span>
+                  <span>
+                    {locale === "th"
+                      ? "กำหนดการ & เครื่องสอบ"
+                      : "Schedule & Lab Setup"}
+                  </span>
                 </div>
                 <ul className="mt-3 space-y-2 text-xs text-muted-foreground leading-relaxed">
                   <li className="flex items-start gap-2">
-                    <span className="font-mono font-bold text-foreground">09:10 น.</span>
+                    <span className="font-mono font-bold text-foreground">
+                      09:10 น.
+                    </span>
                     <span>เริ่มเข้าห้องสอบเพื่อเช็ค Python & VS Code</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="font-mono font-bold text-foreground">09:30 น.</span>
+                    <span className="font-mono font-bold text-foreground">
+                      09:30 น.
+                    </span>
                     <span>เริ่มทำข้อสอบ</span>
                   </li>
                 </ul>
               </div>
               <div className="mt-3 pt-2.5 border-t text-[11px] font-medium text-primary flex items-center gap-1.5">
                 <AlertTriangle className="size-3.5 shrink-0" />
-                <span>{locale === "th" ? "อนุญาตให้ใช้เฉพาะ VS Code เท่านั้น" : "Only VS Code is permitted"}</span>
+                <span>
+                  {locale === "th"
+                    ? "อนุญาตให้ใช้เฉพาะ VS Code เท่านั้น"
+                    : "Only VS Code is permitted"}
+                </span>
               </div>
             </div>
 
@@ -719,12 +807,18 @@ function ExamBriefingCard({ locale }: { locale: "th" | "en" }) {
               <div>
                 <div className="flex items-center gap-2 font-semibold text-foreground text-xs uppercase tracking-wide">
                   <UserCheck className="size-4 text-primary" />
-                  <span>{locale === "th" ? "สิ่งที่ต้องเตรียมพร้อม" : "Must-Bring Checklist"}</span>
+                  <span>
+                    {locale === "th"
+                      ? "สิ่งที่ต้องเตรียมพร้อม"
+                      : "Must-Bring Checklist"}
+                  </span>
                 </div>
                 <ul className="mt-3 space-y-2 text-xs text-muted-foreground leading-relaxed">
                   <li className="flex items-start gap-2">
                     <CreditCard className="size-3.5 text-primary shrink-0 mt-0.5" />
-                    <span className="font-semibold text-foreground">ห้ามลืมบัตรนักศึกษา</span>
+                    <span className="font-semibold text-foreground">
+                      ห้ามลืมบัตรนักศึกษา
+                    </span>
                   </li>
                   <li className="flex items-start gap-2">
                     <UserCheck className="size-3.5 text-primary shrink-0 mt-0.5" />
@@ -743,12 +837,18 @@ function ExamBriefingCard({ locale }: { locale: "th" | "en" }) {
               <div>
                 <div className="flex items-center gap-2 font-semibold text-foreground text-xs uppercase tracking-wide">
                   <Scale className="size-4 text-primary" />
-                  <span>{locale === "th" ? "สัดส่วนคะแนนต่อ 1 ข้อ" : "Scoring per Problem"}</span>
+                  <span>
+                    {locale === "th"
+                      ? "สัดส่วนคะแนนต่อ 1 ข้อ"
+                      : "Scoring per Problem"}
+                  </span>
                 </div>
                 <div className="mt-3 space-y-1.5 text-xs">
                   <div className="flex items-center justify-between rounded-xl bg-card border px-3 py-1.5">
                     <span className="text-muted-foreground">Testcases</span>
-                    <span className="font-mono font-bold text-foreground">100 คะแนน</span>
+                    <span className="font-mono font-bold text-foreground">
+                      100 คะแนน
+                    </span>
                   </div>
                   <div className="flex items-center justify-between rounded-xl bg-primary text-primary-foreground px-3 py-1.5">
                     <span className="font-semibold">PEP-8 Standard</span>
@@ -757,7 +857,9 @@ function ExamBriefingCard({ locale }: { locale: "th" | "en" }) {
                 </div>
               </div>
               <p className="mt-2 text-[11px] text-muted-foreground">
-                {locale === "th" ? "ตรวจเช็ค Code Style และการเว้นวรรคให้ถูกต้อง" : "Verify code styling and spacing conventions carefully"}
+                {locale === "th"
+                  ? "ตรวจเช็ค Code Style และการเว้นวรรคให้ถูกต้อง"
+                  : "Verify code styling and spacing conventions carefully"}
               </p>
             </div>
           </div>
@@ -767,10 +869,19 @@ function ExamBriefingCard({ locale }: { locale: "th" | "en" }) {
             <div className="flex items-center justify-between gap-2 mb-4">
               <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
                 <BookOpen className="size-4 text-primary" />
-                <span>{locale === "th" ? "สิ่งที่มีให้ในห้องสอบ — Textbooks & PSCP Books" : "Provided Exam Reference Textbooks"}</span>
+                <span>
+                  {locale === "th"
+                    ? "สิ่งที่มีให้ในห้องสอบ — Textbooks & PSCP Books"
+                    : "Provided Exam Reference Textbooks"}
+                </span>
               </div>
-              <Badge variant="outline" className="rounded-full text-xs font-mono">
-                {showAllBooks ? `${PDF_BOOKS.length} Books (PDF)` : `2 of ${PDF_BOOKS.length} Books (PDF)`}
+              <Badge
+                variant="outline"
+                className="rounded-full text-xs font-mono"
+              >
+                {showAllBooks
+                  ? `${PDF_BOOKS.length} Books (PDF)`
+                  : `2 of ${PDF_BOOKS.length} Books (PDF)`}
               </Badge>
             </div>
 
@@ -798,10 +909,20 @@ function ExamBriefingCard({ locale }: { locale: "th" | "en" }) {
                   </div>
 
                   <div className="mt-4 pt-3 border-t flex items-center justify-end">
-                    <Button asChild size="sm" className="h-7 px-3 text-xs font-medium rounded-full gap-1.5 bg-primary text-primary-foreground hover:opacity-90 shadow-none">
-                      <a href={book.url} target="_blank" rel="noopener noreferrer">
+                    <Button
+                      asChild
+                      size="sm"
+                      className="h-7 px-3 text-xs font-medium rounded-full gap-1.5 bg-primary text-primary-foreground hover:opacity-90 shadow-none"
+                    >
+                      <a
+                        href={book.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         <BookOpen className="size-3" />
-                        <span>{locale === "th" ? "เปิดอ่าน PDF" : "Open PDF"}</span>
+                        <span>
+                          {locale === "th" ? "เปิดอ่าน PDF" : "Open PDF"}
+                        </span>
                         <ExternalLink className="size-3 opacity-70" />
                       </a>
                     </Button>
@@ -820,27 +941,33 @@ function ExamBriefingCard({ locale }: { locale: "th" | "en" }) {
               >
                 <span>
                   {showAllBooks
-                    ? (locale === "th" ? "ย่อรายการหนังสือ" : "Show Less")
-                    : (locale === "th" ? `ดูหนังสือทั้งหมด (${PDF_BOOKS.length} เล่ม)` : `View All Books (${PDF_BOOKS.length})`)}
+                    ? locale === "th"
+                      ? "ย่อรายการหนังสือ"
+                      : "Show Less"
+                    : locale === "th"
+                      ? `ดูหนังสือทั้งหมด (${PDF_BOOKS.length} เล่ม)`
+                      : `View All Books (${PDF_BOOKS.length})`}
                 </span>
-                {showAllBooks ? <ChevronUp className="size-3.5" /> : <ChevronDown className="size-3.5" />}
+                {showAllBooks ? (
+                  <ChevronUp className="size-3.5" />
+                ) : (
+                  <ChevronDown className="size-3.5" />
+                )}
               </Button>
             </div>
           </div>
 
-          {/* TA Good Luck Footer */}
-          <div className="flex flex-wrap items-center justify-between gap-2 rounded-2xl bg-muted/40 border px-4 py-3 text-xs text-foreground">
-            <div className="flex items-center gap-2">
+          {/* TA Good Luck Footer (Mali Google Font, Centered, No Container) */}
+          <div className="pt-3 pb-1 text-center font-[family-name:var(--font-mali)]">
+            <div className="inline-flex items-center justify-center gap-2 text-sm sm:text-base font-semibold text-primary">
               <Sparkles className="size-4 text-primary shrink-0" />
-              <span className="font-medium">
+              <span>
                 {locale === "th"
-                  ? "ขอให้น้องๆ ทุกคนทำข้อสอบได้คะแนนเต็มและผ่านฉลุยกันทุกคน — Good Luck!"
-                  : "Wishing all students the best of luck and full scores on the exam!"}
+                  ? "ขอให้น้องๆ ทุกคนทำข้อสอบได้คะแนนเต็มและผ่านฉลุยกันทุกคน — Good Luck! :3"
+                  : "Wishing all students the best of luck and full scores on the exam! :3"}
               </span>
+              <Sparkles className="size-4 text-primary shrink-0" />
             </div>
-            <span className="font-mono text-xs font-semibold text-primary">
-              — By พี่ TA :3
-            </span>
           </div>
         </div>
       )}
@@ -912,7 +1039,10 @@ function ProblemCard({
           <div className="flex items-center gap-0.5">
             {problem.difficulty > 0 ? (
               Array.from({ length: problem.difficulty }).map((_, i) => (
-                <Star key={i} className="size-3.5 fill-amber-400 text-amber-400" />
+                <Star
+                  key={i}
+                  className="size-3.5 fill-amber-400 text-amber-400"
+                />
               ))
             ) : (
               <Star className="size-3.5 text-muted-foreground/30" />
@@ -922,9 +1052,7 @@ function ProblemCard({
 
         {/* Title */}
         <h2 className="mt-3 text-lg font-semibold tracking-tight text-foreground group-hover:text-primary transition-colors">
-          <Link href={`/recommended/${problem.slug}`}>
-            {problem.cleanName}
-          </Link>
+          <Link href={`/recommended/${problem.slug}`}>{problem.cleanName}</Link>
         </h2>
 
         {/* Technique Badge */}
@@ -942,21 +1070,34 @@ function ProblemCard({
       <div className="mt-5 pt-3 border-t flex items-center justify-between gap-2">
         <div className="flex items-center gap-2">
           {problem.learningLog && (
-            <Button asChild size="sm" variant="ghost" className="h-8 px-2.5 text-xs text-primary hover:text-primary hover:bg-muted rounded-full">
+            <Button
+              asChild
+              size="sm"
+              variant="ghost"
+              className="h-8 px-2.5 text-xs text-primary hover:text-primary hover:bg-muted rounded-full"
+            >
               <Link href={`/make/submission?id=${problem.id}`}>
                 + submission
               </Link>
             </Button>
           )}
-          <Button asChild size="sm" variant="ghost" className="h-8 px-2 text-xs text-muted-foreground hover:text-foreground rounded-full">
-            <Link href={`/make/reflection?id=${problem.id}`}>
-              + reflection
-            </Link>
+          <Button
+            asChild
+            size="sm"
+            variant="ghost"
+            className="h-8 px-2 text-xs text-muted-foreground hover:text-foreground rounded-full"
+          >
+            <Link href={`/make/reflection?id=${problem.id}`}>+ reflection</Link>
           </Button>
         </div>
 
         <div className="flex items-center gap-1.5">
-          <Button asChild size="sm" variant="default" className="h-8 px-3 text-xs gap-1 rounded-full bg-primary text-primary-foreground hover:opacity-90">
+          <Button
+            asChild
+            size="sm"
+            variant="default"
+            className="h-8 px-3 text-xs gap-1 rounded-full bg-primary text-primary-foreground hover:opacity-90"
+          >
             <Link href={`/recommended/${problem.slug}`}>
               <span>{t(L.openProblem, locale)}</span>
               <ArrowRight className="size-3.5" />

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Sans_Thai, Geist_Mono } from "next/font/google";
+import { IBM_Plex_Sans_Thai, Geist_Mono, Mali } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { LocaleProvider } from "@/lib/i18n";
@@ -18,6 +18,12 @@ const plexThai = IBM_Plex_Sans_Thai({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const mali = Mali({
+  variable: "--font-mali",
+  subsets: ["thai", "latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 // Keep in sync with app/robots.ts and app/sitemap.ts.
@@ -93,7 +99,7 @@ export default function RootLayout({
     <html
       lang="th"
       suppressHydrationWarning
-      className={`${plexThai.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${plexThai.variable} ${geistMono.variable} ${mali.variable} h-full antialiased`}
     >
       <head>
         {/* Runs before paint so the theme class is set on <html> with no flash. */}
