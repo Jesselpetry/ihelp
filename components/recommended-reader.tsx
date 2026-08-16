@@ -57,9 +57,10 @@ const L: Record<string, LText> = {
   viewProblemOnly: { th: "โจทย์เต็ม", en: "Problem" },
   viewGraderOnly: { th: "ตรวจโค้ด", en: "Grader" },
   dragToResize: { th: "ลากเพื่อปรับขนาด (ดับเบิลคลิกเพื่อรีเซ็ต 50:50)", en: "Drag to resize (double-click to reset 50:50)" },
-  mobileTabProblem: { th: "โจทย์ & สรุป", en: "Problem & Notes" },
-  mobileTabGrader: { th: "เขียนโค้ด & ตรวจ", en: "Code & Grader" },
+  mobileTabProblem: { th: "โจทย์ & คำอธิบาย", en: "Problem & Notes" },
+  mobileTabGrader: { th: "เขียนโค้ด & ตรวจสอบ", en: "Code & Grader" },
   goToGrader: { th: "ไปที่ตัวตรวจโค้ด", en: "Open Code Grader" },
+  goToProblem: { th: "ดูคำอธิบายโจทย์", en: "View Problem" },
 };
 
 type ViewMode = "split" | "problem" | "grader";
@@ -156,7 +157,7 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
   return (
     <div className="flex-1 min-h-0 flex flex-col overflow-hidden w-full max-w-[1920px] mx-auto px-2 sm:px-4 md:px-6 py-1.5 sm:py-2.5">
       {/* Top Header & Layout Switcher Bar */}
-      <div className="shrink-0 mb-1.5 sm:mb-2 flex flex-wrap items-center justify-between gap-1.5 sm:gap-2">
+      <div className="shrink-0 mb-1.5 sm:mb-2 flex items-center justify-between gap-1.5 sm:gap-2">
         <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
           <Link
             href="/recommended"
@@ -282,17 +283,17 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
       </div>
 
       {/* Mobile Tab Switcher (< md) */}
-      <div className="shrink-0 flex md:hidden mb-2 rounded-xl border bg-muted/30 p-0.5 text-xs">
+      <div className="shrink-0 flex md:hidden mb-2 rounded-xl border bg-muted/40 p-1 text-xs shadow-xs">
         <button
           type="button"
           onClick={() => setMobileTab("problem")}
           className={`flex-1 py-1.5 rounded-lg font-medium transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
             mobileTab === "problem"
-              ? "bg-background text-foreground font-semibold shadow-xs"
-              : "text-muted-foreground"
+              ? "bg-background text-primary font-bold shadow-xs border"
+              : "text-muted-foreground hover:text-foreground"
           }`}
         >
-          <FileText className="size-3.5 text-primary" />
+          <FileText className="size-3.5" />
           <span>{t(L.mobileTabProblem, locale)}</span>
         </button>
         <button
@@ -300,11 +301,11 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
           onClick={() => setMobileTab("grader")}
           className={`flex-1 py-1.5 rounded-lg font-medium transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
             mobileTab === "grader"
-              ? "bg-background text-foreground font-semibold shadow-xs"
-              : "text-muted-foreground"
+              ? "bg-background text-emerald-600 dark:text-emerald-400 font-bold shadow-xs border"
+              : "text-muted-foreground hover:text-foreground"
           }`}
         >
-          <Terminal className="size-3.5 text-emerald-500" />
+          <Terminal className="size-3.5" />
           <span>{t(L.mobileTabGrader, locale)}</span>
         </button>
       </div>
@@ -314,6 +315,10 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
         ref={containerRef}
         onPointerMove={isDragging ? handlePointerMove : undefined}
         onPointerUp={isDragging ? handlePointerUp : undefined}
+        style={{
+          ["--split-ratio" as string]: `${splitRatio}%`,
+          ["--split-ratio-right" as string]: `${100 - splitRatio}%`,
+        }}
         className={`flex-1 min-h-0 flex flex-col md:flex-row w-full overflow-hidden select-auto ${
           isDragging ? "select-none cursor-col-resize" : ""
         }`}
@@ -322,19 +327,19 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
         {/* LEFT PANEL: problem.md, concept, takeaways, and solution */}
         {/* ======================================================== */}
         <div
-          style={{
-            width:
-              viewMode === "split"
-                ? `${splitRatio}%`
-                : viewMode === "problem"
-                ? "100%"
-                : "0%",
-          }}
-          className={`h-full transition-none ${
-            viewMode === "grader" ? "hidden" : "flex"
-          } ${mobileTab === "grader" ? "hidden md:flex" : "flex"} flex-col min-w-0 overflow-hidden w-full md:w-auto`}
+          className={`h-full flex-col min-w-0 overflow-hidden w-full ${
+            viewMode === "grader" ? "hidden md:hidden" : "flex"
+          } ${
+            mobileTab === "grader" ? "hidden md:flex" : "flex"
+          } ${
+            viewMode === "split"
+              ? "md:[width:var(--split-ratio)]"
+              : viewMode === "problem"
+              ? "md:w-full"
+              : "md:w-0 md:hidden"
+          }`}
         >
-          <article className="h-full flex flex-col overflow-hidden rounded-2xl border bg-card shadow-xs">
+          <article className="h-full flex flex-col overflow-hidden rounded-2xl border bg-card shadow-xs w-full">
             {/* Header section */}
             <div className="shrink-0 border-b bg-muted/30 p-2.5 sm:p-4 lg:p-5">
               <div className="flex flex-wrap items-center justify-between gap-1.5 sm:gap-2">
@@ -532,7 +537,7 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
                   onClick={() => setMobileTab("grader")}
                   size="sm"
                   variant="secondary"
-                  className="md:hidden rounded-full h-6 text-[10px] gap-1 px-2 cursor-pointer font-medium"
+                  className="md:hidden rounded-full h-6 text-[10px] gap-1 px-2.5 cursor-pointer font-medium border"
                 >
                   <Play className="size-2.5 fill-current text-primary" />
                   <span>{t(L.goToGrader, locale)}</span>
@@ -579,19 +584,33 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
         {/* RIGHT PANEL: Code Grader with Expected Input / Output    */}
         {/* ======================================================== */}
         <div
-          style={{
-            width:
-              viewMode === "split"
-                ? `${100 - splitRatio}%`
-                : viewMode === "grader"
-                ? "100%"
-                : "0%",
-          }}
-          className={`h-full transition-none ${
-            viewMode === "problem" ? "hidden" : "flex"
-          } ${mobileTab === "problem" ? "hidden md:flex" : "flex"} flex-col min-w-0 overflow-hidden w-full md:w-auto`}
+          className={`h-full flex-col min-w-0 overflow-hidden w-full ${
+            viewMode === "problem" ? "hidden md:hidden" : "flex"
+          } ${
+            mobileTab === "problem" ? "hidden md:flex" : "flex"
+          } ${
+            viewMode === "split"
+              ? "md:[width:var(--split-ratio-right)]"
+              : viewMode === "grader"
+              ? "md:w-full"
+              : "md:w-0 md:hidden"
+          }`}
         >
           <div className="h-full flex-1 min-h-0 overflow-y-auto overscroll-contain pr-0.5 sm:pr-1">
+            {/* Mobile back to problem shortcut button */}
+            <div className="md:hidden mb-2 flex items-center justify-between">
+              <Button
+                type="button"
+                onClick={() => setMobileTab("problem")}
+                variant="ghost"
+                size="sm"
+                className="h-6 text-[10px] gap-1 px-2 rounded-full text-muted-foreground hover:text-foreground cursor-pointer"
+              >
+                <ArrowLeft className="size-2.5 text-primary" />
+                <span>{t(L.goToProblem, locale)}</span>
+              </Button>
+            </div>
+
             <CodeGrader
               problemId={problem.id}
               problemName={problem.cleanName}
