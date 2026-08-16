@@ -105,6 +105,20 @@ You need `range(1, n + 1)` to cover 1 through `n`.
 ### 5.5 `print(i)` needs no `str()`
 `print()` converts values to text automatically — there is no need to write `print(str(i))`.
 
+### 5.6 Pylint & Linter Tip: `not i % 15`
+In Python, `0` is falsey in a boolean context. Pylint suggests simplifying `i % 15 == 0` to `not i % 15`:
+```python
+if not i % 15:
+    print("FizzBuzz")
+elif not i % 3:
+    print("Fizz")
+elif not i % 5:
+    print("Buzz")
+else:
+    print(i)
+```
+Both `not i % 15` and `i % 15 == 0` are 100% logically identical, but `not i % 15` satisfies strict Pylint checks with zero warnings.
+
 ## 6. Additional Test Cases
 
 | Input | Expected Output | What it tests |

@@ -204,22 +204,22 @@ export const PROBLEM_TAKEAWAYS: Record<number, ProblemTakeaway> = {
     },
     points: [
       {
-        th: "ตรวจสอบเงื่อนไขที่เฉพาะเจาะจงที่สุดก่อนเสมอ: n % 15 == 0 (FizzBuzz)",
-        en: "Check the most specific condition first: n % 15 == 0.",
+        th: "ตรวจสอบเงื่อนไขที่เฉพาะเจาะจงที่สุดก่อนเสมอ: if not i % 15 (FizzBuzz)",
+        en: "Check the most specific condition first: if not i % 15.",
       },
       {
-        th: "จากนั้นจึงตรวจสอบ elif n % 3 == 0 (Fizz) และ elif n % 5 == 0 (Buzz)",
-        en: "Follow with elif n % 3 == 0 for Fizz and elif n % 5 == 0 for Buzz.",
+        th: "จากนั้นจึงตรวจสอบ elif not i % 3 (Fizz) และ elif not i % 5 (Buzz)",
+        en: "Follow with elif not i % 3 for Fizz and elif not i % 5 for Buzz.",
       },
       {
-        th: "หากไม่ตรงกับเงื่อนไขใด ให้พิมพ์ตัวเลข n ในบล็อก else",
+        th: "หากไม่ตรงกับเงื่อนไขใด ให้พิมพ์ตัวเลข i ในบล็อก else",
         en: "Fallback to printing the number itself in the else branch.",
       },
     ],
     complexity: { time: "O(1)", space: "O(1)" },
     pep8Tip: {
-      th: "เว้นวรรค 1 ช่องรอบเครื่องหมายเปรียบเทียบ == เช่น i % 15 == 0",
-      en: "Always place single spaces around comparison operators ==.",
+      th: "ใช้ if not i % 15 แทน if i % 15 == 0 ตามคำแนะนำของ Pylint เพื่อความกระชับและลด warning",
+      en: "Simplify i % k == 0 to not i % k as 0 is falsey in boolean context.",
     },
   },
   3226: {
