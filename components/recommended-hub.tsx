@@ -58,6 +58,7 @@ const L: Record<string, LText> = {
   statInProgress: { th: "กำลังฝึก", en: "In Progress" },
   statInRepo: { th: "ใน GitHub Repo", en: "In GitHub Repo" },
   statLL: { th: "Learning Logs", en: "Learning Logs" },
+  statPatterns: { th: "เทคนิคสำคัญ", en: "Key Patterns" },
   searchPlaceholder: {
     th: "ค้นหาโจทย์, รหัส OJ หรือเทคนิค (เช่น slicing, math, modulo)...",
     en: "Search problems, OJ ID, or technique (e.g. slicing, math, modulo)...",
@@ -213,6 +214,16 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
               </p>
             </div>
 
+            <div className="rounded-2xl border bg-card/80 backdrop-blur px-4 py-3">
+              <div className="flex items-center justify-between text-xs text-muted-foreground">
+                <span>{t(L.statLL, locale)}</span>
+                <Flame className="size-4 text-rose-500" />
+              </div>
+              <p className="mt-1 font-mono text-2xl font-bold text-rose-600 dark:text-rose-400">
+                {data.learningLogCount}
+              </p>
+            </div>
+
             {gh.connected ? (
               <div className="rounded-2xl border bg-card/80 backdrop-blur px-4 py-3">
                 <div className="flex items-center justify-between text-xs text-muted-foreground">
@@ -226,24 +237,14 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
             ) : (
               <div className="rounded-2xl border bg-card/80 backdrop-blur px-4 py-3">
                 <div className="flex items-center justify-between text-xs text-muted-foreground">
-                  <span>{t(L.statLL, locale)}</span>
-                  <Flame className="size-4 text-rose-500" />
+                  <span>{t(L.statPatterns, locale)}</span>
+                  <Sparkles className="size-4 text-primary" />
                 </div>
-                <p className="mt-1 font-mono text-2xl font-bold text-rose-600 dark:text-rose-400">
-                  {data.learningLogCount}
+                <p className="mt-1 font-mono text-2xl font-bold text-primary">
+                  10 Patterns
                 </p>
               </div>
             )}
-
-            <div className="hidden lg:block rounded-2xl border bg-card/80 backdrop-blur px-4 py-3">
-              <div className="flex items-center justify-between text-xs text-muted-foreground">
-                <span>{t(L.statLL, locale)}</span>
-                <Flame className="size-4 text-rose-500" />
-              </div>
-              <p className="mt-1 font-mono text-2xl font-bold text-rose-600 dark:text-rose-400">
-                {data.learningLogCount}
-              </p>
-            </div>
           </div>
         </div>
       </div>
