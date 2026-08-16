@@ -8,8 +8,6 @@ import {
   ExternalLink,
   Code2,
   FileText,
-  Copy,
-  Check,
   Star,
   Flame,
   LayoutGrid,
@@ -27,6 +25,7 @@ import { useGithub } from "@/lib/github";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { MdView } from "@/components/md-view";
+import { PythonCodeViewer } from "@/components/python-code-viewer";
 import { useLocale, t, type LText } from "@/lib/i18n";
 
 const L: Record<string, LText> = {
@@ -35,8 +34,6 @@ const L: Record<string, LText> = {
   of: { th: "จาก", en: "of" },
   tabProblem: { th: "โจทย์ & สรุปแนวคิด (problem.md)", en: "Problem & Notes (problem.md)" },
   tabCode: { th: "โค้ด Python (main.py)", en: "Python Solution (main.py)" },
-  copyCode: { th: "คัดลอกโค้ด", en: "Copy Code" },
-  copied: { th: "คัดลอกแล้ว!", en: "Copied!" },
   makeSubmission: { th: "สร้าง submission.md", en: "Make submission.md" },
   makeReflection: { th: "สร้าง ai_reflection.md", en: "Make ai_reflection.md" },
   openIJudge: { th: "เปิดใน iJudge", en: "Open on iJudge" },
@@ -54,7 +51,6 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
   const { locale } = useLocale();
   const gh = useGithub();
   const [activeTab, setActiveTab] = useState<"md" | "code">("md");
-  const [copied, setCopied] = useState(false);
   const [statuses, setStatuses] = useState<Record<number, "passed" | "in_progress">>({});
 
   useEffect(() => {
@@ -78,13 +74,6 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
   function handleToggleStatus() {
     const next = effectiveStatus === "passed" ? "in_progress" : "passed";
     setStoredProblemStatus(problem.id, next);
-  }
-
-  function handleCopy() {
-    if (!problem.pythonCode) return;
-    navigator.clipboard.writeText(problem.pythonCode);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
   }
 
   const inRepo = Boolean(gh.status[problem.id]?.recommended?.inRepo);
@@ -205,10 +194,10 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
 
           {/* Tab Switcher */}
           <div className="mt-6 flex items-center justify-between border-t pt-4">
-            <div className="flex rounded-xl border bg-background p-1 text-xs font-medium">
+            <div className="flex rounded-full border bg-background p-1 text-xs font-medium">
               <button
                 onClick={() => setActiveTab("md")}
-                className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 transition-colors ${
+                className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 transition-colors ${
                   activeTab === "md"
                     ? "bg-primary text-primary-foreground font-semibold shadow-sm"
                     : "text-muted-foreground hover:text-foreground"
@@ -219,7 +208,7 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
               </button>
               <button
                 onClick={() => setActiveTab("code")}
-                className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 transition-colors ${
+                className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 transition-colors ${
                   activeTab === "code"
                     ? "bg-primary text-primary-foreground font-semibold shadow-sm"
                     : "text-muted-foreground hover:text-foreground"
@@ -229,27 +218,6 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
                 {t(L.tabCode, locale)}
               </button>
             </div>
-
-            {activeTab === "code" && problem.pythonCode && (
-              <Button
-                size="sm"
-                variant="outline"
-                onClick={handleCopy}
-                className="h-8 text-xs gap-1.5 border-border"
-              >
-                {copied ? (
-                  <>
-                    <Check className="size-3.5 text-emerald-500" />
-                    <span className="text-emerald-500 font-semibold">{t(L.copied, locale)}</span>
-                  </>
-                ) : (
-                  <>
-                    <Copy className="size-3.5 text-muted-foreground" />
-                    <span>{t(L.copyCode, locale)}</span>
-                  </>
-                )}
-              </Button>
-            )}
           </div>
         </div>
 
@@ -262,17 +230,15 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
           ) : (
             <div>
               {problem.pythonCode ? (
-                <div className="overflow-hidden rounded-2xl border bg-[#0d1117] text-zinc-100 shadow-inner">
-                  <div className="flex items-center justify-between border-b border-zinc-800 bg-[#161b22] px-4 py-2.5">
-                    <span className="font-mono text-xs text-zinc-400">main.py</span>
-                    <span className="font-mono text-[11px] text-zinc-500">Python 3</span>
-                  </div>
-                  <pre className="overflow-x-auto p-4 font-mono text-sm leading-relaxed text-zinc-200">
-                    <code>{problem.pythonCode}</code>
-                  </pre>
-                </div>
+                <PythonCodeViewer
+                  code={problem.pythonCode}
+                  problemId={problem.id}
+                  problemName={problem.cleanName}
+                  technique={problem.technique}
+                  locale={locale}
+                />
               ) : (
-                <div className="rounded-xl border border-dashed p-8 text-center text-sm text-muted-foreground">
+                <div className="rounded-2xl border border-dashed p-10 text-center text-sm text-muted-foreground">
                   {t(L.noCodeFound, locale)}
                 </div>
               )}
