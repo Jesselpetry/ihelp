@@ -26,6 +26,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { MdView } from "@/components/md-view";
 import { PythonCodeViewer } from "@/components/python-code-viewer";
+import { QuizLaunchButton } from "@/components/quiz-launch-button";
 import { useLocale, t, type LText } from "@/lib/i18n";
 
 const L: Record<string, LText> = {
@@ -36,6 +37,7 @@ const L: Record<string, LText> = {
   tabCode: { th: "โค้ด Python (main.py)", en: "Python Solution (main.py)" },
   makeSubmission: { th: "สร้าง submission.md", en: "Make submission.md" },
   makeReflection: { th: "สร้าง ai_reflection.md", en: "Make ai_reflection.md" },
+  takeQuiz: { th: "ทดสอบความเข้าใจเทคนิคนี้", en: "Take a test on this technique" },
   openIJudge: { th: "เปิดใน iJudge", en: "Open on iJudge" },
   keyTechnique: { th: "เทคนิคสำคัญ:", en: "Key Technique:" },
   prev: { th: "ข้อก่อนหน้า", en: "Previous" },
@@ -45,6 +47,7 @@ const L: Record<string, LText> = {
   markInProgress: { th: "กำลังฝึก (In Progress)", en: "In Progress" },
   inRepo: { th: "ซิงก์ใน GitHub Repo แล้ว", en: "Synced in GitHub Repo" },
   browseRepo: { th: "เปิดใน Repo Editor", en: "Open in Repo Editor" },
+  gradeCode: { th: "ให้คะแนนโค้ดนี้", en: "Grade this code" },
 };
 
 export function RecommendedReader({ problem }: { problem: RecommendedProblemDetail }) {
@@ -283,6 +286,20 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
             <Button asChild size="sm" variant="outline" className="h-8 text-xs rounded-full">
               <Link href={`/make/reflection?id=${problem.id}`}>
                 {t(L.makeReflection, locale)}
+              </Link>
+            </Button>
+            <QuizLaunchButton
+              problemId={problem.id}
+              problemName={problem.cleanName}
+              nextSlug={problem.next?.slug}
+              nextName={problem.next?.cleanName}
+              variant="outline"
+              size="sm"
+              className="rounded-full h-8 text-xs"
+            />
+            <Button asChild size="sm" variant="outline" className="rounded-full h-8 text-xs">
+              <Link href={`/recommended/${problem.slug}/grade`}>
+                {t(L.gradeCode, locale)}
               </Link>
             </Button>
           </div>
