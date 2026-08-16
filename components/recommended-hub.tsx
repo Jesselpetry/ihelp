@@ -20,6 +20,11 @@ import {
   CheckCircle2,
   Clock,
   FolderGit2,
+  AlertTriangle,
+  ChevronDown,
+  ChevronUp,
+  GraduationCap,
+  Scale,
 } from "lucide-react";
 import type {
   RecommendedHubData,
@@ -45,6 +50,15 @@ import {
 } from "@/components/ui/table";
 import { MdView } from "@/components/md-view";
 import { useLocale, t, type LText } from "@/lib/i18n";
+
+const PDF_BOOKS = [
+  { name: "ThinkPython 2", url: "https://ijudge.it.kmitl.ac.th/uploads/thinkpython2.pdf", label: "ThinkPython2.pdf" },
+  { name: "Chapter 01", url: "https://ijudge.it.kmitl.ac.th/uploads/PSCP-Book/PSCP_Chapter01-2024.pdf", label: "Intro to PSCP" },
+  { name: "Chapter 02", url: "https://ijudge.it.kmitl.ac.th/uploads/PSCP-Book/PSCP_Chapter02-2024.pdf", label: "Data Types & Expressions" },
+  { name: "Chapter 03", url: "https://ijudge.it.kmitl.ac.th/uploads/PSCP-Book/PSCP_Chapter03-2024.pdf", label: "Conditionals & Logic" },
+  { name: "Chapter 04", url: "https://ijudge.it.kmitl.ac.th/uploads/PSCP-Book/PSCP_Chapter04-2024.pdf", label: "Loops & Iteration" },
+  { name: "Chapter 05", url: "https://ijudge.it.kmitl.ac.th/uploads/PSCP-Book/PSCP_Chapter05-2024.pdf", label: "Functions & Strings" },
+];
 
 const L: Record<string, LText> = {
   hubBadge: { th: "คลังโจทย์แนะนำ · PSCP", en: "PSCP Recommended Hub" },
@@ -248,6 +262,9 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
           </div>
         </div>
       </div>
+
+      {/* Exam Day Briefing Banner */}
+      <ExamBriefingCard locale={locale} />
 
       {/* GitHub Sync Banner */}
       <div className="mt-6">
@@ -510,8 +527,9 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
       )}
 
       {viewMode === "guide" && (
-        <div className="mt-6 rounded-2xl border bg-card p-6 sm:p-10 shadow-sm">
-          <div className="mb-6 rounded-xl border border-primary/20 bg-primary/[0.04] p-4">
+        <div className="mt-6 rounded-2xl border bg-card p-6 sm:p-10 shadow-sm space-y-6">
+          {/* Quick Rules */}
+          <div className="rounded-xl border border-primary/20 bg-primary/[0.04] p-5">
             <h3 className="flex items-center gap-2 font-semibold text-primary">
               <Sparkles className="size-4" />
               {t(L.ruleTitle, locale)}
@@ -531,10 +549,175 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
               </li>
             </ul>
           </div>
+
           <MdView markdown={data.overviewMd} />
         </div>
       )}
     </main>
+  );
+}
+
+/**
+ * Sleek, minimal, and informative Exam Briefing Component
+ */
+function ExamBriefingCard({ locale }: { locale: "th" | "en" }) {
+  const [isOpen, setIsOpen] = useState(true);
+
+  return (
+    <section aria-label="Exam Announcement" className="mt-6 overflow-hidden rounded-3xl border border-amber-500/30 bg-gradient-to-b from-amber-500/[0.07] via-background to-card p-5 sm:p-6 shadow-sm transition-all">
+      {/* Header with expand / collapse */}
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div className="flex items-center gap-2.5">
+          <div className="flex size-9 items-center justify-center rounded-xl bg-amber-500/20 text-amber-600 dark:text-amber-400">
+            <AlertTriangle className="size-5" />
+          </div>
+          <div>
+            <div className="flex flex-wrap items-center gap-2">
+              <h2 className="text-base font-bold text-foreground sm:text-lg">
+                {locale === "th" ? "🚨 แจ้งเตือนสำคัญก่อนวันสอบ PSCP‼️" : "🚨 Important PSCP Exam Day Briefing"}
+              </h2>
+              <Badge variant="outline" className="border-amber-500/40 bg-amber-500/10 text-amber-700 dark:text-amber-300 text-[11px] font-medium">
+                {locale === "th" ? "Course iJudge ปิด 23:59 คืนนี้" : "iJudge Closes 23:59 Tonight"}
+              </Badge>
+            </div>
+            <p className="text-xs text-muted-foreground mt-0.5">
+              {locale === "th"
+                ? "Course iJudge จะปิดวันนี้เวลา 23:59 เพื่อให้น้องๆ ได้พักผ่อนก่อนสอบ 🛏️"
+                : "Course iJudge will close at 23:59 tonight so everyone can rest well before the exam."}
+            </p>
+          </div>
+        </div>
+
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="inline-flex items-center gap-1 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors px-2.5 py-1 rounded-lg border bg-background/80 hover:bg-muted"
+        >
+          <span>{isOpen ? (locale === "th" ? "ย่อข้อมูล" : "Collapse") : (locale === "th" ? "แสดงรายละเอียด" : "Expand")}</span>
+          {isOpen ? <ChevronUp className="size-3.5" /> : <ChevronDown className="size-3.5" />}
+        </button>
+      </div>
+
+      {/* Expanded Content */}
+      {isOpen && (
+        <div className="mt-5 space-y-4 pt-4 border-t border-amber-500/20 text-sm">
+          <div className="grid gap-3 sm:grid-cols-3">
+            {/* 1. Schedule & Environment */}
+            <div className="rounded-2xl border bg-card/80 p-4">
+              <div className="flex items-center gap-2 font-semibold text-foreground text-xs uppercase tracking-wide">
+                <Clock className="size-4 text-primary" />
+                <span>{locale === "th" ? "กำหนดการ & เครื่องสอบ" : "Schedule & Lab Setup"}</span>
+              </div>
+              <ul className="mt-2.5 space-y-1.5 text-xs text-muted-foreground leading-relaxed">
+                <li className="flex items-start gap-1.5">
+                  <span className="font-bold text-foreground">09:10 น.</span>
+                  <span>เริ่มเข้าห้องสอบเพื่อเช็ค Python & VS Code</span>
+                </li>
+                <li className="flex items-start gap-1.5">
+                  <span className="font-bold text-foreground">09:30 น.</span>
+                  <span>เริ่มทำข้อสอบ</span>
+                </li>
+                <li className="pt-1 text-[11px] font-medium text-amber-600 dark:text-amber-400">
+                  ⚠️ {locale === "th" ? "สามารถใช้ได้แค่ VS Code เท่านั้น" : "Only VS Code is permitted"}
+                </li>
+              </ul>
+            </div>
+
+            {/* 2. Regulations & ID */}
+            <div className="rounded-2xl border bg-card/80 p-4">
+              <div className="flex items-center gap-2 font-semibold text-foreground text-xs uppercase tracking-wide">
+                <GraduationCap className="size-4 text-emerald-500" />
+                <span>{locale === "th" ? "สิ่งที่ต้องเตรียมพร้อม" : "Must-Bring Checklist"}</span>
+              </div>
+              <ul className="mt-2.5 space-y-1.5 text-xs text-muted-foreground leading-relaxed">
+                <li className="flex items-start gap-1.5">
+                  <span className="text-emerald-500 font-bold">🪪</span>
+                  <span className="font-semibold text-foreground">พกบัตรนักศึกษา</span>
+                </li>
+                <li className="flex items-start gap-1.5">
+                  <span className="text-emerald-500 font-bold">👔</span>
+                  <span>แต่งกายตามระเบียบของสถาบัน (อาจารย์คุมสอบตรวจเข้มงวด)</span>
+                </li>
+                <li className="flex items-start gap-1.5">
+                  <span className="text-emerald-500 font-bold">📄</span>
+                  <span>มีกระดาษ A4 ให้ในห้องสอบสำหรับทดเลข/คิดโจทย์</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* 3. Score Breakdown */}
+            <div className="rounded-2xl border bg-card/80 p-4">
+              <div className="flex items-center gap-2 font-semibold text-foreground text-xs uppercase tracking-wide">
+                <Scale className="size-4 text-rose-500" />
+                <span>{locale === "th" ? "สัดส่วนคะแนนต่อ 1 ข้อ" : "Scoring per Problem"}</span>
+              </div>
+              <div className="mt-2.5 space-y-2 text-xs">
+                <div className="flex items-center justify-between rounded-xl bg-muted/60 px-3 py-1.5">
+                  <span className="text-muted-foreground">Testcases</span>
+                  <span className="font-mono font-bold text-foreground">100 คะแนน</span>
+                </div>
+                <div className="flex items-center justify-between rounded-xl bg-rose-500/10 px-3 py-1.5 text-rose-600 dark:text-rose-400">
+                  <span className="font-semibold">PEP-8 Standard</span>
+                  <span className="font-mono font-bold">9,900 คะแนน</span>
+                </div>
+                <p className="text-[11px] text-muted-foreground">
+                  {locale === "th" ? "ระวัง PEP-8 กันดีๆ นะคับ 😸 (เว้นวรรค & การตั้งชื่อ)" : "Mind PEP-8 formatting strictly!"}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Available Textbooks in Exam */}
+          <div className="rounded-2xl border bg-card/80 p-4">
+            <div className="flex items-center justify-between gap-2">
+              <div className="flex items-center gap-2 text-xs font-semibold text-foreground">
+                <BookOpen className="size-4 text-blue-500" />
+                <span>{locale === "th" ? "📝 สิ่งที่มีให้ในห้องสอบ — Textbooks & PSCP Books" : "Provided Exam Reference Textbooks"}</span>
+              </div>
+              <span className="text-[11px] text-muted-foreground hidden sm:inline">
+                {locale === "th" ? "(กดเพื่อเปิดอ่านไฟล์ PDF ได้ทันที)" : "(Click to open PDF)"}
+              </span>
+            </div>
+
+            <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6">
+              {PDF_BOOKS.map((book) => (
+                <a
+                  key={book.name}
+                  href={book.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex flex-col justify-between rounded-xl border bg-background p-2.5 text-xs transition-all hover:border-primary/50 hover:bg-primary/[0.04] hover:shadow-sm"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="font-semibold text-foreground group-hover:text-primary transition-colors">
+                      {book.name}
+                    </span>
+                    <ExternalLink className="size-3 text-muted-foreground group-hover:text-primary transition-colors" />
+                  </div>
+                  <span className="mt-1 text-[10px] text-muted-foreground truncate">
+                    {book.label}
+                  </span>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* TA Good Luck Footer */}
+          <div className="flex flex-wrap items-center justify-between gap-2 rounded-2xl bg-amber-500/10 px-4 py-2.5 text-xs text-amber-800 dark:text-amber-200">
+            <div className="flex items-center gap-2">
+              <Sparkles className="size-4 text-amber-600 dark:text-amber-400 shrink-0" />
+              <span className="font-medium">
+                {locale === "th"
+                  ? "ขอให้น้องๆ ทุกคนทำข้อสอบได้เยอะๆ น้าา ✌️ Good Luck!"
+                  : "Good luck to everyone on the exam! You've got this ✌️"}
+              </span>
+            </div>
+            <span className="font-mono text-[11px] font-semibold text-amber-700 dark:text-amber-300">
+              — By พี่ TA :3
+            </span>
+          </div>
+        </div>
+      )}
+    </section>
   );
 }
 

@@ -27,3 +27,32 @@ This folder contains all **10 Recommended Problems** from the course curriculum.
 2. Test at least 3 distinct cases (normal case, minimum/edge case, tricky case).
 3. Ensure exact output formatting (spelling, capitalization, and decimal precision).
 4. Be able to explain every line of your code!
+
+---
+
+## 🚨 ข้อมูลสำคัญก่อนวันสอบ PSCP (Exam Day Briefing By พี่ TA)
+
+> [!IMPORTANT]
+> **Course iJudge จะปิดวันนี้เวลา 23:59 น.** เพื่อให้น้องๆ ได้พักผ่อนก่อนสอบ 🛏️
+
+### 👔 สิ่งที่จำเป็นต้องรู้และเตรียมพร้อมก่อนวันสอบ
+- **เวลาเข้าห้องสอบ**: เริ่มเข้าห้องสอบได้ตั้งแต่เวลา **09:10 น.** และเริ่มสอบเวลา **09:30 น.**
+- **ตรวจสอบเครื่องสอบ**: ควรเข้าห้องสอบก่อนเวลาเพื่อทดสอบว่า Python & VS Code ใช้ได้ปกติ (**ในห้องสอบอนุญาตให้ใช้เฉพาะ VS Code เท่านั้น**)
+- 🪪 **ห้ามลืมบัตรนักศึกษา** เด็ดขาด
+- 👔 **แต่งกายตามระเบียบของสถาบัน** (อาจารย์คุมสอบตรวจเข้มงวด)
+- 💯 **สัดส่วนคะแนนต่อ 1 ข้อ**:
+  - Testcase: **100 คะแนน**
+  - PEP-8: **9,900 คะแนน** *(ระวัง PEP-8 กันดีๆ นะคับ 😸)*
+
+### 📝 สิ่งที่มีให้ในห้องสอบ & เอกสารประกอบ (Textbooks)
+- 📄 มีกระดาษ A4 ให้สำหรับทดเลขและช่วยแก้โจทย์
+- 📚 หนังสือและเอกสารที่เปิดอ่านได้:
+  - [ThinkPython2](https://ijudge.it.kmitl.ac.th/uploads/thinkpython2.pdf)
+  - [PSCP Chapter 01](https://ijudge.it.kmitl.ac.th/uploads/PSCP-Book/PSCP_Chapter01-2024.pdf)
+  - [PSCP Chapter 02](https://ijudge.it.kmitl.ac.th/uploads/PSCP-Book/PSCP_Chapter02-2024.pdf)
+  - [PSCP Chapter 03](https://ijudge.it.kmitl.ac.th/uploads/PSCP-Book/PSCP_Chapter03-2024.pdf)
+  - [PSCP Chapter 04](https://ijudge.it.kmitl.ac.th/uploads/PSCP-Book/PSCP_Chapter04-2024.pdf)
+  - [PSCP Chapter 05](https://ijudge.it.kmitl.ac.th/uploads/PSCP-Book/PSCP_Chapter05-2024.pdf)
+
+> **Good Luck! ขอให้น้องๆ ทำข้อสอบได้เยอะทุกคนน้าา ✌️ — By พี่ TA :3**
+
