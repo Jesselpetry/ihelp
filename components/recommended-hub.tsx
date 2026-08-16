@@ -600,8 +600,8 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
                         </div>
                       </div>
                     </TableCell>
-                    <TableCell>
-                      <span className="text-xs text-muted-foreground font-mono bg-muted px-2.5 py-1 rounded-md">
+                    <TableCell className="max-w-[220px]">
+                      <span className="text-xs text-muted-foreground font-mono bg-muted px-2.5 py-1 rounded-md break-words whitespace-normal inline-block leading-relaxed">
                         {p.technique || "Pattern Practice"}
                       </span>
                     </TableCell>
@@ -1075,16 +1075,16 @@ function ProblemCard({
 
         {/* Technique Badge (Clickable to open Key Takeaways) */}
         {problem.technique && (
-          <div className="mt-2.5 flex items-start gap-1.5">
+          <div className="mt-2.5 flex items-start gap-1.5 max-w-full">
             <button
               type="button"
               onClick={() => takeaway && setShowTakeaway(true)}
-              className="inline-flex items-center gap-1.5 rounded-md bg-muted px-2.5 py-1 font-mono text-xs text-muted-foreground leading-snug hover:text-foreground hover:bg-muted/80 transition-colors text-left cursor-pointer"
+              className="inline-flex items-start gap-1.5 rounded-xl bg-muted/70 px-2.5 py-1.5 font-mono text-[11px] sm:text-xs text-muted-foreground leading-relaxed hover:text-foreground hover:bg-muted transition-colors text-left cursor-pointer max-w-full break-words"
               title={locale === "th" ? "คลิกเพื่อดูจุดสำคัญ & Pattern" : "Click to view key takeaways"}
             >
-              <Code2 className="size-3.5 text-primary shrink-0" />
-              <span>{problem.technique}</span>
-              {takeaway && <Lightbulb className="size-3 text-primary ml-0.5 shrink-0" />}
+              <Code2 className="size-3.5 text-primary shrink-0 mt-0.5" />
+              <span className="break-words min-w-0 flex-1">{problem.technique}</span>
+              {takeaway && <Lightbulb className="size-3 text-primary ml-0.5 shrink-0 mt-0.5" />}
             </button>
           </div>
         )}
@@ -1153,7 +1153,7 @@ function ProblemCard({
                   OJ {problem.id}
                 </span>
                 {problem.technique && (
-                  <Badge className="rounded-full bg-primary text-primary-foreground text-[10px] sm:text-xs font-mono px-2.5 sm:px-3 py-0.5 shadow-none">
+                  <Badge className="rounded-2xl sm:rounded-full bg-primary text-primary-foreground text-[10px] sm:text-xs font-mono px-2.5 sm:px-3 py-1 shadow-none max-w-full whitespace-normal break-words h-auto leading-relaxed text-left">
                     {problem.technique}
                   </Badge>
                 )}

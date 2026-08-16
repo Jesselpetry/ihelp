@@ -185,10 +185,10 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
           </h1>
 
           {problem.technique && (
-            <div className="mt-2.5 sm:mt-3 inline-flex items-center gap-2 rounded-full border bg-muted/40 px-3 sm:px-4 py-1 sm:py-1.5 text-xs font-medium text-foreground">
+            <div className="mt-2.5 sm:mt-3 inline-flex flex-wrap items-center gap-1.5 sm:gap-2 rounded-2xl sm:rounded-full border bg-muted/40 px-3 sm:px-4 py-1.5 text-xs font-medium text-foreground max-w-full leading-relaxed">
               <Code2 className="size-3.5 sm:size-4 text-primary shrink-0" />
-              <span>
-                <strong className="text-primary font-semibold">{t(L.keyTechnique, locale)}</strong>{" "}
+              <span className="break-words">
+                <strong className="text-primary font-semibold">{t(L.keyTechnique, locale)}:</strong>{" "}
                 {problem.technique}
               </span>
             </div>

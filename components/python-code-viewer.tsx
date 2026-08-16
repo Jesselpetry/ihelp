@@ -494,8 +494,8 @@ export function PythonCodeViewer({
                 {locale === "th" ? "จุดสำคัญ & Pattern การเขียนโค้ดข้อนี้" : "Key Takeaways & Pattern Analysis"}
               </h3>
             </div>
-            <div className="flex items-center gap-2">
-              <Badge className="rounded-full bg-primary text-primary-foreground text-xs font-mono px-3 py-0.5 shadow-none">
+            <div className="flex items-center gap-2 max-w-full">
+              <Badge className="rounded-2xl sm:rounded-full bg-primary text-primary-foreground text-[11px] sm:text-xs font-mono px-3 py-1 shadow-none max-w-full whitespace-normal break-words h-auto leading-relaxed text-left">
                 {technique || "Pattern Practice"}
               </Badge>
             </div>
