@@ -647,6 +647,9 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
  */
 function ExamBriefingCard({ locale }: { locale: "th" | "en" }) {
   const [isOpen, setIsOpen] = useState(true);
+  const [showAllBooks, setShowAllBooks] = useState(false);
+
+  const displayedBooks = showAllBooks ? PDF_BOOKS : PDF_BOOKS.slice(0, 2);
 
   return (
     <section id="exam-briefing" aria-label="Exam Announcement" className="mt-6 overflow-hidden rounded-3xl border bg-card p-5 sm:p-6 shadow-sm scroll-mt-6">
@@ -767,12 +770,12 @@ function ExamBriefingCard({ locale }: { locale: "th" | "en" }) {
                 <span>{locale === "th" ? "สิ่งที่มีให้ในห้องสอบ — Textbooks & PSCP Books" : "Provided Exam Reference Textbooks"}</span>
               </div>
               <Badge variant="outline" className="rounded-full text-xs font-mono">
-                6 Books (PDF)
+                {showAllBooks ? `${PDF_BOOKS.length} Books (PDF)` : `2 of ${PDF_BOOKS.length} Books (PDF)`}
               </Badge>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {PDF_BOOKS.map((book) => (
+              {displayedBooks.map((book) => (
                 <div
                   key={book.name}
                   className="flex flex-col justify-between rounded-2xl border bg-muted/20 p-4 transition-all hover:border-primary/40 hover:bg-muted/40"
@@ -805,6 +808,23 @@ function ExamBriefingCard({ locale }: { locale: "th" | "en" }) {
                   </div>
                 </div>
               ))}
+            </div>
+
+            {/* Read More / View All Toggle Button */}
+            <div className="mt-5 pt-3 border-t flex justify-center">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setShowAllBooks(!showAllBooks)}
+                className="h-8 px-4 text-xs font-medium rounded-full gap-1.5 border-border hover:bg-muted hover:text-primary transition-all shadow-none"
+              >
+                <span>
+                  {showAllBooks
+                    ? (locale === "th" ? "ย่อรายการหนังสือ" : "Show Less")
+                    : (locale === "th" ? `ดูหนังสือทั้งหมด (${PDF_BOOKS.length} เล่ม)` : `View All Books (${PDF_BOOKS.length})`)}
+                </span>
+                {showAllBooks ? <ChevronUp className="size-3.5" /> : <ChevronDown className="size-3.5" />}
+              </Button>
             </div>
           </div>
 
