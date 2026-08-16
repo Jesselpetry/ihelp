@@ -14,14 +14,14 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
-interface ProblemTakeaway {
+export interface ProblemTakeaway {
   summary: { th: string; en: string };
   points: { th: string; en: string }[];
   complexity: { time: string; space: string };
   pep8Tip: { th: string; en: string };
 }
 
-const PROBLEM_TAKEAWAYS: Record<number, ProblemTakeaway> = {
+export const PROBLEM_TAKEAWAYS: Record<number, ProblemTakeaway> = {
   2996: {
     summary: {
       th: "การกลับลำดับตัวอักษร (String Reversal) และการแปลงตัวพิมพ์เล็ก/ใหญ่",

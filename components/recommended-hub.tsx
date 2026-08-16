@@ -26,6 +26,9 @@ import {
   CreditCard,
   UserCheck,
   Scale,
+  Lightbulb,
+  Cpu,
+  ShieldCheck,
 } from "lucide-react";
 import type { RecommendedHubData, RecommendedProblem } from "@/lib/recommended";
 import {
@@ -38,6 +41,14 @@ import { GithubConnect } from "@/components/github/github-connect";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
+import { PROBLEM_TAKEAWAYS } from "@/components/python-code-viewer";
 import {
   Table,
   TableBody,
@@ -687,7 +698,13 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
             </ul>
           </div>
 
-          <MdView markdown={data.overviewMd} />
+          <MdView
+            markdown={
+              locale === "th" && data.overviewMdTh
+                ? data.overviewMdTh
+                : data.overviewMd
+            }
+          />
         </div>
       )}
     </main>
@@ -960,13 +977,11 @@ function ExamBriefingCard({ locale }: { locale: "th" | "en" }) {
           {/* TA Good Luck Footer (Mali Google Font, Centered, No Container) */}
           <div className="pt-3 pb-1 text-center font-[family-name:var(--font-mali)]">
             <div className="inline-flex items-center justify-center gap-2 text-sm sm:text-base font-semibold text-primary">
-              <Sparkles className="size-4 text-primary shrink-0" />
               <span>
                 {locale === "th"
-                  ? "ขอให้น้องๆ ทุกคนทำข้อสอบได้คะแนนเต็มและผ่านฉลุยกันทุกคน — Good Luck! :3"
+                  ? "ขอให้ทุกคนทำข้อสอบได้คะแนนเต็มและผ่านฉลุยกันทุกคน — Good Luck! :3"
                   : "Wishing all students the best of luck and full scores on the exam! :3"}
               </span>
-              <Sparkles className="size-4 text-primary shrink-0" />
             </div>
           </div>
         </div>
@@ -988,6 +1003,9 @@ function ProblemCard({
   onToggleStatus: () => void;
   locale: "th" | "en";
 }) {
+  const [showTakeaway, setShowTakeaway] = useState(false);
+  const takeaway = PROBLEM_TAKEAWAYS[problem.id];
+
   return (
     <article className="group relative flex flex-col justify-between rounded-2xl border bg-card p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md">
       <div>
@@ -1055,20 +1073,39 @@ function ProblemCard({
           <Link href={`/recommended/${problem.slug}`}>{problem.cleanName}</Link>
         </h2>
 
-        {/* Technique Badge */}
+        {/* Technique Badge (Clickable to open Key Takeaways) */}
         {problem.technique && (
           <div className="mt-2.5 flex items-start gap-1.5">
-            <span className="inline-flex items-center gap-1.5 rounded-md bg-muted px-2.5 py-1 font-mono text-xs text-muted-foreground leading-snug">
+            <button
+              type="button"
+              onClick={() => takeaway && setShowTakeaway(true)}
+              className="inline-flex items-center gap-1.5 rounded-md bg-muted px-2.5 py-1 font-mono text-xs text-muted-foreground leading-snug hover:text-foreground hover:bg-muted/80 transition-colors text-left cursor-pointer"
+              title={locale === "th" ? "คลิกเพื่อดูจุดสำคัญ & Pattern" : "Click to view key takeaways"}
+            >
               <Code2 className="size-3.5 text-primary shrink-0" />
               <span>{problem.technique}</span>
-            </span>
+              {takeaway && <Lightbulb className="size-3 text-primary ml-0.5 shrink-0" />}
+            </button>
           </div>
         )}
       </div>
 
       {/* Card Footer: Action Links */}
       <div className="mt-5 pt-3 border-t flex items-center justify-between gap-2">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5">
+          {takeaway && (
+            <Button
+              type="button"
+              size="sm"
+              variant="ghost"
+              onClick={() => setShowTakeaway(true)}
+              className="h-8 px-2.5 text-xs text-primary hover:text-primary hover:bg-muted rounded-full gap-1 font-medium"
+              title={locale === "th" ? "ดูจุดสำคัญ & Pattern" : "View Key Takeaways"}
+            >
+              <Lightbulb className="size-3.5 text-primary" />
+              <span>{locale === "th" ? "จุดสำคัญ" : "Takeaway"}</span>
+            </Button>
+          )}
           {problem.learningLog && (
             <Button
               asChild
@@ -1105,6 +1142,92 @@ function ProblemCard({
           </Button>
         </div>
       </div>
+
+      {/* Key Takeaways Popup Modal */}
+      {takeaway && (
+        <Dialog open={showTakeaway} onOpenChange={setShowTakeaway}>
+          <DialogContent className="sm:max-w-lg rounded-3xl p-6 border bg-card shadow-2xl">
+            <DialogHeader>
+              <div className="flex flex-wrap items-center gap-2 mb-1">
+                <span className="font-mono text-sm font-bold text-primary">
+                  OJ {problem.id}
+                </span>
+                {problem.technique && (
+                  <Badge className="rounded-full bg-primary text-primary-foreground text-xs font-mono px-3 py-0.5 shadow-none">
+                    {problem.technique}
+                  </Badge>
+                )}
+              </div>
+              <DialogTitle className="text-xl font-bold text-foreground">
+                {problem.cleanName}
+              </DialogTitle>
+              <DialogDescription className="text-xs text-muted-foreground mt-1">
+                {locale === "th" ? takeaway.summary.th : takeaway.summary.en}
+              </DialogDescription>
+            </DialogHeader>
+
+            <div className="space-y-4 pt-2">
+              {/* Core Logic Highlights */}
+              <div className="rounded-2xl border bg-muted/20 p-4">
+                <h4 className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-foreground mb-3">
+                  <Sparkles className="size-3.5 text-primary" />
+                  <span>{locale === "th" ? "สรุปหลักคิดสำคัญ (Core Logic)" : "Core Logic Highlights"}</span>
+                </h4>
+                <ul className="space-y-2 text-xs text-muted-foreground leading-relaxed">
+                  {takeaway.points.map((pt, i) => (
+                    <li key={i} className="flex items-start gap-2.5">
+                      <span className="flex size-4 items-center justify-center rounded-full bg-primary text-primary-foreground font-mono text-[10px] font-bold shrink-0 mt-0.5">
+                        {i + 1}
+                      </span>
+                      <span className="text-foreground/90">
+                        {locale === "th" ? pt.th : pt.en}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Complexity & PEP-8 Tips Strip */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="rounded-2xl border bg-card p-3 flex items-start gap-2.5">
+                  <Cpu className="size-4 text-primary shrink-0 mt-0.5" />
+                  <div>
+                    <span className="block text-[10px] font-semibold text-foreground uppercase tracking-wide">
+                      {locale === "th" ? "ความซับซ้อน" : "Complexity"}
+                    </span>
+                    <span className="mt-0.5 block font-mono text-xs text-muted-foreground">
+                      Time: <strong className="text-primary">{takeaway.complexity.time}</strong> · Space: <strong className="text-primary">{takeaway.complexity.space}</strong>
+                    </span>
+                  </div>
+                </div>
+
+                <div className="rounded-2xl border bg-card p-3 flex items-start gap-2.5">
+                  <ShieldCheck className="size-4 text-primary shrink-0 mt-0.5" />
+                  <div>
+                    <span className="block text-[10px] font-semibold text-foreground uppercase tracking-wide">
+                      {locale === "th" ? "คำแนะนำ PEP-8" : "PEP-8 Guideline"}
+                    </span>
+                    <p className="mt-0.5 text-xs text-muted-foreground leading-snug">
+                      {locale === "th" ? takeaway.pep8Tip.th : takeaway.pep8Tip.en}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <Button
+                asChild
+                className="w-full h-9 rounded-full bg-primary text-primary-foreground hover:opacity-90 font-semibold text-xs gap-1.5 shadow-none"
+              >
+                <Link href={`/recommended/${problem.slug}`}>
+                  <FileText className="size-3.5" />
+                  <span>{locale === "th" ? "เปิดอ่านโค้ด & วิธีทำฉบับเต็ม" : "Read Full Notes & Python Code"}</span>
+                  <ArrowRight className="size-3.5 ml-auto" />
+                </Link>
+              </Button>
+            </div>
+          </DialogContent>
+        </Dialog>
+      )}
     </article>
   );
 }

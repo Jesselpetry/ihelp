@@ -40,6 +40,8 @@ export interface RecommendedProblem {
   hasCode: boolean;
   pythonCode: string | null;
   markdown: string;
+  /** Thai translation of problem.md, when a problem.th.md exists beside it. */
+  markdownTh: string | null;
   checklist: ChecklistInfo;
 }
 
@@ -60,6 +62,8 @@ export interface RecommendedProblemSummary {
 
 export interface RecommendedHubData {
   overviewMd: string;
+  /** Thai translation of README.md, when a README.th.md exists beside it. */
+  overviewMdTh: string | null;
   problems: RecommendedProblem[];
   passedCount: number;
   inProgressCount: number;
@@ -184,11 +188,19 @@ export function loadRecommendedProblems(): RecommendedProblem[] {
     const folderPath = path.join(dir, folder.name);
     const id = parseIdFromFolder(folder.name);
     const mdPath = path.join(folderPath, "problem.md");
+    const mdThPath = path.join(folderPath, "problem.th.md");
     const pyPath = path.join(folderPath, "main.py");
 
     let markdown = "";
     if (fs.existsSync(mdPath)) {
       markdown = fs.readFileSync(mdPath, "utf-8");
+    }
+
+    // Locale is resolved on the client, so ship both variants and let the
+    // reader pick. Same .md / .th.md pairing the guidelines library uses.
+    let markdownTh: string | null = null;
+    if (fs.existsSync(mdThPath)) {
+      markdownTh = fs.readFileSync(mdThPath, "utf-8");
     }
 
     let pythonCode: string | null = null;
@@ -235,6 +247,7 @@ export function loadRecommendedProblems(): RecommendedProblem[] {
       hasCode: Boolean(pythonCode && pythonCode.trim().length > 0),
       pythonCode,
       markdown,
+      markdownTh,
       checklist: parseChecklist(markdown),
     });
   }
@@ -250,6 +263,12 @@ export function loadRecommendedHub(): RecommendedHubData {
     overviewMd = fs.readFileSync(readmePath, "utf-8");
   }
 
+  let overviewMdTh: string | null = null;
+  const readmeThPath = path.join(dir, "README.th.md");
+  if (fs.existsSync(readmeThPath)) {
+    overviewMdTh = fs.readFileSync(readmeThPath, "utf-8");
+  }
+
   const problems = loadRecommendedProblems();
   const passedCount = problems.filter((p) => p.status === "passed").length;
   const inProgressCount = problems.filter((p) => p.status === "in_progress").length;
@@ -257,6 +276,7 @@ export function loadRecommendedHub(): RecommendedHubData {
 
   return {
     overviewMd,
+    overviewMdTh,
     problems,
     passedCount,
     inProgressCount,

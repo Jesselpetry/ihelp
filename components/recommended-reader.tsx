@@ -227,7 +227,13 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
         <div className="p-6 sm:p-10">
           {activeTab === "md" ? (
             <div className="prose prose-sm dark:prose-invert max-w-none">
-              <MdView markdown={problem.markdown} />
+              <MdView
+                markdown={
+                  locale === "th" && problem.markdownTh
+                    ? problem.markdownTh
+                    : problem.markdown
+                }
+              />
             </div>
           ) : (
             <div>
