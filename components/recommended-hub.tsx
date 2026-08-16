@@ -58,6 +58,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { MdView } from "@/components/md-view";
+import { QuizLaunchButton } from "@/components/quiz-launch-button";
+import { loadQuizProgress, QUIZ_PROGRESS_EVENT, type QuizProgress } from "@/lib/quiz";
 import { useLocale, t, type LText } from "@/lib/i18n";
 
 const PDF_BOOKS = [
@@ -1016,6 +1018,21 @@ function ProblemCard({
 }) {
   const [showTakeaway, setShowTakeaway] = useState(false);
   const takeaway = PROBLEM_TAKEAWAYS[problem.id];
+  const [quizProgress, setQuizProgress] = useState<QuizProgress>({});
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time hydration from localStorage after mount (SSR-safe)
+    setQuizProgress(loadQuizProgress());
+    const update = () => setQuizProgress(loadQuizProgress());
+    window.addEventListener(QUIZ_PROGRESS_EVENT, update);
+    window.addEventListener("storage", update);
+    return () => {
+      window.removeEventListener(QUIZ_PROGRESS_EVENT, update);
+      window.removeEventListener("storage", update);
+    };
+  }, []);
+
+  const quizAttempt = quizProgress[problem.id];
 
   return (
     <article className="group relative flex flex-col justify-between rounded-2xl border bg-card p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md">
@@ -1145,6 +1162,22 @@ function ProblemCard({
 
         {/* Right Side Actions: Shimmering Takeaway Button + Open Problem */}
         <div className="flex items-center gap-1.5 ml-auto">
+          <QuizLaunchButton
+            problemId={problem.id}
+            problemName={problem.cleanName}
+            variant="outline"
+            size="sm"
+            className="h-7.5 sm:h-8 px-2.5 sm:px-3 text-[11px] sm:text-xs rounded-full gap-1 font-medium shadow-none"
+          />
+          {quizAttempt && (
+            <Badge
+              variant="outline"
+              className="rounded-full text-[10px] font-mono px-2 py-0.5 shadow-none"
+              title={locale === "th" ? "คะแนนล่าสุดจากการทดสอบ" : "Latest quiz score"}
+            >
+              {quizAttempt.best}/{quizAttempt.total}
+            </Badge>
+          )}
           {takeaway && (
             <Button
               type="button"

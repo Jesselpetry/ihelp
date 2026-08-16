@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { QuizLaunchButton } from "@/components/quiz-launch-button";
 
 export interface ProblemTakeaway {
   summary: { th: string; en: string };
@@ -554,6 +555,17 @@ export function PythonCodeViewer({
                 </p>
               </div>
             </div>
+          </div>
+
+          {/* Technique self-test quiz entry point */}
+          <div className="pt-1">
+            <QuizLaunchButton
+              problemId={problemId}
+              problemName={problemName}
+              variant="default"
+              size="sm"
+              className="w-full sm:w-auto rounded-full gap-1.5"
+            />
           </div>
         </div>
       )}
