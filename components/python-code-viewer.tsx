@@ -90,55 +90,59 @@ export const PROBLEM_TAKEAWAYS: Record<number, ProblemTakeaway> = {
         th: "แปลง input เป็น float() เพื่อรองรับพิกัดที่มีจุดทศนิยม",
         en: "Cast inputs to float() to handle non-integer coordinates.",
       },
+      {
+        th: "ห้ามปัดทศนิยม! print(distance) ตรง ๆ พิมพ์ค่าเต็มของ float ต่างจากข้อ Temperature/Elo ที่บังคับ :.2f",
+        en: "Do not round! print(distance) directly outputs the full float precision — unlike Temperature/Elo, which require :.2f.",
+      },
     ],
     complexity: { time: "O(1)", space: "O(1)" },
     pep8Tip: {
-      th: "นำเข้า import math ไว้ที่บรรทัดบนสุดของไฟล์เสมอ",
-      en: "Place imports at the top of the file, right after module comments.",
+      th: "นำเข้า import math ไว้ที่บรรทัดบนสุดของไฟล์เสมอ อย่าย่อชื่อเป็น import math as m",
+      en: "Place import math at the top of the file — do not abbreviate it as import math as m.",
     },
   },
   3019: {
     summary: {
-      th: "การตรวจสอบเงื่อนไขความปลอดภัยและโครงสร้าง Branching if-elif-else",
-      en: "Password security rules and multi-branch boolean validation.",
+      th: "เทียบรหัสตู้เซฟแบบตรงตัว (case-sensitive) แล้วแยก 4 กรณีด้วย if-elif-else",
+      en: "Exact case-sensitive safe-code comparison branched into 4 states with if-elif-else.",
     },
     points: [
       {
-        th: "ตรวจสอบเงื่อนไขความยาว >= 8 ตัวอักษรเป็นเกณฑ์แรก",
-        en: "Check length >= 8 as the primary prerequisite.",
+        th: 'เทียบตัวอักษรกับ "H" ด้วย == ตรง ๆ ห้ามใช้ .lower()/.upper() ช่วย เพราะ "h" ต้องนับว่าผิด',
+        en: 'Compare the character to "H" with == directly — never .lower()/.upper(), since "h" must count as wrong.',
       },
       {
-        th: "ใช้ boolean accumulator หรือ isupper(), islower(), isdigit() ตรวจสอบชนิดตัวอักษร",
-        en: "Inspect character classes using isupper(), islower(), and isdigit().",
+        th: "เก็บผลเทียบไว้ในตัวแปรบูลีน (char_ok, digit_ok) ก่อน แล้วค่อยแยกเงื่อนไข อ่านง่ายกว่า",
+        en: "Store each comparison in a boolean (char_ok, digit_ok) first, then branch — easier to read than inline conditions.",
       },
       {
-        th: "รวมเงื่อนไขทั้งหมดด้วย and/or เพื่อตัดสินผลลัพธ์ Safe หรือ Unsafe",
-        en: "Combine conditions cleanly using boolean logic.",
+        th: "เช็กกรณีเจาะจงที่สุดก่อน (ถูกทั้งคู่) แล้วไล่ elif ลงมา ไม่ต้องเขียน and not ซ้ำเพราะเข้า elif แปลว่าเงื่อนไขก่อนหน้าเป็นเท็จแล้ว",
+        en: "Check the most specific case first (both correct), then elif down — no need for and not since reaching elif already means the prior condition was false.",
       },
     ],
-    complexity: { time: "O(N)", space: "O(1)" },
+    complexity: { time: "O(1)", space: "O(1)" },
     pep8Tip: {
-      th: "หลีกเลี่ยงการเขียน if cond == True ให้เขียน if cond: แทน",
-      en: "Do not compare boolean values to True/False with ==.",
+      th: "ตั้งชื่อค่าคงที่ CORRECT_CHAR และ CORRECT_DIGIT เป็นตัวพิมพ์ใหญ่ทั้งหมด วางไว้นอกฟังก์ชัน",
+      en: "Name constants CORRECT_CHAR and CORRECT_DIGIT in ALL_CAPS, declared outside the function.",
     },
   },
   3020: {
     summary: {
-      th: "เทคนิคคณิตศาสตร์ O(1) สำหรับปัญหาการสะสมฝาแลกซื้อ",
-      en: "Fast O(1) mathematical reduction for bottle cap exchange.",
+      th: "เทคนิคคณิตศาสตร์ O(1) สำหรับปัญหาการแลกฝาโค้ก แทนการวนลูปทีละขวด",
+      en: "Fast O(1) mathematical reduction for the Coke bottle-cap exchange, instead of simulating bottle by bottle.",
     },
     points: [
       {
-        th: "สูตรคำนวณจำนวนครั้งที่ได้ส่วนลด = (d - 1) // b โดยไม่ต้องวนลูป",
-        en: "Calculate promo exchanges in O(1) with (d - 1) // b instead of loop.",
+        th: "ขวดแรกยังไม่มีฝาเลย ฝาที่แลกได้จริงจึงมีแค่ max(d - 1, 0) ฝา ไม่ใช่ d ฝา",
+        en: "The first bottle earns no cap yet, so only max(d - 1, 0) caps are actually redeemable — not d caps.",
       },
       {
-        th: "คิดราคารวม = (ราคาปกติ * จำนวน) - (จำนวนครั้งแลก * ส่วนลดต่อครั้ง)",
-        en: "Total cost = (a * d) - (promos * c).",
+        th: "promo_bottles = max(d - 1, 0) // b, total = promo_bottles * c + (d - promo_bottles) * a",
+        en: "promo_bottles = max(d - 1, 0) // b, total = promo_bottles * c + (d - promo_bottles) * a.",
       },
       {
-        th: "จัดการ Edge Cases กรณี b = 0 หรือจำนวนที่ต้องการ d = 0 อย่างรัดกุม",
-        en: "Safeguard against division by zero when b == 0.",
+        th: "max(d - 1, 0) กันทั้งกรณี d = 0 ในนิพจน์เดียว และต้องดัก b = 0 แยกเพื่อกัน ZeroDivisionError",
+        en: "max(d - 1, 0) covers the d == 0 case in one expression; b == 0 still needs a separate guard to avoid ZeroDivisionError.",
       },
     ],
     complexity: { time: "O(1)", space: "O(1)" },
@@ -179,16 +183,16 @@ export const PROBLEM_TAKEAWAYS: Record<number, ProblemTakeaway> = {
     },
     points: [
       {
-        th: "ตั้งค่าตัวแปรสะสมผลคูณเริ่มต้น ans = 1 (ห้ามเริ่มด้วย 0)",
-        en: "Initialize product accumulator to 1 (never 0).",
+        th: "ตั้งค่าตัวแปรสะสมผลคูณเริ่มต้น result = 1 (ห้ามเริ่มด้วย 0) เพราะ 1 คือเอกลักษณ์การคูณ",
+        en: "Initialize the product accumulator to result = 1 (never 0) — 1 is the multiplicative identity.",
       },
       {
-        th: "วนลูป for i in range(1, n + 1): แล้วสะสมค่า ans *= i",
-        en: "Iterate with range(1, n + 1) and multiply accumulatively ans *= i.",
+        th: "วนลูป for i in range(2, n + 1): แล้วสะสมค่า result *= i (เริ่มที่ 2 เพราะคูณ 1 รอบแรกไม่เปลี่ยนอะไร)",
+        en: "Iterate with range(2, n + 1) and accumulate result *= i — starting at 2 since multiplying by 1 first changes nothing.",
       },
       {
-        th: "กรณี n = 0 หรือ n = 1 ให้ผลลัพธ์เป็น 1 เสมอ",
-        en: "Ensure 0! returns 1 as defined mathematically.",
+        th: "n = 0 และ n = 1 ได้คำตอบถูกอัตโนมัติ: range(2, n+1) ว่างเปล่า ลูปไม่ทำงาน result คงเป็น 1 โดยไม่ต้องเขียน if ดักพิเศษ",
+        en: "n = 0 and n = 1 resolve automatically: range(2, n+1) is empty, so the loop never runs and result stays 1 — no special-case if needed.",
       },
     ],
     complexity: { time: "O(N)", space: "O(1)" },
@@ -224,21 +228,21 @@ export const PROBLEM_TAKEAWAYS: Record<number, ProblemTakeaway> = {
   },
   3226: {
     summary: {
-      th: "การเติบโตแบบทบต้น (Compound Growth) และการคำนวณเงินเฟ้อ",
-      en: "Compound growth loop and integer percentage calculation.",
+      th: "เงินเฟ้อทบต้น 3.81% ต่อปี คำนวณด้วยจำนวนเต็ม (สตางค์) เพื่อตัดเศษให้ตรงตามโจทย์",
+      en: "Compound inflation at 3.81% per year, computed in integer satang to truncate exactly as required.",
     },
     points: [
       {
-        th: "คำนวณเงินเฟ้อทบต้นปีต่อปี: money = int(money * 107 // 100) หรือบวก 7%",
-        en: "Apply annual compound rate iteratively across k years.",
+        th: "อัตราคือ 3.81% ไม่ใช่ 7% — ต้องตัดเศษทุกปีระหว่างลูป ไม่ใช่เก็บค่าเต็มไว้แล้วตัดตอนพิมพ์ (จุดที่คนพลาดบ่อยสุด)",
+        en: "The rate is 3.81%, not 7% — truncate every year inside the loop, not once at the end (the most common mistake here).",
       },
       {
-        th: "วนลูป for _ in range(years): ตามจำนวนปีที่โจทย์กำหนด",
-        en: "Use for _ in range(years): when loop index variable is unused.",
+        th: "แปลงเป็นสตางค์ก่อนคำนวณ: satang += satang * 381 // 10000 ใช้ // เพื่อตัดเศษทิ้งพอดี ห้ามใช้ float สะสมหลายปีเพราะคลาดเคลื่อนสะสม",
+        en: "Convert to satang first: satang += satang * 381 // 10000, using // to truncate exactly — never accumulate in float across years, error compounds.",
       },
       {
-        th: "จัดการการปัดเศษและแสดงผลตัวเลขจำนวนเต็มตามข้อกำหนด",
-        en: "Handle integer truncation or rounding exactly as specified.",
+        th: "ตอนพิมพ์ห้ามหาร / กลับเป็น float ถ้า k มากพอ satang จะใหญ่เกิน float รับไหวจนเกิด OverflowError",
+        en: "Never divide back to float with / when printing — for large k, satang can exceed what float can hold, raising OverflowError.",
       },
     ],
     complexity: { time: "O(K)", space: "O(1)" },
@@ -249,27 +253,27 @@ export const PROBLEM_TAKEAWAYS: Record<number, ProblemTakeaway> = {
   },
   3237: {
     summary: {
-      th: "การสร้าง Pattern สามเหลี่ยมด้วย String Multiplication",
-      en: "Triangle shape synthesis with string multiplication.",
+      th: "สามเหลี่ยมกลวงชิดซ้ายด้วยเลข 0/1 (ไม่ใช่ดอกจัน) โดยใช้ String Multiplication",
+      en: "Hollow left-aligned triangle drawn with 0/1 digits (not asterisks), via string multiplication.",
     },
     points: [
       {
-        th: "สร้างช่องว่างและดาวด้วย String Multiplication: ' ' * spaces + '*' * stars",
-        en: "Generate row patterns with ' ' * spaces + '*' * stars.",
+        th: 'แถวแรก (i=1) และแถวสุดท้าย (i=n) เป็นขอบทึบ: "0" * i ส่วนแถวกลางคือ "0" + "1" * (i - 2) + "0"',
+        en: 'First (i=1) and last (i=n) rows are solid edges: "0" * i; middle rows are "0" + "1" * (i - 2) + "0".',
       },
       {
-        th: "หาความสัมพันธ์ระหว่าง index แถว i กับจำนวน spaces และ stars",
-        en: "Formulate geometric formula relating row index to space/star counts.",
+        th: 'ต้องดักแถวแรกแยก มิฉะนั้น "1" * (1 - 2) จะเป็น "1" * -1 ซึ่งคืนสตริงว่างเปล่าแบบเงียบ ๆ ไม่ error ทำให้ได้ "00" ที่ผิด',
+        en: 'The first row must be special-cased — otherwise "1" * (1 - 2) becomes "1" * -1, which silently returns an empty string (no error), giving the wrong "00".',
       },
       {
-        th: "พิมพ์ทีละแถวในลูปเดียว O(H) โดยไม่ต้องใช้ Nested Loop ที่ซับซ้อน",
-        en: "Print row by row in a single O(H) loop.",
+        th: "รวมเงื่อนไขขอบบน-ล่างด้วย if i in (1, n): แทน if i == 1 or i == n: สั้นกว่าและ pylint แนะนำ (consider-using-in)",
+        en: "Combine the top/bottom edge check as if i in (1, n): instead of if i == 1 or i == n: — shorter, and pylint recommends it (consider-using-in).",
       },
     ],
-    complexity: { time: "O(H)", space: "O(H)" },
+    complexity: { time: "O(N)", space: "O(N)" },
     pep8Tip: {
-      th: "ใช้เครื่องหมายคูณ * กับสตริงได้โดยเว้นวรรครอบตัวดำเนินการอย่างเหมาะสม",
-      en: "String repetition with * should maintain clear spacing.",
+      th: "ใช้ i in (1, n) แทนการเทียบ == ต่อกันด้วย or ตามคำแนะนำ consider-using-in ของ pylint",
+      en: "Use i in (1, n) instead of chained == comparisons with or, per pylint's consider-using-in advice.",
     },
   },
 };
