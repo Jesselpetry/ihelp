@@ -33,9 +33,9 @@ export default async function RecommendedProblemPage({
   if (!problem) notFound();
 
   return (
-    <>
+    <div className="h-dvh max-h-dvh flex flex-col overflow-hidden bg-background">
       <Navbar />
       <RecommendedReader problem={problem} />
-    </>
+    </div>
   );
 }

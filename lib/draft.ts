@@ -8,7 +8,7 @@ export function useDraft<T>(key: string, initial: T): [T, (v: T | ((p: T) => T))
   const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
-    let saved: Partial<T> | null = null;
+    let saved: T | null = null;
     try {
       const raw = window.localStorage.getItem(key);
       if (raw) saved = JSON.parse(raw);
@@ -16,7 +16,20 @@ export function useDraft<T>(key: string, initial: T): [T, (v: T | ((p: T) => T))
       // corrupted draft: ignore
     }
     // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time hydration from localStorage after mount (SSR-safe)
-    if (saved) setValue((prev) => ({ ...prev, ...saved }));
+    if (saved !== null && saved !== undefined) {
+      if (
+        typeof saved === "object" &&
+        saved !== null &&
+        !Array.isArray(saved) &&
+        typeof initial === "object" &&
+        initial !== null &&
+        !Array.isArray(initial)
+      ) {
+        setValue((prev) => ({ ...prev, ...saved }));
+      } else {
+        setValue(saved);
+      }
+    }
     setHydrated(true);
   }, [key]);
 
