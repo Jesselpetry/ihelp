@@ -80,23 +80,23 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
   const progressPercent = ((problem.index + 1) / problem.total) * 100;
 
   return (
-    <main className="mx-auto max-w-4xl px-4 py-8 sm:px-6 w-full">
+    <main className="mx-auto max-w-4xl px-3 sm:px-6 py-5 sm:py-8 w-full">
       {/* Top Bar navigation */}
-      <div className="mb-4 flex items-center justify-between text-sm">
+      <div className="mb-3 sm:mb-4 flex items-center justify-between text-xs sm:text-sm">
         <Link
           href="/recommended"
-          className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"
+          className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors font-medium"
         >
-          <LayoutGrid className="size-4" />
+          <LayoutGrid className="size-3.5 sm:size-4" />
           {t(L.backToHub, locale)}
         </Link>
-        <span className="font-mono text-xs text-muted-foreground tabular-nums">
+        <span className="font-mono text-[11px] sm:text-xs text-muted-foreground tabular-nums">
           {t(L.problemOf, locale)} {problem.index + 1} {t(L.of, locale)} {problem.total}
         </span>
       </div>
 
       {/* Reading Progress Indicator */}
-      <div className="mb-6 h-1 w-full rounded-full bg-border overflow-hidden">
+      <div className="mb-4 sm:mb-6 h-1 w-full rounded-full bg-border overflow-hidden">
         <div
           className="h-full bg-primary transition-all duration-300"
           style={{ width: `${progressPercent}%` }}
@@ -106,17 +106,17 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
       {/* Problem Main Container */}
       <article className="overflow-hidden rounded-3xl border bg-card shadow-sm">
         {/* Container Header */}
-        <div className="border-b bg-muted/30 p-6 sm:p-8">
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="rounded-full border bg-muted px-3 py-1 font-mono text-xs font-bold text-primary">
+        <div className="border-b bg-muted/30 p-4 sm:p-8">
+          <div className="flex flex-wrap items-center justify-between gap-2.5 sm:gap-3">
+            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+              <span className="rounded-full border bg-muted px-2.5 sm:px-3 py-0.5 sm:py-1 font-mono text-xs font-bold text-primary">
                 OJ {problem.id}
               </span>
 
               {/* Status Toggle Button */}
               <button
                 onClick={handleToggleStatus}
-                className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold transition-all hover:opacity-90 cursor-pointer shadow-none ${
+                className={`inline-flex items-center gap-1 sm:gap-1.5 rounded-full px-2.5 sm:px-3 py-0.5 sm:py-1 text-[11px] sm:text-xs font-semibold transition-all hover:opacity-90 cursor-pointer shadow-none ${
                   effectiveStatus === "passed"
                     ? "bg-primary text-primary-foreground"
                     : "bg-muted text-foreground border"
@@ -125,68 +125,68 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
               >
                 {effectiveStatus === "passed" ? (
                   <>
-                    <CheckCircle2 className="size-3.5" />
+                    <CheckCircle2 className="size-3 sm:size-3.5" />
                     <span>{t(L.markFinished, locale)}</span>
                   </>
                 ) : (
                   <>
-                    <Clock className="size-3.5" />
+                    <Clock className="size-3 sm:size-3.5" />
                     <span>{t(L.markInProgress, locale)}</span>
                   </>
                 )}
               </button>
 
               {inRepo && (
-                <Badge className="rounded-full bg-muted text-foreground border text-xs font-medium px-2.5 py-0.5 shadow-none">
-                  <FolderGit2 className="mr-1 size-3 text-primary" />
+                <Badge className="rounded-full bg-muted text-foreground border text-[10px] sm:text-xs font-medium px-2 sm:px-2.5 py-0.5 shadow-none">
+                  <FolderGit2 className="mr-1 size-2.5 sm:size-3 text-primary" />
                   {t(L.inRepo, locale)}
                 </Badge>
               )}
 
               {problem.learningLog && (
-                <Badge className="rounded-full bg-primary text-primary-foreground text-xs font-medium px-2.5 py-0.5 shadow-none">
-                  <Flame className="mr-1 size-3" />
+                <Badge className="rounded-full bg-primary text-primary-foreground text-[10px] sm:text-xs font-medium px-2 sm:px-2.5 py-0.5 shadow-none">
+                  <Flame className="mr-1 size-2.5 sm:size-3" />
                   Learning Log
                 </Badge>
               )}
 
-              <div className="flex items-center gap-0.5 ml-1">
+              <div className="flex items-center gap-0.5 ml-0.5 sm:ml-1">
                 {problem.difficulty > 0 ? (
                   Array.from({ length: problem.difficulty }).map((_, i) => (
-                    <Star key={i} className="size-3.5 fill-amber-400 text-amber-400" />
+                    <Star key={i} className="size-3 sm:size-3.5 fill-amber-400 text-amber-400" />
                   ))
                 ) : (
-                  <Star className="size-3.5 text-muted-foreground/30" />
+                  <Star className="size-3 sm:size-3.5 text-muted-foreground/30" />
                 )}
               </div>
             </div>
 
             {/* External Links & Fast Actions */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5 sm:gap-2">
               {inRepo && (
-                <Button asChild size="sm" variant="outline" className="h-8 text-xs gap-1 rounded-full border-primary/30 text-primary">
+                <Button asChild size="sm" variant="outline" className="h-7.5 sm:h-8 text-xs gap-1 rounded-full border-primary/30 text-primary">
                   <Link href={`/repo?file=recommended/${problem.folderName}/problem.md`}>
-                    <FolderGit2 className="size-3.5" />
-                    <span>{t(L.browseRepo, locale)}</span>
+                    <FolderGit2 className="size-3 sm:size-3.5" />
+                    <span className="hidden sm:inline">{t(L.browseRepo, locale)}</span>
                   </Link>
                 </Button>
               )}
-              <Button asChild size="sm" variant="outline" className="h-8 text-xs gap-1 rounded-full">
+              <Button asChild size="sm" variant="outline" className="h-7.5 sm:h-8 text-xs gap-1 rounded-full">
                 <a href={problem.url} target="_blank" rel="noopener noreferrer">
                   <span>{t(L.openIJudge, locale)}</span>
-                  <ExternalLink className="size-3.5" />
+                  <ExternalLink className="size-3 sm:size-3.5" />
                 </a>
               </Button>
             </div>
           </div>
 
-          <h1 className="mt-4 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+          <h1 className="mt-3 sm:mt-4 text-xl font-bold tracking-tight text-foreground sm:text-2xl md:text-3xl">
             {problem.cleanName}
           </h1>
 
           {problem.technique && (
-            <div className="mt-3 inline-flex items-center gap-2 rounded-full border bg-muted/40 px-4 py-1.5 text-xs font-medium text-foreground">
-              <Code2 className="size-4 text-primary shrink-0" />
+            <div className="mt-2.5 sm:mt-3 inline-flex items-center gap-2 rounded-full border bg-muted/40 px-3 sm:px-4 py-1 sm:py-1.5 text-xs font-medium text-foreground">
+              <Code2 className="size-3.5 sm:size-4 text-primary shrink-0" />
               <span>
                 <strong className="text-primary font-semibold">{t(L.keyTechnique, locale)}</strong>{" "}
                 {problem.technique}
@@ -195,11 +195,11 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
           )}
 
           {/* Tab Switcher */}
-          <div className="mt-6 flex items-center justify-between border-t pt-4">
+          <div className="mt-4 sm:mt-6 flex items-center justify-between border-t pt-3 sm:pt-4">
             <div className="flex rounded-full border bg-background p-1 text-xs font-medium">
               <button
                 onClick={() => setActiveTab("md")}
-                className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 transition-colors ${
+                className={`flex items-center gap-1.5 rounded-full px-3 py-1 sm:py-1.5 transition-colors ${
                   activeTab === "md"
                     ? "bg-primary text-primary-foreground font-semibold shadow-sm"
                     : "text-muted-foreground hover:text-foreground"
@@ -210,7 +210,7 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
               </button>
               <button
                 onClick={() => setActiveTab("code")}
-                className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 transition-colors ${
+                className={`flex items-center gap-1.5 rounded-full px-3 py-1 sm:py-1.5 transition-colors ${
                   activeTab === "code"
                     ? "bg-primary text-primary-foreground font-semibold shadow-sm"
                     : "text-muted-foreground hover:text-foreground"
@@ -224,7 +224,7 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
         </div>
 
         {/* Content Body */}
-        <div className="p-6 sm:p-10">
+        <div className="p-4 sm:p-8 md:p-10">
           {activeTab === "md" ? (
             <div className="prose prose-sm dark:prose-invert max-w-none">
               <MdView
@@ -246,7 +246,7 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
                   locale={locale}
                 />
               ) : (
-                <div className="rounded-2xl border border-dashed p-10 text-center text-sm text-muted-foreground">
+                <div className="rounded-2xl border border-dashed p-8 sm:p-10 text-center text-sm text-muted-foreground">
                   {t(L.noCodeFound, locale)}
                 </div>
               )}
@@ -255,60 +255,60 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
         </div>
 
         {/* Quick Action Footer inside Card */}
-        <div className="border-t bg-muted/20 px-6 py-4 flex flex-wrap items-center justify-between gap-3">
+        <div className="border-t bg-muted/20 px-4 sm:px-6 py-3 sm:py-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
           <div className="flex flex-wrap items-center gap-2">
             {problem.learningLog && (
-              <Button asChild size="sm" variant="default" className="h-8 text-xs">
+              <Button asChild size="sm" variant="default" className="h-8 text-xs rounded-full">
                 <Link href={`/make/submission?id=${problem.id}`}>
                   {t(L.makeSubmission, locale)}
                 </Link>
               </Button>
             )}
-            <Button asChild size="sm" variant="outline" className="h-8 text-xs">
+            <Button asChild size="sm" variant="outline" className="h-8 text-xs rounded-full">
               <Link href={`/make/reflection?id=${problem.id}`}>
                 {t(L.makeReflection, locale)}
               </Link>
             </Button>
           </div>
 
-          <span className="font-mono text-xs text-muted-foreground">
+          <span className="font-mono text-[11px] sm:text-xs text-muted-foreground truncate">
             {problem.folderName}/problem.md
           </span>
         </div>
       </article>
 
       {/* Previous / Next Pagination Navigation */}
-      <div className="mt-6 flex items-stretch justify-between gap-3">
+      <div className="mt-4 sm:mt-6 flex flex-col sm:flex-row items-stretch sm:justify-between gap-2.5 sm:gap-3">
         {problem.prev ? (
-          <Button asChild variant="outline" className="h-auto max-w-[48%] py-3 justify-start rounded-2xl">
+          <Button asChild variant="outline" className="h-auto w-full sm:w-auto sm:max-w-[48%] p-3 justify-start rounded-2xl">
             <Link href={`/recommended/${problem.prev.slug}`}>
               <ArrowLeft className="size-4 shrink-0 text-primary" />
-              <span className="text-left overflow-hidden">
+              <span className="text-left overflow-hidden min-w-0">
                 <span className="block text-[10px] uppercase tracking-wide text-muted-foreground">
                   {t(L.prev, locale)} · OJ {problem.prev.id}
                 </span>
-                <span className="block text-sm font-medium truncate">{problem.prev.cleanName}</span>
+                <span className="block text-xs sm:text-sm font-medium truncate">{problem.prev.cleanName}</span>
               </span>
             </Link>
           </Button>
         ) : (
-          <span />
+          <span className="hidden sm:block" />
         )}
 
         {problem.next ? (
-          <Button asChild variant="outline" className="h-auto max-w-[48%] py-3 justify-end ml-auto rounded-2xl">
+          <Button asChild variant="outline" className="h-auto w-full sm:w-auto sm:max-w-[48%] p-3 justify-end sm:ml-auto rounded-2xl">
             <Link href={`/recommended/${problem.next.slug}`}>
-              <span className="text-right overflow-hidden">
+              <span className="text-right overflow-hidden min-w-0">
                 <span className="block text-[10px] uppercase tracking-wide text-muted-foreground">
                   {t(L.next, locale)} · OJ {problem.next.id}
                 </span>
-                <span className="block text-sm font-medium truncate">{problem.next.cleanName}</span>
+                <span className="block text-xs sm:text-sm font-medium truncate">{problem.next.cleanName}</span>
               </span>
               <ArrowRight className="size-4 shrink-0 text-primary" />
             </Link>
           </Button>
         ) : (
-          <span />
+          <span className="hidden sm:block" />
         )}
       </div>
     </main>

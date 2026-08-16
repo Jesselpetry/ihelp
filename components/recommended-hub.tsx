@@ -256,9 +256,9 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
   }, [data.problems, search, filter, getEffectiveStatus, gh.status]);
 
   return (
-    <main className="mx-auto max-w-6xl px-4 py-8 sm:px-6 w-full">
+    <main className="mx-auto max-w-6xl px-3 sm:px-6 py-5 sm:py-8 w-full">
       {/* Hero Header */}
-      <div className="overflow-hidden rounded-3xl border bg-card p-6 sm:p-10 shadow-sm">
+      <div className="overflow-hidden rounded-3xl border bg-card p-5 sm:p-8 md:p-10 shadow-sm">
         <div className="flex flex-col items-start gap-4">
           <Badge className="rounded-full bg-primary text-primary-foreground font-semibold px-3 py-1 text-xs gap-1.5 shadow-none">
             <Sparkles className="size-3.5" />
@@ -266,21 +266,21 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
           </Badge>
 
           <div>
-            <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+            <h1 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl md:text-4xl">
               {t(L.title, locale)}
             </h1>
-            <p className="mt-2 max-w-2xl text-base text-muted-foreground leading-relaxed">
+            <p className="mt-2 max-w-2xl text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed">
               {t(L.subtitle, locale)}
             </p>
           </div>
 
           {/* CTA Action Buttons with Shimmer */}
-          <div className="flex flex-wrap items-center gap-3 pt-1">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 w-full sm:w-auto pt-1">
             {/* 1. โจทย์ (Problems) CTA */}
             <Button
               asChild
               size="default"
-              className="relative overflow-hidden rounded-full px-5 py-2.5 font-semibold text-xs sm:text-sm bg-primary text-primary-foreground hover:opacity-95 shadow-sm group"
+              className="relative overflow-hidden rounded-full px-5 py-2.5 font-semibold text-xs sm:text-sm bg-primary text-primary-foreground hover:opacity-95 shadow-sm group w-full sm:w-auto justify-center"
             >
               <a href="#problems-section">
                 {/* Shimmer Light Sweep Layer */}
@@ -301,7 +301,7 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
               asChild
               variant="outline"
               size="default"
-              className="relative overflow-hidden rounded-full px-5 py-2.5 font-medium text-xs sm:text-sm border-border bg-card hover:bg-muted/60 hover:text-primary transition-all group shadow-none"
+              className="relative overflow-hidden rounded-full px-5 py-2.5 font-medium text-xs sm:text-sm border-border bg-card hover:bg-muted/60 hover:text-primary transition-all group shadow-none w-full sm:w-auto justify-center"
             >
               <a href="#exam-briefing">
                 {/* Subtle Shimmer */}
@@ -318,64 +318,64 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
           </div>
 
           {/* Quick Stats Strip */}
-          <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-5 w-full">
-            <div className="rounded-2xl border bg-muted/30 px-4 py-3">
-              <div className="flex items-center justify-between text-xs text-muted-foreground">
+          <div className="mt-3 sm:mt-4 grid grid-cols-2 gap-2 sm:gap-3 sm:grid-cols-4 lg:grid-cols-5 w-full">
+            <div className="rounded-2xl border bg-muted/30 p-3 sm:px-4 sm:py-3">
+              <div className="flex items-center justify-between text-[11px] sm:text-xs text-muted-foreground">
                 <span>{t(L.statTotal, locale)}</span>
-                <Layers className="size-4 text-primary" />
+                <Layers className="size-3.5 sm:size-4 text-primary shrink-0" />
               </div>
-              <p className="mt-1 font-mono text-2xl font-bold text-foreground">
+              <p className="mt-1 font-mono text-xl sm:text-2xl font-bold text-foreground">
                 {data.problems.length}
               </p>
             </div>
 
-            <div className="rounded-2xl border bg-muted/30 px-4 py-3">
-              <div className="flex items-center justify-between text-xs text-muted-foreground">
+            <div className="rounded-2xl border bg-muted/30 p-3 sm:px-4 sm:py-3">
+              <div className="flex items-center justify-between text-[11px] sm:text-xs text-muted-foreground">
                 <span>{t(L.statPassed, locale)}</span>
-                <CheckCircle2 className="size-4 text-primary" />
+                <CheckCircle2 className="size-3.5 sm:size-4 text-primary shrink-0" />
               </div>
-              <p className="mt-1 font-mono text-2xl font-bold text-primary">
+              <p className="mt-1 font-mono text-xl sm:text-2xl font-bold text-primary">
                 {passedCount}
               </p>
             </div>
 
-            <div className="rounded-2xl border bg-muted/30 px-4 py-3">
-              <div className="flex items-center justify-between text-xs text-muted-foreground">
+            <div className="rounded-2xl border bg-muted/30 p-3 sm:px-4 sm:py-3">
+              <div className="flex items-center justify-between text-[11px] sm:text-xs text-muted-foreground">
                 <span>{t(L.statInProgress, locale)}</span>
-                <Clock className="size-4 text-muted-foreground" />
+                <Clock className="size-3.5 sm:size-4 text-muted-foreground shrink-0" />
               </div>
-              <p className="mt-1 font-mono text-2xl font-bold text-foreground">
+              <p className="mt-1 font-mono text-xl sm:text-2xl font-bold text-foreground">
                 {inProgressCount}
               </p>
             </div>
 
-            <div className="rounded-2xl border bg-muted/30 px-4 py-3">
-              <div className="flex items-center justify-between text-xs text-muted-foreground">
+            <div className="rounded-2xl border bg-muted/30 p-3 sm:px-4 sm:py-3">
+              <div className="flex items-center justify-between text-[11px] sm:text-xs text-muted-foreground">
                 <span>{t(L.statLL, locale)}</span>
-                <Flame className="size-4 text-primary" />
+                <Flame className="size-3.5 sm:size-4 text-primary shrink-0" />
               </div>
-              <p className="mt-1 font-mono text-2xl font-bold text-primary">
+              <p className="mt-1 font-mono text-xl sm:text-2xl font-bold text-primary">
                 {data.learningLogCount}
               </p>
             </div>
 
             {gh.connected ? (
-              <div className="rounded-2xl border bg-muted/30 px-4 py-3">
-                <div className="flex items-center justify-between text-xs text-muted-foreground">
+              <div className="rounded-2xl border bg-muted/30 p-3 sm:px-4 sm:py-3 col-span-2 sm:col-span-1">
+                <div className="flex items-center justify-between text-[11px] sm:text-xs text-muted-foreground">
                   <span>{t(L.statInRepo, locale)}</span>
-                  <FolderGit2 className="size-4 text-primary" />
+                  <FolderGit2 className="size-3.5 sm:size-4 text-primary shrink-0" />
                 </div>
-                <p className="mt-1 font-mono text-2xl font-bold text-primary">
+                <p className="mt-1 font-mono text-xl sm:text-2xl font-bold text-primary">
                   {inRepoCount}/{data.problems.length}
                 </p>
               </div>
             ) : (
-              <div className="rounded-2xl border bg-muted/30 px-4 py-3">
-                <div className="flex items-center justify-between text-xs text-muted-foreground">
+              <div className="rounded-2xl border bg-muted/30 p-3 sm:px-4 sm:py-3 col-span-2 sm:col-span-1">
+                <div className="flex items-center justify-between text-[11px] sm:text-xs text-muted-foreground">
                   <span>{t(L.statPatterns, locale)}</span>
-                  <Sparkles className="size-4 text-primary" />
+                  <Sparkles className="size-3.5 sm:size-4 text-primary shrink-0" />
                 </div>
-                <p className="mt-1 font-mono text-2xl font-bold text-primary">
+                <p className="mt-1 font-mono text-xl sm:text-2xl font-bold text-primary">
                   10 Patterns
                 </p>
               </div>
@@ -401,24 +401,24 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
       {/* Control Bar: Search + Filter Tabs + View Mode */}
       <div
         id="problems-section"
-        className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between scroll-mt-6"
+        className="mt-6 flex flex-col gap-3 sm:gap-4 sm:flex-row sm:items-center sm:justify-between scroll-mt-6"
       >
-        <div className="relative flex-1 max-w-md">
+        <div className="relative w-full sm:max-w-md">
           <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
           <Input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder={t(L.searchPlaceholder, locale)}
-            className="pl-10 h-10 rounded-xl bg-card border-border/80"
+            className="pl-10 h-10 rounded-xl bg-card border-border/80 text-xs sm:text-sm"
           />
         </div>
 
-        <div className="flex flex-wrap items-center gap-2">
-          {/* Filter buttons */}
-          <div className="flex rounded-full border bg-card p-1 text-xs font-medium">
+        <div className="flex flex-wrap items-center justify-between sm:justify-end gap-2 w-full sm:w-auto">
+          {/* Filter buttons (Scrollable on extra small devices) */}
+          <div className="flex items-center gap-1 overflow-x-auto rounded-full border bg-card p-1 text-[11px] sm:text-xs font-medium max-w-full">
             <button
               onClick={() => setFilter("all")}
-              className={`rounded-full px-3 py-1.5 transition-colors ${
+              className={`rounded-full px-2.5 sm:px-3 py-1 sm:py-1.5 transition-colors whitespace-nowrap ${
                 filter === "all"
                   ? "bg-primary text-primary-foreground font-semibold shadow-sm"
                   : "text-muted-foreground hover:text-foreground"
@@ -428,7 +428,7 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
             </button>
             <button
               onClick={() => setFilter("passed")}
-              className={`rounded-full px-3 py-1.5 transition-colors ${
+              className={`rounded-full px-2.5 sm:px-3 py-1 sm:py-1.5 transition-colors whitespace-nowrap ${
                 filter === "passed"
                   ? "bg-primary text-primary-foreground font-semibold shadow-sm"
                   : "text-muted-foreground hover:text-foreground"
@@ -438,7 +438,7 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
             </button>
             <button
               onClick={() => setFilter("in_progress")}
-              className={`rounded-full px-3 py-1.5 transition-colors ${
+              className={`rounded-full px-2.5 sm:px-3 py-1 sm:py-1.5 transition-colors whitespace-nowrap ${
                 filter === "in_progress"
                   ? "bg-primary text-primary-foreground font-semibold shadow-sm"
                   : "text-muted-foreground hover:text-foreground"
@@ -449,7 +449,7 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
             {gh.connected && (
               <button
                 onClick={() => setFilter("in_repo")}
-                className={`rounded-full px-3 py-1.5 transition-colors ${
+                className={`rounded-full px-2.5 sm:px-3 py-1 sm:py-1.5 transition-colors whitespace-nowrap ${
                   filter === "in_repo"
                     ? "bg-primary text-primary-foreground font-semibold shadow-sm"
                     : "text-muted-foreground hover:text-foreground"
@@ -460,7 +460,7 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
             )}
             <button
               onClick={() => setFilter("ll")}
-              className={`rounded-full px-3 py-1.5 transition-colors ${
+              className={`rounded-full px-2.5 sm:px-3 py-1 sm:py-1.5 transition-colors whitespace-nowrap ${
                 filter === "ll"
                   ? "bg-primary text-primary-foreground font-semibold shadow-sm"
                   : "text-muted-foreground hover:text-foreground"
@@ -471,41 +471,41 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
           </div>
 
           {/* View mode toggle */}
-          <div className="flex rounded-full border bg-card p-1 text-xs">
+          <div className="flex rounded-full border bg-card p-1 text-xs shrink-0">
             <button
               onClick={() => setViewMode("grid")}
               title={t(L.viewGrid, locale)}
-              className={`flex items-center gap-1 rounded-full px-3 py-1.5 transition-colors ${
+              className={`flex items-center gap-1 rounded-full px-2.5 sm:px-3 py-1 sm:py-1.5 transition-colors ${
                 viewMode === "grid"
                   ? "bg-primary text-primary-foreground font-semibold"
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >
-              <LayoutGrid className="size-4" />
+              <LayoutGrid className="size-3.5 sm:size-4" />
               <span className="hidden md:inline">{t(L.viewGrid, locale)}</span>
             </button>
             <button
               onClick={() => setViewMode("table")}
               title={t(L.viewTable, locale)}
-              className={`flex items-center gap-1 rounded-full px-3 py-1.5 transition-colors ${
+              className={`flex items-center gap-1 rounded-full px-2.5 sm:px-3 py-1 sm:py-1.5 transition-colors ${
                 viewMode === "table"
                   ? "bg-primary text-primary-foreground font-semibold"
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >
-              <List className="size-4" />
+              <List className="size-3.5 sm:size-4" />
               <span className="hidden md:inline">{t(L.viewTable, locale)}</span>
             </button>
             <button
               onClick={() => setViewMode("guide")}
               title={t(L.viewGuide, locale)}
-              className={`flex items-center gap-1 rounded-full px-3 py-1.5 transition-colors ${
+              className={`flex items-center gap-1 rounded-full px-2.5 sm:px-3 py-1 sm:py-1.5 transition-colors ${
                 viewMode === "guide"
                   ? "bg-primary text-primary-foreground font-semibold"
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >
-              <BookOpen className="size-4" />
+              <BookOpen className="size-3.5 sm:size-4" />
               <span className="hidden md:inline">{t(L.viewGuide, locale)}</span>
             </button>
           </div>
@@ -1091,18 +1091,18 @@ function ProblemCard({
       </div>
 
       {/* Card Footer: Action Links */}
-      <div className="mt-5 pt-3 border-t flex items-center justify-between gap-2">
-        <div className="flex items-center gap-1.5">
+      <div className="mt-4 pt-3 border-t flex flex-wrap items-center justify-between gap-2">
+        <div className="flex flex-wrap items-center gap-1 sm:gap-1.5">
           {takeaway && (
             <Button
               type="button"
               size="sm"
               variant="ghost"
               onClick={() => setShowTakeaway(true)}
-              className="h-8 px-2.5 text-xs text-primary hover:text-primary hover:bg-muted rounded-full gap-1 font-medium"
+              className="h-7.5 sm:h-8 px-2 sm:px-2.5 text-[11px] sm:text-xs text-primary hover:text-primary hover:bg-muted rounded-full gap-1 font-medium"
               title={locale === "th" ? "ดูจุดสำคัญ & Pattern" : "View Key Takeaways"}
             >
-              <Lightbulb className="size-3.5 text-primary" />
+              <Lightbulb className="size-3 sm:size-3.5 text-primary shrink-0" />
               <span>{locale === "th" ? "จุดสำคัญ" : "Takeaway"}</span>
             </Button>
           )}
@@ -1111,7 +1111,7 @@ function ProblemCard({
               asChild
               size="sm"
               variant="ghost"
-              className="h-8 px-2.5 text-xs text-primary hover:text-primary hover:bg-muted rounded-full"
+              className="h-7.5 sm:h-8 px-2 sm:px-2.5 text-[11px] sm:text-xs text-primary hover:text-primary hover:bg-muted rounded-full"
             >
               <Link href={`/make/submission?id=${problem.id}`}>
                 + submission
@@ -1122,7 +1122,7 @@ function ProblemCard({
             asChild
             size="sm"
             variant="ghost"
-            className="h-8 px-2 text-xs text-muted-foreground hover:text-foreground rounded-full"
+            className="h-7.5 sm:h-8 px-2 sm:px-2.5 text-[11px] sm:text-xs text-muted-foreground hover:text-foreground rounded-full"
           >
             <Link href={`/make/reflection?id=${problem.id}`}>+ reflection</Link>
           </Button>
@@ -1133,11 +1133,11 @@ function ProblemCard({
             asChild
             size="sm"
             variant="default"
-            className="h-8 px-3 text-xs gap-1 rounded-full bg-primary text-primary-foreground hover:opacity-90"
+            className="h-7.5 sm:h-8 px-2.5 sm:px-3 text-[11px] sm:text-xs gap-1 rounded-full bg-primary text-primary-foreground hover:opacity-90 shadow-none"
           >
             <Link href={`/recommended/${problem.slug}`}>
               <span>{t(L.openProblem, locale)}</span>
-              <ArrowRight className="size-3.5" />
+              <ArrowRight className="size-3 sm:size-3.5" />
             </Link>
           </Button>
         </div>
@@ -1146,19 +1146,19 @@ function ProblemCard({
       {/* Key Takeaways Popup Modal */}
       {takeaway && (
         <Dialog open={showTakeaway} onOpenChange={setShowTakeaway}>
-          <DialogContent className="sm:max-w-lg rounded-3xl p-6 border bg-card shadow-2xl">
+          <DialogContent className="max-w-[calc(100vw-1.5rem)] sm:max-w-lg rounded-3xl p-4 sm:p-6 border bg-card shadow-2xl max-h-[85vh] overflow-y-auto">
             <DialogHeader>
               <div className="flex flex-wrap items-center gap-2 mb-1">
-                <span className="font-mono text-sm font-bold text-primary">
+                <span className="font-mono text-xs sm:text-sm font-bold text-primary">
                   OJ {problem.id}
                 </span>
                 {problem.technique && (
-                  <Badge className="rounded-full bg-primary text-primary-foreground text-xs font-mono px-3 py-0.5 shadow-none">
+                  <Badge className="rounded-full bg-primary text-primary-foreground text-[10px] sm:text-xs font-mono px-2.5 sm:px-3 py-0.5 shadow-none">
                     {problem.technique}
                   </Badge>
                 )}
               </div>
-              <DialogTitle className="text-xl font-bold text-foreground">
+              <DialogTitle className="text-lg sm:text-xl font-bold text-foreground">
                 {problem.cleanName}
               </DialogTitle>
               <DialogDescription className="text-xs text-muted-foreground mt-1">

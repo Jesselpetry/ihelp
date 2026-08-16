@@ -463,17 +463,17 @@ export function PythonCodeViewer({
         </div>
 
         {/* Syntax Highlighted Lines with Line Numbers */}
-        <pre className="overflow-x-auto p-4 font-mono text-sm leading-relaxed text-zinc-200">
+        <pre className="overflow-x-auto p-3 sm:p-4 font-mono text-xs sm:text-sm leading-relaxed text-zinc-200">
           <table className="w-full border-collapse">
             <tbody>
               {lines.map((line, idx) => {
                 const lineNum = idx + 1;
                 return (
                   <tr key={idx} className="hover:bg-zinc-800/40 transition-colors">
-                    <td className="w-10 select-none pr-4 text-right text-xs font-mono text-zinc-600 dark:text-zinc-600">
+                    <td className="w-8 sm:w-10 select-none pr-2 sm:pr-4 text-right text-[11px] sm:text-xs font-mono text-zinc-600 dark:text-zinc-600">
                       {lineNum < 10 ? `0${lineNum}` : lineNum}
                     </td>
-                    <td className="whitespace-pre pl-2">
+                    <td className="whitespace-pre pl-1 sm:pl-2">
                       {highlightPythonLine(line)}
                     </td>
                   </tr>
@@ -486,7 +486,7 @@ export function PythonCodeViewer({
 
       {/* Key Takeaway & Pattern Breakdown Card */}
       {takeaway && (
-        <div className="rounded-2xl border bg-card p-5 sm:p-6 shadow-sm space-y-4">
+        <div className="rounded-2xl border bg-card p-4 sm:p-6 shadow-sm space-y-3.5 sm:space-y-4">
           <div className="flex flex-wrap items-center justify-between gap-2 border-b pb-3">
             <div className="flex items-center gap-2">
               <Lightbulb className="size-4 text-primary" />
