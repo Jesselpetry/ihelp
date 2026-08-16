@@ -282,18 +282,35 @@ export function ProblemsView({ problems }: { problems: MasterProblem[] }) {
               {
                 label: t(L.recommendedStat, locale),
                 value: problems.filter((p) => p.recommended).length,
+                href: "/recommended",
               },
-            ].map((s) => (
-              <div
-                key={s.label}
-                className="rounded-xl border bg-background/50 px-4 py-3 flex flex-col justify-center"
-              >
-                <p className="text-xs text-muted-foreground font-medium uppercase tracking-wide">
-                  {s.label}
-                </p>
-                <p className="text-2xl font-bold mt-1">{s.value}</p>
-              </div>
-            ))}
+            ].map((s) =>
+              s.href ? (
+                <Link
+                  key={s.label}
+                  href={s.href}
+                  className="group rounded-xl border bg-background/50 px-4 py-3 flex flex-col justify-center transition-all hover:border-primary/40 hover:bg-primary/[0.04]"
+                >
+                  <div className="flex items-center justify-between">
+                    <p className="text-xs text-muted-foreground font-medium uppercase tracking-wide group-hover:text-primary transition-colors">
+                      {s.label}
+                    </p>
+                    <Sparkles className="size-3 text-primary opacity-70 group-hover:opacity-100 transition-opacity" />
+                  </div>
+                  <p className="text-2xl font-bold mt-1 text-primary">{s.value}</p>
+                </Link>
+              ) : (
+                <div
+                  key={s.label}
+                  className="rounded-xl border bg-background/50 px-4 py-3 flex flex-col justify-center"
+                >
+                  <p className="text-xs text-muted-foreground font-medium uppercase tracking-wide">
+                    {s.label}
+                  </p>
+                  <p className="text-2xl font-bold mt-1">{s.value}</p>
+                </div>
+              ),
+            )}
           </div>
         </div>
         <Shortcuts />

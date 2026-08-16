@@ -1,38 +1,39 @@
 "use client";
+/* eslint-disable @typescript-eslint/no-unused-vars */
 
-import ReactMarkdown from "react-markdown";
+import ReactMarkdown, { type Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
 
 // Shared clean markdown renderer (library reader + wizard preview).
 // Roomy leading, clean tables — all inline component styling since the
 // typography plugin is not installed. Headings stay on the app sans
 // (IBM Plex Sans Thai); the default serif stack has no Thai glyphs.
-const mdComponents = {
-  h1: (p: React.ComponentProps<"h1">) => (
+const mdComponents: Components = {
+  h1: ({ node: _node, ref: _ref, ...p }) => (
     <h1 className="tracking-tight text-3xl font-bold mt-2 mb-6 leading-snug" {...p} />
   ),
-  h2: (p: React.ComponentProps<"h2">) => (
+  h2: ({ node: _node, ref: _ref, ...p }) => (
     <h2
       className="tracking-tight text-xl font-bold mt-10 mb-3 pb-1.5 border-b leading-snug"
       {...p}
     />
   ),
-  h3: (p: React.ComponentProps<"h3">) => (
+  h3: ({ node: _node, ref: _ref, ...p }) => (
     <h3 className="tracking-tight text-lg font-semibold mt-7 mb-2" {...p} />
   ),
-  p: (p: React.ComponentProps<"p">) => (
+  p: ({ node: _node, ref: _ref, ...p }) => (
     <p className="my-3 leading-relaxed" {...p} />
   ),
-  ul: (p: React.ComponentProps<"ul">) => (
+  ul: ({ node: _node, ref: _ref, ...p }) => (
     <ul className="my-3 space-y-1.5 list-disc pl-6 marker:text-primary/60" {...p} />
   ),
-  ol: (p: React.ComponentProps<"ol">) => (
+  ol: ({ node: _node, ref: _ref, ...p }) => (
     <ol className="my-3 space-y-1.5 list-decimal pl-6 marker:text-primary/60" {...p} />
   ),
-  li: (p: React.ComponentProps<"li">) => (
+  li: ({ node: _node, ref: _ref, ...p }) => (
     <li className="leading-relaxed" {...p} />
   ),
-  blockquote: (p: React.ComponentProps<"blockquote">) => (
+  blockquote: ({ node: _node, ref: _ref, ...p }) => (
     <blockquote
       className="my-4 border-l-[3px] border-primary/40 bg-primary/[0.04] pl-4 py-2 rounded-r-lg italic"
       {...p}
@@ -45,7 +46,7 @@ const mdComponents = {
       <span className="h-px flex-1 bg-border" />
     </div>
   ),
-  a: (p: React.ComponentProps<"a">) => (
+  a: ({ node: _node, ref: _ref, ...p }) => (
     <a
       className="text-primary underline underline-offset-4 hover:opacity-80"
       target="_blank"
@@ -53,7 +54,7 @@ const mdComponents = {
       {...p}
     />
   ),
-  code: ({ className, ...p }: React.ComponentProps<"code">) =>
+  code: ({ node: _node, ref: _ref, className, ...p }) =>
     className ? (
       // fenced block content: <pre> wrapper handles the box
       <code className={className} {...p} />
@@ -63,24 +64,24 @@ const mdComponents = {
         {...p}
       />
     ),
-  pre: (p: React.ComponentProps<"pre">) => (
+  pre: ({ node: _node, ref: _ref, ...p }) => (
     <pre
       className="my-4 overflow-x-auto rounded-lg border bg-background p-4 font-mono text-sm leading-relaxed"
       {...p}
     />
   ),
-  table: (p: React.ComponentProps<"table">) => (
+  table: ({ node: _node, ref: _ref, ...p }) => (
     <div className="my-4 overflow-x-auto rounded-lg border">
       <table className="w-full text-sm border-collapse" {...p} />
     </div>
   ),
-  th: (p: React.ComponentProps<"th">) => (
+  th: ({ node: _node, ref: _ref, ...p }) => (
     <th
       className="border-b bg-muted/60 px-3 py-2 text-left font-semibold"
       {...p}
     />
   ),
-  td: (p: React.ComponentProps<"td">) => (
+  td: ({ node: _node, ref: _ref, ...p }) => (
     <td className="border-b px-3 py-2 align-top" {...p} />
   ),
 };

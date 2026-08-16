@@ -3,12 +3,17 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { BookOpen, ExternalLink, History, Menu, Tag, X } from "lucide-react";
+import { BookOpen, ExternalLink, History, Menu, Sparkles, Tag, X } from "lucide-react";
 import { loadHistory, HISTORY_EVENT } from "@/lib/history";
 import { useLocale, t, type LText } from "@/lib/i18n";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 const NAV_LINKS: { href: string; label: LText; icon: typeof BookOpen }[] = [
+  {
+    href: "/recommended",
+    label: { th: "โจทย์แนะนำ", en: "Recommended" },
+    icon: Sparkles,
+  },
   {
     href: "/library",
     label: { th: "ห้องสมุด", en: "Library" },
