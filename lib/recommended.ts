@@ -75,14 +75,20 @@ function parseOverviewTable(
   for (const line of lines) {
     if (!line.includes("|")) continue;
     const parts = line.split("|").map((p) => p.trim());
-    if (parts.length < 6) continue;
+    if (parts.length < 5) continue;
     const idMatch = parts[1].match(/\b(\d{4})\b/);
     if (!idMatch) continue;
     const id = parseInt(idMatch[1], 10);
     const problemName = parts[3] || "";
-    const statusCol = parts[4] || "";
-    const isPassed = statusCol.includes("Passed") || statusCol.includes("✅");
-    const technique = parts[5] || "";
+    const col4 = parts[4] || "";
+    const col5 = parts[5] || "";
+    const hasStatus =
+      col4.includes("Passed") ||
+      col4.includes("✅") ||
+      col4.includes("Progress") ||
+      col4.includes("🔄");
+    const isPassed = col4.includes("Passed") || col4.includes("✅");
+    const technique = hasStatus ? col5 : (col5 || col4);
     map.set(id, {
       status: isPassed ? "passed" : "in_progress",
       technique,

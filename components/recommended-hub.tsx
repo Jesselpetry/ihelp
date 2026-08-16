@@ -5,8 +5,6 @@ import { useState, useMemo } from "react";
 import {
   Sparkles,
   Search,
-  CheckCircle2,
-  Clock,
   BookOpen,
   ArrowRight,
   ExternalLink,
@@ -19,6 +17,7 @@ import {
   Flame,
   Info,
   Check,
+  GraduationCap,
 } from "lucide-react";
 import type { RecommendedHubData, RecommendedProblem } from "@/lib/recommended";
 import { Button } from "@/components/ui/button";
@@ -43,17 +42,17 @@ const L: Record<string, LText> = {
     en: "Core curriculum problems designed to master fundamental algorithmic patterns and Python techniques with full problem notes and test cases.",
   },
   statTotal: { th: "โจทย์ทั้งหมด", en: "Total Problems" },
-  statPassed: { th: "ผ่านแล้ว (Passed)", en: "Passed" },
-  statInProgress: { th: "กำลังฝึก (In Progress)", en: "In Progress" },
   statLL: { th: "Learning Logs", en: "Learning Logs" },
+  statTech: { th: "เทคนิคสำคัญ", en: "Core Techniques" },
+  statDiff: { th: "ระดับความยาก", en: "Difficulty Range" },
   searchPlaceholder: {
     th: "ค้นหาโจทย์, รหัส OJ หรือเทคนิค (เช่น slicing, math, modulo)...",
     en: "Search problems, OJ ID, or technique (e.g. slicing, math, modulo)...",
   },
   filterAll: { th: "ทั้งหมด", en: "All" },
-  filterPassed: { th: "ผ่านแล้ว", en: "Passed" },
-  filterInProgress: { th: "กำลังฝึก", en: "In Progress" },
   filterLL: { th: "Learning Log", en: "Learning Log" },
+  filter0Star: { th: "0 ดาว (0★)", en: "0-Star" },
+  filter1Star: { th: "1 ดาว (1★)", en: "1-Star" },
   viewGrid: { th: "การ์ด", en: "Cards" },
   viewTable: { th: "ตารางสรุป", en: "Matrix" },
   viewGuide: { th: "คู่มือ & กฎ", en: "Study Guide" },
@@ -62,7 +61,6 @@ const L: Record<string, LText> = {
   makeRefl: { th: "สร้าง reflection", en: "Make reflection" },
   onIJudge: { th: "เปิดบน iJudge", en: "Open on iJudge" },
   technique: { th: "เทคนิคสำคัญ", en: "Key Technique" },
-  status: { th: "สถานะ", en: "Status" },
   difficulty: { th: "ความยาก", en: "Difficulty" },
   actions: { th: "การดำเนินการ", en: "Actions" },
   problemCol: { th: "โจทย์", en: "Problem" },
@@ -77,15 +75,18 @@ const L: Record<string, LText> = {
 export function RecommendedHub({ data }: { data: RecommendedHubData }) {
   const { locale } = useLocale();
   const [search, setSearch] = useState("");
-  const [statusFilter, setStatusFilter] = useState<"all" | "passed" | "in_progress" | "ll">("all");
+  const [filter, setFilter] = useState<"all" | "ll" | "0star" | "1star">("all");
   const [viewMode, setViewMode] = useState<"grid" | "table" | "guide">("grid");
+
+  const count0Star = useMemo(() => data.problems.filter((p) => p.difficulty === 0).length, [data.problems]);
+  const count1Star = useMemo(() => data.problems.filter((p) => p.difficulty >= 1).length, [data.problems]);
 
   const filteredProblems = useMemo(() => {
     const q = search.toLowerCase().trim();
     return data.problems.filter((p) => {
-      if (statusFilter === "passed" && p.status !== "passed") return false;
-      if (statusFilter === "in_progress" && p.status !== "in_progress") return false;
-      if (statusFilter === "ll" && !p.learningLog) return false;
+      if (filter === "ll" && !p.learningLog) return false;
+      if (filter === "0star" && p.difficulty !== 0) return false;
+      if (filter === "1star" && p.difficulty < 1) return false;
 
       if (!q) return true;
       const matchId = String(p.id).includes(q);
@@ -95,7 +96,7 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
       const matchFolder = p.folderName.toLowerCase().includes(q);
       return matchId || matchName || matchTitle || matchTech || matchFolder;
     });
-  }, [data.problems, search, statusFilter]);
+  }, [data.problems, search, filter]);
 
   return (
     <main className="mx-auto max-w-6xl px-4 py-8 sm:px-6 w-full">
@@ -135,31 +136,31 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
 
             <div className="rounded-2xl border bg-card/80 backdrop-blur px-4 py-3">
               <div className="flex items-center justify-between text-xs text-muted-foreground">
-                <span>{t(L.statPassed, locale)}</span>
-                <CheckCircle2 className="size-4 text-emerald-500" />
-              </div>
-              <p className="mt-1 font-mono text-2xl font-bold text-emerald-600 dark:text-emerald-400">
-                {data.passedCount}
-              </p>
-            </div>
-
-            <div className="rounded-2xl border bg-card/80 backdrop-blur px-4 py-3">
-              <div className="flex items-center justify-between text-xs text-muted-foreground">
-                <span>{t(L.statInProgress, locale)}</span>
-                <Clock className="size-4 text-amber-500" />
-              </div>
-              <p className="mt-1 font-mono text-2xl font-bold text-amber-600 dark:text-amber-400">
-                {data.inProgressCount}
-              </p>
-            </div>
-
-            <div className="rounded-2xl border bg-card/80 backdrop-blur px-4 py-3">
-              <div className="flex items-center justify-between text-xs text-muted-foreground">
                 <span>{t(L.statLL, locale)}</span>
                 <Flame className="size-4 text-rose-500" />
               </div>
               <p className="mt-1 font-mono text-2xl font-bold text-rose-600 dark:text-rose-400">
                 {data.learningLogCount}
+              </p>
+            </div>
+
+            <div className="rounded-2xl border bg-card/80 backdrop-blur px-4 py-3">
+              <div className="flex items-center justify-between text-xs text-muted-foreground">
+                <span>{t(L.statTech, locale)}</span>
+                <GraduationCap className="size-4 text-primary" />
+              </div>
+              <p className="mt-1 font-mono text-2xl font-bold text-primary">
+                10 Patterns
+              </p>
+            </div>
+
+            <div className="rounded-2xl border bg-card/80 backdrop-blur px-4 py-3">
+              <div className="flex items-center justify-between text-xs text-muted-foreground">
+                <span>{t(L.statDiff, locale)}</span>
+                <Star className="size-4 text-amber-500 fill-amber-400" />
+              </div>
+              <p className="mt-1 font-mono text-xl font-bold text-amber-600 dark:text-amber-400">
+                0★ — 1★
               </p>
             </div>
           </div>
@@ -179,12 +180,12 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
-          {/* Status filter buttons */}
+          {/* Filter buttons */}
           <div className="flex rounded-xl border bg-card p-1 text-xs font-medium">
             <button
-              onClick={() => setStatusFilter("all")}
+              onClick={() => setFilter("all")}
               className={`rounded-lg px-3 py-1.5 transition-colors ${
-                statusFilter === "all"
+                filter === "all"
                   ? "bg-primary text-primary-foreground font-semibold shadow-sm"
                   : "text-muted-foreground hover:text-foreground"
               }`}
@@ -192,34 +193,34 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
               {t(L.filterAll, locale)} ({data.problems.length})
             </button>
             <button
-              onClick={() => setStatusFilter("passed")}
+              onClick={() => setFilter("ll")}
               className={`rounded-lg px-3 py-1.5 transition-colors ${
-                statusFilter === "passed"
-                  ? "bg-emerald-600 text-white font-semibold shadow-sm"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {t(L.filterPassed, locale)} ({data.passedCount})
-            </button>
-            <button
-              onClick={() => setStatusFilter("in_progress")}
-              className={`rounded-lg px-3 py-1.5 transition-colors ${
-                statusFilter === "in_progress"
-                  ? "bg-amber-600 text-white font-semibold shadow-sm"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {t(L.filterInProgress, locale)} ({data.inProgressCount})
-            </button>
-            <button
-              onClick={() => setStatusFilter("ll")}
-              className={`rounded-lg px-3 py-1.5 transition-colors ${
-                statusFilter === "ll"
+                filter === "ll"
                   ? "bg-rose-600 text-white font-semibold shadow-sm"
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >
               {t(L.filterLL, locale)} ({data.learningLogCount})
+            </button>
+            <button
+              onClick={() => setFilter("0star")}
+              className={`rounded-lg px-3 py-1.5 transition-colors ${
+                filter === "0star"
+                  ? "bg-primary/15 text-primary font-semibold shadow-sm"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              {t(L.filter0Star, locale)} ({count0Star})
+            </button>
+            <button
+              onClick={() => setFilter("1star")}
+              className={`rounded-lg px-3 py-1.5 transition-colors ${
+                filter === "1star"
+                  ? "bg-amber-600 text-white font-semibold shadow-sm"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              {t(L.filter1Star, locale)} ({count1Star})
             </button>
           </div>
 
@@ -278,7 +279,7 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
                 className="mt-4"
                 onClick={() => {
                   setSearch("");
-                  setStatusFilter("all");
+                  setFilter("all");
                 }}
               >
                 {t(L.resetFilter, locale)}
@@ -302,7 +303,7 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
                 <TableHead className="w-20 font-mono">OJ ID</TableHead>
                 <TableHead>{t(L.problemCol, locale)}</TableHead>
                 <TableHead>{t(L.technique, locale)}</TableHead>
-                <TableHead className="w-32 text-center">{t(L.status, locale)}</TableHead>
+                <TableHead className="w-28 text-center">{t(L.difficulty, locale)}</TableHead>
                 <TableHead className="w-40 text-right">{t(L.actions, locale)}</TableHead>
               </TableRow>
             </TableHeader>
@@ -340,17 +341,15 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
                     </span>
                   </TableCell>
                   <TableCell className="text-center">
-                    {p.status === "passed" ? (
-                      <Badge className="bg-emerald-600/15 text-emerald-600 dark:text-emerald-400 border-emerald-500/20 text-xs font-semibold">
-                        <CheckCircle2 className="mr-1 size-3" />
-                        Passed
-                      </Badge>
-                    ) : (
-                      <Badge variant="outline" className="text-amber-600 dark:text-amber-400 border-amber-500/30 text-xs">
-                        <Clock className="mr-1 size-3" />
-                        In Progress
-                      </Badge>
-                    )}
+                    <div className="flex items-center justify-center gap-0.5 text-amber-500">
+                      {p.difficulty > 0 ? (
+                        Array.from({ length: p.difficulty }).map((_, i) => (
+                          <Star key={i} className="size-3.5 fill-amber-400 text-amber-400" />
+                        ))
+                      ) : (
+                        <span className="text-xs text-muted-foreground font-mono">0★</span>
+                      )}
+                    </div>
                   </TableCell>
                   <TableCell className="text-right">
                     <div className="flex items-center justify-end gap-1.5">
@@ -419,17 +418,6 @@ function ProblemCard({
             <span className="font-mono text-sm font-bold text-primary">
               OJ {problem.id}
             </span>
-            {problem.status === "passed" ? (
-              <Badge className="bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20 text-[11px] font-semibold">
-                <CheckCircle2 className="mr-1 size-3" />
-                Passed
-              </Badge>
-            ) : (
-              <Badge variant="outline" className="text-amber-600 dark:text-amber-400 border-amber-500/30 text-[11px]">
-                <Clock className="mr-1 size-3" />
-                In Progress
-              </Badge>
-            )}
             {problem.learningLog && (
               <Badge variant="secondary" className="text-[11px] bg-rose-500/10 text-rose-600 dark:text-rose-400 font-medium">
                 Learning Log

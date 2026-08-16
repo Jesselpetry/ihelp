@@ -9,8 +9,6 @@ import {
   ExternalLink,
   Code2,
   FileText,
-  CheckCircle2,
-  Clock,
   Copy,
   Check,
   Star,
@@ -91,18 +89,6 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
               <span className="rounded-lg bg-primary/10 px-2.5 py-1 font-mono text-xs font-bold text-primary">
                 OJ {problem.id}
               </span>
-
-              {problem.status === "passed" ? (
-                <Badge className="bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border-emerald-500/20 text-xs font-semibold">
-                  <CheckCircle2 className="mr-1 size-3.5" />
-                  Passed
-                </Badge>
-              ) : (
-                <Badge variant="outline" className="text-amber-600 dark:text-amber-400 border-amber-500/30 text-xs">
-                  <Clock className="mr-1 size-3.5" />
-                  In Progress
-                </Badge>
-              )}
 
               {problem.learningLog && (
                 <Badge variant="secondary" className="bg-rose-500/10 text-rose-600 dark:text-rose-400 text-xs font-medium">
