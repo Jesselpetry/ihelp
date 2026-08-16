@@ -5,10 +5,21 @@ import { githubFetch, UnauthenticatedError } from "@/lib/github-server";
 // tree once and reports, per problem id, whether oj<id>/submission.md and
 // oj<id>/ai_reflection.md exist. Drives the "already uploaded" indicators.
 export interface RepoStatus {
-  [problemId: string]: { submission: boolean; reflection: boolean };
+  [problemId: string]: {
+    submission: boolean;
+    reflection: boolean;
+    recommended?: {
+      inRepo: boolean;
+      hasProblemMd: boolean;
+      hasMainPy: boolean;
+      folder?: string;
+    };
+  };
 }
 
 const FILE_RE = /^oj(\d+)\/(submission|ai_reflection)\.md$/;
+const REC_FILE_RE = /^recommended\/(oj\d+[^\/]*)\/(problem\.md|main\.py|submission\.md|ai_reflection\.md)$/i;
+const REC_ROOT_RE = /^oj(\d+)\/(problem\.md|main\.py)$/i;
 
 export async function GET(req: Request) {
   const url = new URL(req.url);
@@ -37,12 +48,55 @@ export async function GET(req: Request) {
     const status: RepoStatus = {};
     for (const node of data.tree ?? []) {
       if (node.type !== "blob") continue;
-      const m = node.path.match(FILE_RE);
-      if (!m) continue;
-      const id = m[1];
-      status[id] ??= { submission: false, reflection: false };
-      if (m[2] === "submission") status[id].submission = true;
-      else status[id].reflection = true;
+
+      // 1. Standard oj<id>/submission.md or oj<id>/ai_reflection.md
+      const m1 = node.path.match(FILE_RE);
+      if (m1) {
+        const id = m1[1];
+        status[id] ??= { submission: false, reflection: false };
+        if (m1[2] === "submission") status[id].submission = true;
+        else status[id].reflection = true;
+        continue;
+      }
+
+      // 2. recommended/oj<id>-name/problem.md or main.py
+      const m2 = node.path.match(REC_FILE_RE);
+      if (m2) {
+        const folder = m2[1];
+        const fileName = m2[2].toLowerCase();
+        const idMatch = folder.match(/oj(\d+)/i);
+        if (idMatch) {
+          const id = idMatch[1];
+          status[id] ??= { submission: false, reflection: false };
+          status[id].recommended ??= {
+            inRepo: true,
+            hasProblemMd: false,
+            hasMainPy: false,
+            folder,
+          };
+          status[id].recommended.inRepo = true;
+          if (fileName === "problem.md") status[id].recommended.hasProblemMd = true;
+          if (fileName === "main.py") status[id].recommended.hasMainPy = true;
+        }
+        continue;
+      }
+
+      // 3. oj<id>/problem.md or main.py
+      const m3 = node.path.match(REC_ROOT_RE);
+      if (m3) {
+        const id = m3[1];
+        const fileName = m3[2].toLowerCase();
+        status[id] ??= { submission: false, reflection: false };
+        status[id].recommended ??= {
+          inRepo: true,
+          hasProblemMd: false,
+          hasMainPy: false,
+          folder: `oj${id}`,
+        };
+        status[id].recommended.inRepo = true;
+        if (fileName === "problem.md") status[id].recommended.hasProblemMd = true;
+        if (fileName === "main.py") status[id].recommended.hasMainPy = true;
+      }
     }
     return NextResponse.json({ status });
   } catch (e) {

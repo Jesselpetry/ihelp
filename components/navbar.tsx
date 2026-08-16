@@ -3,7 +3,15 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { BookOpen, ExternalLink, History, Menu, Sparkles, Tag, X } from "lucide-react";
+import {
+  BookOpen,
+  ExternalLink,
+  History,
+  Menu,
+  Sparkles,
+  Tag,
+  X,
+} from "lucide-react";
 import { loadHistory, HISTORY_EVENT } from "@/lib/history";
 import { useLocale, t, type LText } from "@/lib/i18n";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -52,9 +60,6 @@ export function Navbar() {
             <span className="text-primary">&lt;i</span>help
             <span className="text-primary">&gt;</span>
           </Link>
-          <span className="hidden lg:block text-sm text-muted-foreground">
-            PSCP · IT KMITL
-          </span>
           <div className="hidden md:flex items-center gap-1">
             {NAV_LINKS.map(({ href, label, icon: Icon }) => {
               const active =
@@ -212,4 +217,3 @@ export function Navbar() {
     </nav>
   );
 }
-

@@ -14,8 +14,17 @@ import {
   Star,
   Flame,
   LayoutGrid,
+  CheckCircle2,
+  Clock,
+  FolderGit2,
 } from "lucide-react";
 import type { RecommendedProblemDetail } from "@/lib/recommended";
+import {
+  getStoredProblemStatuses,
+  setStoredProblemStatus,
+  RECOMMENDED_STATUS_EVENT,
+} from "@/lib/recommended-client";
+import { useGithub } from "@/lib/github";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { MdView } from "@/components/md-view";
@@ -36,16 +45,41 @@ const L: Record<string, LText> = {
   prev: { th: "ข้อก่อนหน้า", en: "Previous" },
   next: { th: "ข้อถัดไป", en: "Next" },
   noCodeFound: { th: "ยังไม่มีไฟล์ main.py สำหรับข้อนี้", en: "No main.py found for this problem." },
+  markFinished: { th: "ผ่านแล้ว (Finished)", en: "Finished" },
+  markInProgress: { th: "กำลังฝึก (In Progress)", en: "In Progress" },
+  inRepo: { th: "ซิงก์ใน GitHub Repo แล้ว", en: "Synced in GitHub Repo" },
+  browseRepo: { th: "เปิดใน Repo Editor", en: "Open in Repo Editor" },
 };
 
 export function RecommendedReader({ problem }: { problem: RecommendedProblemDetail }) {
   const { locale } = useLocale();
+  const gh = useGithub();
   const [activeTab, setActiveTab] = useState<"md" | "code">("md");
   const [copied, setCopied] = useState(false);
+  const [statuses, setStatuses] = useState<Record<number, "passed" | "in_progress">>({});
 
   useEffect(() => {
     window.scrollTo({ top: 0 });
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time hydration from localStorage after mount (SSR-safe)
+    setStatuses(getStoredProblemStatuses());
+
+    const update = () => {
+      setStatuses(getStoredProblemStatuses());
+    };
+    window.addEventListener(RECOMMENDED_STATUS_EVENT, update);
+    window.addEventListener("storage", update);
+    return () => {
+      window.removeEventListener(RECOMMENDED_STATUS_EVENT, update);
+      window.removeEventListener("storage", update);
+    };
   }, [problem.id]);
+
+  const effectiveStatus = statuses[problem.id] || problem.status;
+
+  function handleToggleStatus() {
+    const next = effectiveStatus === "passed" ? "in_progress" : "passed";
+    setStoredProblemStatus(problem.id, next);
+  }
 
   function handleCopy() {
     if (!problem.pythonCode) return;
@@ -54,6 +88,7 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
     setTimeout(() => setCopied(false), 2000);
   }
 
+  const inRepo = Boolean(gh.status[problem.id]?.recommended?.inRepo);
   const progressPercent = ((problem.index + 1) / problem.total) * 100;
 
   return (
@@ -90,6 +125,36 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
                 OJ {problem.id}
               </span>
 
+              {/* Status Toggle Button */}
+              <button
+                onClick={handleToggleStatus}
+                className={`inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs font-semibold transition-all hover:scale-105 active:scale-95 cursor-pointer ${
+                  effectiveStatus === "passed"
+                    ? "bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 shadow-sm"
+                    : "bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20"
+                }`}
+                title="Click to toggle status"
+              >
+                {effectiveStatus === "passed" ? (
+                  <>
+                    <CheckCircle2 className="size-3.5" />
+                    <span>{t(L.markFinished, locale)}</span>
+                  </>
+                ) : (
+                  <>
+                    <Clock className="size-3.5" />
+                    <span>{t(L.markInProgress, locale)}</span>
+                  </>
+                )}
+              </button>
+
+              {inRepo && (
+                <Badge variant="outline" className="bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20 text-xs font-medium">
+                  <FolderGit2 className="mr-1 size-3" />
+                  {t(L.inRepo, locale)}
+                </Badge>
+              )}
+
               {problem.learningLog && (
                 <Badge variant="secondary" className="bg-rose-500/10 text-rose-600 dark:text-rose-400 text-xs font-medium">
                   <Flame className="mr-1 size-3" />
@@ -108,6 +173,14 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
 
             {/* External Links & Fast Actions */}
             <div className="flex items-center gap-2">
+              {inRepo && (
+                <Button asChild size="sm" variant="ghost" className="h-8 text-xs gap-1 text-blue-600 hover:text-blue-700">
+                  <Link href={`/repo?file=recommended/${problem.folderName}/problem.md`}>
+                    <FolderGit2 className="size-3.5" />
+                    <span>{t(L.browseRepo, locale)}</span>
+                  </Link>
+                </Button>
+              )}
               <Button asChild size="sm" variant="outline" className="h-8 text-xs gap-1">
                 <a href={problem.url} target="_blank" rel="noopener noreferrer">
                   <span>{t(L.openIJudge, locale)}</span>

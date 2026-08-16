@@ -21,7 +21,16 @@ export interface GithubUser {
 }
 
 export interface RepoStatus {
-  [problemId: string]: { submission: boolean; reflection: boolean };
+  [problemId: string]: {
+    submission: boolean;
+    reflection: boolean;
+    recommended?: {
+      inRepo: boolean;
+      hasProblemMd: boolean;
+      hasMainPy: boolean;
+      folder?: string;
+    };
+  };
 }
 
 const REPO_KEY = "ihelp-github-repo";
