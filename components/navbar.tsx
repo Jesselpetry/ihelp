@@ -29,8 +29,8 @@ const NAV_LINKS: { href: string; label: LText; icon: typeof BookOpen }[] = [
     icon: BookOpen,
   },
   {
-    href: "/ce-kmitl",
-    label: { th: "CE-KMITL", en: "CE-KMITL" },
+    href: "/en-kmitl",
+    label: { th: "EN-KMITL", en: "EN-KMITL" },
     icon: GraduationCap,
   },
   { href: "/history", label: { th: "ประวัติ", en: "History" }, icon: History },

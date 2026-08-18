@@ -7,24 +7,24 @@ import { MdView } from "@/components/md-view";
 import { useLocale, t, type LText } from "@/lib/i18n";
 
 const L: Record<string, LText> = {
-  back: { th: "CE-KMITL", en: "CE-KMITL" },
+  back: { th: "EN-KMITL", en: "EN-KMITL" },
   takeQuiz: { th: "ทำแบบทดสอบ", en: "Take the quiz" },
 };
 
-export function CeKmitlSummaryReader({ markdown }: { markdown: string }) {
+export function EnKmitlSummaryReader({ markdown }: { markdown: string }) {
   const { locale } = useLocale();
   return (
     <main className="mx-auto max-w-3xl px-3 sm:px-6 py-5 sm:py-8 w-full">
       <div className="mb-4 sm:mb-6 flex items-center justify-between text-xs sm:text-sm">
         <Link
-          href="/ce-kmitl"
+          href="/en-kmitl"
           className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors font-medium"
         >
           <ArrowLeft className="size-3.5 sm:size-4" />
           {t(L.back, locale)}
         </Link>
         <Button asChild size="sm" variant="outline" className="gap-1.5">
-          <Link href="/ce-kmitl/quiz">
+          <Link href="/en-kmitl/quiz">
             <BrainCircuit className="size-3.5" />
             {t(L.takeQuiz, locale)}
           </Link>

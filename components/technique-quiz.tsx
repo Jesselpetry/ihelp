@@ -32,11 +32,13 @@ const L: Record<string, LText> = {
   hideExplain: { th: "ซ่อนคำอธิบาย", en: "Hide explanation" },
   showExplain: { th: "แสดงคำอธิบาย", en: "Show explanation" },
   keyHint: {
-    th: "กด 1-4 เพื่อเลือกตัวเลือก, Enter เพื่อตรวจ/ไปต่อ",
-    en: "Press 1-4 to select, Enter to check/continue",
+    th: "กด 1-9 เพื่อเลือกตัวเลือก, Enter เพื่อตรวจ/ไปต่อ",
+    en: "Press 1-9 to select, Enter to check/continue",
   },
   wasCorrect: { th: "ตอบถูก", en: "Correct" },
   wasWrong: { th: "ตอบผิด", en: "Missed" },
+  finishNow: { th: "จบแบบทดสอบตอนนี้", en: "Finish now" },
+  answeredCount: { th: "ตอบแล้ว", en: "Answered" },
 };
 
 interface TechniqueQuizProps {
@@ -69,8 +71,9 @@ export function TechniqueQuiz({
   const [done, setDone] = useState(false);
   const [expandedReview, setExpandedReview] = useState<string | null>(null);
 
-  const question = questions[index];
+const question = questions[index];
   const isLast = index === questions.length - 1;
+  const answeredCount = Object.keys(answers).length;
 
   const score = useMemo(
     () => Object.values(answers).filter((a) => a.correct).length,
@@ -89,21 +92,31 @@ export function TechniqueQuiz({
     setChecked(true);
   }
 
+  // Jump to any question by index — restores its prior answer if already
+  // answered, otherwise opens it fresh. Lets students revisit anything
+  // instead of only stepping forward one at a time.
+  function goToIndex(i: number) {
+    if (i < 0 || i >= questions.length) return;
+    const target = questions[i];
+    const prior = answers[target.id];
+    setIndex(i);
+    setSelectedId(prior?.selectedId ?? null);
+    setChecked(Boolean(prior));
+  }
+
   function handleNext() {
     if (!checked) return;
     if (isLast) {
       finishQuiz();
       return;
     }
-    setIndex((i) => i + 1);
-    setSelectedId(null);
-    setChecked(false);
+    goToIndex(index + 1);
   }
 
   function finishQuiz() {
-    // `answers` is already up to date here: handleNext (the only caller) is
-    // only reachable once `checked` is true, which means handleCheck already
-    // wrote this question's result into `answers` via setAnswers.
+    // Any question with no entry in `answers` (never opened, or opened but
+    // never checked) counts as missed — lets a student finish early via the
+    // navigator without answering every question.
     const missed = questions.filter((q) => !answers[q.id]?.correct).map((q) => q.id);
     recordQuizAttempt(problemId, {
       score: Object.values(answers).filter((a) => a.correct).length,
@@ -122,11 +135,11 @@ export function TechniqueQuiz({
     setExpandedReview(null);
   }
 
-  // Keyboard support: 1-4 selects an option, Enter checks/advances.
+  // Keyboard support: 1-9 selects an option, Enter checks/advances.
   useEffect(() => {
     if (done) return;
     function onKeyDown(e: KeyboardEvent) {
-      if (e.key >= "1" && e.key <= "4") {
+      if (e.key >= "1" && e.key <= "9") {
         const idx = parseInt(e.key, 10) - 1;
         const opt = question?.options[idx];
         if (opt) selectOption(opt.id);
@@ -227,7 +240,7 @@ export function TechniqueQuiz({
 
   if (!question) return null;
 
-  const progressPercent = ((index + (checked ? 1 : 0)) / questions.length) * 100;
+  const progressPercent = (answeredCount / questions.length) * 100;
 
   return (
     <div className="space-y-4">
@@ -245,6 +258,49 @@ export function TechniqueQuiz({
           className="h-full bg-primary transition-all duration-300"
           style={{ width: `${progressPercent}%` }}
         />
+      </div>
+
+      {/* Navigator: jump to any question, see answered/correct/wrong at a glance */}
+      <div className="flex items-center justify-between text-[11px] text-muted-foreground">
+        <span>
+          {t(L.answeredCount, locale)}: {answeredCount} / {questions.length}
+        </span>
+        {answeredCount > 0 && (
+          <button
+            type="button"
+            onClick={finishQuiz}
+            className="font-medium text-primary hover:underline"
+          >
+            {t(L.finishNow, locale)}
+          </button>
+        )}
+      </div>
+      <div className="flex flex-wrap gap-1.5">
+        {questions.map((q, i) => {
+          const answer = answers[q.id];
+          const isCurrent = i === index;
+          let cellClass =
+            "border-border bg-background text-muted-foreground hover:border-primary/50";
+          if (answer) {
+            cellClass = answer.correct
+              ? "border-primary/60 bg-primary/10 text-primary"
+              : "border-destructive/50 bg-destructive/10 text-destructive";
+          }
+          if (isCurrent) {
+            cellClass += " ring-2 ring-primary ring-offset-1 ring-offset-background";
+          }
+          return (
+            <button
+              key={q.id}
+              type="button"
+              onClick={() => goToIndex(i)}
+              className={`flex size-7 shrink-0 items-center justify-center rounded-lg border font-mono text-[11px] font-semibold transition-colors ${cellClass}`}
+              title={`${t(L.questionOf, locale)} ${i + 1}`}
+            >
+              {i + 1}
+            </button>
+          );
+        })}
       </div>
 
       {/* Prompt */}

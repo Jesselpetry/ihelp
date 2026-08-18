@@ -20,6 +20,7 @@ export interface QuizQuestion {
   options: QuizOption[]; // exactly 4
   correctId: string;
   sourceRef: string; // REQUIRED — e.g. "problem.md §5.2" or "main.py:7-14"
+  chapter?: number; // optional syllabus grouping, e.g. 1..5 for EN-KMITL chapters
 }
 
 export const QUIZ_PROGRESS_KEY = "ihelp-quiz-progress-v1";

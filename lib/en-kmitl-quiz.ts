@@ -1,11 +1,28 @@
+import type { LText } from "@/lib/i18n";
 import type { QuizQuestion } from "@/lib/quiz";
+import { EN_KMITL_MOCK_EXAM } from "@/lib/en-kmitl-mock-exam";
 
-// CE-KMITL 01006012 midterm self-test bank.
+// EN-KMITL 01006012 midterm self-test bank.
 // Not an OJ problem — uses a fixed pseudo problem-id so progress tracking
 // (keyed by number in lib/quiz.ts) doesn't collide with real OJ ids (all 4-digit).
-export const CE_KMITL_QUIZ_ID = 900001;
+export const EN_KMITL_QUIZ_ID = 900001;
 
-export const CE_KMITL_QUIZ: QuizQuestion[] = [
+export interface EnKmitlChapter {
+  chapter: number;
+  title: LText;
+}
+
+// Mirrors the ## headings in สรุปคอมโปร-Midterm.md — used to group quiz
+// questions by chapter on the pre-quiz syllabus screen.
+export const EN_KMITL_CHAPTERS: EnKmitlChapter[] = [
+  { chapter: 1, title: { th: "ความรู้พื้นฐานเกี่ยวกับคอมพิวเตอร์", en: "Computer Fundamentals" } },
+  { chapter: 2, title: { th: "ตัวแปร นิพจน์ คำสั่งรับข้อมูลและแสดงผล", en: "Variables, Expressions, I/O" } },
+  { chapter: 3, title: { th: "การเขียนโปรแกรมแบบมีเงื่อนไข", en: "Conditional Execution" } },
+  { chapter: 4, title: { th: "การเขียนโปรแกรมแบบวนซ้ำ (while)", en: "while Loops" } },
+  { chapter: 5, title: { th: "การเขียนโปรแกรมแบบวนซ้ำ (for)", en: "for Loops" } },
+];
+
+export const EN_KMITL_CURATED_QUIZ: QuizQuestion[] = [
   {
     id: "ce-q1",
     kind: "mcq",
@@ -37,6 +54,7 @@ export const CE_KMITL_QUIZ: QuizQuestion[] = [
     ],
     correctId: "a",
     sourceRef: "สรุปคอมโปร-Midterm.md §2.6",
+    chapter: 2,
   },
   {
     id: "ce-q2",
@@ -69,6 +87,7 @@ export const CE_KMITL_QUIZ: QuizQuestion[] = [
     ],
     correctId: "a",
     sourceRef: "สรุปคอมโปร-Midterm.md §3.1",
+    chapter: 3,
   },
   {
     id: "ce-q3",
@@ -102,6 +121,7 @@ export const CE_KMITL_QUIZ: QuizQuestion[] = [
     ],
     correctId: "a",
     sourceRef: "สรุปคอมโปร-Midterm.md §2.7",
+    chapter: 2,
   },
   {
     id: "ce-q4",
@@ -135,6 +155,7 @@ export const CE_KMITL_QUIZ: QuizQuestion[] = [
     ],
     correctId: "a",
     sourceRef: "สรุปคอมโปร-Midterm.md §4.2",
+    chapter: 4,
   },
   {
     id: "ce-q5",
@@ -168,6 +189,7 @@ export const CE_KMITL_QUIZ: QuizQuestion[] = [
     ],
     correctId: "a",
     sourceRef: "สรุปคอมโปร-Midterm.md §4.4",
+    chapter: 4,
   },
   {
     id: "ce-q6",
@@ -200,6 +222,7 @@ export const CE_KMITL_QUIZ: QuizQuestion[] = [
     ],
     correctId: "a",
     sourceRef: "สรุปคอมโปร-Midterm.md §5.3 (7)",
+    chapter: 5,
   },
   {
     id: "ce-q7",
@@ -233,6 +256,7 @@ export const CE_KMITL_QUIZ: QuizQuestion[] = [
     ],
     correctId: "a",
     sourceRef: "สรุปคอมโปร-Midterm.md §5.2",
+    chapter: 5,
   },
   {
     id: "ce-q8",
@@ -266,6 +290,7 @@ export const CE_KMITL_QUIZ: QuizQuestion[] = [
     ],
     correctId: "a",
     sourceRef: "สรุปคอมโปร-Midterm.md §3.6",
+    chapter: 3,
   },
   {
     id: "ce-q9",
@@ -299,6 +324,7 @@ export const CE_KMITL_QUIZ: QuizQuestion[] = [
     ],
     correctId: "a",
     sourceRef: "สรุปคอมโปร-Midterm.md §3.7",
+    chapter: 3,
   },
   {
     id: "ce-q10",
@@ -331,5 +357,14 @@ export const CE_KMITL_QUIZ: QuizQuestion[] = [
     ],
     correctId: "a",
     sourceRef: "สรุปคอมโปร-Midterm.md §4.5",
+    chapter: 4,
   },
+];
+
+// Full self-test bank: 10 hand-curated concept questions plus all 60
+// questions from the mock exam, so the quiz/syllabus reflect everything
+// available rather than only the curated subset.
+export const EN_KMITL_QUIZ: QuizQuestion[] = [
+  ...EN_KMITL_CURATED_QUIZ,
+  ...EN_KMITL_MOCK_EXAM,
 ];
