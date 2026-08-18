@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import {
   BookOpen,
   ExternalLink,
+  GraduationCap,
   History,
   Menu,
   Sparkles,
@@ -26,6 +27,11 @@ const NAV_LINKS: { href: string; label: LText; icon: typeof BookOpen }[] = [
     href: "/library",
     label: { th: "ห้องสมุด", en: "Library" },
     icon: BookOpen,
+  },
+  {
+    href: "/ce-kmitl",
+    label: { th: "CE-KMITL", en: "CE-KMITL" },
+    icon: GraduationCap,
   },
   { href: "/history", label: { th: "ประวัติ", en: "History" }, icon: History },
   { href: "/version", label: { th: "เวอร์ชัน", en: "Version" }, icon: Tag },
