@@ -1,10 +1,12 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, TableOfContents } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { MdView } from "@/components/md-view";
+import { TocSidePanel } from "@/components/toc-side-panel";
+import { extractToc } from "@/lib/toc";
 import { useLocale, t, type LText } from "@/lib/i18n";
 import type { LibraryDoc } from "@/lib/library";
 
@@ -46,6 +48,7 @@ export function LibraryReader({
   // Follow the UI locale, falling back to whichever variant exists.
   const content = locale === "th" ? (th ?? en) : (en ?? th);
   const missingVariant = locale === "th" ? !th : !en;
+  const tocItems = useMemo(() => extractToc(content ?? ""), [content]);
 
   // New chapter = start reading from the top, like turning a page.
   useEffect(() => {
@@ -53,7 +56,7 @@ export function LibraryReader({
   }, [index]);
 
   return (
-    <main className="max-w-3xl mx-auto px-6 py-8 w-full">
+    <main className="max-w-6xl xl:max-w-7xl mx-auto px-4 sm:px-6 py-8 w-full">
       <div className="mb-4 flex items-center justify-between text-sm">
         <Link
           href="/library"
@@ -75,23 +78,28 @@ export function LibraryReader({
         />
       </div>
 
-      <article className="bg-card rounded-2xl border shadow-sm px-6 sm:px-10 py-10">
-        <p className="text-xs font-semibold text-primary uppercase tracking-widest mb-1">
-          {t(sectionTitle, locale)}
-        </p>
-        {missingVariant && (
-          <p className="text-xs text-muted-foreground mb-2">
-            {th ? L.onlyVariant.en : L.onlyVariant.th}
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_290px] xl:grid-cols-[1fr_330px] gap-6 xl:gap-8 items-start">
+        <article className="min-w-0 bg-card rounded-3xl border shadow-sm px-6 sm:px-10 py-10">
+          <p className="text-xs font-semibold text-primary uppercase tracking-widest mb-1">
+            {t(sectionTitle, locale)}
           </p>
-        )}
-        {content && !/^#\s/.test(content.trimStart()) && (
-          <h1 className="tracking-tight text-3xl font-bold mt-2 mb-6 leading-snug">{title}</h1>
-        )}
-        <MdView markdown={content ?? ""} />
-        <p className="mt-10 text-center tracking-tight text-sm text-muted-foreground select-none">
-          — {index + 1} —
-        </p>
-      </article>
+          {missingVariant && (
+            <p className="text-xs text-muted-foreground mb-2">
+              {th ? L.onlyVariant.en : L.onlyVariant.th}
+            </p>
+          )}
+          {content && !/^#\s/.test(content.trimStart()) && (
+            <h1 className="tracking-tight text-3xl font-bold mt-2 mb-6 leading-snug">{title}</h1>
+          )}
+          <MdView markdown={content ?? ""} />
+          <p className="mt-10 text-center tracking-tight text-sm text-muted-foreground select-none">
+            — {index + 1} —
+          </p>
+        </article>
+
+        <TocSidePanel items={tocItems} />
+      </div>
+
 
       <div className="mt-6 flex items-stretch justify-between gap-3">
         {prev ? (

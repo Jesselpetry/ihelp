@@ -6,24 +6,64 @@ import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import "katex/dist/katex.min.css";
+import { slugifyHeading } from "@/lib/toc";
+
+function getNodeText(node: React.ReactNode): string {
+  if (typeof node === "string") return node;
+  if (typeof node === "number") return String(node);
+  if (Array.isArray(node)) return node.map(getNodeText).join("");
+  if (node && typeof node === "object" && "props" in node) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return getNodeText((node as any).props?.children);
+  }
+  return "";
+}
 
 // Shared clean markdown renderer (library reader + wizard preview).
 // Roomy leading, clean tables — all inline component styling since the
 // typography plugin is not installed. Headings stay on the app sans
 // (IBM Plex Sans Thai); the default serif stack has no Thai glyphs.
 const mdComponents: Components = {
-  h1: ({ node: _node, ref: _ref, ...p }) => (
-    <h1 className="tracking-tight text-3xl font-bold mt-2 mb-6 leading-snug" {...p} />
-  ),
-  h2: ({ node: _node, ref: _ref, ...p }) => (
-    <h2
-      className="tracking-tight text-xl font-bold mt-10 mb-3 pb-1.5 border-b leading-snug"
-      {...p}
-    />
-  ),
-  h3: ({ node: _node, ref: _ref, ...p }) => (
-    <h3 className="tracking-tight text-lg font-semibold mt-7 mb-2" {...p} />
-  ),
+  h1: ({ node: _node, ref: _ref, children, ...p }) => {
+    const text = getNodeText(children);
+    const id = slugifyHeading(text);
+    return (
+      <h1
+        id={id || undefined}
+        className="tracking-tight text-3xl font-bold mt-2 mb-6 leading-snug scroll-mt-24"
+        {...p}
+      >
+        {children}
+      </h1>
+    );
+  },
+  h2: ({ node: _node, ref: _ref, children, ...p }) => {
+    const text = getNodeText(children);
+    const id = slugifyHeading(text);
+    return (
+      <h2
+        id={id || undefined}
+        className="tracking-tight text-xl font-bold mt-10 mb-3 pb-1.5 border-b leading-snug scroll-mt-24"
+        {...p}
+      >
+        {children}
+      </h2>
+    );
+  },
+  h3: ({ node: _node, ref: _ref, children, ...p }) => {
+    const text = getNodeText(children);
+    const id = slugifyHeading(text);
+    return (
+      <h3
+        id={id || undefined}
+        className="tracking-tight text-lg font-semibold mt-7 mb-2 scroll-mt-24"
+        {...p}
+      >
+        {children}
+      </h3>
+    );
+  },
+
   p: ({ node: _node, ref: _ref, ...p }) => (
     <p className="my-3 leading-relaxed" {...p} />
   ),
