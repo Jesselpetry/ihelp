@@ -102,10 +102,23 @@ const mdComponents: Components = {
 
 export function MdView({ markdown }: { markdown: string }) {
   return (
-    <div className="text-[15px] text-foreground/90">
+    <div className="text-[15px] text-foreground/90 overflow-hidden">
       <ReactMarkdown
-        remarkPlugins={[remarkGfm, remarkMath]}
-        rehypePlugins={[rehypeKatex]}
+        remarkPlugins={[
+          remarkGfm,
+          [remarkMath, { singleDollarTextMath: true }],
+        ]}
+        rehypePlugins={[
+          [
+            rehypeKatex,
+            {
+              output: "htmlAndMathml",
+              strict: false,
+              throwOnError: false,
+              trust: true,
+            },
+          ],
+        ]}
         components={mdComponents}
       >
         {markdown}
@@ -113,3 +126,4 @@ export function MdView({ markdown }: { markdown: string }) {
     </div>
   );
 }
+

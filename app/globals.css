@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@import "katex/dist/katex.min.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -221,4 +222,27 @@ html[data-theme-transition]::view-transition-new(root) {
 
 .animate-shimmer {
   animation: shimmer 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* KaTeX enhancements for clean responsive math & Thai font support */
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.5rem 0;
+  margin: 0.75rem 0;
+  max-width: 100%;
+}
+
+.katex-display > .katex {
+  white-space: normal;
+  text-align: center;
+}
+
+.katex {
+  font-size: 1.05em;
+  text-rendering: auto;
+}
+
+.katex .text {
+  font-family: var(--font-sans), system-ui, sans-serif !important;
 }

@@ -35,3 +35,24 @@ export function loadEnKmitl(): EnKmitlData {
     mockExamMd: fs.existsSync(mockExamPath) ? fs.readFileSync(mockExamPath, "utf-8") : null,
   };
 }
+
+// ── Chemistry ────────────────────────────────────────────────────────────────
+// Chemistry data lives in data/en-kmitl/chem/ (or ENV override CHEM_PATH).
+export function getChemDir(): string {
+  if (process.env.CHEM_PATH && fs.existsSync(process.env.CHEM_PATH)) {
+    return process.env.CHEM_PATH;
+  }
+  return path.join(ROOT, "data", "en-kmitl", "chem");
+}
+
+export interface ChemData {
+  summaryMd: string | null;
+}
+
+export function loadChem(): ChemData {
+  const dir = getChemDir();
+  const summaryPath = path.join(dir, "summarize.md");
+  return {
+    summaryMd: fs.existsSync(summaryPath) ? fs.readFileSync(summaryPath, "utf-8") : null,
+  };
+}
