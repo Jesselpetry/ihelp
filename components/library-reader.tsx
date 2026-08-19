@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+
 import { ArrowLeft, ArrowRight, TableOfContents } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { MdView } from "@/components/md-view";
@@ -44,6 +45,7 @@ export function LibraryReader({
   next,
 }: ReaderProps) {
   const { locale } = useLocale();
+  const [isTocCollapsed, setIsTocCollapsed] = useState<boolean>(false);
 
   // Follow the UI locale, falling back to whichever variant exists.
   const content = locale === "th" ? (th ?? en) : (en ?? th);
@@ -78,7 +80,19 @@ export function LibraryReader({
         />
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-[1fr_290px] xl:grid-cols-[1fr_330px] gap-6 xl:gap-8 items-start">
+      <div
+        className={`grid grid-cols-1 ${
+          isTocCollapsed
+            ? "lg:grid-cols-[56px_1fr]"
+            : "lg:grid-cols-[290px_1fr] xl:grid-cols-[330px_1fr]"
+        } gap-6 xl:gap-8 items-start transition-all duration-300`}
+      >
+        <TocSidePanel
+          items={tocItems}
+          isCollapsed={isTocCollapsed}
+          onToggleCollapse={() => setIsTocCollapsed(!isTocCollapsed)}
+        />
+
         <article className="min-w-0 bg-card rounded-3xl border shadow-sm px-6 sm:px-10 py-10">
           <p className="text-xs font-semibold text-primary uppercase tracking-widest mb-1">
             {t(sectionTitle, locale)}
@@ -96,9 +110,8 @@ export function LibraryReader({
             — {index + 1} —
           </p>
         </article>
-
-        <TocSidePanel items={tocItems} />
       </div>
+
 
 
       <div className="mt-6 flex items-stretch justify-between gap-3">

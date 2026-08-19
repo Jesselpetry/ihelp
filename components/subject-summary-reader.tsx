@@ -1,7 +1,8 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import Link from "next/link";
+
 import { ArrowLeft, BrainCircuit } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { MdView } from "@/components/md-view";
@@ -30,6 +31,7 @@ export function SubjectSummaryReader({
   quizLabel = DEFAULT_QUIZ_LABEL,
 }: SubjectSummaryReaderProps) {
   const { locale } = useLocale();
+  const [isTocCollapsed, setIsTocCollapsed] = useState<boolean>(false);
   const tocItems = useMemo(() => extractToc(markdown), [markdown]);
 
   return (
@@ -51,18 +53,29 @@ export function SubjectSummaryReader({
         </Button>
       </div>
 
-      {/* Main Grid: Content (left) + Side Panel (right) */}
-      <div className="grid grid-cols-1 lg:grid-cols-[1fr_290px] xl:grid-cols-[1fr_330px] gap-6 xl:gap-8 items-start">
+      {/* Main Grid: Side Panel (left) + Content (right) */}
+      <div
+        className={`grid grid-cols-1 ${
+          isTocCollapsed
+            ? "lg:grid-cols-[56px_1fr]"
+            : "lg:grid-cols-[290px_1fr] xl:grid-cols-[330px_1fr]"
+        } gap-6 xl:gap-8 items-start transition-all duration-300`}
+      >
+        {/* Outline Side Panel on the LEFT (foldable & scrollable) */}
+        <TocSidePanel
+          items={tocItems}
+          isCollapsed={isTocCollapsed}
+          onToggleCollapse={() => setIsTocCollapsed(!isTocCollapsed)}
+        />
+
         <article className="min-w-0 overflow-hidden rounded-3xl border bg-card p-4 sm:p-7 xl:p-8 shadow-sm">
           <div className="prose prose-xs sm:prose-sm dark:prose-invert max-w-none">
             <MdView markdown={markdown} />
           </div>
         </article>
-
-        {/* Outline Side Panel (sticky on desktop, floating drawer on mobile) */}
-        <TocSidePanel items={tocItems} />
       </div>
     </main>
   );
 }
+
 

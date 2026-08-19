@@ -6,11 +6,11 @@ import {
   ChevronUp,
   Search,
   Hash,
-  Menu,
   X,
   ListTree,
-  Sparkles,
   ArrowUp,
+  PanelLeftClose,
+  PanelLeftOpen,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -20,11 +20,13 @@ import type { TocItem } from "@/lib/toc";
 interface TocSidePanelProps {
   items: TocItem[];
   title?: LText;
+  isCollapsed?: boolean;
+  onToggleCollapse?: () => void;
   className?: string;
 }
 
 const L: Record<string, LText> = {
-  onThisPage: { th: "ในหน้านี้", en: "On this page" },
+  onThisPage: { th: "สารบัญ", en: "Outline" },
   outline: { th: "สารบัญเนื้อหา", en: "Table of Contents" },
   searchPlaceholder: { th: "ค้นหาหัวข้อ...", en: "Filter outline..." },
   noMatch: { th: "ไม่พบหัวข้อที่ค้นหา", en: "No matching headings" },
@@ -33,15 +35,29 @@ const L: Record<string, LText> = {
   read: { th: "อ่านแล้ว", en: "read" },
   sections: { th: "หัวข้อ", en: "sections" },
   close: { th: "ปิด", en: "Close" },
-  currentSection: { th: "กำลังอ่าน", en: "Current section" },
+  collapse: { th: "พับแถบสารบัญ", en: "Collapse sidebar" },
+  expand: { th: "เปิดแถบสารบัญ", en: "Expand sidebar" },
 };
 
 export function TocSidePanel({
   items,
   title = L.onThisPage,
+  isCollapsed: controlledCollapsed,
+  onToggleCollapse,
   className = "",
 }: TocSidePanelProps) {
   const { locale } = useLocale();
+  const [internalCollapsed, setInternalCollapsed] = useState<boolean>(false);
+  const isCollapsed = controlledCollapsed !== undefined ? controlledCollapsed : internalCollapsed;
+
+  const toggleCollapse = () => {
+    if (onToggleCollapse) {
+      onToggleCollapse();
+    } else {
+      setInternalCollapsed((prev) => !prev);
+    }
+  };
+
   const [activeId, setActiveId] = useState<string>("");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [scrollProgress, setScrollProgress] = useState<number>(0);
@@ -66,7 +82,7 @@ export function TocSidePanel({
     if (typeof window === "undefined" || items.length === 0) return;
 
     const handleScroll = () => {
-      // 1. Calculate reading progress
+      // 1. Reading progress
       const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
       const currentScroll = window.scrollY;
       const progress = totalScroll > 0 ? Math.min(100, Math.max(0, (currentScroll / totalScroll) * 100)) : 0;
@@ -82,8 +98,7 @@ export function TocSidePanel({
 
       if (headingElements.length === 0) return;
 
-      // Find heading closest to top of viewport with offset
-      const topOffset = 160;
+      const topOffset = 180;
       let currentActiveId = headingElements[0].id;
 
       for (const h of headingElements) {
@@ -104,17 +119,17 @@ export function TocSidePanel({
     return () => window.removeEventListener("scroll", handleScroll);
   }, [items]);
 
-  // Auto-scroll sidebar to keep active item in view
+  // Auto-scroll sidebar to keep active item in view (when expanded)
   useEffect(() => {
-    if (activeLinkRef.current && scrollContainerRef.current) {
+    if (!isCollapsed && activeLinkRef.current && scrollContainerRef.current) {
       const container = scrollContainerRef.current;
       const activeEl = activeLinkRef.current;
       const containerRect = container.getBoundingClientRect();
       const activeRect = activeEl.getBoundingClientRect();
 
       if (
-        activeRect.top < containerRect.top + 40 ||
-        activeRect.bottom > containerRect.bottom - 40
+        activeRect.top < containerRect.top + 50 ||
+        activeRect.bottom > containerRect.bottom - 50
       ) {
         activeEl.scrollIntoView({
           behavior: "smooth",
@@ -122,7 +137,7 @@ export function TocSidePanel({
         });
       }
     }
-  }, [activeId]);
+  }, [activeId, isCollapsed]);
 
   const scrollToHeading = (id: string) => {
     setIsMobileOpen(false);
@@ -143,134 +158,188 @@ export function TocSidePanel({
 
   return (
     <>
-      {/* ── Desktop Sticky Sidebar ────────────────────────────────────────── */}
-      <aside
-        className={`hidden lg:block w-72 xl:w-80 shrink-0 sticky top-20 max-h-[calc(100vh-6rem)] rounded-3xl border bg-card/75 backdrop-blur-md p-4 shadow-sm flex flex-col ${className}`}
-        aria-label="Table of contents"
-      >
-        {/* Header with Title & Progress Pill */}
-        <div className="pb-3 border-b shrink-0 space-y-2.5">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-              <ListTree className="size-3.5 text-primary" />
-              <span>{title[locale]}</span>
-            </div>
-            <Badge
-              variant="outline"
-              className="text-[10px] px-2 py-0.5 rounded-full font-mono bg-primary/5 text-primary border-primary/20"
+      {/* ── Desktop Sticky Sidebar (Left Column) ──────────────────────────── */}
+      {isCollapsed ? (
+        /* Folded Mini Rail */
+        <aside
+          className={`hidden lg:flex flex-col items-center justify-between w-14 shrink-0 sticky top-20 h-[calc(100vh-6rem)] rounded-3xl border bg-card/80 backdrop-blur-md py-4 px-2 shadow-xs transition-all duration-300 ${className}`}
+          aria-label="Table of contents collapsed"
+        >
+          <div className="flex flex-col items-center gap-3">
+            <button
+              type="button"
+              onClick={toggleCollapse}
+              title={L.expand[locale]}
+              className="flex size-9 items-center justify-center rounded-xl bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
             >
-              {scrollProgress}% {L.read[locale]}
-            </Badge>
+              <PanelLeftOpen className="size-4" />
+            </button>
+
+            <span className="text-[10px] font-mono font-semibold text-primary">
+              {scrollProgress}%
+            </span>
+
+            {/* Vertical mini progress bar */}
+            <div className="w-1.5 h-28 rounded-full bg-muted overflow-hidden flex flex-col justify-end">
+              <div
+                className="w-full bg-primary transition-all duration-150"
+                style={{ height: `${scrollProgress}%` }}
+              />
+            </div>
           </div>
 
-          {/* Reading progress bar */}
-          <div className="h-1.5 w-full overflow-hidden rounded-full bg-muted">
-            <div
-              className="h-full bg-gradient-to-r from-primary/80 to-primary transition-all duration-150 ease-out"
-              style={{ width: `${scrollProgress}%` }}
-            />
+          <div className="flex flex-col items-center gap-2">
+            <button
+              type="button"
+              onClick={scrollToTop}
+              title={L.backToTop[locale]}
+              className="flex size-8 items-center justify-center rounded-lg text-muted-foreground hover:text-primary hover:bg-muted/60 transition-colors"
+            >
+              <ChevronUp className="size-4" />
+            </button>
+          </div>
+        </aside>
+      ) : (
+        /* Expanded Full Sidebar */
+        <aside
+          className={`hidden lg:flex flex-col w-72 xl:w-80 shrink-0 sticky top-20 h-[calc(100vh-6rem)] max-h-[calc(100vh-6rem)] rounded-3xl border bg-card/80 backdrop-blur-md p-4 shadow-xs transition-all duration-300 ${className}`}
+          aria-label="Table of contents"
+        >
+          {/* Header with Title, Progress Pill & Collapse Button */}
+          <div className="pb-3 border-b shrink-0 space-y-2.5">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                <ListTree className="size-3.5 text-primary" />
+                <span>{title[locale]}</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <Badge
+                  variant="outline"
+                  className="text-[10px] px-2 py-0.5 rounded-full font-mono bg-primary/5 text-primary border-primary/20"
+                >
+                  {scrollProgress}% {L.read[locale]}
+                </Badge>
+                <button
+                  type="button"
+                  onClick={toggleCollapse}
+                  title={L.collapse[locale]}
+                  className="p-1 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+                >
+                  <PanelLeftClose className="size-4" />
+                </button>
+              </div>
+            </div>
+
+            {/* Reading progress bar */}
+            <div className="h-1.5 w-full overflow-hidden rounded-full bg-muted">
+              <div
+                className="h-full bg-gradient-to-r from-primary/80 to-primary transition-all duration-150 ease-out"
+                style={{ width: `${scrollProgress}%` }}
+              />
+            </div>
+
+            {/* Search filter input */}
+            <div className="relative">
+              <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 size-3.5 text-muted-foreground" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder={L.searchPlaceholder[locale]}
+                className="w-full rounded-xl border bg-background/60 pl-8 pr-7 py-1.5 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary/50 transition-all"
+              />
+              {searchQuery && (
+                <button
+                  type="button"
+                  onClick={() => setSearchQuery("")}
+                  aria-label="Clear search"
+                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                >
+                  <X className="size-3" />
+                </button>
+              )}
+            </div>
           </div>
 
-          {/* Search filter input */}
-          <div className="relative">
-            <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 size-3.5 text-muted-foreground" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder={L.searchPlaceholder[locale]}
-              className="w-full rounded-xl border bg-background/50 pl-8 pr-7 py-1.5 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary/50 transition-all"
-            />
-            {searchQuery && (
-              <button
-                type="button"
-                onClick={() => setSearchQuery("")}
-                aria-label="Clear search"
-                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
-              >
-                <X className="size-3" />
-              </button>
+          {/* Independent Scrollable Outline Items List */}
+          <div
+            ref={scrollContainerRef}
+            className="overflow-y-auto overscroll-contain flex-1 min-h-0 py-2.5 pr-1 space-y-0.5"
+            style={{ scrollbarWidth: "thin" }}
+          >
+            {filteredItems.length === 0 ? (
+              <p className="py-8 text-center text-xs text-muted-foreground">
+                {L.noMatch[locale]}
+              </p>
+            ) : (
+              filteredItems.map((item) => {
+                const isActive = activeId === item.id;
+                const isH1 = item.level === 1;
+                const isH2 = item.level === 2;
+                const isH3 = item.level === 3;
+
+                return (
+                  <button
+                    key={item.id}
+                    ref={isActive ? activeLinkRef : null}
+                    type="button"
+                    onClick={() => scrollToHeading(item.id)}
+                    className={`group relative w-full text-left transition-all rounded-xl py-1.5 px-2.5 flex items-start gap-2 ${
+                      isH1 ? "font-semibold text-xs mt-2 first:mt-0" : ""
+                    } ${isH2 ? "text-xs pl-3 font-medium" : ""} ${
+                      isH3 ? "text-[11px] pl-5 text-muted-foreground" : ""
+                    } ${
+                      isActive
+                        ? "bg-primary/10 text-primary font-semibold shadow-2xs"
+                        : "text-foreground/75 hover:bg-muted/60 hover:text-foreground"
+                    }`}
+                  >
+                    {/* Left Active Indicator Bar */}
+                    {isActive && (
+                      <span className="absolute left-0 top-1.5 bottom-1.5 w-1 rounded-r-full bg-primary" />
+                    )}
+
+                    <span className="shrink-0 mt-0.5 opacity-60 group-hover:opacity-100 transition-opacity">
+                      {isH1 ? (
+                        <BookOpen className="size-3 text-primary" />
+                      ) : isH2 ? (
+                        <Hash className="size-2.5" />
+                      ) : (
+                        <span className="inline-block size-1 rounded-full bg-current opacity-60" />
+                      )}
+                    </span>
+
+                    <span className="line-clamp-2 leading-snug break-words">
+                      {item.text}
+                    </span>
+                  </button>
+                );
+              })
             )}
           </div>
-        </div>
 
-        {/* Outline Items List */}
-        <div
-          ref={scrollContainerRef}
-          className="overflow-y-auto flex-1 py-2 pr-1 space-y-0.5 scrollbar-thin scrollbar-thumb-muted-foreground/20 hover:scrollbar-thumb-muted-foreground/40"
-        >
-          {filteredItems.length === 0 ? (
-            <p className="py-6 text-center text-xs text-muted-foreground">
-              {L.noMatch[locale]}
-            </p>
-          ) : (
-            filteredItems.map((item) => {
-              const isActive = activeId === item.id;
-              const isH1 = item.level === 1;
-              const isH2 = item.level === 2;
-              const isH3 = item.level === 3;
-
-              return (
-                <button
-                  key={item.id}
-                  ref={isActive ? activeLinkRef : null}
-                  type="button"
-                  onClick={() => scrollToHeading(item.id)}
-                  className={`group relative w-full text-left transition-all rounded-xl py-1.5 px-2.5 flex items-start gap-2 ${
-                    isH1 ? "font-semibold text-xs mt-2 first:mt-0" : ""
-                  } ${isH2 ? "text-xs pl-3 font-medium" : ""} ${
-                    isH3 ? "text-[11px] pl-6 text-muted-foreground" : ""
-                  } ${
-                    isActive
-                      ? "bg-primary/10 text-primary font-semibold shadow-xs"
-                      : "text-foreground/75 hover:bg-muted/60 hover:text-foreground"
-                  }`}
-                >
-                  {/* Left Active Indicator Bar */}
-                  {isActive && (
-                    <span className="absolute left-0 top-1.5 bottom-1.5 w-1 rounded-r-full bg-primary" />
-                  )}
-
-                  <span className="shrink-0 mt-0.5 opacity-60 group-hover:opacity-100 transition-opacity">
-                    {isH1 ? (
-                      <BookOpen className="size-3 text-primary" />
-                    ) : isH2 ? (
-                      <Hash className="size-2.5" />
-                    ) : (
-                      <span className="inline-block size-1 rounded-full bg-current opacity-60" />
-                    )}
-                  </span>
-
-                  <span className="line-clamp-2 leading-snug break-words">
-                    {item.text}
-                  </span>
-                </button>
-              );
-            })
-          )}
-        </div>
-
-        {/* Footer: Quick jump actions */}
-        <div className="pt-2 border-t shrink-0 flex items-center justify-between text-xs text-muted-foreground">
-          <span className="text-[10px]">
-            {items.length} {L.sections[locale]}
-          </span>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={scrollToTop}
-            className="h-7 px-2 text-xs gap-1 text-muted-foreground hover:text-primary rounded-lg"
-          >
-            <ChevronUp className="size-3.5" />
-            {L.backToTop[locale]}
-          </Button>
-        </div>
-      </aside>
+          {/* Footer: Quick jump actions */}
+          <div className="pt-2.5 border-t shrink-0 flex items-center justify-between text-xs text-muted-foreground">
+            <span className="text-[10px] font-mono">
+              {items.length} {L.sections[locale]}
+            </span>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={scrollToTop}
+              className="h-7 px-2 text-xs gap-1 text-muted-foreground hover:text-primary rounded-lg"
+            >
+              <ChevronUp className="size-3.5" />
+              {L.backToTop[locale]}
+            </Button>
+          </div>
+        </aside>
+      )}
 
       {/* ── Mobile Floating Trigger & Sheet ───────────────────────────────── */}
       <div className="lg:hidden">
         {/* Floating pill button */}
-        <div className="fixed bottom-5 right-4 z-40">
+        <div className="fixed bottom-5 left-4 z-40">
           <Button
             onClick={() => setIsMobileOpen(true)}
             size="sm"
@@ -346,7 +415,10 @@ export function TocSidePanel({
               </div>
 
               {/* List */}
-              <div className="overflow-y-auto flex-1 space-y-1 py-1 pr-1">
+              <div
+                className="overflow-y-auto overscroll-contain flex-1 min-h-0 space-y-1 py-1 pr-1"
+                style={{ scrollbarWidth: "thin" }}
+              >
                 {filteredItems.map((item) => {
                   const isActive = activeId === item.id;
                   const isH1 = item.level === 1;
