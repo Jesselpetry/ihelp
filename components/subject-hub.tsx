@@ -2,7 +2,14 @@
 
 import Link from "next/link";
 import { useMemo } from "react";
-import { BookOpenText, BrainCircuit, Library } from "lucide-react";
+import {
+  BookOpenText,
+  BrainCircuit,
+  FileCheck2,
+  Library,
+  Microscope,
+  type LucideIcon,
+} from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useLocale, t, type LText } from "@/lib/i18n";
 import type { QuizQuestion } from "@/lib/quiz";
@@ -10,6 +17,25 @@ import type { QuizQuestion } from "@/lib/quiz";
 interface SubjectChapter {
   chapter: number;
   title: LText;
+}
+
+// Icons are looked up by key, not passed as props: a Server Component page
+// cannot hand a component reference to this Client Component.
+const EXTRA_ICONS = {
+  "file-check": FileCheck2,
+  microscope: Microscope,
+  book: BookOpenText,
+} satisfies Record<string, LucideIcon>;
+
+export type SubjectExtraIcon = keyof typeof EXTRA_ICONS;
+
+/** Extra module card rendered next to summary / quiz / library */
+export interface SubjectExtraCard {
+  /** Path appended to baseHref, e.g. "exam" → "/it-kmitl/ics/exam" */
+  slug: string;
+  icon: SubjectExtraIcon;
+  title: LText;
+  desc: LText;
 }
 
 interface SubjectHubProps {
@@ -31,6 +57,8 @@ interface SubjectHubProps {
   questions: QuizQuestion[];
   /** Optional footer note rendered below the chapter table */
   footerNote?: LText;
+  /** Optional extra module cards (e.g. past exam, exam analysis) */
+  extraCards?: SubjectExtraCard[];
 }
 
 const L: Record<string, LText> = {
@@ -55,6 +83,7 @@ export function SubjectHub({
   chapters,
   questions,
   footerNote,
+  extraCards,
 }: SubjectHubProps) {
   const { locale } = useLocale();
 
@@ -79,8 +108,12 @@ export function SubjectHub({
 
       {/* Header */}
       <div className="mb-6 sm:mb-8">
-        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">{t(title, locale)}</h1>
-        <p className="mt-1.5 text-sm sm:text-base text-muted-foreground">{t(subtitle, locale)}</p>
+        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">
+          {t(title, locale)}
+        </h1>
+        <p className="mt-1.5 text-sm sm:text-base text-muted-foreground">
+          {t(subtitle, locale)}
+        </p>
       </div>
 
       {/* Module cards */}
@@ -123,6 +156,25 @@ export function SubjectHub({
             {t(libraryCardDesc, locale)}
           </p>
         </Link>
+
+        {extraCards?.map(({ slug, icon, title: cardTitle, desc }) => {
+          const Icon = EXTRA_ICONS[icon];
+          return (
+            <Link
+              key={slug}
+              href={`${baseHref}/${slug}`}
+              className="group rounded-3xl border bg-card p-5 shadow-sm transition-colors hover:border-primary/50 hover:bg-primary/5"
+            >
+              <Icon className="size-6 text-primary" />
+              <h2 className="mt-3 text-base font-semibold group-hover:text-primary transition-colors">
+                {t(cardTitle, locale)}
+              </h2>
+              <p className="mt-1.5 text-xs text-muted-foreground leading-relaxed">
+                {t(desc, locale)}
+              </p>
+            </Link>
+          );
+        })}
       </div>
 
       {/* Chapter overview */}
@@ -157,7 +209,9 @@ export function SubjectHub({
       </div>
 
       {footerNote && (
-        <p className="mt-6 text-xs sm:text-sm text-muted-foreground">{t(footerNote, locale)}</p>
+        <p className="mt-6 text-xs sm:text-sm text-muted-foreground">
+          {t(footerNote, locale)}
+        </p>
       )}
     </main>
   );

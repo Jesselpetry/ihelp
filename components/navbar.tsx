@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import {
   BookOpen,
+  CircuitBoard,
   ExternalLink,
   GraduationCap,
   History,
@@ -32,6 +33,11 @@ const NAV_LINKS: { href: string; label: LText; icon: typeof BookOpen }[] = [
     href: "/en-kmitl",
     label: { th: "EN-KMITL", en: "EN-KMITL" },
     icon: GraduationCap,
+  },
+  {
+    href: "/it-kmitl",
+    label: { th: "IT-KMITL", en: "IT-KMITL" },
+    icon: CircuitBoard,
   },
   { href: "/history", label: { th: "ประวัติ", en: "History" }, icon: History },
   { href: "/version", label: { th: "เวอร์ชัน", en: "Version" }, icon: Tag },

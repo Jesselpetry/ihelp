@@ -316,3 +316,190 @@ export const CHEM_ASSETS: SubjectAsset[] = [
   },
 ];
 
+
+// ── ICS / Digital Logic Assets (IT-KMITL) ────────────────────────────────────
+// Markdown entries link to the in-app readers under /it-kmitl/ics/*.
+// PDF/image entries are the scanned 1/2564 midterm paper bundled in
+// public/assets/it-kmitl/ics/.
+export const ICS_ASSETS: SubjectAsset[] = [
+  {
+    id: "ics-summary-md",
+    title: {
+      th: "📘 สรุปเนื้อหา + Course Syllabus (บทที่ 1–6 ฉบับเต็ม)",
+      en: "📘 Full Summary + Course Syllabus (Ch. 1–6)",
+    },
+    description: {
+      th: "สรุปเตรียมสอบมิดเทอม ICS ครบทุกบท: ระบบเลขฐาน, พีชคณิตบูลีน, Logic Gates, K-Map (2–5 ตัวแปร), Timing & Propagation Delay, ออกแบบวงจร 7-Segment และ MUX พร้อมขอบเขตข้อสอบ 19 กับดักที่เสียคะแนนบ่อย และเช็คลิสต์ก่อนส่งกระดาษ",
+      en: "Complete ICS midterm summary: number systems, Boolean algebra, logic gates, K-maps (2–5 variables), timing & propagation delay, 7-segment design, and MUX — plus exam scope, 19 common pitfalls, and a pre-submission checklist.",
+    },
+    tags: ["All Chapters", "Summary", "Markdown", "ภาษาไทย"],
+    fileType: "md",
+    url: "/it-kmitl/ics/summary",
+    fileName: "ICS-สรุป-Midterm.md",
+  },
+  {
+    id: "ics-mock-exam-md",
+    title: {
+      th: "📝 ข้อสอบมิดเทอมชุดฝึก + เฉลยละเอียด (120 + 10 คะแนน)",
+      en: "📝 Practice Midterm Paper + Full Answer Key (120 + 10 pts)",
+    },
+    description: {
+      th: "ข้อสอบอัตนัย 6 ข้อ ตามพิมพ์เขียวข้อสอบจริง (เลขฐาน 10, บูลีน 30, K-Map 30, Timing 20, ออกแบบวงจร 30, MUX เสริม 10) พร้อมเฉลยแบบแสดงวิธีทำทีละขั้น และ \"จุดที่คนมักผิด\" ทุกข้อ",
+      en: "Six constructed-response questions matching the real exam blueprint (numbers 10, Boolean 30, K-map 30, timing 20, circuit design 30, MUX bonus 10) with fully worked solutions and a \"common mistakes\" note on every part.",
+    },
+    tags: ["Mock Exam", "Answer Key", "Markdown", "ภาษาไทย"],
+    fileType: "md",
+    url: "/it-kmitl/ics/exam",
+    fileName: "ICS-ข้อสอบมิดเทอม-ชุดฝึก.md",
+  },
+  {
+    id: "ics-analysis-md",
+    title: {
+      th: "🔍 วิเคราะห์พิมพ์เขียวข้อสอบ (Exam Blueprint Analysis)",
+      en: "🔍 Exam Blueprint Analysis",
+    },
+    description: {
+      th: "ถอดโครงข้อสอบมิดเทอม 1/2564 ทีละขั้น: ตารางคะแนนรายข้อ, ระดับความยากตาม Bloom's Taxonomy, Question Archetypes, 11 กับดักที่ข้อสอบชอบหลอก และคำแนะนำการจัดสรรเวลาในห้องสอบ 3 ชั่วโมง",
+      en: "Step-by-step reverse-engineering of the 1/2564 midterm: per-question mark table, Bloom's-taxonomy difficulty profile, question archetypes, 11 recurring traps, and a 3-hour in-exam time budget.",
+    },
+    tags: ["Exam Analysis", "Strategy", "Markdown", "ภาษาไทย"],
+    fileType: "md",
+    url: "/it-kmitl/ics/analysis",
+    fileName: "ICS-วิเคราะห์ข้อสอบ.md",
+  },
+  {
+    id: "ics-past-paper-pdf",
+    title: {
+      th: "ข้อสอบมิดเทอมจริง ภาคเรียนที่ 1/2564 (PDF ฉบับสแกน)",
+      en: "Actual Midterm Paper, Semester 1/2564 (scanned PDF)",
+    },
+    description: {
+      th: "ไฟล์สแกนข้อสอบมิดเทอมของจริง ใช้เป็นต้นแบบของข้อสอบชุดฝึกและบทวิเคราะห์ทั้งหมดในหน้านี้ — 6 ข้อ 120 คะแนน + ข้อเสริม 10 คะแนน",
+      en: "Scan of the real midterm paper — the source blueprint for the practice exam and analysis on this page. Six questions, 120 marks, plus a 10-mark bonus.",
+    },
+    tags: ["Past Paper", "PDF", "2564"],
+    fileType: "pdf",
+    url: "/assets/it-kmitl/ics/ics-midterm-1-2564.pdf",
+    fileName: "ics-midterm-1-2564.pdf",
+  },
+  {
+    id: "ics-past-paper-p1",
+    title: { th: "ข้อสอบเดิม หน้า 1 — ข้อ 1 ระบบเลขฐาน", en: "Past paper p.1 — Q1 Number Systems" },
+    description: {
+      th: "หน้าแรกของข้อสอบจริง: หัวกระดาษ และข้อ 1 การแปลงเลขฐาน (bin→dec, bin→hex, dec→bin, hex→dec) รวม 10 คะแนน",
+      en: "First page of the real paper: header and Q1 base conversions (bin→dec, bin→hex, dec→bin, hex→dec), 10 marks.",
+    },
+    tags: ["Past Paper", "Image", "Ch.1", "Number Systems"],
+    fileType: "image",
+    url: "/assets/it-kmitl/ics/pages/pg-01.jpg",
+    fileName: "ics-2564-pg-01.jpg",
+  },
+  {
+    id: "ics-past-paper-p2",
+    title: { th: "ข้อสอบเดิม หน้า 2 — ข้อ 2 พีชคณิตบูลีน", en: "Past paper p.2 — Q2 Boolean Algebra" },
+    description: {
+      th: "ข้อ 2 พีชคณิตบูลีน: ลดรูปสมการ, De Morgan หา F', พิสูจน์เอกลักษณ์ และพิสูจน์เอาต์พุตของวงจร รวม 30 คะแนน",
+      en: "Q2 Boolean algebra: minimization, De Morgan for F', identity proof, and proving a gate network's output — 30 marks.",
+    },
+    tags: ["Past Paper", "Image", "Ch.2", "Boolean Algebra"],
+    fileType: "image",
+    url: "/assets/it-kmitl/ics/pages/pg-02.jpg",
+    fileName: "ics-2564-pg-02.jpg",
+  },
+  {
+    id: "ics-past-paper-p3",
+    title: { th: "ข้อสอบเดิม หน้า 3", en: "Past paper p.3" },
+    description: {
+      th: "หน้าต่อเนื่องของข้อ 2 — วงจรที่ต้องพิสูจน์เอาต์พุต และพื้นที่แสดงวิธีทำ",
+      en: "Continuation of Q2 — the gate network to prove and the working space.",
+    },
+    tags: ["Past Paper", "Image", "Ch.2", "Logic Gates"],
+    fileType: "image",
+    url: "/assets/it-kmitl/ics/pages/pg-03.jpg",
+    fileName: "ics-2564-pg-03.jpg",
+  },
+  {
+    id: "ics-past-paper-p4",
+    title: { th: "ข้อสอบเดิม หน้า 4 — ข้อ 3 K-Map", en: "Past paper p.4 — Q3 K-Map" },
+    description: {
+      th: "ข้อ 3 K-Map: 4 ตัวแปรรูปแบบ ΠM, 4 ตัวแปรพร้อม don't care และ 5 ตัวแปร รวม 30 คะแนน",
+      en: "Q3 K-map: 4-variable ΠM, 4-variable with don't cares, and a 5-variable map — 30 marks.",
+    },
+    tags: ["Past Paper", "Image", "Ch.3", "K-Map"],
+    fileType: "image",
+    url: "/assets/it-kmitl/ics/pages/pg-04.jpg",
+    fileName: "ics-2564-pg-04.jpg",
+  },
+  {
+    id: "ics-past-paper-p5",
+    title: { th: "ข้อสอบเดิม หน้า 5", en: "Past paper p.5" },
+    description: {
+      th: "หน้าต่อเนื่องของข้อ 3 — ผัง K-Map เปล่าสำหรับ 5 ตัวแปร (สองผืน A=0 และ A=1)",
+      en: "Continuation of Q3 — blank 5-variable K-map sheets (A=0 and A=1).",
+    },
+    tags: ["Past Paper", "Image", "Ch.3", "K-Map"],
+    fileType: "image",
+    url: "/assets/it-kmitl/ics/pages/pg-05.jpg",
+    fileName: "ics-2564-pg-05.jpg",
+  },
+  {
+    id: "ics-past-paper-p6",
+    title: { th: "ข้อสอบเดิม หน้า 6 — ข้อ 4 Time Response", en: "Past paper p.6 — Q4 Time Response" },
+    description: {
+      th: "ข้อ 4 Timing Diagram: วงจรพร้อมค่า gate delay, สัญญาณอินพุต A/B และตารางที่ต้องเติม 20 คะแนน",
+      en: "Q4 timing diagram: the circuit with its gate delays, input waveforms A/B, and the table to fill in — 20 marks.",
+    },
+    tags: ["Past Paper", "Image", "Ch.4", "Timing"],
+    fileType: "image",
+    url: "/assets/it-kmitl/ics/pages/pg-06.jpg",
+    fileName: "ics-2564-pg-06.jpg",
+  },
+  {
+    id: "ics-past-paper-p7",
+    title: { th: "ข้อสอบเดิม หน้า 7", en: "Past paper p.7" },
+    description: {
+      th: "หน้าต่อเนื่องของข้อ 4 — กริดสำหรับวาด Time Diagram ของสัญญาณ P, Q, R, S",
+      en: "Continuation of Q4 — the grid for drawing the P, Q, R, S waveforms.",
+    },
+    tags: ["Past Paper", "Image", "Ch.4", "Timing"],
+    fileType: "image",
+    url: "/assets/it-kmitl/ics/pages/pg-07.jpg",
+    fileName: "ics-2564-pg-07.jpg",
+  },
+  {
+    id: "ics-past-paper-p8",
+    title: { th: "ข้อสอบเดิม หน้า 8 — ข้อ 5 ออกแบบวงจร 7-Segment", en: "Past paper p.8 — Q5 7-Segment Design" },
+    description: {
+      th: "ข้อ 5 ออกแบบวงจร: โจทย์ 7-Segment Display, ตารางกำหนดการแสดงผล และผัง segment C0–C6 รวม 30 คะแนน",
+      en: "Q5 circuit design: the 7-segment display brief, the display mapping table, and the C0–C6 segment layout — 30 marks.",
+    },
+    tags: ["Past Paper", "Image", "Ch.5", "7-Segment"],
+    fileType: "image",
+    url: "/assets/it-kmitl/ics/pages/pg-08.jpg",
+    fileName: "ics-2564-pg-08.jpg",
+  },
+  {
+    id: "ics-past-paper-p9",
+    title: { th: "ข้อสอบเดิม หน้า 9", en: "Past paper p.9" },
+    description: {
+      th: "หน้าต่อเนื่องของข้อ 5 — ตารางความจริงเปล่า ผัง K-Map 7 ชุด และพื้นที่วาด Schematic",
+      en: "Continuation of Q5 — the blank truth table, seven K-map grids, and the schematic space.",
+    },
+    tags: ["Past Paper", "Image", "Ch.5", "K-Map"],
+    fileType: "image",
+    url: "/assets/it-kmitl/ics/pages/pg-09.jpg",
+    fileName: "ics-2564-pg-09.jpg",
+  },
+  {
+    id: "ics-past-paper-p10",
+    title: { th: "ข้อสอบเดิม หน้า 10 — ข้อ 6 MUX (คะแนนเสริม)", en: "Past paper p.10 — Q6 MUX (bonus)" },
+    description: {
+      th: "ข้อ 6 คะแนนเสริม: ออกแบบวงจรด้วย 4:1 MUX จากตารางความจริง โดยใช้ A และ B เป็น control inputs 10 คะแนน",
+      en: "Q6 bonus: implement a truth table with a 4:1 MUX using A and B as control inputs — 10 marks.",
+    },
+    tags: ["Past Paper", "Image", "Ch.6", "MUX"],
+    fileType: "image",
+    url: "/assets/it-kmitl/ics/pages/pg-10.jpg",
+    fileName: "ics-2564-pg-10.jpg",
+  },
+];
