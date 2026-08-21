@@ -503,3 +503,251 @@ export const ICS_ASSETS: SubjectAsset[] = [
     fileName: "ics-2564-pg-10.jpg",
   },
 ];
+
+
+// ── MFIT Assets (IT-KMITL · 06016401) ────────────────────────────────────────
+// Markdown entries link to the in-app readers under /it-kmitl/mfit/*.
+// Lecture slides and in-class activity PDFs live in
+// public/assets/it-kmitl/mfit/{slides,activities}/.
+export const MFIT_ASSETS: SubjectAsset[] = [
+  {
+    id: "mfit-summary-md",
+    title: {
+      th: "📘 สรุปเนื้อหา + Course Syllabus (Week 1–7 ฉบับเต็ม)",
+      en: "📘 Full Summary + Course Syllabus (Weeks 1–7)",
+    },
+    description: {
+      th: "สรุปเตรียมสอบมิดเทอม MFIT ครบทุกสัปดาห์: เมทริกซ์, determinant, ระบบสมการเชิงเส้น, เวกเตอร์ใน Rⁿ, ปริภูมิเวกเตอร์, การแปลงเชิงเส้น และ eigenvalue/orthogonal matrix พร้อมขอบเขตข้อสอบ 12 กับดักที่เสียคะแนนบ่อย และแผนอ่านหนังสือ",
+      en: "Complete MFIT midterm summary across all seven weeks: matrices, determinants, linear systems, vectors in Rⁿ, vector spaces, linear transformations, and eigenvalues/orthogonal matrices — plus exam scope, 12 common pitfalls, and a study plan.",
+    },
+    tags: ["All Weeks", "Summary", "Markdown", "ภาษาไทย"],
+    fileType: "md",
+    url: "/it-kmitl/mfit/summary",
+    fileName: "MFIT-สรุป-Midterm.md",
+  },
+  {
+    id: "mfit-mock-exam-md",
+    title: {
+      th: "📝 ข้อสอบมิดเทอมชุดจำลอง + เฉลยละเอียด (100 คะแนน)",
+      en: "📝 Mock Midterm Paper + Full Answer Key (100 pts)",
+    },
+    description: {
+      th: "ข้อสอบ 25 ข้อ 4 พาร์ต: ปรนัย 10 ข้อ, เติมคำ 8 ข้อ, อัตนัยแสดงวิธีทำ 5 ข้อ และข้อวิเคราะห์/กรณีศึกษา 2 ข้อ พร้อมเฉลยทีละขั้นและตารางสรุปคำตอบ",
+      en: "Twenty-five questions in four parts: 10 multiple choice, 8 fill-in-the-blank, 5 show-your-work problems, and 2 analysis/case-study questions, with step-by-step solutions and an answer sheet.",
+    },
+    tags: ["Mock Exam", "Answer Key", "Markdown", "ภาษาไทย"],
+    fileType: "md",
+    url: "/it-kmitl/mfit/exam",
+    fileName: "MFIT-ข้อสอบมิดเทอม-ชุดจำลอง.md",
+  },
+  {
+    id: "mfit-w1-slides",
+    title: {
+      th: "Week 1 — แนะนำรายวิชาและเมทริกซ์ (สไลด์เลกเชอร์)",
+      en: "Week 1 — Course Introduction & Matrices (Lecture Slides)",
+    },
+    description: {
+      th: "สไลด์บรรยายอย่างเป็นทางการ Week 1: นิยามเมทริกซ์, augmented/coefficient matrix, การบวก, การคูณสเกลาร์, การคูณเมทริกซ์, identity, transpose, symmetric matrix",
+      en: "Official Week 1 lecture slides: Matrix definitions, augmented/coefficient matrices, addition, scalar multiplication, matrix products, identity, transpose, symmetric matrices",
+    },
+    tags: ["Week 1", "Lecture Slide", "PDF", "Matrices"],
+    fileType: "pdf",
+    url: "/assets/it-kmitl/mfit/slides/MFIT-1-2026-Lecture-Slides-Week1.pdf",
+    fileName: "MFIT-1-2026-Lecture-Slides-Week1.pdf",
+  },
+  {
+    id: "mfit-w2-slides",
+    title: {
+      th: "Week 2 — เมทริกซ์และดีเทอร์มิแนนต์ (สไลด์เลกเชอร์)",
+      en: "Week 2 — Matrices and Determinants (Lecture Slides)",
+    },
+    description: {
+      th: "สไลด์บรรยายอย่างเป็นทางการ Week 2: inverse ของเมทริกซ์, minor & cofactor, det ทุกอันดับ, สมบัติของ det, adjoint, พื้นที่สามเหลี่ยม, Cryptography",
+      en: "Official Week 2 lecture slides: Matrix inverses, minors & cofactors, determinants of any order, determinant properties, adjoint, triangle area, cryptography",
+    },
+    tags: ["Week 2", "Lecture Slide", "PDF", "Determinants"],
+    fileType: "pdf",
+    url: "/assets/it-kmitl/mfit/slides/MFIT-1-2026-Lecture-Slides-Week2.pdf",
+    fileName: "MFIT-1-2026-Lecture-Slides-Week2.pdf",
+  },
+  {
+    id: "mfit-w3-slides",
+    title: {
+      th: "Week 3 — ระบบสมการเชิงเส้น (สไลด์เลกเชอร์)",
+      en: "Week 3 — Systems of Linear Equations (Lecture Slides)",
+    },
+    description: {
+      th: "สไลด์บรรยายอย่างเป็นทางการ Week 3: จำนวนผลเฉลย, inverse matrix method, Cramer's Rule, Gaussian elimination, Gauss-Jordan, row-echelon form, LU-factorization",
+      en: "Official Week 3 lecture slides: Solution counts, the inverse-matrix method, Cramer's Rule, Gaussian elimination, Gauss-Jordan, row-echelon form, LU factorization",
+    },
+    tags: ["Week 3", "Lecture Slide", "PDF", "Linear Systems"],
+    fileType: "pdf",
+    url: "/assets/it-kmitl/mfit/slides/MFIT-1-2026-Lecture-Slides-Week3.pdf",
+    fileName: "MFIT-1-2026-Lecture-Slides-Week3.pdf",
+  },
+  {
+    id: "mfit-w4-slides",
+    title: {
+      th: "Week 4 — เวกเตอร์ใน Rⁿ (สไลด์เลกเชอร์)",
+      en: "Week 4 — Vector Spaces 1 (Lecture Slides)",
+    },
+    description: {
+      th: "สไลด์บรรยายอย่างเป็นทางการ Week 4: เวกเตอร์ใน Rⁿ, ความยาว (norm), unit vector, dot product, มุมระหว่างเวกเตอร์, cross product, พื้นที่สี่เหลี่ยมด้านขนาน",
+      en: "Official Week 4 lecture slides: Vectors in Rⁿ, norms, unit vectors, dot products, angles between vectors, cross products, parallelogram area",
+    },
+    tags: ["Week 4", "Lecture Slide", "PDF", "Vectors"],
+    fileType: "pdf",
+    url: "/assets/it-kmitl/mfit/slides/MFIT-1-2026-Lecture-Slides-Week4.pdf",
+    fileName: "MFIT-1-2026-Lecture-Slides-Week4.pdf",
+  },
+  {
+    id: "mfit-w5-slides",
+    title: {
+      th: "Week 5 — ปริภูมิเวกเตอร์และความเป็นอิสระ (สไลด์เลกเชอร์)",
+      en: "Week 5 — Vector Spaces 2 (Lecture Slides)",
+    },
+    description: {
+      th: "สไลด์บรรยายอย่างเป็นทางการ Week 5: สัจพจน์ 10 ข้อของ vector space, subspace + Test for Subspace, linear combination, span, linear independence",
+      en: "Official Week 5 lecture slides: The ten vector-space axioms, subspaces and the subspace test, linear combinations, span, linear independence",
+    },
+    tags: ["Week 5", "Lecture Slide", "PDF", "Vector Spaces"],
+    fileType: "pdf",
+    url: "/assets/it-kmitl/mfit/slides/MFIT-1-2026-Lecture-Slides-Week5.pdf",
+    fileName: "MFIT-1-2026-Lecture-Slides-Week5.pdf",
+  },
+  {
+    id: "mfit-w6-slides",
+    title: {
+      th: "Week 6 — การแปลงเชิงเส้น (สไลด์เลกเชอร์)",
+      en: "Week 6 — Linear Transformations (Lecture Slides)",
+    },
+    description: {
+      th: "สไลด์บรรยายอย่างเป็นทางการ Week 6: นิยาม T: V → W, image/preimage/range, standard matrix, composition, inverse transformation, reflection/shear/rotation",
+      en: "Official Week 6 lecture slides: T: V → W, image/preimage/range, standard matrices, composition, inverse transformations, reflections/shears/rotations",
+    },
+    tags: ["Week 6", "Lecture Slide", "PDF", "Linear Transformations"],
+    fileType: "pdf",
+    url: "/assets/it-kmitl/mfit/slides/MFIT-1-2026-Lecture-Slides-Week6.pdf",
+    fileName: "MFIT-1-2026-Lecture-Slides-Week6.pdf",
+  },
+  {
+    id: "mfit-w7-slides",
+    title: {
+      th: "Week 7 — Eigenvalue และเมทริกซ์เชิงตั้งฉาก (สไลด์เลกเชอร์)",
+      en: "Week 7 — Orthogonal Matrix (Lecture Slides)",
+    },
+    description: {
+      th: "สไลด์บรรยายอย่างเป็นทางการ Week 7: eigenvalue & eigenvector, characteristic equation, eigenspace, diagonalization, symmetric matrix, orthogonal matrix, orthogonal diagonalization",
+      en: "Official Week 7 lecture slides: Eigenvalues & eigenvectors, the characteristic equation, eigenspaces, diagonalization, symmetric matrices, orthogonal matrices and orthogonal diagonalization",
+    },
+    tags: ["Week 7", "Lecture Slide", "PDF", "Eigenvalues"],
+    fileType: "pdf",
+    url: "/assets/it-kmitl/mfit/slides/MFIT-1-2026-Lecture-Slides-Week7.pdf",
+    fileName: "MFIT-1-2026-Lecture-Slides-Week7.pdf",
+  },
+  {
+    id: "mfit-w1-activity",
+    title: {
+      th: "Week 1 — In-Class Activity (โจทย์ในชั้นเรียน)",
+      en: "Week 1 — In-Class Activity",
+    },
+    description: {
+      th: "โจทย์ที่อาจารย์ออกเองในชั้นเรียน Week 1 — ใช้เป็นตัวแทนแนวข้อสอบที่ตรงที่สุด: คำนวณ AbᵀH, bA, BA, B − Bᵀ, B³, (BC)(BC)ᵀ หรือระบุว่า Undefined",
+      en: "The instructor's own Week 1 in-class problems — the closest available proxy for exam style: Compute AbᵀH, bA, BA, B − Bᵀ, B³, (BC)(BC)ᵀ, or state that the expression is undefined",
+    },
+    tags: ["Week 1", "Activity", "PDF", "Matrices"],
+    fileType: "pdf",
+    url: "/assets/it-kmitl/mfit/activities/MFIT-1-2026-In-Class-Activity-Week1.pdf",
+    fileName: "MFIT-1-2026-In-Class-Activity-Week1.pdf",
+  },
+  {
+    id: "mfit-w2-activity",
+    title: {
+      th: "Week 2 — In-Class Activity (โจทย์ในชั้นเรียน)",
+      en: "Week 2 — In-Class Activity",
+    },
+    description: {
+      th: "โจทย์ที่อาจารย์ออกเองในชั้นเรียน Week 2 — ใช้เป็นตัวแทนแนวข้อสอบที่ตรงที่สุด: หา det ของเมทริกซ์ 5×5 และหา A⁻¹ แล้วหา |A⁻¹|",
+      en: "The instructor's own Week 2 in-class problems — the closest available proxy for exam style: Find the determinant of a 5×5 matrix; find A⁻¹ and then |A⁻¹|",
+    },
+    tags: ["Week 2", "Activity", "PDF", "Determinants"],
+    fileType: "pdf",
+    url: "/assets/it-kmitl/mfit/activities/MFIT-1-2026-In-Class-Activity-Week2.pdf",
+    fileName: "MFIT-1-2026-In-Class-Activity-Week2.pdf",
+  },
+  {
+    id: "mfit-w3-activity",
+    title: {
+      th: "Week 3 — In-Class Activity (โจทย์ในชั้นเรียน)",
+      en: "Week 3 — In-Class Activity",
+    },
+    description: {
+      th: "โจทย์ที่อาจารย์ออกเองในชั้นเรียน Week 3 — ใช้เป็นตัวแทนแนวข้อสอบที่ตรงที่สุด: แก้ระบบ 3×3 ด้วย Cramer's Rule, Gaussian elimination + back-substitution และ Gauss-Jordan",
+      en: "The instructor's own Week 3 in-class problems — the closest available proxy for exam style: Solve 3×3 systems by Cramer's Rule, Gaussian elimination with back-substitution, and Gauss-Jordan",
+    },
+    tags: ["Week 3", "Activity", "PDF", "Linear Systems"],
+    fileType: "pdf",
+    url: "/assets/it-kmitl/mfit/activities/MFIT-1-2026-In-Class-Activity-Week3.pdf",
+    fileName: "MFIT-1-2026-In-Class-Activity-Week3.pdf",
+  },
+  {
+    id: "mfit-w4-activity",
+    title: {
+      th: "Week 4 — In-Class Activity (โจทย์ในชั้นเรียน)",
+      en: "Week 4 — In-Class Activity",
+    },
+    description: {
+      th: "โจทย์ที่อาจารย์ออกเองในชั้นเรียน Week 4 — ใช้เป็นตัวแทนแนวข้อสอบที่ตรงที่สุด: บวก-ลบ-สเกลาร์เวกเตอร์, แก้หา w, dot product, มุมระหว่างเวกเตอร์, cross product และพิสูจน์การตั้งฉาก",
+      en: "The instructor's own Week 4 in-class problems — the closest available proxy for exam style: Vector arithmetic, solving for w, dot products, angles, cross products, and orthogonality proofs",
+    },
+    tags: ["Week 4", "Activity", "PDF", "Vectors"],
+    fileType: "pdf",
+    url: "/assets/it-kmitl/mfit/activities/MFIT-1-2026-In-Class-Activity-Week4.pdf",
+    fileName: "MFIT-1-2026-In-Class-Activity-Week4.pdf",
+  },
+  {
+    id: "mfit-w6-activity",
+    title: {
+      th: "Week 6 — In-Class Activity (โจทย์ในชั้นเรียน)",
+      en: "Week 6 — In-Class Activity",
+    },
+    description: {
+      th: "โจทย์ที่อาจารย์ออกเองในชั้นเรียน Week 6 — ใช้เป็นตัวแทนแนวข้อสอบที่ตรงที่สุด: image/preimage, หามิติ n และ m จาก A, standard matrix, composition สองทาง และ inverse transformation",
+      en: "The instructor's own Week 6 in-class problems — the closest available proxy for exam style: Image/preimage, reading n and m from A, standard matrices, two-way composition, and inverse transformations",
+    },
+    tags: ["Week 6", "Activity", "PDF", "Linear Transformations"],
+    fileType: "pdf",
+    url: "/assets/it-kmitl/mfit/activities/MFIT-1-2026-In-Class-Activity-Week6.pdf",
+    fileName: "MFIT-1-2026-In-Class-Activity-Week6.pdf",
+  },
+  {
+    id: "mfit-w7-activity",
+    title: {
+      th: "Week 7 — In-Class Activity (โจทย์ในชั้นเรียน)",
+      en: "Week 7 — In-Class Activity",
+    },
+    description: {
+      th: "โจทย์ที่อาจารย์ออกเองในชั้นเรียน Week 7 — ใช้เป็นตัวแทนแนวข้อสอบที่ตรงที่สุด: characteristic equation, eigenvalue, eigenvector และตรวจว่า diagonalizable ผ่าน P⁻¹AP",
+      en: "The instructor's own Week 7 in-class problems — the closest available proxy for exam style: Characteristic equations, eigenvalues, eigenvectors, and checking diagonalizability via P⁻¹AP",
+    },
+    tags: ["Week 7", "Activity", "PDF", "Eigenvalues"],
+    fileType: "pdf",
+    url: "/assets/it-kmitl/mfit/activities/MFIT-1-2026-In-Class-Activity-Week7.pdf",
+    fileName: "MFIT-1-2026-In-Class-Activity-Week7.pdf",
+  },
+  {
+    id: "mfit-w5-activity-2024",
+    title: {
+      th: "Week 5 — In-Class Activity (ปี 2024)",
+      en: "Week 5 — In-Class Activity (2024)",
+    },
+    description: {
+      th: "โจทย์ Week 5 ของปี 2024 ใช้เติมช่องว่างเพราะปี 2026 ไม่มีไฟล์นี้ — ตรวจว่าเป็น vector space / subspace หรือไม่พร้อมให้เหตุผล และตรวจ linear independence รูปแบบโจทย์ไม่เปลี่ยนข้ามปี",
+      en: "The 2024 Week 5 problems, filling the gap left by the missing 2026 file — deciding whether sets are vector spaces or subspaces with justification, and testing linear independence. The question style is unchanged year to year.",
+    },
+    tags: ["Week 5", "Activity", "PDF", "Vector Spaces"],
+    fileType: "pdf",
+    url: "/assets/it-kmitl/mfit/activities/MFIT-1-2024-In-Class-Activity-Week5.pdf",
+    fileName: "MFIT-1-2024-In-Class-Activity-Week5.pdf",
+  },
+];

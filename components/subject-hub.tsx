@@ -59,6 +59,8 @@ interface SubjectHubProps {
   footerNote?: LText;
   /** Optional extra module cards (e.g. past exam, exam analysis) */
   extraCards?: SubjectExtraCard[];
+  /** Overrides the "Ch." prefix in the overview list (e.g. "Week" for MFIT) */
+  chapterLabel?: LText;
 }
 
 const L: Record<string, LText> = {
@@ -84,6 +86,7 @@ export function SubjectHub({
   questions,
   footerNote,
   extraCards,
+  chapterLabel,
 }: SubjectHubProps) {
   const { locale } = useLocale();
 
@@ -192,7 +195,7 @@ export function SubjectHub({
               >
                 <span className="min-w-0 truncate">
                   <span className="font-mono text-muted-foreground">
-                    {t(L.chapter, locale)} {chapter}
+                    {t(chapterLabel ?? L.chapter, locale)} {chapter}
                   </span>{" "}
                   {t(chTitle, locale)}
                 </span>

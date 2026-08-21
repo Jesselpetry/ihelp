@@ -18,6 +18,8 @@ interface SubjectQuizGateProps {
   quizName: string;
   questions: QuizQuestion[];
   chapters: SubjectChapter[];
+  /** Overrides the "Chapter" prefix in the overview list (e.g. "Week" for MFIT) */
+  chapterLabel?: LText;
 }
 
 const L: Record<string, LText> = {
@@ -36,6 +38,7 @@ export function SubjectQuizGate({
   quizName,
   questions,
   chapters,
+  chapterLabel,
 }: SubjectQuizGateProps) {
   const [started, setStarted] = useState(false);
   const { locale } = useLocale();
@@ -82,7 +85,7 @@ export function SubjectQuizGate({
             >
               <div className="min-w-0">
                 <p className="text-xs font-mono uppercase tracking-wide text-muted-foreground">
-                  {t(L.chapter, locale)} {chapter}
+                  {t(chapterLabel ?? L.chapter, locale)} {chapter}
                 </p>
                 <p className="truncate text-sm font-medium">{t(title, locale)}</p>
               </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { CircuitBoard } from "lucide-react";
+import { CircuitBoard, Sigma } from "lucide-react";
 import { useLocale, t, type LText } from "@/lib/i18n";
 
 const L: Record<string, LText> = {
@@ -15,6 +15,12 @@ const L: Record<string, LText> = {
   icsDesc: {
     th: "สรุปเนื้อหา เลขฐาน/บูลีน/K-Map/Timing/ออกแบบวงจร/MUX · แบบทดสอบ 50 ข้อ · ข้อสอบชุดฝึกพร้อมเฉลย · คลังทรัพยากร",
     en: "Summary: number systems, Boolean algebra, K-maps, timing, circuit design, MUX · 50-question quiz · practice exam with answer key · resource library",
+  },
+  mfitTitle: { th: "MFIT — คณิตศาสตร์สำหรับ IT", en: "MFIT — Mathematics for IT" },
+  mfitCode: { th: "06016401 — เตรียมสอบกลางภาค · Week 1-7", en: "06016401 — Midterm Prep · Weeks 1-7" },
+  mfitDesc: {
+    th: "สรุปเนื้อหา เมทริกซ์/determinant/ระบบสมการ/เวกเตอร์/ปริภูมิเวกเตอร์/การแปลงเชิงเส้น/eigenvalue · แบบทดสอบ 45 ข้อ · ข้อสอบชุดจำลองพร้อมเฉลย · สไลด์เลกเชอร์ครบ 7 สัปดาห์",
+    en: "Summary: matrices, determinants, linear systems, vectors, vector spaces, linear transformations, eigenvalues · 45-question quiz · mock exam with key · all seven weeks of lecture slides",
   },
 };
 
@@ -46,6 +52,27 @@ export function ItKmitlSelectionHub() {
             </h2>
             <p className="mt-2 text-xs text-muted-foreground leading-relaxed">
               {t(L.icsDesc, locale)}
+            </p>
+          </div>
+        </Link>
+
+        {/* MFIT card */}
+        <Link
+          href="/it-kmitl/mfit"
+          className="group flex flex-col gap-4 rounded-3xl border bg-card p-6 shadow-sm transition-all hover:border-primary/50 hover:bg-primary/5 hover:shadow-md"
+        >
+          <div className="flex size-12 items-center justify-center rounded-2xl bg-primary/10 text-primary group-hover:bg-primary/20 transition-colors">
+            <Sigma className="size-6" />
+          </div>
+          <div>
+            <p className="text-[11px] font-mono text-muted-foreground uppercase tracking-wide mb-1">
+              {t(L.mfitCode, locale)}
+            </p>
+            <h2 className="text-lg font-semibold group-hover:text-primary transition-colors leading-tight">
+              {t(L.mfitTitle, locale)}
+            </h2>
+            <p className="mt-2 text-xs text-muted-foreground leading-relaxed">
+              {t(L.mfitDesc, locale)}
             </p>
           </div>
         </Link>
