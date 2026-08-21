@@ -5,9 +5,12 @@ import { useMemo } from "react";
 import {
   BookOpenText,
   BrainCircuit,
+  CalendarClock,
   FileCheck2,
   Library,
   Microscope,
+  Timer,
+  Zap,
   type LucideIcon,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -25,6 +28,9 @@ const EXTRA_ICONS = {
   "file-check": FileCheck2,
   microscope: Microscope,
   book: BookOpenText,
+  zap: Zap,
+  "calendar-clock": CalendarClock,
+  timer: Timer,
 } satisfies Record<string, LucideIcon>;
 
 export type SubjectExtraIcon = keyof typeof EXTRA_ICONS;

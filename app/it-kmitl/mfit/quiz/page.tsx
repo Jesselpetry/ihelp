@@ -3,14 +3,22 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { Navbar } from "@/components/navbar";
 import { SubjectQuizGate } from "@/components/subject-quiz-gate";
-import { MFIT_CHAPTERS, MFIT_QUIZ, MFIT_QUIZ_ID } from "@/lib/mfit-quiz";
+import {
+  MFIT_BLUEPRINT_QUIZ,
+  MFIT_CHAPTERS,
+  MFIT_QUIZ,
+  MFIT_QUIZ_ID,
+} from "@/lib/mfit-quiz";
+
+// Blueprint drill first: it mirrors the real paper's question order.
+const ALL_MFIT_QUESTIONS = [...MFIT_BLUEPRINT_QUIZ, ...MFIT_QUIZ];
 
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "แบบทดสอบ MFIT · IT-KMITL · iHelp",
   description:
-    "แบบทดสอบตัวเองวิชา 06016401 Mathematics for Information Technology 45 ข้อ ครอบคลุม Week 1-7",
+    "แบบทดสอบตัวเองวิชา 06016401 Mathematics for Information Technology 65 ข้อ ครอบคลุม Week 1-7 รวมชุดซ้อมตามโครงข้อสอบจริง 20 ข้อ",
 };
 
 export default function MfitQuizPage() {
@@ -32,7 +40,7 @@ export default function MfitQuizPage() {
           <SubjectQuizGate
             quizId={MFIT_QUIZ_ID}
             quizName="Mathematics for IT"
-            questions={MFIT_QUIZ}
+            questions={ALL_MFIT_QUESTIONS}
             chapters={MFIT_CHAPTERS}
             chapterLabel={{ th: "สัปดาห์ที่", en: "Week" }}
           />

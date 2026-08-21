@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Navbar } from "@/components/navbar";
 import { SubjectHub, type SubjectExtraCard } from "@/components/subject-hub";
-import { MFIT_CHAPTERS, MFIT_QUIZ } from "@/lib/mfit-quiz";
+import { MFIT_BLUEPRINT_QUIZ, MFIT_CHAPTERS, MFIT_QUIZ } from "@/lib/mfit-quiz";
 
 export const metadata: Metadata = {
   title: "MFIT · IT-KMITL · iHelp",
@@ -9,12 +9,14 @@ export const metadata: Metadata = {
     "สรุปเนื้อหา แบบทดสอบ ข้อสอบชุดจำลองพร้อมเฉลย และคลังทรัพยากรสำหรับ 06016401 Mathematics for Information Technology (IT-KMITL) — เมทริกซ์, determinant, ระบบสมการเชิงเส้น, เวกเตอร์, ปริภูมิเวกเตอร์, การแปลงเชิงเส้น, eigenvalue",
 };
 
+const ALL_MFIT_QUESTIONS = [...MFIT_QUIZ, ...MFIT_BLUEPRINT_QUIZ];
+
 const L = {
   backLabel: { th: "← IT-KMITL", en: "← IT-KMITL" },
   title: { th: "MFIT — คณิตศาสตร์สำหรับ IT", en: "MFIT — Mathematics for IT" },
   subtitle: {
-    th: "06016401 · เตรียมสอบกลางภาค · Week 1-7 (พีชคณิตเชิงเส้น)",
-    en: "06016401 · Midterm prep · Weeks 1-7 (linear algebra)",
+    th: "06016401 · เตรียมสอบกลางภาค · 10 ข้อ 180 นาที (พีชคณิตเชิงเส้น Week 1-7)",
+    en: "06016401 · Midterm prep · 10 questions in 180 minutes (linear algebra, weeks 1-7)",
   },
   summaryCardTitle: { th: "สรุปเนื้อหา", en: "Summary Notes" },
   summaryCardDesc: {
@@ -23,8 +25,8 @@ const L = {
   },
   quizCardTitle: { th: "แบบทดสอบ", en: "Interactive Quiz" },
   quizCardDesc: {
-    th: "45 ข้อ ครอบคลุมทั้ง 7 สัปดาห์ พร้อมคำอธิบายว่าทำไมตัวเลือกอื่นถึงผิด",
-    en: "45 questions across all seven weeks, each explaining why the other options fail",
+    th: "65 ข้อ รวมชุดซ้อมตามโครงข้อสอบจริง 20 ข้อ พร้อมคำอธิบายว่าทำไมตัวเลือกอื่นถึงผิด",
+    en: "65 questions including the 20-item blueprint drill, each explaining why the other options fail",
   },
   libraryCardTitle: { th: "คลังทรัพยากร", en: "Resource Library" },
   libraryCardDesc: {
@@ -34,12 +36,39 @@ const L = {
   overviewTitle: { th: "ภาพรวมเนื้อหา", en: "Content Overview" },
   chapterLabel: { th: "สัปดาห์ที่", en: "Week" },
   footerNote: {
-    th: "สอบ 3 ชั่วโมง · น้ำหนัก 35% ของเกรดรวม · ขอบเขต Week 1-7 เท่านั้น (แคลคูลัสไปสอบปลายภาค) · Week 2 มีน้ำหนักสูงสุดที่ 20%",
-    en: "Three-hour exam · 35% of the final grade · Weeks 1-7 only (calculus is deferred to the final) · Week 2 carries the heaviest weight at 20%",
+    th: "โครงข้อสอบจากสไลด์ Q&A ของอาจารย์: 10 ข้อ · 180 นาที · ตอบเป็นตัวเลข · มีเครื่องคิดเลขให้ — ข้อ 10 (ค่าเจาะจง) ได้เวลามากสุด 20 นาที · blueprint นี้มาจากปีก่อน ถือเป็นความน่าจะเป็นสูง ไม่ใช่การรับประกัน",
+    en: "Blueprint from the instructor's Q&A slides: 10 questions · 180 minutes · numeric answers · calculators provided. Question 10 (eigenvalues) gets the most time at 20 minutes. This is last year's blueprint — treat it as highly likely, not guaranteed.",
   },
 };
 
 const EXTRA_CARDS: SubjectExtraCard[] = [
+  {
+    slug: "cram",
+    icon: "zap",
+    title: { th: "สรุปเร่งด่วน (ตามข้อสอบ 1-10)", en: "Crash Summary (Q1-Q10)" },
+    desc: {
+      th: "เรียงตามโครงข้อสอบจริง ไม่ใช่ตามบท · สูตร → ขั้นตอน → ตารางกับดัก → วิธีเช็กคำตอบ",
+      en: "Ordered by the real exam blueprint, not by chapter: formula → steps → trap table → self-check",
+    },
+  },
+  {
+    slug: "plan",
+    icon: "calendar-clock",
+    title: { th: "แผนอ่าน 6 ชั่วโมง", en: "6-Hour Study Plan" },
+    desc: {
+      th: "6 บล็อก เรียงตามน้ำหนักจริง · กลยุทธ์ลำดับทำข้อสอบในห้อง · แผนสำรองเมื่อเหลือ 4/2/1 ชม.",
+      en: "Six blocks weighted by what actually counts, in-exam ordering strategy, and fallbacks for 4/2/1 hours left",
+    },
+  },
+  {
+    slug: "mock",
+    icon: "timer",
+    title: { th: "ชุดซ้อมด่วน + เฉลย", en: "Timed Drill + Key" },
+    desc: {
+      th: "ปรนัย 20 ข้อ 15 นาที + ข้อคำนวณ 5 ข้อที่แมปตรงกับข้อสอบจริงทั้ง 10 ช่อง",
+      en: "20 MCQ in 15 minutes plus 5 calculation problems mapped onto all 10 real exam slots",
+    },
+  },
   {
     slug: "exam",
     icon: "file-check",
@@ -70,7 +99,7 @@ export default function MfitPage() {
         overviewTitle={L.overviewTitle}
         chapters={MFIT_CHAPTERS}
         chapterLabel={L.chapterLabel}
-        questions={MFIT_QUIZ}
+        questions={ALL_MFIT_QUESTIONS}
         footerNote={L.footerNote}
         extraCards={EXTRA_CARDS}
       />

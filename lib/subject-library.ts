@@ -526,6 +526,51 @@ export const MFIT_ASSETS: SubjectAsset[] = [
     fileName: "MFIT-สรุป-Midterm.md",
   },
   {
+    id: "mfit-cram-md",
+    title: {
+      th: "⚡ สรุปเร่งด่วน — เรียงตามโครงข้อสอบจริง ข้อ 1–10",
+      en: "⚡ Crash Summary — ordered by the real blueprint, Q1–Q10",
+    },
+    description: {
+      th: "สรุปที่เรียงตามข้อสอบ ไม่ใช่ตามบท แต่ละข้อมี สูตร → ขั้นตอนเป็นข้อ ๆ → ตารางกับดัก → วิธีเช็กคำตอบในตัว ครอบคลุมเข้ารหัส/ถอดรหัส, ระบบสมการ, dot/norm/มุม, ปริภูมิเวกเตอร์, อิสระเชิงเส้น, การแปลงเชิงเส้น, ค่าเจาะจง ปิดท้ายด้วย checklist 60 วินาทีก่อนเข้าห้องสอบ",
+      en: "A summary ordered by exam question rather than by chapter. Each one gives formula → numbered steps → trap table → built-in self-check, covering encoding/decoding, linear systems, dot/norm/angle, vector spaces, independence, linear transformations, and eigenvalues, closing with a 60-second pre-exam checklist.",
+    },
+    tags: ["Blueprint", "Cram", "Markdown", "ภาษาไทย"],
+    fileType: "md",
+    url: "/it-kmitl/mfit/cram",
+    fileName: "MFIT-สรุปเร่งด่วน.md",
+  },
+  {
+    id: "mfit-learning-path-md",
+    title: {
+      th: "🗓️ แผนอ่าน 6 ชั่วโมงก่อนสอบ + กลยุทธ์ในห้องสอบ",
+      en: "🗓️ Six-Hour Study Plan + In-Exam Strategy",
+    },
+    description: {
+      th: "แผนติว 6 บล็อก 05:00–11:15 เรียงตามน้ำหนักจริง (ค่าเจาะจงมาก่อนเพราะได้เวลา 20 นาทีและสมองสดสุด) พร้อมลำดับการทำข้อสอบในห้องที่ไม่ใช่เรียงข้อ 1→10 และแผนสำรองเมื่อเหลือเวลา 4 / 2 / 1 ชั่วโมง",
+      en: "A six-block plan from 05:00 to 11:15 weighted by what actually counts — eigenvalues first, since they carry 20 minutes and deserve a fresh brain — plus an in-exam ordering that deliberately is not 1→10, and fallbacks for 4, 2, or 1 hour remaining.",
+    },
+    tags: ["Blueprint", "Study Plan", "Strategy", "Markdown", "ภาษาไทย"],
+    fileType: "md",
+    url: "/it-kmitl/mfit/plan",
+    fileName: "MFIT-แผนอ่าน-6ชม.md",
+  },
+  {
+    id: "mfit-drill-md",
+    title: {
+      th: "⏱️ ชุดซ้อมด่วน — ปรนัย 20 ข้อ + คำนวณ 5 ข้อ พร้อมเฉลย",
+      en: "⏱️ Timed Drill — 20 MCQ + 5 calculations, with full key",
+    },
+    description: {
+      th: "ชุดซ้อมจับเวลา: ปรนัย 20 ข้อใน 15 นาที และข้อคำนวณ 5 ข้อที่แมปตรงกับข้อสอบจริงทั้ง 10 ช่อง พร้อมเฉลย step-by-step ทุกข้อ (ตัวเลขตรวจด้วย SymPy แล้ว)",
+      en: "A timed set: 20 multiple-choice questions in 15 minutes, plus 5 calculation problems mapped onto all ten real exam slots, each with a step-by-step key (numbers verified with SymPy).",
+    },
+    tags: ["Blueprint", "Mock Exam", "Answer Key", "Markdown", "ภาษาไทย"],
+    fileType: "md",
+    url: "/it-kmitl/mfit/mock",
+    fileName: "MFIT-ชุดซ้อมด่วน.md",
+  },
+  {
     id: "mfit-mock-exam-md",
     title: {
       th: "📝 ข้อสอบมิดเทอมชุดจำลอง + เฉลยละเอียด (100 คะแนน)",

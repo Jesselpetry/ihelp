@@ -41,6 +41,12 @@ export function getMfitDir(): string {
 export interface MfitData {
   summaryMd: string | null;
   examMd: string | null;
+  /** Crash summary ordered by the instructor's exam blueprint (Q1-Q10) */
+  cramMd: string | null;
+  /** Six-block sprint study plan for the day before the exam */
+  learningPathMd: string | null;
+  /** Timed drill: 20 MCQ + 5 calculation problems mapped to the blueprint */
+  mockExamMd: string | null;
 }
 
 export function loadMfit(): MfitData {
@@ -48,5 +54,8 @@ export function loadMfit(): MfitData {
   return {
     summaryMd: readIfExists(path.join(dir, "summarize.md")),
     examMd: readIfExists(path.join(dir, "midterm-exam.md")),
+    cramMd: readIfExists(path.join(dir, "cram.md")),
+    learningPathMd: readIfExists(path.join(dir, "learning-path.md")),
+    mockExamMd: readIfExists(path.join(dir, "mock-exam.md")),
   };
 }
