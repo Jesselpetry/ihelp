@@ -1,0 +1,909 @@
+{
+  "meta": {
+    "source": "https://python.compro.kmitl.ac.th/compro26s1py/",
+    "course": "01006012 Computer Programming Python",
+    "term": "2026 Semester 1",
+    "institution": "King Mongkut's Institute of Technology Ladkrabang",
+    "problemCount": 25,
+    "caseCount": 123
+  },
+  "weeks": [
+    {
+      "week": 1,
+      "chapterTitle": "Introduction",
+      "titleTh": "รู้จัก Python และคำสั่ง print",
+      "focusTh": "พิมพ์ข้อความออกจอ คอมเมนต์ คำสงวน และกฎการย่อหน้า"
+    },
+    {
+      "week": 2,
+      "chapterTitle": "Variables Expression Statement",
+      "titleTh": "ตัวแปร นิพจน์ และการรับค่า",
+      "focusTh": "input() การแปลงชนิดข้อมูล เลขฐาน และการจัดรูปแบบด้วย f-string"
+    },
+    {
+      "week": 3,
+      "chapterTitle": "Conditional Execution",
+      "titleTh": "การตัดสินใจด้วย if / elif / else",
+      "focusTh": "เงื่อนไข การเปรียบเทียบ และการแตกกรณีหลายชั้น"
+    },
+    {
+      "week": 4,
+      "chapterTitle": "while",
+      "titleTh": "การวนซ้ำด้วย while",
+      "focusTh": "ตัวนับ ตัวสะสม และการวนจนกว่าเงื่อนไขจะเป็นเท็จ"
+    },
+    {
+      "week": 5,
+      "chapterTitle": "Definite loop",
+      "titleTh": "การวนซ้ำด้วย for",
+      "focusTh": "for กับ range() การวนบนลิสต์ และการวาดรูปด้วยลูปซ้อน"
+    }
+  ],
+  "problems": [
+    {
+      "id": "ch1-1",
+      "week": 1,
+      "item": 1,
+      "title": "Hello World",
+      "descriptionMd": "ให้สร้างไฟล์ ชือ ch1_1.py โดยมีข้อมูลดังนี้\n\n```python\nprint(\"Hello world\")\nprint(12345)\nprint(3.141592653589793)\n```\n\nทดลองการทำงาน ใน vscode แล้ว submit ไฟล์ที่สร้างขี้นมา\n\n <u>หมายเหตุ</u>\n\nคำสั่ง print เป็นคำสั่งสำหรับ แสดงผลออกทางจอภาพ",
+      "reference": "print(\"Hello world\")\nprint(12345)\nprint(3.141592653589793)\n",
+      "cases": [
+        {
+          "id": "ch1-1-1",
+          "stdin": "",
+          "expected": "Hello world\n12345\n3.141592653589793"
+        }
+      ]
+    },
+    {
+      "id": "ch1-2",
+      "week": 1,
+      "item": 2,
+      "title": "What is # ?",
+      "descriptionMd": "ให้สร้างไฟล์ ชือ ch1_2.py โดยมีข้อมูลดังนี้\n\n```python\nx=7        # สร้างตัวแปรชือ x แล้ว นำ 7 ไปเก็บไว้ในตัวแปร x\nprint(\"x =\",x)    # แสดงผลค่า x\nx=x+5        # นำค่าที่เก็บไว้ที่ตัวแปร x บวกด้วย 5 แล้ว นำไปเก็บไว้ที่ตัวแปร x (แทนที่ข้อมูลเดิม)\nprint(\"new x =\",x)     # แสดงผลค่า x\n```\n\nทดลองการทำงาน ใน vscode แล้ว submit ไฟล์ที่สร้างขี้นมา\n\n <u>หมายเหตุ</u>\n\n1. คำสั่ง print เป็นคำสั่งสำหรับ แสดงผลออกทางจอภาพ\n\n2. # เป็นสัญญลักษณ์พิเศษ ข้อมูลหลังจากตัวอักษรนี้ จนจบบรรทัดจะไม่ถูกนำมาใช้\n\n3. # มักจะถูกใช้ เพื่ออธิบายโปรแกรม หรือ สำหรับเติมไว้ด้านหน้าบรรทัดที่เราไม่ต้องการให้ทำงาน",
+      "reference": "x=7        # สร้างตัวแปรชือ x แล้ว นำ 7 ไปเก็บไว้ในตัวแปร x\nprint(\"x =\",x)    # แสดงผลค่า x\nx=x+5        # นำค่าที่เก็บไว้ที่ตัวแปร x บวกด้วย 5 แล้ว นำไปเก็บไว้ที่ตัวแปร x (แทนที่ข้อมูลเดิม)\nprint(\"new x =\",x)     # แสดงผลค่า x\n",
+      "cases": [
+        {
+          "id": "ch1-2-1",
+          "stdin": "",
+          "expected": "x = 7\nnew x = 12"
+        }
+      ]
+    },
+    {
+      "id": "ch1-3",
+      "week": 1,
+      "item": 3,
+      "title": "คำสงวน reserved words",
+      "descriptionMd": "ให้สร้างไฟล์ ชือ ch1_3.py โดยมีข้อมูลดังนี้\n\n```python\nlambda=75        # สร้างตัวแปรชือ lambda แล้ว นำ 75 ไปเก็บไว้ในตัวแปร lambda\nprint(\"lambda =\", lambda)    # แสดงผลค่า lambda\n```\n\nทดลองการทำงาน ใน vscode แล้ว submit ไฟล์ที่สร้างขี้นมา\n\n <u>หมายเหตุ</u>\n\n1. โปรแกรมนี้ไม่สามารถทำงานได้ เนื่องจาก lambda เป็นคำสงวน(resered words) ไม่สามารถนำมาเป็นชื่อตัวแปรได้\n\n2. ให้เปลี่ยน lambda เป็นชื่ออื่น ที่ไม่ใช่คำสงวน เช่น x, y, team\n\n3. รายชือคำสงวน(reserved words) ตามด้านล่าง\n\nFalse   class   return   is      finally\n\nNone    if      for      lambda  continue\n\nTrue    def     from     while   nonlocal\nand     del     global   not     with\nas      elif    try      or      yield\nassert  else    import   pass\nbreak   except  in       raise",
+      "reference": "x=75        # สร้างตัวแปรชือ lambda แล้ว นำ 75 ไปเก็บไว้ในตัวแปร lambda\nprint(\"lambda =\", x)    # แสดงผลค่า lambda\n",
+      "cases": [
+        {
+          "id": "ch1-3-1",
+          "stdin": "",
+          "expected": "lambda = 75"
+        }
+      ]
+    },
+    {
+      "id": "ch1-4",
+      "week": 1,
+      "item": 4,
+      "title": "indent rule การเว้นย่อหน้า (indent)",
+      "descriptionMd": "ใให้สร้างไฟล์ ชือ ch1_4.py โดยมีข้อมูลดังนี้\n\n```python\n# Normally print use default end=\"\\n\" which add new line at the end of the string\nprint(\"Line 1.\", end=\"\")  # use end=\"\" for no new line character\nprint(\" Still Line 1!\", end=\"\")\nprint(\" Also on Line 1!\")\n  print(\"Are you OK?\")\n    print(3.141592653589793)\n```\n\nทดลองการทำงาน ใน vscode แล้ว submit ไฟล์ที่สร้างขี้นมา\n\n <u>หมายเหตุ</u>\n\n1. ปกติคำสั่ง print เป็นคำสั่งสำหรับ แสดงผลออกทางจอภาพ 1 บรรทัด\n\n    คือ เมื่อแสดงข้อความเสร็จแล้วจะขึ้นบรรทัดใหม่ทันที\n\n2. ถ้าเราต้องการให้คำสั่ง print คำสั่งถัดไป แสดงผลในบรรทัดเดียวกัน\n\n   สามารถทำได้โดย เพิ่มพารามิเตอร์ ดังคำสั่งด้านล่าง\n\n  print(\"Line 1.\", end=\"\") # use end=\"\" for no new line character\n\n3.พารามิเตอร์(parameter) คือ ข้อมูลที่อยู่ในวงเล็บ ในคำสั่งด้านบน มี พารามิเตอร์ 2 ตัว\n\n  โดยพารามิเตอร์จะถูกคั่นด้วย เครื่องหมายคอมม่า (,)\n\n4. โปรแกรมนี้ ถ้า copy ไปวาง เฉย ๆ จะรัน ไม่ผ่าน\n\n  ต้องจัดย่อหน้า ให้เท่ากัน โดยการลบช่องว่าง ด้านหน้าของสองบรรทัดสุดท้าย\n\n5. ผลลัพธ์ที่ได้ของโปรแกรมนี้มี 3 บรรทัด",
+      "reference": "# Normally print use default end=\"\\n\" which add new line at the end of the string\nprint(\"Line 1.\", end=\"\")  # use end=\"\" for no new line character\nprint(\" Still Line 1!\", end=\"\")\nprint(\" Also on Line 1!\")\nprint(\"Are you OK?\")\nprint(3.141592653589793)\n",
+      "cases": [
+        {
+          "id": "ch1-4-1",
+          "stdin": "",
+          "expected": "Line 1. Still Line 1! Also on Line 1!\nAre you OK?\n3.141592653589793"
+        }
+      ]
+    },
+    {
+      "id": "ch1-5",
+      "week": 1,
+      "item": 5,
+      "title": "คำสั่ง print again",
+      "descriptionMd": "ทดลองการทำงาน ของ code ด้านล่าง\n\n```python\nprint(\"****\\n*****\")\n```\n\n    ให้ย้าย \\n ไปตำแหน่งต่าง ๆ แล้วสังเกตผลลัพธ์\n\nให้สร้างไฟล์ ชือ ch1_5.py\n\nแล้วใช้คำสั่ง print ให้ได้ข้อมูลตามตัวอย่าง\n\nใช้คำสั่ง print เพียงครั้งเดียวเท่านั้น (จะต้องมี \\n จำนวน 5 ตำแหน่ง)\n\n```python\n*\n**\n***\n**\n*\n```\n\nทดลองการทำงาน ใน vscode แล้ว submit ไฟล์ที่สร้างขี้นมา",
+      "reference": "print(\"*\\n**\\n***\\n**\\n*\")\n",
+      "cases": [
+        {
+          "id": "ch1-5-1",
+          "stdin": "",
+          "expected": "*\n**\n***\n**\n*"
+        }
+      ]
+    },
+    {
+      "id": "ch2-1",
+      "week": 2,
+      "item": 1,
+      "title": "รับข้อความ 1",
+      "descriptionMd": "```python\nprint(\" *** Get input as string ***\") # show message to user\nx = input(\"Enter a name : \")  # get input from user and assign it to x variable\nPrint(\"Hello\",x)    # show Hello and x seperated by one space\n```\n\nนำ code ด้านบน ไปรัน ใน vscode\n\nโปรแกรมนี้ จะรันไม่ผ่าน เนื่องจาก บรรทัดสุดท้าย\n\nเป็น ฟังก์ชันที่ ไม่รู้จัก\n\nให้เปลี่ยน P ตัวใหญ่ ให้เป็น p ตัวเล็ก\n\nแล้วส่ง ไฟล์ที่แก้ไข\n\n----------------------------------------------------\n\nให้สังเกต ตำแหน่งตัวอักษร ระหว่างบรรทัดด้วย\n\n```python\n *** Get input as string ***\nEnter a name : Bill Armstrong\nHello  Bill Armstrong\n```\n\nบรรทัดที่ 1 as\n\nตรงกับ บรรทัดที่ 2 Bi\n\nตรงกับ บรรทัดที่ 3 st\n\n----------------------------\n\nบรรทัดสุดท้าย\n\nเป็นการแสดงผลข้อความที่รับเข้ามา 4 ครั้ง ต่อจาก Hello\n\n---------------------------\n\nตัวอย่างการแสดงผล\n\n```python\n *** Get input as string ***\nEnter a name : Linda\nHello  Linda\nHello LindaLindaLindaLinda\n```",
+      "reference": "print(\" *** Get input as string ***\") # show message to user\nx = input(\"Enter a name : \")  # get input from user and assign it to x variable\nprint(\"Hello \",x)    # show Hello and x seperated by one space\nprint(\"Hello\",x*4)\n",
+      "cases": [
+        {
+          "id": "ch2-1-1",
+          "stdin": "Linda",
+          "expected": " *** Get input as string ***\nEnter a name : Hello  Linda\nHello LindaLindaLindaLinda"
+        },
+        {
+          "id": "ch2-1-2",
+          "stdin": "Halleyluya",
+          "expected": " *** Get input as string ***\nEnter a name : Hello  Halleyluya\nHello HalleyluyaHalleyluyaHalleyluyaHalleyluya"
+        },
+        {
+          "id": "ch2-1-4",
+          "stdin": "Friday",
+          "expected": " *** Get input as string ***\nEnter a name : Hello  Friday\nHello FridayFridayFridayFriday"
+        }
+      ]
+    },
+    {
+      "id": "ch2-2",
+      "week": 2,
+      "item": 2,
+      "title": "bianry hex 2",
+      "descriptionMd": "Binary_Hexadecimal\n\n            ในโลกเรามีเลขมากมาย เช่นเลขฐาน 2 เลขฐาน 4 เลขฐาน 8 เลขฐาน 10 เลขฐาน 16 แต่ว่าพี่TAจุ๊บของเรานั้นไม่ถนัดในการแปลงเลขเลย ซึ่งอาจารย์จะสอบแปลงเลขฐาน 10 ไปฐาน 2 และฐาน 16\n\nพี่จึงอยากให้น้องๆช่วยเขียนโปรแกรมแปลงเลขฐาน10 ไปเป็นฐาน 2 และฐาน 16 ให้พี่จุ๊บหน่อย\n\nInput :   บรรทัดที่ 1 รับค่าจำนวนเต็มบวกเลขฐาน 10\n\nOutput :\n\n    บรรทัดที่ 1 แสดงเลขฐาน 16  ที่แปลงมาจากเลขฐาน 10  (ภาษาอังกฤษตัวเล็ก\n\n    บรรทัดที่ 2 แสดงเลขฐาน 16 ที่แปลงมาจากเลขฐาน 10 (ภาษาอังกฤษตัวใหญ่)\n\n     บรรทัดที่ 3 แสดงเลขฐาน 2 ที่แปลงมาจากเลขฐาน 10\n\n     บรรทัดที่ 4 แสดงเลขฐาน 2 ที่แปลงมาจากเลขฐาน 10 (แสดง 8 บิต ขวาสุด โดยแสดงเว้นวรรคทุก 4 บิต)\n\n                        print(f'{126//16%16:04b}')\n\n                        ให้นำคำสั่งด้านบนทดลองและแก้ไข",
+      "reference": "print( \" *** Binary Hexadecimal *** \")\nn = int(input(\"Enter your number : \"))\nprint(f\"Hexadecimal = {n:x}\")\nprint(f\"Hexadecimal = {n:X}\")\nprint(f\"Binary = {n:b}\")\nb = f\"{n & 255 :08b}\"\nprint(f\"Binary right 8-digit = {b[:4]} {b[4:]}\")\n",
+      "cases": [
+        {
+          "id": "ch2-2-1",
+          "stdin": "127",
+          "expected": " *** Binary Hexadecimal *** \nEnter your number : Hexadecimal = 7f\nHexadecimal = 7F\nBinary = 1111111\nBinary right 8-digit = 0111 1111"
+        },
+        {
+          "id": "ch2-2-2",
+          "stdin": "65535",
+          "expected": " *** Binary Hexadecimal *** \nEnter your number : Hexadecimal = ffff\nHexadecimal = FFFF\nBinary = 1111111111111111\nBinary right 8-digit = 1111 1111"
+        },
+        {
+          "id": "ch2-2-3",
+          "stdin": "1024",
+          "expected": " *** Binary Hexadecimal *** \nEnter your number : Hexadecimal = 400\nHexadecimal = 400\nBinary = 10000000000\nBinary right 8-digit = 0000 0000"
+        },
+        {
+          "id": "ch2-2-4",
+          "stdin": "15",
+          "expected": " *** Binary Hexadecimal *** \nEnter your number : Hexadecimal = f\nHexadecimal = F\nBinary = 1111\nBinary right 8-digit = 0000 1111"
+        },
+        {
+          "id": "ch2-2-5",
+          "stdin": "200",
+          "expected": " *** Binary Hexadecimal *** \nEnter your number : Hexadecimal = c8\nHexadecimal = C8\nBinary = 11001000\nBinary right 8-digit = 1100 1000"
+        },
+        {
+          "id": "ch2-2-6",
+          "stdin": "99_999",
+          "expected": " *** Binary Hexadecimal *** \nEnter your number : Hexadecimal = 1869f\nHexadecimal = 1869F\nBinary = 11000011010011111\nBinary right 8-digit = 1001 1111"
+        },
+        {
+          "id": "ch2-2-8",
+          "stdin": "0",
+          "expected": " *** Binary Hexadecimal *** \nEnter your number : Hexadecimal = 0\nHexadecimal = 0\nBinary = 0\nBinary right 8-digit = 0000 0000"
+        },
+        {
+          "id": "ch2-2-9",
+          "stdin": "987654321",
+          "expected": " *** Binary Hexadecimal *** \nEnter your number : Hexadecimal = 3ade68b1\nHexadecimal = 3ADE68B1\nBinary = 111010110111100110100010110001\nBinary right 8-digit = 1011 0001"
+        }
+      ]
+    },
+    {
+      "id": "ch2-3",
+      "week": 2,
+      "item": 3,
+      "title": "หาพื้นที่วงกลม จากรัศมี",
+      "descriptionMd": "```python\nprint(\" *** Finding circle area *** \")\nradius = input(\"Enter radius : \")\nradius = float(radius)\npi = 3.1415926\ncircleArea = pi*radius\nprint(f\"Circle area = {circleArea}\" )\nprint(f\"Circle area = {circleArea:0.2f}\") # แสดงผลทศนิยม 2 ตำแหน่ง\nprint(f\"whole number => {int(circleArea)}\") # แสดงผลเฉพาะส่วนที่เป็นจำนวนเต็ม\n```\n\nโปรแกรมด้านบนนี้ เมื่อนำไปใส่ vscode จะสามารถ รันได้ทันที\n\nแต่ผลลัพธที่ได้จะมีข้อผิดพลาด ให้ทำการแก้ไข ทดสอบ\n\nแล้วส่งไฟล์ที่แก้ไขแล้ว\n\n```python\ntest case ทีรันไม่ผ่าน อาจเกิดจาก float imprecision\n    ให้ทดลองสลับ operators หรือ operands\n    เช่น a*b*c => c*b*a => b*c*a => a*c*b => c*a*b\n          a**2 => a*a\n```",
+      "reference": "print(\" *** Finding circle area *** \")\nradius = input(\"Enter radius : \")\nradius = float(radius)\npi = 3.1415926\ncircleArea = pi*radius*radius\nprint(f\"Circle area = {circleArea}\" )\nprint(f\"Circle area = {circleArea:0.2f}\") # แสดงผลทศนิยม 2 ตำแหน่ง\nprint(f\"whole number => {int(circleArea)}\") # แสดงผลเฉพาะส่วนที่เป็นจำนวนเต็ม\n",
+      "cases": [
+        {
+          "id": "ch2-3-1",
+          "stdin": "4",
+          "expected": " *** Finding circle area *** \nEnter radius : Circle area = 50.2654816\nCircle area = 50.27\nwhole number => 50"
+        },
+        {
+          "id": "ch2-3-2",
+          "stdin": "10",
+          "expected": " *** Finding circle area *** \nEnter radius : Circle area = 314.15926\nCircle area = 314.16\nwhole number => 314"
+        },
+        {
+          "id": "ch2-3-3",
+          "stdin": "7",
+          "expected": " *** Finding circle area *** \nEnter radius : Circle area = 153.9380374\nCircle area = 153.94\nwhole number => 153"
+        },
+        {
+          "id": "ch2-3-4",
+          "stdin": "3",
+          "expected": " *** Finding circle area *** \nEnter radius : Circle area = 28.274333400000003\nCircle area = 28.27\nwhole number => 28"
+        }
+      ]
+    },
+    {
+      "id": "ch2-4",
+      "week": 2,
+      "item": 4,
+      "title": "การหารจำนวนเต็ม 3",
+      "descriptionMd": "```python\nprint(\" *** Integer division ***\")\nx = input(\"Enter a 3-digit number : \")\nprint(x, type(x)) # ตรวจสอบข้อมูลที่รับเข้ามา\nx = float(x)    # type casting เปลี่ยน string(ข้อความ) เป็น float(ทศนิยม)\nprint(x,type(x))    # แสดงผลทศนิยม และ type ข้อมูล\nx = int(x)            # type casting เปลี่ยน float(ทศนิยม) เป็น integer(จำนวนเต็ม\nprint(x, type(x))    # แสดงผลทศนิยม และ type ข้อมูล\nprint(\"divided by 25 =\",x/25)    # การหารจำนวนเต็ม ผลลัพธ์ที่ได้ เป็นข้อมูลประเภททศนิยม\nprint(\"divided by 25 =\",x//25,\" remainder = \", x%25) # การหารแบบเหลือเศษ ใช้เครื่องหมาย // (double-slash)\n                                                      # สามารถหาเศษ ได้โดยใช้เครื่องหมาย % (mod)\n```\n\ncode ด้านบนนี้สามารถทำงานได้ปกติ ให้ copy code เพื่อไปศึกษาทำความเข้าใจ แต่ละบรรทัด ทำอะไรบ้าง\n\ninput ของ test case จะเป็น ตัวเลข 3 หลักเสมอ\nให้เพิ่มการแสดงผล 1 บรรทัด เพื่อแสดงหลักหน่วย ของตัวเลขที่ป้อนเข้าไป (ใช้ เครื่องหมาย // และ %)nothing",
+      "reference": "print(\" *** Integer division ***\")\nx = input(\"Enter a 3-digit number : \")\nprint(x, type(x)) # ตรวจสอบข้อมูลที่รับเข้ามา\nx = float(x)    # type casting เปลี่ยน string(ข้อความ) เป็น float(ทศนิยม)\nprint(x,type(x))    # แสดงผลทศนิยม และ type ข้อมูล\nx = int(x)            # type casting เปลี่ยน float(ทศนิยม) เป็น integer(จำนวนเต็ม\nprint(x, type(x))    # แสดงผลทศนิยม และ type ข้อมูล\nprint(\"divided by 25 =\",x/25)    # การหารจำนวนเต็ม ผลลัพธ์ที่ได้ เป็นข้อมูลประเภททศนิยม\nprint(\"divided by 25 =\",x//25,\" remainder = \", x%25) # การหารแบบเหลือเศษ ใช้เครื่องหมาย // (double-slash)\nprint(\"ones-digit =\",x%10)                                                  # สามารถหาเศษ ได้โดยใช้เครื่องหมาย % (mod)\n",
+      "cases": [
+        {
+          "id": "ch2-4-1",
+          "stdin": "123",
+          "expected": " *** Integer division ***\nEnter a 3-digit number : 123 <class 'str'>\n123.0 <class 'float'>\n123 <class 'int'>\ndivided by 25 = 4.92\ndivided by 25 = 4  remainder =  23\nones-digit = 3"
+        },
+        {
+          "id": "ch2-4-2",
+          "stdin": "789",
+          "expected": " *** Integer division ***\nEnter a 3-digit number : 789 <class 'str'>\n789.0 <class 'float'>\n789 <class 'int'>\ndivided by 25 = 31.56\ndivided by 25 = 31  remainder =  14\nones-digit = 9"
+        },
+        {
+          "id": "ch2-4-3",
+          "stdin": "911",
+          "expected": " *** Integer division ***\nEnter a 3-digit number : 911 <class 'str'>\n911.0 <class 'float'>\n911 <class 'int'>\ndivided by 25 = 36.44\ndivided by 25 = 36  remainder =  11\nones-digit = 1"
+        },
+        {
+          "id": "ch2-4-4",
+          "stdin": "625",
+          "expected": " *** Integer division ***\nEnter a 3-digit number : 625 <class 'str'>\n625.0 <class 'float'>\n625 <class 'int'>\ndivided by 25 = 25.0\ndivided by 25 = 25  remainder =  0\nones-digit = 5"
+        },
+        {
+          "id": "ch2-4-5",
+          "stdin": "555",
+          "expected": " *** Integer division ***\nEnter a 3-digit number : 555 <class 'str'>\n555.0 <class 'float'>\n555 <class 'int'>\ndivided by 25 = 22.2\ndivided by 25 = 22  remainder =  5\nones-digit = 5"
+        },
+        {
+          "id": "ch2-4-6",
+          "stdin": "471",
+          "expected": " *** Integer division ***\nEnter a 3-digit number : 471 <class 'str'>\n471.0 <class 'float'>\n471 <class 'int'>\ndivided by 25 = 18.84\ndivided by 25 = 18  remainder =  21\nones-digit = 1"
+        }
+      ]
+    },
+    {
+      "id": "ch2-5",
+      "week": 2,
+      "item": 5,
+      "title": "รับจำนวนเต็ม 3 จำนวน คำนวณวินาที",
+      "descriptionMd": "รับจำนวนเต็ม 3 จำนวนจากแป้นพิมพ์\nเก็บในตัวแปร h, m และ s ซึ่งแทนจำนวน ชั่วโมง นาที และ วินาที\n\nแล้วแสดงผลเป็น วินาที\nแสดงผลตามตัวอย่าง\n\n==========\n\nการรับค่า ด้วยคำสั่ง input() จะรับมาเป็นสตริงเสมอ\n\nเราสามารถแยกค่าที่รับเข้ามาได้ด้วยคำสั่ง split()\n\ninp =\"1 2 3\"\n\na,b,c = inp.split()\n\nจะได้ a เป็น 1 , b เป็น 2, c เป็น 3\n\nโดยที่ a,b และ c จะเป็นข้อมูลประเภทข้อความ <class 'str'>\n\nการแปลง ข้อความ เป็น จำนวนเต็ม ใช้คำสั่ง int()\n\nต้องการแปลงเป็น ทศนิยม ใช้คำสั่ง float()",
+      "reference": "print(\" *** Transform to seconds ***\")\nh, m, s = input(\"Enter h m s : \").split()\nh = int(h)\nm = int(m)\ns = int(s)\ntotal = h*3600+m*60+s\nprint(f\"{h} hours {m} minutes {s} seconds = {total:,} seconds\")\n",
+      "cases": [
+        {
+          "id": "ch2-5-1",
+          "stdin": "1 1 1",
+          "expected": " *** Transform to seconds ***\nEnter h m s : 1 hours 1 minutes 1 seconds = 3,661 seconds"
+        },
+        {
+          "id": "ch2-5-2",
+          "stdin": "1 2 3",
+          "expected": " *** Transform to seconds ***\nEnter h m s : 1 hours 2 minutes 3 seconds = 3,723 seconds"
+        },
+        {
+          "id": "ch2-5-3",
+          "stdin": "3 2 1",
+          "expected": " *** Transform to seconds ***\nEnter h m s : 3 hours 2 minutes 1 seconds = 10,921 seconds"
+        },
+        {
+          "id": "ch2-5-4",
+          "stdin": "10 20 30",
+          "expected": " *** Transform to seconds ***\nEnter h m s : 10 hours 20 minutes 30 seconds = 37,230 seconds"
+        }
+      ]
+    },
+    {
+      "id": "ch3-1",
+      "week": 3,
+      "item": 1,
+      "title": "odd even absolute",
+      "descriptionMd": "เขียนโปรแกรมรับเลขจำนวนเต็ม 1 จำนวน แสดงผลตามตัวอย่าง\n\n1. ตรวจสอบว่าเป็นจำนวนคู่(even) หรือ จำนวนคี่ (odd)\n\n2. หาค่าสัมบูรณ์ (absolute value)\n\n```python\n *** Number Manipulation ***\nEnter a whole number : 256\n256 is even.\nabsolute value of 256 ==> 256\n```",
+      "reference": "print(\" *** Number Manipulation ***\")\nx = int(input(\"Enter a whole number : \"))\nif x%2 == 0 :\n   print(x , \"is even.\")\nelse :\n   print(x , \"is odd.\")\ny = abs(x)\nprint(\"absolute value of\", x,\"==>\", y)\n",
+      "cases": [
+        {
+          "id": "ch3-1-1",
+          "stdin": "20",
+          "expected": " *** Number Manipulation ***\nEnter a whole number : 20 is even.\nabsolute value of 20 ==> 20"
+        },
+        {
+          "id": "ch3-1-2",
+          "stdin": "79",
+          "expected": " *** Number Manipulation ***\nEnter a whole number : 79 is odd.\nabsolute value of 79 ==> 79"
+        },
+        {
+          "id": "ch3-1-3",
+          "stdin": "0",
+          "expected": " *** Number Manipulation ***\nEnter a whole number : 0 is even.\nabsolute value of 0 ==> 0"
+        },
+        {
+          "id": "ch3-1-4",
+          "stdin": "-5",
+          "expected": " *** Number Manipulation ***\nEnter a whole number : -5 is odd.\nabsolute value of -5 ==> 5"
+        },
+        {
+          "id": "ch3-1-5",
+          "stdin": "-128",
+          "expected": " *** Number Manipulation ***\nEnter a whole number : -128 is even.\nabsolute value of -128 ==> 128"
+        },
+        {
+          "id": "ch3-1-8",
+          "stdin": "65536",
+          "expected": " *** Number Manipulation ***\nEnter a whole number : 65536 is even.\nabsolute value of 65536 ==> 65536"
+        }
+      ]
+    },
+    {
+      "id": "ch3-2",
+      "week": 3,
+      "item": 2,
+      "title": "Min Max Avg v2",
+      "descriptionMd": "<u>ให้ใช้คำสั่งที่เรียนเท่านั้น</u>\n\nรับจำนวนเต็ม 3 จำนวน แล้วหา ค่าสูงสุด(maximum) ค่าต่ำสุด(minimum) และ ค่าเฉลื่ย(average) แล้วแสดงผลตามตัวอย่าง\n\n```python\n *** Min Max Avg ***\nEnter 3 numbers : 60 -60 0\nmin, mid, max ==> -60.0, 0.0, 60.0\nAverage ==> 0.00\n```\n\nการรับค่า 3 จำนวน\n\n1. รับค่าเข้ามาก่อนเก็บไว้ใน ตัวแปร\n\nstr = input(\"Enter 3 numbers : \")\n\n2. สร้างตัวแปร 3 ตัว จาก str\n\na,b,c = str.split()\n\n3. ให้ทดลองนำค่า มาแสดงผล\n\nprint(\"a=\",a,\" =>\",type(a))\n\nprint(\"b=\",b,\" =>\",type(b))\n\nprint(\"c=\",c,\" =>\",type(c))\n\nการแสดงผลแบบจัดรูปแบบ ด้วย  <u>เอฟสตริง</u>\n\na = 12\n\nb = 37\n\nc = 45\n\nprint(f'a={a}, b={b}, c={c}')\n\nวงเล็บปีกกาที่อยู่ในสตริง จะเป็นการนำตัวแปรมาแทนที่\n\nถ้าต้องการข้อมูลเพิ่มเติมให้กูเกิล python f string\n\nให้สังเกตจำนวนทศนิยมในการแสดงผลให้สอดคล้องกับตัวอย่าง",
+      "reference": "print(\" *** Min Max Avg ***\")\n\ns = input(\"Enter 3 numbers : \")\n\na, b, c = s.split()\n\na = float(a)\nb = float(b)\nc = float(c)\n\n# หา min\nif a <= b and a <= c:\n    min_num = a\nelif b <= a and b <= c:\n    min_num = b\nelse:\n    min_num = c\n\n# หา max\nif a >= b and a >= c:\n    max_num = a\nelif b >= a and b >= c:\n    max_num = b\nelse:\n    max_num = c\n\n# หา mid\nmid_num = a + b + c - min_num - max_num\n\n# หา average\navg = (a + b + c) / 3\n\nprint(f\"min, mid, max ==> {min_num:.2f}, {mid_num:.2f}, {max_num:.2f}\")\nprint(f\"Average ==> {avg:.3f}\")\n",
+      "cases": [
+        {
+          "id": "ch3-2-1",
+          "stdin": "1 2 3",
+          "expected": " *** Min Max Avg ***\nEnter 3 numbers : min, mid, max ==> 1.00, 2.00, 3.00\nAverage ==> 2.000"
+        },
+        {
+          "id": "ch3-2-2",
+          "stdin": "7 7 7",
+          "expected": " *** Min Max Avg ***\nEnter 3 numbers : min, mid, max ==> 7.00, 7.00, 7.00\nAverage ==> 7.000"
+        },
+        {
+          "id": "ch3-2-3",
+          "stdin": "1 1 7",
+          "expected": " *** Min Max Avg ***\nEnter 3 numbers : min, mid, max ==> 1.00, 1.00, 7.00\nAverage ==> 3.000"
+        },
+        {
+          "id": "ch3-2-4",
+          "stdin": "9 1 1",
+          "expected": " *** Min Max Avg ***\nEnter 3 numbers : min, mid, max ==> 1.00, 1.00, 9.00\nAverage ==> 3.667"
+        },
+        {
+          "id": "ch3-2-6",
+          "stdin": "4 8 6",
+          "expected": " *** Min Max Avg ***\nEnter 3 numbers : min, mid, max ==> 4.00, 6.00, 8.00\nAverage ==> 6.000"
+        },
+        {
+          "id": "ch3-2-7",
+          "stdin": "9  6 3",
+          "expected": " *** Min Max Avg ***\nEnter 3 numbers : min, mid, max ==> 3.00, 6.00, 9.00\nAverage ==> 6.000"
+        },
+        {
+          "id": "ch3-2-8",
+          "stdin": "-1 0 1",
+          "expected": " *** Min Max Avg ***\nEnter 3 numbers : min, mid, max ==> -1.00, 0.00, 1.00\nAverage ==> 0.000"
+        },
+        {
+          "id": "ch3-2-9",
+          "stdin": "0 0 0",
+          "expected": " *** Min Max Avg ***\nEnter 3 numbers : min, mid, max ==> 0.00, 0.00, 0.00\nAverage ==> 0.000"
+        },
+        {
+          "id": "ch3-2-10",
+          "stdin": "8 8 1",
+          "expected": " *** Min Max Avg ***\nEnter 3 numbers : min, mid, max ==> 1.00, 8.00, 8.00\nAverage ==> 5.667"
+        }
+      ]
+    },
+    {
+      "id": "ch3-3",
+      "week": 3,
+      "item": 3,
+      "title": "Data type integer float string",
+      "descriptionMd": "รับข้อมูล 1 ข้อมูล\n\nถ้าเป็นจำนวนเต็ม ให้แสดงผล ค่าที่คูณด้วยสอง\n\nถ้าเป็นจำนวนทศนิยม ให้แสดง ค่าที่หารด้วยสาม ทศนิยม สามตำแหน่ง\n\nถ้าไม่สามารถ แปลงเป็นจำนวนได้ ให้แสดงข้อความ สามครั้ง\n\nแสดงผลตามตัวอย่าง\n\n```python\n *** Data type integer float string ***\nEnter a word : easy\neasy easy easy\n```\n\n```python\n *** Data type integer float string ***\nEnter a word : 13\n13 * 2 = 26\n```\n\n```python\n *** Data type integer float string ***\nEnter a word : 3.6\n3.600 / 3 = 1.200\n```",
+      "reference": "print(\" *** Data type integer float string ***\")\nword = input(\"Enter a word : \")\ntry:\n    num = int(word)\n    print(f\"{num} * 2 = {num * 2}\")\nexcept:\n    try:\n        num = float(word)\n        print(f\"{num:.3F} / 3 = {num / 3:.3f}\")\n    except:\n        print(word, word, word)\n",
+      "cases": [
+        {
+          "id": "ch3-3-1",
+          "stdin": "13",
+          "expected": " *** Data type integer float string ***\nEnter a word : 13 * 2 = 26"
+        },
+        {
+          "id": "ch3-3-2",
+          "stdin": "3.6",
+          "expected": " *** Data type integer float string ***\nEnter a word : 3.600 / 3 = 1.200"
+        },
+        {
+          "id": "ch3-3-3",
+          "stdin": "easy",
+          "expected": " *** Data type integer float string ***\nEnter a word : easy easy easy"
+        },
+        {
+          "id": "ch3-3-4",
+          "stdin": "3.14.1592",
+          "expected": " *** Data type integer float string ***\nEnter a word : 3.14.1592 3.14.1592 3.14.1592"
+        },
+        {
+          "id": "ch3-3-5",
+          "stdin": "2.71812818",
+          "expected": " *** Data type integer float string ***\nEnter a word : 2.718 / 3 = 0.906"
+        },
+        {
+          "id": "ch3-3-6",
+          "stdin": "peak_value",
+          "expected": " *** Data type integer float string ***\nEnter a word : peak_value peak_value peak_value"
+        },
+        {
+          "id": "ch3-3-8",
+          "stdin": "256",
+          "expected": " *** Data type integer float string ***\nEnter a word : 256 * 2 = 512"
+        },
+        {
+          "id": "ch3-3-9",
+          "stdin": "-16",
+          "expected": " *** Data type integer float string ***\nEnter a word : -16 * 2 = -32"
+        }
+      ]
+    },
+    {
+      "id": "ch3-4",
+      "week": 3,
+      "item": 4,
+      "title": "Water Supply",
+      "descriptionMd": "จงเขียนโปรแกรมคำนวณ การจ่ายน้ำประปา มีข้อกำหนดด้งนี้\n\n- 0 - 10 Unit ละ 5 บาท\n- 11 - 50 Unit ละ 10 บาท\n- 51 - 100 Unit ละ 12 บาท\n- 101 - 500 Unit ละ 15 บาท\n- 501 - 1000 Unit ละ 18 บาท\n- 1001 - 5000 Unit ละ 20 บาท\n- มากกว่า 5001 Unit ละ 21 บาท\n\nใช้ 5 หน่วย จ่าย 5*5 = 25 บาท\n\nใช้ 13 หน่วย จ่าย 10*5 + (13-10)*10 = 50 + 30 = 80\n\nใช้ 75 หน่วย จ่าย 10*5 + (50-10)*10 + (75-50)*12 = 50 + 40*10 + 25*12  = 50 +400+300 = 750 บาท\n\nให้แสดงผลตามตัวอย่าง",
+      "reference": "print(\" *** Water Supply Calculator ***\")\n\nunit = int(input(\"Total usage : \"))\n\nif unit <= 10:\n    amount = unit * 5\n\nelif unit <= 50:\n    amount = (10 * 5) + (unit - 10) * 10\n\nelif unit <= 100:\n    amount = (10 * 5) + (40 * 10) + (unit - 50) * 12\n\nelif unit <= 500:\n    amount = (10 * 5) + (40 * 10) + (50 * 12) + (unit - 100) * 15\n\nelif unit <= 1000:\n    amount = (10 * 5) + (40 * 10) + (50 * 12) + (400 * 15) + (unit - 500) * 18\n\nelif unit <= 5000:\n    amount = (10 * 5) + (40 * 10) + (50 * 12) + (400 * 15) + (500 * 18) + (unit - 1000) * 20\n\nelse:\n    amount = (\n        (10 * 5)\n        + (40 * 10)\n        + (50 * 12)\n        + (400 * 15)\n        + (500 * 18)\n        + (4000 * 20)\n        + (unit - 5000) * 21\n    )\n\nprint(f\"Total Amount = {amount:,.2f} baht\")\nprint(\"===== End of program =====\")\n",
+      "cases": [
+        {
+          "id": "ch3-4-1",
+          "stdin": "5",
+          "expected": " *** Water Supply Calculator ***\nTotal usage : Total Amount = 25.00 baht\n===== End of program ====="
+        },
+        {
+          "id": "ch3-4-2",
+          "stdin": "25",
+          "expected": " *** Water Supply Calculator ***\nTotal usage : Total Amount = 200.00 baht\n===== End of program ====="
+        },
+        {
+          "id": "ch3-4-3",
+          "stdin": "80",
+          "expected": " *** Water Supply Calculator ***\nTotal usage : Total Amount = 810.00 baht\n===== End of program ====="
+        },
+        {
+          "id": "ch3-4-4",
+          "stdin": "400",
+          "expected": " *** Water Supply Calculator ***\nTotal usage : Total Amount = 5,550.00 baht\n===== End of program ====="
+        },
+        {
+          "id": "ch3-4-5",
+          "stdin": "700",
+          "expected": " *** Water Supply Calculator ***\nTotal usage : Total Amount = 10,650.00 baht\n===== End of program ====="
+        },
+        {
+          "id": "ch3-4-6",
+          "stdin": "2250",
+          "expected": " *** Water Supply Calculator ***\nTotal usage : Total Amount = 41,050.00 baht\n===== End of program ====="
+        },
+        {
+          "id": "ch3-4-7",
+          "stdin": "5555",
+          "expected": " *** Water Supply Calculator ***\nTotal usage : Total Amount = 107,705.00 baht\n===== End of program ====="
+        }
+      ]
+    },
+    {
+      "id": "ch3-5",
+      "week": 3,
+      "item": 5,
+      "title": "transform seconds",
+      "descriptionMd": "เขียนโปรแกรมเพื่อรับค่าจำนวนเต็ม ซึ่งจะเป็น จำนวนวินาที\n\nถ้าตัวเลขที่ป้อนเข้ามาไม่ใช่จำนวนเต็ม ให้แจ้งผู้ใช้และจบโปรแกรม\n\nแปลง จำนวนวินาทีให้เป็น จำนวนสัปดาห์ จำนวนวัน จำนวนชั่วโมง จำนวนนาที และ จำนวนวินาที ตามตัวอย่าง\n\nถ้าอินพุทที่ป้อน ไม่เป็นตามกำหนด ให้แสดงผลตามตัวอย่าง\n\n```python\n *** Transform second ***\nEnter seconds : 120\n120 seconds ==> 2 minutes\n --- program end ---\n```\n\n```python\n *** Transform second ***\nEnter seconds : 256.127\n! ! ! please enter a whole number ==> 256.127\n --- program end ---\n```\n\n```python\n *** Transform second ***\nEnter seconds : 31_449_600\n31,449,600 seconds ==> 52 weeks\n --- program end ---\n```\n\n```python\n *** Transform second ***\nEnter seconds : 1_814_405\n1,814,405 seconds ==> 3 weeks 5 seconds\n --- program end ---\n```\n\n```python\n *** Transform second ***\nEnter seconds : 432_540\n432,540 seconds ==> 5 days 9 minutes\n --- program end ---\n```",
+      "reference": "print(\" *** Transform second ***\")\n\ns = input(\"Enter seconds : \")\n\nnum = s.replace(\"_\", \"\")\n\nif num.startswith(\"-\"):\n    print(f\"This number ({s}) is not VALID !!!\")\n\nelif num.isdigit() == False:\n    print(f\"! ! ! please enter a whole number ==> {s}\")\n    print(\" --- program end ---\")\nelse:\n    total = int(num)\n    sec = total\n\n    week = sec // 604800\n    sec = sec % 604800\n\n    day = sec // 86400\n    sec = sec % 86400\n\n    hour = sec // 3600\n    sec = sec % 3600\n\n    minute = sec // 60\n    second = sec % 60\n\n    print(f\"{total:,} seconds ==> \", end=\"\")\n\n    if week > 0:\n        print(f\"{week} weeks \", end=\"\")\n\n    if day > 0:\n        print(f\"{day} days \", end=\"\")\n\n    if hour > 0:\n        print(f\"{hour} hours \", end=\"\")\n\n    if minute > 0:\n        print(f\"{minute} minutes \", end=\"\")\n\n    if second > 0:\n        print(f\"{second} seconds\", end=\"\")\n\n    print()\n\n    print(\" --- program end ---\")\n",
+      "cases": [
+        {
+          "id": "ch3-5-1",
+          "stdin": "120",
+          "expected": " *** Transform second ***\nEnter seconds : 120 seconds ==> 2 minutes \n --- program end ---"
+        },
+        {
+          "id": "ch3-5-2",
+          "stdin": "256.127",
+          "expected": " *** Transform second ***\nEnter seconds : ! ! ! please enter a whole number ==> 256.127\n --- program end ---"
+        },
+        {
+          "id": "ch3-5-3",
+          "stdin": "10_800",
+          "expected": " *** Transform second ***\nEnter seconds : 10,800 seconds ==> 3 hours \n --- program end ---"
+        },
+        {
+          "id": "ch3-5-4",
+          "stdin": "345_600",
+          "expected": " *** Transform second ***\nEnter seconds : 345,600 seconds ==> 4 days \n --- program end ---"
+        },
+        {
+          "id": "ch3-5-5",
+          "stdin": "1_814_400",
+          "expected": " *** Transform second ***\nEnter seconds : 1,814,400 seconds ==> 3 weeks \n --- program end ---"
+        },
+        {
+          "id": "ch3-5-6",
+          "stdin": "31_449_600",
+          "expected": " *** Transform second ***\nEnter seconds : 31,449,600 seconds ==> 52 weeks \n --- program end ---"
+        },
+        {
+          "id": "ch3-5-7",
+          "stdin": "1_814_405",
+          "expected": " *** Transform second ***\nEnter seconds : 1,814,405 seconds ==> 3 weeks 5 seconds\n --- program end ---"
+        },
+        {
+          "id": "ch3-5-8",
+          "stdin": "12_345",
+          "expected": " *** Transform second ***\nEnter seconds : 12,345 seconds ==> 3 hours 25 minutes 45 seconds\n --- program end ---"
+        },
+        {
+          "id": "ch3-5-9",
+          "stdin": "123_456",
+          "expected": " *** Transform second ***\nEnter seconds : 123,456 seconds ==> 1 days 10 hours 17 minutes 36 seconds\n --- program end ---"
+        },
+        {
+          "id": "ch3-5-10",
+          "stdin": "1_234_567",
+          "expected": " *** Transform second ***\nEnter seconds : 1,234,567 seconds ==> 2 weeks 6 hours 56 minutes 7 seconds\n --- program end ---"
+        },
+        {
+          "id": "ch3-5-11",
+          "stdin": "76_543_210",
+          "expected": " *** Transform second ***\nEnter seconds : 76,543,210 seconds ==> 126 weeks 3 days 22 hours 10 seconds\n --- program end ---"
+        },
+        {
+          "id": "ch3-5-15",
+          "stdin": "1_220_404",
+          "expected": " *** Transform second ***\nEnter seconds : 1,220,404 seconds ==> 2 weeks 3 hours 4 seconds\n --- program end ---"
+        },
+        {
+          "id": "ch3-5-16",
+          "stdin": "432_540",
+          "expected": " *** Transform second ***\nEnter seconds : 432,540 seconds ==> 5 days 9 minutes \n --- program end ---"
+        },
+        {
+          "id": "ch3-5-17",
+          "stdin": "five",
+          "expected": " *** Transform second ***\nEnter seconds : ! ! ! please enter a whole number ==> five\n --- program end ---"
+        },
+        {
+          "id": "ch3-5-19",
+          "stdin": "-9",
+          "expected": " *** Transform second ***\nEnter seconds : This number (-9) is not VALID !!!"
+        }
+      ]
+    },
+    {
+      "id": "ch4-1",
+      "week": 4,
+      "item": 1,
+      "title": "Sum To N",
+      "descriptionMd": "ให้เขียนโปรแกรมรับค่าเพื่อแสดงผลรวมของการบวกเลขตั้งแต่ 1 ถึง ตัวเลขที่ป้อน\nโดยกำหนดให้ Input มีค่าตั้งแต่ 1 ขึ้นไป\nหากค่าที่รับมาน้อยกว่า 1 ให้แสดงข้อความ error\n\nให้ใช้ while loop",
+      "reference": "n = int(input(\"Sum from 1 to : \"))\n\nif n < 1:\n    print(\"Input Error\")\nelse:\n    total = 0\n    i = 1\n    while i <= n:\n        total += i\n        i += 1\n    print(f\"Sum from 1 to {n} is {total}\")\n",
+      "cases": [
+        {
+          "id": "ch4-1-1",
+          "stdin": "0",
+          "expected": "Sum from 1 to : Input Error"
+        },
+        {
+          "id": "ch4-1-2",
+          "stdin": "10",
+          "expected": "Sum from 1 to : Sum from 1 to 10 is 55"
+        },
+        {
+          "id": "ch4-1-3",
+          "stdin": "4",
+          "expected": "Sum from 1 to : Sum from 1 to 4 is 10"
+        },
+        {
+          "id": "ch4-1-4",
+          "stdin": "1",
+          "expected": "Sum from 1 to : Sum from 1 to 1 is 1"
+        },
+        {
+          "id": "ch4-1-5",
+          "stdin": "-15",
+          "expected": "Sum from 1 to : Input Error"
+        },
+        {
+          "id": "ch4-1-8",
+          "stdin": "9",
+          "expected": "Sum from 1 to : Sum from 1 to 9 is 45"
+        }
+      ]
+    },
+    {
+      "id": "ch4-2",
+      "week": 4,
+      "item": 2,
+      "title": "ลำดับเลขคณิต",
+      "descriptionMd": "จงเขียนโปรแกรมแสดงลำดับเลขคณิต\n\nโดยรับ Input เป็นจำนวนเต็ม 2 จำนวน คือค่าเริ่มต้น กับค่าผลต่างร่วม\n\nแล้วแสดง Output เป็นลำดับเลขคณิตจำนวน 10 เลข",
+      "reference": "print(\" *** Arithmetic Sequence ***\")\ninput = input(\"Enter 2 numbers : \")\na,b = input.split()\na=int(a)\nb=int(b)\ni = 1\nwhile i < 11 :\n    if i == 1 :\n        print(f\"{a}\",end=\" \")\n        i += 1\n    else :\n        i += 1\n        A = a + b\n        a += b\n        print(f\"{A}\",end=\" \")\nprint()\nprint(\"===== End of program =====\")\n",
+      "cases": [
+        {
+          "id": "ch4-2-1",
+          "stdin": "1 1",
+          "expected": " *** Arithmetic Sequence ***\nEnter 2 numbers : 1 2 3 4 5 6 7 8 9 10 \n===== End of program ====="
+        },
+        {
+          "id": "ch4-2-2",
+          "stdin": "9 8",
+          "expected": " *** Arithmetic Sequence ***\nEnter 2 numbers : 9 17 25 33 41 49 57 65 73 81 \n===== End of program ====="
+        },
+        {
+          "id": "ch4-2-3",
+          "stdin": "0 -25",
+          "expected": " *** Arithmetic Sequence ***\nEnter 2 numbers : 0 -25 -50 -75 -100 -125 -150 -175 -200 -225 \n===== End of program ====="
+        },
+        {
+          "id": "ch4-2-5",
+          "stdin": "14 8",
+          "expected": " *** Arithmetic Sequence ***\nEnter 2 numbers : 14 22 30 38 46 54 62 70 78 86 \n===== End of program ====="
+        }
+      ]
+    },
+    {
+      "id": "ch4-3",
+      "week": 4,
+      "item": 3,
+      "title": "odd sum",
+      "descriptionMd": "จงเขียนโปรแกรมหาผลรวมของจำนวนเต็มคี่ 1 ถึง ค่าที่รับเข้ามา",
+      "reference": "print(\" *** odd integer summation from 1 to n ***\")\nn = int(input(\"Enter an integer(n) : \"))\ni = 1\ntotal = 0\nprint(\"Summation => \", end=\"\")\nwhile i <= n:\n    total += i\n    print(i, end=\"\")\n    if i + 2 <= n:\n        print(\"+\", end=\"\")\n    i += 2\nprint(\" =\", total)\n",
+      "cases": [
+        {
+          "id": "ch4-3-1",
+          "stdin": "3",
+          "expected": " *** odd integer summation from 1 to n ***\nEnter an integer(n) : Summation => 1+3 = 4"
+        },
+        {
+          "id": "ch4-3-2",
+          "stdin": "11",
+          "expected": " *** odd integer summation from 1 to n ***\nEnter an integer(n) : Summation => 1+3+5+7+9+11 = 36"
+        },
+        {
+          "id": "ch4-3-3",
+          "stdin": "12",
+          "expected": " *** odd integer summation from 1 to n ***\nEnter an integer(n) : Summation => 1+3+5+7+9+11 = 36"
+        },
+        {
+          "id": "ch4-3-4",
+          "stdin": "23",
+          "expected": " *** odd integer summation from 1 to n ***\nEnter an integer(n) : Summation => 1+3+5+7+9+11+13+15+17+19+21+23 = 144"
+        }
+      ]
+    },
+    {
+      "id": "ch4-4",
+      "week": 4,
+      "item": 4,
+      "title": "digit-count and Summation",
+      "descriptionMd": "จงใช้ while loop นับเลขจำนวนหลักของตัวเลข\n\nเช่น 123456 ผลลัพธ์เป็น 6",
+      "reference": "print(\" *** Digit count and Summation ***\")\nn = int(input(\"Enter an integer : \"))\nprint(\"Entered number = {:,}\".format(n))\ntemp = n\ncount = 0\ntotal = 0\nwhile temp > 0:\n    total += temp % 10\n    temp //= 10\n    count += 1\nprint(\"Total digits are: \", count)\nprint(\"Summation =\", total)\n",
+      "cases": [
+        {
+          "id": "ch4-4-1",
+          "stdin": "123456",
+          "expected": " *** Digit count and Summation ***\nEnter an integer : Entered number = 123,456\nTotal digits are:  6\nSummation = 21"
+        },
+        {
+          "id": "ch4-4-2",
+          "stdin": "1234567890123456",
+          "expected": " *** Digit count and Summation ***\nEnter an integer : Entered number = 1,234,567,890,123,456\nTotal digits are:  16\nSummation = 66"
+        },
+        {
+          "id": "ch4-4-4",
+          "stdin": "1234567890123456888896",
+          "expected": " *** Digit count and Summation ***\nEnter an integer : Entered number = 1,234,567,890,123,456,888,896\nTotal digits are:  22\nSummation = 113"
+        },
+        {
+          "id": "ch4-4-5",
+          "stdin": "13666666666666666687456465487654313654",
+          "expected": " *** Digit count and Summation ***\nEnter an integer : Entered number = 13,666,666,666,666,666,687,456,465,487,654,313,654\nTotal digits are:  38\nSummation = 201"
+        },
+        {
+          "id": "ch4-4-7",
+          "stdin": "314159265853",
+          "expected": " *** Digit count and Summation ***\nEnter an integer : Entered number = 314,159,265,853\nTotal digits are:  12\nSummation = 52"
+        }
+      ]
+    },
+    {
+      "id": "ch4-5",
+      "week": 4,
+      "item": 5,
+      "title": "Linear Formula",
+      "descriptionMd": "รับจำนวนเต็ม 4 จำนวน เป็น x1, y1, x2, y2\n\nโดยสมการเส้นตรงที่ได้จะผ่านจุด (x1,y1) และ (x2,y2)\n\nคำนวณหาสมการเส้นตรง ในรูปแบบของ Ax + By + C = 0\n\n <u>การคำนวณ</u>\n\n A = y2 - y1                  # Calculating A\n\n B = x1 - x2                  # Calculating B\n\n C = x2 * y1 - y2 * x1      # Calculating C\n\nf1: A,B,C คำนวณจาก x1, y1, x2, y2  ตามสูตรด้านบน\n\nf2: A, B, C จะมี ตัวหารร่วมมากเป็น 1\n\nf3: A จะต้องเป็นจำนวนเต็ม บวก และจะมีการซ่อนการแสดงผลของ A, B, C ในบางกรณี (เช่นเมื่อเป็น 1)\n\nในกรณีที่ เป็นเส้นตรงแนวตั้ง ให้แสดงผล vertical line",
+      "reference": "print(\" *** Linear Formula ***\")\nx1, y1, x2, y2 = map(int, input(\"Enter x1 y1 x2 y2: \").split())\n\nprint(f\"({x1},{y1}) ==> ({x2},{y2})\")\n\nif x1 == x2:\n    print(f\"Vertical line ==> x = {x1}.\")\nelse:\n    A = y2 - y1\n    B = x1 - x2\n    C = x2 * y1 - y2 * x1\n\n    print(f\"f1 ==> {A}x + {B}y + {C} = 0\")\n\n    a = abs(A)\n    b = abs(B)\n\n    while b != 0:\n        a, b = b, a % b\n\n    c = abs(C)\n    while c != 0:\n        a, c = c, a % c\n\n    A //= a\n    B //= a\n    C //= a\n\n    print(f\"f2 ==> {A}x + {B}y + {C} = 0\")\n\n    if A < 0:\n        A = -A\n        B = -B\n        C = -C\n\n    ans = \"\"\n\n    if A == 1:\n        ans += \"x\"\n    else:\n        ans += str(A) + \"x\"\n\n    if B > 0:\n        ans += \" + \"\n        ans += \"y\" if B == 1 else str(B) + \"y\"\n    elif B < 0:\n        ans += \" - \"\n        ans += \"y\" if B == -1 else str(-B) + \"y\"\n\n    if C > 0:\n        ans += \" + \" + str(C)\n    elif C < 0:\n        ans += \" - \" + str(-C)\n\n    print(\"f3 ==> \" + ans + \" = 0\")\n\nprint(\"===== End of program =====\")\n",
+      "cases": [
+        {
+          "id": "ch4-5-1",
+          "stdin": "9 3 3 9",
+          "expected": " *** Linear Formula ***\nEnter x1 y1 x2 y2: (9,3) ==> (3,9)\nf1 ==> 6x + 6y + -72 = 0\nf2 ==> 1x + 1y + -12 = 0\nf3 ==> x + y - 12 = 0\n===== End of program ====="
+        },
+        {
+          "id": "ch4-5-2",
+          "stdin": "1 -1 4 5",
+          "expected": " *** Linear Formula ***\nEnter x1 y1 x2 y2: (1,-1) ==> (4,5)\nf1 ==> 6x + -3y + -9 = 0\nf2 ==> 2x + -1y + -3 = 0\nf3 ==> 2x - y - 3 = 0\n===== End of program ====="
+        },
+        {
+          "id": "ch4-5-3",
+          "stdin": "1 3 4 5",
+          "expected": " *** Linear Formula ***\nEnter x1 y1 x2 y2: (1,3) ==> (4,5)\nf1 ==> 2x + -3y + 7 = 0\nf2 ==> 2x + -3y + 7 = 0\nf3 ==> 2x - 3y + 7 = 0\n===== End of program ====="
+        },
+        {
+          "id": "ch4-5-4",
+          "stdin": "-9 7 6 -3",
+          "expected": " *** Linear Formula ***\nEnter x1 y1 x2 y2: (-9,7) ==> (6,-3)\nf1 ==> -10x + -15y + 15 = 0\nf2 ==> -2x + -3y + 3 = 0\nf3 ==> 2x + 3y - 3 = 0\n===== End of program ====="
+        },
+        {
+          "id": "ch4-5-5",
+          "stdin": "2 2 2 9",
+          "expected": " *** Linear Formula ***\nEnter x1 y1 x2 y2: (2,2) ==> (2,9)\nVertical line ==> x = 2.\n===== End of program ====="
+        },
+        {
+          "id": "ch4-5-6",
+          "stdin": "1 3 6 9",
+          "expected": " *** Linear Formula ***\nEnter x1 y1 x2 y2: (1,3) ==> (6,9)\nf1 ==> 6x + -5y + 9 = 0\nf2 ==> 6x + -5y + 9 = 0\nf3 ==> 6x - 5y + 9 = 0\n===== End of program ====="
+        },
+        {
+          "id": "ch4-5-7",
+          "stdin": "0 0 1 1",
+          "expected": " *** Linear Formula ***\nEnter x1 y1 x2 y2: (0,0) ==> (1,1)\nf1 ==> 1x + -1y + 0 = 0\nf2 ==> 1x + -1y + 0 = 0\nf3 ==> x - y = 0\n===== End of program ====="
+        },
+        {
+          "id": "ch4-5-8",
+          "stdin": "0 0 1 -1",
+          "expected": " *** Linear Formula ***\nEnter x1 y1 x2 y2: (0,0) ==> (1,-1)\nf1 ==> -1x + -1y + 0 = 0\nf2 ==> -1x + -1y + 0 = 0\nf3 ==> x + y = 0\n===== End of program ====="
+        }
+      ]
+    },
+    {
+      "id": "ch5-1",
+      "week": 5,
+      "item": 1,
+      "title": "Greeting For Loop",
+      "descriptionMd": "ทำการรับค่าชื่อคนเข้ามาหลายชื่อ แต่ละชื่อคั่นด้วยช่องว่าง\nทำการทักทายคนทุกคนที่ป้อนเข้ามาโดยใช้ for loop เท่านั้น\n\nลองรัน code ด้านล่าง แล้วสังเกตการทำงาน\n\n```python\nlist = input(\"Enter a number : \").split()\nprint(list)\n```",
+      "reference": "print(\" *** Greeting *** \")\nlist = input(\"Enter some names: \").split()\nprint(list)\nfor i in list :\n    print(\"Hello\" , i)\n",
+      "cases": [
+        {
+          "id": "ch5-1-1",
+          "stdin": "Python",
+          "expected": " *** Greeting *** \nEnter some names: ['Python']\nHello Python"
+        },
+        {
+          "id": "ch5-1-2",
+          "stdin": "test kmitl abc",
+          "expected": " *** Greeting *** \nEnter some names: ['test', 'kmitl', 'abc']\nHello test\nHello kmitl\nHello abc"
+        }
+      ]
+    },
+    {
+      "id": "ch5-2",
+      "week": 5,
+      "item": 2,
+      "title": "Triangle For",
+      "descriptionMd": "ให้เขียนโปรแกรมรับค่าเพื่อแสดงสามเหลี่ยมมุมฉากด้วย* ขนาดตามจำนวนที่ป้อน\nโดยกำหนดให้ Input มีค่าตั้งแต่ 0 ขึ้นไป\nหากค่าที่รับมาน้อยกว่า 0 ให้แสดงข้อความ error",
+      "reference": "n = int(input(\"How big is the triangle : \"))\nif n < 0:\n    print(\"Input Error\")\nelse:\n    for int in range(1, n + 1):\n        print(\"*\" * int)\n",
+      "cases": [
+        {
+          "id": "ch5-2-1",
+          "stdin": "5",
+          "expected": "How big is the triangle : *\n**\n***\n****\n*****"
+        },
+        {
+          "id": "ch5-2-2",
+          "stdin": "-4",
+          "expected": "How big is the triangle : Input Error"
+        },
+        {
+          "id": "ch5-2-3",
+          "stdin": "0",
+          "expected": "How big is the triangle : "
+        },
+        {
+          "id": "ch5-2-4",
+          "stdin": "2",
+          "expected": "How big is the triangle : *\n**"
+        },
+        {
+          "id": "ch5-2-5",
+          "stdin": "3",
+          "expected": "How big is the triangle : *\n**\n***"
+        }
+      ]
+    },
+    {
+      "id": "ch5-3",
+      "week": 5,
+      "item": 3,
+      "title": "even number",
+      "descriptionMd": "แสดงผล จำนวนที่เป็นเลขคู่ โดยใช้ for loop\n\nลองรัน code ด้านล่าง แล้วสังเกตการทำงาน\n\n```python\nlist = input(\"Enter some numbers : \").split()\nprint(list)\n```",
+      "reference": "print(\" *** Filter only even number *** \")\nlist = input(\"Enter some numbers: \").split()\nprint(list)\nfor i in list:\n    if int(i) % 2 == 0:\n        print(i ,end=\" \")\n",
+      "cases": [
+        {
+          "id": "ch5-3-1",
+          "stdin": "1 2 3 4 5 6 7 8",
+          "expected": " *** Filter only even number *** \nEnter some numbers: ['1', '2', '3', '4', '5', '6', '7', '8']\n2 4 6 8 "
+        },
+        {
+          "id": "ch5-3-2",
+          "stdin": "3 2 1",
+          "expected": " *** Filter only even number *** \nEnter some numbers: ['3', '2', '1']\n2 "
+        },
+        {
+          "id": "ch5-3-3",
+          "stdin": "23 65 98 48 39 66",
+          "expected": " *** Filter only even number *** \nEnter some numbers: ['23', '65', '98', '48', '39', '66']\n98 48 66 "
+        }
+      ]
+    },
+    {
+      "id": "ch5-4",
+      "week": 5,
+      "item": 4,
+      "title": "Hollow Pyramid - 114a_Teerawat",
+      "descriptionMd": "จงเขียนโปรแกรม รับความสูงของปีรามิด\nแล้วแสดงผลรูปปิรามิดตามตัวอย่างnothing",
+      "reference": "print(\" *** Hollow Pyramid *** \")\ninput_str = input(\"Input your height : \")\nnum = int(input_str)\nfor row in range(num) :\n    line = ' ' * (num-row)\n    if row == 0:\n        line += \"/\\\\\"\n    elif row == num-1 :\n        line += \"/\" + \"_\" * (2* num -2) + \"\\\\\"\n    else:\n        line += \"/\"\n        line += \" \" * (2*row)\n        line += \"\\\\\"\n    print(line)\nprint(f\"===== End of program =====\")\n",
+      "cases": [
+        {
+          "id": "ch5-4-1",
+          "stdin": "4",
+          "expected": " *** Hollow Pyramid *** \nInput your height :     /\\\n   /  \\\n  /    \\\n /______\\\n===== End of program ====="
+        },
+        {
+          "id": "ch5-4-2",
+          "stdin": "5",
+          "expected": " *** Hollow Pyramid *** \nInput your height :      /\\\n    /  \\\n   /    \\\n  /      \\\n /________\\\n===== End of program ====="
+        },
+        {
+          "id": "ch5-4-3",
+          "stdin": "10",
+          "expected": " *** Hollow Pyramid *** \nInput your height :           /\\\n         /  \\\n        /    \\\n       /      \\\n      /        \\\n     /          \\\n    /            \\\n   /              \\\n  /                \\\n /__________________\\\n===== End of program ====="
+        },
+        {
+          "id": "ch5-4-4",
+          "stdin": "21",
+          "expected": " *** Hollow Pyramid *** \nInput your height :                      /\\\n                    /  \\\n                   /    \\\n                  /      \\\n                 /        \\\n                /          \\\n               /            \\\n              /              \\\n             /                \\\n            /                  \\\n           /                    \\\n          /                      \\\n         /                        \\\n        /                          \\\n       /                            \\\n      /                              \\\n     /                                \\\n    /                                  \\\n   /                                    \\\n  /                                      \\\n /________________________________________\\\n===== End of program ====="
+        }
+      ]
+    },
+    {
+      "id": "ch5-5",
+      "week": 5,
+      "item": 5,
+      "title": "114a-Cross Letters",
+      "descriptionMd": "จงเขียนโปรแกรมรับจำนวนเต็มบวกที่เป็นเลขคี่ 1 จำนวน ซึ่งนำมาใช้เป็นความสูงของกากบาท\n\nและแสดงผลเป็นรูปกากบาทตามตัวอย่าง\n\nโดยแสดงตัวอักษรเรียงจาก A ถึง Z และให้กลับมาเริ่มที่ A ใหม่อีกครั้ง",
+      "reference": "print(\" *** Cross Letters ***\")\n\ntry:\n    n = int(input(\"Enter a positive odd number : \"))\n\n    if n <= 0 or n % 2 == 0:\n            print(\"Invalid input !!!\")\n    else:\n            if n <= 0 or n % 2 == 0:\n                 print(\"Invalid input !!!\")\n            else:\n                for i in range((n + 1) // 2):\n                    for j in range(n):\n                        if j == i:\n                            print(chr(ord('A') + i % 26), end=\"\")\n                        elif j == n - 1 - i:\n                            print(chr(ord('A') + (n - 1 - i) % 26), end=\"\")\n                        else:\n                            print(\" \", end=\"\")\n                    print()\n\n                for i in range(n // 2 - 1, -1, -1):\n                    for j in range(n):\n                        if j == n - 1 - i:\n                            print(chr(ord('A') + i % 26), end=\"\")\n                        elif j == i:\n                            print(chr(ord('A') + (n - 1 - i) % 26), end=\"\")\n                        else:\n                            print(\" \", end=\"\")\n                    print()\n\n                print(\"===== End of program =====\")\n\nexcept ValueError:\n    print(\"Invalid input !!!\")\n",
+      "cases": [
+        {
+          "id": "ch5-5-1",
+          "stdin": "5",
+          "expected": " *** Cross Letters ***\nEnter a positive odd number : A   E\n B D \n  C  \n D B \nE   A\n===== End of program ====="
+        },
+        {
+          "id": "ch5-5-2",
+          "stdin": "4",
+          "expected": " *** Cross Letters ***\nEnter a positive odd number : Invalid input !!!"
+        },
+        {
+          "id": "ch5-5-3",
+          "stdin": "7",
+          "expected": " *** Cross Letters ***\nEnter a positive odd number : A     G\n B   F \n  C E  \n   D   \n  E C  \n F   B \nG     A\n===== End of program ====="
+        },
+        {
+          "id": "ch5-5-4",
+          "stdin": "-2",
+          "expected": " *** Cross Letters ***\nEnter a positive odd number : Invalid input !!!"
+        },
+        {
+          "id": "ch5-5-5",
+          "stdin": "2.31",
+          "expected": " *** Cross Letters ***\nEnter a positive odd number : Invalid input !!!"
+        },
+        {
+          "id": "ch5-5-6",
+          "stdin": "11",
+          "expected": " *** Cross Letters ***\nEnter a positive odd number : A         K\n B       J \n  C     I  \n   D   H   \n    E G    \n     F     \n    G E    \n   H   D   \n  I     C  \n J       B \nK         A\n===== End of program ====="
+        },
+        {
+          "id": "ch5-5-7",
+          "stdin": "53",
+          "expected": " *** Cross Letters ***\nEnter a positive odd number : A                                                   A\n B                                                 Z \n  C                                               Y  \n   D                                             X   \n    E                                           W    \n     F                                         V     \n      G                                       U      \n       H                                     T       \n        I                                   S        \n         J                                 R         \n          K                               Q          \n           L                             P           \n            M                           O            \n             N                         N             \n              O                       M              \n               P                     L               \n                Q                   K                \n                 R                 J                 \n                  S               I                  \n                   T             H                   \n                    U           G                    \n                     V         F                     \n                      W       E                      \n                       X     D                       \n                        Y   C                        \n                         Z B                         \n                          A                          \n                         B Z                         \n                        C   Y                        \n                       D     X                       \n                      E       W                      \n                     F         V                     \n                    G           U                    \n                   H             T                   \n                  I               S                  \n                 J                 R                 \n                K                   Q                \n               L                     P               \n              M                       O              \n             N                         N             \n            O                           M            \n           P                             L           \n          Q                               K          \n         R                                 J         \n        S                                   I        \n       T                                     H       \n      U                                       G      \n     V                                         F     \n    W                                           E    \n   X                                             D   \n  Y                                               C  \n Z                                                 B \nA                                                   A\n===== End of program ====="
+        }
+      ]
+    }
+  ]
+}
