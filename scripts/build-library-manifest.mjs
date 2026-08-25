@@ -107,9 +107,11 @@ for (const file of walk(ASSETS).sort()) {
   const base = name.slice(0, name.length - ext.length);
   const title = titleFrom(base, subjectFolder);
   const shelf = SHELF[categoryFolder] ?? "reference";
+  const extClean = ext.replace(/^\./, "").toLowerCase();
+  const baseId = `gen-${subjectFolder}-${categoryFolder}-${base}${extClean ? '-' + extClean : ''}`;
 
   (manifest[code] ??= []).push({
-    id: `gen-${subjectFolder}-${categoryFolder}-${base}`,
+    id: baseId,
     title: { th: title, en: title },
     description: { th: "", en: "" },
     tags: [code, categoryFolder],

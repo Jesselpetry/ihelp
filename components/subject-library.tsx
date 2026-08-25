@@ -1361,18 +1361,19 @@ export function SubjectLibrary({
 
   const renderGrid = (list: GalleryEntry[]) => (
     <div className="grid grid-cols-[repeat(auto-fill,minmax(9.5rem,1fr))] gap-x-4 gap-y-6">
-      {list.map((entry) => {
+      {list.map((entry, idx) => {
+        const itemKey = entry.kind === "single" ? `${entry.key}-${entry.asset.url || idx}` : entry.key;
         if (entry.kind === "single") {
           return entry.asset.fileType === "image" ? (
             <ImageTile
-              key={entry.key}
+              key={itemKey}
               asset={entry.asset}
               courseCode={courseCode}
               onOpen={openSingle}
             />
           ) : (
             <BookCover
-              key={entry.key}
+              key={itemKey}
               asset={entry.asset}
               courseCode={courseCode}
               onOpen={openSingle}
@@ -1382,7 +1383,7 @@ export function SubjectLibrary({
 
         const expanded = openStacks.has(entry.key);
         return (
-          <Fragment key={entry.key}>
+          <Fragment key={itemKey}>
             <PhotoStack
               title={entry.title}
               assets={entry.assets}
@@ -1407,10 +1408,11 @@ export function SubjectLibrary({
 
   const renderList = (list: GalleryEntry[]) => (
     <div className="overflow-hidden rounded-2xl border bg-card">
-      {list.map((entry) =>
-        entry.kind === "stack" ? (
+      {list.map((entry, idx) => {
+        const itemKey = entry.kind === "single" ? `${entry.key}-${entry.asset.url || idx}` : entry.key;
+        return entry.kind === "stack" ? (
           <CompactStackRow
-            key={entry.key}
+            key={itemKey}
             title={entry.title}
             assets={entry.assets}
             courseCode={courseCode}
@@ -1418,13 +1420,13 @@ export function SubjectLibrary({
           />
         ) : (
           <CompactRow
-            key={entry.key}
+            key={itemKey}
             asset={entry.asset}
             courseCode={courseCode}
             onOpen={openSingle}
           />
-        ),
-      )}
+        );
+      })}
     </div>
   );
 

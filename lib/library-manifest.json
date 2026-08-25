@@ -1,7 +1,7 @@
 {
   "CHEM": [
     {
-      "id": "gen-chem-exercises-ch1-self-study",
+      "id": "gen-chem-exercises-ch1-self-study-pdf",
       "title": {
         "th": "Ch 1 Self Study",
         "en": "Ch 1 Self Study"
@@ -21,7 +21,7 @@
       "courseCode": "CHEM"
     },
     {
-      "id": "gen-chem-exercises-ch2-self-study",
+      "id": "gen-chem-exercises-ch2-self-study-pdf",
       "title": {
         "th": "Ch 2 Self Study",
         "en": "Ch 2 Self Study"
@@ -41,7 +41,7 @@
       "courseCode": "CHEM"
     },
     {
-      "id": "gen-chem-exercises-ch4-self-study",
+      "id": "gen-chem-exercises-ch4-self-study-pdf",
       "title": {
         "th": "Ch 4 Self Study",
         "en": "Ch 4 Self Study"
@@ -61,7 +61,7 @@
       "courseCode": "CHEM"
     },
     {
-      "id": "gen-chem-exercises-ch5-self-study",
+      "id": "gen-chem-exercises-ch5-self-study-pdf",
       "title": {
         "th": "Ch 5 Self Study",
         "en": "Ch 5 Self Study"
@@ -81,7 +81,7 @@
       "courseCode": "CHEM"
     },
     {
-      "id": "gen-chem-lectures-ch1-atomic-structure",
+      "id": "gen-chem-lectures-ch1-atomic-structure-pdf",
       "title": {
         "th": "Ch 1 Atomic Structure",
         "en": "Ch 1 Atomic Structure"
@@ -101,7 +101,7 @@
       "courseCode": "CHEM"
     },
     {
-      "id": "gen-chem-lectures-ch2-the-periodic-table-and-some-atomic-properties-2569",
+      "id": "gen-chem-lectures-ch2-the-periodic-table-and-some-atomic-properties-2569-pdf",
       "title": {
         "th": "Ch 2 The Periodic Table And Some Atomic Properties 2569",
         "en": "Ch 2 The Periodic Table And Some Atomic Properties 2569"
@@ -121,7 +121,7 @@
       "courseCode": "CHEM"
     },
     {
-      "id": "gen-chem-lectures-ch3-chemical-bonding-2569",
+      "id": "gen-chem-lectures-ch3-chemical-bonding-2569-pdf",
       "title": {
         "th": "Ch 3 Chemical Bonding 2569",
         "en": "Ch 3 Chemical Bonding 2569"
@@ -141,7 +141,7 @@
       "courseCode": "CHEM"
     },
     {
-      "id": "gen-chem-lectures-ch5-liquid-and-solution-2569-sc3",
+      "id": "gen-chem-lectures-ch5-liquid-and-solution-2569-sc3-pdf",
       "title": {
         "th": "Ch 5 Liquid And Solution 2569 Sc 3",
         "en": "Ch 5 Liquid And Solution 2569 Sc 3"
@@ -161,7 +161,7 @@
       "courseCode": "CHEM"
     },
     {
-      "id": "gen-chem-sheets-ch03-chemical-bonding-discussion-class-2569-key",
+      "id": "gen-chem-sheets-ch03-chemical-bonding-discussion-class-2569-key-pdf",
       "title": {
         "th": "Ch 03 Chemical Bonding Discussion Class 2569 Key",
         "en": "Ch 03 Chemical Bonding Discussion Class 2569 Key"
@@ -181,7 +181,7 @@
       "courseCode": "CHEM"
     },
     {
-      "id": "gen-chem-sheets-ch04-stiochiometry-2569-key",
+      "id": "gen-chem-sheets-ch04-stiochiometry-2569-key-pdf",
       "title": {
         "th": "Ch 04 Stiochiometry 2569 Key",
         "en": "Ch 04 Stiochiometry 2569 Key"
@@ -201,7 +201,7 @@
       "courseCode": "CHEM"
     },
     {
-      "id": "gen-chem-sheets-ch4-stiochiometry-2569-review",
+      "id": "gen-chem-sheets-ch4-stiochiometry-2569-review-pdf",
       "title": {
         "th": "Ch 4 Stiochiometry 2569 Review",
         "en": "Ch 4 Stiochiometry 2569 Review"
@@ -223,7 +223,7 @@
   ],
   "BFIT": [
     {
-      "id": "gen-bfit-cases-bfit-case-amazon",
+      "id": "gen-bfit-cases-bfit-case-amazon-pdf",
       "title": {
         "th": "Case Amazon",
         "en": "Case Amazon"
@@ -243,7 +243,7 @@
       "courseCode": "BFIT"
     },
     {
-      "id": "gen-bfit-cases-bfit-case-google-culture",
+      "id": "gen-bfit-cases-bfit-case-google-culture-pdf",
       "title": {
         "th": "Case Google Culture",
         "en": "Case Google Culture"
@@ -263,7 +263,7 @@
       "courseCode": "BFIT"
     },
     {
-      "id": "gen-bfit-cases-bfit-case-kimball-restaurant",
+      "id": "gen-bfit-cases-bfit-case-kimball-restaurant-pdf",
       "title": {
         "th": "Case Kimball Restaurant",
         "en": "Case Kimball Restaurant"
@@ -283,7 +283,7 @@
       "courseCode": "BFIT"
     },
     {
-      "id": "gen-bfit-exams-bfit-final-01",
+      "id": "gen-bfit-exams-bfit-final-01-pdf",
       "title": {
         "th": "Final · 01",
         "en": "Final · 01"
@@ -303,7 +303,7 @@
       "courseCode": "BFIT"
     },
     {
-      "id": "gen-bfit-exams-bfit-final-business-final",
+      "id": "gen-bfit-exams-bfit-final-business-final-pdf",
       "title": {
         "th": "Final · Business Final",
         "en": "Final · Business Final"
@@ -323,7 +323,7 @@
       "courseCode": "BFIT"
     },
     {
-      "id": "gen-bfit-exams-bfit-final-drive-google-com",
+      "id": "gen-bfit-exams-bfit-final-drive-google-com-pdf",
       "title": {
         "th": "Final · Drive Google Com",
         "en": "Final · Drive Google Com"
@@ -343,7 +343,7 @@
       "courseCode": "BFIT"
     },
     {
-      "id": "gen-bfit-exams-bfit-final-gen-b",
+      "id": "gen-bfit-exams-bfit-final-gen-b-pdf",
       "title": {
         "th": "Final · Gen B",
         "en": "Final · Gen B"
@@ -363,7 +363,7 @@
       "courseCode": "BFIT"
     },
     {
-      "id": "gen-bfit-exams-bfit-final-ho-ch1-bizinchangingworld",
+      "id": "gen-bfit-exams-bfit-final-ho-ch1-bizinchangingworld-pdf",
       "title": {
         "th": "Final · Ho Ch 1 Bizinchangingworld",
         "en": "Final · Ho Ch 1 Bizinchangingworld"
@@ -383,7 +383,7 @@
       "courseCode": "BFIT"
     },
     {
-      "id": "gen-bfit-exams-bfit-final-ho-ch2-management",
+      "id": "gen-bfit-exams-bfit-final-ho-ch2-management-pdf",
       "title": {
         "th": "Final · Ho Ch 2 Management",
         "en": "Final · Ho Ch 2 Management"
@@ -403,7 +403,7 @@
       "courseCode": "BFIT"
     },
     {
-      "id": "gen-bfit-exams-bfit-final-quiz-edit-201110",
+      "id": "gen-bfit-exams-bfit-final-quiz-edit-201110-pdf",
       "title": {
         "th": "Final · Quiz Edit 201110",
         "en": "Final · Quiz Edit 201110"
@@ -423,7 +423,7 @@
       "courseCode": "BFIT"
     },
     {
-      "id": "gen-bfit-exams-bfit-midterm-and",
+      "id": "gen-bfit-exams-bfit-midterm-and-pdf",
       "title": {
         "th": "Midterm · And",
         "en": "Midterm · And"
@@ -443,7 +443,7 @@
       "courseCode": "BFIT"
     },
     {
-      "id": "gen-bfit-exams-bfit-midterm-business-before-mid-1",
+      "id": "gen-bfit-exams-bfit-midterm-business-before-mid-1-pdf",
       "title": {
         "th": "Midterm · Business Before Mid 1",
         "en": "Midterm · Business Before Mid 1"
@@ -463,7 +463,7 @@
       "courseCode": "BFIT"
     },
     {
-      "id": "gen-bfit-exams-bfit-midterm-business-before-mid-2",
+      "id": "gen-bfit-exams-bfit-midterm-business-before-mid-2-pdf",
       "title": {
         "th": "Midterm · Business Before Mid 2",
         "en": "Midterm · Business Before Mid 2"
@@ -483,7 +483,7 @@
       "courseCode": "BFIT"
     },
     {
-      "id": "gen-bfit-exams-bfit-midterm-business-before-mid",
+      "id": "gen-bfit-exams-bfit-midterm-business-before-mid-pdf",
       "title": {
         "th": "Midterm · Business Before Mid",
         "en": "Midterm · Business Before Mid"
@@ -503,7 +503,7 @@
       "courseCode": "BFIT"
     },
     {
-      "id": "gen-bfit-exams-bfit-midterm-business",
+      "id": "gen-bfit-exams-bfit-midterm-business-pdf",
       "title": {
         "th": "Midterm · Business",
         "en": "Midterm · Business"
@@ -523,7 +523,7 @@
       "courseCode": "BFIT"
     },
     {
-      "id": "gen-bfit-exams-bfit-midterm-gen-b-01",
+      "id": "gen-bfit-exams-bfit-midterm-gen-b-01-pdf",
       "title": {
         "th": "Midterm · Gen B 01",
         "en": "Midterm · Gen B 01"
@@ -543,7 +543,7 @@
       "courseCode": "BFIT"
     },
     {
-      "id": "gen-bfit-exams-bfit-midterm-project",
+      "id": "gen-bfit-exams-bfit-midterm-project-pdf",
       "title": {
         "th": "Midterm · Project",
         "en": "Midterm · Project"
@@ -563,7 +563,7 @@
       "courseCode": "BFIT"
     },
     {
-      "id": "gen-bfit-exams-bfit-quiz-01",
+      "id": "gen-bfit-exams-bfit-quiz-01-pdf",
       "title": {
         "th": "Quiz · 01",
         "en": "Quiz · 01"
@@ -583,7 +583,7 @@
       "courseCode": "BFIT"
     },
     {
-      "id": "gen-bfit-exams-bfit-quiz-02",
+      "id": "gen-bfit-exams-bfit-quiz-02-pdf",
       "title": {
         "th": "Quiz · 02",
         "en": "Quiz · 02"
@@ -603,7 +603,7 @@
       "courseCode": "BFIT"
     },
     {
-      "id": "gen-bfit-exams-bfit-quiz-final",
+      "id": "gen-bfit-exams-bfit-quiz-final-pdf",
       "title": {
         "th": "Quiz · Final",
         "en": "Quiz · Final"
@@ -623,7 +623,7 @@
       "courseCode": "BFIT"
     },
     {
-      "id": "gen-bfit-exams-bfit-quiz-jn",
+      "id": "gen-bfit-exams-bfit-quiz-jn-pdf",
       "title": {
         "th": "Quiz · Jn",
         "en": "Quiz · Jn"
@@ -643,7 +643,7 @@
       "courseCode": "BFIT"
     },
     {
-      "id": "gen-bfit-exercises-bfit-ex-deposited-money-market-account",
+      "id": "gen-bfit-exercises-bfit-ex-deposited-money-market-account-pdf",
       "title": {
         "th": "Exercise · Deposited Money Market Account",
         "en": "Exercise · Deposited Money Market Account"
@@ -663,7 +663,7 @@
       "courseCode": "BFIT"
     },
     {
-      "id": "gen-bfit-exercises-bfit-ex-econ-biz-solutions",
+      "id": "gen-bfit-exercises-bfit-ex-econ-biz-solutions-pdf",
       "title": {
         "th": "Exercise · Econ Biz Solutions",
         "en": "Exercise · Econ Biz Solutions"
@@ -683,7 +683,7 @@
       "courseCode": "BFIT"
     },
     {
-      "id": "gen-bfit-lectures-bfit-lec-after-midterm",
+      "id": "gen-bfit-lectures-bfit-lec-after-midterm-pdf",
       "title": {
         "th": "Lecture · After Midterm",
         "en": "Lecture · After Midterm"
@@ -703,7 +703,7 @@
       "courseCode": "BFIT"
     },
     {
-      "id": "gen-bfit-lectures-bfit-lec-all-weeks-1to8",
+      "id": "gen-bfit-lectures-bfit-lec-all-weeks-1to8-pdf",
       "title": {
         "th": "Lecture · All Weeks 1to8",
         "en": "Lecture · All Weeks 1to8"
@@ -723,7 +723,7 @@
       "courseCode": "BFIT"
     },
     {
-      "id": "gen-bfit-lectures-bfit-lec-computational-intelligen-project-aritelitkmitl",
+      "id": "gen-bfit-lectures-bfit-lec-computational-intelligen-project-aritelitkmitl-pdf",
       "title": {
         "th": "Lecture · Computational Intelligen Project Aritelitkmitl",
         "en": "Lecture · Computational Intelligen Project Aritelitkmitl"
@@ -743,7 +743,7 @@
       "courseCode": "BFIT"
     },
     {
-      "id": "gen-bfit-lectures-bfit-lec-finance",
+      "id": "gen-bfit-lectures-bfit-lec-finance-pdf",
       "title": {
         "th": "Lecture · Finance",
         "en": "Lecture · Finance"
@@ -763,7 +763,7 @@
       "courseCode": "BFIT"
     },
     {
-      "id": "gen-bfit-lectures-bfit-lec-flat-rate",
+      "id": "gen-bfit-lectures-bfit-lec-flat-rate-pdf",
       "title": {
         "th": "Lecture · Flat Rate",
         "en": "Lecture · Flat Rate"
@@ -783,7 +783,7 @@
       "courseCode": "BFIT"
     },
     {
-      "id": "gen-bfit-lectures-bfit-lec-inventory",
+      "id": "gen-bfit-lectures-bfit-lec-inventory-pdf",
       "title": {
         "th": "Lecture · Inventory",
         "en": "Lecture · Inventory"
@@ -803,7 +803,7 @@
       "courseCode": "BFIT"
     },
     {
-      "id": "gen-bfit-lectures-bfit-lec-marketing-1",
+      "id": "gen-bfit-lectures-bfit-lec-marketing-1-pdf",
       "title": {
         "th": "Lecture · Marketing 1",
         "en": "Lecture · Marketing 1"
@@ -823,7 +823,7 @@
       "courseCode": "BFIT"
     },
     {
-      "id": "gen-bfit-lectures-bfit-lec-marketing-2",
+      "id": "gen-bfit-lectures-bfit-lec-marketing-2-pdf",
       "title": {
         "th": "Lecture · Marketing 2",
         "en": "Lecture · Marketing 2"
@@ -843,7 +843,7 @@
       "courseCode": "BFIT"
     },
     {
-      "id": "gen-bfit-lectures-bfit-lec-se-ed",
+      "id": "gen-bfit-lectures-bfit-lec-se-ed-pdf",
       "title": {
         "th": "Lecture · Se Ed",
         "en": "Lecture · Se Ed"
@@ -863,7 +863,7 @@
       "courseCode": "BFIT"
     },
     {
-      "id": "gen-bfit-lectures-bfit-lec-week01",
+      "id": "gen-bfit-lectures-bfit-lec-week01-pdf",
       "title": {
         "th": "Lecture · Week 01",
         "en": "Lecture · Week 01"
@@ -883,7 +883,7 @@
       "courseCode": "BFIT"
     },
     {
-      "id": "gen-bfit-lectures-bfit-lec-week09",
+      "id": "gen-bfit-lectures-bfit-lec-week09-pdf",
       "title": {
         "th": "Lecture · Week 09",
         "en": "Lecture · Week 09"
@@ -903,7 +903,7 @@
       "courseCode": "BFIT"
     },
     {
-      "id": "gen-bfit-lectures-bfit-lec-week10",
+      "id": "gen-bfit-lectures-bfit-lec-week10-pdf",
       "title": {
         "th": "Lecture · Week 10",
         "en": "Lecture · Week 10"
@@ -923,7 +923,7 @@
       "courseCode": "BFIT"
     },
     {
-      "id": "gen-bfit-lectures-bfit-lec-week11",
+      "id": "gen-bfit-lectures-bfit-lec-week11-pdf",
       "title": {
         "th": "Lecture · Week 11",
         "en": "Lecture · Week 11"
@@ -943,7 +943,7 @@
       "courseCode": "BFIT"
     },
     {
-      "id": "gen-bfit-lectures-bfit-lec-week12",
+      "id": "gen-bfit-lectures-bfit-lec-week12-pdf",
       "title": {
         "th": "Lecture · Week 12",
         "en": "Lecture · Week 12"
@@ -963,7 +963,7 @@
       "courseCode": "BFIT"
     },
     {
-      "id": "gen-bfit-lectures-bfit-lec-week13",
+      "id": "gen-bfit-lectures-bfit-lec-week13-pdf",
       "title": {
         "th": "Lecture · Week 13",
         "en": "Lecture · Week 13"
@@ -983,7 +983,7 @@
       "courseCode": "BFIT"
     },
     {
-      "id": "gen-bfit-references-bfit-ref-future-value-tables",
+      "id": "gen-bfit-references-bfit-ref-future-value-tables-pdf",
       "title": {
         "th": "Reference · Future Value Tables",
         "en": "Reference · Future Value Tables"
@@ -1003,7 +1003,7 @@
       "courseCode": "BFIT"
     },
     {
-      "id": "gen-bfit-references-bfit-ref-futurevaluetables-v2",
+      "id": "gen-bfit-references-bfit-ref-futurevaluetables-v2-pdf",
       "title": {
         "th": "Reference · Futurevaluetables V 2",
         "en": "Reference · Futurevaluetables V 2"
@@ -1023,7 +1023,7 @@
       "courseCode": "BFIT"
     },
     {
-      "id": "gen-bfit-sheets-bfit-sheet-economics",
+      "id": "gen-bfit-sheets-bfit-sheet-economics-pdf",
       "title": {
         "th": "Sheet · Economics",
         "en": "Sheet · Economics"
@@ -1043,7 +1043,7 @@
       "courseCode": "BFIT"
     },
     {
-      "id": "gen-bfit-sheets-bfit-sheet-mint",
+      "id": "gen-bfit-sheets-bfit-sheet-mint-pdf",
       "title": {
         "th": "Sheet · Mint",
         "en": "Sheet · Mint"
@@ -1063,7 +1063,7 @@
       "courseCode": "BFIT"
     },
     {
-      "id": "gen-bfit-sheets-bfit-sheet-recap-before-midterm",
+      "id": "gen-bfit-sheets-bfit-sheet-recap-before-midterm-pdf",
       "title": {
         "th": "Sheet · Recap Before Midterm",
         "en": "Sheet · Recap Before Midterm"
@@ -1083,7 +1083,7 @@
       "courseCode": "BFIT"
     },
     {
-      "id": "gen-bfit-sheets-bfit-sheet-recap-extra",
+      "id": "gen-bfit-sheets-bfit-sheet-recap-extra-pdf",
       "title": {
         "th": "Sheet · Recap Extra",
         "en": "Sheet · Recap Extra"
@@ -1103,7 +1103,7 @@
       "courseCode": "BFIT"
     },
     {
-      "id": "gen-bfit-sheets-bfit-sheet-students-guide",
+      "id": "gen-bfit-sheets-bfit-sheet-students-guide-pdf",
       "title": {
         "th": "Sheet · Students Guide",
         "en": "Sheet · Students Guide"
@@ -1125,7 +1125,7 @@
   ],
   "CHARM": [
     {
-      "id": "gen-charm-exercises-charm-ex-worksheet01-know-you-know-future-completed-y1-s1-2569",
+      "id": "gen-charm-exercises-charm-ex-worksheet01-know-you-know-future-completed-y1-s1-2569-pdf",
       "title": {
         "th": "Exercise · Worksheet 01 Know You Know Future Completed Y 1 S 1 2569",
         "en": "Exercise · Worksheet 01 Know You Know Future Completed Y 1 S 1 2569"
@@ -1145,7 +1145,7 @@
       "courseCode": "CHARM"
     },
     {
-      "id": "gen-charm-exercises-charm-ex-worksheet01-know-you-know-future-completed",
+      "id": "gen-charm-exercises-charm-ex-worksheet01-know-you-know-future-completed-pdf",
       "title": {
         "th": "Exercise · Worksheet 01 Know You Know Future Completed",
         "en": "Exercise · Worksheet 01 Know You Know Future Completed"
@@ -1165,7 +1165,7 @@
       "courseCode": "CHARM"
     },
     {
-      "id": "gen-charm-exercises-charm-ex-worksheet02-disc-swot-completed-y1-s1-2569",
+      "id": "gen-charm-exercises-charm-ex-worksheet02-disc-swot-completed-y1-s1-2569-pdf",
       "title": {
         "th": "Exercise · Worksheet 02 DISC SWOT Completed Y 1 S 1 2569",
         "en": "Exercise · Worksheet 02 DISC SWOT Completed Y 1 S 1 2569"
@@ -1185,7 +1185,7 @@
       "courseCode": "CHARM"
     },
     {
-      "id": "gen-charm-exercises-charm-ex-worksheet02-disc-swot-completed",
+      "id": "gen-charm-exercises-charm-ex-worksheet02-disc-swot-completed-pdf",
       "title": {
         "th": "Exercise · Worksheet 02 DISC SWOT Completed",
         "en": "Exercise · Worksheet 02 DISC SWOT Completed"
@@ -1205,7 +1205,7 @@
       "courseCode": "CHARM"
     },
     {
-      "id": "gen-charm-exercises-charm-ex-worksheet03-time-and-stress-management-completed-y1-s1-2569",
+      "id": "gen-charm-exercises-charm-ex-worksheet03-time-and-stress-management-completed-y1-s1-2569-pdf",
       "title": {
         "th": "Exercise · Worksheet 03 Time And Stress Management Completed Y 1 S 1 2569",
         "en": "Exercise · Worksheet 03 Time And Stress Management Completed Y 1 S 1 2569"
@@ -1225,7 +1225,7 @@
       "courseCode": "CHARM"
     },
     {
-      "id": "gen-charm-exercises-charm-ex-worksheet03-time-and-stress-management-completed",
+      "id": "gen-charm-exercises-charm-ex-worksheet03-time-and-stress-management-completed-pdf",
       "title": {
         "th": "Exercise · Worksheet 03 Time And Stress Management Completed",
         "en": "Exercise · Worksheet 03 Time And Stress Management Completed"
@@ -1245,7 +1245,7 @@
       "courseCode": "CHARM"
     },
     {
-      "id": "gen-charm-exercises-charm-ex-worksheet03-time-and-stress-management-scan",
+      "id": "gen-charm-exercises-charm-ex-worksheet03-time-and-stress-management-scan-pdf",
       "title": {
         "th": "Exercise · Worksheet 03 Time And Stress Management Scan",
         "en": "Exercise · Worksheet 03 Time And Stress Management Scan"
@@ -1265,7 +1265,7 @@
       "courseCode": "CHARM"
     },
     {
-      "id": "gen-charm-exercises-charm-ex-worksheet04-the-power-of-vision-completed",
+      "id": "gen-charm-exercises-charm-ex-worksheet04-the-power-of-vision-completed-pdf",
       "title": {
         "th": "Exercise · Worksheet 04 The Power Of Vision Completed",
         "en": "Exercise · Worksheet 04 The Power Of Vision Completed"
@@ -1285,7 +1285,7 @@
       "courseCode": "CHARM"
     },
     {
-      "id": "gen-charm-exercises-charm-ex-worksheet05-generation-gap-completed",
+      "id": "gen-charm-exercises-charm-ex-worksheet05-generation-gap-completed-pdf",
       "title": {
         "th": "Exercise · Worksheet 05 Generation Gap Completed",
         "en": "Exercise · Worksheet 05 Generation Gap Completed"
@@ -1305,7 +1305,7 @@
       "courseCode": "CHARM"
     },
     {
-      "id": "gen-charm-exercises-charm-ex-worksheet05-generation-gap",
+      "id": "gen-charm-exercises-charm-ex-worksheet05-generation-gap-pdf",
       "title": {
         "th": "Exercise · Worksheet 05 Generation Gap",
         "en": "Exercise · Worksheet 05 Generation Gap"
@@ -1325,7 +1325,7 @@
       "courseCode": "CHARM"
     },
     {
-      "id": "gen-charm-exercises-charm-hw-self-assessment-project-charming-volunteer",
+      "id": "gen-charm-exercises-charm-hw-self-assessment-project-charming-volunteer-pdf",
       "title": {
         "th": "Homework · Self Assessment Project Charming Volunteer",
         "en": "Homework · Self Assessment Project Charming Volunteer"
@@ -1345,7 +1345,7 @@
       "courseCode": "CHARM"
     },
     {
-      "id": "gen-charm-exercises-ใบงานที่-4-69070027-ฉัททัณฑ์-เพททริ",
+      "id": "gen-charm-exercises-ใบงานที่-4-69070027-ฉัททัณฑ์-เพททริ-pdf",
       "title": {
         "th": "ใบงานที่ 4 69070027 ฉัททัณฑ์ เพททริ",
         "en": "ใบงานที่ 4 69070027 ฉัททัณฑ์ เพททริ"
@@ -1365,7 +1365,7 @@
       "courseCode": "CHARM"
     },
     {
-      "id": "gen-charm-lectures-charm-lec-course-plan-2569",
+      "id": "gen-charm-lectures-charm-lec-course-plan-2569-pdf",
       "title": {
         "th": "Lecture · Course Plan 2569",
         "en": "Lecture · Course Plan 2569"
@@ -1385,7 +1385,7 @@
       "courseCode": "CHARM"
     },
     {
-      "id": "gen-charm-lectures-charm-lec-week04-charming-communication",
+      "id": "gen-charm-lectures-charm-lec-week04-charming-communication-pdf",
       "title": {
         "th": "Lecture · Week 04 Charming Communication",
         "en": "Lecture · Week 04 Charming Communication"
@@ -1405,7 +1405,7 @@
       "courseCode": "CHARM"
     },
     {
-      "id": "gen-charm-lectures-charm-lec-week09-generation-gap",
+      "id": "gen-charm-lectures-charm-lec-week09-generation-gap-pdf",
       "title": {
         "th": "Lecture · Week 09 Generation Gap",
         "en": "Lecture · Week 09 Generation Gap"
@@ -1425,7 +1425,7 @@
       "courseCode": "CHARM"
     },
     {
-      "id": "gen-charm-worksheets-charm-ex-worksheet02-disc-swot",
+      "id": "gen-charm-worksheets-charm-ex-worksheet02-disc-swot-pdf",
       "title": {
         "th": "Exercise · Worksheet 02 DISC SWOT",
         "en": "Exercise · Worksheet 02 DISC SWOT"
@@ -1445,7 +1445,7 @@
       "courseCode": "CHARM"
     },
     {
-      "id": "gen-charm-worksheets-charm-ex-worksheet03-time-and-stress",
+      "id": "gen-charm-worksheets-charm-ex-worksheet03-time-and-stress-pdf",
       "title": {
         "th": "Exercise · Worksheet 03 Time And Stress",
         "en": "Exercise · Worksheet 03 Time And Stress"
@@ -1467,7 +1467,7 @@
   ],
   "DL": [
     {
-      "id": "gen-dl-exercises-dl-ex-week02-digital-citizen-identity",
+      "id": "gen-dl-exercises-dl-ex-week02-digital-citizen-identity-pdf",
       "title": {
         "th": "Exercise · Week 02 Digital Citizen Identity",
         "en": "Exercise · Week 02 Digital Citizen Identity"
@@ -1487,7 +1487,7 @@
       "courseCode": "DL"
     },
     {
-      "id": "gen-dl-labs-dl-lab-week10-completed",
+      "id": "gen-dl-labs-dl-lab-week10-completed-pdf",
       "title": {
         "th": "Lab · Week 10 Completed",
         "en": "Lab · Week 10 Completed"
@@ -1509,7 +1509,7 @@
   ],
   "DSA": [
     {
-      "id": "gen-dsa-exams-dsa-final-2023",
+      "id": "gen-dsa-exams-dsa-final-2023-pdf",
       "title": {
         "th": "Final · 2023",
         "en": "Final · 2023"
@@ -1529,7 +1529,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exams-dsa-final-algorithmanalysis-std",
+      "id": "gen-dsa-exams-dsa-final-algorithmanalysis-std-pdf",
       "title": {
         "th": "Final · Algorithmanalysis Std",
         "en": "Final · Algorithmanalysis Std"
@@ -1549,7 +1549,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exams-dsa-final-chapter-searching-searching",
+      "id": "gen-dsa-exams-dsa-final-chapter-searching-searching-pdf",
       "title": {
         "th": "Final · Chapter Searching Searching",
         "en": "Final · Chapter Searching Searching"
@@ -1569,7 +1569,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exams-dsa-final-data",
+      "id": "gen-dsa-exams-dsa-final-data-pdf",
       "title": {
         "th": "Final · Data",
         "en": "Final · Data"
@@ -1589,7 +1589,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exams-dsa-final-divideconquer",
+      "id": "gen-dsa-exams-dsa-final-divideconquer-pdf",
       "title": {
         "th": "Final · Divideconquer",
         "en": "Final · Divideconquer"
@@ -1609,7 +1609,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exams-dsa-final-dynamicprogramming",
+      "id": "gen-dsa-exams-dsa-final-dynamicprogramming-pdf",
       "title": {
         "th": "Final · Dynamicprogramming",
         "en": "Final · Dynamicprogramming"
@@ -1629,7 +1629,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exams-dsa-final-greedyalgorithm",
+      "id": "gen-dsa-exams-dsa-final-greedyalgorithm-pdf",
       "title": {
         "th": "Final · Greedyalgorithm",
         "en": "Final · Greedyalgorithm"
@@ -1649,7 +1649,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exams-dsa-final-hw12",
+      "id": "gen-dsa-exams-dsa-final-hw12-pdf",
       "title": {
         "th": "Final · Hw 12",
         "en": "Final · Hw 12"
@@ -1669,7 +1669,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exams-dsa-final-hw8",
+      "id": "gen-dsa-exams-dsa-final-hw8-pdf",
       "title": {
         "th": "Final · Hw 8",
         "en": "Final · Hw 8"
@@ -1689,7 +1689,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exams-dsa-final-mega-v2",
+      "id": "gen-dsa-exams-dsa-final-mega-v2-pdf",
       "title": {
         "th": "Final · Mega V 2",
         "en": "Final · Mega V 2"
@@ -1709,7 +1709,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exams-dsa-final-recursion",
+      "id": "gen-dsa-exams-dsa-final-recursion-pdf",
       "title": {
         "th": "Final · Recursion",
         "en": "Final · Recursion"
@@ -1729,7 +1729,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exams-dsa-final-sorting-1",
+      "id": "gen-dsa-exams-dsa-final-sorting-1-pdf",
       "title": {
         "th": "Final · Sorting 1",
         "en": "Final · Sorting 1"
@@ -1749,7 +1749,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exams-dsa-final-unidentified",
+      "id": "gen-dsa-exams-dsa-final-unidentified-pdf",
       "title": {
         "th": "Final · Unidentified",
         "en": "Final · Unidentified"
@@ -1769,7 +1769,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exams-dsa-final-week11",
+      "id": "gen-dsa-exams-dsa-final-week11-pdf",
       "title": {
         "th": "Final · Week 11",
         "en": "Final · Week 11"
@@ -1789,7 +1789,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exams-dsa-final-week5",
+      "id": "gen-dsa-exams-dsa-final-week5-pdf",
       "title": {
         "th": "Final · Week 5",
         "en": "Final · Week 5"
@@ -1809,7 +1809,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exams-dsa-midterm-2565-term2",
+      "id": "gen-dsa-exams-dsa-midterm-2565-term2-pdf",
       "title": {
         "th": "Midterm · 2565 Term 2",
         "en": "Midterm · 2565 Term 2"
@@ -1829,7 +1829,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exams-dsa-midterm-array-and-linkedlist-std",
+      "id": "gen-dsa-exams-dsa-midterm-array-and-linkedlist-std-pdf",
       "title": {
         "th": "Midterm · Array And Linkedlist Std",
         "en": "Midterm · Array And Linkedlist Std"
@@ -1849,7 +1849,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exams-dsa-midterm-avl-std-v3",
+      "id": "gen-dsa-exams-dsa-midterm-avl-std-v3-pdf",
       "title": {
         "th": "Midterm · Avl Std V 3",
         "en": "Midterm · Avl Std V 3"
@@ -1869,7 +1869,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exams-dsa-midterm-chapter-introduction-trees-binary",
+      "id": "gen-dsa-exams-dsa-midterm-chapter-introduction-trees-binary-pdf",
       "title": {
         "th": "Midterm · Chapter Introduction Trees Binary",
         "en": "Midterm · Chapter Introduction Trees Binary"
@@ -1889,7 +1889,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exams-dsa-midterm-graph-std",
+      "id": "gen-dsa-exams-dsa-midterm-graph-std-pdf",
       "title": {
         "th": "Midterm · Graph Std",
         "en": "Midterm · Graph Std"
@@ -1909,7 +1909,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exams-dsa-midterm-hw-week2",
+      "id": "gen-dsa-exams-dsa-midterm-hw-week2-pdf",
       "title": {
         "th": "Midterm · Hw Week 2",
         "en": "Midterm · Hw Week 2"
@@ -1929,7 +1929,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exams-dsa-midterm-hw3",
+      "id": "gen-dsa-exams-dsa-midterm-hw3-pdf",
       "title": {
         "th": "Midterm · Hw 3",
         "en": "Midterm · Hw 3"
@@ -1949,7 +1949,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exams-dsa-midterm-hw4",
+      "id": "gen-dsa-exams-dsa-midterm-hw4-pdf",
       "title": {
         "th": "Midterm · Hw 4",
         "en": "Midterm · Hw 4"
@@ -1969,7 +1969,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exams-dsa-midterm-hw7",
+      "id": "gen-dsa-exams-dsa-midterm-hw7-pdf",
       "title": {
         "th": "Midterm · Hw 7",
         "en": "Midterm · Hw 7"
@@ -1989,7 +1989,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exams-dsa-midterm-other-binary-trees-std",
+      "id": "gen-dsa-exams-dsa-midterm-other-binary-trees-std-pdf",
       "title": {
         "th": "Midterm · Other Binary Trees Std",
         "en": "Midterm · Other Binary Trees Std"
@@ -2009,7 +2009,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exams-dsa-midterm-pre-midterm-65-by-few",
+      "id": "gen-dsa-exams-dsa-midterm-pre-midterm-65-by-few-pdf",
       "title": {
         "th": "Midterm · Pre Midterm 65 By Few",
         "en": "Midterm · Pre Midterm 65 By Few"
@@ -2029,7 +2029,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exams-dsa-midterm-pre-midterm-oop-65-by-few",
+      "id": "gen-dsa-exams-dsa-midterm-pre-midterm-oop-65-by-few-pdf",
       "title": {
         "th": "Midterm · Pre Midterm Oop 65 By Few",
         "en": "Midterm · Pre Midterm Oop 65 By Few"
@@ -2049,7 +2049,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exams-dsa-midterm-quiz-7",
+      "id": "gen-dsa-exams-dsa-midterm-quiz-7-pdf",
       "title": {
         "th": "Midterm · Quiz 7",
         "en": "Midterm · Quiz 7"
@@ -2069,7 +2069,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exams-dsa-midterm-stack-queue-v2",
+      "id": "gen-dsa-exams-dsa-midterm-stack-queue-v2-pdf",
       "title": {
         "th": "Midterm · Stack Queue V 2",
         "en": "Midterm · Stack Queue V 2"
@@ -2089,7 +2089,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exams-dsa-midterm-unidentified",
+      "id": "gen-dsa-exams-dsa-midterm-unidentified-pdf",
       "title": {
         "th": "Midterm · Unidentified",
         "en": "Midterm · Unidentified"
@@ -2109,7 +2109,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exercises-dsa-ex-algorithm-analysis",
+      "id": "gen-dsa-exercises-dsa-ex-algorithm-analysis-pdf",
       "title": {
         "th": "Exercise · Algorithm Analysis",
         "en": "Exercise · Algorithm Analysis"
@@ -2129,7 +2129,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exercises-dsa-ex-dynamic-programming",
+      "id": "gen-dsa-exercises-dsa-ex-dynamic-programming-pdf",
       "title": {
         "th": "Exercise · Dynamic Programming",
         "en": "Exercise · Dynamic Programming"
@@ -2149,7 +2149,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exercises-dsa-ex-exercise-2-6-2-65",
+      "id": "gen-dsa-exercises-dsa-ex-exercise-2-6-2-65-pdf",
       "title": {
         "th": "Exercise · Exercise 2 6 2 65",
         "en": "Exercise · Exercise 2 6 2 65"
@@ -2169,7 +2169,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exercises-dsa-ex-exercisesupplement-chapter02-6-2-65",
+      "id": "gen-dsa-exercises-dsa-ex-exercisesupplement-chapter02-6-2-65-pdf",
       "title": {
         "th": "Exercise · Exercisesupplement Chapter 02 6 2 65",
         "en": "Exercise · Exercisesupplement Chapter 02 6 2 65"
@@ -2189,7 +2189,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exercises-dsa-ex-greedy-algorithm",
+      "id": "gen-dsa-exercises-dsa-ex-greedy-algorithm-pdf",
       "title": {
         "th": "Exercise · Greedy Algorithm",
         "en": "Exercise · Greedy Algorithm"
@@ -2209,7 +2209,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exercises-dsa-ex-posttest-10-v2",
+      "id": "gen-dsa-exercises-dsa-ex-posttest-10-v2-pdf",
       "title": {
         "th": "Exercise · Posttest 10 V 2",
         "en": "Exercise · Posttest 10 V 2"
@@ -2229,7 +2229,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exercises-dsa-ex-posttest-10",
+      "id": "gen-dsa-exercises-dsa-ex-posttest-10-pdf",
       "title": {
         "th": "Exercise · Posttest 10",
         "en": "Exercise · Posttest 10"
@@ -2249,7 +2249,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exercises-dsa-ex-posttest-11-v2",
+      "id": "gen-dsa-exercises-dsa-ex-posttest-11-v2-pdf",
       "title": {
         "th": "Exercise · Posttest 11 V 2",
         "en": "Exercise · Posttest 11 V 2"
@@ -2269,7 +2269,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exercises-dsa-ex-posttest-11",
+      "id": "gen-dsa-exercises-dsa-ex-posttest-11-pdf",
       "title": {
         "th": "Exercise · Posttest 11",
         "en": "Exercise · Posttest 11"
@@ -2289,7 +2289,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exercises-dsa-ex-posttest-12-13",
+      "id": "gen-dsa-exercises-dsa-ex-posttest-12-13-pdf",
       "title": {
         "th": "Exercise · Posttest 12 13",
         "en": "Exercise · Posttest 12 13"
@@ -2309,7 +2309,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exercises-dsa-ex-posttest-14-v2",
+      "id": "gen-dsa-exercises-dsa-ex-posttest-14-v2-pdf",
       "title": {
         "th": "Exercise · Posttest 14 V 2",
         "en": "Exercise · Posttest 14 V 2"
@@ -2329,7 +2329,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exercises-dsa-ex-posttest-14",
+      "id": "gen-dsa-exercises-dsa-ex-posttest-14-pdf",
       "title": {
         "th": "Exercise · Posttest 14",
         "en": "Exercise · Posttest 14"
@@ -2349,7 +2349,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exercises-dsa-ex-posttest-8-v2",
+      "id": "gen-dsa-exercises-dsa-ex-posttest-8-v2-pdf",
       "title": {
         "th": "Exercise · Posttest 8 V 2",
         "en": "Exercise · Posttest 8 V 2"
@@ -2369,7 +2369,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exercises-dsa-ex-posttest-8-v3",
+      "id": "gen-dsa-exercises-dsa-ex-posttest-8-v3-pdf",
       "title": {
         "th": "Exercise · Posttest 8 V 3",
         "en": "Exercise · Posttest 8 V 3"
@@ -2389,7 +2389,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exercises-dsa-ex-posttest-8",
+      "id": "gen-dsa-exercises-dsa-ex-posttest-8-pdf",
       "title": {
         "th": "Exercise · Posttest 8",
         "en": "Exercise · Posttest 8"
@@ -2409,7 +2409,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exercises-dsa-ex-posttest-9-v2",
+      "id": "gen-dsa-exercises-dsa-ex-posttest-9-v2-pdf",
       "title": {
         "th": "Exercise · Posttest 9 V 2",
         "en": "Exercise · Posttest 9 V 2"
@@ -2429,7 +2429,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exercises-dsa-ex-posttest-9",
+      "id": "gen-dsa-exercises-dsa-ex-posttest-9-pdf",
       "title": {
         "th": "Exercise · Posttest 9",
         "en": "Exercise · Posttest 9"
@@ -2449,7 +2449,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exercises-dsa-ex-practice",
+      "id": "gen-dsa-exercises-dsa-ex-practice-pdf",
       "title": {
         "th": "Exercise · Practice",
         "en": "Exercise · Practice"
@@ -2469,7 +2469,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exercises-dsa-ex-recursion-dq",
+      "id": "gen-dsa-exercises-dsa-ex-recursion-dq-pdf",
       "title": {
         "th": "Exercise · Recursion Dq",
         "en": "Exercise · Recursion Dq"
@@ -2489,7 +2489,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exercises-dsa-ex-searching",
+      "id": "gen-dsa-exercises-dsa-ex-searching-pdf",
       "title": {
         "th": "Exercise · Searching",
         "en": "Exercise · Searching"
@@ -2509,7 +2509,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exercises-dsa-ex-solution-chapter02",
+      "id": "gen-dsa-exercises-dsa-ex-solution-chapter02-pdf",
       "title": {
         "th": "Exercise · Solution Chapter 02",
         "en": "Exercise · Solution Chapter 02"
@@ -2529,7 +2529,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exercises-dsa-ex-solution-chapter03",
+      "id": "gen-dsa-exercises-dsa-ex-solution-chapter03-pdf",
       "title": {
         "th": "Exercise · Solution Chapter 03",
         "en": "Exercise · Solution Chapter 03"
@@ -2549,7 +2549,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exercises-dsa-ex-solution-chapter04",
+      "id": "gen-dsa-exercises-dsa-ex-solution-chapter04-pdf",
       "title": {
         "th": "Exercise · Solution Chapter 04",
         "en": "Exercise · Solution Chapter 04"
@@ -2569,7 +2569,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exercises-dsa-ex-solution-chapter05",
+      "id": "gen-dsa-exercises-dsa-ex-solution-chapter05-pdf",
       "title": {
         "th": "Exercise · Solution Chapter 05",
         "en": "Exercise · Solution Chapter 05"
@@ -2589,7 +2589,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exercises-dsa-ex-solution-chapter07",
+      "id": "gen-dsa-exercises-dsa-ex-solution-chapter07-pdf",
       "title": {
         "th": "Exercise · Solution Chapter 07",
         "en": "Exercise · Solution Chapter 07"
@@ -2609,7 +2609,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exercises-dsa-ex-solution-complexity",
+      "id": "gen-dsa-exercises-dsa-ex-solution-complexity-pdf",
       "title": {
         "th": "Exercise · Solution Complexity",
         "en": "Exercise · Solution Complexity"
@@ -2629,7 +2629,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exercises-dsa-ex-solution-divide-and-conquer",
+      "id": "gen-dsa-exercises-dsa-ex-solution-divide-and-conquer-pdf",
       "title": {
         "th": "Exercise · Solution Divide And Conquer",
         "en": "Exercise · Solution Divide And Conquer"
@@ -2649,7 +2649,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exercises-dsa-ex-solution-dynamic-programming",
+      "id": "gen-dsa-exercises-dsa-ex-solution-dynamic-programming-pdf",
       "title": {
         "th": "Exercise · Solution Dynamic Programming",
         "en": "Exercise · Solution Dynamic Programming"
@@ -2669,7 +2669,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exercises-dsa-ex-solution-greedy",
+      "id": "gen-dsa-exercises-dsa-ex-solution-greedy-pdf",
       "title": {
         "th": "Exercise · Solution Greedy",
         "en": "Exercise · Solution Greedy"
@@ -2689,7 +2689,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exercises-dsa-ex-solution-linked-list",
+      "id": "gen-dsa-exercises-dsa-ex-solution-linked-list-pdf",
       "title": {
         "th": "Exercise · Solution Linked List",
         "en": "Exercise · Solution Linked List"
@@ -2709,7 +2709,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exercises-dsa-ex-solution-recursion",
+      "id": "gen-dsa-exercises-dsa-ex-solution-recursion-pdf",
       "title": {
         "th": "Exercise · Solution Recursion",
         "en": "Exercise · Solution Recursion"
@@ -2729,7 +2729,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exercises-dsa-ex-solution-searching",
+      "id": "gen-dsa-exercises-dsa-ex-solution-searching-pdf",
       "title": {
         "th": "Exercise · Solution Searching",
         "en": "Exercise · Solution Searching"
@@ -2749,7 +2749,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exercises-dsa-ex-solution-sorting",
+      "id": "gen-dsa-exercises-dsa-ex-solution-sorting-pdf",
       "title": {
         "th": "Exercise · Solution Sorting",
         "en": "Exercise · Solution Sorting"
@@ -2769,7 +2769,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exercises-dsa-ex-sorting",
+      "id": "gen-dsa-exercises-dsa-ex-sorting-pdf",
       "title": {
         "th": "Exercise · Sorting",
         "en": "Exercise · Sorting"
@@ -2789,7 +2789,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exercises-dsa-hw-05",
+      "id": "gen-dsa-exercises-dsa-hw-05-pdf",
       "title": {
         "th": "Homework · 05",
         "en": "Homework · 05"
@@ -2809,7 +2809,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exercises-dsa-hw-06",
+      "id": "gen-dsa-exercises-dsa-hw-06-pdf",
       "title": {
         "th": "Homework · 06",
         "en": "Homework · 06"
@@ -2829,7 +2829,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exercises-dsa-hw-09-completed",
+      "id": "gen-dsa-exercises-dsa-hw-09-completed-pdf",
       "title": {
         "th": "Homework · 09 Completed",
         "en": "Homework · 09 Completed"
@@ -2849,7 +2849,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exercises-dsa-hw-10-completed",
+      "id": "gen-dsa-exercises-dsa-hw-10-completed-pdf",
       "title": {
         "th": "Homework · 10 Completed",
         "en": "Homework · 10 Completed"
@@ -2869,7 +2869,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exercises-dsa-hw-13-completed",
+      "id": "gen-dsa-exercises-dsa-hw-13-completed-pdf",
       "title": {
         "th": "Homework · 13 Completed",
         "en": "Homework · 13 Completed"
@@ -2889,7 +2889,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-exercises-dsa-hw-14-completed",
+      "id": "gen-dsa-exercises-dsa-hw-14-completed-pdf",
       "title": {
         "th": "Homework · 14 Completed",
         "en": "Homework · 14 Completed"
@@ -2909,7 +2909,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-lectures-dsa-lec-week02-array-linked-list",
+      "id": "gen-dsa-lectures-dsa-lec-week02-array-linked-list-pdf",
       "title": {
         "th": "Lecture · Week 02 Array Linked List",
         "en": "Lecture · Week 02 Array Linked List"
@@ -2929,7 +2929,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-lectures-dsa-lec-week03-stack-queue",
+      "id": "gen-dsa-lectures-dsa-lec-week03-stack-queue-pdf",
       "title": {
         "th": "Lecture · Week 03 Stack Queue",
         "en": "Lecture · Week 03 Stack Queue"
@@ -2949,7 +2949,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-lectures-dsa-lec-week04-binary-tree",
+      "id": "gen-dsa-lectures-dsa-lec-week04-binary-tree-pdf",
       "title": {
         "th": "Lecture · Week 04 Binary Tree",
         "en": "Lecture · Week 04 Binary Tree"
@@ -2969,7 +2969,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-lectures-dsa-lec-week05-bst",
+      "id": "gen-dsa-lectures-dsa-lec-week05-bst-pdf",
       "title": {
         "th": "Lecture · Week 05 Bst",
         "en": "Lecture · Week 05 Bst"
@@ -2989,7 +2989,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-lectures-dsa-lec-week05b-other-trees",
+      "id": "gen-dsa-lectures-dsa-lec-week05b-other-trees-pdf",
       "title": {
         "th": "Lecture · Week05b Other Trees",
         "en": "Lecture · Week05b Other Trees"
@@ -3009,7 +3009,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-lectures-dsa-lec-week06-avl-tree",
+      "id": "gen-dsa-lectures-dsa-lec-week06-avl-tree-pdf",
       "title": {
         "th": "Lecture · Week 06 Avl Tree",
         "en": "Lecture · Week 06 Avl Tree"
@@ -3029,7 +3029,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-lectures-dsa-lec-week07-graph",
+      "id": "gen-dsa-lectures-dsa-lec-week07-graph-pdf",
       "title": {
         "th": "Lecture · Week 07 Graph",
         "en": "Lecture · Week 07 Graph"
@@ -3049,7 +3049,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-lectures-dsa-lec-week09-algorithm-analysis",
+      "id": "gen-dsa-lectures-dsa-lec-week09-algorithm-analysis-pdf",
       "title": {
         "th": "Lecture · Week 09 Algorithm Analysis",
         "en": "Lecture · Week 09 Algorithm Analysis"
@@ -3069,7 +3069,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-lectures-dsa-lec-week10-searching",
+      "id": "gen-dsa-lectures-dsa-lec-week10-searching-pdf",
       "title": {
         "th": "Lecture · Week 10 Searching",
         "en": "Lecture · Week 10 Searching"
@@ -3089,7 +3089,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-lectures-dsa-lec-week11-sorting",
+      "id": "gen-dsa-lectures-dsa-lec-week11-sorting-pdf",
       "title": {
         "th": "Lecture · Week 11 Sorting",
         "en": "Lecture · Week 11 Sorting"
@@ -3109,7 +3109,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-lectures-dsa-lec-week12-greedy-algorithm",
+      "id": "gen-dsa-lectures-dsa-lec-week12-greedy-algorithm-pdf",
       "title": {
         "th": "Lecture · Week 12 Greedy Algorithm",
         "en": "Lecture · Week 12 Greedy Algorithm"
@@ -3129,7 +3129,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-lectures-dsa-lec-week13-recursion",
+      "id": "gen-dsa-lectures-dsa-lec-week13-recursion-pdf",
       "title": {
         "th": "Lecture · Week 13 Recursion",
         "en": "Lecture · Week 13 Recursion"
@@ -3149,7 +3149,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-lectures-dsa-lec-week14-divide-conquer",
+      "id": "gen-dsa-lectures-dsa-lec-week14-divide-conquer-pdf",
       "title": {
         "th": "Lecture · Week 14 Divide Conquer",
         "en": "Lecture · Week 14 Divide Conquer"
@@ -3169,7 +3169,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-lectures-dsa-lec-week15-dynamic-programming",
+      "id": "gen-dsa-lectures-dsa-lec-week15-dynamic-programming-pdf",
       "title": {
         "th": "Lecture · Week 15 Dynamic Programming",
         "en": "Lecture · Week 15 Dynamic Programming"
@@ -3189,7 +3189,7 @@
       "courseCode": "DSA"
     },
     {
-      "id": "gen-dsa-sheets-dsa-sheet-recap-final",
+      "id": "gen-dsa-sheets-dsa-sheet-recap-final-pdf",
       "title": {
         "th": "Sheet · Recap Final",
         "en": "Sheet · Recap Final"
@@ -3211,7 +3211,7 @@
   ],
   "FE": [
     {
-      "id": "gen-fe-exams-fe-final-ezzz-final-foundation-english-1",
+      "id": "gen-fe-exams-fe-final-ezzz-final-foundation-english-1-pdf",
       "title": {
         "th": "Final · Ezzz Final Foundation English 1",
         "en": "Final · Ezzz Final Foundation English 1"
@@ -3231,7 +3231,7 @@
       "courseCode": "FE"
     },
     {
-      "id": "gen-fe-exams-fe-midterm-vocabulary",
+      "id": "gen-fe-exams-fe-midterm-vocabulary-pdf",
       "title": {
         "th": "Midterm · Vocabulary",
         "en": "Midterm · Vocabulary"
@@ -3251,7 +3251,7 @@
       "courseCode": "FE"
     },
     {
-      "id": "gen-fe-exercises-fe-ex-oral-exam-questions",
+      "id": "gen-fe-exercises-fe-ex-oral-exam-questions-pdf",
       "title": {
         "th": "Exercise · Oral Exam Questions",
         "en": "Exercise · Oral Exam Questions"
@@ -3271,7 +3271,7 @@
       "courseCode": "FE"
     },
     {
-      "id": "gen-fe-misc-2-workbook-intermediate-2-1",
+      "id": "gen-fe-misc-2-workbook-intermediate-2-1-pdf",
       "title": {
         "th": "2 Workbook Intermediate 2 1",
         "en": "2 Workbook Intermediate 2 1"
@@ -3293,7 +3293,7 @@
   ],
   "FE2": [
     {
-      "id": "gen-fe2-exams-fe2-final-interview-questions",
+      "id": "gen-fe2-exams-fe2-final-interview-questions-pdf",
       "title": {
         "th": "Final · Interview Questions",
         "en": "Final · Interview Questions"
@@ -3313,7 +3313,7 @@
       "courseCode": "FE2"
     },
     {
-      "id": "gen-fe2-exams-fe2-midterm-interview-questions",
+      "id": "gen-fe2-exams-fe2-midterm-interview-questions-pdf",
       "title": {
         "th": "Midterm · Interview Questions",
         "en": "Midterm · Interview Questions"
@@ -3333,7 +3333,7 @@
       "courseCode": "FE2"
     },
     {
-      "id": "gen-fe2-sheets-fe2-sheet-workbook",
+      "id": "gen-fe2-sheets-fe2-sheet-workbook-pdf",
       "title": {
         "th": "Sheet · Workbook",
         "en": "Sheet · Workbook"
@@ -3355,7 +3355,7 @@
   ],
   "ICS": [
     {
-      "id": "gen-ics-exams-ics-final-graded-quiz-review",
+      "id": "gen-ics-exams-ics-final-graded-quiz-review-pdf",
       "title": {
         "th": "Final · Graded Quiz Review",
         "en": "Final · Graded Quiz Review"
@@ -3375,7 +3375,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-exams-ics-midterm-01",
+      "id": "gen-ics-exams-ics-midterm-01-pdf",
       "title": {
         "th": "Midterm · 01",
         "en": "Midterm · 01"
@@ -3395,7 +3395,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-exams-ics-midterm-02",
+      "id": "gen-ics-exams-ics-midterm-02-pdf",
       "title": {
         "th": "Midterm · 02",
         "en": "Midterm · 02"
@@ -3415,7 +3415,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-exams-ics-midterm-1-2564",
+      "id": "gen-ics-exams-ics-midterm-1-2564-pdf",
       "title": {
         "th": "Midterm · 1 2564",
         "en": "Midterm · 1 2564"
@@ -3435,7 +3435,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-exams-ics-midterm-ans-quiz-c",
+      "id": "gen-ics-exams-ics-midterm-ans-quiz-c-pdf",
       "title": {
         "th": "Midterm · Ans Quiz C",
         "en": "Midterm · Ans Quiz C"
@@ -3455,7 +3455,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-exams-ics-midterm-exam",
+      "id": "gen-ics-exams-ics-midterm-exam-pdf",
       "title": {
         "th": "Midterm · Exam",
         "en": "Midterm · Exam"
@@ -3475,7 +3475,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-exams-ics-midterm-exam2",
+      "id": "gen-ics-exams-ics-midterm-exam2-pdf",
       "title": {
         "th": "Midterm · Exam 2",
         "en": "Midterm · Exam 2"
@@ -3495,7 +3495,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-exams-ics-midterm-image-1",
+      "id": "gen-ics-exams-ics-midterm-image-1-pdf",
       "title": {
         "th": "Midterm · Image 1",
         "en": "Midterm · Image 1"
@@ -3515,7 +3515,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-exams-ics-midterm-introduction-computer-ddigjiltaal-grounding",
+      "id": "gen-ics-exams-ics-midterm-introduction-computer-ddigjiltaal-grounding-pdf",
       "title": {
         "th": "Midterm · Introduction Computer Ddigjiltaal Grounding",
         "en": "Midterm · Introduction Computer Ddigjiltaal Grounding"
@@ -3535,7 +3535,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-exams-ics-midterm-midtermv1",
+      "id": "gen-ics-exams-ics-midterm-midtermv1-pdf",
       "title": {
         "th": "Midterm · Midtermv 1",
         "en": "Midterm · Midtermv 1"
@@ -3555,7 +3555,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-exams-ics-midterm-quiz-c",
+      "id": "gen-ics-exams-ics-midterm-quiz-c-pdf",
       "title": {
         "th": "Midterm · Quiz C",
         "en": "Midterm · Quiz C"
@@ -3575,7 +3575,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-exams-ics-midterm-unidentified",
+      "id": "gen-ics-exams-ics-midterm-unidentified-pdf",
       "title": {
         "th": "Midterm · Unidentified",
         "en": "Midterm · Unidentified"
@@ -3595,7 +3595,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-exams-ics-midterm-week01-07",
+      "id": "gen-ics-exams-ics-midterm-week01-07-pdf",
       "title": {
         "th": "Midterm · Week 01 07",
         "en": "Midterm · Week 01 07"
@@ -3615,7 +3615,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-exams-ics-quiz-c",
+      "id": "gen-ics-exams-ics-quiz-c-pdf",
       "title": {
         "th": "Quiz · C",
         "en": "Quiz · C"
@@ -3635,7 +3635,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-exams-ics-quiz-document",
+      "id": "gen-ics-exams-ics-quiz-document-circ",
       "title": {
         "th": "Quiz · Document",
         "en": "Quiz · Document"
@@ -3655,7 +3655,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-exams-ics-quiz-final-quiz",
+      "id": "gen-ics-exams-ics-quiz-final-quiz-pdf",
       "title": {
         "th": "Quiz · Final Quiz",
         "en": "Quiz · Final Quiz"
@@ -3675,7 +3675,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-exams-ics-quiz-general",
+      "id": "gen-ics-exams-ics-quiz-general-pdf",
       "title": {
         "th": "Quiz · General",
         "en": "Quiz · General"
@@ -3695,7 +3695,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-exams-ics-quiz-lab2",
+      "id": "gen-ics-exams-ics-quiz-lab2-circ",
       "title": {
         "th": "Quiz · Lab 2",
         "en": "Quiz · Lab 2"
@@ -3715,7 +3715,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-exams-ics-quiz-lab3",
+      "id": "gen-ics-exams-ics-quiz-lab3-circ",
       "title": {
         "th": "Quiz · Lab 3",
         "en": "Quiz · Lab 3"
@@ -3735,7 +3735,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-exams-ics-quiz-seg",
+      "id": "gen-ics-exams-ics-quiz-seg-circ",
       "title": {
         "th": "Quiz · Seg",
         "en": "Quiz · Seg"
@@ -3755,7 +3755,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-exams-ics-quiz-xor-project",
+      "id": "gen-ics-exams-ics-quiz-xor-project-circ",
       "title": {
         "th": "Quiz · Xor Project",
         "en": "Quiz · Xor Project"
@@ -3775,7 +3775,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-exams-ics-quiz1-a-answers",
+      "id": "gen-ics-exams-ics-quiz1-a-answers-pdf",
       "title": {
         "th": "Quiz 1 A Answers",
         "en": "Quiz 1 A Answers"
@@ -3795,7 +3795,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-exams-ics-quiz1-a",
+      "id": "gen-ics-exams-ics-quiz1-a-pdf",
       "title": {
         "th": "Quiz 1 A",
         "en": "Quiz 1 A"
@@ -3815,7 +3815,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-exams-ics-quiz1-b-answers",
+      "id": "gen-ics-exams-ics-quiz1-b-answers-pdf",
       "title": {
         "th": "Quiz 1 B Answers",
         "en": "Quiz 1 B Answers"
@@ -3835,7 +3835,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-exams-ics-quiz1-b",
+      "id": "gen-ics-exams-ics-quiz1-b-pdf",
       "title": {
         "th": "Quiz 1 B",
         "en": "Quiz 1 B"
@@ -3855,7 +3855,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-exercises-ics-ex-set02",
+      "id": "gen-ics-exercises-ics-ex-set02-pdf",
       "title": {
         "th": "Exercise · Set 02",
         "en": "Exercise · Set 02"
@@ -3875,7 +3875,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-exercises-ics-ex-test",
+      "id": "gen-ics-exercises-ics-ex-test-pdf",
       "title": {
         "th": "Exercise · Test",
         "en": "Exercise · Test"
@@ -3895,7 +3895,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-labs-ics-lab-01-completed",
+      "id": "gen-ics-labs-ics-lab-01-completed-circ",
       "title": {
         "th": "Lab · 01 Completed",
         "en": "Lab · 01 Completed"
@@ -3915,7 +3915,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-labs-ics-lab-01-completed",
+      "id": "gen-ics-labs-ics-lab-01-completed-pdf",
       "title": {
         "th": "Lab · 01 Completed",
         "en": "Lab · 01 Completed"
@@ -3935,7 +3935,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-labs-ics-lab-01-v2",
+      "id": "gen-ics-labs-ics-lab-01-v2-pdf",
       "title": {
         "th": "Lab · 01 V 2",
         "en": "Lab · 01 V 2"
@@ -3955,7 +3955,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-labs-ics-lab-01-y1-s1",
+      "id": "gen-ics-labs-ics-lab-01-y1-s1-pdf",
       "title": {
         "th": "Lab · 01 Y 1 S 1",
         "en": "Lab · 01 Y 1 S 1"
@@ -3975,7 +3975,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-labs-ics-lab-01",
+      "id": "gen-ics-labs-ics-lab-01-pdf",
       "title": {
         "th": "Lab · 01",
         "en": "Lab · 01"
@@ -3995,7 +3995,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-labs-ics-lab-02-completed-v2",
+      "id": "gen-ics-labs-ics-lab-02-completed-v2-pdf",
       "title": {
         "th": "Lab · 02 Completed V 2",
         "en": "Lab · 02 Completed V 2"
@@ -4015,7 +4015,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-labs-ics-lab-02-completed",
+      "id": "gen-ics-labs-ics-lab-02-completed-pdf",
       "title": {
         "th": "Lab · 02 Completed",
         "en": "Lab · 02 Completed"
@@ -4035,7 +4035,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-labs-ics-lab-02-v2",
+      "id": "gen-ics-labs-ics-lab-02-v2-pdf",
       "title": {
         "th": "Lab · 02 V 2",
         "en": "Lab · 02 V 2"
@@ -4055,7 +4055,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-labs-ics-lab-02-v3",
+      "id": "gen-ics-labs-ics-lab-02-v3-pdf",
       "title": {
         "th": "Lab · 02 V 3",
         "en": "Lab · 02 V 3"
@@ -4075,7 +4075,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-labs-ics-lab-02-v4",
+      "id": "gen-ics-labs-ics-lab-02-v4-pdf",
       "title": {
         "th": "Lab · 02 V 4",
         "en": "Lab · 02 V 4"
@@ -4095,7 +4095,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-labs-ics-lab-02-y1-s1",
+      "id": "gen-ics-labs-ics-lab-02-y1-s1-pdf",
       "title": {
         "th": "Lab · 02 Y 1 S 1",
         "en": "Lab · 02 Y 1 S 1"
@@ -4115,7 +4115,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-labs-ics-lab-02",
+      "id": "gen-ics-labs-ics-lab-02-pdf",
       "title": {
         "th": "Lab · 02",
         "en": "Lab · 02"
@@ -4135,7 +4135,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-labs-ics-lab-03-completed",
+      "id": "gen-ics-labs-ics-lab-03-completed-pdf",
       "title": {
         "th": "Lab · 03 Completed",
         "en": "Lab · 03 Completed"
@@ -4155,7 +4155,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-labs-ics-lab-03-v2",
+      "id": "gen-ics-labs-ics-lab-03-v2-pdf",
       "title": {
         "th": "Lab · 03 V 2",
         "en": "Lab · 03 V 2"
@@ -4175,7 +4175,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-labs-ics-lab-03-y1-s1",
+      "id": "gen-ics-labs-ics-lab-03-y1-s1-pdf",
       "title": {
         "th": "Lab · 03 Y 1 S 1",
         "en": "Lab · 03 Y 1 S 1"
@@ -4195,7 +4195,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-labs-ics-lab-03",
+      "id": "gen-ics-labs-ics-lab-03-pdf",
       "title": {
         "th": "Lab · 03",
         "en": "Lab · 03"
@@ -4215,7 +4215,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-labs-ics-lab-04-completed",
+      "id": "gen-ics-labs-ics-lab-04-completed-pdf",
       "title": {
         "th": "Lab · 04 Completed",
         "en": "Lab · 04 Completed"
@@ -4235,7 +4235,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-labs-ics-lab-04-y1-s1",
+      "id": "gen-ics-labs-ics-lab-04-y1-s1-pdf",
       "title": {
         "th": "Lab · 04 Y 1 S 1",
         "en": "Lab · 04 Y 1 S 1"
@@ -4255,7 +4255,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-labs-ics-lab-04",
+      "id": "gen-ics-labs-ics-lab-04-pdf",
       "title": {
         "th": "Lab · 04",
         "en": "Lab · 04"
@@ -4275,7 +4275,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-labs-ics-lab-05-v2",
+      "id": "gen-ics-labs-ics-lab-05-v2-pdf",
       "title": {
         "th": "Lab · 05 V 2",
         "en": "Lab · 05 V 2"
@@ -4295,7 +4295,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-labs-ics-lab-05-v3",
+      "id": "gen-ics-labs-ics-lab-05-v3-pdf",
       "title": {
         "th": "Lab · 05 V 3",
         "en": "Lab · 05 V 3"
@@ -4315,7 +4315,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-labs-ics-lab-05",
+      "id": "gen-ics-labs-ics-lab-05-pdf",
       "title": {
         "th": "Lab · 05",
         "en": "Lab · 05"
@@ -4335,7 +4335,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-labs-ics-lab-lab04",
+      "id": "gen-ics-labs-ics-lab-lab04-pdf",
       "title": {
         "th": "Lab · Lab 04",
         "en": "Lab · Lab 04"
@@ -4355,7 +4355,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-labs-ics-lab-mock-lab01",
+      "id": "gen-ics-labs-ics-lab-mock-lab01-pdf",
       "title": {
         "th": "Lab · Mock Lab 01",
         "en": "Lab · Mock Lab 01"
@@ -4375,7 +4375,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-labs-ics-lab-week03",
+      "id": "gen-ics-labs-ics-lab-week03-pdf",
       "title": {
         "th": "Lab · Week 03",
         "en": "Lab · Week 03"
@@ -4395,7 +4395,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-labs-ics-lab-week04",
+      "id": "gen-ics-labs-ics-lab-week04-pdf",
       "title": {
         "th": "Lab · Week 04",
         "en": "Lab · Week 04"
@@ -4415,7 +4415,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-labs-ics-lab-week05-v2",
+      "id": "gen-ics-labs-ics-lab-week05-v2-pdf",
       "title": {
         "th": "Lab · Week 05 V 2",
         "en": "Lab · Week 05 V 2"
@@ -4435,7 +4435,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-labs-ics-lab-week05",
+      "id": "gen-ics-labs-ics-lab-week05-pdf",
       "title": {
         "th": "Lab · Week 05",
         "en": "Lab · Week 05"
@@ -4455,7 +4455,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-labs-ics-lab-week07-draft",
+      "id": "gen-ics-labs-ics-lab-week07-draft-pdf",
       "title": {
         "th": "Lab · Week 07 Draft",
         "en": "Lab · Week 07 Draft"
@@ -4475,7 +4475,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-lectures-ics-lec-basic-computer-knowledge-computer",
+      "id": "gen-ics-lectures-ics-lec-basic-computer-knowledge-computer-pdf",
       "title": {
         "th": "Lecture · Basic Computer Knowledge Computer",
         "en": "Lecture · Basic Computer Knowledge Computer"
@@ -4495,7 +4495,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-lectures-ics-lec-chapter01",
+      "id": "gen-ics-lectures-ics-lec-chapter01-pdf",
       "title": {
         "th": "Lecture · Chapter 01",
         "en": "Lecture · Chapter 01"
@@ -4515,7 +4515,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-lectures-ics-lec-chapter02-v2",
+      "id": "gen-ics-lectures-ics-lec-chapter02-v2-pdf",
       "title": {
         "th": "Lecture · Chapter 02 V 2",
         "en": "Lecture · Chapter 02 V 2"
@@ -4535,7 +4535,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-lectures-ics-lec-chapter02",
+      "id": "gen-ics-lectures-ics-lec-chapter02-pdf",
       "title": {
         "th": "Lecture · Chapter 02",
         "en": "Lecture · Chapter 02"
@@ -4555,7 +4555,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-lectures-ics-lec-chapter03",
+      "id": "gen-ics-lectures-ics-lec-chapter03-pdf",
       "title": {
         "th": "Lecture · Chapter 03",
         "en": "Lecture · Chapter 03"
@@ -4575,7 +4575,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-lectures-ics-lec-chapter04-v2",
+      "id": "gen-ics-lectures-ics-lec-chapter04-v2-pdf",
       "title": {
         "th": "Lecture · Chapter 04 V 2",
         "en": "Lecture · Chapter 04 V 2"
@@ -4595,7 +4595,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-lectures-ics-lec-chapter04",
+      "id": "gen-ics-lectures-ics-lec-chapter04-pdf",
       "title": {
         "th": "Lecture · Chapter 04",
         "en": "Lecture · Chapter 04"
@@ -4615,7 +4615,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-lectures-ics-lec-chapter05",
+      "id": "gen-ics-lectures-ics-lec-chapter05-pdf",
       "title": {
         "th": "Lecture · Chapter 05",
         "en": "Lecture · Chapter 05"
@@ -4635,7 +4635,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-lectures-ics-lec-slide03-1",
+      "id": "gen-ics-lectures-ics-lec-slide03-1-pdf",
       "title": {
         "th": "Lecture · Slide 03 1",
         "en": "Lecture · Slide 03 1"
@@ -4655,7 +4655,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-lectures-ics-lec-week01-introduction",
+      "id": "gen-ics-lectures-ics-lec-week01-introduction-pdf",
       "title": {
         "th": "Lecture · Week 01 Introduction",
         "en": "Lecture · Week 01 Introduction"
@@ -4675,7 +4675,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-lectures-ics-lec-week01-v2",
+      "id": "gen-ics-lectures-ics-lec-week01-v2-pdf",
       "title": {
         "th": "Lecture · Week 01 V 2",
         "en": "Lecture · Week 01 V 2"
@@ -4695,7 +4695,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-lectures-ics-lec-week01",
+      "id": "gen-ics-lectures-ics-lec-week01-pdf",
       "title": {
         "th": "Lecture · Week 01",
         "en": "Lecture · Week 01"
@@ -4715,7 +4715,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-lectures-ics-lec-week02-boolean-algebra",
+      "id": "gen-ics-lectures-ics-lec-week02-boolean-algebra-pdf",
       "title": {
         "th": "Lecture · Week 02 Boolean Algebra",
         "en": "Lecture · Week 02 Boolean Algebra"
@@ -4735,7 +4735,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-lectures-ics-lec-week02-boolean",
+      "id": "gen-ics-lectures-ics-lec-week02-boolean-pdf",
       "title": {
         "th": "Lecture · Week 02 Boolean",
         "en": "Lecture · Week 02 Boolean"
@@ -4755,7 +4755,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-lectures-ics-lec-week02-v2",
+      "id": "gen-ics-lectures-ics-lec-week02-v2-pdf",
       "title": {
         "th": "Lecture · Week 02 V 2",
         "en": "Lecture · Week 02 V 2"
@@ -4775,7 +4775,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-lectures-ics-lec-week02",
+      "id": "gen-ics-lectures-ics-lec-week02-pdf",
       "title": {
         "th": "Lecture · Week 02",
         "en": "Lecture · Week 02"
@@ -4795,7 +4795,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-lectures-ics-lec-week03-canonical-forms-y1-s1",
+      "id": "gen-ics-lectures-ics-lec-week03-canonical-forms-y1-s1-pdf",
       "title": {
         "th": "Lecture · Week 03 Canonical Forms Y 1 S 1",
         "en": "Lecture · Week 03 Canonical Forms Y 1 S 1"
@@ -4815,7 +4815,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-lectures-ics-lec-week03-canonical-forms",
+      "id": "gen-ics-lectures-ics-lec-week03-canonical-forms-pdf",
       "title": {
         "th": "Lecture · Week 03 Canonical Forms",
         "en": "Lecture · Week 03 Canonical Forms"
@@ -4835,7 +4835,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-lectures-ics-lec-week03-v2",
+      "id": "gen-ics-lectures-ics-lec-week03-v2-pdf",
       "title": {
         "th": "Lecture · Week 03 V 2",
         "en": "Lecture · Week 03 V 2"
@@ -4855,7 +4855,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-lectures-ics-lec-week03",
+      "id": "gen-ics-lectures-ics-lec-week03-pdf",
       "title": {
         "th": "Lecture · Week 03",
         "en": "Lecture · Week 03"
@@ -4875,7 +4875,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-lectures-ics-lec-week04-boolean-minimization",
+      "id": "gen-ics-lectures-ics-lec-week04-boolean-minimization-pdf",
       "title": {
         "th": "Lecture · Week 04 Boolean Minimization",
         "en": "Lecture · Week 04 Boolean Minimization"
@@ -4895,7 +4895,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-lectures-ics-lec-week04-kmap",
+      "id": "gen-ics-lectures-ics-lec-week04-kmap-pdf",
       "title": {
         "th": "Lecture · Week 04 Kmap",
         "en": "Lecture · Week 04 Kmap"
@@ -4915,7 +4915,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-lectures-ics-lec-week04-v2",
+      "id": "gen-ics-lectures-ics-lec-week04-v2-pdf",
       "title": {
         "th": "Lecture · Week 04 V 2",
         "en": "Lecture · Week 04 V 2"
@@ -4935,7 +4935,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-lectures-ics-lec-week04",
+      "id": "gen-ics-lectures-ics-lec-week04-pdf",
       "title": {
         "th": "Lecture · Week 04",
         "en": "Lecture · Week 04"
@@ -4955,7 +4955,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-lectures-ics-lec-week05-time-response",
+      "id": "gen-ics-lectures-ics-lec-week05-time-response-pdf",
       "title": {
         "th": "Lecture · Week 05 Time Response",
         "en": "Lecture · Week 05 Time Response"
@@ -4975,7 +4975,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-lectures-ics-lec-week05-v2",
+      "id": "gen-ics-lectures-ics-lec-week05-v2-pdf",
       "title": {
         "th": "Lecture · Week 05 V 2",
         "en": "Lecture · Week 05 V 2"
@@ -4995,7 +4995,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-lectures-ics-lec-week05",
+      "id": "gen-ics-lectures-ics-lec-week05-pdf",
       "title": {
         "th": "Lecture · Week 05",
         "en": "Lecture · Week 05"
@@ -5015,7 +5015,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-lectures-ics-lec-week06-number-systems",
+      "id": "gen-ics-lectures-ics-lec-week06-number-systems-pdf",
       "title": {
         "th": "Lecture · Week 06 Number Systems",
         "en": "Lecture · Week 06 Number Systems"
@@ -5035,7 +5035,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-lectures-ics-lec-week06-v2",
+      "id": "gen-ics-lectures-ics-lec-week06-v2-pdf",
       "title": {
         "th": "Lecture · Week 06 V 2",
         "en": "Lecture · Week 06 V 2"
@@ -5055,7 +5055,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-lectures-ics-lec-week06",
+      "id": "gen-ics-lectures-ics-lec-week06-pdf",
       "title": {
         "th": "Lecture · Week 06",
         "en": "Lecture · Week 06"
@@ -5075,7 +5075,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-lectures-ics-lec-week07-mux",
+      "id": "gen-ics-lectures-ics-lec-week07-mux-pdf",
       "title": {
         "th": "Lecture · Week 07 MUX",
         "en": "Lecture · Week 07 MUX"
@@ -5095,7 +5095,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-lectures-ics-lec-week07",
+      "id": "gen-ics-lectures-ics-lec-week07-pdf",
       "title": {
         "th": "Lecture · Week 07",
         "en": "Lecture · Week 07"
@@ -5115,7 +5115,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-misc-quiz-2-test",
+      "id": "gen-ics-misc-quiz-2-test-circ",
       "title": {
         "th": "Quiz · 2 Test",
         "en": "Quiz · 2 Test"
@@ -5135,7 +5135,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-pages-pg-01",
+      "id": "gen-ics-pages-pg-01-jpg",
       "title": {
         "th": "Pg 01",
         "en": "Pg 01"
@@ -5155,7 +5155,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-pages-pg-02",
+      "id": "gen-ics-pages-pg-02-jpg",
       "title": {
         "th": "Pg 02",
         "en": "Pg 02"
@@ -5175,7 +5175,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-pages-pg-03",
+      "id": "gen-ics-pages-pg-03-jpg",
       "title": {
         "th": "Pg 03",
         "en": "Pg 03"
@@ -5195,7 +5195,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-pages-pg-04",
+      "id": "gen-ics-pages-pg-04-jpg",
       "title": {
         "th": "Pg 04",
         "en": "Pg 04"
@@ -5215,7 +5215,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-pages-pg-05",
+      "id": "gen-ics-pages-pg-05-jpg",
       "title": {
         "th": "Pg 05",
         "en": "Pg 05"
@@ -5235,7 +5235,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-pages-pg-06",
+      "id": "gen-ics-pages-pg-06-jpg",
       "title": {
         "th": "Pg 06",
         "en": "Pg 06"
@@ -5255,7 +5255,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-pages-pg-07",
+      "id": "gen-ics-pages-pg-07-jpg",
       "title": {
         "th": "Pg 07",
         "en": "Pg 07"
@@ -5275,7 +5275,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-pages-pg-08",
+      "id": "gen-ics-pages-pg-08-jpg",
       "title": {
         "th": "Pg 08",
         "en": "Pg 08"
@@ -5295,7 +5295,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-pages-pg-09",
+      "id": "gen-ics-pages-pg-09-jpg",
       "title": {
         "th": "Pg 09",
         "en": "Pg 09"
@@ -5315,7 +5315,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-pages-pg-10",
+      "id": "gen-ics-pages-pg-10-jpg",
       "title": {
         "th": "Pg 10",
         "en": "Pg 10"
@@ -5335,7 +5335,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-sheets-ics-sheet-recap-boolean",
+      "id": "gen-ics-sheets-ics-sheet-recap-boolean-pdf",
       "title": {
         "th": "Sheet · Recap Boolean",
         "en": "Sheet · Recap Boolean"
@@ -5355,7 +5355,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-sheets-ics-sheet-recap",
+      "id": "gen-ics-sheets-ics-sheet-recap-pdf",
       "title": {
         "th": "Sheet · Recap",
         "en": "Sheet · Recap"
@@ -5375,7 +5375,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-sheets-ics-sheet-summary-ics-v2",
+      "id": "gen-ics-sheets-ics-sheet-summary-ics-v2-pdf",
       "title": {
         "th": "Sheet · Summary Ics V 2",
         "en": "Sheet · Summary Ics V 2"
@@ -5395,7 +5395,7 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-sheets-ics-sheet-summary",
+      "id": "gen-ics-sheets-ics-sheet-summary-pdf",
       "title": {
         "th": "Sheet · Summary",
         "en": "Sheet · Summary"
@@ -5417,7 +5417,7 @@
   ],
   "ITF": [
     {
-      "id": "gen-itf-exams-itf-final-2023",
+      "id": "gen-itf-exams-itf-final-2023-pdf",
       "title": {
         "th": "Final · 2023",
         "en": "Final · 2023"
@@ -5437,7 +5437,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-exams-itf-midterm-2022-01",
+      "id": "gen-itf-exams-itf-midterm-2022-01-pdf",
       "title": {
         "th": "Midterm · 2022 01",
         "en": "Midterm · 2022 01"
@@ -5457,7 +5457,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-exams-itf-midterm-2022",
+      "id": "gen-itf-exams-itf-midterm-2022-pdf",
       "title": {
         "th": "Midterm · 2022",
         "en": "Midterm · 2022"
@@ -5477,7 +5477,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-exams-itf-midterm-computing-components-storage",
+      "id": "gen-itf-exams-itf-midterm-computing-components-storage-pdf",
       "title": {
         "th": "Midterm · Computing Components Storage",
         "en": "Midterm · Computing Components Storage"
@@ -5497,7 +5497,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-exams-itf-midterm-network",
+      "id": "gen-itf-exams-itf-midterm-network-pdf",
       "title": {
         "th": "Midterm · Network",
         "en": "Midterm · Network"
@@ -5517,7 +5517,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-exams-itf-midterm-untitled-notebook-3",
+      "id": "gen-itf-exams-itf-midterm-untitled-notebook-3-pdf",
       "title": {
         "th": "Midterm · Untitled Notebook 3",
         "en": "Midterm · Untitled Notebook 3"
@@ -5537,7 +5537,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-exams-itf-quiz-01",
+      "id": "gen-itf-exams-itf-quiz-01-pdf",
       "title": {
         "th": "Quiz · 01",
         "en": "Quiz · 01"
@@ -5557,7 +5557,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-exams-itf-quiz-hardware",
+      "id": "gen-itf-exams-itf-quiz-hardware-pdf",
       "title": {
         "th": "Quiz · Hardware",
         "en": "Quiz · Hardware"
@@ -5577,7 +5577,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-labs-itf-lab-week01-sheet",
+      "id": "gen-itf-labs-itf-lab-week01-sheet-pdf",
       "title": {
         "th": "Lab · Week 01 Sheet",
         "en": "Lab · Week 01 Sheet"
@@ -5597,7 +5597,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-labs-itf-lab-week01-windows",
+      "id": "gen-itf-labs-itf-lab-week01-windows-pdf",
       "title": {
         "th": "Lab · Week 01 Windows",
         "en": "Lab · Week 01 Windows"
@@ -5617,7 +5617,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-labs-itf-lab-week12",
+      "id": "gen-itf-labs-itf-lab-week12-pdf",
       "title": {
         "th": "Lab · Week 12",
         "en": "Lab · Week 12"
@@ -5637,7 +5637,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-lectures-itf-lec-final",
+      "id": "gen-itf-lectures-itf-lec-final-pdf",
       "title": {
         "th": "Lecture · Final",
         "en": "Lecture · Final"
@@ -5657,7 +5657,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-lectures-itf-lec-focuson-web",
+      "id": "gen-itf-lectures-itf-lec-focuson-web-pdf",
       "title": {
         "th": "Lecture · Focuson Web",
         "en": "Lecture · Focuson Web"
@@ -5677,7 +5677,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-lectures-itf-lec-internet-thai",
+      "id": "gen-itf-lectures-itf-lec-internet-thai-pdf",
       "title": {
         "th": "Lecture · Internet Thai",
         "en": "Lecture · Internet Thai"
@@ -5697,7 +5697,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-lectures-itf-lec-itf65-database",
+      "id": "gen-itf-lectures-itf-lec-itf65-database-pdf",
       "title": {
         "th": "Lecture · Itf 65 Database",
         "en": "Lecture · Itf 65 Database"
@@ -5717,7 +5717,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-lectures-itf-lec-itf65-os",
+      "id": "gen-itf-lectures-itf-lec-itf65-os-pdf",
       "title": {
         "th": "Lecture · Itf 65 OS",
         "en": "Lecture · Itf 65 OS"
@@ -5737,7 +5737,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-lectures-itf-lec-itf65-program",
+      "id": "gen-itf-lectures-itf-lec-itf65-program-pdf",
       "title": {
         "th": "Lecture · Itf 65 Program",
         "en": "Lecture · Itf 65 Program"
@@ -5757,7 +5757,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-lectures-itf-lec-lecture-01-1",
+      "id": "gen-itf-lectures-itf-lec-lecture-01-1-pdf",
       "title": {
         "th": "Lecture · Lecture 01 1",
         "en": "Lecture · Lecture 01 1"
@@ -5777,7 +5777,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-lectures-itf-lec-lecture-02",
+      "id": "gen-itf-lectures-itf-lec-lecture-02-pdf",
       "title": {
         "th": "Lecture · Lecture 02",
         "en": "Lecture · Lecture 02"
@@ -5797,7 +5797,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-lectures-itf-lec-lecture-03",
+      "id": "gen-itf-lectures-itf-lec-lecture-03-pdf",
       "title": {
         "th": "Lecture · Lecture 03",
         "en": "Lecture · Lecture 03"
@@ -5817,7 +5817,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-lectures-itf-lec-network-1",
+      "id": "gen-itf-lectures-itf-lec-network-1-pdf",
       "title": {
         "th": "Lecture · Network 1",
         "en": "Lecture · Network 1"
@@ -5837,7 +5837,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-lectures-itf-lec-network-2",
+      "id": "gen-itf-lectures-itf-lec-network-2-pdf",
       "title": {
         "th": "Lecture · Network 2",
         "en": "Lecture · Network 2"
@@ -5857,7 +5857,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-lectures-itf-lec-pointing-device",
+      "id": "gen-itf-lectures-itf-lec-pointing-device-pdf",
       "title": {
         "th": "Lecture · Pointing Device",
         "en": "Lecture · Pointing Device"
@@ -5877,7 +5877,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-lectures-itf-lec-week00-course-introduction",
+      "id": "gen-itf-lectures-itf-lec-week00-course-introduction-pdf",
       "title": {
         "th": "Lecture · Week 00 Course Introduction",
         "en": "Lecture · Week 00 Course Introduction"
@@ -5897,7 +5897,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-lectures-itf-lec-week00-intro",
+      "id": "gen-itf-lectures-itf-lec-week00-intro-pdf",
       "title": {
         "th": "Lecture · Week 00 Intro",
         "en": "Lecture · Week 00 Intro"
@@ -5917,7 +5917,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-lectures-itf-lec-week01",
+      "id": "gen-itf-lectures-itf-lec-week01-pdf",
       "title": {
         "th": "Lecture · Week 01",
         "en": "Lecture · Week 01"
@@ -5937,7 +5937,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-lectures-itf-lec-week02",
+      "id": "gen-itf-lectures-itf-lec-week02-pdf",
       "title": {
         "th": "Lecture · Week 02",
         "en": "Lecture · Week 02"
@@ -5957,7 +5957,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-lectures-itf-lec-week03",
+      "id": "gen-itf-lectures-itf-lec-week03-pdf",
       "title": {
         "th": "Lecture · Week 03",
         "en": "Lecture · Week 03"
@@ -5977,7 +5977,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-lectures-itf-lec-week04-y1-s1",
+      "id": "gen-itf-lectures-itf-lec-week04-y1-s1-pdf",
       "title": {
         "th": "Lecture · Week 04 Y 1 S 1",
         "en": "Lecture · Week 04 Y 1 S 1"
@@ -5997,7 +5997,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-lectures-itf-lec-week04",
+      "id": "gen-itf-lectures-itf-lec-week04-pdf",
       "title": {
         "th": "Lecture · Week 04",
         "en": "Lecture · Week 04"
@@ -6017,7 +6017,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-lectures-itf-lec-week05-y1-s1",
+      "id": "gen-itf-lectures-itf-lec-week05-y1-s1-pdf",
       "title": {
         "th": "Lecture · Week 05 Y 1 S 1",
         "en": "Lecture · Week 05 Y 1 S 1"
@@ -6037,7 +6037,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-lectures-itf-lec-week05",
+      "id": "gen-itf-lectures-itf-lec-week05-pdf",
       "title": {
         "th": "Lecture · Week 05",
         "en": "Lecture · Week 05"
@@ -6057,7 +6057,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-lectures-itf-lec-week06-os-v2",
+      "id": "gen-itf-lectures-itf-lec-week06-os-v2-pdf",
       "title": {
         "th": "Lecture · Week 06 OS V 2",
         "en": "Lecture · Week 06 OS V 2"
@@ -6077,7 +6077,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-lectures-itf-lec-week06-os-y1-s1",
+      "id": "gen-itf-lectures-itf-lec-week06-os-y1-s1-pdf",
       "title": {
         "th": "Lecture · Week 06 OS Y 1 S 1",
         "en": "Lecture · Week 06 OS Y 1 S 1"
@@ -6097,7 +6097,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-lectures-itf-lec-week06-os",
+      "id": "gen-itf-lectures-itf-lec-week06-os-pdf",
       "title": {
         "th": "Lecture · Week 06 OS",
         "en": "Lecture · Week 06 OS"
@@ -6117,7 +6117,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-lectures-itf-lec-week07-programming-apps",
+      "id": "gen-itf-lectures-itf-lec-week07-programming-apps-pdf",
       "title": {
         "th": "Lecture · Week 07 Programming Apps",
         "en": "Lecture · Week 07 Programming Apps"
@@ -6137,7 +6137,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-lectures-itf-lec-week07-programs-apps",
+      "id": "gen-itf-lectures-itf-lec-week07-programs-apps-pdf",
       "title": {
         "th": "Lecture · Week 07 Programs Apps",
         "en": "Lecture · Week 07 Programs Apps"
@@ -6157,7 +6157,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-lectures-itf-lec-week08-database",
+      "id": "gen-itf-lectures-itf-lec-week08-database-pdf",
       "title": {
         "th": "Lecture · Week 08 Database",
         "en": "Lecture · Week 08 Database"
@@ -6177,7 +6177,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-lectures-itf-lec-week08",
+      "id": "gen-itf-lectures-itf-lec-week08-pdf",
       "title": {
         "th": "Lecture · Week 08",
         "en": "Lecture · Week 08"
@@ -6197,7 +6197,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-lectures-itf-lec-week09-ethics",
+      "id": "gen-itf-lectures-itf-lec-week09-ethics-pdf",
       "title": {
         "th": "Lecture · Week 09 Ethics",
         "en": "Lecture · Week 09 Ethics"
@@ -6217,7 +6217,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-lectures-itf-lec-week10-v2",
+      "id": "gen-itf-lectures-itf-lec-week10-v2-pdf",
       "title": {
         "th": "Lecture · Week 10 V 2",
         "en": "Lecture · Week 10 V 2"
@@ -6237,7 +6237,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-lectures-itf-lec-week11-internet",
+      "id": "gen-itf-lectures-itf-lec-week11-internet-pdf",
       "title": {
         "th": "Lecture · Week 11 Internet",
         "en": "Lecture · Week 11 Internet"
@@ -6257,7 +6257,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-lectures-itf-lec-week12-computer-networks",
+      "id": "gen-itf-lectures-itf-lec-week12-computer-networks-pdf",
       "title": {
         "th": "Lecture · Week 12 Computer Networks",
         "en": "Lecture · Week 12 Computer Networks"
@@ -6277,7 +6277,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-lectures-itf-lec-week13-wi-fi",
+      "id": "gen-itf-lectures-itf-lec-week13-wi-fi-pdf",
       "title": {
         "th": "Lecture · Week 13 Wi Fi",
         "en": "Lecture · Week 13 Wi Fi"
@@ -6297,7 +6297,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-lectures-itf-lec-week14-it-system",
+      "id": "gen-itf-lectures-itf-lec-week14-it-system-pdf",
       "title": {
         "th": "Lecture · Week 14 IT System",
         "en": "Lecture · Week 14 IT System"
@@ -6317,7 +6317,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-lectures-itf-lec-week15-web",
+      "id": "gen-itf-lectures-itf-lec-week15-web-pdf",
       "title": {
         "th": "Lecture · Week 15 Web",
         "en": "Lecture · Week 15 Web"
@@ -6337,7 +6337,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-misc-financial",
+      "id": "gen-itf-misc-financial-xlsx",
       "title": {
         "th": "Financial",
         "en": "Financial"
@@ -6357,7 +6357,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-misc-lab06-lab-work-group-1",
+      "id": "gen-itf-misc-lab06-lab-work-group-1-pdf",
       "title": {
         "th": "Lab 06 Lab Work Group 1",
         "en": "Lab 06 Lab Work Group 1"
@@ -6377,7 +6377,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-misc-lab06-report-group1",
+      "id": "gen-itf-misc-lab06-report-group1-xlsx",
       "title": {
         "th": "Lab 06 Report Group 1",
         "en": "Lab 06 Report Group 1"
@@ -6397,7 +6397,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-misc-lab07-2569-microsoft-excel-2",
+      "id": "gen-itf-misc-lab07-2569-microsoft-excel-2-pdf",
       "title": {
         "th": "Lab 07 2569 Microsoft Excel 2",
         "en": "Lab 07 2569 Microsoft Excel 2"
@@ -6417,7 +6417,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-misc-lab07-69070027",
+      "id": "gen-itf-misc-lab07-69070027-xlsx",
       "title": {
         "th": "Lab 07 69070027",
         "en": "Lab 07 69070027"
@@ -6437,7 +6437,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-misc-lab07-lab-sheet-data-2569",
+      "id": "gen-itf-misc-lab07-lab-sheet-data-2569-xlsx",
       "title": {
         "th": "Lab 07 Lab Sheet Data 2569",
         "en": "Lab 07 Lab Sheet Data 2569"
@@ -6457,7 +6457,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-notes-itf-note-01",
+      "id": "gen-itf-notes-itf-note-01-webp",
       "title": {
         "th": "Note · 01",
         "en": "Note · 01"
@@ -6477,7 +6477,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-notes-itf-note-02",
+      "id": "gen-itf-notes-itf-note-02-webp",
       "title": {
         "th": "Note · 02",
         "en": "Note · 02"
@@ -6497,7 +6497,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-notes-itf-note-03",
+      "id": "gen-itf-notes-itf-note-03-webp",
       "title": {
         "th": "Note · 03",
         "en": "Note · 03"
@@ -6517,7 +6517,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-notes-itf-note-04",
+      "id": "gen-itf-notes-itf-note-04-webp",
       "title": {
         "th": "Note · 04",
         "en": "Note · 04"
@@ -6537,7 +6537,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-notes-itf-note-05",
+      "id": "gen-itf-notes-itf-note-05-webp",
       "title": {
         "th": "Note · 05",
         "en": "Note · 05"
@@ -6557,7 +6557,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-notes-itf-note-06",
+      "id": "gen-itf-notes-itf-note-06-webp",
       "title": {
         "th": "Note · 06",
         "en": "Note · 06"
@@ -6577,7 +6577,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-notes-itf-note-07",
+      "id": "gen-itf-notes-itf-note-07-webp",
       "title": {
         "th": "Note · 07",
         "en": "Note · 07"
@@ -6597,7 +6597,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-notes-itf-note-08",
+      "id": "gen-itf-notes-itf-note-08-webp",
       "title": {
         "th": "Note · 08",
         "en": "Note · 08"
@@ -6617,7 +6617,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-notes-itf-note-09",
+      "id": "gen-itf-notes-itf-note-09-webp",
       "title": {
         "th": "Note · 09",
         "en": "Note · 09"
@@ -6637,7 +6637,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-notes-itf-note-10",
+      "id": "gen-itf-notes-itf-note-10-webp",
       "title": {
         "th": "Note · 10",
         "en": "Note · 10"
@@ -6657,7 +6657,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-notes-itf-note-11",
+      "id": "gen-itf-notes-itf-note-11-webp",
       "title": {
         "th": "Note · 11",
         "en": "Note · 11"
@@ -6677,7 +6677,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-notes-itf-note-12",
+      "id": "gen-itf-notes-itf-note-12-webp",
       "title": {
         "th": "Note · 12",
         "en": "Note · 12"
@@ -6697,7 +6697,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-notes-itf-note-13",
+      "id": "gen-itf-notes-itf-note-13-webp",
       "title": {
         "th": "Note · 13",
         "en": "Note · 13"
@@ -6717,7 +6717,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-notes-itf-note-14",
+      "id": "gen-itf-notes-itf-note-14-webp",
       "title": {
         "th": "Note · 14",
         "en": "Note · 14"
@@ -6737,7 +6737,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-notes-itf-note-15",
+      "id": "gen-itf-notes-itf-note-15-webp",
       "title": {
         "th": "Note · 15",
         "en": "Note · 15"
@@ -6757,7 +6757,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-notes-itf-note-16",
+      "id": "gen-itf-notes-itf-note-16-webp",
       "title": {
         "th": "Note · 16",
         "en": "Note · 16"
@@ -6777,7 +6777,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-notes-itf-note-17",
+      "id": "gen-itf-notes-itf-note-17-webp",
       "title": {
         "th": "Note · 17",
         "en": "Note · 17"
@@ -6797,7 +6797,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-notes-itf-note-18",
+      "id": "gen-itf-notes-itf-note-18-webp",
       "title": {
         "th": "Note · 18",
         "en": "Note · 18"
@@ -6817,7 +6817,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-notes-itf-note-19",
+      "id": "gen-itf-notes-itf-note-19-webp",
       "title": {
         "th": "Note · 19",
         "en": "Note · 19"
@@ -6837,7 +6837,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-notes-itf-note-20",
+      "id": "gen-itf-notes-itf-note-20-webp",
       "title": {
         "th": "Note · 20",
         "en": "Note · 20"
@@ -6857,7 +6857,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-notes-itf-note-21",
+      "id": "gen-itf-notes-itf-note-21-webp",
       "title": {
         "th": "Note · 21",
         "en": "Note · 21"
@@ -6877,7 +6877,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-notes-itf-note-22",
+      "id": "gen-itf-notes-itf-note-22-webp",
       "title": {
         "th": "Note · 22",
         "en": "Note · 22"
@@ -6897,7 +6897,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-notes-itf-note-23",
+      "id": "gen-itf-notes-itf-note-23-webp",
       "title": {
         "th": "Note · 23",
         "en": "Note · 23"
@@ -6917,7 +6917,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-notes-itf-note-24",
+      "id": "gen-itf-notes-itf-note-24-webp",
       "title": {
         "th": "Note · 24",
         "en": "Note · 24"
@@ -6937,7 +6937,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-notes-itf-note-25",
+      "id": "gen-itf-notes-itf-note-25-webp",
       "title": {
         "th": "Note · 25",
         "en": "Note · 25"
@@ -6957,7 +6957,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-notes-itf-note-26",
+      "id": "gen-itf-notes-itf-note-26-webp",
       "title": {
         "th": "Note · 26",
         "en": "Note · 26"
@@ -6977,7 +6977,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-sheets-itf-sheet-recap-topics",
+      "id": "gen-itf-sheets-itf-sheet-recap-topics-pdf",
       "title": {
         "th": "Sheet · Recap Topics",
         "en": "Sheet · Recap Topics"
@@ -6997,7 +6997,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-sheets-itf-sheet-recap",
+      "id": "gen-itf-sheets-itf-sheet-recap-pdf",
       "title": {
         "th": "Sheet · Recap",
         "en": "Sheet · Recap"
@@ -7017,7 +7017,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-sheets-itf-sheet-review-questions",
+      "id": "gen-itf-sheets-itf-sheet-review-questions-pdf",
       "title": {
         "th": "Sheet · Review Questions",
         "en": "Sheet · Review Questions"
@@ -7037,7 +7037,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-sheets-itf-sheet-reviews-web-app",
+      "id": "gen-itf-sheets-itf-sheet-reviews-web-app-pdf",
       "title": {
         "th": "Sheet · Reviews Web App",
         "en": "Sheet · Reviews Web App"
@@ -7057,7 +7057,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-sheets-itf-sheet-study-guide",
+      "id": "gen-itf-sheets-itf-sheet-study-guide-pdf",
       "title": {
         "th": "Sheet · Study Guide",
         "en": "Sheet · Study Guide"
@@ -7077,7 +7077,7 @@
       "courseCode": "ITF"
     },
     {
-      "id": "gen-itf-sheets-itf-sheet-summary",
+      "id": "gen-itf-sheets-itf-sheet-summary-pdf",
       "title": {
         "th": "Sheet · Summary",
         "en": "Sheet · Summary"
@@ -7099,7 +7099,7 @@
   ],
   "MFIT": [
     {
-      "id": "gen-mfit-activities-mfit-1-2024-in-class-activity-week5",
+      "id": "gen-mfit-activities-mfit-1-2024-in-class-activity-week5-pdf",
       "title": {
         "th": "1 2024 In Class Activity Week 5",
         "en": "1 2024 In Class Activity Week 5"
@@ -7119,7 +7119,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-activities-mfit-1-2026-in-class-activity-week1",
+      "id": "gen-mfit-activities-mfit-1-2026-in-class-activity-week1-pdf",
       "title": {
         "th": "1 2026 In Class Activity Week 1",
         "en": "1 2026 In Class Activity Week 1"
@@ -7139,7 +7139,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-activities-mfit-1-2026-in-class-activity-week2",
+      "id": "gen-mfit-activities-mfit-1-2026-in-class-activity-week2-pdf",
       "title": {
         "th": "1 2026 In Class Activity Week 2",
         "en": "1 2026 In Class Activity Week 2"
@@ -7159,7 +7159,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-activities-mfit-1-2026-in-class-activity-week3",
+      "id": "gen-mfit-activities-mfit-1-2026-in-class-activity-week3-pdf",
       "title": {
         "th": "1 2026 In Class Activity Week 3",
         "en": "1 2026 In Class Activity Week 3"
@@ -7179,7 +7179,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-activities-mfit-1-2026-in-class-activity-week4",
+      "id": "gen-mfit-activities-mfit-1-2026-in-class-activity-week4-pdf",
       "title": {
         "th": "1 2026 In Class Activity Week 4",
         "en": "1 2026 In Class Activity Week 4"
@@ -7199,7 +7199,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-activities-mfit-1-2026-in-class-activity-week6",
+      "id": "gen-mfit-activities-mfit-1-2026-in-class-activity-week6-pdf",
       "title": {
         "th": "1 2026 In Class Activity Week 6",
         "en": "1 2026 In Class Activity Week 6"
@@ -7219,7 +7219,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-activities-mfit-1-2026-in-class-activity-week7",
+      "id": "gen-mfit-activities-mfit-1-2026-in-class-activity-week7-pdf",
       "title": {
         "th": "1 2026 In Class Activity Week 7",
         "en": "1 2026 In Class Activity Week 7"
@@ -7239,7 +7239,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exams-mfit-final-2560",
+      "id": "gen-mfit-exams-mfit-final-2560-pdf",
       "title": {
         "th": "Final · 2560",
         "en": "Final · 2560"
@@ -7259,7 +7259,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exams-mfit-final-cdn-fbsbx-com",
+      "id": "gen-mfit-exams-mfit-final-cdn-fbsbx-com-pdf",
       "title": {
         "th": "Final · Cdn Fbsbx Com",
         "en": "Final · Cdn Fbsbx Com"
@@ -7279,7 +7279,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exams-mfit-final-copy-of-final-mathit-2559",
+      "id": "gen-mfit-exams-mfit-final-copy-of-final-mathit-2559-pdf",
       "title": {
         "th": "Final · Copy Of Final Mathit 2559",
         "en": "Final · Copy Of Final Mathit 2559"
@@ -7299,7 +7299,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exams-mfit-final-final-mathit-2559",
+      "id": "gen-mfit-exams-mfit-final-final-mathit-2559-pdf",
       "title": {
         "th": "Final · Final Mathit 2559",
         "en": "Final · Final Mathit 2559"
@@ -7319,7 +7319,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exams-mfit-final-final-mathit-2561",
+      "id": "gen-mfit-exams-mfit-final-final-mathit-2561-pdf",
       "title": {
         "th": "Final · Final Mathit 2561",
         "en": "Final · Final Mathit 2561"
@@ -7339,7 +7339,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exams-mfit-final-notelub",
+      "id": "gen-mfit-exams-mfit-final-notelub-pdf",
       "title": {
         "th": "Final · Notelub",
         "en": "Final · Notelub"
@@ -7359,7 +7359,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exams-mfit-final-plickerscards-1up-1-63",
+      "id": "gen-mfit-exams-mfit-final-plickerscards-1up-1-63-pdf",
       "title": {
         "th": "Final · Plickerscards 1up 1 63",
         "en": "Final · Plickerscards 1up 1 63"
@@ -7379,7 +7379,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exams-mfit-final-unidentified",
+      "id": "gen-mfit-exams-mfit-final-unidentified-pdf",
       "title": {
         "th": "Final · Unidentified",
         "en": "Final · Unidentified"
@@ -7399,7 +7399,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exams-mfit-midterm-01",
+      "id": "gen-mfit-exams-mfit-midterm-01-pdf",
       "title": {
         "th": "Midterm · 01",
         "en": "Midterm · 01"
@@ -7419,7 +7419,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exams-mfit-midterm-elementary-linear-algebra-ron-larson-david-c",
+      "id": "gen-mfit-exams-mfit-midterm-elementary-linear-algebra-ron-larson-david-c-pdf",
       "title": {
         "th": "Midterm · Elementary Linear Algebra Ron Larson David C",
         "en": "Midterm · Elementary Linear Algebra Ron Larson David C"
@@ -7439,7 +7439,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exams-mfit-midterm-guidelineexam-mfit",
+      "id": "gen-mfit-exams-mfit-midterm-guidelineexam-mfit-pdf",
       "title": {
         "th": "Midterm · Guidelineexam Mfit",
         "en": "Midterm · Guidelineexam Mfit"
@@ -7459,7 +7459,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exams-mfit-midterm-open-2",
+      "id": "gen-mfit-exams-mfit-midterm-open-2-pdf",
       "title": {
         "th": "Midterm · Open 2",
         "en": "Midterm · Open 2"
@@ -7479,7 +7479,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exams-mfit-midterm-open-book",
+      "id": "gen-mfit-exams-mfit-midterm-open-book-pdf",
       "title": {
         "th": "Midterm · Open Book",
         "en": "Midterm · Open Book"
@@ -7499,7 +7499,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exams-mfit-midterm-past-paper-01",
+      "id": "gen-mfit-exams-mfit-midterm-past-paper-01-pdf",
       "title": {
         "th": "Midterm · Past Paper 01",
         "en": "Midterm · Past Paper 01"
@@ -7519,7 +7519,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exams-mfit-midterm-past-paper-02",
+      "id": "gen-mfit-exams-mfit-midterm-past-paper-02-pdf",
       "title": {
         "th": "Midterm · Past Paper 02",
         "en": "Midterm · Past Paper 02"
@@ -7539,7 +7539,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exams-mfit-midterm-week01",
+      "id": "gen-mfit-exams-mfit-midterm-week01-pdf",
       "title": {
         "th": "Midterm · Week 01",
         "en": "Midterm · Week 01"
@@ -7559,7 +7559,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exams-mfit-midterm-week04",
+      "id": "gen-mfit-exams-mfit-midterm-week04-pdf",
       "title": {
         "th": "Midterm · Week 04",
         "en": "Midterm · Week 04"
@@ -7579,7 +7579,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exams-mfit-midterm-week05",
+      "id": "gen-mfit-exams-mfit-midterm-week05-pdf",
       "title": {
         "th": "Midterm · Week 05",
         "en": "Midterm · Week 05"
@@ -7599,7 +7599,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exams-mfit-midterm-week06",
+      "id": "gen-mfit-exams-mfit-midterm-week06-pdf",
       "title": {
         "th": "Midterm · Week 06",
         "en": "Midterm · Week 06"
@@ -7619,7 +7619,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exams-mfit-midterm-week07",
+      "id": "gen-mfit-exams-mfit-midterm-week07-pdf",
       "title": {
         "th": "Midterm · Week 07",
         "en": "Midterm · Week 07"
@@ -7639,7 +7639,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exercises-mfit-ex-exercise-1-1",
+      "id": "gen-mfit-exercises-mfit-ex-exercise-1-1-pdf",
       "title": {
         "th": "Exercise · Exercise 1 1",
         "en": "Exercise · Exercise 1 1"
@@ -7659,7 +7659,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exercises-mfit-ex-exercise-1",
+      "id": "gen-mfit-exercises-mfit-ex-exercise-1-pdf",
       "title": {
         "th": "Exercise · Exercise 1",
         "en": "Exercise · Exercise 1"
@@ -7679,7 +7679,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exercises-mfit-ex-practice",
+      "id": "gen-mfit-exercises-mfit-ex-practice-pdf",
       "title": {
         "th": "Exercise · Practice",
         "en": "Exercise · Practice"
@@ -7699,7 +7699,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exercises-mfit-ex-pretest",
+      "id": "gen-mfit-exercises-mfit-ex-pretest-pdf",
       "title": {
         "th": "Exercise · Pretest",
         "en": "Exercise · Pretest"
@@ -7719,7 +7719,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exercises-mfit-ex-week01-activity-completed-v2",
+      "id": "gen-mfit-exercises-mfit-ex-week01-activity-completed-v2-pdf",
       "title": {
         "th": "Exercise · Week 01 Activity Completed V 2",
         "en": "Exercise · Week 01 Activity Completed V 2"
@@ -7739,7 +7739,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exercises-mfit-ex-week01-activity-completed",
+      "id": "gen-mfit-exercises-mfit-ex-week01-activity-completed-pdf",
       "title": {
         "th": "Exercise · Week 01 Activity Completed",
         "en": "Exercise · Week 01 Activity Completed"
@@ -7759,7 +7759,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exercises-mfit-ex-week01-activity-v2",
+      "id": "gen-mfit-exercises-mfit-ex-week01-activity-v2-pdf",
       "title": {
         "th": "Exercise · Week 01 Activity V 2",
         "en": "Exercise · Week 01 Activity V 2"
@@ -7779,7 +7779,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exercises-mfit-ex-week02-activity-v2",
+      "id": "gen-mfit-exercises-mfit-ex-week02-activity-v2-pdf",
       "title": {
         "th": "Exercise · Week 02 Activity V 2",
         "en": "Exercise · Week 02 Activity V 2"
@@ -7799,7 +7799,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exercises-mfit-ex-week02-activity-v3",
+      "id": "gen-mfit-exercises-mfit-ex-week02-activity-v3-pdf",
       "title": {
         "th": "Exercise · Week 02 Activity V 3",
         "en": "Exercise · Week 02 Activity V 3"
@@ -7819,7 +7819,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exercises-mfit-ex-week02-activity",
+      "id": "gen-mfit-exercises-mfit-ex-week02-activity-pdf",
       "title": {
         "th": "Exercise · Week 02 Activity",
         "en": "Exercise · Week 02 Activity"
@@ -7839,7 +7839,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exercises-mfit-ex-week03-activity-v2",
+      "id": "gen-mfit-exercises-mfit-ex-week03-activity-v2-pdf",
       "title": {
         "th": "Exercise · Week 03 Activity V 2",
         "en": "Exercise · Week 03 Activity V 2"
@@ -7859,7 +7859,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exercises-mfit-ex-week03-activity-v3",
+      "id": "gen-mfit-exercises-mfit-ex-week03-activity-v3-pdf",
       "title": {
         "th": "Exercise · Week 03 Activity V 3",
         "en": "Exercise · Week 03 Activity V 3"
@@ -7879,7 +7879,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exercises-mfit-ex-week03-activity",
+      "id": "gen-mfit-exercises-mfit-ex-week03-activity-pdf",
       "title": {
         "th": "Exercise · Week 03 Activity",
         "en": "Exercise · Week 03 Activity"
@@ -7899,7 +7899,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exercises-mfit-ex-week04-activity-v2",
+      "id": "gen-mfit-exercises-mfit-ex-week04-activity-v2-pdf",
       "title": {
         "th": "Exercise · Week 04 Activity V 2",
         "en": "Exercise · Week 04 Activity V 2"
@@ -7919,7 +7919,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exercises-mfit-ex-week04-activity",
+      "id": "gen-mfit-exercises-mfit-ex-week04-activity-pdf",
       "title": {
         "th": "Exercise · Week 04 Activity",
         "en": "Exercise · Week 04 Activity"
@@ -7939,7 +7939,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exercises-mfit-ex-week05-activity-v2",
+      "id": "gen-mfit-exercises-mfit-ex-week05-activity-v2-pdf",
       "title": {
         "th": "Exercise · Week 05 Activity V 2",
         "en": "Exercise · Week 05 Activity V 2"
@@ -7959,7 +7959,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exercises-mfit-ex-week05-activity",
+      "id": "gen-mfit-exercises-mfit-ex-week05-activity-pdf",
       "title": {
         "th": "Exercise · Week 05 Activity",
         "en": "Exercise · Week 05 Activity"
@@ -7979,7 +7979,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exercises-mfit-ex-week06-activity-v2",
+      "id": "gen-mfit-exercises-mfit-ex-week06-activity-v2-pdf",
       "title": {
         "th": "Exercise · Week 06 Activity V 2",
         "en": "Exercise · Week 06 Activity V 2"
@@ -7999,7 +7999,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exercises-mfit-ex-week06-activity",
+      "id": "gen-mfit-exercises-mfit-ex-week06-activity-pdf",
       "title": {
         "th": "Exercise · Week 06 Activity",
         "en": "Exercise · Week 06 Activity"
@@ -8019,7 +8019,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exercises-mfit-ex-week07-activity-v2",
+      "id": "gen-mfit-exercises-mfit-ex-week07-activity-v2-pdf",
       "title": {
         "th": "Exercise · Week 07 Activity V 2",
         "en": "Exercise · Week 07 Activity V 2"
@@ -8039,7 +8039,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exercises-mfit-ex-week07-activity",
+      "id": "gen-mfit-exercises-mfit-ex-week07-activity-pdf",
       "title": {
         "th": "Exercise · Week 07 Activity",
         "en": "Exercise · Week 07 Activity"
@@ -8059,7 +8059,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exercises-mfit-hw-calculus-week08",
+      "id": "gen-mfit-exercises-mfit-hw-calculus-week08-pdf",
       "title": {
         "th": "Homework · Calculus Week 08",
         "en": "Homework · Calculus Week 08"
@@ -8079,7 +8079,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exercises-mfit-hw-calculus-week09",
+      "id": "gen-mfit-exercises-mfit-hw-calculus-week09-pdf",
       "title": {
         "th": "Homework · Calculus Week 09",
         "en": "Homework · Calculus Week 09"
@@ -8099,7 +8099,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exercises-mfit-hw-calculus-week10",
+      "id": "gen-mfit-exercises-mfit-hw-calculus-week10-pdf",
       "title": {
         "th": "Homework · Calculus Week 10",
         "en": "Homework · Calculus Week 10"
@@ -8119,7 +8119,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exercises-mfit-hw-calculus-week12",
+      "id": "gen-mfit-exercises-mfit-hw-calculus-week12-pdf",
       "title": {
         "th": "Homework · Calculus Week 12",
         "en": "Homework · Calculus Week 12"
@@ -8139,7 +8139,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exercises-mfit-hw-calculus-week13",
+      "id": "gen-mfit-exercises-mfit-hw-calculus-week13-pdf",
       "title": {
         "th": "Homework · Calculus Week 13",
         "en": "Homework · Calculus Week 13"
@@ -8159,7 +8159,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exercises-mfit-hw-calculus-week14",
+      "id": "gen-mfit-exercises-mfit-hw-calculus-week14-pdf",
       "title": {
         "th": "Homework · Calculus Week 14",
         "en": "Homework · Calculus Week 14"
@@ -8179,7 +8179,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exercises-mfit-hw-week08-function-limit-continuity",
+      "id": "gen-mfit-exercises-mfit-hw-week08-function-limit-continuity-pdf",
       "title": {
         "th": "Homework · Week 08 Function Limit Continuity",
         "en": "Homework · Week 08 Function Limit Continuity"
@@ -8199,7 +8199,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exercises-mfit-hw-week09-derivative-i",
+      "id": "gen-mfit-exercises-mfit-hw-week09-derivative-i-pdf",
       "title": {
         "th": "Homework · Week 09 Derivative I",
         "en": "Homework · Week 09 Derivative I"
@@ -8219,7 +8219,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exercises-mfit-hw-week10-derivative-ii",
+      "id": "gen-mfit-exercises-mfit-hw-week10-derivative-ii-pdf",
       "title": {
         "th": "Homework · Week 10 Derivative II",
         "en": "Homework · Week 10 Derivative II"
@@ -8239,7 +8239,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exercises-mfit-hw-week11-derivative-apps-v2",
+      "id": "gen-mfit-exercises-mfit-hw-week11-derivative-apps-v2-pdf",
       "title": {
         "th": "Homework · Week 11 Derivative Apps V 2",
         "en": "Homework · Week 11 Derivative Apps V 2"
@@ -8259,7 +8259,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exercises-mfit-hw-week11-derivative-apps",
+      "id": "gen-mfit-exercises-mfit-hw-week11-derivative-apps-pdf",
       "title": {
         "th": "Homework · Week 11 Derivative Apps",
         "en": "Homework · Week 11 Derivative Apps"
@@ -8279,7 +8279,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exercises-mfit-hw-week12-integration-i",
+      "id": "gen-mfit-exercises-mfit-hw-week12-integration-i-pdf",
       "title": {
         "th": "Homework · Week 12 Integration I",
         "en": "Homework · Week 12 Integration I"
@@ -8299,7 +8299,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exercises-mfit-hw-week13-integration-ii",
+      "id": "gen-mfit-exercises-mfit-hw-week13-integration-ii-pdf",
       "title": {
         "th": "Homework · Week 13 Integration II",
         "en": "Homework · Week 13 Integration II"
@@ -8319,7 +8319,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exercises-mfit-hw-week14-integration-apps",
+      "id": "gen-mfit-exercises-mfit-hw-week14-integration-apps-pdf",
       "title": {
         "th": "Homework · Week 14 Integration Apps",
         "en": "Homework · Week 14 Integration Apps"
@@ -8339,7 +8339,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-lectures-m4-it-calculus-01-handouts-4p",
+      "id": "gen-mfit-lectures-m4-it-calculus-01-handouts-4p-pdf",
       "title": {
         "th": "M 4 IT Calculus 01 Handouts 4p",
         "en": "M 4 IT Calculus 01 Handouts 4p"
@@ -8359,7 +8359,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-lectures-mfit-lec-calculus-01-handout",
+      "id": "gen-mfit-lectures-mfit-lec-calculus-01-handout-pdf",
       "title": {
         "th": "Lecture · Calculus 01 Handout",
         "en": "Lecture · Calculus 01 Handout"
@@ -8379,7 +8379,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-lectures-mfit-lec-calculus-01",
+      "id": "gen-mfit-lectures-mfit-lec-calculus-01-pdf",
       "title": {
         "th": "Lecture · Calculus 01",
         "en": "Lecture · Calculus 01"
@@ -8399,7 +8399,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-lectures-mfit-lec-calculus-02-handout",
+      "id": "gen-mfit-lectures-mfit-lec-calculus-02-handout-pdf",
       "title": {
         "th": "Lecture · Calculus 02 Handout",
         "en": "Lecture · Calculus 02 Handout"
@@ -8419,7 +8419,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-lectures-mfit-lec-calculus-02",
+      "id": "gen-mfit-lectures-mfit-lec-calculus-02-pdf",
       "title": {
         "th": "Lecture · Calculus 02",
         "en": "Lecture · Calculus 02"
@@ -8439,7 +8439,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-lectures-mfit-lec-calculus-03-handout",
+      "id": "gen-mfit-lectures-mfit-lec-calculus-03-handout-pdf",
       "title": {
         "th": "Lecture · Calculus 03 Handout",
         "en": "Lecture · Calculus 03 Handout"
@@ -8459,7 +8459,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-lectures-mfit-lec-calculus-03",
+      "id": "gen-mfit-lectures-mfit-lec-calculus-03-pdf",
       "title": {
         "th": "Lecture · Calculus 03",
         "en": "Lecture · Calculus 03"
@@ -8479,7 +8479,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-lectures-mfit-lec-calculus-04-handout",
+      "id": "gen-mfit-lectures-mfit-lec-calculus-04-handout-pdf",
       "title": {
         "th": "Lecture · Calculus 04 Handout",
         "en": "Lecture · Calculus 04 Handout"
@@ -8499,7 +8499,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-lectures-mfit-lec-calculus-04",
+      "id": "gen-mfit-lectures-mfit-lec-calculus-04-pdf",
       "title": {
         "th": "Lecture · Calculus 04",
         "en": "Lecture · Calculus 04"
@@ -8519,7 +8519,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-lectures-mfit-lec-calculus-05-handout",
+      "id": "gen-mfit-lectures-mfit-lec-calculus-05-handout-pdf",
       "title": {
         "th": "Lecture · Calculus 05 Handout",
         "en": "Lecture · Calculus 05 Handout"
@@ -8539,7 +8539,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-lectures-mfit-lec-calculus-05",
+      "id": "gen-mfit-lectures-mfit-lec-calculus-05-pdf",
       "title": {
         "th": "Lecture · Calculus 05",
         "en": "Lecture · Calculus 05"
@@ -8559,7 +8559,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-lectures-mfit-lec-calculus-06-handout",
+      "id": "gen-mfit-lectures-mfit-lec-calculus-06-handout-pdf",
       "title": {
         "th": "Lecture · Calculus 06 Handout",
         "en": "Lecture · Calculus 06 Handout"
@@ -8579,7 +8579,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-lectures-mfit-lec-calculus-06",
+      "id": "gen-mfit-lectures-mfit-lec-calculus-06-pdf",
       "title": {
         "th": "Lecture · Calculus 06",
         "en": "Lecture · Calculus 06"
@@ -8599,7 +8599,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-lectures-mfit-lec-calculus-07-handout",
+      "id": "gen-mfit-lectures-mfit-lec-calculus-07-handout-pdf",
       "title": {
         "th": "Lecture · Calculus 07 Handout",
         "en": "Lecture · Calculus 07 Handout"
@@ -8619,7 +8619,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-lectures-mfit-lec-calculus-07",
+      "id": "gen-mfit-lectures-mfit-lec-calculus-07-pdf",
       "title": {
         "th": "Lecture · Calculus 07",
         "en": "Lecture · Calculus 07"
@@ -8639,7 +8639,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-lectures-mfit-lec-calculus-08-handout",
+      "id": "gen-mfit-lectures-mfit-lec-calculus-08-handout-pdf",
       "title": {
         "th": "Lecture · Calculus 08 Handout",
         "en": "Lecture · Calculus 08 Handout"
@@ -8659,7 +8659,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-lectures-mfit-lec-calculus-08",
+      "id": "gen-mfit-lectures-mfit-lec-calculus-08-pdf",
       "title": {
         "th": "Lecture · Calculus 08",
         "en": "Lecture · Calculus 08"
@@ -8679,7 +8679,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-lectures-mfit-lec-calforbio-chapter09-2552",
+      "id": "gen-mfit-lectures-mfit-lec-calforbio-chapter09-2552-pdf",
       "title": {
         "th": "Lecture · Calforbio Chapter 09 2552",
         "en": "Lecture · Calforbio Chapter 09 2552"
@@ -8699,7 +8699,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-lectures-mfit-lec-week01-v2",
+      "id": "gen-mfit-lectures-mfit-lec-week01-v2-pdf",
       "title": {
         "th": "Lecture · Week 01 V 2",
         "en": "Lecture · Week 01 V 2"
@@ -8719,7 +8719,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-lectures-mfit-lec-week02-v2",
+      "id": "gen-mfit-lectures-mfit-lec-week02-v2-pdf",
       "title": {
         "th": "Lecture · Week 02 V 2",
         "en": "Lecture · Week 02 V 2"
@@ -8739,7 +8739,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-lectures-mfit-lec-week02",
+      "id": "gen-mfit-lectures-mfit-lec-week02-pdf",
       "title": {
         "th": "Lecture · Week 02",
         "en": "Lecture · Week 02"
@@ -8759,7 +8759,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-lectures-mfit-lec-week03-v2",
+      "id": "gen-mfit-lectures-mfit-lec-week03-v2-pdf",
       "title": {
         "th": "Lecture · Week 03 V 2",
         "en": "Lecture · Week 03 V 2"
@@ -8779,7 +8779,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-lectures-mfit-lec-week04-v2",
+      "id": "gen-mfit-lectures-mfit-lec-week04-v2-pdf",
       "title": {
         "th": "Lecture · Week 04 V 2",
         "en": "Lecture · Week 04 V 2"
@@ -8799,7 +8799,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-lectures-mfit-lec-week05-v2",
+      "id": "gen-mfit-lectures-mfit-lec-week05-v2-pdf",
       "title": {
         "th": "Lecture · Week 05 V 2",
         "en": "Lecture · Week 05 V 2"
@@ -8819,7 +8819,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-lectures-mfit-lec-week06-v2",
+      "id": "gen-mfit-lectures-mfit-lec-week06-v2-pdf",
       "title": {
         "th": "Lecture · Week 06 V 2",
         "en": "Lecture · Week 06 V 2"
@@ -8839,7 +8839,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-lectures-mfit-lec-week07-v2",
+      "id": "gen-mfit-lectures-mfit-lec-week07-v2-pdf",
       "title": {
         "th": "Lecture · Week 07 V 2",
         "en": "Lecture · Week 07 V 2"
@@ -8859,7 +8859,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-lectures-mfit-note-week03",
+      "id": "gen-mfit-lectures-mfit-note-week03-pdf",
       "title": {
         "th": "Note · Week 03",
         "en": "Note · Week 03"
@@ -8879,7 +8879,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-sheets-mfit-sheet-cheat-sheet-2022",
+      "id": "gen-mfit-sheets-mfit-sheet-cheat-sheet-2022-pdf",
       "title": {
         "th": "Sheet · Cheat Sheet 2022",
         "en": "Sheet · Cheat Sheet 2022"
@@ -8899,7 +8899,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-sheets-mfit-sheet-cheat-sheet-2023",
+      "id": "gen-mfit-sheets-mfit-sheet-cheat-sheet-2023-pdf",
       "title": {
         "th": "Sheet · Cheat Sheet 2023",
         "en": "Sheet · Cheat Sheet 2023"
@@ -8919,7 +8919,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-sheets-mfit-sheet-final-recap-week08-13-v2",
+      "id": "gen-mfit-sheets-mfit-sheet-final-recap-week08-13-v2-pdf",
       "title": {
         "th": "Sheet · Final Recap Week 08 13 V 2",
         "en": "Sheet · Final Recap Week 08 13 V 2"
@@ -8939,7 +8939,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-sheets-mfit-sheet-final-recap-week08-13",
+      "id": "gen-mfit-sheets-mfit-sheet-final-recap-week08-13-pdf",
       "title": {
         "th": "Sheet · Final Recap Week 08 13",
         "en": "Sheet · Final Recap Week 08 13"
@@ -8959,7 +8959,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-sheets-mfit-sheet-recap-calculus",
+      "id": "gen-mfit-sheets-mfit-sheet-recap-calculus-pdf",
       "title": {
         "th": "Sheet · Recap Calculus",
         "en": "Sheet · Recap Calculus"
@@ -8979,7 +8979,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-slides-mfit-1-2026-lecture-slides-week1",
+      "id": "gen-mfit-slides-mfit-1-2026-lecture-slides-week1-pdf",
       "title": {
         "th": "1 2026 Lecture Slides Week 1",
         "en": "1 2026 Lecture Slides Week 1"
@@ -8999,7 +8999,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-slides-mfit-1-2026-lecture-slides-week2",
+      "id": "gen-mfit-slides-mfit-1-2026-lecture-slides-week2-pdf",
       "title": {
         "th": "1 2026 Lecture Slides Week 2",
         "en": "1 2026 Lecture Slides Week 2"
@@ -9019,7 +9019,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-slides-mfit-1-2026-lecture-slides-week3",
+      "id": "gen-mfit-slides-mfit-1-2026-lecture-slides-week3-pdf",
       "title": {
         "th": "1 2026 Lecture Slides Week 3",
         "en": "1 2026 Lecture Slides Week 3"
@@ -9039,7 +9039,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-slides-mfit-1-2026-lecture-slides-week4",
+      "id": "gen-mfit-slides-mfit-1-2026-lecture-slides-week4-pdf",
       "title": {
         "th": "1 2026 Lecture Slides Week 4",
         "en": "1 2026 Lecture Slides Week 4"
@@ -9059,7 +9059,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-slides-mfit-1-2026-lecture-slides-week5",
+      "id": "gen-mfit-slides-mfit-1-2026-lecture-slides-week5-pdf",
       "title": {
         "th": "1 2026 Lecture Slides Week 5",
         "en": "1 2026 Lecture Slides Week 5"
@@ -9079,7 +9079,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-slides-mfit-1-2026-lecture-slides-week6",
+      "id": "gen-mfit-slides-mfit-1-2026-lecture-slides-week6-pdf",
       "title": {
         "th": "1 2026 Lecture Slides Week 6",
         "en": "1 2026 Lecture Slides Week 6"
@@ -9099,7 +9099,7 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-slides-mfit-1-2026-lecture-slides-week7",
+      "id": "gen-mfit-slides-mfit-1-2026-lecture-slides-week7-pdf",
       "title": {
         "th": "1 2026 Lecture Slides Week 7",
         "en": "1 2026 Lecture Slides Week 7"
@@ -9121,7 +9121,7 @@
   ],
   "OOP": [
     {
-      "id": "gen-oop-exams-oop-final-prefinal",
+      "id": "gen-oop-exams-oop-final-prefinal-pdf",
       "title": {
         "th": "Final · Prefinal",
         "en": "Final · Prefinal"
@@ -9141,7 +9141,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-exams-oop-midterm-it-kmitl-object-oriented-programming-oop-midterm-1",
+      "id": "gen-oop-exams-oop-midterm-it-kmitl-object-oriented-programming-oop-midterm-1-pdf",
       "title": {
         "th": "Midterm · IT Kmitl Object Oriented Programming Oop Midterm 1",
         "en": "Midterm · IT Kmitl Object Oriented Programming Oop Midterm 1"
@@ -9161,7 +9161,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-exams-oop-midterm-mock-exam",
+      "id": "gen-oop-exams-oop-midterm-mock-exam-pdf",
       "title": {
         "th": "Midterm · Mock Exam",
         "en": "Midterm · Mock Exam"
@@ -9181,7 +9181,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-exams-oop-midterm-unidentified-v2",
+      "id": "gen-oop-exams-oop-midterm-unidentified-v2-pdf",
       "title": {
         "th": "Midterm · Unidentified V 2",
         "en": "Midterm · Unidentified V 2"
@@ -9201,7 +9201,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-exams-oop-midterm-unidentified",
+      "id": "gen-oop-exams-oop-midterm-unidentified-pdf",
       "title": {
         "th": "Midterm · Unidentified",
         "en": "Midterm · Unidentified"
@@ -9221,7 +9221,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-labs-oop-lab-01-completed",
+      "id": "gen-oop-labs-oop-lab-01-completed-pdf",
       "title": {
         "th": "Lab · 01 Completed",
         "en": "Lab · 01 Completed"
@@ -9241,7 +9241,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-labs-oop-lab-02-completed",
+      "id": "gen-oop-labs-oop-lab-02-completed-pdf",
       "title": {
         "th": "Lab · 02 Completed",
         "en": "Lab · 02 Completed"
@@ -9261,7 +9261,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-labs-oop-lab-03-completed",
+      "id": "gen-oop-labs-oop-lab-03-completed-pdf",
       "title": {
         "th": "Lab · 03 Completed",
         "en": "Lab · 03 Completed"
@@ -9281,7 +9281,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-labs-oop-lab-04-completed",
+      "id": "gen-oop-labs-oop-lab-04-completed-pdf",
       "title": {
         "th": "Lab · 04 Completed",
         "en": "Lab · 04 Completed"
@@ -9301,7 +9301,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-labs-oop-lab-05-completed",
+      "id": "gen-oop-labs-oop-lab-05-completed-pdf",
       "title": {
         "th": "Lab · 05 Completed",
         "en": "Lab · 05 Completed"
@@ -9321,7 +9321,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-labs-oop-lab-06",
+      "id": "gen-oop-labs-oop-lab-06-pdf",
       "title": {
         "th": "Lab · 06",
         "en": "Lab · 06"
@@ -9341,7 +9341,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-labs-oop-lab-07",
+      "id": "gen-oop-labs-oop-lab-07-pdf",
       "title": {
         "th": "Lab · 07",
         "en": "Lab · 07"
@@ -9361,7 +9361,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-labs-oop-lab-11",
+      "id": "gen-oop-labs-oop-lab-11-pdf",
       "title": {
         "th": "Lab · 11",
         "en": "Lab · 11"
@@ -9381,7 +9381,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-labs-oop-lab-week01",
+      "id": "gen-oop-labs-oop-lab-week01-pdf",
       "title": {
         "th": "Lab · Week 01",
         "en": "Lab · Week 01"
@@ -9401,7 +9401,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-labs-oop-lab-week02",
+      "id": "gen-oop-labs-oop-lab-week02-pdf",
       "title": {
         "th": "Lab · Week 02",
         "en": "Lab · Week 02"
@@ -9421,7 +9421,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-labs-oop-lab-week03",
+      "id": "gen-oop-labs-oop-lab-week03-pdf",
       "title": {
         "th": "Lab · Week 03",
         "en": "Lab · Week 03"
@@ -9441,7 +9441,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-labs-oop-lab-week04",
+      "id": "gen-oop-labs-oop-lab-week04-pdf",
       "title": {
         "th": "Lab · Week 04",
         "en": "Lab · Week 04"
@@ -9461,7 +9461,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-labs-oop-lab-week05",
+      "id": "gen-oop-labs-oop-lab-week05-pdf",
       "title": {
         "th": "Lab · Week 05",
         "en": "Lab · Week 05"
@@ -9481,7 +9481,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-labs-oop-lab-week06",
+      "id": "gen-oop-labs-oop-lab-week06-pdf",
       "title": {
         "th": "Lab · Week 06",
         "en": "Lab · Week 06"
@@ -9501,7 +9501,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-labs-oop-lab-week07",
+      "id": "gen-oop-labs-oop-lab-week07-pdf",
       "title": {
         "th": "Lab · Week 07",
         "en": "Lab · Week 07"
@@ -9521,7 +9521,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-labs-oop-lab-week08",
+      "id": "gen-oop-labs-oop-lab-week08-pdf",
       "title": {
         "th": "Lab · Week 08",
         "en": "Lab · Week 08"
@@ -9541,7 +9541,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-labs-oop-lab-week09",
+      "id": "gen-oop-labs-oop-lab-week09-pdf",
       "title": {
         "th": "Lab · Week 09",
         "en": "Lab · Week 09"
@@ -9561,7 +9561,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-labs-oop-lab-week10",
+      "id": "gen-oop-labs-oop-lab-week10-pdf",
       "title": {
         "th": "Lab · Week 10",
         "en": "Lab · Week 10"
@@ -9581,7 +9581,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-labs-oop-lab-week12",
+      "id": "gen-oop-labs-oop-lab-week12-pdf",
       "title": {
         "th": "Lab · Week 12",
         "en": "Lab · Week 12"
@@ -9601,7 +9601,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-lectures-oop-lec-chapter00",
+      "id": "gen-oop-lectures-oop-lec-chapter00-pdf",
       "title": {
         "th": "Lecture · Chapter 00",
         "en": "Lecture · Chapter 00"
@@ -9621,7 +9621,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-lectures-oop-lec-chapter01",
+      "id": "gen-oop-lectures-oop-lec-chapter01-pdf",
       "title": {
         "th": "Lecture · Chapter 01",
         "en": "Lecture · Chapter 01"
@@ -9641,7 +9641,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-lectures-oop-lec-chapter02",
+      "id": "gen-oop-lectures-oop-lec-chapter02-pdf",
       "title": {
         "th": "Lecture · Chapter 02",
         "en": "Lecture · Chapter 02"
@@ -9661,7 +9661,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-lectures-oop-lec-chapter04",
+      "id": "gen-oop-lectures-oop-lec-chapter04-pdf",
       "title": {
         "th": "Lecture · Chapter 04",
         "en": "Lecture · Chapter 04"
@@ -9681,7 +9681,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-lectures-oop-lec-chapter05",
+      "id": "gen-oop-lectures-oop-lec-chapter05-pdf",
       "title": {
         "th": "Lecture · Chapter 05",
         "en": "Lecture · Chapter 05"
@@ -9701,7 +9701,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-lectures-oop-lec-chapter06",
+      "id": "gen-oop-lectures-oop-lec-chapter06-pdf",
       "title": {
         "th": "Lecture · Chapter 06",
         "en": "Lecture · Chapter 06"
@@ -9721,7 +9721,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-lectures-oop-lec-chapter07",
+      "id": "gen-oop-lectures-oop-lec-chapter07-pdf",
       "title": {
         "th": "Lecture · Chapter 07",
         "en": "Lecture · Chapter 07"
@@ -9741,7 +9741,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-lectures-oop-lec-chapter08",
+      "id": "gen-oop-lectures-oop-lec-chapter08-pdf",
       "title": {
         "th": "Lecture · Chapter 08",
         "en": "Lecture · Chapter 08"
@@ -9761,7 +9761,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-lectures-oop-lec-chapter09",
+      "id": "gen-oop-lectures-oop-lec-chapter09-pdf",
       "title": {
         "th": "Lecture · Chapter 09",
         "en": "Lecture · Chapter 09"
@@ -9781,7 +9781,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-lectures-oop-lec-chapter10",
+      "id": "gen-oop-lectures-oop-lec-chapter10-pdf",
       "title": {
         "th": "Lecture · Chapter 10",
         "en": "Lecture · Chapter 10"
@@ -9801,7 +9801,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-lectures-oop-lec-chapter11",
+      "id": "gen-oop-lectures-oop-lec-chapter11-pdf",
       "title": {
         "th": "Lecture · Chapter 11",
         "en": "Lecture · Chapter 11"
@@ -9821,7 +9821,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-lectures-oop-lec-chapter12",
+      "id": "gen-oop-lectures-oop-lec-chapter12-pdf",
       "title": {
         "th": "Lecture · Chapter 12",
         "en": "Lecture · Chapter 12"
@@ -9841,7 +9841,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-lectures-oop-lec-chapter13",
+      "id": "gen-oop-lectures-oop-lec-chapter13-pdf",
       "title": {
         "th": "Lecture · Chapter 13",
         "en": "Lecture · Chapter 13"
@@ -9861,7 +9861,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-lectures-oop-lec-chaptersupplement",
+      "id": "gen-oop-lectures-oop-lec-chaptersupplement-pdf",
       "title": {
         "th": "Lecture · Chaptersupplement",
         "en": "Lecture · Chaptersupplement"
@@ -9881,7 +9881,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-lectures-oop-lec-github",
+      "id": "gen-oop-lectures-oop-lec-github-docx",
       "title": {
         "th": "Lecture · Github",
         "en": "Lecture · Github"
@@ -9901,7 +9901,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-lectures-oop-lec-java-book",
+      "id": "gen-oop-lectures-oop-lec-java-book-pdf",
       "title": {
         "th": "Lecture · Java Book",
         "en": "Lecture · Java Book"
@@ -9921,7 +9921,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-lectures-oop-lec-supplement",
+      "id": "gen-oop-lectures-oop-lec-supplement-pdf",
       "title": {
         "th": "Lecture · Supplement",
         "en": "Lecture · Supplement"
@@ -9941,7 +9941,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-lectures-oop-lec-week01",
+      "id": "gen-oop-lectures-oop-lec-week01-pdf",
       "title": {
         "th": "Lecture · Week 01",
         "en": "Lecture · Week 01"
@@ -9961,7 +9961,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-lectures-oop-lec-week02",
+      "id": "gen-oop-lectures-oop-lec-week02-pdf",
       "title": {
         "th": "Lecture · Week 02",
         "en": "Lecture · Week 02"
@@ -9981,7 +9981,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-lectures-oop-lec-week03",
+      "id": "gen-oop-lectures-oop-lec-week03-pdf",
       "title": {
         "th": "Lecture · Week 03",
         "en": "Lecture · Week 03"
@@ -10001,7 +10001,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-lectures-oop-lec-week04",
+      "id": "gen-oop-lectures-oop-lec-week04-pdf",
       "title": {
         "th": "Lecture · Week 04",
         "en": "Lecture · Week 04"
@@ -10021,7 +10021,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-lectures-oop-lec-week05",
+      "id": "gen-oop-lectures-oop-lec-week05-pdf",
       "title": {
         "th": "Lecture · Week 05",
         "en": "Lecture · Week 05"
@@ -10041,7 +10041,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-lectures-oop-lec-week06",
+      "id": "gen-oop-lectures-oop-lec-week06-pdf",
       "title": {
         "th": "Lecture · Week 06",
         "en": "Lecture · Week 06"
@@ -10061,7 +10061,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-lectures-oop-lec-week06b",
+      "id": "gen-oop-lectures-oop-lec-week06b-pdf",
       "title": {
         "th": "Lecture · Week06b",
         "en": "Lecture · Week06b"
@@ -10081,7 +10081,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-lectures-oop-lec-week07",
+      "id": "gen-oop-lectures-oop-lec-week07-pdf",
       "title": {
         "th": "Lecture · Week 07",
         "en": "Lecture · Week 07"
@@ -10101,7 +10101,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-lectures-oop-lec-week08",
+      "id": "gen-oop-lectures-oop-lec-week08-pdf",
       "title": {
         "th": "Lecture · Week 08",
         "en": "Lecture · Week 08"
@@ -10121,7 +10121,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-lectures-oop-lec-week09",
+      "id": "gen-oop-lectures-oop-lec-week09-pdf",
       "title": {
         "th": "Lecture · Week 09",
         "en": "Lecture · Week 09"
@@ -10141,7 +10141,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-lectures-oop-lec-week10",
+      "id": "gen-oop-lectures-oop-lec-week10-pdf",
       "title": {
         "th": "Lecture · Week 10",
         "en": "Lecture · Week 10"
@@ -10161,7 +10161,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-lectures-oop-lec-week11",
+      "id": "gen-oop-lectures-oop-lec-week11-pdf",
       "title": {
         "th": "Lecture · Week 11",
         "en": "Lecture · Week 11"
@@ -10181,7 +10181,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-lectures-oop-lec-week12",
+      "id": "gen-oop-lectures-oop-lec-week12-pdf",
       "title": {
         "th": "Lecture · Week 12",
         "en": "Lecture · Week 12"
@@ -10201,7 +10201,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-lectures-oop-lec-week13",
+      "id": "gen-oop-lectures-oop-lec-week13-pdf",
       "title": {
         "th": "Lecture · Week 13",
         "en": "Lecture · Week 13"
@@ -10221,7 +10221,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-lectures-oop-lec-week14",
+      "id": "gen-oop-lectures-oop-lec-week14-pdf",
       "title": {
         "th": "Lecture · Week 14",
         "en": "Lecture · Week 14"
@@ -10241,7 +10241,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-sheets-oop-sheet-cheat-sheet-2022",
+      "id": "gen-oop-sheets-oop-sheet-cheat-sheet-2022-pdf",
       "title": {
         "th": "Sheet · Cheat Sheet 2022",
         "en": "Sheet · Cheat Sheet 2022"
@@ -10261,7 +10261,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-sheets-oop-sheet-cheat-sheet-2024",
+      "id": "gen-oop-sheets-oop-sheet-cheat-sheet-2024-pdf",
       "title": {
         "th": "Sheet · Cheat Sheet 2024",
         "en": "Sheet · Cheat Sheet 2024"
@@ -10281,7 +10281,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-sheets-oop-sheet-summary-final",
+      "id": "gen-oop-sheets-oop-sheet-summary-final-pdf",
       "title": {
         "th": "Sheet · Summary Final",
         "en": "Sheet · Summary Final"
@@ -10301,7 +10301,7 @@
       "courseCode": "OOP"
     },
     {
-      "id": "gen-oop-sheets-oop-sheet-summary-midterm",
+      "id": "gen-oop-sheets-oop-sheet-summary-midterm-pdf",
       "title": {
         "th": "Sheet · Summary Midterm",
         "en": "Sheet · Summary Midterm"
@@ -10323,7 +10323,7 @@
   ],
   "PSCP": [
     {
-      "id": "gen-pscp-exams-pscp-midterm-hwpy-past",
+      "id": "gen-pscp-exams-pscp-midterm-hwpy-past-pdf",
       "title": {
         "th": "Midterm · Hwpy Past",
         "en": "Midterm · Hwpy Past"
@@ -10343,7 +10343,7 @@
       "courseCode": "PSCP"
     },
     {
-      "id": "gen-pscp-exams-pscp-midterm-hwsince-week-4",
+      "id": "gen-pscp-exams-pscp-midterm-hwsince-week-4-pdf",
       "title": {
         "th": "Midterm · Hwsince Week 4",
         "en": "Midterm · Hwsince Week 4"
@@ -10363,7 +10363,7 @@
       "courseCode": "PSCP"
     },
     {
-      "id": "gen-pscp-exams-pscp-midterm-part1",
+      "id": "gen-pscp-exams-pscp-midterm-part1-pdf",
       "title": {
         "th": "Midterm · Part 1",
         "en": "Midterm · Part 1"
@@ -10383,7 +10383,7 @@
       "courseCode": "PSCP"
     },
     {
-      "id": "gen-pscp-exams-pscp-midterm-part2",
+      "id": "gen-pscp-exams-pscp-midterm-part2-pdf",
       "title": {
         "th": "Midterm · Part 2",
         "en": "Midterm · Part 2"
@@ -10403,7 +10403,7 @@
       "courseCode": "PSCP"
     },
     {
-      "id": "gen-pscp-exams-pscp-midterm-unidentified",
+      "id": "gen-pscp-exams-pscp-midterm-unidentified-pdf",
       "title": {
         "th": "Midterm · Unidentified",
         "en": "Midterm · Unidentified"
@@ -10423,7 +10423,7 @@
       "courseCode": "PSCP"
     },
     {
-      "id": "gen-pscp-exams-pscp-quiz-02",
+      "id": "gen-pscp-exams-pscp-quiz-02-pdf",
       "title": {
         "th": "Quiz · 02",
         "en": "Quiz · 02"
@@ -10443,7 +10443,7 @@
       "courseCode": "PSCP"
     },
     {
-      "id": "gen-pscp-exams-pscp-quiz-04",
+      "id": "gen-pscp-exams-pscp-quiz-04-pdf",
       "title": {
         "th": "Quiz · 04",
         "en": "Quiz · 04"
@@ -10463,7 +10463,7 @@
       "courseCode": "PSCP"
     },
     {
-      "id": "gen-pscp-exams-pscp-quiz-05",
+      "id": "gen-pscp-exams-pscp-quiz-05-pdf",
       "title": {
         "th": "Quiz · 05",
         "en": "Quiz · 05"
@@ -10483,7 +10483,7 @@
       "courseCode": "PSCP"
     },
     {
-      "id": "gen-pscp-exams-pscp-quiz-06",
+      "id": "gen-pscp-exams-pscp-quiz-06-pdf",
       "title": {
         "th": "Quiz · 06",
         "en": "Quiz · 06"
@@ -10503,7 +10503,7 @@
       "courseCode": "PSCP"
     },
     {
-      "id": "gen-pscp-exams-pscp-quiz-pscp100",
+      "id": "gen-pscp-exams-pscp-quiz-pscp100-pdf",
       "title": {
         "th": "Quiz · Pscp 100",
         "en": "Quiz · Pscp 100"
@@ -10523,7 +10523,7 @@
       "courseCode": "PSCP"
     },
     {
-      "id": "gen-pscp-exams-pscp-quiz-week01",
+      "id": "gen-pscp-exams-pscp-quiz-week01-pdf",
       "title": {
         "th": "Quiz · Week 01",
         "en": "Quiz · Week 01"
@@ -10543,7 +10543,7 @@
       "courseCode": "PSCP"
     },
     {
-      "id": "gen-pscp-exams-pscp-quiz-week03",
+      "id": "gen-pscp-exams-pscp-quiz-week03-pdf",
       "title": {
         "th": "Quiz · Week 03",
         "en": "Quiz · Week 03"
@@ -10563,7 +10563,7 @@
       "courseCode": "PSCP"
     },
     {
-      "id": "gen-pscp-exams-pscp-quiz-week07",
+      "id": "gen-pscp-exams-pscp-quiz-week07-pdf",
       "title": {
         "th": "Quiz · Week 07",
         "en": "Quiz · Week 07"
@@ -10583,7 +10583,7 @@
       "courseCode": "PSCP"
     },
     {
-      "id": "gen-pscp-exams-pscp-quiz-week08",
+      "id": "gen-pscp-exams-pscp-quiz-week08-pdf",
       "title": {
         "th": "Quiz · Week 08",
         "en": "Quiz · Week 08"
@@ -10603,7 +10603,7 @@
       "courseCode": "PSCP"
     },
     {
-      "id": "gen-pscp-exams-pscp-quiz-week09",
+      "id": "gen-pscp-exams-pscp-quiz-week09-pdf",
       "title": {
         "th": "Quiz · Week 09",
         "en": "Quiz · Week 09"
@@ -10623,7 +10623,7 @@
       "courseCode": "PSCP"
     },
     {
-      "id": "gen-pscp-exams-pscp-quiz-week11",
+      "id": "gen-pscp-exams-pscp-quiz-week11-pdf",
       "title": {
         "th": "Quiz · Week 11",
         "en": "Quiz · Week 11"
@@ -10643,7 +10643,7 @@
       "courseCode": "PSCP"
     },
     {
-      "id": "gen-pscp-exams-pscp-quiz-week12",
+      "id": "gen-pscp-exams-pscp-quiz-week12-pdf",
       "title": {
         "th": "Quiz · Week 12",
         "en": "Quiz · Week 12"
@@ -10663,7 +10663,7 @@
       "courseCode": "PSCP"
     },
     {
-      "id": "gen-pscp-exams-pscp-quiz-week13",
+      "id": "gen-pscp-exams-pscp-quiz-week13-pdf",
       "title": {
         "th": "Quiz · Week 13",
         "en": "Quiz · Week 13"
@@ -10683,7 +10683,7 @@
       "courseCode": "PSCP"
     },
     {
-      "id": "gen-pscp-exams-pscp-quiz-week14",
+      "id": "gen-pscp-exams-pscp-quiz-week14-pdf",
       "title": {
         "th": "Quiz · Week 14",
         "en": "Quiz · Week 14"
@@ -10703,7 +10703,7 @@
       "courseCode": "PSCP"
     },
     {
-      "id": "gen-pscp-exercises-pscp-ex-check-in",
+      "id": "gen-pscp-exercises-pscp-ex-check-in-pdf",
       "title": {
         "th": "Exercise · Check In",
         "en": "Exercise · Check In"
@@ -10723,7 +10723,7 @@
       "courseCode": "PSCP"
     },
     {
-      "id": "gen-pscp-exercises-pscp-ex-pretest-week03",
+      "id": "gen-pscp-exercises-pscp-ex-pretest-week03-pdf",
       "title": {
         "th": "Exercise · Pretest Week 03",
         "en": "Exercise · Pretest Week 03"
@@ -10743,7 +10743,7 @@
       "courseCode": "PSCP"
     },
     {
-      "id": "gen-pscp-exercises-pscp-ex-pretest-week04",
+      "id": "gen-pscp-exercises-pscp-ex-pretest-week04-pdf",
       "title": {
         "th": "Exercise · Pretest Week 04",
         "en": "Exercise · Pretest Week 04"
@@ -10763,7 +10763,7 @@
       "courseCode": "PSCP"
     },
     {
-      "id": "gen-pscp-exercises-pscp-ex-sorting-test",
+      "id": "gen-pscp-exercises-pscp-ex-sorting-test-pdf",
       "title": {
         "th": "Exercise · Sorting Test",
         "en": "Exercise · Sorting Test"
@@ -10783,7 +10783,7 @@
       "courseCode": "PSCP"
     },
     {
-      "id": "gen-pscp-exercises-pscp-ex-week01-practice",
+      "id": "gen-pscp-exercises-pscp-ex-week01-practice-pdf",
       "title": {
         "th": "Exercise · Week 01 Practice",
         "en": "Exercise · Week 01 Practice"
@@ -10803,7 +10803,7 @@
       "courseCode": "PSCP"
     },
     {
-      "id": "gen-pscp-exercises-pscp-ex-week02-practice",
+      "id": "gen-pscp-exercises-pscp-ex-week02-practice-pdf",
       "title": {
         "th": "Exercise · Week 02 Practice",
         "en": "Exercise · Week 02 Practice"
@@ -10823,7 +10823,7 @@
       "courseCode": "PSCP"
     },
     {
-      "id": "gen-pscp-exercises-pscp-hw-03",
+      "id": "gen-pscp-exercises-pscp-hw-03-pdf",
       "title": {
         "th": "Homework · 03",
         "en": "Homework · 03"
@@ -10843,7 +10843,7 @@
       "courseCode": "PSCP"
     },
     {
-      "id": "gen-pscp-exercises-pscp-hw-check-in-hw",
+      "id": "gen-pscp-exercises-pscp-hw-check-in-hw-pdf",
       "title": {
         "th": "Homework · Check In Hw",
         "en": "Homework · Check In Hw"
@@ -10863,7 +10863,7 @@
       "courseCode": "PSCP"
     },
     {
-      "id": "gen-pscp-exercises-pscp-hw-past",
+      "id": "gen-pscp-exercises-pscp-hw-past-pdf",
       "title": {
         "th": "Homework · Past",
         "en": "Homework · Past"
@@ -10883,7 +10883,7 @@
       "courseCode": "PSCP"
     },
     {
-      "id": "gen-pscp-exercises-pscp-hw-week01",
+      "id": "gen-pscp-exercises-pscp-hw-week01-pdf",
       "title": {
         "th": "Homework · Week 01",
         "en": "Homework · Week 01"
@@ -10903,7 +10903,7 @@
       "courseCode": "PSCP"
     },
     {
-      "id": "gen-pscp-exercises-pscp-hw-week02",
+      "id": "gen-pscp-exercises-pscp-hw-week02-pdf",
       "title": {
         "th": "Homework · Week 02",
         "en": "Homework · Week 02"
@@ -10923,7 +10923,7 @@
       "courseCode": "PSCP"
     },
     {
-      "id": "gen-pscp-labs-pscp-lab-pscplab",
+      "id": "gen-pscp-labs-pscp-lab-pscplab-txt",
       "title": {
         "th": "Lab · Pscplab",
         "en": "Lab · Pscplab"
@@ -10943,7 +10943,7 @@
       "courseCode": "PSCP"
     },
     {
-      "id": "gen-pscp-lectures-pscp-lec-chapter01",
+      "id": "gen-pscp-lectures-pscp-lec-chapter01-pdf",
       "title": {
         "th": "Lecture · Chapter 01",
         "en": "Lecture · Chapter 01"
@@ -10963,7 +10963,7 @@
       "courseCode": "PSCP"
     },
     {
-      "id": "gen-pscp-lectures-pscp-lec-chapter02",
+      "id": "gen-pscp-lectures-pscp-lec-chapter02-pdf",
       "title": {
         "th": "Lecture · Chapter 02",
         "en": "Lecture · Chapter 02"
@@ -10983,7 +10983,7 @@
       "courseCode": "PSCP"
     },
     {
-      "id": "gen-pscp-lectures-pscp-lec-chapter03",
+      "id": "gen-pscp-lectures-pscp-lec-chapter03-pdf",
       "title": {
         "th": "Lecture · Chapter 03",
         "en": "Lecture · Chapter 03"
@@ -11003,7 +11003,7 @@
       "courseCode": "PSCP"
     },
     {
-      "id": "gen-pscp-lectures-pscp-lec-chapter04",
+      "id": "gen-pscp-lectures-pscp-lec-chapter04-pdf",
       "title": {
         "th": "Lecture · Chapter 04",
         "en": "Lecture · Chapter 04"
@@ -11023,7 +11023,7 @@
       "courseCode": "PSCP"
     },
     {
-      "id": "gen-pscp-lectures-pscp-lec-chapter05",
+      "id": "gen-pscp-lectures-pscp-lec-chapter05-pdf",
       "title": {
         "th": "Lecture · Chapter 05",
         "en": "Lecture · Chapter 05"
@@ -11043,7 +11043,7 @@
       "courseCode": "PSCP"
     },
     {
-      "id": "gen-pscp-lectures-pscp-lec-github",
+      "id": "gen-pscp-lectures-pscp-lec-github-pdf",
       "title": {
         "th": "Lecture · Github",
         "en": "Lecture · Github"
@@ -11063,7 +11063,7 @@
       "courseCode": "PSCP"
     },
     {
-      "id": "gen-pscp-lectures-pscp-lec-pscp-chapter01-2022",
+      "id": "gen-pscp-lectures-pscp-lec-pscp-chapter01-2022-pdf",
       "title": {
         "th": "Lecture · Pscp Chapter 01 2022",
         "en": "Lecture · Pscp Chapter 01 2022"
@@ -11085,7 +11085,7 @@
   ],
   "PSTAT": [
     {
-      "id": "gen-pstat-exams-pstat-final-2023-jp",
+      "id": "gen-pstat-exams-pstat-final-2023-jp-pdf",
       "title": {
         "th": "Final · 2023 Jp",
         "en": "Final · 2023 Jp"
@@ -11105,7 +11105,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exams-pstat-final-2023-tk",
+      "id": "gen-pstat-exams-pstat-final-2023-tk-pdf",
       "title": {
         "th": "Final · 2023 Tk",
         "en": "Final · 2023 Tk"
@@ -11125,7 +11125,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exams-pstat-final-2023-v2",
+      "id": "gen-pstat-exams-pstat-final-2023-v2-pdf",
       "title": {
         "th": "Final · 2023 V 2",
         "en": "Final · 2023 V 2"
@@ -11145,7 +11145,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exams-pstat-final-2023",
+      "id": "gen-pstat-exams-pstat-final-2023-pdf",
       "title": {
         "th": "Final · 2023",
         "en": "Final · 2023"
@@ -11165,7 +11165,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exams-pstat-final-2565",
+      "id": "gen-pstat-exams-pstat-final-2565-pdf",
       "title": {
         "th": "Final · 2565",
         "en": "Final · 2565"
@@ -11185,7 +11185,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exams-pstat-final-exam",
+      "id": "gen-pstat-exams-pstat-final-exam-pdf",
       "title": {
         "th": "Final · Exam",
         "en": "Final · Exam"
@@ -11205,7 +11205,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exams-pstat-final-mock",
+      "id": "gen-pstat-exams-pstat-final-mock-pdf",
       "title": {
         "th": "Final · Mock",
         "en": "Final · Mock"
@@ -11225,7 +11225,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exams-pstat-final-online-form",
+      "id": "gen-pstat-exams-pstat-final-online-form-pdf",
       "title": {
         "th": "Final · Online Form",
         "en": "Final · Online Form"
@@ -11245,7 +11245,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exams-pstat-final-quiz3",
+      "id": "gen-pstat-exams-pstat-final-quiz3-pdf",
       "title": {
         "th": "Final · Quiz 3",
         "en": "Final · Quiz 3"
@@ -11265,7 +11265,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exams-pstat-final-quiz4",
+      "id": "gen-pstat-exams-pstat-final-quiz4-pdf",
       "title": {
         "th": "Final · Quiz 4",
         "en": "Final · Quiz 4"
@@ -11285,7 +11285,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exams-pstat-midterm-02",
+      "id": "gen-pstat-exams-pstat-midterm-02-pdf",
       "title": {
         "th": "Midterm · 02",
         "en": "Midterm · 02"
@@ -11305,7 +11305,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exams-pstat-midterm-2565-02",
+      "id": "gen-pstat-exams-pstat-midterm-2565-02-pdf",
       "title": {
         "th": "Midterm · 2565 02",
         "en": "Midterm · 2565 02"
@@ -11325,7 +11325,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exams-pstat-midterm-basic-prob-stat-1-mai",
+      "id": "gen-pstat-exams-pstat-midterm-basic-prob-stat-1-mai-pdf",
       "title": {
         "th": "Midterm · Basic Prob Stat 1 Mai",
         "en": "Midterm · Basic Prob Stat 1 Mai"
@@ -11345,7 +11345,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exams-pstat-midterm-discreteprobdis-1",
+      "id": "gen-pstat-exams-pstat-midterm-discreteprobdis-1-pdf",
       "title": {
         "th": "Midterm · Discreteprobdis 1",
         "en": "Midterm · Discreteprobdis 1"
@@ -11365,7 +11365,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exams-pstat-midterm-guidelines",
+      "id": "gen-pstat-exams-pstat-midterm-guidelines-pdf",
       "title": {
         "th": "Midterm · Guidelines",
         "en": "Midterm · Guidelines"
@@ -11385,7 +11385,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exams-pstat-midterm-practice",
+      "id": "gen-pstat-exams-pstat-midterm-practice-pdf",
       "title": {
         "th": "Midterm · Practice",
         "en": "Midterm · Practice"
@@ -11405,7 +11405,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exams-pstat-midterm-quiz2",
+      "id": "gen-pstat-exams-pstat-midterm-quiz2-pdf",
       "title": {
         "th": "Midterm · Quiz 2",
         "en": "Midterm · Quiz 2"
@@ -11425,7 +11425,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exams-pstat-midterm-randomvariable-1",
+      "id": "gen-pstat-exams-pstat-midterm-randomvariable-1-pdf",
       "title": {
         "th": "Midterm · Randomvariable 1",
         "en": "Midterm · Randomvariable 1"
@@ -11445,7 +11445,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exams-pstat-midterm-unidentified-v2",
+      "id": "gen-pstat-exams-pstat-midterm-unidentified-v2-pdf",
       "title": {
         "th": "Midterm · Unidentified V 2",
         "en": "Midterm · Unidentified V 2"
@@ -11465,7 +11465,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exams-pstat-midterm-unidentified-v3",
+      "id": "gen-pstat-exams-pstat-midterm-unidentified-v3-pdf",
       "title": {
         "th": "Midterm · Unidentified V 3",
         "en": "Midterm · Unidentified V 3"
@@ -11485,7 +11485,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exams-pstat-midterm-unidentified-v4",
+      "id": "gen-pstat-exams-pstat-midterm-unidentified-v4-pdf",
       "title": {
         "th": "Midterm · Unidentified V 4",
         "en": "Midterm · Unidentified V 4"
@@ -11505,7 +11505,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exams-pstat-midterm-unidentified-v5",
+      "id": "gen-pstat-exams-pstat-midterm-unidentified-v5-pdf",
       "title": {
         "th": "Midterm · Unidentified V 5",
         "en": "Midterm · Unidentified V 5"
@@ -11525,7 +11525,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exams-pstat-midterm-unidentified-v6",
+      "id": "gen-pstat-exams-pstat-midterm-unidentified-v6-pdf",
       "title": {
         "th": "Midterm · Unidentified V 6",
         "en": "Midterm · Unidentified V 6"
@@ -11545,7 +11545,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exams-pstat-midterm-unidentified-v7",
+      "id": "gen-pstat-exams-pstat-midterm-unidentified-v7-pdf",
       "title": {
         "th": "Midterm · Unidentified V 7",
         "en": "Midterm · Unidentified V 7"
@@ -11565,7 +11565,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exams-pstat-midterm-unidentified",
+      "id": "gen-pstat-exams-pstat-midterm-unidentified-pdf",
       "title": {
         "th": "Midterm · Unidentified",
         "en": "Midterm · Unidentified"
@@ -11585,7 +11585,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exams-pstat-quiz-01-2565",
+      "id": "gen-pstat-exams-pstat-quiz-01-2565-pdf",
       "title": {
         "th": "Quiz · 01 2565",
         "en": "Quiz · 01 2565"
@@ -11605,7 +11605,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exams-pstat-quiz-01-v2",
+      "id": "gen-pstat-exams-pstat-quiz-01-v2-pdf",
       "title": {
         "th": "Quiz · 01 V 2",
         "en": "Quiz · 01 V 2"
@@ -11625,7 +11625,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exams-pstat-quiz-01",
+      "id": "gen-pstat-exams-pstat-quiz-01-pdf",
       "title": {
         "th": "Quiz · 01",
         "en": "Quiz · 01"
@@ -11645,7 +11645,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exams-pstat-quiz-02",
+      "id": "gen-pstat-exams-pstat-quiz-02-pdf",
       "title": {
         "th": "Quiz · 02",
         "en": "Quiz · 02"
@@ -11665,7 +11665,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exams-pstat-quiz-sooksan-all",
+      "id": "gen-pstat-exams-pstat-quiz-sooksan-all-pdf",
       "title": {
         "th": "Quiz · Sooksan All",
         "en": "Quiz · Sooksan All"
@@ -11685,7 +11685,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exercises-pstat-ex-01-practice-v2",
+      "id": "gen-pstat-exercises-pstat-ex-01-practice-v2-pdf",
       "title": {
         "th": "Exercise · 01 Practice V 2",
         "en": "Exercise · 01 Practice V 2"
@@ -11705,7 +11705,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exercises-pstat-ex-01-practice",
+      "id": "gen-pstat-exercises-pstat-ex-01-practice-pdf",
       "title": {
         "th": "Exercise · 01 Practice",
         "en": "Exercise · 01 Practice"
@@ -11725,7 +11725,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exercises-pstat-ex-01",
+      "id": "gen-pstat-exercises-pstat-ex-01-pdf",
       "title": {
         "th": "Exercise · 01",
         "en": "Exercise · 01"
@@ -11745,7 +11745,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exercises-pstat-ex-02-practice",
+      "id": "gen-pstat-exercises-pstat-ex-02-practice-pdf",
       "title": {
         "th": "Exercise · 02 Practice",
         "en": "Exercise · 02 Practice"
@@ -11765,7 +11765,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exercises-pstat-ex-02",
+      "id": "gen-pstat-exercises-pstat-ex-02-pdf",
       "title": {
         "th": "Exercise · 02",
         "en": "Exercise · 02"
@@ -11785,7 +11785,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exercises-pstat-ex-04",
+      "id": "gen-pstat-exercises-pstat-ex-04-pdf",
       "title": {
         "th": "Exercise · 04",
         "en": "Exercise · 04"
@@ -11805,7 +11805,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exercises-pstat-ex-exercise-1-completed",
+      "id": "gen-pstat-exercises-pstat-ex-exercise-1-completed-pdf",
       "title": {
         "th": "Exercise · Exercise 1 Completed",
         "en": "Exercise · Exercise 1 Completed"
@@ -11825,7 +11825,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exercises-pstat-ex-practice",
+      "id": "gen-pstat-exercises-pstat-ex-practice-pdf",
       "title": {
         "th": "Exercise · Practice",
         "en": "Exercise · Practice"
@@ -11845,7 +11845,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exercises-pstat-ex-q4-practice",
+      "id": "gen-pstat-exercises-pstat-ex-q4-practice-pdf",
       "title": {
         "th": "Exercise · Q 4 Practice",
         "en": "Exercise · Q 4 Practice"
@@ -11865,7 +11865,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exercises-pstat-ex-set01",
+      "id": "gen-pstat-exercises-pstat-ex-set01-pdf",
       "title": {
         "th": "Exercise · Set 01",
         "en": "Exercise · Set 01"
@@ -11885,7 +11885,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exercises-pstat-ex-set02",
+      "id": "gen-pstat-exercises-pstat-ex-set02-pdf",
       "title": {
         "th": "Exercise · Set 02",
         "en": "Exercise · Set 02"
@@ -11905,7 +11905,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exercises-pstat-ex-set03",
+      "id": "gen-pstat-exercises-pstat-ex-set03-pdf",
       "title": {
         "th": "Exercise · Set 03",
         "en": "Exercise · Set 03"
@@ -11925,7 +11925,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exercises-pstat-ex-set04",
+      "id": "gen-pstat-exercises-pstat-ex-set04-pdf",
       "title": {
         "th": "Exercise · Set 04",
         "en": "Exercise · Set 04"
@@ -11945,7 +11945,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exercises-pstat-ex-set05",
+      "id": "gen-pstat-exercises-pstat-ex-set05-pdf",
       "title": {
         "th": "Exercise · Set 05",
         "en": "Exercise · Set 05"
@@ -11965,7 +11965,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exercises-pstat-ex-set06",
+      "id": "gen-pstat-exercises-pstat-ex-set06-pdf",
       "title": {
         "th": "Exercise · Set 06",
         "en": "Exercise · Set 06"
@@ -11985,7 +11985,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exercises-pstat-ex-set08",
+      "id": "gen-pstat-exercises-pstat-ex-set08-pdf",
       "title": {
         "th": "Exercise · Set 08",
         "en": "Exercise · Set 08"
@@ -12005,7 +12005,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exercises-pstat-ex-set09",
+      "id": "gen-pstat-exercises-pstat-ex-set09-pdf",
       "title": {
         "th": "Exercise · Set 09",
         "en": "Exercise · Set 09"
@@ -12025,7 +12025,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exercises-pstat-ex-set10",
+      "id": "gen-pstat-exercises-pstat-ex-set10-pdf",
       "title": {
         "th": "Exercise · Set 10",
         "en": "Exercise · Set 10"
@@ -12045,7 +12045,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exercises-pstat-ex-set11",
+      "id": "gen-pstat-exercises-pstat-ex-set11-pdf",
       "title": {
         "th": "Exercise · Set 11",
         "en": "Exercise · Set 11"
@@ -12065,7 +12065,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exercises-pstat-ex-set12",
+      "id": "gen-pstat-exercises-pstat-ex-set12-pdf",
       "title": {
         "th": "Exercise · Set 12",
         "en": "Exercise · Set 12"
@@ -12085,7 +12085,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exercises-pstat-ex-set13",
+      "id": "gen-pstat-exercises-pstat-ex-set13-pdf",
       "title": {
         "th": "Exercise · Set 13",
         "en": "Exercise · Set 13"
@@ -12105,7 +12105,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exercises-pstat-ex-solution-set04",
+      "id": "gen-pstat-exercises-pstat-ex-solution-set04-pdf",
       "title": {
         "th": "Exercise · Solution Set 04",
         "en": "Exercise · Solution Set 04"
@@ -12125,7 +12125,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exercises-pstat-ex-solution-set05",
+      "id": "gen-pstat-exercises-pstat-ex-solution-set05-pdf",
       "title": {
         "th": "Exercise · Solution Set 05",
         "en": "Exercise · Solution Set 05"
@@ -12145,7 +12145,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exercises-pstat-ex-solution-set06",
+      "id": "gen-pstat-exercises-pstat-ex-solution-set06-pdf",
       "title": {
         "th": "Exercise · Solution Set 06",
         "en": "Exercise · Solution Set 06"
@@ -12165,7 +12165,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exercises-pstat-ex-solution-set08",
+      "id": "gen-pstat-exercises-pstat-ex-solution-set08-pdf",
       "title": {
         "th": "Exercise · Solution Set 08",
         "en": "Exercise · Solution Set 08"
@@ -12185,7 +12185,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exercises-pstat-ex-solution-set09",
+      "id": "gen-pstat-exercises-pstat-ex-solution-set09-pdf",
       "title": {
         "th": "Exercise · Solution Set 09",
         "en": "Exercise · Solution Set 09"
@@ -12205,7 +12205,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exercises-pstat-ex-solution-set10",
+      "id": "gen-pstat-exercises-pstat-ex-solution-set10-pdf",
       "title": {
         "th": "Exercise · Solution Set 10",
         "en": "Exercise · Solution Set 10"
@@ -12225,7 +12225,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exercises-pstat-ex-solution-set11",
+      "id": "gen-pstat-exercises-pstat-ex-solution-set11-pdf",
       "title": {
         "th": "Exercise · Solution Set 11",
         "en": "Exercise · Solution Set 11"
@@ -12245,7 +12245,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exercises-pstat-ex-solution-set12",
+      "id": "gen-pstat-exercises-pstat-ex-solution-set12-pdf",
       "title": {
         "th": "Exercise · Solution Set 12",
         "en": "Exercise · Solution Set 12"
@@ -12265,7 +12265,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exercises-pstat-ex-solution-set13",
+      "id": "gen-pstat-exercises-pstat-ex-solution-set13-pdf",
       "title": {
         "th": "Exercise · Solution Set 13",
         "en": "Exercise · Solution Set 13"
@@ -12285,7 +12285,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-exercises-pstat-ex-solutions-probability",
+      "id": "gen-pstat-exercises-pstat-ex-solutions-probability-pdf",
       "title": {
         "th": "Exercise · Solutions Probability",
         "en": "Exercise · Solutions Probability"
@@ -12305,7 +12305,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-lec-week01-v2",
+      "id": "gen-pstat-lectures-pstat-lec-week01-v2-pdf",
       "title": {
         "th": "Lecture · Week 01 V 2",
         "en": "Lecture · Week 01 V 2"
@@ -12325,7 +12325,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-lec-week01",
+      "id": "gen-pstat-lectures-pstat-lec-week01-pdf",
       "title": {
         "th": "Lecture · Week 01",
         "en": "Lecture · Week 01"
@@ -12345,7 +12345,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-lec-week02-v2",
+      "id": "gen-pstat-lectures-pstat-lec-week02-v2-pdf",
       "title": {
         "th": "Lecture · Week 02 V 2",
         "en": "Lecture · Week 02 V 2"
@@ -12365,7 +12365,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-lec-week02",
+      "id": "gen-pstat-lectures-pstat-lec-week02-pdf",
       "title": {
         "th": "Lecture · Week 02",
         "en": "Lecture · Week 02"
@@ -12385,7 +12385,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-lec-week03-v2",
+      "id": "gen-pstat-lectures-pstat-lec-week03-v2-pdf",
       "title": {
         "th": "Lecture · Week 03 V 2",
         "en": "Lecture · Week 03 V 2"
@@ -12405,7 +12405,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-lec-week03",
+      "id": "gen-pstat-lectures-pstat-lec-week03-pdf",
       "title": {
         "th": "Lecture · Week 03",
         "en": "Lecture · Week 03"
@@ -12425,7 +12425,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-lec-week04-v2",
+      "id": "gen-pstat-lectures-pstat-lec-week04-v2-pdf",
       "title": {
         "th": "Lecture · Week 04 V 2",
         "en": "Lecture · Week 04 V 2"
@@ -12445,7 +12445,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-lec-week04",
+      "id": "gen-pstat-lectures-pstat-lec-week04-pdf",
       "title": {
         "th": "Lecture · Week 04",
         "en": "Lecture · Week 04"
@@ -12465,7 +12465,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-lec-week05-v2",
+      "id": "gen-pstat-lectures-pstat-lec-week05-v2-pdf",
       "title": {
         "th": "Lecture · Week 05 V 2",
         "en": "Lecture · Week 05 V 2"
@@ -12485,7 +12485,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-lec-week05",
+      "id": "gen-pstat-lectures-pstat-lec-week05-pdf",
       "title": {
         "th": "Lecture · Week 05",
         "en": "Lecture · Week 05"
@@ -12505,7 +12505,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-lec-week06-v2",
+      "id": "gen-pstat-lectures-pstat-lec-week06-v2-pdf",
       "title": {
         "th": "Lecture · Week 06 V 2",
         "en": "Lecture · Week 06 V 2"
@@ -12525,7 +12525,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-lec-week06",
+      "id": "gen-pstat-lectures-pstat-lec-week06-pdf",
       "title": {
         "th": "Lecture · Week 06",
         "en": "Lecture · Week 06"
@@ -12545,7 +12545,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-lec-week07",
+      "id": "gen-pstat-lectures-pstat-lec-week07-pdf",
       "title": {
         "th": "Lecture · Week 07",
         "en": "Lecture · Week 07"
@@ -12565,7 +12565,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-lec-week08-v2",
+      "id": "gen-pstat-lectures-pstat-lec-week08-v2-pdf",
       "title": {
         "th": "Lecture · Week 08 V 2",
         "en": "Lecture · Week 08 V 2"
@@ -12585,7 +12585,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-lec-week08",
+      "id": "gen-pstat-lectures-pstat-lec-week08-pdf",
       "title": {
         "th": "Lecture · Week 08",
         "en": "Lecture · Week 08"
@@ -12605,7 +12605,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-lec-week09-v2",
+      "id": "gen-pstat-lectures-pstat-lec-week09-v2-pdf",
       "title": {
         "th": "Lecture · Week 09 V 2",
         "en": "Lecture · Week 09 V 2"
@@ -12625,7 +12625,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-lec-week09",
+      "id": "gen-pstat-lectures-pstat-lec-week09-pdf",
       "title": {
         "th": "Lecture · Week 09",
         "en": "Lecture · Week 09"
@@ -12645,7 +12645,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-lec-week10-v2",
+      "id": "gen-pstat-lectures-pstat-lec-week10-v2-pdf",
       "title": {
         "th": "Lecture · Week 10 V 2",
         "en": "Lecture · Week 10 V 2"
@@ -12665,7 +12665,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-lec-week10",
+      "id": "gen-pstat-lectures-pstat-lec-week10-pdf",
       "title": {
         "th": "Lecture · Week 10",
         "en": "Lecture · Week 10"
@@ -12685,7 +12685,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-lec-week11-v2",
+      "id": "gen-pstat-lectures-pstat-lec-week11-v2-pdf",
       "title": {
         "th": "Lecture · Week 11 V 2",
         "en": "Lecture · Week 11 V 2"
@@ -12705,7 +12705,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-lec-week11",
+      "id": "gen-pstat-lectures-pstat-lec-week11-pdf",
       "title": {
         "th": "Lecture · Week 11",
         "en": "Lecture · Week 11"
@@ -12725,7 +12725,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-lec-week12-v2",
+      "id": "gen-pstat-lectures-pstat-lec-week12-v2-pdf",
       "title": {
         "th": "Lecture · Week 12 V 2",
         "en": "Lecture · Week 12 V 2"
@@ -12745,7 +12745,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-lec-week12",
+      "id": "gen-pstat-lectures-pstat-lec-week12-pdf",
       "title": {
         "th": "Lecture · Week 12",
         "en": "Lecture · Week 12"
@@ -12765,7 +12765,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-lec-week13-v2",
+      "id": "gen-pstat-lectures-pstat-lec-week13-v2-pdf",
       "title": {
         "th": "Lecture · Week 13 V 2",
         "en": "Lecture · Week 13 V 2"
@@ -12785,7 +12785,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-lec-week13",
+      "id": "gen-pstat-lectures-pstat-lec-week13-pdf",
       "title": {
         "th": "Lecture · Week 13",
         "en": "Lecture · Week 13"
@@ -12805,7 +12805,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-lec-week14-v2",
+      "id": "gen-pstat-lectures-pstat-lec-week14-v2-pdf",
       "title": {
         "th": "Lecture · Week 14 V 2",
         "en": "Lecture · Week 14 V 2"
@@ -12825,7 +12825,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-lec-week14",
+      "id": "gen-pstat-lectures-pstat-lec-week14-pdf",
       "title": {
         "th": "Lecture · Week 14",
         "en": "Lecture · Week 14"
@@ -12845,7 +12845,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-note-lnotes01",
+      "id": "gen-pstat-lectures-pstat-note-lnotes01-pdf",
       "title": {
         "th": "Note · Lnotes 01",
         "en": "Note · Lnotes 01"
@@ -12865,7 +12865,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-note-lnotes02",
+      "id": "gen-pstat-lectures-pstat-note-lnotes02-pdf",
       "title": {
         "th": "Note · Lnotes 02",
         "en": "Note · Lnotes 02"
@@ -12885,7 +12885,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-note-lnotes03",
+      "id": "gen-pstat-lectures-pstat-note-lnotes03-pdf",
       "title": {
         "th": "Note · Lnotes 03",
         "en": "Note · Lnotes 03"
@@ -12905,7 +12905,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-note-lnotes04",
+      "id": "gen-pstat-lectures-pstat-note-lnotes04-pdf",
       "title": {
         "th": "Note · Lnotes 04",
         "en": "Note · Lnotes 04"
@@ -12925,7 +12925,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-note-lnotes05",
+      "id": "gen-pstat-lectures-pstat-note-lnotes05-pdf",
       "title": {
         "th": "Note · Lnotes 05",
         "en": "Note · Lnotes 05"
@@ -12945,7 +12945,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-note-lnotes06",
+      "id": "gen-pstat-lectures-pstat-note-lnotes06-pdf",
       "title": {
         "th": "Note · Lnotes 06",
         "en": "Note · Lnotes 06"
@@ -12965,7 +12965,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-note-lnotes08",
+      "id": "gen-pstat-lectures-pstat-note-lnotes08-pdf",
       "title": {
         "th": "Note · Lnotes 08",
         "en": "Note · Lnotes 08"
@@ -12985,7 +12985,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-note-lnotes09",
+      "id": "gen-pstat-lectures-pstat-note-lnotes09-pdf",
       "title": {
         "th": "Note · Lnotes 09",
         "en": "Note · Lnotes 09"
@@ -13005,7 +13005,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-note-lnotes10",
+      "id": "gen-pstat-lectures-pstat-note-lnotes10-pdf",
       "title": {
         "th": "Note · Lnotes 10",
         "en": "Note · Lnotes 10"
@@ -13025,7 +13025,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-note-lnotes11",
+      "id": "gen-pstat-lectures-pstat-note-lnotes11-pdf",
       "title": {
         "th": "Note · Lnotes 11",
         "en": "Note · Lnotes 11"
@@ -13045,7 +13045,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-note-lnotes12",
+      "id": "gen-pstat-lectures-pstat-note-lnotes12-pdf",
       "title": {
         "th": "Note · Lnotes 12",
         "en": "Note · Lnotes 12"
@@ -13065,7 +13065,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-note-lnotes13",
+      "id": "gen-pstat-lectures-pstat-note-lnotes13-pdf",
       "title": {
         "th": "Note · Lnotes 13",
         "en": "Note · Lnotes 13"
@@ -13085,7 +13085,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-note-week01",
+      "id": "gen-pstat-lectures-pstat-note-week01-pdf",
       "title": {
         "th": "Note · Week 01",
         "en": "Note · Week 01"
@@ -13105,7 +13105,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-note-week02",
+      "id": "gen-pstat-lectures-pstat-note-week02-pdf",
       "title": {
         "th": "Note · Week 02",
         "en": "Note · Week 02"
@@ -13125,7 +13125,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-note-week03",
+      "id": "gen-pstat-lectures-pstat-note-week03-pdf",
       "title": {
         "th": "Note · Week 03",
         "en": "Note · Week 03"
@@ -13145,7 +13145,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-note-week04",
+      "id": "gen-pstat-lectures-pstat-note-week04-pdf",
       "title": {
         "th": "Note · Week 04",
         "en": "Note · Week 04"
@@ -13165,7 +13165,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-note-week05",
+      "id": "gen-pstat-lectures-pstat-note-week05-pdf",
       "title": {
         "th": "Note · Week 05",
         "en": "Note · Week 05"
@@ -13185,7 +13185,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-note-week06",
+      "id": "gen-pstat-lectures-pstat-note-week06-pdf",
       "title": {
         "th": "Note · Week 06",
         "en": "Note · Week 06"
@@ -13205,7 +13205,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-note-week08",
+      "id": "gen-pstat-lectures-pstat-note-week08-pdf",
       "title": {
         "th": "Note · Week 08",
         "en": "Note · Week 08"
@@ -13225,7 +13225,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-note-week09",
+      "id": "gen-pstat-lectures-pstat-note-week09-pdf",
       "title": {
         "th": "Note · Week 09",
         "en": "Note · Week 09"
@@ -13245,7 +13245,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-note-week10",
+      "id": "gen-pstat-lectures-pstat-note-week10-pdf",
       "title": {
         "th": "Note · Week 10",
         "en": "Note · Week 10"
@@ -13265,7 +13265,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-note-week11",
+      "id": "gen-pstat-lectures-pstat-note-week11-pdf",
       "title": {
         "th": "Note · Week 11",
         "en": "Note · Week 11"
@@ -13285,7 +13285,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-lectures-pstat-note-week13",
+      "id": "gen-pstat-lectures-pstat-note-week13-pdf",
       "title": {
         "th": "Note · Week 13",
         "en": "Note · Week 13"
@@ -13305,7 +13305,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-references-pstat-ref-casio-calculator",
+      "id": "gen-pstat-references-pstat-ref-casio-calculator-pdf",
       "title": {
         "th": "Reference · Casio Calculator",
         "en": "Reference · Casio Calculator"
@@ -13325,7 +13325,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-references-pstat-ref-t-table",
+      "id": "gen-pstat-references-pstat-ref-t-table-pdf",
       "title": {
         "th": "Reference · T Table",
         "en": "Reference · T Table"
@@ -13345,7 +13345,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-references-pstat-ref-z-table",
+      "id": "gen-pstat-references-pstat-ref-z-table-pdf",
       "title": {
         "th": "Reference · Z Table",
         "en": "Reference · Z Table"
@@ -13365,7 +13365,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-sheets-pstat-sheet-recap-final",
+      "id": "gen-pstat-sheets-pstat-sheet-recap-final-pdf",
       "title": {
         "th": "Sheet · Recap Final",
         "en": "Sheet · Recap Final"
@@ -13385,7 +13385,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-sheets-pstat-sheet-recap-probability",
+      "id": "gen-pstat-sheets-pstat-sheet-recap-probability-pdf",
       "title": {
         "th": "Sheet · Recap Probability",
         "en": "Sheet · Recap Probability"
@@ -13405,7 +13405,7 @@
       "courseCode": "PSTAT"
     },
     {
-      "id": "gen-pstat-sheets-pstat-sheet-recap-week04-05",
+      "id": "gen-pstat-sheets-pstat-sheet-recap-week04-05-pdf",
       "title": {
         "th": "Sheet · Recap Week 04 05",
         "en": "Sheet · Recap Week 04 05"
