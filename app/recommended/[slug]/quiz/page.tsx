@@ -7,7 +7,11 @@ import { TechniqueQuiz } from "@/components/technique-quiz";
 import { loadRecommendedProblem } from "@/lib/recommended";
 import { QUIZ_BANK } from "@/lib/quiz-content";
 
-export const dynamic = "force-dynamic";
+import { loadRecommendedProblems } from "@/lib/recommended";
+
+export async function generateStaticParams() {
+  return loadRecommendedProblems().map((p) => ({ slug: p.slug }));
+}
 
 export async function generateMetadata({
   params,

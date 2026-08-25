@@ -4,7 +4,11 @@ import { Navbar } from "@/components/navbar";
 import { LibraryReader } from "@/components/library-reader";
 import { loadLibraryDoc } from "@/lib/library";
 
-export const dynamic = "force-dynamic";
+import { loadLibrary } from "@/lib/library";
+
+export async function generateStaticParams() {
+  return loadLibrary().map((doc) => ({ slug: doc.slug }));
+}
 
 export async function generateMetadata({
   params,

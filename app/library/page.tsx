@@ -3,7 +3,7 @@ import { Navbar } from "@/components/navbar";
 import { LibraryToc } from "@/components/library-toc";
 import { loadLibrary } from "@/lib/library";
 
-export const dynamic = "force-dynamic";
+export const dynamic = "force-static";
 
 export const metadata: Metadata = {
   title: "Library",
