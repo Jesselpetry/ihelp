@@ -107,11 +107,26 @@ async function runOne(code, stdin) {
     },
   });
 
-  // --- stdout: native setStdout, batched callback ---------------------------
-  let stdoutBuf = "";
+  // --- stdout: native setStdout, exact byte capture -------------------------
+  // `write` hands us the raw bytes Python emitted and is the only variant that
+  // reproduces stdout verbatim. The `batched` variant cannot: it fires once per
+  // flush and the caller has to re-append the "\n", so any flush that did NOT
+  // end in a newline gains one that Python never wrote. `input(prompt)` flushes
+  // exactly that way -- it writes the prompt with no trailing newline and then
+  // blocks on stdin -- so under `batched` a program that prompts and then
+  // prints would report
+  //     Enter a name : \n Hello Linda
+  // where real Python (and the course's grader) produce
+  //     Enter a name : Hello Linda
+  // and every interactive problem would fail against a correct expected output.
+  const chunks = [];
   py.setStdout({
-    batched: (output) => {
-      stdoutBuf += output + "\n";
+    write: (buffer) => {
+      // Copy: the buffer is a view over WASM memory and is reused after this
+      // returns, so retaining it would leave earlier chunks holding whatever
+      // bytes were written later.
+      chunks.push(buffer.slice());
+      return buffer.length;
     },
   });
 
@@ -131,7 +146,19 @@ async function runOne(code, stdin) {
     py.setStdout({});
   }
 
-  return { stdout: stdoutBuf, error };
+  // Decode once, at the end: a multi-byte UTF-8 character (Thai text in a
+  // prompt, say) can straddle two write() calls, and decoding per chunk would
+  // turn the split character into replacement characters.
+  const total = chunks.reduce((n, c) => n + c.length, 0);
+  const merged = new Uint8Array(total);
+  let offset = 0;
+  for (const chunk of chunks) {
+    merged.set(chunk, offset);
+    offset += chunk.length;
+  }
+  const stdout = new TextDecoder("utf-8").decode(merged);
+
+  return { stdout, error };
 }
 
 /**

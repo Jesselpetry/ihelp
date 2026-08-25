@@ -55,7 +55,8 @@ export function cleanHeadingTitle(text: string): string {
 export function extractToc(markdown: string): TocItem[] {
   if (!markdown) return [];
 
-  const lines = markdown.split("\n");
+  const cleanMd = markdown.replace(/^---[\r\n]+[\s\S]*?[\r\n]+---[\r\n]*/, "");
+  const lines = cleanMd.split("\n");
   const items: TocItem[] = [];
   let inCodeBlock = false;
 

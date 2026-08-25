@@ -35,11 +35,14 @@ export function useLocale() {
 }
 
 // t({ th: "...", en: "..." }, locale)
+// `en` is optional: content ported from Thai-only sources (course summaries,
+// the ITF question bank) omits it and falls back to Thai rather than shipping
+// a machine translation nobody proof-read.
 export interface LText {
   th: string;
-  en: string;
+  en?: string;
 }
 
 export function t(text: LText, locale: Locale): string {
-  return text[locale];
+  return text[locale] ?? text.th;
 }
