@@ -43,16 +43,232 @@
     "sizeBytes": 5088246,
     "pages": 46
   },
+  "/assets/it-kmitl/bfit/cases/bfit-case-amazon.pdf": {
+    "sizeBytes": 403414,
+    "pages": 2
+  },
+  "/assets/it-kmitl/bfit/cases/bfit-case-google-culture.pdf": {
+    "sizeBytes": 505737,
+    "pages": 2
+  },
+  "/assets/it-kmitl/bfit/cases/bfit-case-kimball-restaurant.pdf": {
+    "sizeBytes": 814206,
+    "pages": 3
+  },
+  "/assets/it-kmitl/bfit/exams/bfit-final-01.pdf": {
+    "sizeBytes": 255908,
+    "pages": 19
+  },
+  "/assets/it-kmitl/bfit/exams/bfit-final-business-final.pdf": {
+    "sizeBytes": 14500553,
+    "pages": 406
+  },
+  "/assets/it-kmitl/bfit/exams/bfit-final-drive-google-com.pdf": {
+    "sizeBytes": 26856,
+    "pages": 1
+  },
+  "/assets/it-kmitl/bfit/exams/bfit-final-gen-b.pdf": {
+    "sizeBytes": 294501,
+    "pages": 8
+  },
+  "/assets/it-kmitl/bfit/exams/bfit-final-ho-ch1-bizinchangingworld.pdf": {
+    "sizeBytes": 4004703,
+    "pages": 118
+  },
+  "/assets/it-kmitl/bfit/exams/bfit-final-ho-ch2-management.pdf": {
+    "sizeBytes": 1875104,
+    "pages": 50
+  },
+  "/assets/it-kmitl/bfit/exams/bfit-final-quiz-edit-201110.pdf": {
+    "sizeBytes": 1736819,
+    "pages": 22
+  },
+  "/assets/it-kmitl/bfit/exams/bfit-midterm-and.pdf": {
+    "sizeBytes": 890903,
+    "pages": 10
+  },
+  "/assets/it-kmitl/bfit/exams/bfit-midterm-business-before-mid-1.pdf": {
+    "sizeBytes": 11022853,
+    "pages": 16
+  },
+  "/assets/it-kmitl/bfit/exams/bfit-midterm-business-before-mid-2.pdf": {
+    "sizeBytes": 11001708,
+    "pages": 16
+  },
+  "/assets/it-kmitl/bfit/exams/bfit-midterm-business-before-mid.pdf": {
+    "sizeBytes": 10944298,
+    "pages": 16
+  },
+  "/assets/it-kmitl/bfit/exams/bfit-midterm-business.pdf": {
+    "sizeBytes": 13045260,
+    "pages": 23
+  },
+  "/assets/it-kmitl/bfit/exams/bfit-midterm-gen-b-01.pdf": {
+    "sizeBytes": 7728350,
+    "pages": 25
+  },
+  "/assets/it-kmitl/bfit/exams/bfit-midterm-project.pdf": {
+    "sizeBytes": 2383497,
+    "pages": 4
+  },
+  "/assets/it-kmitl/bfit/exams/bfit-quiz-01.pdf": {
+    "sizeBytes": 2464928,
+    "pages": 4
+  },
+  "/assets/it-kmitl/bfit/exams/bfit-quiz-02.pdf": {
+    "sizeBytes": 2875333,
+    "pages": 7
+  },
+  "/assets/it-kmitl/bfit/exams/bfit-quiz-final.pdf": {
+    "sizeBytes": 5111162,
+    "pages": 29
+  },
+  "/assets/it-kmitl/bfit/exams/bfit-quiz-jn.pdf": {
+    "sizeBytes": 4353011,
+    "pages": 45
+  },
+  "/assets/it-kmitl/bfit/exercises/bfit-ex-deposited-money-market-account.pdf": {
+    "sizeBytes": 79373,
+    "pages": 1
+  },
+  "/assets/it-kmitl/bfit/exercises/bfit-ex-econ-biz-solutions.pdf": {
+    "sizeBytes": 1361261,
+    "pages": 10
+  },
+  "/assets/it-kmitl/bfit/lectures/bfit-lec-after-midterm.pdf": {
+    "sizeBytes": 853502,
+    "pages": 23
+  },
+  "/assets/it-kmitl/bfit/lectures/bfit-lec-all-weeks-1to8.pdf": {
+    "sizeBytes": 15202240,
+    "pages": 27
+  },
+  "/assets/it-kmitl/bfit/lectures/bfit-lec-computational-intelligen-project-aritelitkmitl.pdf": {
+    "sizeBytes": 11734819,
+    "pages": 29
+  },
+  "/assets/it-kmitl/bfit/lectures/bfit-lec-finance.pdf": {
+    "sizeBytes": 353266,
+    "pages": 5
+  },
+  "/assets/it-kmitl/bfit/lectures/bfit-lec-flat-rate.pdf": {
+    "sizeBytes": 364049,
+    "pages": 1
+  },
+  "/assets/it-kmitl/bfit/lectures/bfit-lec-inventory.pdf": {
+    "sizeBytes": 11272762,
+    "pages": 11
+  },
+  "/assets/it-kmitl/bfit/lectures/bfit-lec-marketing-1.pdf": {
+    "sizeBytes": 273028,
+    "pages": 7
+  },
+  "/assets/it-kmitl/bfit/lectures/bfit-lec-marketing-2.pdf": {
+    "sizeBytes": 167262,
+    "pages": 8
+  },
+  "/assets/it-kmitl/bfit/lectures/bfit-lec-se-ed.pdf": {
+    "sizeBytes": 64828,
+    "pages": 4
+  },
+  "/assets/it-kmitl/bfit/lectures/bfit-lec-week01.pdf": {
+    "sizeBytes": 1174939,
+    "pages": 6
+  },
+  "/assets/it-kmitl/bfit/lectures/bfit-lec-week09.pdf": {
+    "sizeBytes": 4494701,
+    "pages": 118
+  },
+  "/assets/it-kmitl/bfit/lectures/bfit-lec-week10.pdf": {
+    "sizeBytes": 2030522,
+    "pages": 50
+  },
+  "/assets/it-kmitl/bfit/lectures/bfit-lec-week11.pdf": {
+    "sizeBytes": 2363410,
+    "pages": 56
+  },
+  "/assets/it-kmitl/bfit/lectures/bfit-lec-week12.pdf": {
+    "sizeBytes": 2374778,
+    "pages": 87
+  },
+  "/assets/it-kmitl/bfit/lectures/bfit-lec-week13.pdf": {
+    "sizeBytes": 9047277,
+    "pages": 56
+  },
   "/assets/it-kmitl/bfit/references/bfit-ref-future-value-tables.pdf": {
     "sizeBytes": 233502,
     "pages": 2
+  },
+  "/assets/it-kmitl/bfit/references/bfit-ref-futurevaluetables-v2.pdf": {
+    "sizeBytes": 85907,
+    "pages": 3
   },
   "/assets/it-kmitl/bfit/sheets/bfit-sheet-economics.pdf": {
     "sizeBytes": 1641291,
     "pages": 14
   },
+  "/assets/it-kmitl/bfit/sheets/bfit-sheet-mint.pdf": {
+    "sizeBytes": 7011279,
+    "pages": 14
+  },
+  "/assets/it-kmitl/bfit/sheets/bfit-sheet-recap-before-midterm.pdf": {
+    "sizeBytes": 11066678,
+    "pages": 16
+  },
+  "/assets/it-kmitl/bfit/sheets/bfit-sheet-recap-extra.pdf": {
+    "sizeBytes": 4126327,
+    "pages": 12
+  },
   "/assets/it-kmitl/bfit/sheets/bfit-sheet-students-guide.pdf": {
     "sizeBytes": 282107,
+    "pages": 1
+  },
+  "/assets/it-kmitl/charm/exercises/charm-ex-worksheet01-know-you-know-future-completed-y1-s1-2569.pdf": {
+    "sizeBytes": 1376796,
+    "pages": 2
+  },
+  "/assets/it-kmitl/charm/exercises/charm-ex-worksheet01-know-you-know-future-completed.pdf": {
+    "sizeBytes": 393977,
+    "pages": 1
+  },
+  "/assets/it-kmitl/charm/exercises/charm-ex-worksheet02-disc-swot-completed-y1-s1-2569.pdf": {
+    "sizeBytes": 1076868,
+    "pages": 1
+  },
+  "/assets/it-kmitl/charm/exercises/charm-ex-worksheet02-disc-swot-completed.pdf": {
+    "sizeBytes": 519903,
+    "pages": 2
+  },
+  "/assets/it-kmitl/charm/exercises/charm-ex-worksheet03-time-and-stress-management-completed-y1-s1-2569.pdf": {
+    "sizeBytes": 1445458,
+    "pages": 1
+  },
+  "/assets/it-kmitl/charm/exercises/charm-ex-worksheet03-time-and-stress-management-completed.pdf": {
+    "sizeBytes": 490817,
+    "pages": 2
+  },
+  "/assets/it-kmitl/charm/exercises/charm-ex-worksheet03-time-and-stress-management-scan.pdf": {
+    "sizeBytes": 393735,
+    "pages": 2
+  },
+  "/assets/it-kmitl/charm/exercises/charm-ex-worksheet04-the-power-of-vision-completed.pdf": {
+    "sizeBytes": 363365,
+    "pages": 1
+  },
+  "/assets/it-kmitl/charm/exercises/charm-ex-worksheet05-generation-gap-completed.pdf": {
+    "sizeBytes": 964917,
+    "pages": 1
+  },
+  "/assets/it-kmitl/charm/exercises/charm-ex-worksheet05-generation-gap.pdf": {
+    "sizeBytes": 356907,
+    "pages": 1
+  },
+  "/assets/it-kmitl/charm/exercises/charm-hw-self-assessment-project-charming-volunteer.pdf": {
+    "sizeBytes": 111071,
+    "pages": 1
+  },
+  "/assets/it-kmitl/charm/exercises/ใบงานที่-4-69070027-ฉัททัณฑ์-เพททริ.pdf": {
+    "sizeBytes": 694665,
     "pages": 1
   },
   "/assets/it-kmitl/charm/lectures/charm-lec-course-plan-2569.pdf": {
@@ -78,6 +294,210 @@
   "/assets/it-kmitl/dl/exercises/dl-ex-week02-digital-citizen-identity.pdf": {
     "sizeBytes": 1476439,
     "pages": 4
+  },
+  "/assets/it-kmitl/dl/labs/dl-lab-week10-completed.pdf": {
+    "sizeBytes": 147871,
+    "pages": 2
+  },
+  "/assets/it-kmitl/dsa/exams/dsa-final-2023.pdf": {
+    "sizeBytes": 5347119,
+    "pages": 7
+  },
+  "/assets/it-kmitl/dsa/exams/dsa-final-algorithmanalysis-std.pdf": {
+    "sizeBytes": 1840404,
+    "pages": 25
+  },
+  "/assets/it-kmitl/dsa/exams/dsa-final-chapter-searching-searching.pdf": {
+    "sizeBytes": 2724738,
+    "pages": 33
+  },
+  "/assets/it-kmitl/dsa/exams/dsa-final-data.pdf": {
+    "sizeBytes": 5355886,
+    "pages": 7
+  },
+  "/assets/it-kmitl/dsa/exams/dsa-final-divideconquer.pdf": {
+    "sizeBytes": 2077101,
+    "pages": 25
+  },
+  "/assets/it-kmitl/dsa/exams/dsa-final-dynamicprogramming.pdf": {
+    "sizeBytes": 1449995,
+    "pages": 28
+  },
+  "/assets/it-kmitl/dsa/exams/dsa-final-greedyalgorithm.pdf": {
+    "sizeBytes": 1496478,
+    "pages": 23
+  },
+  "/assets/it-kmitl/dsa/exams/dsa-final-hw12.pdf": {
+    "sizeBytes": 955529,
+    "pages": 5
+  },
+  "/assets/it-kmitl/dsa/exams/dsa-final-hw8.pdf": {
+    "sizeBytes": 259502,
+    "pages": 3
+  },
+  "/assets/it-kmitl/dsa/exams/dsa-final-mega-v2.pdf": {
+    "sizeBytes": 20100454,
+    "pages": 25
+  },
+  "/assets/it-kmitl/dsa/exams/dsa-final-recursion.pdf": {
+    "sizeBytes": 2217217,
+    "pages": 30
+  },
+  "/assets/it-kmitl/dsa/exams/dsa-final-sorting-1.pdf": {
+    "sizeBytes": 3175059,
+    "pages": 32
+  },
+  "/assets/it-kmitl/dsa/exams/dsa-final-unidentified.pdf": {
+    "sizeBytes": 1426969,
+    "pages": 1
+  },
+  "/assets/it-kmitl/dsa/exams/dsa-final-week11.pdf": {
+    "sizeBytes": 2198760,
+    "pages": 6
+  },
+  "/assets/it-kmitl/dsa/exams/dsa-final-week5.pdf": {
+    "sizeBytes": 3774872,
+    "pages": 58
+  },
+  "/assets/it-kmitl/dsa/exams/dsa-midterm-2565-term2.pdf": {
+    "sizeBytes": 188478,
+    "pages": 3
+  },
+  "/assets/it-kmitl/dsa/exams/dsa-midterm-array-and-linkedlist-std.pdf": {
+    "sizeBytes": 1511460,
+    "pages": 45
+  },
+  "/assets/it-kmitl/dsa/exams/dsa-midterm-avl-std-v3.pdf": {
+    "sizeBytes": 780628,
+    "pages": 15
+  },
+  "/assets/it-kmitl/dsa/exams/dsa-midterm-chapter-introduction-trees-binary.pdf": {
+    "sizeBytes": 3085713,
+    "pages": 42
+  },
+  "/assets/it-kmitl/dsa/exams/dsa-midterm-graph-std.pdf": {
+    "sizeBytes": 1892842,
+    "pages": 26
+  },
+  "/assets/it-kmitl/dsa/exams/dsa-midterm-hw-week2.pdf": {
+    "sizeBytes": 2336541,
+    "pages": 8
+  },
+  "/assets/it-kmitl/dsa/exams/dsa-midterm-hw3.pdf": {
+    "sizeBytes": 2087486,
+    "pages": 7
+  },
+  "/assets/it-kmitl/dsa/exams/dsa-midterm-hw4.pdf": {
+    "sizeBytes": 1521396,
+    "pages": 5
+  },
+  "/assets/it-kmitl/dsa/exams/dsa-midterm-hw7.pdf": {
+    "sizeBytes": 2138055,
+    "pages": 7
+  },
+  "/assets/it-kmitl/dsa/exams/dsa-midterm-other-binary-trees-std.pdf": {
+    "sizeBytes": 2155611,
+    "pages": 37
+  },
+  "/assets/it-kmitl/dsa/exams/dsa-midterm-pre-midterm-65-by-few.pdf": {
+    "sizeBytes": 456346,
+    "pages": 11
+  },
+  "/assets/it-kmitl/dsa/exams/dsa-midterm-pre-midterm-oop-65-by-few.pdf": {
+    "sizeBytes": 254054,
+    "pages": 2
+  },
+  "/assets/it-kmitl/dsa/exams/dsa-midterm-quiz-7.pdf": {
+    "sizeBytes": 2247229,
+    "pages": 1
+  },
+  "/assets/it-kmitl/dsa/exams/dsa-midterm-stack-queue-v2.pdf": {
+    "sizeBytes": 4270643,
+    "pages": 53
+  },
+  "/assets/it-kmitl/dsa/exams/dsa-midterm-unidentified.pdf": {
+    "sizeBytes": 163455,
+    "pages": 2
+  },
+  "/assets/it-kmitl/dsa/exercises/dsa-ex-algorithm-analysis.pdf": {
+    "sizeBytes": 87551,
+    "pages": 1
+  },
+  "/assets/it-kmitl/dsa/exercises/dsa-ex-dynamic-programming.pdf": {
+    "sizeBytes": 136343,
+    "pages": 1
+  },
+  "/assets/it-kmitl/dsa/exercises/dsa-ex-exercise-2-6-2-65.pdf": {
+    "sizeBytes": 183208,
+    "pages": 3
+  },
+  "/assets/it-kmitl/dsa/exercises/dsa-ex-exercisesupplement-chapter02-6-2-65.pdf": {
+    "sizeBytes": 2742293,
+    "pages": 12
+  },
+  "/assets/it-kmitl/dsa/exercises/dsa-ex-greedy-algorithm.pdf": {
+    "sizeBytes": 130478,
+    "pages": 1
+  },
+  "/assets/it-kmitl/dsa/exercises/dsa-ex-posttest-10-v2.pdf": {
+    "sizeBytes": 136174,
+    "pages": 1
+  },
+  "/assets/it-kmitl/dsa/exercises/dsa-ex-posttest-10.pdf": {
+    "sizeBytes": 116284,
+    "pages": 1
+  },
+  "/assets/it-kmitl/dsa/exercises/dsa-ex-posttest-11-v2.pdf": {
+    "sizeBytes": 148642,
+    "pages": 1
+  },
+  "/assets/it-kmitl/dsa/exercises/dsa-ex-posttest-11.pdf": {
+    "sizeBytes": 117100,
+    "pages": 1
+  },
+  "/assets/it-kmitl/dsa/exercises/dsa-ex-posttest-12-13.pdf": {
+    "sizeBytes": 118337,
+    "pages": 1
+  },
+  "/assets/it-kmitl/dsa/exercises/dsa-ex-posttest-14-v2.pdf": {
+    "sizeBytes": 124695,
+    "pages": 1
+  },
+  "/assets/it-kmitl/dsa/exercises/dsa-ex-posttest-14.pdf": {
+    "sizeBytes": 889797,
+    "pages": 6
+  },
+  "/assets/it-kmitl/dsa/exercises/dsa-ex-posttest-8-v2.pdf": {
+    "sizeBytes": 89004,
+    "pages": 1
+  },
+  "/assets/it-kmitl/dsa/exercises/dsa-ex-posttest-8-v3.pdf": {
+    "sizeBytes": 118680,
+    "pages": 1
+  },
+  "/assets/it-kmitl/dsa/exercises/dsa-ex-posttest-8.pdf": {
+    "sizeBytes": 107882,
+    "pages": 1
+  },
+  "/assets/it-kmitl/dsa/exercises/dsa-ex-posttest-9-v2.pdf": {
+    "sizeBytes": 95991,
+    "pages": 1
+  },
+  "/assets/it-kmitl/dsa/exercises/dsa-ex-posttest-9.pdf": {
+    "sizeBytes": 111980,
+    "pages": 1
+  },
+  "/assets/it-kmitl/dsa/exercises/dsa-ex-practice.pdf": {
+    "sizeBytes": 6544576,
+    "pages": 6
+  },
+  "/assets/it-kmitl/dsa/exercises/dsa-ex-recursion-dq.pdf": {
+    "sizeBytes": 111987,
+    "pages": 1
+  },
+  "/assets/it-kmitl/dsa/exercises/dsa-ex-searching.pdf": {
+    "sizeBytes": 86959,
+    "pages": 1
   },
   "/assets/it-kmitl/dsa/exercises/dsa-ex-solution-chapter02.pdf": {
     "sizeBytes": 304480,
@@ -131,9 +551,97 @@
     "sizeBytes": 529224,
     "pages": 3
   },
+  "/assets/it-kmitl/dsa/exercises/dsa-ex-sorting.pdf": {
+    "sizeBytes": 105286,
+    "pages": 1
+  },
+  "/assets/it-kmitl/dsa/exercises/dsa-hw-05.pdf": {
+    "sizeBytes": 1990801,
+    "pages": 10
+  },
+  "/assets/it-kmitl/dsa/exercises/dsa-hw-06.pdf": {
+    "sizeBytes": 1211230,
+    "pages": 6
+  },
+  "/assets/it-kmitl/dsa/exercises/dsa-hw-09-completed.pdf": {
+    "sizeBytes": 2023323,
+    "pages": 6
+  },
+  "/assets/it-kmitl/dsa/exercises/dsa-hw-10-completed.pdf": {
+    "sizeBytes": 1241498,
+    "pages": 4
+  },
+  "/assets/it-kmitl/dsa/exercises/dsa-hw-13-completed.pdf": {
+    "sizeBytes": 1270721,
+    "pages": 5
+  },
+  "/assets/it-kmitl/dsa/exercises/dsa-hw-14-completed.pdf": {
+    "sizeBytes": 1526126,
+    "pages": 6
+  },
+  "/assets/it-kmitl/dsa/lectures/dsa-lec-week02-array-linked-list.pdf": {
+    "sizeBytes": 3305114,
+    "pages": 44
+  },
+  "/assets/it-kmitl/dsa/lectures/dsa-lec-week03-stack-queue.pdf": {
+    "sizeBytes": 3488385,
+    "pages": 53
+  },
+  "/assets/it-kmitl/dsa/lectures/dsa-lec-week04-binary-tree.pdf": {
+    "sizeBytes": 1712392,
+    "pages": 24
+  },
+  "/assets/it-kmitl/dsa/lectures/dsa-lec-week05-bst.pdf": {
+    "sizeBytes": 1128565,
+    "pages": 21
+  },
+  "/assets/it-kmitl/dsa/lectures/dsa-lec-week05b-other-trees.pdf": {
+    "sizeBytes": 1944917,
+    "pages": 38
+  },
+  "/assets/it-kmitl/dsa/lectures/dsa-lec-week06-avl-tree.pdf": {
+    "sizeBytes": 1402013,
+    "pages": 19
+  },
+  "/assets/it-kmitl/dsa/lectures/dsa-lec-week07-graph.pdf": {
+    "sizeBytes": 2246893,
+    "pages": 26
+  },
+  "/assets/it-kmitl/dsa/lectures/dsa-lec-week09-algorithm-analysis.pdf": {
+    "sizeBytes": 2488289,
+    "pages": 27
+  },
+  "/assets/it-kmitl/dsa/lectures/dsa-lec-week10-searching.pdf": {
+    "sizeBytes": 2112412,
+    "pages": 32
+  },
+  "/assets/it-kmitl/dsa/lectures/dsa-lec-week11-sorting.pdf": {
+    "sizeBytes": 2710976,
+    "pages": 32
+  },
+  "/assets/it-kmitl/dsa/lectures/dsa-lec-week12-greedy-algorithm.pdf": {
+    "sizeBytes": 1226628,
+    "pages": 24
+  },
+  "/assets/it-kmitl/dsa/lectures/dsa-lec-week13-recursion.pdf": {
+    "sizeBytes": 1260167,
+    "pages": 30
+  },
+  "/assets/it-kmitl/dsa/lectures/dsa-lec-week14-divide-conquer.pdf": {
+    "sizeBytes": 1189950,
+    "pages": 25
+  },
+  "/assets/it-kmitl/dsa/lectures/dsa-lec-week15-dynamic-programming.pdf": {
+    "sizeBytes": 1085459,
+    "pages": 28
+  },
   "/assets/it-kmitl/dsa/sheets/dsa-sheet-recap-final.pdf": {
     "sizeBytes": 646190,
     "pages": 1
+  },
+  "/assets/it-kmitl/fe/exams/fe-final-ezzz-final-foundation-english-1.pdf": {
+    "sizeBytes": 1621639,
+    "pages": 3
   },
   "/assets/it-kmitl/fe/exams/fe-midterm-vocabulary.pdf": {
     "sizeBytes": 80126,
@@ -142,6 +650,10 @@
   "/assets/it-kmitl/fe/exercises/fe-ex-oral-exam-questions.pdf": {
     "sizeBytes": 242981,
     "pages": 2
+  },
+  "/assets/it-kmitl/fe/misc/2-workbook-intermediate-2-1.pdf": {
+    "sizeBytes": 8943120,
+    "pages": 133
   },
   "/assets/it-kmitl/fe2/exams/fe2-final-interview-questions.pdf": {
     "sizeBytes": 160220,
@@ -155,13 +667,84 @@
     "sizeBytes": 1854947,
     "pages": 25
   },
+  "/assets/it-kmitl/ics/exams/ics-final-graded-quiz-review.pdf": {
+    "sizeBytes": 3543516,
+    "pages": 27
+  },
+  "/assets/it-kmitl/ics/exams/ics-midterm-01.pdf": {
+    "sizeBytes": 6479622,
+    "pages": 6
+  },
+  "/assets/it-kmitl/ics/exams/ics-midterm-02.pdf": {
+    "sizeBytes": 6023416,
+    "pages": 8
+  },
   "/assets/it-kmitl/ics/exams/ics-midterm-1-2564.pdf": {
     "sizeBytes": 9857502,
     "pages": 10
   },
+  "/assets/it-kmitl/ics/exams/ics-midterm-ans-quiz-c.pdf": {
+    "sizeBytes": 112660,
+    "pages": 2
+  },
+  "/assets/it-kmitl/ics/exams/ics-midterm-exam.pdf": {
+    "sizeBytes": 785922,
+    "pages": 2
+  },
+  "/assets/it-kmitl/ics/exams/ics-midterm-exam2.pdf": {
+    "sizeBytes": 1380983,
+    "pages": 5
+  },
+  "/assets/it-kmitl/ics/exams/ics-midterm-image-1.pdf": {
+    "sizeBytes": 711551,
+    "pages": 3
+  },
+  "/assets/it-kmitl/ics/exams/ics-midterm-introduction-computer-ddigjiltaal-grounding.pdf": {
+    "sizeBytes": 6522591,
+    "pages": 6
+  },
+  "/assets/it-kmitl/ics/exams/ics-midterm-midtermv1.pdf": {
+    "sizeBytes": 1361348,
+    "pages": 6
+  },
+  "/assets/it-kmitl/ics/exams/ics-midterm-quiz-c.pdf": {
+    "sizeBytes": 112660,
+    "pages": 2
+  },
+  "/assets/it-kmitl/ics/exams/ics-midterm-unidentified.pdf": {
+    "sizeBytes": 963786,
+    "pages": 5
+  },
   "/assets/it-kmitl/ics/exams/ics-midterm-week01-07.pdf": {
     "sizeBytes": 3333095,
     "pages": 6
+  },
+  "/assets/it-kmitl/ics/exams/ics-quiz-c.pdf": {
+    "sizeBytes": 113085,
+    "pages": 2
+  },
+  "/assets/it-kmitl/ics/exams/ics-quiz-document.circ": {
+    "sizeBytes": 8704
+  },
+  "/assets/it-kmitl/ics/exams/ics-quiz-final-quiz.pdf": {
+    "sizeBytes": 1548405,
+    "pages": 34
+  },
+  "/assets/it-kmitl/ics/exams/ics-quiz-general.pdf": {
+    "sizeBytes": 3554776,
+    "pages": 15
+  },
+  "/assets/it-kmitl/ics/exams/ics-quiz-lab2.circ": {
+    "sizeBytes": 10831
+  },
+  "/assets/it-kmitl/ics/exams/ics-quiz-lab3.circ": {
+    "sizeBytes": 7572
+  },
+  "/assets/it-kmitl/ics/exams/ics-quiz-seg.circ": {
+    "sizeBytes": 14471
+  },
+  "/assets/it-kmitl/ics/exams/ics-quiz-xor-project.circ": {
+    "sizeBytes": 11681
   },
   "/assets/it-kmitl/ics/exams/ics-quiz1-a-answers.pdf": {
     "sizeBytes": 539166,
@@ -179,49 +762,259 @@
     "sizeBytes": 112836,
     "pages": 2
   },
+  "/assets/it-kmitl/ics/exercises/ics-ex-set02.pdf": {
+    "sizeBytes": 36368,
+    "pages": 2
+  },
+  "/assets/it-kmitl/ics/exercises/ics-ex-test.pdf": {
+    "sizeBytes": 1610385,
+    "pages": 8
+  },
+  "/assets/it-kmitl/ics/labs/ics-lab-01-completed.circ": {
+    "sizeBytes": 12360
+  },
+  "/assets/it-kmitl/ics/labs/ics-lab-01-completed.pdf": {
+    "sizeBytes": 266454,
+    "pages": 7
+  },
+  "/assets/it-kmitl/ics/labs/ics-lab-01-v2.pdf": {
+    "sizeBytes": 82872,
+    "pages": 2
+  },
+  "/assets/it-kmitl/ics/labs/ics-lab-01-y1-s1.pdf": {
+    "sizeBytes": 239031,
+    "pages": 7
+  },
   "/assets/it-kmitl/ics/labs/ics-lab-01.pdf": {
     "sizeBytes": 213521,
     "pages": 4
+  },
+  "/assets/it-kmitl/ics/labs/ics-lab-02-completed-v2.pdf": {
+    "sizeBytes": 244133,
+    "pages": 5
+  },
+  "/assets/it-kmitl/ics/labs/ics-lab-02-completed.pdf": {
+    "sizeBytes": 227398,
+    "pages": 2
+  },
+  "/assets/it-kmitl/ics/labs/ics-lab-02-v2.pdf": {
+    "sizeBytes": 657045,
+    "pages": 5
+  },
+  "/assets/it-kmitl/ics/labs/ics-lab-02-v3.pdf": {
+    "sizeBytes": 1825256,
+    "pages": 5
+  },
+  "/assets/it-kmitl/ics/labs/ics-lab-02-v4.pdf": {
+    "sizeBytes": 730454,
+    "pages": 4
+  },
+  "/assets/it-kmitl/ics/labs/ics-lab-02-y1-s1.pdf": {
+    "sizeBytes": 143201,
+    "pages": 5
   },
   "/assets/it-kmitl/ics/labs/ics-lab-02.pdf": {
     "sizeBytes": 101080,
     "pages": 5
   },
+  "/assets/it-kmitl/ics/labs/ics-lab-03-completed.pdf": {
+    "sizeBytes": 709390,
+    "pages": 9
+  },
+  "/assets/it-kmitl/ics/labs/ics-lab-03-v2.pdf": {
+    "sizeBytes": 1242703,
+    "pages": 8
+  },
+  "/assets/it-kmitl/ics/labs/ics-lab-03-y1-s1.pdf": {
+    "sizeBytes": 299680,
+    "pages": 2
+  },
   "/assets/it-kmitl/ics/labs/ics-lab-03.pdf": {
     "sizeBytes": 245358,
     "pages": 8
+  },
+  "/assets/it-kmitl/ics/labs/ics-lab-04-completed.pdf": {
+    "sizeBytes": 1379052,
+    "pages": 10
+  },
+  "/assets/it-kmitl/ics/labs/ics-lab-04-y1-s1.pdf": {
+    "sizeBytes": 226101,
+    "pages": 10
   },
   "/assets/it-kmitl/ics/labs/ics-lab-04.pdf": {
     "sizeBytes": 218172,
     "pages": 10
   },
+  "/assets/it-kmitl/ics/labs/ics-lab-05-v2.pdf": {
+    "sizeBytes": 826377,
+    "pages": 11
+  },
+  "/assets/it-kmitl/ics/labs/ics-lab-05-v3.pdf": {
+    "sizeBytes": 1151936,
+    "pages": 11
+  },
+  "/assets/it-kmitl/ics/labs/ics-lab-05.pdf": {
+    "sizeBytes": 974903,
+    "pages": 11
+  },
+  "/assets/it-kmitl/ics/labs/ics-lab-lab04.pdf": {
+    "sizeBytes": 231152,
+    "pages": 2
+  },
+  "/assets/it-kmitl/ics/labs/ics-lab-mock-lab01.pdf": {
+    "sizeBytes": 881249,
+    "pages": 3
+  },
+  "/assets/it-kmitl/ics/labs/ics-lab-week03.pdf": {
+    "sizeBytes": 439867,
+    "pages": 9
+  },
+  "/assets/it-kmitl/ics/labs/ics-lab-week04.pdf": {
+    "sizeBytes": 1197505,
+    "pages": 10
+  },
+  "/assets/it-kmitl/ics/labs/ics-lab-week05-v2.pdf": {
+    "sizeBytes": 589546,
+    "pages": 4
+  },
+  "/assets/it-kmitl/ics/labs/ics-lab-week05.pdf": {
+    "sizeBytes": 305780,
+    "pages": 11
+  },
+  "/assets/it-kmitl/ics/labs/ics-lab-week07-draft.pdf": {
+    "sizeBytes": 1582907,
+    "pages": 19
+  },
+  "/assets/it-kmitl/ics/lectures/ics-lec-basic-computer-knowledge-computer.pdf": {
+    "sizeBytes": 3672441,
+    "pages": 40
+  },
+  "/assets/it-kmitl/ics/lectures/ics-lec-chapter01.pdf": {
+    "sizeBytes": 1969370,
+    "pages": 37
+  },
+  "/assets/it-kmitl/ics/lectures/ics-lec-chapter02-v2.pdf": {
+    "sizeBytes": 2305276,
+    "pages": 48
+  },
+  "/assets/it-kmitl/ics/lectures/ics-lec-chapter02.pdf": {
+    "sizeBytes": 1113575,
+    "pages": 12
+  },
+  "/assets/it-kmitl/ics/lectures/ics-lec-chapter03.pdf": {
+    "sizeBytes": 2074212,
+    "pages": 24
+  },
+  "/assets/it-kmitl/ics/lectures/ics-lec-chapter04-v2.pdf": {
+    "sizeBytes": 1386434,
+    "pages": 57
+  },
+  "/assets/it-kmitl/ics/lectures/ics-lec-chapter04.pdf": {
+    "sizeBytes": 1759456,
+    "pages": 47
+  },
+  "/assets/it-kmitl/ics/lectures/ics-lec-chapter05.pdf": {
+    "sizeBytes": 1295141,
+    "pages": 27
+  },
+  "/assets/it-kmitl/ics/lectures/ics-lec-slide03-1.pdf": {
+    "sizeBytes": 1776432,
+    "pages": 39
+  },
   "/assets/it-kmitl/ics/lectures/ics-lec-week01-introduction.pdf": {
     "sizeBytes": 1032195,
     "pages": 12
+  },
+  "/assets/it-kmitl/ics/lectures/ics-lec-week01-v2.pdf": {
+    "sizeBytes": 1426217,
+    "pages": 12
+  },
+  "/assets/it-kmitl/ics/lectures/ics-lec-week01.pdf": {
+    "sizeBytes": 2821664,
+    "pages": 42
   },
   "/assets/it-kmitl/ics/lectures/ics-lec-week02-boolean-algebra.pdf": {
     "sizeBytes": 259403,
     "pages": 23
   },
+  "/assets/it-kmitl/ics/lectures/ics-lec-week02-boolean.pdf": {
+    "sizeBytes": 706975,
+    "pages": 23
+  },
+  "/assets/it-kmitl/ics/lectures/ics-lec-week02-v2.pdf": {
+    "sizeBytes": 984229,
+    "pages": 23
+  },
+  "/assets/it-kmitl/ics/lectures/ics-lec-week02.pdf": {
+    "sizeBytes": 2308267,
+    "pages": 48
+  },
+  "/assets/it-kmitl/ics/lectures/ics-lec-week03-canonical-forms-y1-s1.pdf": {
+    "sizeBytes": 1337103,
+    "pages": 16
+  },
   "/assets/it-kmitl/ics/lectures/ics-lec-week03-canonical-forms.pdf": {
     "sizeBytes": 209889,
     "pages": 15
+  },
+  "/assets/it-kmitl/ics/lectures/ics-lec-week03-v2.pdf": {
+    "sizeBytes": 1034350,
+    "pages": 16
+  },
+  "/assets/it-kmitl/ics/lectures/ics-lec-week03.pdf": {
+    "sizeBytes": 1756276,
+    "pages": 39
   },
   "/assets/it-kmitl/ics/lectures/ics-lec-week04-boolean-minimization.pdf": {
     "sizeBytes": 56690,
     "pages": 3
   },
+  "/assets/it-kmitl/ics/lectures/ics-lec-week04-kmap.pdf": {
+    "sizeBytes": 813800,
+    "pages": 25
+  },
+  "/assets/it-kmitl/ics/lectures/ics-lec-week04-v2.pdf": {
+    "sizeBytes": 1244365,
+    "pages": 25
+  },
+  "/assets/it-kmitl/ics/lectures/ics-lec-week04.pdf": {
+    "sizeBytes": 1558908,
+    "pages": 58
+  },
   "/assets/it-kmitl/ics/lectures/ics-lec-week05-time-response.pdf": {
     "sizeBytes": 366676,
     "pages": 6
+  },
+  "/assets/it-kmitl/ics/lectures/ics-lec-week05-v2.pdf": {
+    "sizeBytes": 255523,
+    "pages": 5
+  },
+  "/assets/it-kmitl/ics/lectures/ics-lec-week05.pdf": {
+    "sizeBytes": 1312244,
+    "pages": 32
   },
   "/assets/it-kmitl/ics/lectures/ics-lec-week06-number-systems.pdf": {
     "sizeBytes": 354046,
     "pages": 11
   },
+  "/assets/it-kmitl/ics/lectures/ics-lec-week06-v2.pdf": {
+    "sizeBytes": 129056,
+    "pages": 12
+  },
+  "/assets/it-kmitl/ics/lectures/ics-lec-week06.pdf": {
+    "sizeBytes": 932632,
+    "pages": 25
+  },
   "/assets/it-kmitl/ics/lectures/ics-lec-week07-mux.pdf": {
     "sizeBytes": 1014674,
     "pages": 18
+  },
+  "/assets/it-kmitl/ics/lectures/ics-lec-week07.pdf": {
+    "sizeBytes": 850260,
+    "pages": 18
+  },
+  "/assets/it-kmitl/ics/misc/quiz-2-test.circ": {
+    "sizeBytes": 14477
   },
   "/assets/it-kmitl/ics/pages/pg-01.jpg": {
     "sizeBytes": 104060
@@ -257,13 +1050,41 @@
     "sizeBytes": 406452,
     "pages": 3
   },
+  "/assets/it-kmitl/ics/sheets/ics-sheet-recap.pdf": {
+    "sizeBytes": 5302234,
+    "pages": 10
+  },
+  "/assets/it-kmitl/ics/sheets/ics-sheet-summary-ics-v2.pdf": {
+    "sizeBytes": 3714029,
+    "pages": 6
+  },
   "/assets/it-kmitl/ics/sheets/ics-sheet-summary.pdf": {
     "sizeBytes": 194876,
     "pages": 1
   },
+  "/assets/it-kmitl/itf/exams/itf-final-2023.pdf": {
+    "sizeBytes": 16292345,
+    "pages": 28
+  },
+  "/assets/it-kmitl/itf/exams/itf-midterm-2022-01.pdf": {
+    "sizeBytes": 20210850,
+    "pages": 11
+  },
   "/assets/it-kmitl/itf/exams/itf-midterm-2022.pdf": {
     "sizeBytes": 1746096,
     "pages": 10
+  },
+  "/assets/it-kmitl/itf/exams/itf-midterm-computing-components-storage.pdf": {
+    "sizeBytes": 12781121,
+    "pages": 11
+  },
+  "/assets/it-kmitl/itf/exams/itf-midterm-network.pdf": {
+    "sizeBytes": 15956586,
+    "pages": 13
+  },
+  "/assets/it-kmitl/itf/exams/itf-midterm-untitled-notebook-3.pdf": {
+    "sizeBytes": 606922,
+    "pages": 1
   },
   "/assets/it-kmitl/itf/exams/itf-quiz-01.pdf": {
     "sizeBytes": 239072,
@@ -281,6 +1102,62 @@
     "sizeBytes": 1447838,
     "pages": 19
   },
+  "/assets/it-kmitl/itf/labs/itf-lab-week12.pdf": {
+    "sizeBytes": 596411,
+    "pages": 4
+  },
+  "/assets/it-kmitl/itf/lectures/itf-lec-final.pdf": {
+    "sizeBytes": 2660867,
+    "pages": 2
+  },
+  "/assets/it-kmitl/itf/lectures/itf-lec-focuson-web.pdf": {
+    "sizeBytes": 5464996,
+    "pages": 95
+  },
+  "/assets/it-kmitl/itf/lectures/itf-lec-internet-thai.pdf": {
+    "sizeBytes": 5547777,
+    "pages": 81
+  },
+  "/assets/it-kmitl/itf/lectures/itf-lec-itf65-database.pdf": {
+    "sizeBytes": 3277754,
+    "pages": 26
+  },
+  "/assets/it-kmitl/itf/lectures/itf-lec-itf65-os.pdf": {
+    "sizeBytes": 5340869,
+    "pages": 50
+  },
+  "/assets/it-kmitl/itf/lectures/itf-lec-itf65-program.pdf": {
+    "sizeBytes": 7521848,
+    "pages": 82
+  },
+  "/assets/it-kmitl/itf/lectures/itf-lec-lecture-01-1.pdf": {
+    "sizeBytes": 3491642,
+    "pages": 20
+  },
+  "/assets/it-kmitl/itf/lectures/itf-lec-lecture-02.pdf": {
+    "sizeBytes": 3205910,
+    "pages": 23
+  },
+  "/assets/it-kmitl/itf/lectures/itf-lec-lecture-03.pdf": {
+    "sizeBytes": 1665502,
+    "pages": 18
+  },
+  "/assets/it-kmitl/itf/lectures/itf-lec-network-1.pdf": {
+    "sizeBytes": 3053346,
+    "pages": 6
+  },
+  "/assets/it-kmitl/itf/lectures/itf-lec-network-2.pdf": {
+    "sizeBytes": 281910,
+    "pages": 2
+  },
+  "/assets/it-kmitl/itf/lectures/itf-lec-pointing-device.pdf": {
+    "sizeBytes": 627676,
+    "pages": 2
+  },
+  "/assets/it-kmitl/itf/lectures/itf-lec-week00-course-introduction.pdf": {
+    "sizeBytes": 1170521,
+    "pages": 4
+  },
   "/assets/it-kmitl/itf/lectures/itf-lec-week00-intro.pdf": {
     "sizeBytes": 1202915,
     "pages": 4
@@ -297,21 +1174,97 @@
     "sizeBytes": 1626369,
     "pages": 18
   },
+  "/assets/it-kmitl/itf/lectures/itf-lec-week04-y1-s1.pdf": {
+    "sizeBytes": 3280801,
+    "pages": 33
+  },
   "/assets/it-kmitl/itf/lectures/itf-lec-week04.pdf": {
     "sizeBytes": 2772361,
     "pages": 33
+  },
+  "/assets/it-kmitl/itf/lectures/itf-lec-week05-y1-s1.pdf": {
+    "sizeBytes": 3228459,
+    "pages": 22
   },
   "/assets/it-kmitl/itf/lectures/itf-lec-week05.pdf": {
     "sizeBytes": 2333983,
     "pages": 22
   },
+  "/assets/it-kmitl/itf/lectures/itf-lec-week06-os-v2.pdf": {
+    "sizeBytes": 1301893,
+    "pages": 2
+  },
+  "/assets/it-kmitl/itf/lectures/itf-lec-week06-os-y1-s1.pdf": {
+    "sizeBytes": 5399660,
+    "pages": 50
+  },
   "/assets/it-kmitl/itf/lectures/itf-lec-week06-os.pdf": {
     "sizeBytes": 6915005,
     "pages": 50
   },
+  "/assets/it-kmitl/itf/lectures/itf-lec-week07-programming-apps.pdf": {
+    "sizeBytes": 8060325,
+    "pages": 84
+  },
   "/assets/it-kmitl/itf/lectures/itf-lec-week07-programs-apps.pdf": {
     "sizeBytes": 8957952,
     "pages": 83
+  },
+  "/assets/it-kmitl/itf/lectures/itf-lec-week08-database.pdf": {
+    "sizeBytes": 3309435,
+    "pages": 26
+  },
+  "/assets/it-kmitl/itf/lectures/itf-lec-week08.pdf": {
+    "sizeBytes": 4183751,
+    "pages": 96
+  },
+  "/assets/it-kmitl/itf/lectures/itf-lec-week09-ethics.pdf": {
+    "sizeBytes": 5176176,
+    "pages": 58
+  },
+  "/assets/it-kmitl/itf/lectures/itf-lec-week10-v2.pdf": {
+    "sizeBytes": 4262763,
+    "pages": 49
+  },
+  "/assets/it-kmitl/itf/lectures/itf-lec-week11-internet.pdf": {
+    "sizeBytes": 7560190,
+    "pages": 69
+  },
+  "/assets/it-kmitl/itf/lectures/itf-lec-week12-computer-networks.pdf": {
+    "sizeBytes": 4939732,
+    "pages": 92
+  },
+  "/assets/it-kmitl/itf/lectures/itf-lec-week13-wi-fi.pdf": {
+    "sizeBytes": 1742109,
+    "pages": 41
+  },
+  "/assets/it-kmitl/itf/lectures/itf-lec-week14-it-system.pdf": {
+    "sizeBytes": 5795331,
+    "pages": 66
+  },
+  "/assets/it-kmitl/itf/lectures/itf-lec-week15-web.pdf": {
+    "sizeBytes": 5136105,
+    "pages": 74
+  },
+  "/assets/it-kmitl/itf/misc/financial.xlsx": {
+    "sizeBytes": 83418
+  },
+  "/assets/it-kmitl/itf/misc/lab06-lab-work-group-1.pdf": {
+    "sizeBytes": 52784,
+    "pages": 1
+  },
+  "/assets/it-kmitl/itf/misc/lab06-report-group1.xlsx": {
+    "sizeBytes": 85328
+  },
+  "/assets/it-kmitl/itf/misc/lab07-2569-microsoft-excel-2.pdf": {
+    "sizeBytes": 350436,
+    "pages": 6
+  },
+  "/assets/it-kmitl/itf/misc/lab07-69070027.xlsx": {
+    "sizeBytes": 26898
+  },
+  "/assets/it-kmitl/itf/misc/lab07-lab-sheet-data-2569.xlsx": {
+    "sizeBytes": 26902
   },
   "/assets/it-kmitl/itf/notes/itf-note-01.webp": {
     "sizeBytes": 57836
@@ -395,13 +1348,25 @@
     "sizeBytes": 1633672,
     "pages": 5
   },
+  "/assets/it-kmitl/itf/sheets/itf-sheet-recap.pdf": {
+    "sizeBytes": 8274027,
+    "pages": 16
+  },
   "/assets/it-kmitl/itf/sheets/itf-sheet-review-questions.pdf": {
     "sizeBytes": 994235,
     "pages": 2
   },
+  "/assets/it-kmitl/itf/sheets/itf-sheet-reviews-web-app.pdf": {
+    "sizeBytes": 5489338,
+    "pages": 54
+  },
   "/assets/it-kmitl/itf/sheets/itf-sheet-study-guide.pdf": {
     "sizeBytes": 1911741,
     "pages": 10
+  },
+  "/assets/it-kmitl/itf/sheets/itf-sheet-summary.pdf": {
+    "sizeBytes": 14317301,
+    "pages": 19
   },
   "/assets/it-kmitl/mfit/activities/mfit-1-2024-in-class-activity-week5.pdf": {
     "sizeBytes": 193308,
@@ -431,6 +1396,54 @@
     "sizeBytes": 112711,
     "pages": 2
   },
+  "/assets/it-kmitl/mfit/exams/mfit-final-2560.pdf": {
+    "sizeBytes": 1583183,
+    "pages": 10
+  },
+  "/assets/it-kmitl/mfit/exams/mfit-final-cdn-fbsbx-com.pdf": {
+    "sizeBytes": 5924204,
+    "pages": 19
+  },
+  "/assets/it-kmitl/mfit/exams/mfit-final-copy-of-final-mathit-2559.pdf": {
+    "sizeBytes": 1907383,
+    "pages": 9
+  },
+  "/assets/it-kmitl/mfit/exams/mfit-final-final-mathit-2559.pdf": {
+    "sizeBytes": 2043524,
+    "pages": 9
+  },
+  "/assets/it-kmitl/mfit/exams/mfit-final-final-mathit-2561.pdf": {
+    "sizeBytes": 1388622,
+    "pages": 12
+  },
+  "/assets/it-kmitl/mfit/exams/mfit-final-notelub.pdf": {
+    "sizeBytes": 225347,
+    "pages": 3
+  },
+  "/assets/it-kmitl/mfit/exams/mfit-final-plickerscards-1up-1-63.pdf": {
+    "sizeBytes": 7487,
+    "pages": 1
+  },
+  "/assets/it-kmitl/mfit/exams/mfit-final-unidentified.pdf": {
+    "sizeBytes": 963968,
+    "pages": 3
+  },
+  "/assets/it-kmitl/mfit/exams/mfit-midterm-01.pdf": {
+    "sizeBytes": 6726556,
+    "pages": 13
+  },
+  "/assets/it-kmitl/mfit/exams/mfit-midterm-elementary-linear-algebra-ron-larson-david-c.pdf": {
+    "sizeBytes": 6926135,
+    "pages": 565
+  },
+  "/assets/it-kmitl/mfit/exams/mfit-midterm-guidelineexam-mfit.pdf": {
+    "sizeBytes": 7016382,
+    "pages": 10
+  },
+  "/assets/it-kmitl/mfit/exams/mfit-midterm-open-2.pdf": {
+    "sizeBytes": 3098310,
+    "pages": 38
+  },
   "/assets/it-kmitl/mfit/exams/mfit-midterm-open-book.pdf": {
     "sizeBytes": 1203232,
     "pages": 15
@@ -443,6 +1456,34 @@
     "sizeBytes": 1021164,
     "pages": 1
   },
+  "/assets/it-kmitl/mfit/exams/mfit-midterm-week01.pdf": {
+    "sizeBytes": 2331704,
+    "pages": 41
+  },
+  "/assets/it-kmitl/mfit/exams/mfit-midterm-week04.pdf": {
+    "sizeBytes": 6769770,
+    "pages": 44
+  },
+  "/assets/it-kmitl/mfit/exams/mfit-midterm-week05.pdf": {
+    "sizeBytes": 4081892,
+    "pages": 41
+  },
+  "/assets/it-kmitl/mfit/exams/mfit-midterm-week06.pdf": {
+    "sizeBytes": 4782910,
+    "pages": 39
+  },
+  "/assets/it-kmitl/mfit/exams/mfit-midterm-week07.pdf": {
+    "sizeBytes": 4526060,
+    "pages": 56
+  },
+  "/assets/it-kmitl/mfit/exercises/mfit-ex-exercise-1-1.pdf": {
+    "sizeBytes": 8849969,
+    "pages": 66
+  },
+  "/assets/it-kmitl/mfit/exercises/mfit-ex-exercise-1.pdf": {
+    "sizeBytes": 8706247,
+    "pages": 66
+  },
   "/assets/it-kmitl/mfit/exercises/mfit-ex-practice.pdf": {
     "sizeBytes": 2416831,
     "pages": 12
@@ -451,6 +1492,238 @@
     "sizeBytes": 2075543,
     "pages": 10
   },
+  "/assets/it-kmitl/mfit/exercises/mfit-ex-week01-activity-completed-v2.pdf": {
+    "sizeBytes": 760260,
+    "pages": 21
+  },
+  "/assets/it-kmitl/mfit/exercises/mfit-ex-week01-activity-completed.pdf": {
+    "sizeBytes": 1610497,
+    "pages": 9
+  },
+  "/assets/it-kmitl/mfit/exercises/mfit-ex-week01-activity-v2.pdf": {
+    "sizeBytes": 2034564,
+    "pages": 7
+  },
+  "/assets/it-kmitl/mfit/exercises/mfit-ex-week02-activity-v2.pdf": {
+    "sizeBytes": 1228215,
+    "pages": 5
+  },
+  "/assets/it-kmitl/mfit/exercises/mfit-ex-week02-activity-v3.pdf": {
+    "sizeBytes": 471424,
+    "pages": 3
+  },
+  "/assets/it-kmitl/mfit/exercises/mfit-ex-week02-activity.pdf": {
+    "sizeBytes": 549147,
+    "pages": 5
+  },
+  "/assets/it-kmitl/mfit/exercises/mfit-ex-week03-activity-v2.pdf": {
+    "sizeBytes": 557789,
+    "pages": 2
+  },
+  "/assets/it-kmitl/mfit/exercises/mfit-ex-week03-activity-v3.pdf": {
+    "sizeBytes": 319833,
+    "pages": 2
+  },
+  "/assets/it-kmitl/mfit/exercises/mfit-ex-week03-activity.pdf": {
+    "sizeBytes": 343371,
+    "pages": 4
+  },
+  "/assets/it-kmitl/mfit/exercises/mfit-ex-week04-activity-v2.pdf": {
+    "sizeBytes": 842239,
+    "pages": 5
+  },
+  "/assets/it-kmitl/mfit/exercises/mfit-ex-week04-activity.pdf": {
+    "sizeBytes": 112807,
+    "pages": 5
+  },
+  "/assets/it-kmitl/mfit/exercises/mfit-ex-week05-activity-v2.pdf": {
+    "sizeBytes": 958076,
+    "pages": 6
+  },
+  "/assets/it-kmitl/mfit/exercises/mfit-ex-week05-activity.pdf": {
+    "sizeBytes": 160505,
+    "pages": 5
+  },
+  "/assets/it-kmitl/mfit/exercises/mfit-ex-week06-activity-v2.pdf": {
+    "sizeBytes": 1023522,
+    "pages": 6
+  },
+  "/assets/it-kmitl/mfit/exercises/mfit-ex-week06-activity.pdf": {
+    "sizeBytes": 223767,
+    "pages": 5
+  },
+  "/assets/it-kmitl/mfit/exercises/mfit-ex-week07-activity-v2.pdf": {
+    "sizeBytes": 741558,
+    "pages": 3
+  },
+  "/assets/it-kmitl/mfit/exercises/mfit-ex-week07-activity.pdf": {
+    "sizeBytes": 78637,
+    "pages": 4
+  },
+  "/assets/it-kmitl/mfit/exercises/mfit-hw-calculus-week08.pdf": {
+    "sizeBytes": 465619,
+    "pages": 3
+  },
+  "/assets/it-kmitl/mfit/exercises/mfit-hw-calculus-week09.pdf": {
+    "sizeBytes": 449902,
+    "pages": 3
+  },
+  "/assets/it-kmitl/mfit/exercises/mfit-hw-calculus-week10.pdf": {
+    "sizeBytes": 570514,
+    "pages": 4
+  },
+  "/assets/it-kmitl/mfit/exercises/mfit-hw-calculus-week12.pdf": {
+    "sizeBytes": 451656,
+    "pages": 4
+  },
+  "/assets/it-kmitl/mfit/exercises/mfit-hw-calculus-week13.pdf": {
+    "sizeBytes": 441624,
+    "pages": 5
+  },
+  "/assets/it-kmitl/mfit/exercises/mfit-hw-calculus-week14.pdf": {
+    "sizeBytes": 777575,
+    "pages": 5
+  },
+  "/assets/it-kmitl/mfit/exercises/mfit-hw-week08-function-limit-continuity.pdf": {
+    "sizeBytes": 280589,
+    "pages": 2
+  },
+  "/assets/it-kmitl/mfit/exercises/mfit-hw-week09-derivative-i.pdf": {
+    "sizeBytes": 696881,
+    "pages": 2
+  },
+  "/assets/it-kmitl/mfit/exercises/mfit-hw-week10-derivative-ii.pdf": {
+    "sizeBytes": 436801,
+    "pages": 4
+  },
+  "/assets/it-kmitl/mfit/exercises/mfit-hw-week11-derivative-apps-v2.pdf": {
+    "sizeBytes": 467581,
+    "pages": 1
+  },
+  "/assets/it-kmitl/mfit/exercises/mfit-hw-week11-derivative-apps.pdf": {
+    "sizeBytes": 373951,
+    "pages": 2
+  },
+  "/assets/it-kmitl/mfit/exercises/mfit-hw-week12-integration-i.pdf": {
+    "sizeBytes": 218877,
+    "pages": 1
+  },
+  "/assets/it-kmitl/mfit/exercises/mfit-hw-week13-integration-ii.pdf": {
+    "sizeBytes": 411747,
+    "pages": 2
+  },
+  "/assets/it-kmitl/mfit/exercises/mfit-hw-week14-integration-apps.pdf": {
+    "sizeBytes": 678801,
+    "pages": 3
+  },
+  "/assets/it-kmitl/mfit/lectures/m4-it-calculus-01-handouts-4p.pdf": {
+    "sizeBytes": 3710490,
+    "pages": 14
+  },
+  "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-01-handout.pdf": {
+    "sizeBytes": 3938430,
+    "pages": 15
+  },
+  "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-01.pdf": {
+    "sizeBytes": 4285885,
+    "pages": 15
+  },
+  "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-02-handout.pdf": {
+    "sizeBytes": 5511850,
+    "pages": 14
+  },
+  "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-02.pdf": {
+    "sizeBytes": 6902150,
+    "pages": 14
+  },
+  "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-03-handout.pdf": {
+    "sizeBytes": 5429942,
+    "pages": 12
+  },
+  "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-03.pdf": {
+    "sizeBytes": 5465761,
+    "pages": 13
+  },
+  "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-04-handout.pdf": {
+    "sizeBytes": 4848143,
+    "pages": 9
+  },
+  "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-04.pdf": {
+    "sizeBytes": 5804605,
+    "pages": 9
+  },
+  "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-05-handout.pdf": {
+    "sizeBytes": 4240434,
+    "pages": 9
+  },
+  "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-05.pdf": {
+    "sizeBytes": 4623590,
+    "pages": 9
+  },
+  "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-06-handout.pdf": {
+    "sizeBytes": 6060449,
+    "pages": 12
+  },
+  "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-06.pdf": {
+    "sizeBytes": 6404410,
+    "pages": 13
+  },
+  "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-07-handout.pdf": {
+    "sizeBytes": 5921791,
+    "pages": 11
+  },
+  "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-07.pdf": {
+    "sizeBytes": 6793903,
+    "pages": 11
+  },
+  "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-08-handout.pdf": {
+    "sizeBytes": 5036832,
+    "pages": 9
+  },
+  "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-08.pdf": {
+    "sizeBytes": 5086636,
+    "pages": 9
+  },
+  "/assets/it-kmitl/mfit/lectures/mfit-lec-calforbio-chapter09-2552.pdf": {
+    "sizeBytes": 228356,
+    "pages": 11
+  },
+  "/assets/it-kmitl/mfit/lectures/mfit-lec-week01-v2.pdf": {
+    "sizeBytes": 2342348,
+    "pages": 42
+  },
+  "/assets/it-kmitl/mfit/lectures/mfit-lec-week02-v2.pdf": {
+    "sizeBytes": 4496786,
+    "pages": 41
+  },
+  "/assets/it-kmitl/mfit/lectures/mfit-lec-week02.pdf": {
+    "sizeBytes": 2792674,
+    "pages": 41
+  },
+  "/assets/it-kmitl/mfit/lectures/mfit-lec-week03-v2.pdf": {
+    "sizeBytes": 4898316,
+    "pages": 41
+  },
+  "/assets/it-kmitl/mfit/lectures/mfit-lec-week04-v2.pdf": {
+    "sizeBytes": 4113101,
+    "pages": 44
+  },
+  "/assets/it-kmitl/mfit/lectures/mfit-lec-week05-v2.pdf": {
+    "sizeBytes": 4187086,
+    "pages": 40
+  },
+  "/assets/it-kmitl/mfit/lectures/mfit-lec-week06-v2.pdf": {
+    "sizeBytes": 4430538,
+    "pages": 38
+  },
+  "/assets/it-kmitl/mfit/lectures/mfit-lec-week07-v2.pdf": {
+    "sizeBytes": 4202541,
+    "pages": 55
+  },
+  "/assets/it-kmitl/mfit/lectures/mfit-note-week03.pdf": {
+    "sizeBytes": 572141,
+    "pages": 5
+  },
   "/assets/it-kmitl/mfit/sheets/mfit-sheet-cheat-sheet-2022.pdf": {
     "sizeBytes": 491710,
     "pages": 3
@@ -458,6 +1731,18 @@
   "/assets/it-kmitl/mfit/sheets/mfit-sheet-cheat-sheet-2023.pdf": {
     "sizeBytes": 490855,
     "pages": 1
+  },
+  "/assets/it-kmitl/mfit/sheets/mfit-sheet-final-recap-week08-13-v2.pdf": {
+    "sizeBytes": 5932540,
+    "pages": 19
+  },
+  "/assets/it-kmitl/mfit/sheets/mfit-sheet-final-recap-week08-13.pdf": {
+    "sizeBytes": 5926993,
+    "pages": 19
+  },
+  "/assets/it-kmitl/mfit/sheets/mfit-sheet-recap-calculus.pdf": {
+    "sizeBytes": 1819695,
+    "pages": 6
   },
   "/assets/it-kmitl/mfit/slides/mfit-1-2026-lecture-slides-week1.pdf": {
     "sizeBytes": 1680102,
@@ -487,6 +1772,233 @@
     "sizeBytes": 3145137,
     "pages": 55
   },
+  "/assets/it-kmitl/oop/exams/oop-final-prefinal.pdf": {
+    "sizeBytes": 468240,
+    "pages": 5
+  },
+  "/assets/it-kmitl/oop/exams/oop-midterm-it-kmitl-object-oriented-programming-oop-midterm-1.pdf": {
+    "sizeBytes": 10158018,
+    "pages": 2
+  },
+  "/assets/it-kmitl/oop/exams/oop-midterm-mock-exam.pdf": {
+    "sizeBytes": 444955,
+    "pages": 10
+  },
+  "/assets/it-kmitl/oop/exams/oop-midterm-unidentified-v2.pdf": {
+    "sizeBytes": 449801,
+    "pages": 2
+  },
+  "/assets/it-kmitl/oop/exams/oop-midterm-unidentified.pdf": {
+    "sizeBytes": 2988238,
+    "pages": 51
+  },
+  "/assets/it-kmitl/oop/labs/oop-lab-01-completed.pdf": {
+    "sizeBytes": 1021503,
+    "pages": 9
+  },
+  "/assets/it-kmitl/oop/labs/oop-lab-02-completed.pdf": {
+    "sizeBytes": 864565,
+    "pages": 8
+  },
+  "/assets/it-kmitl/oop/labs/oop-lab-03-completed.pdf": {
+    "sizeBytes": 535547,
+    "pages": 5
+  },
+  "/assets/it-kmitl/oop/labs/oop-lab-04-completed.pdf": {
+    "sizeBytes": 1167919,
+    "pages": 10
+  },
+  "/assets/it-kmitl/oop/labs/oop-lab-05-completed.pdf": {
+    "sizeBytes": 811148,
+    "pages": 7
+  },
+  "/assets/it-kmitl/oop/labs/oop-lab-06.pdf": {
+    "sizeBytes": 794604,
+    "pages": 7
+  },
+  "/assets/it-kmitl/oop/labs/oop-lab-07.pdf": {
+    "sizeBytes": 1184377,
+    "pages": 13
+  },
+  "/assets/it-kmitl/oop/labs/oop-lab-11.pdf": {
+    "sizeBytes": 795933,
+    "pages": 6
+  },
+  "/assets/it-kmitl/oop/labs/oop-lab-week01.pdf": {
+    "sizeBytes": 973923,
+    "pages": 9
+  },
+  "/assets/it-kmitl/oop/labs/oop-lab-week02.pdf": {
+    "sizeBytes": 815809,
+    "pages": 9
+  },
+  "/assets/it-kmitl/oop/labs/oop-lab-week03.pdf": {
+    "sizeBytes": 687942,
+    "pages": 7
+  },
+  "/assets/it-kmitl/oop/labs/oop-lab-week04.pdf": {
+    "sizeBytes": 1088340,
+    "pages": 11
+  },
+  "/assets/it-kmitl/oop/labs/oop-lab-week05.pdf": {
+    "sizeBytes": 730647,
+    "pages": 7
+  },
+  "/assets/it-kmitl/oop/labs/oop-lab-week06.pdf": {
+    "sizeBytes": 779138,
+    "pages": 7
+  },
+  "/assets/it-kmitl/oop/labs/oop-lab-week07.pdf": {
+    "sizeBytes": 1385424,
+    "pages": 12
+  },
+  "/assets/it-kmitl/oop/labs/oop-lab-week08.pdf": {
+    "sizeBytes": 691608,
+    "pages": 4
+  },
+  "/assets/it-kmitl/oop/labs/oop-lab-week09.pdf": {
+    "sizeBytes": 977630,
+    "pages": 5
+  },
+  "/assets/it-kmitl/oop/labs/oop-lab-week10.pdf": {
+    "sizeBytes": 691974,
+    "pages": 6
+  },
+  "/assets/it-kmitl/oop/labs/oop-lab-week12.pdf": {
+    "sizeBytes": 412398,
+    "pages": 4
+  },
+  "/assets/it-kmitl/oop/lectures/oop-lec-chapter00.pdf": {
+    "sizeBytes": 1130503,
+    "pages": 18
+  },
+  "/assets/it-kmitl/oop/lectures/oop-lec-chapter01.pdf": {
+    "sizeBytes": 1501995,
+    "pages": 66
+  },
+  "/assets/it-kmitl/oop/lectures/oop-lec-chapter02.pdf": {
+    "sizeBytes": 1416926,
+    "pages": 56
+  },
+  "/assets/it-kmitl/oop/lectures/oop-lec-chapter04.pdf": {
+    "sizeBytes": 2429064,
+    "pages": 59
+  },
+  "/assets/it-kmitl/oop/lectures/oop-lec-chapter05.pdf": {
+    "sizeBytes": 2650133,
+    "pages": 66
+  },
+  "/assets/it-kmitl/oop/lectures/oop-lec-chapter06.pdf": {
+    "sizeBytes": 1067197,
+    "pages": 46
+  },
+  "/assets/it-kmitl/oop/lectures/oop-lec-chapter07.pdf": {
+    "sizeBytes": 1329613,
+    "pages": 50
+  },
+  "/assets/it-kmitl/oop/lectures/oop-lec-chapter08.pdf": {
+    "sizeBytes": 1528276,
+    "pages": 62
+  },
+  "/assets/it-kmitl/oop/lectures/oop-lec-chapter09.pdf": {
+    "sizeBytes": 7680276,
+    "pages": 62
+  },
+  "/assets/it-kmitl/oop/lectures/oop-lec-chapter10.pdf": {
+    "sizeBytes": 2573378,
+    "pages": 99
+  },
+  "/assets/it-kmitl/oop/lectures/oop-lec-chapter11.pdf": {
+    "sizeBytes": 1470010,
+    "pages": 44
+  },
+  "/assets/it-kmitl/oop/lectures/oop-lec-chapter12.pdf": {
+    "sizeBytes": 2763243,
+    "pages": 67
+  },
+  "/assets/it-kmitl/oop/lectures/oop-lec-chapter13.pdf": {
+    "sizeBytes": 13846645,
+    "pages": 50
+  },
+  "/assets/it-kmitl/oop/lectures/oop-lec-chaptersupplement.pdf": {
+    "sizeBytes": 493832,
+    "pages": 8
+  },
+  "/assets/it-kmitl/oop/lectures/oop-lec-github.docx": {
+    "sizeBytes": 6547
+  },
+  "/assets/it-kmitl/oop/lectures/oop-lec-java-book.pdf": {
+    "sizeBytes": 9911814,
+    "pages": 347
+  },
+  "/assets/it-kmitl/oop/lectures/oop-lec-supplement.pdf": {
+    "sizeBytes": 208533,
+    "pages": 6
+  },
+  "/assets/it-kmitl/oop/lectures/oop-lec-week01.pdf": {
+    "sizeBytes": 5288509,
+    "pages": 85
+  },
+  "/assets/it-kmitl/oop/lectures/oop-lec-week02.pdf": {
+    "sizeBytes": 2794669,
+    "pages": 68
+  },
+  "/assets/it-kmitl/oop/lectures/oop-lec-week03.pdf": {
+    "sizeBytes": 1788427,
+    "pages": 57
+  },
+  "/assets/it-kmitl/oop/lectures/oop-lec-week04.pdf": {
+    "sizeBytes": 4194719,
+    "pages": 60
+  },
+  "/assets/it-kmitl/oop/lectures/oop-lec-week05.pdf": {
+    "sizeBytes": 3840821,
+    "pages": 69
+  },
+  "/assets/it-kmitl/oop/lectures/oop-lec-week06.pdf": {
+    "sizeBytes": 2291896,
+    "pages": 67
+  },
+  "/assets/it-kmitl/oop/lectures/oop-lec-week06b.pdf": {
+    "sizeBytes": 1233032,
+    "pages": 16
+  },
+  "/assets/it-kmitl/oop/lectures/oop-lec-week07.pdf": {
+    "sizeBytes": 2979054,
+    "pages": 64
+  },
+  "/assets/it-kmitl/oop/lectures/oop-lec-week08.pdf": {
+    "sizeBytes": 5261767,
+    "pages": 101
+  },
+  "/assets/it-kmitl/oop/lectures/oop-lec-week09.pdf": {
+    "sizeBytes": 2192253,
+    "pages": 45
+  },
+  "/assets/it-kmitl/oop/lectures/oop-lec-week10.pdf": {
+    "sizeBytes": 2735965,
+    "pages": 76
+  },
+  "/assets/it-kmitl/oop/lectures/oop-lec-week11.pdf": {
+    "sizeBytes": 8443998,
+    "pages": 62
+  },
+  "/assets/it-kmitl/oop/lectures/oop-lec-week12.pdf": {
+    "sizeBytes": 2965564,
+    "pages": 67
+  },
+  "/assets/it-kmitl/oop/lectures/oop-lec-week13.pdf": {
+    "sizeBytes": 12727806,
+    "pages": 50
+  },
+  "/assets/it-kmitl/oop/lectures/oop-lec-week14.pdf": {
+    "sizeBytes": 1388223,
+    "pages": 48
+  },
+  "/assets/it-kmitl/oop/sheets/oop-sheet-cheat-sheet-2022.pdf": {
+    "sizeBytes": 1734703,
+    "pages": 3
+  },
   "/assets/it-kmitl/oop/sheets/oop-sheet-cheat-sheet-2024.pdf": {
     "sizeBytes": 2133884,
     "pages": 2
@@ -499,6 +2011,14 @@
     "sizeBytes": 502736,
     "pages": 2
   },
+  "/assets/it-kmitl/pscp/exams/pscp-midterm-hwpy-past.pdf": {
+    "sizeBytes": 1629001,
+    "pages": 7
+  },
+  "/assets/it-kmitl/pscp/exams/pscp-midterm-hwsince-week-4.pdf": {
+    "sizeBytes": 225333,
+    "pages": 1
+  },
   "/assets/it-kmitl/pscp/exams/pscp-midterm-part1.pdf": {
     "sizeBytes": 302753,
     "pages": 8
@@ -506,6 +2026,30 @@
   "/assets/it-kmitl/pscp/exams/pscp-midterm-part2.pdf": {
     "sizeBytes": 658999,
     "pages": 12
+  },
+  "/assets/it-kmitl/pscp/exams/pscp-midterm-unidentified.pdf": {
+    "sizeBytes": 667049,
+    "pages": 5
+  },
+  "/assets/it-kmitl/pscp/exams/pscp-quiz-02.pdf": {
+    "sizeBytes": 361738,
+    "pages": 10
+  },
+  "/assets/it-kmitl/pscp/exams/pscp-quiz-04.pdf": {
+    "sizeBytes": 325691,
+    "pages": 10
+  },
+  "/assets/it-kmitl/pscp/exams/pscp-quiz-05.pdf": {
+    "sizeBytes": 90208,
+    "pages": 4
+  },
+  "/assets/it-kmitl/pscp/exams/pscp-quiz-06.pdf": {
+    "sizeBytes": 292821,
+    "pages": 16
+  },
+  "/assets/it-kmitl/pscp/exams/pscp-quiz-pscp100.pdf": {
+    "sizeBytes": 723099,
+    "pages": 6
   },
   "/assets/it-kmitl/pscp/exams/pscp-quiz-week01.pdf": {
     "sizeBytes": 2375388,
@@ -527,6 +2071,26 @@
     "sizeBytes": 349139,
     "pages": 14
   },
+  "/assets/it-kmitl/pscp/exams/pscp-quiz-week11.pdf": {
+    "sizeBytes": 3828661,
+    "pages": 9
+  },
+  "/assets/it-kmitl/pscp/exams/pscp-quiz-week12.pdf": {
+    "sizeBytes": 4080152,
+    "pages": 13
+  },
+  "/assets/it-kmitl/pscp/exams/pscp-quiz-week13.pdf": {
+    "sizeBytes": 2545107,
+    "pages": 12
+  },
+  "/assets/it-kmitl/pscp/exams/pscp-quiz-week14.pdf": {
+    "sizeBytes": 477389,
+    "pages": 20
+  },
+  "/assets/it-kmitl/pscp/exercises/pscp-ex-check-in.pdf": {
+    "sizeBytes": 2308863,
+    "pages": 4
+  },
   "/assets/it-kmitl/pscp/exercises/pscp-ex-pretest-week03.pdf": {
     "sizeBytes": 3125412,
     "pages": 7
@@ -535,6 +2099,10 @@
     "sizeBytes": 688332,
     "pages": 2
   },
+  "/assets/it-kmitl/pscp/exercises/pscp-ex-sorting-test.pdf": {
+    "sizeBytes": 735304,
+    "pages": 4
+  },
   "/assets/it-kmitl/pscp/exercises/pscp-ex-week01-practice.pdf": {
     "sizeBytes": 856729,
     "pages": 5
@@ -542,6 +2110,29 @@
   "/assets/it-kmitl/pscp/exercises/pscp-ex-week02-practice.pdf": {
     "sizeBytes": 907965,
     "pages": 6
+  },
+  "/assets/it-kmitl/pscp/exercises/pscp-hw-03.pdf": {
+    "sizeBytes": 644936,
+    "pages": 5
+  },
+  "/assets/it-kmitl/pscp/exercises/pscp-hw-check-in-hw.pdf": {
+    "sizeBytes": 514089,
+    "pages": 3
+  },
+  "/assets/it-kmitl/pscp/exercises/pscp-hw-past.pdf": {
+    "sizeBytes": 1886061,
+    "pages": 9
+  },
+  "/assets/it-kmitl/pscp/exercises/pscp-hw-week01.pdf": {
+    "sizeBytes": 799400,
+    "pages": 5
+  },
+  "/assets/it-kmitl/pscp/exercises/pscp-hw-week02.pdf": {
+    "sizeBytes": 278961,
+    "pages": 2
+  },
+  "/assets/it-kmitl/pscp/labs/pscp-lab-pscplab.txt": {
+    "sizeBytes": 49
   },
   "/assets/it-kmitl/pscp/lectures/pscp-lec-chapter01.pdf": {
     "sizeBytes": 4918901,
@@ -567,6 +2158,458 @@
     "sizeBytes": 12387,
     "pages": 1
   },
+  "/assets/it-kmitl/pscp/lectures/pscp-lec-pscp-chapter01-2022.pdf": {
+    "sizeBytes": 4904097,
+    "pages": 24
+  },
+  "/assets/it-kmitl/pstat/exams/pstat-final-2023-jp.pdf": {
+    "sizeBytes": 1024757,
+    "pages": 13
+  },
+  "/assets/it-kmitl/pstat/exams/pstat-final-2023-tk.pdf": {
+    "sizeBytes": 1079770,
+    "pages": 14
+  },
+  "/assets/it-kmitl/pstat/exams/pstat-final-2023-v2.pdf": {
+    "sizeBytes": 541734,
+    "pages": 14
+  },
+  "/assets/it-kmitl/pstat/exams/pstat-final-2023.pdf": {
+    "sizeBytes": 3485631,
+    "pages": 34
+  },
+  "/assets/it-kmitl/pstat/exams/pstat-final-2565.pdf": {
+    "sizeBytes": 4645685,
+    "pages": 35
+  },
+  "/assets/it-kmitl/pstat/exams/pstat-final-exam.pdf": {
+    "sizeBytes": 2599151,
+    "pages": 1
+  },
+  "/assets/it-kmitl/pstat/exams/pstat-final-mock.pdf": {
+    "sizeBytes": 3652583,
+    "pages": 28
+  },
+  "/assets/it-kmitl/pstat/exams/pstat-final-online-form.pdf": {
+    "sizeBytes": 1762636,
+    "pages": 40
+  },
+  "/assets/it-kmitl/pstat/exams/pstat-final-quiz3.pdf": {
+    "sizeBytes": 1184402,
+    "pages": 9
+  },
+  "/assets/it-kmitl/pstat/exams/pstat-final-quiz4.pdf": {
+    "sizeBytes": 1241799,
+    "pages": 8
+  },
+  "/assets/it-kmitl/pstat/exams/pstat-midterm-02.pdf": {
+    "sizeBytes": 14958607,
+    "pages": 21
+  },
+  "/assets/it-kmitl/pstat/exams/pstat-midterm-2565-02.pdf": {
+    "sizeBytes": 1351771,
+    "pages": 5
+  },
+  "/assets/it-kmitl/pstat/exams/pstat-midterm-basic-prob-stat-1-mai.pdf": {
+    "sizeBytes": 6919062,
+    "pages": 74
+  },
+  "/assets/it-kmitl/pstat/exams/pstat-midterm-discreteprobdis-1.pdf": {
+    "sizeBytes": 1982050,
+    "pages": 33
+  },
+  "/assets/it-kmitl/pstat/exams/pstat-midterm-guidelines.pdf": {
+    "sizeBytes": 753717,
+    "pages": 3
+  },
+  "/assets/it-kmitl/pstat/exams/pstat-midterm-practice.pdf": {
+    "sizeBytes": 1201403,
+    "pages": 7
+  },
+  "/assets/it-kmitl/pstat/exams/pstat-midterm-quiz2.pdf": {
+    "sizeBytes": 3227260,
+    "pages": 2
+  },
+  "/assets/it-kmitl/pstat/exams/pstat-midterm-randomvariable-1.pdf": {
+    "sizeBytes": 2398282,
+    "pages": 37
+  },
+  "/assets/it-kmitl/pstat/exams/pstat-midterm-unidentified-v2.pdf": {
+    "sizeBytes": 264667,
+    "pages": 2
+  },
+  "/assets/it-kmitl/pstat/exams/pstat-midterm-unidentified-v3.pdf": {
+    "sizeBytes": 159431,
+    "pages": 1
+  },
+  "/assets/it-kmitl/pstat/exams/pstat-midterm-unidentified-v4.pdf": {
+    "sizeBytes": 436473,
+    "pages": 3
+  },
+  "/assets/it-kmitl/pstat/exams/pstat-midterm-unidentified-v5.pdf": {
+    "sizeBytes": 86790,
+    "pages": 1
+  },
+  "/assets/it-kmitl/pstat/exams/pstat-midterm-unidentified-v6.pdf": {
+    "sizeBytes": 83652,
+    "pages": 1
+  },
+  "/assets/it-kmitl/pstat/exams/pstat-midterm-unidentified-v7.pdf": {
+    "sizeBytes": 256912,
+    "pages": 2
+  },
+  "/assets/it-kmitl/pstat/exams/pstat-midterm-unidentified.pdf": {
+    "sizeBytes": 182751,
+    "pages": 1
+  },
+  "/assets/it-kmitl/pstat/exams/pstat-quiz-01-2565.pdf": {
+    "sizeBytes": 4665036,
+    "pages": 6
+  },
+  "/assets/it-kmitl/pstat/exams/pstat-quiz-01-v2.pdf": {
+    "sizeBytes": 105106,
+    "pages": 5
+  },
+  "/assets/it-kmitl/pstat/exams/pstat-quiz-01.pdf": {
+    "sizeBytes": 81648,
+    "pages": 2
+  },
+  "/assets/it-kmitl/pstat/exams/pstat-quiz-02.pdf": {
+    "sizeBytes": 1337241,
+    "pages": 3
+  },
+  "/assets/it-kmitl/pstat/exams/pstat-quiz-sooksan-all.pdf": {
+    "sizeBytes": 823667,
+    "pages": 19
+  },
+  "/assets/it-kmitl/pstat/exercises/pstat-ex-01-practice-v2.pdf": {
+    "sizeBytes": 129012,
+    "pages": 1
+  },
+  "/assets/it-kmitl/pstat/exercises/pstat-ex-01-practice.pdf": {
+    "sizeBytes": 2581522,
+    "pages": 7
+  },
+  "/assets/it-kmitl/pstat/exercises/pstat-ex-01.pdf": {
+    "sizeBytes": 1167971,
+    "pages": 1
+  },
+  "/assets/it-kmitl/pstat/exercises/pstat-ex-02-practice.pdf": {
+    "sizeBytes": 199704,
+    "pages": 2
+  },
+  "/assets/it-kmitl/pstat/exercises/pstat-ex-02.pdf": {
+    "sizeBytes": 67750,
+    "pages": 1
+  },
+  "/assets/it-kmitl/pstat/exercises/pstat-ex-04.pdf": {
+    "sizeBytes": 43164,
+    "pages": 2
+  },
+  "/assets/it-kmitl/pstat/exercises/pstat-ex-exercise-1-completed.pdf": {
+    "sizeBytes": 728749,
+    "pages": 4
+  },
+  "/assets/it-kmitl/pstat/exercises/pstat-ex-practice.pdf": {
+    "sizeBytes": 152297,
+    "pages": 1
+  },
+  "/assets/it-kmitl/pstat/exercises/pstat-ex-q4-practice.pdf": {
+    "sizeBytes": 239332,
+    "pages": 2
+  },
+  "/assets/it-kmitl/pstat/exercises/pstat-ex-set01.pdf": {
+    "sizeBytes": 366468,
+    "pages": 2
+  },
+  "/assets/it-kmitl/pstat/exercises/pstat-ex-set02.pdf": {
+    "sizeBytes": 114078,
+    "pages": 1
+  },
+  "/assets/it-kmitl/pstat/exercises/pstat-ex-set03.pdf": {
+    "sizeBytes": 138595,
+    "pages": 1
+  },
+  "/assets/it-kmitl/pstat/exercises/pstat-ex-set04.pdf": {
+    "sizeBytes": 2304666,
+    "pages": 8
+  },
+  "/assets/it-kmitl/pstat/exercises/pstat-ex-set05.pdf": {
+    "sizeBytes": 1745552,
+    "pages": 5
+  },
+  "/assets/it-kmitl/pstat/exercises/pstat-ex-set06.pdf": {
+    "sizeBytes": 1778526,
+    "pages": 8
+  },
+  "/assets/it-kmitl/pstat/exercises/pstat-ex-set08.pdf": {
+    "sizeBytes": 1777536,
+    "pages": 7
+  },
+  "/assets/it-kmitl/pstat/exercises/pstat-ex-set09.pdf": {
+    "sizeBytes": 1341954,
+    "pages": 3
+  },
+  "/assets/it-kmitl/pstat/exercises/pstat-ex-set10.pdf": {
+    "sizeBytes": 2081881,
+    "pages": 4
+  },
+  "/assets/it-kmitl/pstat/exercises/pstat-ex-set11.pdf": {
+    "sizeBytes": 1879465,
+    "pages": 4
+  },
+  "/assets/it-kmitl/pstat/exercises/pstat-ex-set12.pdf": {
+    "sizeBytes": 1829269,
+    "pages": 3
+  },
+  "/assets/it-kmitl/pstat/exercises/pstat-ex-set13.pdf": {
+    "sizeBytes": 1061035,
+    "pages": 4
+  },
+  "/assets/it-kmitl/pstat/exercises/pstat-ex-solution-set04.pdf": {
+    "sizeBytes": 145006,
+    "pages": 5
+  },
+  "/assets/it-kmitl/pstat/exercises/pstat-ex-solution-set05.pdf": {
+    "sizeBytes": 68975,
+    "pages": 4
+  },
+  "/assets/it-kmitl/pstat/exercises/pstat-ex-solution-set06.pdf": {
+    "sizeBytes": 71512,
+    "pages": 5
+  },
+  "/assets/it-kmitl/pstat/exercises/pstat-ex-solution-set08.pdf": {
+    "sizeBytes": 95553,
+    "pages": 5
+  },
+  "/assets/it-kmitl/pstat/exercises/pstat-ex-solution-set09.pdf": {
+    "sizeBytes": 53083,
+    "pages": 2
+  },
+  "/assets/it-kmitl/pstat/exercises/pstat-ex-solution-set10.pdf": {
+    "sizeBytes": 51243,
+    "pages": 3
+  },
+  "/assets/it-kmitl/pstat/exercises/pstat-ex-solution-set11.pdf": {
+    "sizeBytes": 58206,
+    "pages": 4
+  },
+  "/assets/it-kmitl/pstat/exercises/pstat-ex-solution-set12.pdf": {
+    "sizeBytes": 55239,
+    "pages": 3
+  },
+  "/assets/it-kmitl/pstat/exercises/pstat-ex-solution-set13.pdf": {
+    "sizeBytes": 193646,
+    "pages": 6
+  },
+  "/assets/it-kmitl/pstat/exercises/pstat-ex-solutions-probability.pdf": {
+    "sizeBytes": 5209626,
+    "pages": 4
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-lec-week01-v2.pdf": {
+    "sizeBytes": 2181305,
+    "pages": 34
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-lec-week01.pdf": {
+    "sizeBytes": 3138732,
+    "pages": 34
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-lec-week02-v2.pdf": {
+    "sizeBytes": 285450,
+    "pages": 26
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-lec-week02.pdf": {
+    "sizeBytes": 959751,
+    "pages": 26
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-lec-week03-v2.pdf": {
+    "sizeBytes": 1363000,
+    "pages": 21
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-lec-week03.pdf": {
+    "sizeBytes": 1730730,
+    "pages": 22
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-lec-week04-v2.pdf": {
+    "sizeBytes": 2071904,
+    "pages": 26
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-lec-week04.pdf": {
+    "sizeBytes": 3319586,
+    "pages": 29
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-lec-week05-v2.pdf": {
+    "sizeBytes": 560491,
+    "pages": 16
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-lec-week05.pdf": {
+    "sizeBytes": 1380074,
+    "pages": 16
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-lec-week06-v2.pdf": {
+    "sizeBytes": 1283603,
+    "pages": 22
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-lec-week06.pdf": {
+    "sizeBytes": 2151692,
+    "pages": 22
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-lec-week07.pdf": {
+    "sizeBytes": 725099,
+    "pages": 14
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-lec-week08-v2.pdf": {
+    "sizeBytes": 1260052,
+    "pages": 23
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-lec-week08.pdf": {
+    "sizeBytes": 950955,
+    "pages": 23
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-lec-week09-v2.pdf": {
+    "sizeBytes": 4214071,
+    "pages": 28
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-lec-week09.pdf": {
+    "sizeBytes": 2077801,
+    "pages": 28
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-lec-week10-v2.pdf": {
+    "sizeBytes": 1459881,
+    "pages": 20
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-lec-week10.pdf": {
+    "sizeBytes": 1085829,
+    "pages": 20
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-lec-week11-v2.pdf": {
+    "sizeBytes": 1033718,
+    "pages": 12
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-lec-week11.pdf": {
+    "sizeBytes": 434140,
+    "pages": 12
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-lec-week12-v2.pdf": {
+    "sizeBytes": 499717,
+    "pages": 18
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-lec-week12.pdf": {
+    "sizeBytes": 378301,
+    "pages": 18
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-lec-week13-v2.pdf": {
+    "sizeBytes": 310852,
+    "pages": 16
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-lec-week13.pdf": {
+    "sizeBytes": 270186,
+    "pages": 15
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-lec-week14-v2.pdf": {
+    "sizeBytes": 687778,
+    "pages": 13
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-lec-week14.pdf": {
+    "sizeBytes": 672955,
+    "pages": 13
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-note-lnotes01.pdf": {
+    "sizeBytes": 277375,
+    "pages": 16
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-note-lnotes02.pdf": {
+    "sizeBytes": 243094,
+    "pages": 13
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-note-lnotes03.pdf": {
+    "sizeBytes": 267510,
+    "pages": 14
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-note-lnotes04.pdf": {
+    "sizeBytes": 430662,
+    "pages": 17
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-note-lnotes05.pdf": {
+    "sizeBytes": 500063,
+    "pages": 17
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-note-lnotes06.pdf": {
+    "sizeBytes": 488965,
+    "pages": 15
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-note-lnotes08.pdf": {
+    "sizeBytes": 270662,
+    "pages": 14
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-note-lnotes09.pdf": {
+    "sizeBytes": 357550,
+    "pages": 12
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-note-lnotes10.pdf": {
+    "sizeBytes": 535279,
+    "pages": 22
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-note-lnotes11.pdf": {
+    "sizeBytes": 564326,
+    "pages": 16
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-note-lnotes12.pdf": {
+    "sizeBytes": 484689,
+    "pages": 12
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-note-lnotes13.pdf": {
+    "sizeBytes": 531339,
+    "pages": 16
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-note-week01.pdf": {
+    "sizeBytes": 315118,
+    "pages": 16
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-note-week02.pdf": {
+    "sizeBytes": 382741,
+    "pages": 13
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-note-week03.pdf": {
+    "sizeBytes": 273421,
+    "pages": 14
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-note-week04.pdf": {
+    "sizeBytes": 299242,
+    "pages": 17
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-note-week05.pdf": {
+    "sizeBytes": 283774,
+    "pages": 17
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-note-week06.pdf": {
+    "sizeBytes": 293658,
+    "pages": 15
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-note-week08.pdf": {
+    "sizeBytes": 318948,
+    "pages": 14
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-note-week09.pdf": {
+    "sizeBytes": 347743,
+    "pages": 12
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-note-week10.pdf": {
+    "sizeBytes": 505348,
+    "pages": 22
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-note-week11.pdf": {
+    "sizeBytes": 388059,
+    "pages": 16
+  },
+  "/assets/it-kmitl/pstat/lectures/pstat-note-week13.pdf": {
+    "sizeBytes": 432998,
+    "pages": 16
+  },
+  "/assets/it-kmitl/pstat/references/pstat-ref-casio-calculator.pdf": {
+    "sizeBytes": 2095268,
+    "pages": 13
+  },
   "/assets/it-kmitl/pstat/references/pstat-ref-t-table.pdf": {
     "sizeBytes": 48385,
     "pages": 1
@@ -581,6 +2624,10 @@
   },
   "/assets/it-kmitl/pstat/sheets/pstat-sheet-recap-probability.pdf": {
     "sizeBytes": 1872791,
+    "pages": 2
+  },
+  "/assets/it-kmitl/pstat/sheets/pstat-sheet-recap-week04-05.pdf": {
+    "sizeBytes": 3176570,
     "pages": 2
   }
 }
