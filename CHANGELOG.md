@@ -6,6 +6,39 @@
 และเลขเวอร์ชันอ้างอิงจาก [Semantic Versioning](https://semver.org/lang/th/)
 (`MAJOR.MINOR.PATCH` — MAJOR = breaking change, MINOR = ฟีเจอร์ใหม่, PATCH = แก้บั๊ก/ปรับเล็กน้อย)
 
+## [Unreleased]
+
+### Added
+
+- **นำเข้าสื่อการเรียนปี 1 ทั้งหมดจากคลัง `kmitl-archive`** — เพิ่มไฟล์ 507 ไฟล์
+  (รวมเป็น 662 ไฟล์ / 1.4 GB) ครอบคลุม 13 รายวิชาทั้งเทอม 1 และเทอม 2
+  ตัดไฟล์ซ้ำด้วย content hash และข้ามไฟล์ที่ใหญ่เกิน 20 MB
+- **manifest คลังทรัพยากรแบบสร้างอัตโนมัติ** (`lib/library-manifest.json`) —
+  ไฟล์ที่วางลง `public/assets/` ตามกติกา path จะขึ้นการ์ดในเว็บทันที
+  ไม่ต้องรอเขียน entry มือ เพิ่มการ์ดจาก 173 เป็น 679 ใบ
+- script `library:manifest` และ `library:build` สำหรับสร้าง manifest + stats
+- `fileType: "file"` สำหรับไฟล์ที่เบราว์เซอร์เปิดไม่ได้ (`.circ` `.xlsx` `.docx`)
+  แสดงเป็นการ์ดดาวน์โหลดแทนการ preview
+- เอกสาร **[FILE_STRUCTURE.md](./FILE_STRUCTURE.md)** — กติกา path การตั้งชื่อไฟล์
+  และ taxonomy กลางภาค/ปลายภาค
+- **workflow `_dropzone/`** — วางไฟล์ที่ยังไม่ได้จัดหมวดลงโฟลเดอร์นี้ แล้วชี้ AI agent
+  ไปที่ [`docs/DROPZONE_SOP.md`](./docs/DROPZONE_SOP.md) เพื่อให้จัดวิชา/หมวด/ขอบเขตสอบ
+  เปลี่ยนชื่อเป็น kebab-case ย้ายเข้าที่ อัปเดต catalog แล้วล้างโฟลเดอร์ให้อัตโนมัติ
+  เนื้อหาใน `_dropzone/` ถูก gitignore ไฟล์ที่จัดหมวดไม่ได้จะถูกพักไว้ที่
+  `_dropzone/_hold/` พร้อมเหตุผลแทนที่จะเดา
+- `content/courses/06016402-IT-Fundamentals/midterm-study-guide.md` และ
+  `content/courses/README.md` นำเข้าจาก iLearn
+
+### Changed
+
+- **เปลี่ยนชื่อไฟล์ใน `public/assets/` ทั้งหมดเป็น kebab-case** (145 ไฟล์) —
+  ไฟล์เคมี 11 ไฟล์ที่มีช่องว่างในชื่อไม่ต้อง escape ใน URL อีกต่อไป
+- จัดไฟล์เคมีเข้าโฟลเดอร์หมวด (`lectures/` `exercises/` `sheets/`) ให้ทุกวิชา
+  ใช้โครง `<namespace>/<subject>/<category>/` เหมือนกันหมด
+- ย้าย `ics-midterm-1-2564.pdf` จากรากโฟลเดอร์วิชาเข้า `exams/`
+- README ขยายขอบเขตจากเครื่องมือ PSCP เป็นคลังการเรียนรู้ IT KMITL
+- CONTRIBUTING เพิ่มหัวข้อเพิ่มรายวิชา เขียนสรุป และอัปโหลดสื่อการเรียน
+
 ## [0.5.0] - 2026-08-17
 
 **ผู้ร่วมพัฒนา:** Chatan Petry ([@Jesselpetry](https://github.com/Jesselpetry))
