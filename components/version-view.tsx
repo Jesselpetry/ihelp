@@ -68,7 +68,9 @@ export function VersionView() {
           <div key={v.version} className="rounded-xl border bg-card shadow-xs p-5 space-y-4">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b pb-3">
               <div className="flex items-center gap-2.5">
-                <span className="font-mono text-xl font-bold text-primary">v{v.version}</span>
+                <span className="font-mono text-xl font-bold text-primary">
+                  {v.date ? `v${v.version}` : v.version}
+                </span>
                 {v.date && (
                   <span className="text-xs text-muted-foreground bg-muted px-2.5 py-1 rounded-md">
                     {formatDate(v.date, locale)}

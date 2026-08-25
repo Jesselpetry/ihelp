@@ -22,6 +22,48 @@ export interface VersionEntry {
 // Mirrors CHANGELOG.md at the repo root — keep both in sync when releasing.
 export const CHANGELOG: VersionEntry[] = [
   {
+    version: "Unreleased",
+    date: null,
+    contributors: [{ name: "Chatan Petry", github: "Jesselpetry" }],
+    changes: [
+      {
+        kind: "added",
+        text: {
+          th: "นำเข้าสื่อการเรียนปี 1 ทั้งหมดจากคลัง kmitl-archive — 670 ไฟล์ ครอบคลุม 13 รายวิชาทั้งเทอม 1 และเทอม 2",
+          en: "Ingested the full Year-1 media set from kmitl-archive — 670 files across 13 subjects, both semesters",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "คลังทรัพยากรสร้างการ์ดจากไฟล์อัตโนมัติ — วางไฟล์ลง public/assets/ ตามกติกาแล้วขึ้นเว็บทันที ไม่ต้องเขียน entry มือ",
+          en: "The Media Library now generates cards from the file tree — drop a file into public/assets/ and it appears without a hand-written entry",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "workflow _dropzone/ — วางไฟล์ที่ยังไม่ได้จัดหมวด แล้วให้ AI agent จัดให้ตาม docs/DROPZONE_SOP.md",
+          en: "The _dropzone/ workflow — drop unsorted files and let an AI agent file them per docs/DROPZONE_SOP.md",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "เอกสาร FILE_STRUCTURE.md — กติกา path การตั้งชื่อไฟล์ และ taxonomy กลางภาค/ปลายภาค",
+          en: "FILE_STRUCTURE.md — path rules, filename conventions, and the midterm/final taxonomy",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "เปลี่ยนชื่อไฟล์ใน public/assets/ ทั้งหมดเป็น kebab-case — ไฟล์เคมีที่มีช่องว่างในชื่อไม่ต้อง escape ใน URL อีกต่อไป",
+          en: "Renamed every file under public/assets/ to kebab-case — the chemistry PDFs with spaces no longer need URL escaping",
+        },
+      },
+    ],
+  },
+  {
     version: "0.5.0",
     date: "2026-08-17",
     contributors: [{ name: "Chatan Petry", github: "Jesselpetry" }],
