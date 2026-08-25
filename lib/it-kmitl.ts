@@ -59,3 +59,23 @@ export function loadMfit(): MfitData {
     mockExamMd: readIfExists(path.join(dir, "mock-exam.md")),
   };
 }
+
+// ── ITF (06016402 Information Technology Fundamentals) ────────────────────────
+// Study guide and lecture bank ported from the iLearn project.
+export function getItfDir(): string {
+  if (process.env.ITF_PATH && fs.existsSync(process.env.ITF_PATH)) {
+    return process.env.ITF_PATH;
+  }
+  return path.join(ROOT, "data", "it-kmitl", "itf");
+}
+
+export interface ItfData {
+  summaryMd: string | null;
+}
+
+export function loadItf(): ItfData {
+  const dir = getItfDir();
+  return {
+    summaryMd: readIfExists(path.join(dir, "summarize.md")),
+  };
+}
