@@ -32,7 +32,7 @@ const mali = Mali({
 const SITE_URL = "https://pscp.chatan.in.th";
 const TITLE = "<i>Help";
 const DESCRIPTION =
-  "เครื่องมือสร้าง submission.md / ai_reflection.md แบบทีละขั้นตอน สำหรับนักศึกษา PSCP IT KMITL — เลือกโจทย์ ทำตามขั้นตอน แล้วดาวน์โหลดไฟล์ Learning Log ของคุณ";
+  "คลังเรียนรู้สำหรับนักศึกษาปี 1 คณะ IT สจล. — สรุปเนื้อหา แบบทดสอบ ข้อสอบเก่า และคลังสไลด์ ครบทุกวิชา PSCP ITF ICS MFIT";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -43,14 +43,21 @@ export const metadata: Metadata = {
   description: DESCRIPTION,
   applicationName: "<i>Help",
   keywords: [
-    "PSCP",
     "IT KMITL",
+    "สจล",
+    "เทคโนโลยีสารสนเทศ",
+    "สรุป",
+    "ข้อสอบเก่า",
+    "แบบทดสอบ",
+    "ติวสอบกลางภาค",
+    "PSCP",
+    "ITF",
+    "ICS",
+    "MFIT",
     "Learning Log",
     "submission.md",
     "ai_reflection.md",
     "iJudge",
-    "problem solving",
-    "programming",
   ],
   authors: [{ name: "Chatan Petry", url: "https://github.com/Jesselpetry" }],
   creator: "Chatan Petry",
@@ -77,14 +84,12 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: SITE_URL,
-    siteName: "<i>help — PSCP Learning-Log Maker",
-    title: TITLE,
+    siteName: "<i>help — คลังเรียนรู้ IT KMITL",
     description: DESCRIPTION,
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: TITLE }],
   },
   twitter: {
     card: "summary_large_image",
-    title: TITLE,
     description: DESCRIPTION,
     images: ["/og-image.png"],
   },

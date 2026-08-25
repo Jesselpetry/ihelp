@@ -137,7 +137,7 @@ export default function ProPage() {
   const tr = (x: LText) => t(x, locale);
 
   return (
-    <>
+    <div className="pscp-theme min-h-screen w-full">
       <Navbar />
       <ProStyles />
 
@@ -349,7 +349,7 @@ export default function ProPage() {
           </div>
         </section>
       </main>
-    </>
+    </div>
   );
 }
 

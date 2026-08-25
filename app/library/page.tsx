@@ -8,6 +8,7 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Library",
   description: "Read the PSCP AI-Guidelines documents like a book.",
+  alternates: { canonical: "/library" },
 };
 
 export default function LibraryPage() {
