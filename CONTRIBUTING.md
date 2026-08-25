@@ -1,7 +1,11 @@
 # ร่วมพัฒนา \<i\>Help
 
 โปรเจกต์นี้เป็น open source ([MIT](./LICENSE)) — ยินดีรับทุก contribution
-จากนักศึกษา ไม่ว่าจะอัปเดตรายการโจทย์ แก้บั๊ก หรือเพิ่มฟีเจอร์ใหม่
+จากนักศึกษา ไม่ว่าจะเพิ่มวิชาใหม่ เขียนสรุป อัปโหลดสื่อการเรียน อัปเดตรายการโจทย์
+แก้บั๊ก หรือเพิ่มฟีเจอร์ใหม่
+
+ก่อนแตะโครงสร้างไฟล์ อ่าน **[FILE_STRUCTURE.md](./FILE_STRUCTURE.md)** ก่อน —
+มีกติกา path การตั้งชื่อ และ taxonomy กลางภาค/ปลายภาค อธิบายไว้ครบ
 
 ## เริ่มต้น
 
@@ -18,7 +22,111 @@ bun run dev   # http://localhost:3000
 ข้อควรระวัง: ใช้ `bun run dev` เท่านั้น ห้าม `bun --bun next ...`
 (Next 16 build crash บน Bun 1.2.x)
 
-## 1) อัปเดตรายการโจทย์ (มีโจทย์สัปดาห์ใหม่)
+## 1) เพิ่มรายวิชาใหม่
+
+รายวิชา “มีอยู่จริง” ก็ต่อเมื่ออยู่ใน `COURSES` ใน **`lib/catalog.ts`** —
+ทุกอย่างอื่นอ้างอิงจากที่นี่
+
+```ts
+{
+  code: "PSCP",                  // รหัสสั้น ใช้เป็น key ทุกที่ (ต้องไม่ซ้ำ)
+  officialCode: "06066303",      // รหัสวิชาทางการ
+  slug: "Problem-Solving-and-Computer-Programming",
+  nameTh: "การแก้ปัญหาและการโปรแกรมคอมพิวเตอร์",
+  nameEn: "Problem Solving and Computer Programming",
+  credits: "3 (2-2-5)",
+  group: "Y1-S1",                // Y1-S1 | Y1-S2 | EN-KMITL
+  tracks: { /* ใส่ทีหลัง ตอนที่ track นั้นเสร็จจริง */ },
+}
+```
+
+**`tracks` ใส่เฉพาะ track ที่ render ได้จริงแล้ว** — ที่ไม่ได้ใส่จะโชว์เป็นช่องล็อก
+ให้นักศึกษาเห็น roadmap ทั้งหมด ถ้าใส่ทั้งที่ยังไม่เสร็จ จะได้หน้า 404
+
+## 2) เขียนสรุปรายวิชา (`summary.md`)
+
+หนึ่งไฟล์ต่อหนึ่งวิชา ที่
+`content/courses/<officialCode>-<slug>/summary.md` — ชื่อโฟลเดอร์ต้องตรงกับ
+`officialCode` และ `slug` ใน `lib/catalog.ts` เป๊ะ ๆ เพราะ
+`lib/course-content.ts` ประกอบ path ตรง ๆ
+
+ต้องมี frontmatter และโครง **6 หัวข้อ** ครบ (ดูตัวอย่างเต็มใน
+[FILE_STRUCTURE.md §5](./FILE_STRUCTURE.md)):
+
+1. **ภาพรวมรายวิชา** — รหัส ชื่อ หน่วยกิต วิชาบังคับก่อน ผู้สอน สัดส่วนคะแนน
+2. **ขอบเขตเนื้อหา** — ตารางรายสัปดาห์ **แยกกลางภาค / ปลายภาค**
+3. **สรุปเนื้อหารายหัวข้อ** — มโนทัศน์ ศัพท์ สูตร ตารางเปรียบเทียบ
+4. **พิมพ์เขียวสำหรับสร้างสื่อต่อยอด**
+5. **แหล่งข้อมูลในคลัง** — ไฟล์ที่มีจริง พร้อมหมายเหตุว่าถอดข้อความได้ไหม
+
+กติกาการเขียน:
+
+- หัวข้อ 2 คือ **แหล่งความจริงของเส้นแบ่งกลางภาค/ปลายภาค** ของวิชานั้น
+  ระบบไม่เดาเอง — เขียนผิดตรงนี้ การ์ดในคลังทรัพยากรจะจัดกลุ่มผิดตาม
+- จุดที่อนุมานเอาจากชื่อไฟล์หรือลายมือ **ต้องกำกับว่า _ยังไม่ยืนยัน_ เสมอ**
+  อย่าตัดคำเตือนพวกนี้ออก
+- ห้ามใส่ชื่อ-นามสกุลหรือรหัสนักศึกษาของคนอื่นลงในสรุป
+
+## 3) เพิ่มสื่อการเรียน (PDF / สไลด์ / ภาพสแกน)
+
+> **ทางลัด:** มีไฟล์กองใหญ่ที่ยังไม่ได้จัดหมวด — วางลง `_dropzone/` แล้วให้ AI agent
+> ทำตาม [`docs/DROPZONE_SOP.md`](./docs/DROPZONE_SOP.md) จัดให้ทั้งชุด
+> หัวข้อนี้คือขั้นตอนแบบทำมือ
+
+วางไฟล์ตาม path บังคับ 4 ระดับ:
+
+```
+public/assets/<namespace>/<subject>/<category>/<filename>
+```
+
+- `<namespace>` = `it-kmitl` หรือ `en-kmitl`
+- `<subject>` = รหัสสั้นตัวพิมพ์เล็ก ตรงกับ `code` ใน `lib/catalog.ts`
+- `<category>` = `lectures` `sheets` `exams` `exercises` `labs` `notes`
+  `references` … (ตารางเต็มใน FILE_STRUCTURE.md §2.1)
+- `<filename>` = **kebab-case ล้วน** ห้ามช่องว่าง ห้าม `_` ห้ามตัวพิมพ์ใหญ่
+
+```
+✅ itf-lec-week08-database.pdf
+❌ ITF_Lec_Week08-Database.pdf
+❌ Ch1 Atomic structure.pdf
+```
+
+จากนั้น:
+
+```bash
+bun run library:build   # สร้าง manifest + stats ใหม่ — ต้องรันทุกครั้ง
+```
+
+ไฟล์จะขึ้นเว็บทันทีโดยยังไม่ต้องเขียน entry มือ ถ้าอยากให้การ์ดมีชื่อสองภาษา
+คำอธิบาย และ **ขอบเขตสอบ** ให้เพิ่ม entry ใน `lib/subject-library.ts`:
+
+```ts
+{
+  id: "itf-lec-week08",
+  title: { th: "สัปดาห์ 8 — ฐานข้อมูล", en: "Week 8 — Databases" },
+  description: { th: "...", en: "..." },
+  tags: ["Week 08", "Database"],
+  category: "lecture",
+  scope: "final",          // ดูจาก summary.md ของวิชา ห้ามเดาจากเลขสัปดาห์
+  fileType: "pdf",
+  url: "/assets/it-kmitl/itf/lectures/itf-lec-week08-database.pdf",
+  fileName: "itf-lec-week08-database.pdf",
+}
+```
+
+entry ที่เขียนมือชนะ manifest เสมอเมื่อ `url` ตรงกัน
+
+**เรื่องที่ต้องเช็คก่อนอัปโหลด:**
+
+- **ลิขสิทธิ์** — สไลด์บรรยายและ workbook เป็นของผู้สอน/ผู้จัดพิมพ์
+  ถ้า `summary.md` ของวิชานั้นมีหมายเหตุ `ห้ามเผยแพร่สาธารณะ` อย่าเพิ่งอัปโหลด
+- **ข้อมูลส่วนบุคคล** — ห้ามอัปโหลดไฟล์ที่มีชื่อหรือรหัสนักศึกษาของคนอื่น
+  ใบงานที่ทำแล้ว (`-completed`) และงานกลุ่มต้องเช็คในเนื้อไฟล์ก่อนเสมอ
+- **ขนาด** — ไฟล์เกิน 20 MB ให้บีบก่อน; GitHub ปฏิเสธไฟล์เกิน 100 MB ทันที
+- **ห้ามแก้มือ** `lib/library-manifest.json` และ `lib/library-stats.json`
+  ทั้งสองไฟล์ generate ขึ้นมา — แก้ที่ต้นทางแล้วรัน `bun run library:build`
+
+## 4) อัปเดตรายการโจทย์ (มีโจทย์สัปดาห์ใหม่)
 
 รายการโจทย์ทั้งหมดอยู่ในไฟล์เดียว: **`data/oj_problems.json`**
 (export มาจาก iJudge — เว็บนี้ไม่ fetch สดเพราะ iJudge ไม่มี public API)
@@ -51,7 +159,7 @@ bun run dev   # http://localhost:3000
 ลิงก์ประจำสัปดาห์ (ฟอร์มเช็คชื่อ, รายชื่อคู่ pair) แก้ที่ **`lib/shortcuts.ts`**
 และเอกสารในห้องสมุด (`/library`) อยู่ที่ **`data/ai-guidelines/`**
 
-## 2) ปรับปรุงระบบ (แก้บั๊ก / เพิ่มฟีเจอร์)
+## 5) ปรับปรุงระบบ (แก้บั๊ก / เพิ่มฟีเจอร์)
 
 โครงสร้างหลัก:
 
@@ -61,6 +169,9 @@ bun run dev   # http://localhost:3000
 | `components/` | React components (`components/ui/` = shadcn-style primitives) |
 | `lib/`        | logic: โหลดโจทย์, สร้าง markdown, ประวัติ, i18n, ฯลฯ          |
 | `data/`       | ข้อมูลรายวิชา: โจทย์, template ทางการ, เอกสาร AI guidelines   |
+| `content/`    | Markdown ของรายวิชา (`content/courses/<code>-<slug>/`)        |
+| `public/assets/` | ไฟล์จริง: PDF สไลด์ ข้อสอบ ภาพสมุดจด                       |
+| `scripts/`    | ตัวสร้าง manifest / stats (รันมือ ไม่ได้รันตอน build)          |
 
 ธรรมเนียมของโค้ดเบสนี้:
 
@@ -75,11 +186,12 @@ bun run dev   # http://localhost:3000
 ก่อนเปิด PR:
 
 ```bash
-bun run lint    # ต้องผ่าน ไม่มี error
-bun run build   # ต้อง build ผ่าน
+bun run library:build   # ถ้าแตะไฟล์ใน public/assets/
+bun run lint            # ต้องผ่าน ไม่มี error
+bun run build           # ต้อง build ผ่าน
 ```
 
-## 3) อัปเดต Changelog / Version History
+## 6) อัปเดต Changelog / Version History
 
 ทุกครั้งที่ PR มีผลต่อผู้ใช้ (ฟีเจอร์ใหม่, แก้บั๊ก, เปลี่ยนพฤติกรรม) ให้แก้ **`CHANGELOG.md`** ด้วย:
 
@@ -100,7 +212,7 @@ bun run build   # ต้อง build ผ่าน
 1. สร้าง branch จาก `main` เช่น `fix/week-badge` หรือ `data/week-3-problems`
 2. Commit สั้น ๆ ตรงประเด็น (เช่น `data: add week 3 problems`)
 3. เปิด PR อธิบายว่าแก้อะไร ทำไม พร้อม screenshot ถ้าเป็นเรื่อง UI
-4. แก้ `CHANGELOG.md` ตามข้อ 3) ด้านบนไว้ในรอบ PR เดียวกัน
+4. แก้ `CHANGELOG.md` ตามข้อ 6) ด้านบนไว้ในรอบ PR เดียวกัน
 5. เจอบั๊กแต่ยังไม่มีเวลาแก้ — เปิด GitHub Issue ไว้ก็ช่วยมากแล้ว
 
 ขอบคุณที่ช่วยกันทำให้เครื่องมือนี้ดีขึ้น 🙌
