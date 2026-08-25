@@ -246,6 +246,137 @@ shasum -a 256 "_dropzone/FILE.pdf" "public/assets/<ns>/<subj>/<cat>/FILE.pdf"
 
 ---
 
+## Phase 3.5 — Compress before filing
+
+Every file you add ships inside the Vercel deployment, and that deployment has a
+hard ceiling: **100 MB on Hobby, 1 GB on Pro** for static uploads. An
+uncompressed archive PDF is typically 3-5x larger than it needs to be, so
+compress before moving, not after.
+
+### Setup (once)
+
+```bash
+brew install ghostscript      # the only tool that recompresses PDF internals
+```
+
+Nothing else in the toolchain does this job. `pdftotext`, `qpdf`, `pypdf` and
+`mutool` are **not** installed here. ImageMagick, `cwebp`, `sips` and Pillow are,
+but they only handle images -- and images are a rounding error in this repo:
+621 of 670 files are PDFs, and they are 99.8% of the bytes.
+
+### PDFs
+
+```bash
+gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.5 -dPDFSETTINGS=/ebook \
+   -dNOPAUSE -dQUIET -dBATCH -dSAFER \
+   -sOutputFile=out.pdf "in.pdf"
+```
+
+`/ebook` downsamples images to 150 dpi and keeps text as real text -- lecture
+slides and scanned exams stay comfortably readable on screen and on paper.
+
+| Profile | Image dpi | Use |
+| --- | --- | --- |
+| `/screen` | 72 | Too soft for scanned handwriting. Avoid. |
+| `/ebook` | **150** | **Default.** Readable, typically 60-75% smaller. |
+| `/printer` | 300 | Only when `/ebook` visibly ruins a diagram. |
+
+On scanned material whose images already sit below 150 dpi, all three profiles
+produce identical output -- `/ebook` costs nothing over `/screen` there, which
+is why it is the default rather than a compromise.
+
+### Three checks that are not optional
+
+> **Ghostscript silently destroys some PDFs.** On a measured sample of this
+> repo, **5 of 16 files (31%)** came back with every embedded raster image
+> *dropped* — comparison tables, diagrams and scanned figures simply gone,
+> leaving only vector text behind. Damage ran 18-86% RMSE. Page count, file size
+> and exit status were all perfect on every one of them. Annotated GoodNotes
+> exports and some scanner output are the usual victims.
+>
+> **You cannot detect this without rendering the pages and comparing them.**
+
+**1. It must actually be smaller.** Ghostscript will happily rewrite an
+already-optimised PDF into something larger. Keep it only if it lands under ~95%
+of the original size.
+
+**2. Page count must match.**
+
+```bash
+gs -q -dNODISPLAY -dNOSAFER -c "(FILE.pdf) (r) file runpdfbegin pdfpagecount = quit"
+```
+
+Necessary but nowhere near sufficient — see the warning above.
+
+**3. It must still look the same.** Render the first and middle page of both
+files and compare:
+
+```bash
+gs -sDEVICE=png16m -r55 -dFirstPage=1 -dLastPage=1 -dNOPAUSE -dQUIET -dBATCH \
+   -sOutputFile=before.png "original.pdf"
+gs -sDEVICE=png16m -r55 -dFirstPage=1 -dLastPage=1 -dNOPAUSE -dQUIET -dBATCH \
+   -sOutputFile=after.png  "compressed.pdf"
+magick compare -metric RMSE before.png after.png null:
+```
+
+Divide the reported value by 65535 for a percentage. **Reject at 6% or above.**
+Clean recompressions measured under 5%; damaged ones started at 18%. If you are
+compressing a handful of files by hand, just look at both renders.
+
+**Never compress a file twice.** Each pass re-encodes lossy images, so a second
+run visibly degrades quality for almost no further saving. A file already in
+`public/assets/` has been through this once.
+
+### Doing it in bulk
+
+`scripts/compress-assets.sh` applies all of the above across the whole asset
+tree in parallel, enforcing both checks per file and writing a
+`.compress-report.tsv` you can audit:
+
+```bash
+./scripts/compress-assets.sh 8      # 8 parallel workers
+npm run library:build               # sizes and page counts changed -- regenerate
+```
+
+It enforces all three gates per file and writes `.compress-report.tsv` with a
+verdict and RMSE per file. Audit the rejects before trusting the run:
+
+```bash
+awk -F'\t' '$2!="SHRUNK"' .compress-report.tsv   # everything left uncompressed
+```
+
+Expect a meaningful share of files to come back `KEPT-VISUAL`. That is the gate
+working, not a bug — those files stay at full size on purpose.
+
+`library-stats.json` records `sizeBytes` and `pages` for every asset, and the
+gallery prints both on each card, so **regenerating the manifests after
+compressing is mandatory**, not housekeeping.
+
+### Images
+
+Rare here, but when one shows up:
+
+```bash
+# photo or scan -> webp, visually lossless at q=82
+cwebp -q 82 in.jpg -o out.webp
+
+# resize anything wider than 2000px first
+magick in.png -resize '2000x>' -strip out.png
+```
+
+Prefer `.webp` for scans and photos. Keep `.png` only for screenshots with sharp
+text or flat colour, where webp's chroma handling can smear glyph edges.
+
+### Thresholds
+
+| Size after compressing | Action |
+| --- | --- |
+| under 5 MB | file it |
+| 5-20 MB | file it, mention it in the report |
+| over 20 MB | **hold it** (Phase 6) -- ask before adding |
+
+---
+
 ## Phase 4 — File operations
 
 Create the target directory if missing, then move (never copy — the dropzone
@@ -438,12 +569,14 @@ user would notice — this repo's `CONTRIBUTING.md` requires it.
 ```bash
 ls -la _dropzone/                       # 1. scan
 #    peek: read _dropzone/F.pdf with your own reader, pages 1-2
-mkdir -p public/assets/<ns>/<subj>/<cat>        # 2. route
-mv "_dropzone/F.pdf" "public/assets/<ns>/<subj>/<cat>/f.pdf"
-npm run library:build                   # 3. manifests
+gs -sDEVICE=pdfwrite -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH \
+   -sOutputFile=small.pdf "_dropzone/F.pdf"     # 2. compress (verify pages!)
+mkdir -p public/assets/<ns>/<subj>/<cat>        # 3. route
+mv small.pdf "public/assets/<ns>/<subj>/<cat>/f.pdf"
+npm run library:build                   # 4. manifests
 #    edit lib/subject-library.ts for scoped entries
-npx tsc --noEmit && npm run build       # 4. verify
-find _dropzone -type f ! -name '.gitkeep' ! -name 'README.md'   # 5. must be empty
+npx tsc --noEmit && npm run build       # 5. verify
+find _dropzone -type f ! -name '.gitkeep' ! -name 'README.md'   # 6. must be empty
 ```
 
 | Never | Because |
@@ -452,5 +585,7 @@ find _dropzone -type f ! -name '.gitkeep' ! -name 'README.md'   # 5. must be emp
 | hand-edit `library-manifest.json` / `library-stats.json` | generated by `npm run library:build` |
 | overwrite `summary.md` | hand-maintained, 6-section contract |
 | guess a subject or scope | hold it instead — Phase 6 |
+| compress a file already in public/assets/ | it went through once; a second lossy pass degrades it |
+| trust page count alone after compressing | it passes while every embedded image is dropped — render and compare |
 | move a file with someone else's student ID | hard stop |
 | commit unprompted | the human reviews first |

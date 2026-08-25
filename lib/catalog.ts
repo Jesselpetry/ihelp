@@ -46,11 +46,7 @@ export const TRACK_LABEL: Record<TrackKind, LText> = {
 };
 
 /** Longer copy for the module cards on a subject hub. */
-export const TRACK_DESC: Record<TrackKind, LText> = {
-  overview: {
-    th: "ขอบเขตเนื้อหารายสัปดาห์ หน่วยกิต ผู้สอน และสัดส่วนคะแนน",
-    en: "Weekly scope, credits, instructors, and grade breakdown",
-  },
+export const TRACK_DESC: Partial<Record<TrackKind, LText>> = {
   summary: {
     th: "สรุปเนื้อหาและชีทติวแบบอ่านต่อเนื่อง พร้อมสารบัญด้านข้าง",
     en: "Study notes and cram sheets with a live outline panel",

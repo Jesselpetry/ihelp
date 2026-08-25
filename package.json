@@ -9,7 +9,8 @@
     "lint": "eslint",
     "library:stats": "node scripts/build-library-stats.mjs",
     "library:manifest": "node scripts/build-library-manifest.mjs",
-    "library:build": "npm run library:manifest && npm run library:stats"
+    "library:build": "npm run library:manifest && npm run library:stats",
+    "assets:compress": "./scripts/compress-assets.sh"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

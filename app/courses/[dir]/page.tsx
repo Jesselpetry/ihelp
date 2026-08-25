@@ -217,14 +217,9 @@ export default async function CoursePage({
   // The catalogue owns the standard tracks; a course's own config adds the
   // ones only it has (MFIT's cram sheet, ICS's exam analysis) and answers
   // whether their markdown is actually on disk.
-  //
-  // The overview track is the exception: the catalogue points it at the hub,
-  // which is this page, so from here it has to scroll to the official-info
-  // panel further down. With no panel to scroll to there is nothing to link.
   const hrefs: Record<string, string | undefined> = {
     ...tracksFor(course.code),
     ...hub?.extraHrefs,
-    overview: officialInfo ? "#course-overview" : undefined,
   };
 
   const tracks = buildCourseTracks(course.code, hrefs, {

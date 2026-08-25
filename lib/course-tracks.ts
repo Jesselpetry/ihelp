@@ -75,17 +75,6 @@ const COMING_SOON: LText = { th: "เร็วๆ นี้", en: "Coming soon" 
 // Courses override only the cards whose copy is subject-specific; everything
 // else falls through to these so a new course starts with a full roadmap.
 
-const OVERVIEW: TrackBlueprint = {
-  id: "overview",
-  icon: "overview",
-  scope: "all",
-  title: { th: "ภาพรวมรายวิชา", en: "Syllabus" },
-  subtitle: {
-    th: "ขอบเขตเนื้อหารายสัปดาห์ หน่วยกิต ผู้สอน และสัดส่วนคะแนน",
-    en: "Weekly scope, credits, instructors, and grade breakdown",
-  },
-};
-
 const SUMMARY: TrackBlueprint = {
   id: "summary",
   icon: "summary",
@@ -143,7 +132,6 @@ const LIBRARY: TrackBlueprint = {
 
 /** The roadmap every course shows unless it declares its own. */
 const DEFAULT_TRACKS: TrackBlueprint[] = [
-  OVERVIEW,
   SUMMARY,
   QUIZ,
   MOCK_EXAM,
@@ -165,7 +153,6 @@ function reword(
 
 export const COURSE_TRACKS: Record<string, TrackBlueprint[]> = {
   ITF: [
-    OVERVIEW,
     reword(SUMMARY, {
       title: { th: "คู่มือทบทวน", en: "Study Guide" },
       subtitle: {
@@ -184,7 +171,6 @@ export const COURSE_TRACKS: Record<string, TrackBlueprint[]> = {
   ],
 
   ICS: [
-    OVERVIEW,
     SUMMARY,
     QUIZ,
     reword(MOCK_EXAM, {
@@ -208,7 +194,6 @@ export const COURSE_TRACKS: Record<string, TrackBlueprint[]> = {
   ],
 
   MFIT: [
-    OVERVIEW,
     reword(SUMMARY, {
       subtitle: {
         th: "ครบทั้ง 7 สัปดาห์: เมทริกซ์ determinant ระบบสมการ เวกเตอร์ ปริภูมิเวกเตอร์ การแปลงเชิงเส้น และ eigenvalue",
@@ -262,7 +247,6 @@ export const COURSE_TRACKS: Record<string, TrackBlueprint[]> = {
   ],
 
   COMPRO: [
-    OVERVIEW,
     reword(SUMMARY, {
       subtitle: {
         th: "สรุปครบทุกบท: พื้นฐานคอมพิวเตอร์ ตัวแปร/นิพจน์ เงื่อนไข while for และภาคผนวก",
@@ -280,7 +264,6 @@ export const COURSE_TRACKS: Record<string, TrackBlueprint[]> = {
   ],
 
   CHEM: [
-    OVERVIEW,
     reword(SUMMARY, {
       subtitle: {
         th: "สรุปครบทุกบท: อะตอม ตารางธาตุ พันธะ สโตอิชิโอเมตรี และสารละลาย",
@@ -298,7 +281,6 @@ export const COURSE_TRACKS: Record<string, TrackBlueprint[]> = {
   ],
 
   PSCP: [
-    OVERVIEW,
     reword(PROBLEMS, {
       title: { th: "คลังโจทย์ iJudge", en: "iJudge Problems" },
       subtitle: {
