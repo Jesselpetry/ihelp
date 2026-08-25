@@ -3,6 +3,7 @@
 
 import ReactMarkdown, { type Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
+import remarkFrontmatter from "remark-frontmatter";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import "katex/dist/katex.min.css";
@@ -145,6 +146,7 @@ export function MdView({ markdown }: { markdown: string }) {
     <div className="text-[15px] text-foreground/90 overflow-hidden">
       <ReactMarkdown
         remarkPlugins={[
+          remarkFrontmatter,
           remarkGfm,
           [remarkMath, { singleDollarTextMath: true }],
         ]}

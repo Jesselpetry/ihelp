@@ -10,7 +10,7 @@ import { extractToc } from "@/lib/toc";
 import { useLocale, t, type LText } from "@/lib/i18n";
 
 const L: Record<string, LText> = {
-  back: { th: "EN-KMITL", en: "EN-KMITL" },
+  back: { th: "รายวิชาทั้งหมด", en: "All courses" },
   takeQuiz: { th: "ทำแบบทดสอบ", en: "Take the quiz" },
 };
 
@@ -23,7 +23,7 @@ export function EnKmitlSummaryReader({ markdown }: { markdown: string }) {
     <main className="mx-auto max-w-6xl xl:max-w-7xl px-3 sm:px-6 py-5 sm:py-8 w-full">
       <div className="mb-4 sm:mb-6 flex items-center justify-between text-xs sm:text-sm">
         <Link
-          href="/en-kmitl"
+          href="/"
           className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors font-medium"
         >
           <ArrowLeft className="size-3.5 sm:size-4" />
