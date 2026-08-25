@@ -1,0 +1,3128 @@
+{
+  "CHEM": [
+    {
+      "id": "gen-chem-exercises-ch1-self-study",
+      "title": {
+        "th": "Ch 1 Self Study",
+        "en": "Ch 1 Self Study"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "CHEM",
+        "exercises"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/en-kmitl/chem/exercises/ch1-self-study.pdf",
+      "fileName": "ch1-self-study.pdf",
+      "courseCode": "CHEM"
+    },
+    {
+      "id": "gen-chem-exercises-ch2-self-study",
+      "title": {
+        "th": "Ch 2 Self Study",
+        "en": "Ch 2 Self Study"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "CHEM",
+        "exercises"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/en-kmitl/chem/exercises/ch2-self-study.pdf",
+      "fileName": "ch2-self-study.pdf",
+      "courseCode": "CHEM"
+    },
+    {
+      "id": "gen-chem-exercises-ch4-self-study",
+      "title": {
+        "th": "Ch 4 Self Study",
+        "en": "Ch 4 Self Study"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "CHEM",
+        "exercises"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/en-kmitl/chem/exercises/ch4-self-study.pdf",
+      "fileName": "ch4-self-study.pdf",
+      "courseCode": "CHEM"
+    },
+    {
+      "id": "gen-chem-exercises-ch5-self-study",
+      "title": {
+        "th": "Ch 5 Self Study",
+        "en": "Ch 5 Self Study"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "CHEM",
+        "exercises"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/en-kmitl/chem/exercises/ch5-self-study.pdf",
+      "fileName": "ch5-self-study.pdf",
+      "courseCode": "CHEM"
+    },
+    {
+      "id": "gen-chem-lectures-ch1-atomic-structure",
+      "title": {
+        "th": "Ch 1 Atomic Structure",
+        "en": "Ch 1 Atomic Structure"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "CHEM",
+        "lectures"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/en-kmitl/chem/lectures/ch1-atomic-structure.pdf",
+      "fileName": "ch1-atomic-structure.pdf",
+      "courseCode": "CHEM"
+    },
+    {
+      "id": "gen-chem-lectures-ch2-the-periodic-table-and-some-atomic-properties-2569",
+      "title": {
+        "th": "Ch 2 The Periodic Table And Some Atomic Properties 2569",
+        "en": "Ch 2 The Periodic Table And Some Atomic Properties 2569"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "CHEM",
+        "lectures"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/en-kmitl/chem/lectures/ch2-the-periodic-table-and-some-atomic-properties-2569.pdf",
+      "fileName": "ch2-the-periodic-table-and-some-atomic-properties-2569.pdf",
+      "courseCode": "CHEM"
+    },
+    {
+      "id": "gen-chem-lectures-ch3-chemical-bonding-2569",
+      "title": {
+        "th": "Ch 3 Chemical Bonding 2569",
+        "en": "Ch 3 Chemical Bonding 2569"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "CHEM",
+        "lectures"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/en-kmitl/chem/lectures/ch3-chemical-bonding-2569.pdf",
+      "fileName": "ch3-chemical-bonding-2569.pdf",
+      "courseCode": "CHEM"
+    },
+    {
+      "id": "gen-chem-lectures-ch5-liquid-and-solution-2569-sc3",
+      "title": {
+        "th": "Ch 5 Liquid And Solution 2569 Sc 3",
+        "en": "Ch 5 Liquid And Solution 2569 Sc 3"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "CHEM",
+        "lectures"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/en-kmitl/chem/lectures/ch5-liquid-and-solution-2569-sc3.pdf",
+      "fileName": "ch5-liquid-and-solution-2569-sc3.pdf",
+      "courseCode": "CHEM"
+    },
+    {
+      "id": "gen-chem-sheets-ch03-chemical-bonding-discussion-class-2569-key",
+      "title": {
+        "th": "Ch 03 Chemical Bonding Discussion Class 2569 Key",
+        "en": "Ch 03 Chemical Bonding Discussion Class 2569 Key"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "CHEM",
+        "sheets"
+      ],
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/en-kmitl/chem/sheets/ch03-chemical-bonding-discussion-class-2569-key.pdf",
+      "fileName": "ch03-chemical-bonding-discussion-class-2569-key.pdf",
+      "courseCode": "CHEM"
+    },
+    {
+      "id": "gen-chem-sheets-ch04-stiochiometry-2569-key",
+      "title": {
+        "th": "Ch 04 Stiochiometry 2569 Key",
+        "en": "Ch 04 Stiochiometry 2569 Key"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "CHEM",
+        "sheets"
+      ],
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/en-kmitl/chem/sheets/ch04-stiochiometry-2569-key.pdf",
+      "fileName": "ch04-stiochiometry-2569-key.pdf",
+      "courseCode": "CHEM"
+    },
+    {
+      "id": "gen-chem-sheets-ch4-stiochiometry-2569-review",
+      "title": {
+        "th": "Ch 4 Stiochiometry 2569 Review",
+        "en": "Ch 4 Stiochiometry 2569 Review"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "CHEM",
+        "sheets"
+      ],
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/en-kmitl/chem/sheets/ch4-stiochiometry-2569-review.pdf",
+      "fileName": "ch4-stiochiometry-2569-review.pdf",
+      "courseCode": "CHEM"
+    }
+  ],
+  "BFIT": [
+    {
+      "id": "gen-bfit-references-bfit-ref-future-value-tables",
+      "title": {
+        "th": "Reference · Future Value Tables",
+        "en": "Reference · Future Value Tables"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "BFIT",
+        "references"
+      ],
+      "category": "reference",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/bfit/references/bfit-ref-future-value-tables.pdf",
+      "fileName": "bfit-ref-future-value-tables.pdf",
+      "courseCode": "BFIT"
+    },
+    {
+      "id": "gen-bfit-sheets-bfit-sheet-economics",
+      "title": {
+        "th": "Sheet · Economics",
+        "en": "Sheet · Economics"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "BFIT",
+        "sheets"
+      ],
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/bfit/sheets/bfit-sheet-economics.pdf",
+      "fileName": "bfit-sheet-economics.pdf",
+      "courseCode": "BFIT"
+    },
+    {
+      "id": "gen-bfit-sheets-bfit-sheet-students-guide",
+      "title": {
+        "th": "Sheet · Students Guide",
+        "en": "Sheet · Students Guide"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "BFIT",
+        "sheets"
+      ],
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/bfit/sheets/bfit-sheet-students-guide.pdf",
+      "fileName": "bfit-sheet-students-guide.pdf",
+      "courseCode": "BFIT"
+    }
+  ],
+  "CHARM": [
+    {
+      "id": "gen-charm-lectures-charm-lec-course-plan-2569",
+      "title": {
+        "th": "Lecture · Course Plan 2569",
+        "en": "Lecture · Course Plan 2569"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "CHARM",
+        "lectures"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/charm/lectures/charm-lec-course-plan-2569.pdf",
+      "fileName": "charm-lec-course-plan-2569.pdf",
+      "courseCode": "CHARM"
+    },
+    {
+      "id": "gen-charm-lectures-charm-lec-week04-charming-communication",
+      "title": {
+        "th": "Lecture · Week 04 Charming Communication",
+        "en": "Lecture · Week 04 Charming Communication"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "CHARM",
+        "lectures"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/charm/lectures/charm-lec-week04-charming-communication.pdf",
+      "fileName": "charm-lec-week04-charming-communication.pdf",
+      "courseCode": "CHARM"
+    },
+    {
+      "id": "gen-charm-lectures-charm-lec-week09-generation-gap",
+      "title": {
+        "th": "Lecture · Week 09 Generation Gap",
+        "en": "Lecture · Week 09 Generation Gap"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "CHARM",
+        "lectures"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/charm/lectures/charm-lec-week09-generation-gap.pdf",
+      "fileName": "charm-lec-week09-generation-gap.pdf",
+      "courseCode": "CHARM"
+    },
+    {
+      "id": "gen-charm-worksheets-charm-ex-worksheet02-disc-swot",
+      "title": {
+        "th": "Exercise · Worksheet 02 DISC SWOT",
+        "en": "Exercise · Worksheet 02 DISC SWOT"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "CHARM",
+        "worksheets"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/charm/worksheets/charm-ex-worksheet02-disc-swot.pdf",
+      "fileName": "charm-ex-worksheet02-disc-swot.pdf",
+      "courseCode": "CHARM"
+    },
+    {
+      "id": "gen-charm-worksheets-charm-ex-worksheet03-time-and-stress",
+      "title": {
+        "th": "Exercise · Worksheet 03 Time And Stress",
+        "en": "Exercise · Worksheet 03 Time And Stress"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "CHARM",
+        "worksheets"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/charm/worksheets/charm-ex-worksheet03-time-and-stress.pdf",
+      "fileName": "charm-ex-worksheet03-time-and-stress.pdf",
+      "courseCode": "CHARM"
+    }
+  ],
+  "DL": [
+    {
+      "id": "gen-dl-exercises-dl-ex-week02-digital-citizen-identity",
+      "title": {
+        "th": "Exercise · Week 02 Digital Citizen Identity",
+        "en": "Exercise · Week 02 Digital Citizen Identity"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "DL",
+        "exercises"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/dl/exercises/dl-ex-week02-digital-citizen-identity.pdf",
+      "fileName": "dl-ex-week02-digital-citizen-identity.pdf",
+      "courseCode": "DL"
+    }
+  ],
+  "DSA": [
+    {
+      "id": "gen-dsa-exercises-dsa-ex-solution-chapter02",
+      "title": {
+        "th": "Exercise · Solution Chapter 02",
+        "en": "Exercise · Solution Chapter 02"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "DSA",
+        "exercises"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/dsa/exercises/dsa-ex-solution-chapter02.pdf",
+      "fileName": "dsa-ex-solution-chapter02.pdf",
+      "courseCode": "DSA"
+    },
+    {
+      "id": "gen-dsa-exercises-dsa-ex-solution-chapter03",
+      "title": {
+        "th": "Exercise · Solution Chapter 03",
+        "en": "Exercise · Solution Chapter 03"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "DSA",
+        "exercises"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/dsa/exercises/dsa-ex-solution-chapter03.pdf",
+      "fileName": "dsa-ex-solution-chapter03.pdf",
+      "courseCode": "DSA"
+    },
+    {
+      "id": "gen-dsa-exercises-dsa-ex-solution-chapter04",
+      "title": {
+        "th": "Exercise · Solution Chapter 04",
+        "en": "Exercise · Solution Chapter 04"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "DSA",
+        "exercises"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/dsa/exercises/dsa-ex-solution-chapter04.pdf",
+      "fileName": "dsa-ex-solution-chapter04.pdf",
+      "courseCode": "DSA"
+    },
+    {
+      "id": "gen-dsa-exercises-dsa-ex-solution-chapter05",
+      "title": {
+        "th": "Exercise · Solution Chapter 05",
+        "en": "Exercise · Solution Chapter 05"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "DSA",
+        "exercises"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/dsa/exercises/dsa-ex-solution-chapter05.pdf",
+      "fileName": "dsa-ex-solution-chapter05.pdf",
+      "courseCode": "DSA"
+    },
+    {
+      "id": "gen-dsa-exercises-dsa-ex-solution-chapter07",
+      "title": {
+        "th": "Exercise · Solution Chapter 07",
+        "en": "Exercise · Solution Chapter 07"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "DSA",
+        "exercises"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/dsa/exercises/dsa-ex-solution-chapter07.pdf",
+      "fileName": "dsa-ex-solution-chapter07.pdf",
+      "courseCode": "DSA"
+    },
+    {
+      "id": "gen-dsa-exercises-dsa-ex-solution-complexity",
+      "title": {
+        "th": "Exercise · Solution Complexity",
+        "en": "Exercise · Solution Complexity"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "DSA",
+        "exercises"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/dsa/exercises/dsa-ex-solution-complexity.pdf",
+      "fileName": "dsa-ex-solution-complexity.pdf",
+      "courseCode": "DSA"
+    },
+    {
+      "id": "gen-dsa-exercises-dsa-ex-solution-divide-and-conquer",
+      "title": {
+        "th": "Exercise · Solution Divide And Conquer",
+        "en": "Exercise · Solution Divide And Conquer"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "DSA",
+        "exercises"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/dsa/exercises/dsa-ex-solution-divide-and-conquer.pdf",
+      "fileName": "dsa-ex-solution-divide-and-conquer.pdf",
+      "courseCode": "DSA"
+    },
+    {
+      "id": "gen-dsa-exercises-dsa-ex-solution-dynamic-programming",
+      "title": {
+        "th": "Exercise · Solution Dynamic Programming",
+        "en": "Exercise · Solution Dynamic Programming"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "DSA",
+        "exercises"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/dsa/exercises/dsa-ex-solution-dynamic-programming.pdf",
+      "fileName": "dsa-ex-solution-dynamic-programming.pdf",
+      "courseCode": "DSA"
+    },
+    {
+      "id": "gen-dsa-exercises-dsa-ex-solution-greedy",
+      "title": {
+        "th": "Exercise · Solution Greedy",
+        "en": "Exercise · Solution Greedy"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "DSA",
+        "exercises"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/dsa/exercises/dsa-ex-solution-greedy.pdf",
+      "fileName": "dsa-ex-solution-greedy.pdf",
+      "courseCode": "DSA"
+    },
+    {
+      "id": "gen-dsa-exercises-dsa-ex-solution-linked-list",
+      "title": {
+        "th": "Exercise · Solution Linked List",
+        "en": "Exercise · Solution Linked List"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "DSA",
+        "exercises"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/dsa/exercises/dsa-ex-solution-linked-list.pdf",
+      "fileName": "dsa-ex-solution-linked-list.pdf",
+      "courseCode": "DSA"
+    },
+    {
+      "id": "gen-dsa-exercises-dsa-ex-solution-recursion",
+      "title": {
+        "th": "Exercise · Solution Recursion",
+        "en": "Exercise · Solution Recursion"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "DSA",
+        "exercises"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/dsa/exercises/dsa-ex-solution-recursion.pdf",
+      "fileName": "dsa-ex-solution-recursion.pdf",
+      "courseCode": "DSA"
+    },
+    {
+      "id": "gen-dsa-exercises-dsa-ex-solution-searching",
+      "title": {
+        "th": "Exercise · Solution Searching",
+        "en": "Exercise · Solution Searching"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "DSA",
+        "exercises"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/dsa/exercises/dsa-ex-solution-searching.pdf",
+      "fileName": "dsa-ex-solution-searching.pdf",
+      "courseCode": "DSA"
+    },
+    {
+      "id": "gen-dsa-exercises-dsa-ex-solution-sorting",
+      "title": {
+        "th": "Exercise · Solution Sorting",
+        "en": "Exercise · Solution Sorting"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "DSA",
+        "exercises"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/dsa/exercises/dsa-ex-solution-sorting.pdf",
+      "fileName": "dsa-ex-solution-sorting.pdf",
+      "courseCode": "DSA"
+    },
+    {
+      "id": "gen-dsa-sheets-dsa-sheet-recap-final",
+      "title": {
+        "th": "Sheet · Recap Final",
+        "en": "Sheet · Recap Final"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "DSA",
+        "sheets"
+      ],
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/dsa/sheets/dsa-sheet-recap-final.pdf",
+      "fileName": "dsa-sheet-recap-final.pdf",
+      "courseCode": "DSA"
+    }
+  ],
+  "FE": [
+    {
+      "id": "gen-fe-exams-fe-midterm-vocabulary",
+      "title": {
+        "th": "Midterm · Vocabulary",
+        "en": "Midterm · Vocabulary"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "FE",
+        "exams"
+      ],
+      "category": "exam",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/fe/exams/fe-midterm-vocabulary.pdf",
+      "fileName": "fe-midterm-vocabulary.pdf",
+      "courseCode": "FE"
+    },
+    {
+      "id": "gen-fe-exercises-fe-ex-oral-exam-questions",
+      "title": {
+        "th": "Exercise · Oral Exam Questions",
+        "en": "Exercise · Oral Exam Questions"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "FE",
+        "exercises"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/fe/exercises/fe-ex-oral-exam-questions.pdf",
+      "fileName": "fe-ex-oral-exam-questions.pdf",
+      "courseCode": "FE"
+    }
+  ],
+  "FE2": [
+    {
+      "id": "gen-fe2-exams-fe2-final-interview-questions",
+      "title": {
+        "th": "Final · Interview Questions",
+        "en": "Final · Interview Questions"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "FE2",
+        "exams"
+      ],
+      "category": "exam",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/fe2/exams/fe2-final-interview-questions.pdf",
+      "fileName": "fe2-final-interview-questions.pdf",
+      "courseCode": "FE2"
+    },
+    {
+      "id": "gen-fe2-exams-fe2-midterm-interview-questions",
+      "title": {
+        "th": "Midterm · Interview Questions",
+        "en": "Midterm · Interview Questions"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "FE2",
+        "exams"
+      ],
+      "category": "exam",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/fe2/exams/fe2-midterm-interview-questions.pdf",
+      "fileName": "fe2-midterm-interview-questions.pdf",
+      "courseCode": "FE2"
+    },
+    {
+      "id": "gen-fe2-sheets-fe2-sheet-workbook",
+      "title": {
+        "th": "Sheet · Workbook",
+        "en": "Sheet · Workbook"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "FE2",
+        "sheets"
+      ],
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/fe2/sheets/fe2-sheet-workbook.pdf",
+      "fileName": "fe2-sheet-workbook.pdf",
+      "courseCode": "FE2"
+    }
+  ],
+  "ICS": [
+    {
+      "id": "gen-ics-exams-ics-midterm-1-2564",
+      "title": {
+        "th": "Midterm · 1 2564",
+        "en": "Midterm · 1 2564"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "exams"
+      ],
+      "category": "exam",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/ics/exams/ics-midterm-1-2564.pdf",
+      "fileName": "ics-midterm-1-2564.pdf",
+      "courseCode": "ICS"
+    },
+    {
+      "id": "gen-ics-exams-ics-midterm-week01-07",
+      "title": {
+        "th": "Midterm · Week 01 07",
+        "en": "Midterm · Week 01 07"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "exams"
+      ],
+      "category": "exam",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/ics/exams/ics-midterm-week01-07.pdf",
+      "fileName": "ics-midterm-week01-07.pdf",
+      "courseCode": "ICS"
+    },
+    {
+      "id": "gen-ics-exams-ics-quiz1-a-answers",
+      "title": {
+        "th": "Quiz 1 A Answers",
+        "en": "Quiz 1 A Answers"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "exams"
+      ],
+      "category": "exam",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/ics/exams/ics-quiz1-a-answers.pdf",
+      "fileName": "ics-quiz1-a-answers.pdf",
+      "courseCode": "ICS"
+    },
+    {
+      "id": "gen-ics-exams-ics-quiz1-a",
+      "title": {
+        "th": "Quiz 1 A",
+        "en": "Quiz 1 A"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "exams"
+      ],
+      "category": "exam",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/ics/exams/ics-quiz1-a.pdf",
+      "fileName": "ics-quiz1-a.pdf",
+      "courseCode": "ICS"
+    },
+    {
+      "id": "gen-ics-exams-ics-quiz1-b-answers",
+      "title": {
+        "th": "Quiz 1 B Answers",
+        "en": "Quiz 1 B Answers"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "exams"
+      ],
+      "category": "exam",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/ics/exams/ics-quiz1-b-answers.pdf",
+      "fileName": "ics-quiz1-b-answers.pdf",
+      "courseCode": "ICS"
+    },
+    {
+      "id": "gen-ics-exams-ics-quiz1-b",
+      "title": {
+        "th": "Quiz 1 B",
+        "en": "Quiz 1 B"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "exams"
+      ],
+      "category": "exam",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/ics/exams/ics-quiz1-b.pdf",
+      "fileName": "ics-quiz1-b.pdf",
+      "courseCode": "ICS"
+    },
+    {
+      "id": "gen-ics-labs-ics-lab-01",
+      "title": {
+        "th": "Lab · 01",
+        "en": "Lab · 01"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "labs"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/ics/labs/ics-lab-01.pdf",
+      "fileName": "ics-lab-01.pdf",
+      "courseCode": "ICS"
+    },
+    {
+      "id": "gen-ics-labs-ics-lab-02",
+      "title": {
+        "th": "Lab · 02",
+        "en": "Lab · 02"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "labs"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/ics/labs/ics-lab-02.pdf",
+      "fileName": "ics-lab-02.pdf",
+      "courseCode": "ICS"
+    },
+    {
+      "id": "gen-ics-labs-ics-lab-03",
+      "title": {
+        "th": "Lab · 03",
+        "en": "Lab · 03"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "labs"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/ics/labs/ics-lab-03.pdf",
+      "fileName": "ics-lab-03.pdf",
+      "courseCode": "ICS"
+    },
+    {
+      "id": "gen-ics-labs-ics-lab-04",
+      "title": {
+        "th": "Lab · 04",
+        "en": "Lab · 04"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "labs"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/ics/labs/ics-lab-04.pdf",
+      "fileName": "ics-lab-04.pdf",
+      "courseCode": "ICS"
+    },
+    {
+      "id": "gen-ics-lectures-ics-lec-week01-introduction",
+      "title": {
+        "th": "Lecture · Week 01 Introduction",
+        "en": "Lecture · Week 01 Introduction"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "lectures"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/ics/lectures/ics-lec-week01-introduction.pdf",
+      "fileName": "ics-lec-week01-introduction.pdf",
+      "courseCode": "ICS"
+    },
+    {
+      "id": "gen-ics-lectures-ics-lec-week02-boolean-algebra",
+      "title": {
+        "th": "Lecture · Week 02 Boolean Algebra",
+        "en": "Lecture · Week 02 Boolean Algebra"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "lectures"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/ics/lectures/ics-lec-week02-boolean-algebra.pdf",
+      "fileName": "ics-lec-week02-boolean-algebra.pdf",
+      "courseCode": "ICS"
+    },
+    {
+      "id": "gen-ics-lectures-ics-lec-week03-canonical-forms",
+      "title": {
+        "th": "Lecture · Week 03 Canonical Forms",
+        "en": "Lecture · Week 03 Canonical Forms"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "lectures"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/ics/lectures/ics-lec-week03-canonical-forms.pdf",
+      "fileName": "ics-lec-week03-canonical-forms.pdf",
+      "courseCode": "ICS"
+    },
+    {
+      "id": "gen-ics-lectures-ics-lec-week04-boolean-minimization",
+      "title": {
+        "th": "Lecture · Week 04 Boolean Minimization",
+        "en": "Lecture · Week 04 Boolean Minimization"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "lectures"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/ics/lectures/ics-lec-week04-boolean-minimization.pdf",
+      "fileName": "ics-lec-week04-boolean-minimization.pdf",
+      "courseCode": "ICS"
+    },
+    {
+      "id": "gen-ics-lectures-ics-lec-week05-time-response",
+      "title": {
+        "th": "Lecture · Week 05 Time Response",
+        "en": "Lecture · Week 05 Time Response"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "lectures"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/ics/lectures/ics-lec-week05-time-response.pdf",
+      "fileName": "ics-lec-week05-time-response.pdf",
+      "courseCode": "ICS"
+    },
+    {
+      "id": "gen-ics-lectures-ics-lec-week06-number-systems",
+      "title": {
+        "th": "Lecture · Week 06 Number Systems",
+        "en": "Lecture · Week 06 Number Systems"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "lectures"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/ics/lectures/ics-lec-week06-number-systems.pdf",
+      "fileName": "ics-lec-week06-number-systems.pdf",
+      "courseCode": "ICS"
+    },
+    {
+      "id": "gen-ics-lectures-ics-lec-week07-mux",
+      "title": {
+        "th": "Lecture · Week 07 MUX",
+        "en": "Lecture · Week 07 MUX"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "lectures"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/ics/lectures/ics-lec-week07-mux.pdf",
+      "fileName": "ics-lec-week07-mux.pdf",
+      "courseCode": "ICS"
+    },
+    {
+      "id": "gen-ics-pages-pg-01",
+      "title": {
+        "th": "Pg 01",
+        "en": "Pg 01"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "pages"
+      ],
+      "category": "note",
+      "fileType": "image",
+      "url": "/assets/it-kmitl/ics/pages/pg-01.jpg",
+      "fileName": "pg-01.jpg",
+      "courseCode": "ICS"
+    },
+    {
+      "id": "gen-ics-pages-pg-02",
+      "title": {
+        "th": "Pg 02",
+        "en": "Pg 02"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "pages"
+      ],
+      "category": "note",
+      "fileType": "image",
+      "url": "/assets/it-kmitl/ics/pages/pg-02.jpg",
+      "fileName": "pg-02.jpg",
+      "courseCode": "ICS"
+    },
+    {
+      "id": "gen-ics-pages-pg-03",
+      "title": {
+        "th": "Pg 03",
+        "en": "Pg 03"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "pages"
+      ],
+      "category": "note",
+      "fileType": "image",
+      "url": "/assets/it-kmitl/ics/pages/pg-03.jpg",
+      "fileName": "pg-03.jpg",
+      "courseCode": "ICS"
+    },
+    {
+      "id": "gen-ics-pages-pg-04",
+      "title": {
+        "th": "Pg 04",
+        "en": "Pg 04"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "pages"
+      ],
+      "category": "note",
+      "fileType": "image",
+      "url": "/assets/it-kmitl/ics/pages/pg-04.jpg",
+      "fileName": "pg-04.jpg",
+      "courseCode": "ICS"
+    },
+    {
+      "id": "gen-ics-pages-pg-05",
+      "title": {
+        "th": "Pg 05",
+        "en": "Pg 05"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "pages"
+      ],
+      "category": "note",
+      "fileType": "image",
+      "url": "/assets/it-kmitl/ics/pages/pg-05.jpg",
+      "fileName": "pg-05.jpg",
+      "courseCode": "ICS"
+    },
+    {
+      "id": "gen-ics-pages-pg-06",
+      "title": {
+        "th": "Pg 06",
+        "en": "Pg 06"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "pages"
+      ],
+      "category": "note",
+      "fileType": "image",
+      "url": "/assets/it-kmitl/ics/pages/pg-06.jpg",
+      "fileName": "pg-06.jpg",
+      "courseCode": "ICS"
+    },
+    {
+      "id": "gen-ics-pages-pg-07",
+      "title": {
+        "th": "Pg 07",
+        "en": "Pg 07"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "pages"
+      ],
+      "category": "note",
+      "fileType": "image",
+      "url": "/assets/it-kmitl/ics/pages/pg-07.jpg",
+      "fileName": "pg-07.jpg",
+      "courseCode": "ICS"
+    },
+    {
+      "id": "gen-ics-pages-pg-08",
+      "title": {
+        "th": "Pg 08",
+        "en": "Pg 08"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "pages"
+      ],
+      "category": "note",
+      "fileType": "image",
+      "url": "/assets/it-kmitl/ics/pages/pg-08.jpg",
+      "fileName": "pg-08.jpg",
+      "courseCode": "ICS"
+    },
+    {
+      "id": "gen-ics-pages-pg-09",
+      "title": {
+        "th": "Pg 09",
+        "en": "Pg 09"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "pages"
+      ],
+      "category": "note",
+      "fileType": "image",
+      "url": "/assets/it-kmitl/ics/pages/pg-09.jpg",
+      "fileName": "pg-09.jpg",
+      "courseCode": "ICS"
+    },
+    {
+      "id": "gen-ics-pages-pg-10",
+      "title": {
+        "th": "Pg 10",
+        "en": "Pg 10"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "pages"
+      ],
+      "category": "note",
+      "fileType": "image",
+      "url": "/assets/it-kmitl/ics/pages/pg-10.jpg",
+      "fileName": "pg-10.jpg",
+      "courseCode": "ICS"
+    },
+    {
+      "id": "gen-ics-sheets-ics-sheet-recap-boolean",
+      "title": {
+        "th": "Sheet · Recap Boolean",
+        "en": "Sheet · Recap Boolean"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "sheets"
+      ],
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/ics/sheets/ics-sheet-recap-boolean.pdf",
+      "fileName": "ics-sheet-recap-boolean.pdf",
+      "courseCode": "ICS"
+    },
+    {
+      "id": "gen-ics-sheets-ics-sheet-summary",
+      "title": {
+        "th": "Sheet · Summary",
+        "en": "Sheet · Summary"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "sheets"
+      ],
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/ics/sheets/ics-sheet-summary.pdf",
+      "fileName": "ics-sheet-summary.pdf",
+      "courseCode": "ICS"
+    }
+  ],
+  "ITF": [
+    {
+      "id": "gen-itf-exams-itf-midterm-2022",
+      "title": {
+        "th": "Midterm · 2022",
+        "en": "Midterm · 2022"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "exams"
+      ],
+      "category": "exam",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/exams/itf-midterm-2022.pdf",
+      "fileName": "itf-midterm-2022.pdf",
+      "courseCode": "ITF"
+    },
+    {
+      "id": "gen-itf-exams-itf-quiz-01",
+      "title": {
+        "th": "Quiz · 01",
+        "en": "Quiz · 01"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "exams"
+      ],
+      "category": "exam",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/exams/itf-quiz-01.pdf",
+      "fileName": "itf-quiz-01.pdf",
+      "courseCode": "ITF"
+    },
+    {
+      "id": "gen-itf-exams-itf-quiz-hardware",
+      "title": {
+        "th": "Quiz · Hardware",
+        "en": "Quiz · Hardware"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "exams"
+      ],
+      "category": "exam",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/exams/itf-quiz-hardware.pdf",
+      "fileName": "itf-quiz-hardware.pdf",
+      "courseCode": "ITF"
+    },
+    {
+      "id": "gen-itf-labs-itf-lab-week01-sheet",
+      "title": {
+        "th": "Lab · Week 01 Sheet",
+        "en": "Lab · Week 01 Sheet"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "labs"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/labs/itf-lab-week01-sheet.pdf",
+      "fileName": "itf-lab-week01-sheet.pdf",
+      "courseCode": "ITF"
+    },
+    {
+      "id": "gen-itf-labs-itf-lab-week01-windows",
+      "title": {
+        "th": "Lab · Week 01 Windows",
+        "en": "Lab · Week 01 Windows"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "labs"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/labs/itf-lab-week01-windows.pdf",
+      "fileName": "itf-lab-week01-windows.pdf",
+      "courseCode": "ITF"
+    },
+    {
+      "id": "gen-itf-lectures-itf-lec-week00-intro",
+      "title": {
+        "th": "Lecture · Week 00 Intro",
+        "en": "Lecture · Week 00 Intro"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "lectures"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/lectures/itf-lec-week00-intro.pdf",
+      "fileName": "itf-lec-week00-intro.pdf",
+      "courseCode": "ITF"
+    },
+    {
+      "id": "gen-itf-lectures-itf-lec-week01",
+      "title": {
+        "th": "Lecture · Week 01",
+        "en": "Lecture · Week 01"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "lectures"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/lectures/itf-lec-week01.pdf",
+      "fileName": "itf-lec-week01.pdf",
+      "courseCode": "ITF"
+    },
+    {
+      "id": "gen-itf-lectures-itf-lec-week02",
+      "title": {
+        "th": "Lecture · Week 02",
+        "en": "Lecture · Week 02"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "lectures"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/lectures/itf-lec-week02.pdf",
+      "fileName": "itf-lec-week02.pdf",
+      "courseCode": "ITF"
+    },
+    {
+      "id": "gen-itf-lectures-itf-lec-week03",
+      "title": {
+        "th": "Lecture · Week 03",
+        "en": "Lecture · Week 03"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "lectures"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/lectures/itf-lec-week03.pdf",
+      "fileName": "itf-lec-week03.pdf",
+      "courseCode": "ITF"
+    },
+    {
+      "id": "gen-itf-lectures-itf-lec-week04",
+      "title": {
+        "th": "Lecture · Week 04",
+        "en": "Lecture · Week 04"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "lectures"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/lectures/itf-lec-week04.pdf",
+      "fileName": "itf-lec-week04.pdf",
+      "courseCode": "ITF"
+    },
+    {
+      "id": "gen-itf-lectures-itf-lec-week05",
+      "title": {
+        "th": "Lecture · Week 05",
+        "en": "Lecture · Week 05"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "lectures"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/lectures/itf-lec-week05.pdf",
+      "fileName": "itf-lec-week05.pdf",
+      "courseCode": "ITF"
+    },
+    {
+      "id": "gen-itf-lectures-itf-lec-week06-os",
+      "title": {
+        "th": "Lecture · Week 06 OS",
+        "en": "Lecture · Week 06 OS"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "lectures"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/lectures/itf-lec-week06-os.pdf",
+      "fileName": "itf-lec-week06-os.pdf",
+      "courseCode": "ITF"
+    },
+    {
+      "id": "gen-itf-lectures-itf-lec-week07-programs-apps",
+      "title": {
+        "th": "Lecture · Week 07 Programs Apps",
+        "en": "Lecture · Week 07 Programs Apps"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "lectures"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/lectures/itf-lec-week07-programs-apps.pdf",
+      "fileName": "itf-lec-week07-programs-apps.pdf",
+      "courseCode": "ITF"
+    },
+    {
+      "id": "gen-itf-notes-itf-note-01",
+      "title": {
+        "th": "Note · 01",
+        "en": "Note · 01"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "notes"
+      ],
+      "category": "note",
+      "fileType": "image",
+      "url": "/assets/it-kmitl/itf/notes/itf-note-01.webp",
+      "fileName": "itf-note-01.webp",
+      "courseCode": "ITF"
+    },
+    {
+      "id": "gen-itf-notes-itf-note-02",
+      "title": {
+        "th": "Note · 02",
+        "en": "Note · 02"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "notes"
+      ],
+      "category": "note",
+      "fileType": "image",
+      "url": "/assets/it-kmitl/itf/notes/itf-note-02.webp",
+      "fileName": "itf-note-02.webp",
+      "courseCode": "ITF"
+    },
+    {
+      "id": "gen-itf-notes-itf-note-03",
+      "title": {
+        "th": "Note · 03",
+        "en": "Note · 03"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "notes"
+      ],
+      "category": "note",
+      "fileType": "image",
+      "url": "/assets/it-kmitl/itf/notes/itf-note-03.webp",
+      "fileName": "itf-note-03.webp",
+      "courseCode": "ITF"
+    },
+    {
+      "id": "gen-itf-notes-itf-note-04",
+      "title": {
+        "th": "Note · 04",
+        "en": "Note · 04"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "notes"
+      ],
+      "category": "note",
+      "fileType": "image",
+      "url": "/assets/it-kmitl/itf/notes/itf-note-04.webp",
+      "fileName": "itf-note-04.webp",
+      "courseCode": "ITF"
+    },
+    {
+      "id": "gen-itf-notes-itf-note-05",
+      "title": {
+        "th": "Note · 05",
+        "en": "Note · 05"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "notes"
+      ],
+      "category": "note",
+      "fileType": "image",
+      "url": "/assets/it-kmitl/itf/notes/itf-note-05.webp",
+      "fileName": "itf-note-05.webp",
+      "courseCode": "ITF"
+    },
+    {
+      "id": "gen-itf-notes-itf-note-06",
+      "title": {
+        "th": "Note · 06",
+        "en": "Note · 06"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "notes"
+      ],
+      "category": "note",
+      "fileType": "image",
+      "url": "/assets/it-kmitl/itf/notes/itf-note-06.webp",
+      "fileName": "itf-note-06.webp",
+      "courseCode": "ITF"
+    },
+    {
+      "id": "gen-itf-notes-itf-note-07",
+      "title": {
+        "th": "Note · 07",
+        "en": "Note · 07"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "notes"
+      ],
+      "category": "note",
+      "fileType": "image",
+      "url": "/assets/it-kmitl/itf/notes/itf-note-07.webp",
+      "fileName": "itf-note-07.webp",
+      "courseCode": "ITF"
+    },
+    {
+      "id": "gen-itf-notes-itf-note-08",
+      "title": {
+        "th": "Note · 08",
+        "en": "Note · 08"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "notes"
+      ],
+      "category": "note",
+      "fileType": "image",
+      "url": "/assets/it-kmitl/itf/notes/itf-note-08.webp",
+      "fileName": "itf-note-08.webp",
+      "courseCode": "ITF"
+    },
+    {
+      "id": "gen-itf-notes-itf-note-09",
+      "title": {
+        "th": "Note · 09",
+        "en": "Note · 09"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "notes"
+      ],
+      "category": "note",
+      "fileType": "image",
+      "url": "/assets/it-kmitl/itf/notes/itf-note-09.webp",
+      "fileName": "itf-note-09.webp",
+      "courseCode": "ITF"
+    },
+    {
+      "id": "gen-itf-notes-itf-note-10",
+      "title": {
+        "th": "Note · 10",
+        "en": "Note · 10"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "notes"
+      ],
+      "category": "note",
+      "fileType": "image",
+      "url": "/assets/it-kmitl/itf/notes/itf-note-10.webp",
+      "fileName": "itf-note-10.webp",
+      "courseCode": "ITF"
+    },
+    {
+      "id": "gen-itf-notes-itf-note-11",
+      "title": {
+        "th": "Note · 11",
+        "en": "Note · 11"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "notes"
+      ],
+      "category": "note",
+      "fileType": "image",
+      "url": "/assets/it-kmitl/itf/notes/itf-note-11.webp",
+      "fileName": "itf-note-11.webp",
+      "courseCode": "ITF"
+    },
+    {
+      "id": "gen-itf-notes-itf-note-12",
+      "title": {
+        "th": "Note · 12",
+        "en": "Note · 12"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "notes"
+      ],
+      "category": "note",
+      "fileType": "image",
+      "url": "/assets/it-kmitl/itf/notes/itf-note-12.webp",
+      "fileName": "itf-note-12.webp",
+      "courseCode": "ITF"
+    },
+    {
+      "id": "gen-itf-notes-itf-note-13",
+      "title": {
+        "th": "Note · 13",
+        "en": "Note · 13"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "notes"
+      ],
+      "category": "note",
+      "fileType": "image",
+      "url": "/assets/it-kmitl/itf/notes/itf-note-13.webp",
+      "fileName": "itf-note-13.webp",
+      "courseCode": "ITF"
+    },
+    {
+      "id": "gen-itf-notes-itf-note-14",
+      "title": {
+        "th": "Note · 14",
+        "en": "Note · 14"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "notes"
+      ],
+      "category": "note",
+      "fileType": "image",
+      "url": "/assets/it-kmitl/itf/notes/itf-note-14.webp",
+      "fileName": "itf-note-14.webp",
+      "courseCode": "ITF"
+    },
+    {
+      "id": "gen-itf-notes-itf-note-15",
+      "title": {
+        "th": "Note · 15",
+        "en": "Note · 15"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "notes"
+      ],
+      "category": "note",
+      "fileType": "image",
+      "url": "/assets/it-kmitl/itf/notes/itf-note-15.webp",
+      "fileName": "itf-note-15.webp",
+      "courseCode": "ITF"
+    },
+    {
+      "id": "gen-itf-notes-itf-note-16",
+      "title": {
+        "th": "Note · 16",
+        "en": "Note · 16"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "notes"
+      ],
+      "category": "note",
+      "fileType": "image",
+      "url": "/assets/it-kmitl/itf/notes/itf-note-16.webp",
+      "fileName": "itf-note-16.webp",
+      "courseCode": "ITF"
+    },
+    {
+      "id": "gen-itf-notes-itf-note-17",
+      "title": {
+        "th": "Note · 17",
+        "en": "Note · 17"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "notes"
+      ],
+      "category": "note",
+      "fileType": "image",
+      "url": "/assets/it-kmitl/itf/notes/itf-note-17.webp",
+      "fileName": "itf-note-17.webp",
+      "courseCode": "ITF"
+    },
+    {
+      "id": "gen-itf-notes-itf-note-18",
+      "title": {
+        "th": "Note · 18",
+        "en": "Note · 18"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "notes"
+      ],
+      "category": "note",
+      "fileType": "image",
+      "url": "/assets/it-kmitl/itf/notes/itf-note-18.webp",
+      "fileName": "itf-note-18.webp",
+      "courseCode": "ITF"
+    },
+    {
+      "id": "gen-itf-notes-itf-note-19",
+      "title": {
+        "th": "Note · 19",
+        "en": "Note · 19"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "notes"
+      ],
+      "category": "note",
+      "fileType": "image",
+      "url": "/assets/it-kmitl/itf/notes/itf-note-19.webp",
+      "fileName": "itf-note-19.webp",
+      "courseCode": "ITF"
+    },
+    {
+      "id": "gen-itf-notes-itf-note-20",
+      "title": {
+        "th": "Note · 20",
+        "en": "Note · 20"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "notes"
+      ],
+      "category": "note",
+      "fileType": "image",
+      "url": "/assets/it-kmitl/itf/notes/itf-note-20.webp",
+      "fileName": "itf-note-20.webp",
+      "courseCode": "ITF"
+    },
+    {
+      "id": "gen-itf-notes-itf-note-21",
+      "title": {
+        "th": "Note · 21",
+        "en": "Note · 21"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "notes"
+      ],
+      "category": "note",
+      "fileType": "image",
+      "url": "/assets/it-kmitl/itf/notes/itf-note-21.webp",
+      "fileName": "itf-note-21.webp",
+      "courseCode": "ITF"
+    },
+    {
+      "id": "gen-itf-notes-itf-note-22",
+      "title": {
+        "th": "Note · 22",
+        "en": "Note · 22"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "notes"
+      ],
+      "category": "note",
+      "fileType": "image",
+      "url": "/assets/it-kmitl/itf/notes/itf-note-22.webp",
+      "fileName": "itf-note-22.webp",
+      "courseCode": "ITF"
+    },
+    {
+      "id": "gen-itf-notes-itf-note-23",
+      "title": {
+        "th": "Note · 23",
+        "en": "Note · 23"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "notes"
+      ],
+      "category": "note",
+      "fileType": "image",
+      "url": "/assets/it-kmitl/itf/notes/itf-note-23.webp",
+      "fileName": "itf-note-23.webp",
+      "courseCode": "ITF"
+    },
+    {
+      "id": "gen-itf-notes-itf-note-24",
+      "title": {
+        "th": "Note · 24",
+        "en": "Note · 24"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "notes"
+      ],
+      "category": "note",
+      "fileType": "image",
+      "url": "/assets/it-kmitl/itf/notes/itf-note-24.webp",
+      "fileName": "itf-note-24.webp",
+      "courseCode": "ITF"
+    },
+    {
+      "id": "gen-itf-notes-itf-note-25",
+      "title": {
+        "th": "Note · 25",
+        "en": "Note · 25"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "notes"
+      ],
+      "category": "note",
+      "fileType": "image",
+      "url": "/assets/it-kmitl/itf/notes/itf-note-25.webp",
+      "fileName": "itf-note-25.webp",
+      "courseCode": "ITF"
+    },
+    {
+      "id": "gen-itf-notes-itf-note-26",
+      "title": {
+        "th": "Note · 26",
+        "en": "Note · 26"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "notes"
+      ],
+      "category": "note",
+      "fileType": "image",
+      "url": "/assets/it-kmitl/itf/notes/itf-note-26.webp",
+      "fileName": "itf-note-26.webp",
+      "courseCode": "ITF"
+    },
+    {
+      "id": "gen-itf-sheets-itf-sheet-recap-topics",
+      "title": {
+        "th": "Sheet · Recap Topics",
+        "en": "Sheet · Recap Topics"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "sheets"
+      ],
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/sheets/itf-sheet-recap-topics.pdf",
+      "fileName": "itf-sheet-recap-topics.pdf",
+      "courseCode": "ITF"
+    },
+    {
+      "id": "gen-itf-sheets-itf-sheet-review-questions",
+      "title": {
+        "th": "Sheet · Review Questions",
+        "en": "Sheet · Review Questions"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "sheets"
+      ],
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/sheets/itf-sheet-review-questions.pdf",
+      "fileName": "itf-sheet-review-questions.pdf",
+      "courseCode": "ITF"
+    },
+    {
+      "id": "gen-itf-sheets-itf-sheet-study-guide",
+      "title": {
+        "th": "Sheet · Study Guide",
+        "en": "Sheet · Study Guide"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "sheets"
+      ],
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/sheets/itf-sheet-study-guide.pdf",
+      "fileName": "itf-sheet-study-guide.pdf",
+      "courseCode": "ITF"
+    }
+  ],
+  "MFIT": [
+    {
+      "id": "gen-mfit-activities-mfit-1-2024-in-class-activity-week5",
+      "title": {
+        "th": "1 2024 In Class Activity Week 5",
+        "en": "1 2024 In Class Activity Week 5"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "MFIT",
+        "activities"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/activities/mfit-1-2024-in-class-activity-week5.pdf",
+      "fileName": "mfit-1-2024-in-class-activity-week5.pdf",
+      "courseCode": "MFIT"
+    },
+    {
+      "id": "gen-mfit-activities-mfit-1-2026-in-class-activity-week1",
+      "title": {
+        "th": "1 2026 In Class Activity Week 1",
+        "en": "1 2026 In Class Activity Week 1"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "MFIT",
+        "activities"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/activities/mfit-1-2026-in-class-activity-week1.pdf",
+      "fileName": "mfit-1-2026-in-class-activity-week1.pdf",
+      "courseCode": "MFIT"
+    },
+    {
+      "id": "gen-mfit-activities-mfit-1-2026-in-class-activity-week2",
+      "title": {
+        "th": "1 2026 In Class Activity Week 2",
+        "en": "1 2026 In Class Activity Week 2"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "MFIT",
+        "activities"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/activities/mfit-1-2026-in-class-activity-week2.pdf",
+      "fileName": "mfit-1-2026-in-class-activity-week2.pdf",
+      "courseCode": "MFIT"
+    },
+    {
+      "id": "gen-mfit-activities-mfit-1-2026-in-class-activity-week3",
+      "title": {
+        "th": "1 2026 In Class Activity Week 3",
+        "en": "1 2026 In Class Activity Week 3"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "MFIT",
+        "activities"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/activities/mfit-1-2026-in-class-activity-week3.pdf",
+      "fileName": "mfit-1-2026-in-class-activity-week3.pdf",
+      "courseCode": "MFIT"
+    },
+    {
+      "id": "gen-mfit-activities-mfit-1-2026-in-class-activity-week4",
+      "title": {
+        "th": "1 2026 In Class Activity Week 4",
+        "en": "1 2026 In Class Activity Week 4"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "MFIT",
+        "activities"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/activities/mfit-1-2026-in-class-activity-week4.pdf",
+      "fileName": "mfit-1-2026-in-class-activity-week4.pdf",
+      "courseCode": "MFIT"
+    },
+    {
+      "id": "gen-mfit-activities-mfit-1-2026-in-class-activity-week6",
+      "title": {
+        "th": "1 2026 In Class Activity Week 6",
+        "en": "1 2026 In Class Activity Week 6"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "MFIT",
+        "activities"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/activities/mfit-1-2026-in-class-activity-week6.pdf",
+      "fileName": "mfit-1-2026-in-class-activity-week6.pdf",
+      "courseCode": "MFIT"
+    },
+    {
+      "id": "gen-mfit-activities-mfit-1-2026-in-class-activity-week7",
+      "title": {
+        "th": "1 2026 In Class Activity Week 7",
+        "en": "1 2026 In Class Activity Week 7"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "MFIT",
+        "activities"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/activities/mfit-1-2026-in-class-activity-week7.pdf",
+      "fileName": "mfit-1-2026-in-class-activity-week7.pdf",
+      "courseCode": "MFIT"
+    },
+    {
+      "id": "gen-mfit-exams-mfit-midterm-open-book",
+      "title": {
+        "th": "Midterm · Open Book",
+        "en": "Midterm · Open Book"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "MFIT",
+        "exams"
+      ],
+      "category": "exam",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/exams/mfit-midterm-open-book.pdf",
+      "fileName": "mfit-midterm-open-book.pdf",
+      "courseCode": "MFIT"
+    },
+    {
+      "id": "gen-mfit-exams-mfit-midterm-past-paper-01",
+      "title": {
+        "th": "Midterm · Past Paper 01",
+        "en": "Midterm · Past Paper 01"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "MFIT",
+        "exams"
+      ],
+      "category": "exam",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/exams/mfit-midterm-past-paper-01.pdf",
+      "fileName": "mfit-midterm-past-paper-01.pdf",
+      "courseCode": "MFIT"
+    },
+    {
+      "id": "gen-mfit-exams-mfit-midterm-past-paper-02",
+      "title": {
+        "th": "Midterm · Past Paper 02",
+        "en": "Midterm · Past Paper 02"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "MFIT",
+        "exams"
+      ],
+      "category": "exam",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/exams/mfit-midterm-past-paper-02.pdf",
+      "fileName": "mfit-midterm-past-paper-02.pdf",
+      "courseCode": "MFIT"
+    },
+    {
+      "id": "gen-mfit-exercises-mfit-ex-practice",
+      "title": {
+        "th": "Exercise · Practice",
+        "en": "Exercise · Practice"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "MFIT",
+        "exercises"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/exercises/mfit-ex-practice.pdf",
+      "fileName": "mfit-ex-practice.pdf",
+      "courseCode": "MFIT"
+    },
+    {
+      "id": "gen-mfit-exercises-mfit-ex-pretest",
+      "title": {
+        "th": "Exercise · Pretest",
+        "en": "Exercise · Pretest"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "MFIT",
+        "exercises"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/exercises/mfit-ex-pretest.pdf",
+      "fileName": "mfit-ex-pretest.pdf",
+      "courseCode": "MFIT"
+    },
+    {
+      "id": "gen-mfit-sheets-mfit-sheet-cheat-sheet-2022",
+      "title": {
+        "th": "Sheet · Cheat Sheet 2022",
+        "en": "Sheet · Cheat Sheet 2022"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "MFIT",
+        "sheets"
+      ],
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/sheets/mfit-sheet-cheat-sheet-2022.pdf",
+      "fileName": "mfit-sheet-cheat-sheet-2022.pdf",
+      "courseCode": "MFIT"
+    },
+    {
+      "id": "gen-mfit-sheets-mfit-sheet-cheat-sheet-2023",
+      "title": {
+        "th": "Sheet · Cheat Sheet 2023",
+        "en": "Sheet · Cheat Sheet 2023"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "MFIT",
+        "sheets"
+      ],
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/sheets/mfit-sheet-cheat-sheet-2023.pdf",
+      "fileName": "mfit-sheet-cheat-sheet-2023.pdf",
+      "courseCode": "MFIT"
+    },
+    {
+      "id": "gen-mfit-slides-mfit-1-2026-lecture-slides-week1",
+      "title": {
+        "th": "1 2026 Lecture Slides Week 1",
+        "en": "1 2026 Lecture Slides Week 1"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "MFIT",
+        "slides"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/slides/mfit-1-2026-lecture-slides-week1.pdf",
+      "fileName": "mfit-1-2026-lecture-slides-week1.pdf",
+      "courseCode": "MFIT"
+    },
+    {
+      "id": "gen-mfit-slides-mfit-1-2026-lecture-slides-week2",
+      "title": {
+        "th": "1 2026 Lecture Slides Week 2",
+        "en": "1 2026 Lecture Slides Week 2"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "MFIT",
+        "slides"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/slides/mfit-1-2026-lecture-slides-week2.pdf",
+      "fileName": "mfit-1-2026-lecture-slides-week2.pdf",
+      "courseCode": "MFIT"
+    },
+    {
+      "id": "gen-mfit-slides-mfit-1-2026-lecture-slides-week3",
+      "title": {
+        "th": "1 2026 Lecture Slides Week 3",
+        "en": "1 2026 Lecture Slides Week 3"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "MFIT",
+        "slides"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/slides/mfit-1-2026-lecture-slides-week3.pdf",
+      "fileName": "mfit-1-2026-lecture-slides-week3.pdf",
+      "courseCode": "MFIT"
+    },
+    {
+      "id": "gen-mfit-slides-mfit-1-2026-lecture-slides-week4",
+      "title": {
+        "th": "1 2026 Lecture Slides Week 4",
+        "en": "1 2026 Lecture Slides Week 4"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "MFIT",
+        "slides"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/slides/mfit-1-2026-lecture-slides-week4.pdf",
+      "fileName": "mfit-1-2026-lecture-slides-week4.pdf",
+      "courseCode": "MFIT"
+    },
+    {
+      "id": "gen-mfit-slides-mfit-1-2026-lecture-slides-week5",
+      "title": {
+        "th": "1 2026 Lecture Slides Week 5",
+        "en": "1 2026 Lecture Slides Week 5"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "MFIT",
+        "slides"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/slides/mfit-1-2026-lecture-slides-week5.pdf",
+      "fileName": "mfit-1-2026-lecture-slides-week5.pdf",
+      "courseCode": "MFIT"
+    },
+    {
+      "id": "gen-mfit-slides-mfit-1-2026-lecture-slides-week6",
+      "title": {
+        "th": "1 2026 Lecture Slides Week 6",
+        "en": "1 2026 Lecture Slides Week 6"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "MFIT",
+        "slides"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/slides/mfit-1-2026-lecture-slides-week6.pdf",
+      "fileName": "mfit-1-2026-lecture-slides-week6.pdf",
+      "courseCode": "MFIT"
+    },
+    {
+      "id": "gen-mfit-slides-mfit-1-2026-lecture-slides-week7",
+      "title": {
+        "th": "1 2026 Lecture Slides Week 7",
+        "en": "1 2026 Lecture Slides Week 7"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "MFIT",
+        "slides"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/slides/mfit-1-2026-lecture-slides-week7.pdf",
+      "fileName": "mfit-1-2026-lecture-slides-week7.pdf",
+      "courseCode": "MFIT"
+    }
+  ],
+  "OOP": [
+    {
+      "id": "gen-oop-sheets-oop-sheet-cheat-sheet-2024",
+      "title": {
+        "th": "Sheet · Cheat Sheet 2024",
+        "en": "Sheet · Cheat Sheet 2024"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "OOP",
+        "sheets"
+      ],
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/oop/sheets/oop-sheet-cheat-sheet-2024.pdf",
+      "fileName": "oop-sheet-cheat-sheet-2024.pdf",
+      "courseCode": "OOP"
+    },
+    {
+      "id": "gen-oop-sheets-oop-sheet-summary-final",
+      "title": {
+        "th": "Sheet · Summary Final",
+        "en": "Sheet · Summary Final"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "OOP",
+        "sheets"
+      ],
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/oop/sheets/oop-sheet-summary-final.pdf",
+      "fileName": "oop-sheet-summary-final.pdf",
+      "courseCode": "OOP"
+    },
+    {
+      "id": "gen-oop-sheets-oop-sheet-summary-midterm",
+      "title": {
+        "th": "Sheet · Summary Midterm",
+        "en": "Sheet · Summary Midterm"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "OOP",
+        "sheets"
+      ],
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/oop/sheets/oop-sheet-summary-midterm.pdf",
+      "fileName": "oop-sheet-summary-midterm.pdf",
+      "courseCode": "OOP"
+    }
+  ],
+  "PSCP": [
+    {
+      "id": "gen-pscp-exams-pscp-midterm-part1",
+      "title": {
+        "th": "Midterm · Part 1",
+        "en": "Midterm · Part 1"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "PSCP",
+        "exams"
+      ],
+      "category": "exam",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/pscp/exams/pscp-midterm-part1.pdf",
+      "fileName": "pscp-midterm-part1.pdf",
+      "courseCode": "PSCP"
+    },
+    {
+      "id": "gen-pscp-exams-pscp-midterm-part2",
+      "title": {
+        "th": "Midterm · Part 2",
+        "en": "Midterm · Part 2"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "PSCP",
+        "exams"
+      ],
+      "category": "exam",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/pscp/exams/pscp-midterm-part2.pdf",
+      "fileName": "pscp-midterm-part2.pdf",
+      "courseCode": "PSCP"
+    },
+    {
+      "id": "gen-pscp-exams-pscp-quiz-week01",
+      "title": {
+        "th": "Quiz · Week 01",
+        "en": "Quiz · Week 01"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "PSCP",
+        "exams"
+      ],
+      "category": "exam",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/pscp/exams/pscp-quiz-week01.pdf",
+      "fileName": "pscp-quiz-week01.pdf",
+      "courseCode": "PSCP"
+    },
+    {
+      "id": "gen-pscp-exams-pscp-quiz-week03",
+      "title": {
+        "th": "Quiz · Week 03",
+        "en": "Quiz · Week 03"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "PSCP",
+        "exams"
+      ],
+      "category": "exam",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/pscp/exams/pscp-quiz-week03.pdf",
+      "fileName": "pscp-quiz-week03.pdf",
+      "courseCode": "PSCP"
+    },
+    {
+      "id": "gen-pscp-exams-pscp-quiz-week07",
+      "title": {
+        "th": "Quiz · Week 07",
+        "en": "Quiz · Week 07"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "PSCP",
+        "exams"
+      ],
+      "category": "exam",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/pscp/exams/pscp-quiz-week07.pdf",
+      "fileName": "pscp-quiz-week07.pdf",
+      "courseCode": "PSCP"
+    },
+    {
+      "id": "gen-pscp-exams-pscp-quiz-week08",
+      "title": {
+        "th": "Quiz · Week 08",
+        "en": "Quiz · Week 08"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "PSCP",
+        "exams"
+      ],
+      "category": "exam",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/pscp/exams/pscp-quiz-week08.pdf",
+      "fileName": "pscp-quiz-week08.pdf",
+      "courseCode": "PSCP"
+    },
+    {
+      "id": "gen-pscp-exams-pscp-quiz-week09",
+      "title": {
+        "th": "Quiz · Week 09",
+        "en": "Quiz · Week 09"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "PSCP",
+        "exams"
+      ],
+      "category": "exam",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/pscp/exams/pscp-quiz-week09.pdf",
+      "fileName": "pscp-quiz-week09.pdf",
+      "courseCode": "PSCP"
+    },
+    {
+      "id": "gen-pscp-exercises-pscp-ex-pretest-week03",
+      "title": {
+        "th": "Exercise · Pretest Week 03",
+        "en": "Exercise · Pretest Week 03"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "PSCP",
+        "exercises"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/pscp/exercises/pscp-ex-pretest-week03.pdf",
+      "fileName": "pscp-ex-pretest-week03.pdf",
+      "courseCode": "PSCP"
+    },
+    {
+      "id": "gen-pscp-exercises-pscp-ex-pretest-week04",
+      "title": {
+        "th": "Exercise · Pretest Week 04",
+        "en": "Exercise · Pretest Week 04"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "PSCP",
+        "exercises"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/pscp/exercises/pscp-ex-pretest-week04.pdf",
+      "fileName": "pscp-ex-pretest-week04.pdf",
+      "courseCode": "PSCP"
+    },
+    {
+      "id": "gen-pscp-exercises-pscp-ex-week01-practice",
+      "title": {
+        "th": "Exercise · Week 01 Practice",
+        "en": "Exercise · Week 01 Practice"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "PSCP",
+        "exercises"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/pscp/exercises/pscp-ex-week01-practice.pdf",
+      "fileName": "pscp-ex-week01-practice.pdf",
+      "courseCode": "PSCP"
+    },
+    {
+      "id": "gen-pscp-exercises-pscp-ex-week02-practice",
+      "title": {
+        "th": "Exercise · Week 02 Practice",
+        "en": "Exercise · Week 02 Practice"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "PSCP",
+        "exercises"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/pscp/exercises/pscp-ex-week02-practice.pdf",
+      "fileName": "pscp-ex-week02-practice.pdf",
+      "courseCode": "PSCP"
+    },
+    {
+      "id": "gen-pscp-lectures-pscp-lec-chapter01",
+      "title": {
+        "th": "Lecture · Chapter 01",
+        "en": "Lecture · Chapter 01"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "PSCP",
+        "lectures"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/pscp/lectures/pscp-lec-chapter01.pdf",
+      "fileName": "pscp-lec-chapter01.pdf",
+      "courseCode": "PSCP"
+    },
+    {
+      "id": "gen-pscp-lectures-pscp-lec-chapter02",
+      "title": {
+        "th": "Lecture · Chapter 02",
+        "en": "Lecture · Chapter 02"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "PSCP",
+        "lectures"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/pscp/lectures/pscp-lec-chapter02.pdf",
+      "fileName": "pscp-lec-chapter02.pdf",
+      "courseCode": "PSCP"
+    },
+    {
+      "id": "gen-pscp-lectures-pscp-lec-chapter03",
+      "title": {
+        "th": "Lecture · Chapter 03",
+        "en": "Lecture · Chapter 03"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "PSCP",
+        "lectures"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/pscp/lectures/pscp-lec-chapter03.pdf",
+      "fileName": "pscp-lec-chapter03.pdf",
+      "courseCode": "PSCP"
+    },
+    {
+      "id": "gen-pscp-lectures-pscp-lec-chapter04",
+      "title": {
+        "th": "Lecture · Chapter 04",
+        "en": "Lecture · Chapter 04"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "PSCP",
+        "lectures"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/pscp/lectures/pscp-lec-chapter04.pdf",
+      "fileName": "pscp-lec-chapter04.pdf",
+      "courseCode": "PSCP"
+    },
+    {
+      "id": "gen-pscp-lectures-pscp-lec-chapter05",
+      "title": {
+        "th": "Lecture · Chapter 05",
+        "en": "Lecture · Chapter 05"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "PSCP",
+        "lectures"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/pscp/lectures/pscp-lec-chapter05.pdf",
+      "fileName": "pscp-lec-chapter05.pdf",
+      "courseCode": "PSCP"
+    },
+    {
+      "id": "gen-pscp-lectures-pscp-lec-github",
+      "title": {
+        "th": "Lecture · Github",
+        "en": "Lecture · Github"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "PSCP",
+        "lectures"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/pscp/lectures/pscp-lec-github.pdf",
+      "fileName": "pscp-lec-github.pdf",
+      "courseCode": "PSCP"
+    }
+  ],
+  "PSTAT": [
+    {
+      "id": "gen-pstat-references-pstat-ref-t-table",
+      "title": {
+        "th": "Reference · T Table",
+        "en": "Reference · T Table"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "PSTAT",
+        "references"
+      ],
+      "category": "reference",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/pstat/references/pstat-ref-t-table.pdf",
+      "fileName": "pstat-ref-t-table.pdf",
+      "courseCode": "PSTAT"
+    },
+    {
+      "id": "gen-pstat-references-pstat-ref-z-table",
+      "title": {
+        "th": "Reference · Z Table",
+        "en": "Reference · Z Table"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "PSTAT",
+        "references"
+      ],
+      "category": "reference",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/pstat/references/pstat-ref-z-table.pdf",
+      "fileName": "pstat-ref-z-table.pdf",
+      "courseCode": "PSTAT"
+    },
+    {
+      "id": "gen-pstat-sheets-pstat-sheet-recap-final",
+      "title": {
+        "th": "Sheet · Recap Final",
+        "en": "Sheet · Recap Final"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "PSTAT",
+        "sheets"
+      ],
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/pstat/sheets/pstat-sheet-recap-final.pdf",
+      "fileName": "pstat-sheet-recap-final.pdf",
+      "courseCode": "PSTAT"
+    },
+    {
+      "id": "gen-pstat-sheets-pstat-sheet-recap-probability",
+      "title": {
+        "th": "Sheet · Recap Probability",
+        "en": "Sheet · Recap Probability"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "PSTAT",
+        "sheets"
+      ],
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/pstat/sheets/pstat-sheet-recap-probability.pdf",
+      "fileName": "pstat-sheet-recap-probability.pdf",
+      "courseCode": "PSTAT"
+    }
+  ]
+}

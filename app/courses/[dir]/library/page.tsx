@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { Navbar } from "@/components/navbar";
 import { SubjectLibrary } from "@/components/subject-library";
 import { resolveCourse, courseDir, COURSES } from "@/lib/catalog";
-import { assetsForCourse, SUBJECT_ASSETS } from "@/lib/subject-library";
+import { assetsForCourse, coursesWithAssets } from "@/lib/subject-library";
 import type { LText } from "@/lib/i18n";
 
 export const dynamic = "force-dynamic";
@@ -53,7 +53,8 @@ const SUBTITLE: Record<string, LText> = {
 };
 
 export async function generateStaticParams() {
-  const withLibrary = COURSES.filter((c) => SUBJECT_ASSETS[c.code]);
+  const covered = coursesWithAssets();
+  const withLibrary = COURSES.filter((c) => covered.has(c.code));
   return [
     ...withLibrary.map((c) => ({ dir: courseDir(c) })),
     ...withLibrary.map((c) => ({ dir: c.code.toLowerCase() })),

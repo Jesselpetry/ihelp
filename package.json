@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "library:stats": "node scripts/build-library-stats.mjs"
+    "library:stats": "node scripts/build-library-stats.mjs",
+    "library:manifest": "node scripts/build-library-manifest.mjs",
+    "library:build": "npm run library:manifest && npm run library:stats"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

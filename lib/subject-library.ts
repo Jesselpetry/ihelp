@@ -1,9 +1,10 @@
 import type { LText } from "@/lib/i18n";
 import LIBRARY_STATS from "@/lib/library-stats.json";
+import LIBRARY_MANIFEST from "@/lib/library-manifest.json";
 
 // SubjectAsset describes one item in a subject's resource library.
 // fileType determines how the preview modal renders the asset.
-export type AssetFileType = "pdf" | "image" | "md";
+export type AssetFileType = "pdf" | "image" | "md" | "file";
 
 /**
  * Half of the term a resource is studied for. The boundary is whatever each
@@ -2547,8 +2548,39 @@ export const SUBJECT_ASSETS: Record<string, SubjectAsset[]> = {
   CHEM: CHEM_ASSETS,
 };
 
+/**
+ * Every asset generated from the file tree by scripts/build-library-manifest.mjs.
+ *
+ * These are the floor beneath SUBJECT_ASSETS: a file dropped into
+ * public/assets/<ns>/<subject>/<category>/ gets a card from its filename alone,
+ * so nothing on disk is invisible in the gallery. Titles are derived, and
+ * `scope` is deliberately absent — see that script's header for why.
+ */
+const GENERATED_ASSETS = LIBRARY_MANIFEST as Record<string, SubjectAsset[]>;
+
+/**
+ * Curated entries followed by whatever the manifest found that they don't
+ * already cover, matched on url. A hand-written entry carries a bilingual
+ * title, a description and an exam scope that a filename cannot, so it always
+ * wins over the generated card for the same file.
+ */
+export function mergedAssets(code: string): SubjectAsset[] {
+  const key = code.toUpperCase();
+  const curated = SUBJECT_ASSETS[key] ?? [];
+  const claimed = new Set(curated.map((a) => a.url.split("#")[0]));
+  const generated = (GENERATED_ASSETS[key] ?? []).filter(
+    (a) => !claimed.has(a.url.split("#")[0]),
+  );
+  return [...curated, ...generated];
+}
+
+/** Course codes that have at least one asset, curated or generated. */
+export function coursesWithAssets(): Set<string> {
+  return new Set([...Object.keys(SUBJECT_ASSETS), ...Object.keys(GENERATED_ASSETS)]);
+}
+
 /** A course's library assets with page counts and file sizes filled in. */
 export function assetsForCourse(code: string): SubjectAsset[] | undefined {
-  const assets = SUBJECT_ASSETS[code.toUpperCase()];
-  return assets && withAssetStats(assets);
+  const assets = mergedAssets(code);
+  return assets.length ? withAssetStats(assets) : undefined;
 }

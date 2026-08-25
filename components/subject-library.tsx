@@ -18,6 +18,7 @@ import {
   ChevronRight,
   Download,
   Eye,
+  FileDown,
   FileText,
   FlaskConical,
   Images,
@@ -180,9 +181,14 @@ const FILE_TYPE_LABEL: Record<AssetFileType, string> = {
   pdf: "PDF",
   image: "IMG",
   md: "MD",
+  file: "FILE",
 };
 
 const L = {
+  noPreview: {
+    th: "ไฟล์นี้เปิดดูในเบราว์เซอร์ไม่ได้ — ดาวน์โหลดเพื่อเปิด",
+    en: "This file type can't be previewed in the browser — download to open it.",
+  },
   searchPlaceholder: { th: "ค้นหาชื่อเรื่อง คำอธิบาย หรือแท็ก…", en: "Search titles, descriptions, or tags…" },
   filterAll: { th: "ทั้งหมด", en: "All" },
   noResults: { th: "ไม่พบทรัพยากรที่ตรงกับคำค้นหา", en: "No resources match your search" },
@@ -598,6 +604,18 @@ function PreviewModal({
             // viewports while flex-1 on the stage still fills whatever remains.
             className="h-full min-h-[60vh] w-full border-0 bg-white"
           />
+        )}
+
+        {asset.fileType === "file" && (
+          // Logisim circuits, spreadsheets and the like: nothing to preview
+          // inline, so the stage becomes a plain hand-off to the download.
+          <div className="flex size-full flex-col items-center justify-center gap-3 p-8 text-center">
+            <FileDown className="size-10 text-muted-foreground" strokeWidth={1.5} />
+            <p className="text-sm font-medium text-foreground">
+              {t(L.noPreview, locale)}
+            </p>
+            <p className="text-xs text-muted-foreground">{asset.fileName}</p>
+          </div>
         )}
 
         {asset.fileType === "image" && (
