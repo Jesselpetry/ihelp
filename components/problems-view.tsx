@@ -13,7 +13,7 @@ import {
   Check,
   Sparkles,
 } from "lucide-react";
-import { useMemo, useState } from "react";
+import { Fragment, useMemo, useState } from "react";
 import type { MasterProblem } from "@/lib/master";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -54,14 +54,16 @@ const L: Record<string, LText> = {
   actions: { th: "สร้างไฟล์ (Learning Log)", en: "Make files (Learning Log)" },
   expires: { th: "หมดเขต", en: "Expires" },
   expired: { th: "หมดเขตแล้ว", en: "Expired" },
+  expiredSection: { th: "โจทย์ที่หมดเขตส่งแล้ว (Expired Problems)", en: "Past / Expired Problems" },
+  activeSection: { th: "โจทย์ที่กำลังเปิดรับส่ง (Active Problems)", en: "Active Problems" },
   learningLog: { th: "Learning Log", en: "Learning Log" },
   recommended: { th: "แนะนำ", en: "Recommended" },
   submissionBtn: { th: "สร้าง submission.md", en: "Make submission.md" },
   reflectionBtn: { th: "สร้าง ai_reflection.md", en: "Make ai_reflection.md" },
   openProblem: { th: "เปิดโจทย์บน iJudge", en: "Open on iJudge" },
   llOnly: {
-    th: "submission.md ต้องทำเฉพาะโจทย์ที่มีป้าย Learning Log (แสดงไว้ด้านบนสุด) ส่วน ai_reflection.md สร้างได้กับทุกโจทย์ที่ใช้ AI",
-    en: "submission.md is required only for problems tagged Learning Log (sorted to the top). ai_reflection.md can be made for any problem where AI was used.",
+    th: "submission.md ต้องทำเฉพาะโจทย์ที่มีป้าย Learning Log ส่วน ai_reflection.md สร้างได้กับทุกโจทย์ที่ใช้ AI",
+    en: "submission.md is required only for problems tagged Learning Log. ai_reflection.md can be made for any problem where AI was used.",
   },
   empty: {
     th: "ไม่พบโจทย์ที่ตรงกับตัวกรอง",
@@ -70,22 +72,11 @@ const L: Record<string, LText> = {
   all: { th: "All", en: "All" },
   stats: { th: "สถิติ", en: "Stats" },
   coursePage: { th: "หน้ารายวิชา", en: "Course page" },
-  bannerTag: { th: "ข้อสอบกลางภาค", en: "Midterm Exam" },
-  bannerTitle: {
-    th: "ข้อสอบ Midterm (10 ข้อ: 0 ดาว 4 ข้อ, 1 ดาว 6 ข้อ)",
-    en: "Midterm Exam (10 Problems: 0-Star 4, 1-Star 6)",
-  },
-  bannerDesc: {
-    th: "แนะนำให้มาถึงห้องสอบตั้งแต่เวลา 9:00 น. เพื่อตรวจสอบห้องสอบและที่นั่งสอบ (เข้าห้องสอบ ~9:10 น. / เริ่มสอบ 9:30 น.) — อ.โชติพัชร์",
-    en: "Please arrive by 09:00 to verify your exam room and seating (Entry ~09:10, Exam starts 09:30) — chotipat",
-  },
   syncedSub: { th: "submission", en: "submission" },
   syncedRefl: { th: "reflection", en: "reflection" },
   editOnRepo: { th: "เปิดแก้ไฟล์นี้ใน repo", en: "Open this file in the repo editor" },
 };
 
-// Raw expire label is English ("31 July 2026, 00:00"); render it in the
-// active locale from the parsed ISO — Thai shows Thai months + Buddhist era.
 function formatExpire(
   iso: string | null,
   label: string,
@@ -147,6 +138,7 @@ export function ProblemsView({ problems }: { problems: MasterProblem[] }) {
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
+    const now = new Date();
     return (
       problems
         .filter((p) => {
@@ -159,6 +151,12 @@ export function ProblemsView({ problems }: { problems: MasterProblem[] }) {
           );
         })
         .sort((a, b) => {
+          // 0. Active (Not Expired) first, Expired (หมดเขตแล้ว) to the bottom
+          const expA = a.expireIso !== null && new Date(a.expireIso) < now;
+          const expB = b.expireIso !== null && new Date(b.expireIso) < now;
+          if (expA !== expB) {
+            return expA ? 1 : -1;
+          }
           // 1. Learning Log first
           if (a.learningLog !== b.learningLog) {
             return a.learningLog ? -1 : 1;
@@ -181,28 +179,6 @@ export function ProblemsView({ problems }: { problems: MasterProblem[] }) {
 
   return (
     <main className="max-w-6xl mx-auto px-6 py-8 w-full">
-      {/* Midterm Exam Announcement Banner */}
-      <div className="mb-6 rounded-2xl bg-gradient-to-r from-primary via-primary/95 to-primary/90 px-5 py-4 text-primary-foreground shadow-md flex items-center justify-between gap-4 transition-all hover:brightness-105">
-        <div className="flex items-center gap-3.5">
-          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary-foreground/20 text-xl shadow-inner">
-            📝
-          </span>
-          <div className="text-left">
-            <h4 className="font-bold text-base md:text-lg">
-              {t(L.bannerTitle, locale)}
-            </h4>
-            <p className="text-xs md:text-sm text-primary-foreground/85 font-normal mt-0.5 leading-relaxed">
-              {t(L.bannerDesc, locale)}
-            </p>
-          </div>
-        </div>
-        <div className="hidden sm:block shrink-0">
-          <span className="rounded-full bg-primary-foreground/25 px-3 py-1 text-xs font-semibold backdrop-blur-sm">
-            {t(L.bannerTag, locale)}
-          </span>
-        </div>
-      </div>
-
       <div className="mb-6">
         <p className="text-sm text-muted-foreground mb-1">
           {t(L.crumbCourses, locale)} / {t(L.crumbCourse, locale)}
@@ -380,109 +356,134 @@ export function ProblemsView({ problems }: { problems: MasterProblem[] }) {
                   </TableCell>
                 </TableRow>
               ) : (
-                filtered.map((p) => {
+                filtered.map((p, idx) => {
+                  const now = new Date();
                   const expired =
-                    p.expireIso !== null && new Date(p.expireIso) < new Date();
+                    p.expireIso !== null && new Date(p.expireIso) < now;
+                  const prevExpired =
+                    idx > 0 &&
+                    filtered[idx - 1].expireIso !== null &&
+                    new Date(filtered[idx - 1].expireIso!) < now;
+                  const showExpiredDivider = expired && !prevExpired && idx > 0;
+
                   return (
-                    <TableRow
-                      key={p.id}
-                      className="group border-l-2 border-l-transparent transition-colors hover:border-l-primary hover:bg-primary/[0.03] data-[ll=true]:border-l-primary/40"
-                      data-ll={p.learningLog || undefined}
-                    >
-                      <TableCell className="py-4">
-                        <div className="flex flex-wrap items-center gap-2">
-                          <a
-                            href={p.url}
-                            target="_blank"
-                            rel="noreferrer"
-                            title={t(L.openProblem, locale)}
-                            className="text-primary font-semibold text-base underline-offset-4 hover:underline"
+                    <Fragment key={p.id}>
+                      {showExpiredDivider && (
+                        <TableRow className="bg-muted/40 hover:bg-muted/40 border-y">
+                          <TableCell
+                            colSpan={3}
+                            className="py-2.5 px-6 text-xs font-semibold text-muted-foreground tracking-wide uppercase"
                           >
-                            {p.cleanName || p.name}
-                          </a>
-                          {p.learningLog && (
-                            <Badge className="bg-primary/10 text-primary font-semibold">
-                              {t(L.learningLog, locale)}
-                            </Badge>
-                          )}
-                          {p.recommended && (
-                            <Badge className="border-amber-500/30 bg-amber-500/10 text-amber-600 dark:text-amber-400 font-semibold gap-1 shadow-xs">
-                              <Sparkles className="size-3 text-amber-500 fill-amber-500/20" />
-                              {t(L.recommended, locale)}
-                            </Badge>
-                          )}
-                        </div>
-                        <div className="flex flex-wrap items-center gap-1.5 mt-2">
-                          <Badge
-                            variant="outline"
-                            className="font-mono text-muted-foreground"
-                          >
-                            #{p.id}
-                          </Badge>
-                          {p.week !== null && <WeekBadge week={p.week} />}
-                          <Badge
-                            variant="outline"
-                            className={
-                              expired
-                                ? "border-destructive/30 bg-destructive/10 text-destructive font-medium"
-                                : "text-muted-foreground"
-                            }
-                          >
-                            {expired ? (
-                              <TriangleAlert className="size-3" />
-                            ) : (
-                              <Clock className="size-3" />
+                            <span className="inline-flex items-center gap-2">
+                              <TriangleAlert className="size-3.5 text-destructive" />
+                              {t(L.expiredSection, locale)}
+                            </span>
+                          </TableCell>
+                        </TableRow>
+                      )}
+                      <TableRow
+                        className={`group border-l-2 transition-colors ${
+                          expired
+                            ? "opacity-80 hover:opacity-100 border-l-transparent hover:border-l-destructive/50 bg-muted/10 hover:bg-muted/20"
+                            : "border-l-transparent hover:border-l-primary hover:bg-primary/[0.03] data-[ll=true]:border-l-primary/40"
+                        }`}
+                        data-ll={p.learningLog || undefined}
+                      >
+                        <TableCell className="py-4">
+                          <div className="flex flex-wrap items-center gap-2">
+                            <a
+                              href={p.url}
+                              target="_blank"
+                              rel="noreferrer"
+                              title={t(L.openProblem, locale)}
+                              className="text-primary font-semibold text-base underline-offset-4 hover:underline"
+                            >
+                              {p.cleanName || p.name}
+                            </a>
+                            {p.learningLog && (
+                              <Badge className="bg-primary/10 text-primary font-semibold">
+                                {t(L.learningLog, locale)}
+                              </Badge>
                             )}
-                            {t(expired ? L.expired : L.expires, locale)}{" "}
-                            {formatExpire(p.expireIso, p.expireLabel, locale)}
-                          </Badge>
-                          {gh.connected && gh.repo && gh.status[p.id]?.submission && (
-                            <Link href={`/repo?path=oj${p.id}/submission.md`} title={t(L.editOnRepo, locale)}>
-                              <Badge className="bg-green-500/10 text-green-600 dark:text-green-400 font-medium cursor-pointer hover:bg-green-500/20 transition-colors">
-                                <Check className="size-3" />
-                                {t(L.syncedSub, locale)}
+                            {p.recommended && (
+                              <Badge className="border-amber-500/30 bg-amber-500/10 text-amber-600 dark:text-amber-400 font-semibold gap-1 shadow-xs">
+                                <Sparkles className="size-3 text-amber-500 fill-amber-500/20" />
+                                {t(L.recommended, locale)}
                               </Badge>
-                            </Link>
-                          )}
-                          {gh.connected && gh.repo && gh.status[p.id]?.reflection && (
-                            <Link href={`/repo?path=oj${p.id}/ai_reflection.md`} title={t(L.editOnRepo, locale)}>
-                              <Badge className="bg-green-500/10 text-green-600 dark:text-green-400 font-medium cursor-pointer hover:bg-green-500/20 transition-colors">
-                                <Check className="size-3" />
-                                {t(L.syncedRefl, locale)}
-                              </Badge>
-                            </Link>
-                          )}
-                        </div>
-                      </TableCell>
-                      <TableCell className="py-4">
-                        <DifficultyStars value={p.difficulty} />
-                      </TableCell>
-                      <TableCell className="py-4">
-                        <div className="flex flex-wrap gap-2">
-                          {p.learningLog && (
+                            )}
+                          </div>
+                          <div className="flex flex-wrap items-center gap-1.5 mt-2">
+                            <Badge
+                              variant="outline"
+                              className="font-mono text-muted-foreground"
+                            >
+                              #{p.id}
+                            </Badge>
+                            {p.week !== null && <WeekBadge week={p.week} />}
+                            <Badge
+                              variant="outline"
+                              className={
+                                expired
+                                  ? "border-destructive/30 bg-destructive/10 text-destructive font-medium"
+                                  : "text-muted-foreground"
+                              }
+                            >
+                              {expired ? (
+                                <TriangleAlert className="size-3" />
+                              ) : (
+                                <Clock className="size-3" />
+                              )}
+                              {t(expired ? L.expired : L.expires, locale)}{" "}
+                              {formatExpire(p.expireIso, p.expireLabel, locale)}
+                            </Badge>
+                            {gh.connected && gh.repo && gh.status[p.id]?.submission && (
+                              <Link href={`/repo?path=oj${p.id}/submission.md`} title={t(L.editOnRepo, locale)}>
+                                <Badge className="bg-green-500/10 text-green-600 dark:text-green-400 font-medium cursor-pointer hover:bg-green-500/20 transition-colors">
+                                  <Check className="size-3" />
+                                  {t(L.syncedSub, locale)}
+                                </Badge>
+                              </Link>
+                            )}
+                            {gh.connected && gh.repo && gh.status[p.id]?.reflection && (
+                              <Link href={`/repo?path=oj${p.id}/ai_reflection.md`} title={t(L.editOnRepo, locale)}>
+                                <Badge className="bg-green-500/10 text-green-600 dark:text-green-400 font-medium cursor-pointer hover:bg-green-500/20 transition-colors">
+                                  <Check className="size-3" />
+                                  {t(L.syncedRefl, locale)}
+                                </Badge>
+                              </Link>
+                            )}
+                          </div>
+                        </TableCell>
+                        <TableCell className="py-4">
+                          <DifficultyStars value={p.difficulty} />
+                        </TableCell>
+                        <TableCell className="py-4">
+                          <div className="flex flex-wrap gap-2">
+                            {p.learningLog && (
+                              <Button
+                                asChild
+                                size="sm"
+                                className="h-8 rounded-full text-xs font-medium"
+                              >
+                                <Link href={`/make/submission?problem=${p.id}`}>
+                                  {t(L.submissionBtn, locale)}
+                                </Link>
+                              </Button>
+                            )}
                             <Button
                               asChild
                               size="sm"
-                              className="h-8 rounded-full text-xs font-medium"
+                              variant="outline"
+                              className="h-8 rounded-full text-xs font-medium text-muted-foreground hover:text-foreground"
                             >
-                              <Link href={`/make/submission?problem=${p.id}`}>
-                                {t(L.submissionBtn, locale)}
+                              <Link href={`/make/reflection?problem=${p.id}`}>
+                                {t(L.reflectionBtn, locale)}
                               </Link>
                             </Button>
-                          )}
-                          <Button
-                            asChild
-                            size="sm"
-                            variant="outline"
-                            className="h-8 rounded-full text-xs font-medium text-muted-foreground hover:text-foreground"
-                          >
-                            <Link href={`/make/reflection?problem=${p.id}`}>
-                              {t(L.reflectionBtn, locale)}
-                            </Link>
-                          </Button>
-                        </div>
-                      </TableCell>
-                    </TableRow>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    </Fragment>
                   );
                 })
               )}

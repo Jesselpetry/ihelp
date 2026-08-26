@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { IBM_Plex_Sans_Thai, Geist_Mono, Mali } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -106,11 +107,17 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${plexThai.variable} ${geistMono.variable} ${mali.variable} h-full antialiased`}
     >
-      <head>
-        {/* Runs before paint so the theme class is set on <html> with no flash. */}
-        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
-      </head>
       <body className="min-h-full flex flex-col">
+        {/*
+          beforeInteractive Scripts must be placed inside <body>, not as a
+          direct child of <html>. Next.js hoists them into <head> regardless
+          of where they're placed in the component.
+        */}
+        <Script
+          id="theme-script"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }}
+        />
         <ThemeProvider>
           <LocaleProvider>
             <Splash />
