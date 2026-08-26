@@ -28,6 +28,29 @@
   `_dropzone/_hold/` พร้อมเหตุผลแทนที่จะเดา
 - `content/courses/06016402-IT-Fundamentals/midterm-study-guide.md` และ
   `content/courses/README.md` นำเข้าจาก iLearn
+- **พิมพ์เขียวการเรียนรู้ 11 โมดูล** (`lib/spine.ts` — `STANDARD_SPINE`) — สัญญาเดียว
+  ว่า "หนึ่งวิชา" ประกอบด้วยอะไรบ้าง ใช้ร่วมกันทุกวิชา แทนที่ track 6 แบบเดิมที่มีอีก
+  4 แบบแอบอยู่นอกระบบ ทุกวิชาแสดงครบทั้ง 11 ช่องเสมอ ช่องที่ยังไม่มีเนื้อหาแสดงเป็น
+  ช่องล็อกพร้อมบอกว่าขาดอะไร
+- `lib/course-bindings.ts` — จุดเดียวที่ประกาศว่าแต่ละวิชาเติมโมดูลไหนได้บ้าง
+  เชื่อมกับ spine ผ่าน `lib/course-spine.ts` (`resolveCourseSpine`)
+- route เดียว `app/courses/[dir]/[module]/page.tsx` แทนที่ไฟล์หน้าเว็บ 7 ไฟล์ที่
+  เกือบซ้ำกันทั้งหมด (`summary` `exam` `mock` `cram` `plan` `analysis` `quiz`
+  `library` `labs`) — เพิ่มวิชาใหม่หรือโมดูลใหม่ไม่ต้องแตะ route อีกต่อไป
+- ต่อไฟล์ที่ถูกทิ้งไว้ใน `content/courses/*/archive/` เข้า route — โดยเฉพาะ MFIT
+  สัปดาห์ 8–15 (เนื้อหาปลายภาคชุดเดียวที่มีอยู่ทั้งระบบ) และ `study-guide-curriculum.json`
+  ผ่าน loader ใหม่ `lib/curriculum.ts`
+- ฟิลด์ `chapter` บน `SubjectAsset` และ `QuizQuestion` — เชื่อมสไลด์เข้ากับสัปดาห์ที่มัน
+  สอน `scripts/build-library-manifest.mjs` อ่านจากชื่อไฟล์ที่ระบุตรงๆ (`week08` `ch3`
+  `lec02`) เท่านั้น backfill ได้ 264/670 ไฟล์ พร้อม chip กรองตามบทในคลังทรัพยากร
+- **สัญญาคลังข้อสอบที่ตรวจได้ด้วยเครื่อง** (`lib/schemas/content.ts` + `npm run
+  content:check`, รันใน `prebuild`) — ตรวจ `sourceRef` ต้องมี, option id ห้ามซ้ำ,
+  `quizId` ต้องไม่ชนกัน และอื่นๆ พบหนี้เนื้อหา 223 รายการ (คำอธิบายตัวลวงซ้ำ/กลวง,
+  ประกาศสองภาษาปลอม) บันทึกเป็น warning รอซ่อม
+- `npm run readiness` — รายงาน Readiness Index (x/11) ของทุกวิชา
+- เอกสาร **[docs/LEARNING_BLUEPRINT.md](./docs/LEARNING_BLUEPRINT.md)** — สัญญาเต็มของ
+  พิมพ์เขียว 11 โมดูล และ **[Current_Architecture_Report.md](./Current_Architecture_Report.md)**
+  รายงานสถาปัตยกรรมที่พิมพ์เขียวนี้อ้างอิง
 
 ### Changed
 
@@ -38,6 +61,28 @@
 - ย้าย `ics-midterm-1-2564.pdf` จากรากโฟลเดอร์วิชาเข้า `exams/`
 - README ขยายขอบเขตจากเครื่องมือ PSCP เป็นคลังการเรียนรู้ IT KMITL
 - CONTRIBUTING เพิ่มหัวข้อเพิ่มรายวิชา เขียนสรุป และอัปโหลดสื่อการเรียน
+- **COMPRO แยกข้อสอบจำลอง 60 ข้อออกจากคลังฝึก 10 ข้อ** — เดิมถูกต่อท้ายเงียบๆ ทำให้
+  นักศึกษาเจอ 70 ข้อรวดตอนกด "ทำแบบทดสอบ" ตอนนี้แยกเป็นโมดูล `mock_exam` พร้อม
+  progress key ของตัวเอง
+- URL เก่า `/exam` `/plan` `/analysis` redirect ไปยัง segment ใหม่ (`/mock` `/cram`
+  `/overview`) ที่ `next.config.ts`
+- sitemap สร้างจาก spine อัตโนมัติแทนรายการ route ที่เขียนมือ
+- การ์ดโมดูลในหน้าวิชาเรียงลำดับ **ที่พร้อมใช้ก่อน** ในแต่ละเฟส แทนลำดับตายตัวเดิมที่
+  ทำให้การ์ดที่กดได้ปนอยู่กับการ์ดล็อกสีเทา
+- **คลังทรัพยากรดึงขึ้นมาเป็นแบนเนอร์เต็มความกว้างด้านบนสุดของหน้าวิชา** พร้อม badge
+  สีน้ำเงิน IT KMITL และเอฟเฟกต์ shimmer แทนที่จะเป็นการ์ดขนาดเท่ากันปนอยู่ในกริด
+- ตาราง `lib/catalog.ts` เหลือหน้าที่เดียวคือ identity ของวิชา (code/officialCode/
+  slug/group) ย้าย `tracks` ไปเป็น binding ใน `lib/course-bindings.ts`
+- `FILE_STRUCTURE.md` หัวข้อ 7 เขียนใหม่ทั้งหมดให้ตรงกับ catalog + spine + bindings
+
+### Fixed
+
+- **สูตรคณิตศาสตร์แบบ `$$...$$` หลายบรรทัดทำให้เนื้อหาที่เหลือทั้งไฟล์หายไป** —
+  `remark-math` มองว่า `$$` ปิดต้องอยู่บรรทัดของตัวเองล้วนๆ ไฟล์สรุป/ข้อสอบทุกไฟล์
+  ในคลังเขียนแบบ LaTeX ปกติ (`$$สูตร$$` ติดเนื้อหาทั้งสองฝั่ง) ทำให้บล็อกหลายบรรทัด
+  หาจุดปิดไม่เจอและกลืนทุกอย่างที่เหลือในไฟล์เข้าไปเป็นก้อนเดียว (พบใน
+  `study-guide-week08-quiz.md` ของ MFIT ที่หัวข้อ กับ 9 ใน 16 หัวข้อหายไปหลัง
+  W08-Q5) แก้ที่ `MdView` จุดเดียวเพราะเป็น renderer ร่วมของทุกหน้า Markdown
 
 ## [0.5.0] - 2026-08-17
 
