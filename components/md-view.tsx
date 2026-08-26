@@ -141,6 +141,42 @@ const mdComponents: Components = {
   ),
 };
 
+/**
+ * `$$...$$` -> a valid remark-math fence, one block at a time.
+ *
+ * remark-math's `$$` is a fence construct, not a pair of inline delimiters:
+ * per its grammar, `math_flow ::= fence_open *( eol *line ) [ eol fence_close ]`,
+ * where `fence_close` only matches a line that is *nothing but* `$$`. Every
+ * study-guide file in this repo writes display math the LaTeX way instead —
+ * `$$formula$$`, opening and closing flush against the content, sometimes on
+ * one line and sometimes spanning a few. Two failure modes follow from that
+ * mismatch:
+ *
+ *   1. A same-line block (`$$x^2$$`) never closes at all, because
+ *      `fence_close` requires a line break before it. It falls through as
+ *      literal text — ugly, but contained to that one line.
+ *   2. A multi-line block whose opening line carries no second `$` opens a
+ *      genuine fence, and then the closing `$$` on a LATER line — which also
+ *      has content before it — still doesn't satisfy `fence_close`. The
+ *      parser keeps scanning for a bare `$$` line and, finding none, consumes
+ *      every line to the end of the file into one giant unrendered math node.
+ *      Every heading, list, and paragraph after that point stops being parsed
+ *      as markdown at all.
+ *
+ * Rewriting each pair onto its own lines before the file reaches remark
+ * satisfies the fence grammar exactly as the author intended it — display
+ * math, on its own block — without touching any of the LaTeX inside `$$...$$`
+ * or the inline `$...$` math these same files also use correctly. Verified
+ * against content/courses/06016401-Math-for-IT/archive/study-guide-week08-quiz.md,
+ * where this was silently eating W08-Q5 through the end of the document.
+ */
+function normalizeDisplayMath(markdown: string): string {
+  return markdown.replace(/\$\$([\s\S]*?)\$\$/g, (_match, body: string) => {
+    const trimmed = body.trim();
+    return trimmed ? `\n\n$$\n${trimmed}\n$$\n\n` : "$$$$";
+  });
+}
+
 export function MdView({ markdown }: { markdown: string }) {
   return (
     <div className="text-[15px] text-foreground/90 overflow-hidden">
@@ -163,7 +199,7 @@ export function MdView({ markdown }: { markdown: string }) {
         ]}
         components={mdComponents}
       >
-        {markdown}
+        {normalizeDisplayMath(markdown)}
       </ReactMarkdown>
     </div>
   );
