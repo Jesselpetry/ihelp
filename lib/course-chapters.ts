@@ -1,5 +1,5 @@
 import type { LText } from "@/lib/i18n";
-import type { SubjectChapter } from "@/components/subject-hub";
+import type { SubjectChapter } from "@/lib/spine";
 import { loadCourseOverview } from "@/lib/course-content";
 import { resolveCourse } from "@/lib/catalog";
 

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Navbar } from "@/components/navbar";
 import { CourseDirectory } from "@/components/course-directory";
-import { COURSES, courseHref } from "@/lib/catalog";
-import { listCourseOverviews } from "@/lib/course-content";
+import { COURSES, courseDir, courseHref } from "@/lib/catalog";
+import { readinessIndex } from "@/lib/course-spine";
 
 export const metadata: Metadata = {
   title: "คลังเรียนรู้ IT KMITL — สรุป แบบทดสอบ และข้อสอบเก่า",
@@ -37,9 +37,15 @@ const COURSE_LIST_JSONLD = {
   })),
 };
 
-export const dynamic = "force-dynamic";
-
 export default function Home() {
+  // How much of the eleven-module spine each course actually fills. Counted
+  // here rather than declared so a course's badge moves the moment content
+  // lands, and so the platform has one number that answers "is this getting
+  // better".
+  const readiness = Object.fromEntries(
+    COURSES.map((course) => [course.code, readinessIndex(course.code, courseDir(course))]),
+  );
+
   return (
     <>
       <script
@@ -47,7 +53,7 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(COURSE_LIST_JSONLD) }}
       />
       <Navbar />
-      <CourseDirectory overviews={listCourseOverviews()} />
+      <CourseDirectory readiness={readiness} />
     </>
   );
 }

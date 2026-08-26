@@ -18,7 +18,8 @@
       "fileType": "pdf",
       "url": "/assets/en-kmitl/chem/exercises/ch1-self-study.pdf",
       "fileName": "ch1-self-study.pdf",
-      "courseCode": "CHEM"
+      "courseCode": "CHEM",
+      "chapter": 1
     },
     {
       "id": "gen-chem-exercises-ch2-self-study-pdf",
@@ -38,7 +39,8 @@
       "fileType": "pdf",
       "url": "/assets/en-kmitl/chem/exercises/ch2-self-study.pdf",
       "fileName": "ch2-self-study.pdf",
-      "courseCode": "CHEM"
+      "courseCode": "CHEM",
+      "chapter": 2
     },
     {
       "id": "gen-chem-exercises-ch4-self-study-pdf",
@@ -58,7 +60,8 @@
       "fileType": "pdf",
       "url": "/assets/en-kmitl/chem/exercises/ch4-self-study.pdf",
       "fileName": "ch4-self-study.pdf",
-      "courseCode": "CHEM"
+      "courseCode": "CHEM",
+      "chapter": 4
     },
     {
       "id": "gen-chem-exercises-ch5-self-study-pdf",
@@ -78,7 +81,8 @@
       "fileType": "pdf",
       "url": "/assets/en-kmitl/chem/exercises/ch5-self-study.pdf",
       "fileName": "ch5-self-study.pdf",
-      "courseCode": "CHEM"
+      "courseCode": "CHEM",
+      "chapter": 5
     },
     {
       "id": "gen-chem-lectures-ch1-atomic-structure-pdf",
@@ -98,7 +102,8 @@
       "fileType": "pdf",
       "url": "/assets/en-kmitl/chem/lectures/ch1-atomic-structure.pdf",
       "fileName": "ch1-atomic-structure.pdf",
-      "courseCode": "CHEM"
+      "courseCode": "CHEM",
+      "chapter": 1
     },
     {
       "id": "gen-chem-lectures-ch2-the-periodic-table-and-some-atomic-properties-2569-pdf",
@@ -118,7 +123,8 @@
       "fileType": "pdf",
       "url": "/assets/en-kmitl/chem/lectures/ch2-the-periodic-table-and-some-atomic-properties-2569.pdf",
       "fileName": "ch2-the-periodic-table-and-some-atomic-properties-2569.pdf",
-      "courseCode": "CHEM"
+      "courseCode": "CHEM",
+      "chapter": 2
     },
     {
       "id": "gen-chem-lectures-ch3-chemical-bonding-2569-pdf",
@@ -138,7 +144,8 @@
       "fileType": "pdf",
       "url": "/assets/en-kmitl/chem/lectures/ch3-chemical-bonding-2569.pdf",
       "fileName": "ch3-chemical-bonding-2569.pdf",
-      "courseCode": "CHEM"
+      "courseCode": "CHEM",
+      "chapter": 3
     },
     {
       "id": "gen-chem-lectures-ch5-liquid-and-solution-2569-sc3-pdf",
@@ -158,7 +165,8 @@
       "fileType": "pdf",
       "url": "/assets/en-kmitl/chem/lectures/ch5-liquid-and-solution-2569-sc3.pdf",
       "fileName": "ch5-liquid-and-solution-2569-sc3.pdf",
-      "courseCode": "CHEM"
+      "courseCode": "CHEM",
+      "chapter": 5
     },
     {
       "id": "gen-chem-sheets-ch03-chemical-bonding-discussion-class-2569-key-pdf",
@@ -178,7 +186,8 @@
       "fileType": "pdf",
       "url": "/assets/en-kmitl/chem/sheets/ch03-chemical-bonding-discussion-class-2569-key.pdf",
       "fileName": "ch03-chemical-bonding-discussion-class-2569-key.pdf",
-      "courseCode": "CHEM"
+      "courseCode": "CHEM",
+      "chapter": 3
     },
     {
       "id": "gen-chem-sheets-ch04-stiochiometry-2569-key-pdf",
@@ -198,7 +207,8 @@
       "fileType": "pdf",
       "url": "/assets/en-kmitl/chem/sheets/ch04-stiochiometry-2569-key.pdf",
       "fileName": "ch04-stiochiometry-2569-key.pdf",
-      "courseCode": "CHEM"
+      "courseCode": "CHEM",
+      "chapter": 4
     },
     {
       "id": "gen-chem-sheets-ch4-stiochiometry-2569-review-pdf",
@@ -218,7 +228,8 @@
       "fileType": "pdf",
       "url": "/assets/en-kmitl/chem/sheets/ch4-stiochiometry-2569-review.pdf",
       "fileName": "ch4-stiochiometry-2569-review.pdf",
-      "courseCode": "CHEM"
+      "courseCode": "CHEM",
+      "chapter": 4
     }
   ],
   "BFIT": [
@@ -380,7 +391,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/bfit/exams/bfit-final-ho-ch1-bizinchangingworld.pdf",
       "fileName": "bfit-final-ho-ch1-bizinchangingworld.pdf",
-      "courseCode": "BFIT"
+      "courseCode": "BFIT",
+      "chapter": 1
     },
     {
       "id": "gen-bfit-exams-bfit-final-ho-ch2-management-pdf",
@@ -400,7 +412,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/bfit/exams/bfit-final-ho-ch2-management.pdf",
       "fileName": "bfit-final-ho-ch2-management.pdf",
-      "courseCode": "BFIT"
+      "courseCode": "BFIT",
+      "chapter": 2
     },
     {
       "id": "gen-bfit-exams-bfit-final-quiz-edit-201110-pdf",
@@ -880,7 +893,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/bfit/lectures/bfit-lec-week01.pdf",
       "fileName": "bfit-lec-week01.pdf",
-      "courseCode": "BFIT"
+      "courseCode": "BFIT",
+      "chapter": 1
     },
     {
       "id": "gen-bfit-lectures-bfit-lec-week09-pdf",
@@ -900,7 +914,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/bfit/lectures/bfit-lec-week09.pdf",
       "fileName": "bfit-lec-week09.pdf",
-      "courseCode": "BFIT"
+      "courseCode": "BFIT",
+      "chapter": 9
     },
     {
       "id": "gen-bfit-lectures-bfit-lec-week10-pdf",
@@ -920,7 +935,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/bfit/lectures/bfit-lec-week10.pdf",
       "fileName": "bfit-lec-week10.pdf",
-      "courseCode": "BFIT"
+      "courseCode": "BFIT",
+      "chapter": 10
     },
     {
       "id": "gen-bfit-lectures-bfit-lec-week11-pdf",
@@ -940,7 +956,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/bfit/lectures/bfit-lec-week11.pdf",
       "fileName": "bfit-lec-week11.pdf",
-      "courseCode": "BFIT"
+      "courseCode": "BFIT",
+      "chapter": 11
     },
     {
       "id": "gen-bfit-lectures-bfit-lec-week12-pdf",
@@ -960,7 +977,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/bfit/lectures/bfit-lec-week12.pdf",
       "fileName": "bfit-lec-week12.pdf",
-      "courseCode": "BFIT"
+      "courseCode": "BFIT",
+      "chapter": 12
     },
     {
       "id": "gen-bfit-lectures-bfit-lec-week13-pdf",
@@ -980,7 +998,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/bfit/lectures/bfit-lec-week13.pdf",
       "fileName": "bfit-lec-week13.pdf",
-      "courseCode": "BFIT"
+      "courseCode": "BFIT",
+      "chapter": 13
     },
     {
       "id": "gen-bfit-references-bfit-ref-future-value-tables-pdf",
@@ -1402,7 +1421,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/charm/lectures/charm-lec-week04-charming-communication.pdf",
       "fileName": "charm-lec-week04-charming-communication.pdf",
-      "courseCode": "CHARM"
+      "courseCode": "CHARM",
+      "chapter": 4
     },
     {
       "id": "gen-charm-lectures-charm-lec-week09-generation-gap-pdf",
@@ -1422,7 +1442,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/charm/lectures/charm-lec-week09-generation-gap.pdf",
       "fileName": "charm-lec-week09-generation-gap.pdf",
-      "courseCode": "CHARM"
+      "courseCode": "CHARM",
+      "chapter": 9
     },
     {
       "id": "gen-charm-worksheets-charm-ex-worksheet02-disc-swot-pdf",
@@ -1484,7 +1505,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/dl/exercises/dl-ex-week02-digital-citizen-identity.pdf",
       "fileName": "dl-ex-week02-digital-citizen-identity.pdf",
-      "courseCode": "DL"
+      "courseCode": "DL",
+      "chapter": 2
     },
     {
       "id": "gen-dl-labs-dl-lab-week10-completed-pdf",
@@ -1504,7 +1526,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/dl/labs/dl-lab-week10-completed.pdf",
       "fileName": "dl-lab-week10-completed.pdf",
-      "courseCode": "DL"
+      "courseCode": "DL",
+      "chapter": 10
     }
   ],
   "DSA": [
@@ -1786,7 +1809,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/dsa/exams/dsa-final-week11.pdf",
       "fileName": "dsa-final-week11.pdf",
-      "courseCode": "DSA"
+      "courseCode": "DSA",
+      "chapter": 11
     },
     {
       "id": "gen-dsa-exams-dsa-final-week5-pdf",
@@ -1806,7 +1830,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/dsa/exams/dsa-final-week5.pdf",
       "fileName": "dsa-final-week5.pdf",
-      "courseCode": "DSA"
+      "courseCode": "DSA",
+      "chapter": 5
     },
     {
       "id": "gen-dsa-exams-dsa-midterm-2565-term2-pdf",
@@ -1926,7 +1951,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/dsa/exams/dsa-midterm-hw-week2.pdf",
       "fileName": "dsa-midterm-hw-week2.pdf",
-      "courseCode": "DSA"
+      "courseCode": "DSA",
+      "chapter": 2
     },
     {
       "id": "gen-dsa-exams-dsa-midterm-hw3-pdf",
@@ -2186,7 +2212,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/dsa/exercises/dsa-ex-exercisesupplement-chapter02-6-2-65.pdf",
       "fileName": "dsa-ex-exercisesupplement-chapter02-6-2-65.pdf",
-      "courseCode": "DSA"
+      "courseCode": "DSA",
+      "chapter": 2
     },
     {
       "id": "gen-dsa-exercises-dsa-ex-greedy-algorithm-pdf",
@@ -2526,7 +2553,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/dsa/exercises/dsa-ex-solution-chapter02.pdf",
       "fileName": "dsa-ex-solution-chapter02.pdf",
-      "courseCode": "DSA"
+      "courseCode": "DSA",
+      "chapter": 2
     },
     {
       "id": "gen-dsa-exercises-dsa-ex-solution-chapter03-pdf",
@@ -2546,7 +2574,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/dsa/exercises/dsa-ex-solution-chapter03.pdf",
       "fileName": "dsa-ex-solution-chapter03.pdf",
-      "courseCode": "DSA"
+      "courseCode": "DSA",
+      "chapter": 3
     },
     {
       "id": "gen-dsa-exercises-dsa-ex-solution-chapter04-pdf",
@@ -2566,7 +2595,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/dsa/exercises/dsa-ex-solution-chapter04.pdf",
       "fileName": "dsa-ex-solution-chapter04.pdf",
-      "courseCode": "DSA"
+      "courseCode": "DSA",
+      "chapter": 4
     },
     {
       "id": "gen-dsa-exercises-dsa-ex-solution-chapter05-pdf",
@@ -2586,7 +2616,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/dsa/exercises/dsa-ex-solution-chapter05.pdf",
       "fileName": "dsa-ex-solution-chapter05.pdf",
-      "courseCode": "DSA"
+      "courseCode": "DSA",
+      "chapter": 5
     },
     {
       "id": "gen-dsa-exercises-dsa-ex-solution-chapter07-pdf",
@@ -2606,7 +2637,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/dsa/exercises/dsa-ex-solution-chapter07.pdf",
       "fileName": "dsa-ex-solution-chapter07.pdf",
-      "courseCode": "DSA"
+      "courseCode": "DSA",
+      "chapter": 7
     },
     {
       "id": "gen-dsa-exercises-dsa-ex-solution-complexity-pdf",
@@ -2926,7 +2958,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/dsa/lectures/dsa-lec-week02-array-linked-list.pdf",
       "fileName": "dsa-lec-week02-array-linked-list.pdf",
-      "courseCode": "DSA"
+      "courseCode": "DSA",
+      "chapter": 2
     },
     {
       "id": "gen-dsa-lectures-dsa-lec-week03-stack-queue-pdf",
@@ -2946,7 +2979,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/dsa/lectures/dsa-lec-week03-stack-queue.pdf",
       "fileName": "dsa-lec-week03-stack-queue.pdf",
-      "courseCode": "DSA"
+      "courseCode": "DSA",
+      "chapter": 3
     },
     {
       "id": "gen-dsa-lectures-dsa-lec-week04-binary-tree-pdf",
@@ -2966,7 +3000,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/dsa/lectures/dsa-lec-week04-binary-tree.pdf",
       "fileName": "dsa-lec-week04-binary-tree.pdf",
-      "courseCode": "DSA"
+      "courseCode": "DSA",
+      "chapter": 4
     },
     {
       "id": "gen-dsa-lectures-dsa-lec-week05-bst-pdf",
@@ -2986,7 +3021,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/dsa/lectures/dsa-lec-week05-bst.pdf",
       "fileName": "dsa-lec-week05-bst.pdf",
-      "courseCode": "DSA"
+      "courseCode": "DSA",
+      "chapter": 5
     },
     {
       "id": "gen-dsa-lectures-dsa-lec-week05b-other-trees-pdf",
@@ -3026,7 +3062,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/dsa/lectures/dsa-lec-week06-avl-tree.pdf",
       "fileName": "dsa-lec-week06-avl-tree.pdf",
-      "courseCode": "DSA"
+      "courseCode": "DSA",
+      "chapter": 6
     },
     {
       "id": "gen-dsa-lectures-dsa-lec-week07-graph-pdf",
@@ -3046,7 +3083,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/dsa/lectures/dsa-lec-week07-graph.pdf",
       "fileName": "dsa-lec-week07-graph.pdf",
-      "courseCode": "DSA"
+      "courseCode": "DSA",
+      "chapter": 7
     },
     {
       "id": "gen-dsa-lectures-dsa-lec-week09-algorithm-analysis-pdf",
@@ -3066,7 +3104,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/dsa/lectures/dsa-lec-week09-algorithm-analysis.pdf",
       "fileName": "dsa-lec-week09-algorithm-analysis.pdf",
-      "courseCode": "DSA"
+      "courseCode": "DSA",
+      "chapter": 9
     },
     {
       "id": "gen-dsa-lectures-dsa-lec-week10-searching-pdf",
@@ -3086,7 +3125,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/dsa/lectures/dsa-lec-week10-searching.pdf",
       "fileName": "dsa-lec-week10-searching.pdf",
-      "courseCode": "DSA"
+      "courseCode": "DSA",
+      "chapter": 10
     },
     {
       "id": "gen-dsa-lectures-dsa-lec-week11-sorting-pdf",
@@ -3106,7 +3146,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/dsa/lectures/dsa-lec-week11-sorting.pdf",
       "fileName": "dsa-lec-week11-sorting.pdf",
-      "courseCode": "DSA"
+      "courseCode": "DSA",
+      "chapter": 11
     },
     {
       "id": "gen-dsa-lectures-dsa-lec-week12-greedy-algorithm-pdf",
@@ -3126,7 +3167,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/dsa/lectures/dsa-lec-week12-greedy-algorithm.pdf",
       "fileName": "dsa-lec-week12-greedy-algorithm.pdf",
-      "courseCode": "DSA"
+      "courseCode": "DSA",
+      "chapter": 12
     },
     {
       "id": "gen-dsa-lectures-dsa-lec-week13-recursion-pdf",
@@ -3146,7 +3188,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/dsa/lectures/dsa-lec-week13-recursion.pdf",
       "fileName": "dsa-lec-week13-recursion.pdf",
-      "courseCode": "DSA"
+      "courseCode": "DSA",
+      "chapter": 13
     },
     {
       "id": "gen-dsa-lectures-dsa-lec-week14-divide-conquer-pdf",
@@ -3166,7 +3209,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/dsa/lectures/dsa-lec-week14-divide-conquer.pdf",
       "fileName": "dsa-lec-week14-divide-conquer.pdf",
-      "courseCode": "DSA"
+      "courseCode": "DSA",
+      "chapter": 14
     },
     {
       "id": "gen-dsa-lectures-dsa-lec-week15-dynamic-programming-pdf",
@@ -3186,7 +3230,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/dsa/lectures/dsa-lec-week15-dynamic-programming.pdf",
       "fileName": "dsa-lec-week15-dynamic-programming.pdf",
-      "courseCode": "DSA"
+      "courseCode": "DSA",
+      "chapter": 15
     },
     {
       "id": "gen-dsa-sheets-dsa-sheet-recap-final-pdf",
@@ -3612,7 +3657,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/ics/exams/ics-midterm-week01-07.pdf",
       "fileName": "ics-midterm-week01-07.pdf",
-      "courseCode": "ICS"
+      "courseCode": "ICS",
+      "chapter": 1
     },
     {
       "id": "gen-ics-exams-ics-quiz-c-pdf",
@@ -4392,7 +4438,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/ics/labs/ics-lab-week03.pdf",
       "fileName": "ics-lab-week03.pdf",
-      "courseCode": "ICS"
+      "courseCode": "ICS",
+      "chapter": 3
     },
     {
       "id": "gen-ics-labs-ics-lab-week04-pdf",
@@ -4412,7 +4459,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/ics/labs/ics-lab-week04.pdf",
       "fileName": "ics-lab-week04.pdf",
-      "courseCode": "ICS"
+      "courseCode": "ICS",
+      "chapter": 4
     },
     {
       "id": "gen-ics-labs-ics-lab-week05-v2-pdf",
@@ -4432,7 +4480,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/ics/labs/ics-lab-week05-v2.pdf",
       "fileName": "ics-lab-week05-v2.pdf",
-      "courseCode": "ICS"
+      "courseCode": "ICS",
+      "chapter": 5
     },
     {
       "id": "gen-ics-labs-ics-lab-week05-pdf",
@@ -4452,7 +4501,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/ics/labs/ics-lab-week05.pdf",
       "fileName": "ics-lab-week05.pdf",
-      "courseCode": "ICS"
+      "courseCode": "ICS",
+      "chapter": 5
     },
     {
       "id": "gen-ics-labs-ics-lab-week07-draft-pdf",
@@ -4472,7 +4522,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/ics/labs/ics-lab-week07-draft.pdf",
       "fileName": "ics-lab-week07-draft.pdf",
-      "courseCode": "ICS"
+      "courseCode": "ICS",
+      "chapter": 7
     },
     {
       "id": "gen-ics-lectures-ics-lec-basic-computer-knowledge-computer-pdf",
@@ -4512,7 +4563,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/ics/lectures/ics-lec-chapter01.pdf",
       "fileName": "ics-lec-chapter01.pdf",
-      "courseCode": "ICS"
+      "courseCode": "ICS",
+      "chapter": 1
     },
     {
       "id": "gen-ics-lectures-ics-lec-chapter02-v2-pdf",
@@ -4532,7 +4584,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/ics/lectures/ics-lec-chapter02-v2.pdf",
       "fileName": "ics-lec-chapter02-v2.pdf",
-      "courseCode": "ICS"
+      "courseCode": "ICS",
+      "chapter": 2
     },
     {
       "id": "gen-ics-lectures-ics-lec-chapter02-pdf",
@@ -4552,7 +4605,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/ics/lectures/ics-lec-chapter02.pdf",
       "fileName": "ics-lec-chapter02.pdf",
-      "courseCode": "ICS"
+      "courseCode": "ICS",
+      "chapter": 2
     },
     {
       "id": "gen-ics-lectures-ics-lec-chapter03-pdf",
@@ -4572,7 +4626,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/ics/lectures/ics-lec-chapter03.pdf",
       "fileName": "ics-lec-chapter03.pdf",
-      "courseCode": "ICS"
+      "courseCode": "ICS",
+      "chapter": 3
     },
     {
       "id": "gen-ics-lectures-ics-lec-chapter04-v2-pdf",
@@ -4592,7 +4647,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/ics/lectures/ics-lec-chapter04-v2.pdf",
       "fileName": "ics-lec-chapter04-v2.pdf",
-      "courseCode": "ICS"
+      "courseCode": "ICS",
+      "chapter": 4
     },
     {
       "id": "gen-ics-lectures-ics-lec-chapter04-pdf",
@@ -4612,7 +4668,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/ics/lectures/ics-lec-chapter04.pdf",
       "fileName": "ics-lec-chapter04.pdf",
-      "courseCode": "ICS"
+      "courseCode": "ICS",
+      "chapter": 4
     },
     {
       "id": "gen-ics-lectures-ics-lec-chapter05-pdf",
@@ -4632,7 +4689,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/ics/lectures/ics-lec-chapter05.pdf",
       "fileName": "ics-lec-chapter05.pdf",
-      "courseCode": "ICS"
+      "courseCode": "ICS",
+      "chapter": 5
     },
     {
       "id": "gen-ics-lectures-ics-lec-slide03-1-pdf",
@@ -4672,7 +4730,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/ics/lectures/ics-lec-week01-introduction.pdf",
       "fileName": "ics-lec-week01-introduction.pdf",
-      "courseCode": "ICS"
+      "courseCode": "ICS",
+      "chapter": 1
     },
     {
       "id": "gen-ics-lectures-ics-lec-week01-v2-pdf",
@@ -4692,7 +4751,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/ics/lectures/ics-lec-week01-v2.pdf",
       "fileName": "ics-lec-week01-v2.pdf",
-      "courseCode": "ICS"
+      "courseCode": "ICS",
+      "chapter": 1
     },
     {
       "id": "gen-ics-lectures-ics-lec-week01-pdf",
@@ -4712,7 +4772,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/ics/lectures/ics-lec-week01.pdf",
       "fileName": "ics-lec-week01.pdf",
-      "courseCode": "ICS"
+      "courseCode": "ICS",
+      "chapter": 1
     },
     {
       "id": "gen-ics-lectures-ics-lec-week02-boolean-algebra-pdf",
@@ -4732,7 +4793,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/ics/lectures/ics-lec-week02-boolean-algebra.pdf",
       "fileName": "ics-lec-week02-boolean-algebra.pdf",
-      "courseCode": "ICS"
+      "courseCode": "ICS",
+      "chapter": 2
     },
     {
       "id": "gen-ics-lectures-ics-lec-week02-boolean-pdf",
@@ -4752,7 +4814,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/ics/lectures/ics-lec-week02-boolean.pdf",
       "fileName": "ics-lec-week02-boolean.pdf",
-      "courseCode": "ICS"
+      "courseCode": "ICS",
+      "chapter": 2
     },
     {
       "id": "gen-ics-lectures-ics-lec-week02-v2-pdf",
@@ -4772,7 +4835,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/ics/lectures/ics-lec-week02-v2.pdf",
       "fileName": "ics-lec-week02-v2.pdf",
-      "courseCode": "ICS"
+      "courseCode": "ICS",
+      "chapter": 2
     },
     {
       "id": "gen-ics-lectures-ics-lec-week02-pdf",
@@ -4792,7 +4856,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/ics/lectures/ics-lec-week02.pdf",
       "fileName": "ics-lec-week02.pdf",
-      "courseCode": "ICS"
+      "courseCode": "ICS",
+      "chapter": 2
     },
     {
       "id": "gen-ics-lectures-ics-lec-week03-canonical-forms-y1-s1-pdf",
@@ -4812,7 +4877,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/ics/lectures/ics-lec-week03-canonical-forms-y1-s1.pdf",
       "fileName": "ics-lec-week03-canonical-forms-y1-s1.pdf",
-      "courseCode": "ICS"
+      "courseCode": "ICS",
+      "chapter": 3
     },
     {
       "id": "gen-ics-lectures-ics-lec-week03-canonical-forms-pdf",
@@ -4832,7 +4898,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/ics/lectures/ics-lec-week03-canonical-forms.pdf",
       "fileName": "ics-lec-week03-canonical-forms.pdf",
-      "courseCode": "ICS"
+      "courseCode": "ICS",
+      "chapter": 3
     },
     {
       "id": "gen-ics-lectures-ics-lec-week03-v2-pdf",
@@ -4852,7 +4919,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/ics/lectures/ics-lec-week03-v2.pdf",
       "fileName": "ics-lec-week03-v2.pdf",
-      "courseCode": "ICS"
+      "courseCode": "ICS",
+      "chapter": 3
     },
     {
       "id": "gen-ics-lectures-ics-lec-week03-pdf",
@@ -4872,7 +4940,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/ics/lectures/ics-lec-week03.pdf",
       "fileName": "ics-lec-week03.pdf",
-      "courseCode": "ICS"
+      "courseCode": "ICS",
+      "chapter": 3
     },
     {
       "id": "gen-ics-lectures-ics-lec-week04-boolean-minimization-pdf",
@@ -4892,7 +4961,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/ics/lectures/ics-lec-week04-boolean-minimization.pdf",
       "fileName": "ics-lec-week04-boolean-minimization.pdf",
-      "courseCode": "ICS"
+      "courseCode": "ICS",
+      "chapter": 4
     },
     {
       "id": "gen-ics-lectures-ics-lec-week04-kmap-pdf",
@@ -4912,7 +4982,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/ics/lectures/ics-lec-week04-kmap.pdf",
       "fileName": "ics-lec-week04-kmap.pdf",
-      "courseCode": "ICS"
+      "courseCode": "ICS",
+      "chapter": 4
     },
     {
       "id": "gen-ics-lectures-ics-lec-week04-v2-pdf",
@@ -4932,7 +5003,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/ics/lectures/ics-lec-week04-v2.pdf",
       "fileName": "ics-lec-week04-v2.pdf",
-      "courseCode": "ICS"
+      "courseCode": "ICS",
+      "chapter": 4
     },
     {
       "id": "gen-ics-lectures-ics-lec-week04-pdf",
@@ -4952,7 +5024,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/ics/lectures/ics-lec-week04.pdf",
       "fileName": "ics-lec-week04.pdf",
-      "courseCode": "ICS"
+      "courseCode": "ICS",
+      "chapter": 4
     },
     {
       "id": "gen-ics-lectures-ics-lec-week05-time-response-pdf",
@@ -4972,7 +5045,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/ics/lectures/ics-lec-week05-time-response.pdf",
       "fileName": "ics-lec-week05-time-response.pdf",
-      "courseCode": "ICS"
+      "courseCode": "ICS",
+      "chapter": 5
     },
     {
       "id": "gen-ics-lectures-ics-lec-week05-v2-pdf",
@@ -4992,7 +5066,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/ics/lectures/ics-lec-week05-v2.pdf",
       "fileName": "ics-lec-week05-v2.pdf",
-      "courseCode": "ICS"
+      "courseCode": "ICS",
+      "chapter": 5
     },
     {
       "id": "gen-ics-lectures-ics-lec-week05-pdf",
@@ -5012,7 +5087,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/ics/lectures/ics-lec-week05.pdf",
       "fileName": "ics-lec-week05.pdf",
-      "courseCode": "ICS"
+      "courseCode": "ICS",
+      "chapter": 5
     },
     {
       "id": "gen-ics-lectures-ics-lec-week06-number-systems-pdf",
@@ -5032,7 +5108,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/ics/lectures/ics-lec-week06-number-systems.pdf",
       "fileName": "ics-lec-week06-number-systems.pdf",
-      "courseCode": "ICS"
+      "courseCode": "ICS",
+      "chapter": 6
     },
     {
       "id": "gen-ics-lectures-ics-lec-week06-v2-pdf",
@@ -5052,7 +5129,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/ics/lectures/ics-lec-week06-v2.pdf",
       "fileName": "ics-lec-week06-v2.pdf",
-      "courseCode": "ICS"
+      "courseCode": "ICS",
+      "chapter": 6
     },
     {
       "id": "gen-ics-lectures-ics-lec-week06-pdf",
@@ -5072,7 +5150,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/ics/lectures/ics-lec-week06.pdf",
       "fileName": "ics-lec-week06.pdf",
-      "courseCode": "ICS"
+      "courseCode": "ICS",
+      "chapter": 6
     },
     {
       "id": "gen-ics-lectures-ics-lec-week07-mux-pdf",
@@ -5092,7 +5171,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/ics/lectures/ics-lec-week07-mux.pdf",
       "fileName": "ics-lec-week07-mux.pdf",
-      "courseCode": "ICS"
+      "courseCode": "ICS",
+      "chapter": 7
     },
     {
       "id": "gen-ics-lectures-ics-lec-week07-pdf",
@@ -5112,7 +5192,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/ics/lectures/ics-lec-week07.pdf",
       "fileName": "ics-lec-week07.pdf",
-      "courseCode": "ICS"
+      "courseCode": "ICS",
+      "chapter": 7
     },
     {
       "id": "gen-ics-misc-quiz-2-test-circ",
@@ -5594,7 +5675,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/itf/labs/itf-lab-week01-sheet.pdf",
       "fileName": "itf-lab-week01-sheet.pdf",
-      "courseCode": "ITF"
+      "courseCode": "ITF",
+      "chapter": 1
     },
     {
       "id": "gen-itf-labs-itf-lab-week01-windows-pdf",
@@ -5614,7 +5696,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/itf/labs/itf-lab-week01-windows.pdf",
       "fileName": "itf-lab-week01-windows.pdf",
-      "courseCode": "ITF"
+      "courseCode": "ITF",
+      "chapter": 1
     },
     {
       "id": "gen-itf-labs-itf-lab-week12-pdf",
@@ -5634,7 +5717,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/itf/labs/itf-lab-week12.pdf",
       "fileName": "itf-lab-week12.pdf",
-      "courseCode": "ITF"
+      "courseCode": "ITF",
+      "chapter": 12
     },
     {
       "id": "gen-itf-lectures-itf-lec-final-pdf",
@@ -5934,7 +6018,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/itf/lectures/itf-lec-week01.pdf",
       "fileName": "itf-lec-week01.pdf",
-      "courseCode": "ITF"
+      "courseCode": "ITF",
+      "chapter": 1
     },
     {
       "id": "gen-itf-lectures-itf-lec-week02-pdf",
@@ -5954,7 +6039,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/itf/lectures/itf-lec-week02.pdf",
       "fileName": "itf-lec-week02.pdf",
-      "courseCode": "ITF"
+      "courseCode": "ITF",
+      "chapter": 2
     },
     {
       "id": "gen-itf-lectures-itf-lec-week03-pdf",
@@ -5974,7 +6060,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/itf/lectures/itf-lec-week03.pdf",
       "fileName": "itf-lec-week03.pdf",
-      "courseCode": "ITF"
+      "courseCode": "ITF",
+      "chapter": 3
     },
     {
       "id": "gen-itf-lectures-itf-lec-week04-y1-s1-pdf",
@@ -5994,7 +6081,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/itf/lectures/itf-lec-week04-y1-s1.pdf",
       "fileName": "itf-lec-week04-y1-s1.pdf",
-      "courseCode": "ITF"
+      "courseCode": "ITF",
+      "chapter": 4
     },
     {
       "id": "gen-itf-lectures-itf-lec-week04-pdf",
@@ -6014,7 +6102,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/itf/lectures/itf-lec-week04.pdf",
       "fileName": "itf-lec-week04.pdf",
-      "courseCode": "ITF"
+      "courseCode": "ITF",
+      "chapter": 4
     },
     {
       "id": "gen-itf-lectures-itf-lec-week05-y1-s1-pdf",
@@ -6034,7 +6123,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/itf/lectures/itf-lec-week05-y1-s1.pdf",
       "fileName": "itf-lec-week05-y1-s1.pdf",
-      "courseCode": "ITF"
+      "courseCode": "ITF",
+      "chapter": 5
     },
     {
       "id": "gen-itf-lectures-itf-lec-week05-pdf",
@@ -6054,7 +6144,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/itf/lectures/itf-lec-week05.pdf",
       "fileName": "itf-lec-week05.pdf",
-      "courseCode": "ITF"
+      "courseCode": "ITF",
+      "chapter": 5
     },
     {
       "id": "gen-itf-lectures-itf-lec-week06-os-v2-pdf",
@@ -6074,7 +6165,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/itf/lectures/itf-lec-week06-os-v2.pdf",
       "fileName": "itf-lec-week06-os-v2.pdf",
-      "courseCode": "ITF"
+      "courseCode": "ITF",
+      "chapter": 6
     },
     {
       "id": "gen-itf-lectures-itf-lec-week06-os-y1-s1-pdf",
@@ -6094,7 +6186,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/itf/lectures/itf-lec-week06-os-y1-s1.pdf",
       "fileName": "itf-lec-week06-os-y1-s1.pdf",
-      "courseCode": "ITF"
+      "courseCode": "ITF",
+      "chapter": 6
     },
     {
       "id": "gen-itf-lectures-itf-lec-week06-os-pdf",
@@ -6114,7 +6207,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/itf/lectures/itf-lec-week06-os.pdf",
       "fileName": "itf-lec-week06-os.pdf",
-      "courseCode": "ITF"
+      "courseCode": "ITF",
+      "chapter": 6
     },
     {
       "id": "gen-itf-lectures-itf-lec-week07-programming-apps-pdf",
@@ -6134,7 +6228,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/itf/lectures/itf-lec-week07-programming-apps.pdf",
       "fileName": "itf-lec-week07-programming-apps.pdf",
-      "courseCode": "ITF"
+      "courseCode": "ITF",
+      "chapter": 7
     },
     {
       "id": "gen-itf-lectures-itf-lec-week07-programs-apps-pdf",
@@ -6154,7 +6249,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/itf/lectures/itf-lec-week07-programs-apps.pdf",
       "fileName": "itf-lec-week07-programs-apps.pdf",
-      "courseCode": "ITF"
+      "courseCode": "ITF",
+      "chapter": 7
     },
     {
       "id": "gen-itf-lectures-itf-lec-week08-database-pdf",
@@ -6174,7 +6270,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/itf/lectures/itf-lec-week08-database.pdf",
       "fileName": "itf-lec-week08-database.pdf",
-      "courseCode": "ITF"
+      "courseCode": "ITF",
+      "chapter": 8
     },
     {
       "id": "gen-itf-lectures-itf-lec-week08-pdf",
@@ -6194,7 +6291,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/itf/lectures/itf-lec-week08.pdf",
       "fileName": "itf-lec-week08.pdf",
-      "courseCode": "ITF"
+      "courseCode": "ITF",
+      "chapter": 8
     },
     {
       "id": "gen-itf-lectures-itf-lec-week09-ethics-pdf",
@@ -6214,7 +6312,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/itf/lectures/itf-lec-week09-ethics.pdf",
       "fileName": "itf-lec-week09-ethics.pdf",
-      "courseCode": "ITF"
+      "courseCode": "ITF",
+      "chapter": 9
     },
     {
       "id": "gen-itf-lectures-itf-lec-week10-v2-pdf",
@@ -6234,7 +6333,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/itf/lectures/itf-lec-week10-v2.pdf",
       "fileName": "itf-lec-week10-v2.pdf",
-      "courseCode": "ITF"
+      "courseCode": "ITF",
+      "chapter": 10
     },
     {
       "id": "gen-itf-lectures-itf-lec-week11-internet-pdf",
@@ -6254,7 +6354,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/itf/lectures/itf-lec-week11-internet.pdf",
       "fileName": "itf-lec-week11-internet.pdf",
-      "courseCode": "ITF"
+      "courseCode": "ITF",
+      "chapter": 11
     },
     {
       "id": "gen-itf-lectures-itf-lec-week12-computer-networks-pdf",
@@ -6274,7 +6375,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/itf/lectures/itf-lec-week12-computer-networks.pdf",
       "fileName": "itf-lec-week12-computer-networks.pdf",
-      "courseCode": "ITF"
+      "courseCode": "ITF",
+      "chapter": 12
     },
     {
       "id": "gen-itf-lectures-itf-lec-week13-wi-fi-pdf",
@@ -6294,7 +6396,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/itf/lectures/itf-lec-week13-wi-fi.pdf",
       "fileName": "itf-lec-week13-wi-fi.pdf",
-      "courseCode": "ITF"
+      "courseCode": "ITF",
+      "chapter": 13
     },
     {
       "id": "gen-itf-lectures-itf-lec-week14-it-system-pdf",
@@ -6314,7 +6417,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/itf/lectures/itf-lec-week14-it-system.pdf",
       "fileName": "itf-lec-week14-it-system.pdf",
-      "courseCode": "ITF"
+      "courseCode": "ITF",
+      "chapter": 14
     },
     {
       "id": "gen-itf-lectures-itf-lec-week15-web-pdf",
@@ -6334,7 +6438,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/itf/lectures/itf-lec-week15-web.pdf",
       "fileName": "itf-lec-week15-web.pdf",
-      "courseCode": "ITF"
+      "courseCode": "ITF",
+      "chapter": 15
     },
     {
       "id": "gen-itf-misc-financial-xlsx",
@@ -7116,7 +7221,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/activities/mfit-1-2024-in-class-activity-week5.pdf",
       "fileName": "mfit-1-2024-in-class-activity-week5.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 5
     },
     {
       "id": "gen-mfit-activities-mfit-1-2026-in-class-activity-week1-pdf",
@@ -7136,7 +7242,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/activities/mfit-1-2026-in-class-activity-week1.pdf",
       "fileName": "mfit-1-2026-in-class-activity-week1.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 1
     },
     {
       "id": "gen-mfit-activities-mfit-1-2026-in-class-activity-week2-pdf",
@@ -7156,7 +7263,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/activities/mfit-1-2026-in-class-activity-week2.pdf",
       "fileName": "mfit-1-2026-in-class-activity-week2.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 2
     },
     {
       "id": "gen-mfit-activities-mfit-1-2026-in-class-activity-week3-pdf",
@@ -7176,7 +7284,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/activities/mfit-1-2026-in-class-activity-week3.pdf",
       "fileName": "mfit-1-2026-in-class-activity-week3.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 3
     },
     {
       "id": "gen-mfit-activities-mfit-1-2026-in-class-activity-week4-pdf",
@@ -7196,7 +7305,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/activities/mfit-1-2026-in-class-activity-week4.pdf",
       "fileName": "mfit-1-2026-in-class-activity-week4.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 4
     },
     {
       "id": "gen-mfit-activities-mfit-1-2026-in-class-activity-week6-pdf",
@@ -7216,7 +7326,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/activities/mfit-1-2026-in-class-activity-week6.pdf",
       "fileName": "mfit-1-2026-in-class-activity-week6.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 6
     },
     {
       "id": "gen-mfit-activities-mfit-1-2026-in-class-activity-week7-pdf",
@@ -7236,7 +7347,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/activities/mfit-1-2026-in-class-activity-week7.pdf",
       "fileName": "mfit-1-2026-in-class-activity-week7.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 7
     },
     {
       "id": "gen-mfit-exams-mfit-final-2560-pdf",
@@ -7556,7 +7668,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/exams/mfit-midterm-week01.pdf",
       "fileName": "mfit-midterm-week01.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 1
     },
     {
       "id": "gen-mfit-exams-mfit-midterm-week04-pdf",
@@ -7576,7 +7689,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/exams/mfit-midterm-week04.pdf",
       "fileName": "mfit-midterm-week04.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 4
     },
     {
       "id": "gen-mfit-exams-mfit-midterm-week05-pdf",
@@ -7596,7 +7710,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/exams/mfit-midterm-week05.pdf",
       "fileName": "mfit-midterm-week05.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 5
     },
     {
       "id": "gen-mfit-exams-mfit-midterm-week06-pdf",
@@ -7616,7 +7731,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/exams/mfit-midterm-week06.pdf",
       "fileName": "mfit-midterm-week06.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 6
     },
     {
       "id": "gen-mfit-exams-mfit-midterm-week07-pdf",
@@ -7636,7 +7752,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/exams/mfit-midterm-week07.pdf",
       "fileName": "mfit-midterm-week07.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 7
     },
     {
       "id": "gen-mfit-exercises-mfit-ex-exercise-1-1-pdf",
@@ -7736,7 +7853,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/exercises/mfit-ex-week01-activity-completed-v2.pdf",
       "fileName": "mfit-ex-week01-activity-completed-v2.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 1
     },
     {
       "id": "gen-mfit-exercises-mfit-ex-week01-activity-completed-pdf",
@@ -7756,7 +7874,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/exercises/mfit-ex-week01-activity-completed.pdf",
       "fileName": "mfit-ex-week01-activity-completed.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 1
     },
     {
       "id": "gen-mfit-exercises-mfit-ex-week01-activity-v2-pdf",
@@ -7776,7 +7895,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/exercises/mfit-ex-week01-activity-v2.pdf",
       "fileName": "mfit-ex-week01-activity-v2.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 1
     },
     {
       "id": "gen-mfit-exercises-mfit-ex-week02-activity-v2-pdf",
@@ -7796,7 +7916,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/exercises/mfit-ex-week02-activity-v2.pdf",
       "fileName": "mfit-ex-week02-activity-v2.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 2
     },
     {
       "id": "gen-mfit-exercises-mfit-ex-week02-activity-v3-pdf",
@@ -7816,7 +7937,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/exercises/mfit-ex-week02-activity-v3.pdf",
       "fileName": "mfit-ex-week02-activity-v3.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 2
     },
     {
       "id": "gen-mfit-exercises-mfit-ex-week02-activity-pdf",
@@ -7836,7 +7958,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/exercises/mfit-ex-week02-activity.pdf",
       "fileName": "mfit-ex-week02-activity.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 2
     },
     {
       "id": "gen-mfit-exercises-mfit-ex-week03-activity-v2-pdf",
@@ -7856,7 +7979,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/exercises/mfit-ex-week03-activity-v2.pdf",
       "fileName": "mfit-ex-week03-activity-v2.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 3
     },
     {
       "id": "gen-mfit-exercises-mfit-ex-week03-activity-v3-pdf",
@@ -7876,7 +8000,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/exercises/mfit-ex-week03-activity-v3.pdf",
       "fileName": "mfit-ex-week03-activity-v3.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 3
     },
     {
       "id": "gen-mfit-exercises-mfit-ex-week03-activity-pdf",
@@ -7896,7 +8021,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/exercises/mfit-ex-week03-activity.pdf",
       "fileName": "mfit-ex-week03-activity.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 3
     },
     {
       "id": "gen-mfit-exercises-mfit-ex-week04-activity-v2-pdf",
@@ -7916,7 +8042,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/exercises/mfit-ex-week04-activity-v2.pdf",
       "fileName": "mfit-ex-week04-activity-v2.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 4
     },
     {
       "id": "gen-mfit-exercises-mfit-ex-week04-activity-pdf",
@@ -7936,7 +8063,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/exercises/mfit-ex-week04-activity.pdf",
       "fileName": "mfit-ex-week04-activity.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 4
     },
     {
       "id": "gen-mfit-exercises-mfit-ex-week05-activity-v2-pdf",
@@ -7956,7 +8084,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/exercises/mfit-ex-week05-activity-v2.pdf",
       "fileName": "mfit-ex-week05-activity-v2.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 5
     },
     {
       "id": "gen-mfit-exercises-mfit-ex-week05-activity-pdf",
@@ -7976,7 +8105,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/exercises/mfit-ex-week05-activity.pdf",
       "fileName": "mfit-ex-week05-activity.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 5
     },
     {
       "id": "gen-mfit-exercises-mfit-ex-week06-activity-v2-pdf",
@@ -7996,7 +8126,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/exercises/mfit-ex-week06-activity-v2.pdf",
       "fileName": "mfit-ex-week06-activity-v2.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 6
     },
     {
       "id": "gen-mfit-exercises-mfit-ex-week06-activity-pdf",
@@ -8016,7 +8147,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/exercises/mfit-ex-week06-activity.pdf",
       "fileName": "mfit-ex-week06-activity.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 6
     },
     {
       "id": "gen-mfit-exercises-mfit-ex-week07-activity-v2-pdf",
@@ -8036,7 +8168,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/exercises/mfit-ex-week07-activity-v2.pdf",
       "fileName": "mfit-ex-week07-activity-v2.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 7
     },
     {
       "id": "gen-mfit-exercises-mfit-ex-week07-activity-pdf",
@@ -8056,7 +8189,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/exercises/mfit-ex-week07-activity.pdf",
       "fileName": "mfit-ex-week07-activity.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 7
     },
     {
       "id": "gen-mfit-exercises-mfit-hw-calculus-week08-pdf",
@@ -8076,7 +8210,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-calculus-week08.pdf",
       "fileName": "mfit-hw-calculus-week08.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 8
     },
     {
       "id": "gen-mfit-exercises-mfit-hw-calculus-week09-pdf",
@@ -8096,7 +8231,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-calculus-week09.pdf",
       "fileName": "mfit-hw-calculus-week09.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 9
     },
     {
       "id": "gen-mfit-exercises-mfit-hw-calculus-week10-pdf",
@@ -8116,7 +8252,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-calculus-week10.pdf",
       "fileName": "mfit-hw-calculus-week10.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 10
     },
     {
       "id": "gen-mfit-exercises-mfit-hw-calculus-week12-pdf",
@@ -8136,7 +8273,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-calculus-week12.pdf",
       "fileName": "mfit-hw-calculus-week12.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 12
     },
     {
       "id": "gen-mfit-exercises-mfit-hw-calculus-week13-pdf",
@@ -8156,7 +8294,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-calculus-week13.pdf",
       "fileName": "mfit-hw-calculus-week13.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 13
     },
     {
       "id": "gen-mfit-exercises-mfit-hw-calculus-week14-pdf",
@@ -8176,7 +8315,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-calculus-week14.pdf",
       "fileName": "mfit-hw-calculus-week14.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 14
     },
     {
       "id": "gen-mfit-exercises-mfit-hw-week08-function-limit-continuity-pdf",
@@ -8196,7 +8336,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-week08-function-limit-continuity.pdf",
       "fileName": "mfit-hw-week08-function-limit-continuity.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 8
     },
     {
       "id": "gen-mfit-exercises-mfit-hw-week09-derivative-i-pdf",
@@ -8216,7 +8357,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-week09-derivative-i.pdf",
       "fileName": "mfit-hw-week09-derivative-i.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 9
     },
     {
       "id": "gen-mfit-exercises-mfit-hw-week10-derivative-ii-pdf",
@@ -8236,7 +8378,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-week10-derivative-ii.pdf",
       "fileName": "mfit-hw-week10-derivative-ii.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 10
     },
     {
       "id": "gen-mfit-exercises-mfit-hw-week11-derivative-apps-v2-pdf",
@@ -8256,7 +8399,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-week11-derivative-apps-v2.pdf",
       "fileName": "mfit-hw-week11-derivative-apps-v2.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 11
     },
     {
       "id": "gen-mfit-exercises-mfit-hw-week11-derivative-apps-pdf",
@@ -8276,7 +8420,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-week11-derivative-apps.pdf",
       "fileName": "mfit-hw-week11-derivative-apps.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 11
     },
     {
       "id": "gen-mfit-exercises-mfit-hw-week12-integration-i-pdf",
@@ -8296,7 +8441,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-week12-integration-i.pdf",
       "fileName": "mfit-hw-week12-integration-i.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 12
     },
     {
       "id": "gen-mfit-exercises-mfit-hw-week13-integration-ii-pdf",
@@ -8316,7 +8462,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-week13-integration-ii.pdf",
       "fileName": "mfit-hw-week13-integration-ii.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 13
     },
     {
       "id": "gen-mfit-exercises-mfit-hw-week14-integration-apps-pdf",
@@ -8336,7 +8483,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-week14-integration-apps.pdf",
       "fileName": "mfit-hw-week14-integration-apps.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 14
     },
     {
       "id": "gen-mfit-lectures-m4-it-calculus-01-handouts-4p-pdf",
@@ -8696,7 +8844,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-calforbio-chapter09-2552.pdf",
       "fileName": "mfit-lec-calforbio-chapter09-2552.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 9
     },
     {
       "id": "gen-mfit-lectures-mfit-lec-week01-v2-pdf",
@@ -8716,7 +8865,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-week01-v2.pdf",
       "fileName": "mfit-lec-week01-v2.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 1
     },
     {
       "id": "gen-mfit-lectures-mfit-lec-week02-v2-pdf",
@@ -8736,7 +8886,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-week02-v2.pdf",
       "fileName": "mfit-lec-week02-v2.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 2
     },
     {
       "id": "gen-mfit-lectures-mfit-lec-week02-pdf",
@@ -8756,7 +8907,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-week02.pdf",
       "fileName": "mfit-lec-week02.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 2
     },
     {
       "id": "gen-mfit-lectures-mfit-lec-week03-v2-pdf",
@@ -8776,7 +8928,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-week03-v2.pdf",
       "fileName": "mfit-lec-week03-v2.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 3
     },
     {
       "id": "gen-mfit-lectures-mfit-lec-week04-v2-pdf",
@@ -8796,7 +8949,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-week04-v2.pdf",
       "fileName": "mfit-lec-week04-v2.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 4
     },
     {
       "id": "gen-mfit-lectures-mfit-lec-week05-v2-pdf",
@@ -8816,7 +8970,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-week05-v2.pdf",
       "fileName": "mfit-lec-week05-v2.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 5
     },
     {
       "id": "gen-mfit-lectures-mfit-lec-week06-v2-pdf",
@@ -8836,7 +8991,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-week06-v2.pdf",
       "fileName": "mfit-lec-week06-v2.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 6
     },
     {
       "id": "gen-mfit-lectures-mfit-lec-week07-v2-pdf",
@@ -8856,7 +9012,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-week07-v2.pdf",
       "fileName": "mfit-lec-week07-v2.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 7
     },
     {
       "id": "gen-mfit-lectures-mfit-note-week03-pdf",
@@ -8876,7 +9033,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/lectures/mfit-note-week03.pdf",
       "fileName": "mfit-note-week03.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 3
     },
     {
       "id": "gen-mfit-sheets-mfit-sheet-cheat-sheet-2022-pdf",
@@ -8936,7 +9094,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/sheets/mfit-sheet-final-recap-week08-13-v2.pdf",
       "fileName": "mfit-sheet-final-recap-week08-13-v2.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 8
     },
     {
       "id": "gen-mfit-sheets-mfit-sheet-final-recap-week08-13-pdf",
@@ -8956,7 +9115,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/sheets/mfit-sheet-final-recap-week08-13.pdf",
       "fileName": "mfit-sheet-final-recap-week08-13.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 8
     },
     {
       "id": "gen-mfit-sheets-mfit-sheet-recap-calculus-pdf",
@@ -8996,7 +9156,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/slides/mfit-1-2026-lecture-slides-week1.pdf",
       "fileName": "mfit-1-2026-lecture-slides-week1.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 1
     },
     {
       "id": "gen-mfit-slides-mfit-1-2026-lecture-slides-week2-pdf",
@@ -9016,7 +9177,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/slides/mfit-1-2026-lecture-slides-week2.pdf",
       "fileName": "mfit-1-2026-lecture-slides-week2.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 2
     },
     {
       "id": "gen-mfit-slides-mfit-1-2026-lecture-slides-week3-pdf",
@@ -9036,7 +9198,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/slides/mfit-1-2026-lecture-slides-week3.pdf",
       "fileName": "mfit-1-2026-lecture-slides-week3.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 3
     },
     {
       "id": "gen-mfit-slides-mfit-1-2026-lecture-slides-week4-pdf",
@@ -9056,7 +9219,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/slides/mfit-1-2026-lecture-slides-week4.pdf",
       "fileName": "mfit-1-2026-lecture-slides-week4.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 4
     },
     {
       "id": "gen-mfit-slides-mfit-1-2026-lecture-slides-week5-pdf",
@@ -9076,7 +9240,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/slides/mfit-1-2026-lecture-slides-week5.pdf",
       "fileName": "mfit-1-2026-lecture-slides-week5.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 5
     },
     {
       "id": "gen-mfit-slides-mfit-1-2026-lecture-slides-week6-pdf",
@@ -9096,7 +9261,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/slides/mfit-1-2026-lecture-slides-week6.pdf",
       "fileName": "mfit-1-2026-lecture-slides-week6.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 6
     },
     {
       "id": "gen-mfit-slides-mfit-1-2026-lecture-slides-week7-pdf",
@@ -9116,7 +9282,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/slides/mfit-1-2026-lecture-slides-week7.pdf",
       "fileName": "mfit-1-2026-lecture-slides-week7.pdf",
-      "courseCode": "MFIT"
+      "courseCode": "MFIT",
+      "chapter": 7
     }
   ],
   "OOP": [
@@ -9398,7 +9565,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/oop/labs/oop-lab-week01.pdf",
       "fileName": "oop-lab-week01.pdf",
-      "courseCode": "OOP"
+      "courseCode": "OOP",
+      "chapter": 1
     },
     {
       "id": "gen-oop-labs-oop-lab-week02-pdf",
@@ -9418,7 +9586,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/oop/labs/oop-lab-week02.pdf",
       "fileName": "oop-lab-week02.pdf",
-      "courseCode": "OOP"
+      "courseCode": "OOP",
+      "chapter": 2
     },
     {
       "id": "gen-oop-labs-oop-lab-week03-pdf",
@@ -9438,7 +9607,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/oop/labs/oop-lab-week03.pdf",
       "fileName": "oop-lab-week03.pdf",
-      "courseCode": "OOP"
+      "courseCode": "OOP",
+      "chapter": 3
     },
     {
       "id": "gen-oop-labs-oop-lab-week04-pdf",
@@ -9458,7 +9628,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/oop/labs/oop-lab-week04.pdf",
       "fileName": "oop-lab-week04.pdf",
-      "courseCode": "OOP"
+      "courseCode": "OOP",
+      "chapter": 4
     },
     {
       "id": "gen-oop-labs-oop-lab-week05-pdf",
@@ -9478,7 +9649,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/oop/labs/oop-lab-week05.pdf",
       "fileName": "oop-lab-week05.pdf",
-      "courseCode": "OOP"
+      "courseCode": "OOP",
+      "chapter": 5
     },
     {
       "id": "gen-oop-labs-oop-lab-week06-pdf",
@@ -9498,7 +9670,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/oop/labs/oop-lab-week06.pdf",
       "fileName": "oop-lab-week06.pdf",
-      "courseCode": "OOP"
+      "courseCode": "OOP",
+      "chapter": 6
     },
     {
       "id": "gen-oop-labs-oop-lab-week07-pdf",
@@ -9518,7 +9691,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/oop/labs/oop-lab-week07.pdf",
       "fileName": "oop-lab-week07.pdf",
-      "courseCode": "OOP"
+      "courseCode": "OOP",
+      "chapter": 7
     },
     {
       "id": "gen-oop-labs-oop-lab-week08-pdf",
@@ -9538,7 +9712,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/oop/labs/oop-lab-week08.pdf",
       "fileName": "oop-lab-week08.pdf",
-      "courseCode": "OOP"
+      "courseCode": "OOP",
+      "chapter": 8
     },
     {
       "id": "gen-oop-labs-oop-lab-week09-pdf",
@@ -9558,7 +9733,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/oop/labs/oop-lab-week09.pdf",
       "fileName": "oop-lab-week09.pdf",
-      "courseCode": "OOP"
+      "courseCode": "OOP",
+      "chapter": 9
     },
     {
       "id": "gen-oop-labs-oop-lab-week10-pdf",
@@ -9578,7 +9754,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/oop/labs/oop-lab-week10.pdf",
       "fileName": "oop-lab-week10.pdf",
-      "courseCode": "OOP"
+      "courseCode": "OOP",
+      "chapter": 10
     },
     {
       "id": "gen-oop-labs-oop-lab-week12-pdf",
@@ -9598,7 +9775,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/oop/labs/oop-lab-week12.pdf",
       "fileName": "oop-lab-week12.pdf",
-      "courseCode": "OOP"
+      "courseCode": "OOP",
+      "chapter": 12
     },
     {
       "id": "gen-oop-lectures-oop-lec-chapter00-pdf",
@@ -9638,7 +9816,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/oop/lectures/oop-lec-chapter01.pdf",
       "fileName": "oop-lec-chapter01.pdf",
-      "courseCode": "OOP"
+      "courseCode": "OOP",
+      "chapter": 1
     },
     {
       "id": "gen-oop-lectures-oop-lec-chapter02-pdf",
@@ -9658,7 +9837,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/oop/lectures/oop-lec-chapter02.pdf",
       "fileName": "oop-lec-chapter02.pdf",
-      "courseCode": "OOP"
+      "courseCode": "OOP",
+      "chapter": 2
     },
     {
       "id": "gen-oop-lectures-oop-lec-chapter04-pdf",
@@ -9678,7 +9858,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/oop/lectures/oop-lec-chapter04.pdf",
       "fileName": "oop-lec-chapter04.pdf",
-      "courseCode": "OOP"
+      "courseCode": "OOP",
+      "chapter": 4
     },
     {
       "id": "gen-oop-lectures-oop-lec-chapter05-pdf",
@@ -9698,7 +9879,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/oop/lectures/oop-lec-chapter05.pdf",
       "fileName": "oop-lec-chapter05.pdf",
-      "courseCode": "OOP"
+      "courseCode": "OOP",
+      "chapter": 5
     },
     {
       "id": "gen-oop-lectures-oop-lec-chapter06-pdf",
@@ -9718,7 +9900,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/oop/lectures/oop-lec-chapter06.pdf",
       "fileName": "oop-lec-chapter06.pdf",
-      "courseCode": "OOP"
+      "courseCode": "OOP",
+      "chapter": 6
     },
     {
       "id": "gen-oop-lectures-oop-lec-chapter07-pdf",
@@ -9738,7 +9921,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/oop/lectures/oop-lec-chapter07.pdf",
       "fileName": "oop-lec-chapter07.pdf",
-      "courseCode": "OOP"
+      "courseCode": "OOP",
+      "chapter": 7
     },
     {
       "id": "gen-oop-lectures-oop-lec-chapter08-pdf",
@@ -9758,7 +9942,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/oop/lectures/oop-lec-chapter08.pdf",
       "fileName": "oop-lec-chapter08.pdf",
-      "courseCode": "OOP"
+      "courseCode": "OOP",
+      "chapter": 8
     },
     {
       "id": "gen-oop-lectures-oop-lec-chapter09-pdf",
@@ -9778,7 +9963,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/oop/lectures/oop-lec-chapter09.pdf",
       "fileName": "oop-lec-chapter09.pdf",
-      "courseCode": "OOP"
+      "courseCode": "OOP",
+      "chapter": 9
     },
     {
       "id": "gen-oop-lectures-oop-lec-chapter10-pdf",
@@ -9798,7 +9984,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/oop/lectures/oop-lec-chapter10.pdf",
       "fileName": "oop-lec-chapter10.pdf",
-      "courseCode": "OOP"
+      "courseCode": "OOP",
+      "chapter": 10
     },
     {
       "id": "gen-oop-lectures-oop-lec-chapter11-pdf",
@@ -9818,7 +10005,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/oop/lectures/oop-lec-chapter11.pdf",
       "fileName": "oop-lec-chapter11.pdf",
-      "courseCode": "OOP"
+      "courseCode": "OOP",
+      "chapter": 11
     },
     {
       "id": "gen-oop-lectures-oop-lec-chapter12-pdf",
@@ -9838,7 +10026,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/oop/lectures/oop-lec-chapter12.pdf",
       "fileName": "oop-lec-chapter12.pdf",
-      "courseCode": "OOP"
+      "courseCode": "OOP",
+      "chapter": 12
     },
     {
       "id": "gen-oop-lectures-oop-lec-chapter13-pdf",
@@ -9858,7 +10047,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/oop/lectures/oop-lec-chapter13.pdf",
       "fileName": "oop-lec-chapter13.pdf",
-      "courseCode": "OOP"
+      "courseCode": "OOP",
+      "chapter": 13
     },
     {
       "id": "gen-oop-lectures-oop-lec-chaptersupplement-pdf",
@@ -9958,7 +10148,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/oop/lectures/oop-lec-week01.pdf",
       "fileName": "oop-lec-week01.pdf",
-      "courseCode": "OOP"
+      "courseCode": "OOP",
+      "chapter": 1
     },
     {
       "id": "gen-oop-lectures-oop-lec-week02-pdf",
@@ -9978,7 +10169,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/oop/lectures/oop-lec-week02.pdf",
       "fileName": "oop-lec-week02.pdf",
-      "courseCode": "OOP"
+      "courseCode": "OOP",
+      "chapter": 2
     },
     {
       "id": "gen-oop-lectures-oop-lec-week03-pdf",
@@ -9998,7 +10190,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/oop/lectures/oop-lec-week03.pdf",
       "fileName": "oop-lec-week03.pdf",
-      "courseCode": "OOP"
+      "courseCode": "OOP",
+      "chapter": 3
     },
     {
       "id": "gen-oop-lectures-oop-lec-week04-pdf",
@@ -10018,7 +10211,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/oop/lectures/oop-lec-week04.pdf",
       "fileName": "oop-lec-week04.pdf",
-      "courseCode": "OOP"
+      "courseCode": "OOP",
+      "chapter": 4
     },
     {
       "id": "gen-oop-lectures-oop-lec-week05-pdf",
@@ -10038,7 +10232,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/oop/lectures/oop-lec-week05.pdf",
       "fileName": "oop-lec-week05.pdf",
-      "courseCode": "OOP"
+      "courseCode": "OOP",
+      "chapter": 5
     },
     {
       "id": "gen-oop-lectures-oop-lec-week06-pdf",
@@ -10058,7 +10253,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/oop/lectures/oop-lec-week06.pdf",
       "fileName": "oop-lec-week06.pdf",
-      "courseCode": "OOP"
+      "courseCode": "OOP",
+      "chapter": 6
     },
     {
       "id": "gen-oop-lectures-oop-lec-week06b-pdf",
@@ -10098,7 +10294,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/oop/lectures/oop-lec-week07.pdf",
       "fileName": "oop-lec-week07.pdf",
-      "courseCode": "OOP"
+      "courseCode": "OOP",
+      "chapter": 7
     },
     {
       "id": "gen-oop-lectures-oop-lec-week08-pdf",
@@ -10118,7 +10315,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/oop/lectures/oop-lec-week08.pdf",
       "fileName": "oop-lec-week08.pdf",
-      "courseCode": "OOP"
+      "courseCode": "OOP",
+      "chapter": 8
     },
     {
       "id": "gen-oop-lectures-oop-lec-week09-pdf",
@@ -10138,7 +10336,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/oop/lectures/oop-lec-week09.pdf",
       "fileName": "oop-lec-week09.pdf",
-      "courseCode": "OOP"
+      "courseCode": "OOP",
+      "chapter": 9
     },
     {
       "id": "gen-oop-lectures-oop-lec-week10-pdf",
@@ -10158,7 +10357,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/oop/lectures/oop-lec-week10.pdf",
       "fileName": "oop-lec-week10.pdf",
-      "courseCode": "OOP"
+      "courseCode": "OOP",
+      "chapter": 10
     },
     {
       "id": "gen-oop-lectures-oop-lec-week11-pdf",
@@ -10178,7 +10378,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/oop/lectures/oop-lec-week11.pdf",
       "fileName": "oop-lec-week11.pdf",
-      "courseCode": "OOP"
+      "courseCode": "OOP",
+      "chapter": 11
     },
     {
       "id": "gen-oop-lectures-oop-lec-week12-pdf",
@@ -10198,7 +10399,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/oop/lectures/oop-lec-week12.pdf",
       "fileName": "oop-lec-week12.pdf",
-      "courseCode": "OOP"
+      "courseCode": "OOP",
+      "chapter": 12
     },
     {
       "id": "gen-oop-lectures-oop-lec-week13-pdf",
@@ -10218,7 +10420,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/oop/lectures/oop-lec-week13.pdf",
       "fileName": "oop-lec-week13.pdf",
-      "courseCode": "OOP"
+      "courseCode": "OOP",
+      "chapter": 13
     },
     {
       "id": "gen-oop-lectures-oop-lec-week14-pdf",
@@ -10238,7 +10441,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/oop/lectures/oop-lec-week14.pdf",
       "fileName": "oop-lec-week14.pdf",
-      "courseCode": "OOP"
+      "courseCode": "OOP",
+      "chapter": 14
     },
     {
       "id": "gen-oop-sheets-oop-sheet-cheat-sheet-2022-pdf",
@@ -10540,7 +10744,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pscp/exams/pscp-quiz-week01.pdf",
       "fileName": "pscp-quiz-week01.pdf",
-      "courseCode": "PSCP"
+      "courseCode": "PSCP",
+      "chapter": 1
     },
     {
       "id": "gen-pscp-exams-pscp-quiz-week03-pdf",
@@ -10560,7 +10765,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pscp/exams/pscp-quiz-week03.pdf",
       "fileName": "pscp-quiz-week03.pdf",
-      "courseCode": "PSCP"
+      "courseCode": "PSCP",
+      "chapter": 3
     },
     {
       "id": "gen-pscp-exams-pscp-quiz-week07-pdf",
@@ -10580,7 +10786,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pscp/exams/pscp-quiz-week07.pdf",
       "fileName": "pscp-quiz-week07.pdf",
-      "courseCode": "PSCP"
+      "courseCode": "PSCP",
+      "chapter": 7
     },
     {
       "id": "gen-pscp-exams-pscp-quiz-week08-pdf",
@@ -10600,7 +10807,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pscp/exams/pscp-quiz-week08.pdf",
       "fileName": "pscp-quiz-week08.pdf",
-      "courseCode": "PSCP"
+      "courseCode": "PSCP",
+      "chapter": 8
     },
     {
       "id": "gen-pscp-exams-pscp-quiz-week09-pdf",
@@ -10620,7 +10828,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pscp/exams/pscp-quiz-week09.pdf",
       "fileName": "pscp-quiz-week09.pdf",
-      "courseCode": "PSCP"
+      "courseCode": "PSCP",
+      "chapter": 9
     },
     {
       "id": "gen-pscp-exams-pscp-quiz-week11-pdf",
@@ -10640,7 +10849,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pscp/exams/pscp-quiz-week11.pdf",
       "fileName": "pscp-quiz-week11.pdf",
-      "courseCode": "PSCP"
+      "courseCode": "PSCP",
+      "chapter": 11
     },
     {
       "id": "gen-pscp-exams-pscp-quiz-week12-pdf",
@@ -10660,7 +10870,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pscp/exams/pscp-quiz-week12.pdf",
       "fileName": "pscp-quiz-week12.pdf",
-      "courseCode": "PSCP"
+      "courseCode": "PSCP",
+      "chapter": 12
     },
     {
       "id": "gen-pscp-exams-pscp-quiz-week13-pdf",
@@ -10680,7 +10891,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pscp/exams/pscp-quiz-week13.pdf",
       "fileName": "pscp-quiz-week13.pdf",
-      "courseCode": "PSCP"
+      "courseCode": "PSCP",
+      "chapter": 13
     },
     {
       "id": "gen-pscp-exams-pscp-quiz-week14-pdf",
@@ -10700,7 +10912,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pscp/exams/pscp-quiz-week14.pdf",
       "fileName": "pscp-quiz-week14.pdf",
-      "courseCode": "PSCP"
+      "courseCode": "PSCP",
+      "chapter": 14
     },
     {
       "id": "gen-pscp-exercises-pscp-ex-check-in-pdf",
@@ -10740,7 +10953,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pscp/exercises/pscp-ex-pretest-week03.pdf",
       "fileName": "pscp-ex-pretest-week03.pdf",
-      "courseCode": "PSCP"
+      "courseCode": "PSCP",
+      "chapter": 3
     },
     {
       "id": "gen-pscp-exercises-pscp-ex-pretest-week04-pdf",
@@ -10760,7 +10974,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pscp/exercises/pscp-ex-pretest-week04.pdf",
       "fileName": "pscp-ex-pretest-week04.pdf",
-      "courseCode": "PSCP"
+      "courseCode": "PSCP",
+      "chapter": 4
     },
     {
       "id": "gen-pscp-exercises-pscp-ex-sorting-test-pdf",
@@ -10800,7 +11015,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pscp/exercises/pscp-ex-week01-practice.pdf",
       "fileName": "pscp-ex-week01-practice.pdf",
-      "courseCode": "PSCP"
+      "courseCode": "PSCP",
+      "chapter": 1
     },
     {
       "id": "gen-pscp-exercises-pscp-ex-week02-practice-pdf",
@@ -10820,7 +11036,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pscp/exercises/pscp-ex-week02-practice.pdf",
       "fileName": "pscp-ex-week02-practice.pdf",
-      "courseCode": "PSCP"
+      "courseCode": "PSCP",
+      "chapter": 2
     },
     {
       "id": "gen-pscp-exercises-pscp-hw-03-pdf",
@@ -10900,7 +11117,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pscp/exercises/pscp-hw-week01.pdf",
       "fileName": "pscp-hw-week01.pdf",
-      "courseCode": "PSCP"
+      "courseCode": "PSCP",
+      "chapter": 1
     },
     {
       "id": "gen-pscp-exercises-pscp-hw-week02-pdf",
@@ -10920,7 +11138,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pscp/exercises/pscp-hw-week02.pdf",
       "fileName": "pscp-hw-week02.pdf",
-      "courseCode": "PSCP"
+      "courseCode": "PSCP",
+      "chapter": 2
     },
     {
       "id": "gen-pscp-labs-pscp-lab-pscplab-txt",
@@ -10960,7 +11179,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pscp/lectures/pscp-lec-chapter01.pdf",
       "fileName": "pscp-lec-chapter01.pdf",
-      "courseCode": "PSCP"
+      "courseCode": "PSCP",
+      "chapter": 1
     },
     {
       "id": "gen-pscp-lectures-pscp-lec-chapter02-pdf",
@@ -10980,7 +11200,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pscp/lectures/pscp-lec-chapter02.pdf",
       "fileName": "pscp-lec-chapter02.pdf",
-      "courseCode": "PSCP"
+      "courseCode": "PSCP",
+      "chapter": 2
     },
     {
       "id": "gen-pscp-lectures-pscp-lec-chapter03-pdf",
@@ -11000,7 +11221,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pscp/lectures/pscp-lec-chapter03.pdf",
       "fileName": "pscp-lec-chapter03.pdf",
-      "courseCode": "PSCP"
+      "courseCode": "PSCP",
+      "chapter": 3
     },
     {
       "id": "gen-pscp-lectures-pscp-lec-chapter04-pdf",
@@ -11020,7 +11242,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pscp/lectures/pscp-lec-chapter04.pdf",
       "fileName": "pscp-lec-chapter04.pdf",
-      "courseCode": "PSCP"
+      "courseCode": "PSCP",
+      "chapter": 4
     },
     {
       "id": "gen-pscp-lectures-pscp-lec-chapter05-pdf",
@@ -11040,7 +11263,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pscp/lectures/pscp-lec-chapter05.pdf",
       "fileName": "pscp-lec-chapter05.pdf",
-      "courseCode": "PSCP"
+      "courseCode": "PSCP",
+      "chapter": 5
     },
     {
       "id": "gen-pscp-lectures-pscp-lec-github-pdf",
@@ -11080,7 +11304,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pscp/lectures/pscp-lec-pscp-chapter01-2022.pdf",
       "fileName": "pscp-lec-pscp-chapter01-2022.pdf",
-      "courseCode": "PSCP"
+      "courseCode": "PSCP",
+      "chapter": 1
     }
   ],
   "PSTAT": [
@@ -12322,7 +12547,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pstat/lectures/pstat-lec-week01-v2.pdf",
       "fileName": "pstat-lec-week01-v2.pdf",
-      "courseCode": "PSTAT"
+      "courseCode": "PSTAT",
+      "chapter": 1
     },
     {
       "id": "gen-pstat-lectures-pstat-lec-week01-pdf",
@@ -12342,7 +12568,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pstat/lectures/pstat-lec-week01.pdf",
       "fileName": "pstat-lec-week01.pdf",
-      "courseCode": "PSTAT"
+      "courseCode": "PSTAT",
+      "chapter": 1
     },
     {
       "id": "gen-pstat-lectures-pstat-lec-week02-v2-pdf",
@@ -12362,7 +12589,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pstat/lectures/pstat-lec-week02-v2.pdf",
       "fileName": "pstat-lec-week02-v2.pdf",
-      "courseCode": "PSTAT"
+      "courseCode": "PSTAT",
+      "chapter": 2
     },
     {
       "id": "gen-pstat-lectures-pstat-lec-week02-pdf",
@@ -12382,7 +12610,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pstat/lectures/pstat-lec-week02.pdf",
       "fileName": "pstat-lec-week02.pdf",
-      "courseCode": "PSTAT"
+      "courseCode": "PSTAT",
+      "chapter": 2
     },
     {
       "id": "gen-pstat-lectures-pstat-lec-week03-v2-pdf",
@@ -12402,7 +12631,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pstat/lectures/pstat-lec-week03-v2.pdf",
       "fileName": "pstat-lec-week03-v2.pdf",
-      "courseCode": "PSTAT"
+      "courseCode": "PSTAT",
+      "chapter": 3
     },
     {
       "id": "gen-pstat-lectures-pstat-lec-week03-pdf",
@@ -12422,7 +12652,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pstat/lectures/pstat-lec-week03.pdf",
       "fileName": "pstat-lec-week03.pdf",
-      "courseCode": "PSTAT"
+      "courseCode": "PSTAT",
+      "chapter": 3
     },
     {
       "id": "gen-pstat-lectures-pstat-lec-week04-v2-pdf",
@@ -12442,7 +12673,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pstat/lectures/pstat-lec-week04-v2.pdf",
       "fileName": "pstat-lec-week04-v2.pdf",
-      "courseCode": "PSTAT"
+      "courseCode": "PSTAT",
+      "chapter": 4
     },
     {
       "id": "gen-pstat-lectures-pstat-lec-week04-pdf",
@@ -12462,7 +12694,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pstat/lectures/pstat-lec-week04.pdf",
       "fileName": "pstat-lec-week04.pdf",
-      "courseCode": "PSTAT"
+      "courseCode": "PSTAT",
+      "chapter": 4
     },
     {
       "id": "gen-pstat-lectures-pstat-lec-week05-v2-pdf",
@@ -12482,7 +12715,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pstat/lectures/pstat-lec-week05-v2.pdf",
       "fileName": "pstat-lec-week05-v2.pdf",
-      "courseCode": "PSTAT"
+      "courseCode": "PSTAT",
+      "chapter": 5
     },
     {
       "id": "gen-pstat-lectures-pstat-lec-week05-pdf",
@@ -12502,7 +12736,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pstat/lectures/pstat-lec-week05.pdf",
       "fileName": "pstat-lec-week05.pdf",
-      "courseCode": "PSTAT"
+      "courseCode": "PSTAT",
+      "chapter": 5
     },
     {
       "id": "gen-pstat-lectures-pstat-lec-week06-v2-pdf",
@@ -12522,7 +12757,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pstat/lectures/pstat-lec-week06-v2.pdf",
       "fileName": "pstat-lec-week06-v2.pdf",
-      "courseCode": "PSTAT"
+      "courseCode": "PSTAT",
+      "chapter": 6
     },
     {
       "id": "gen-pstat-lectures-pstat-lec-week06-pdf",
@@ -12542,7 +12778,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pstat/lectures/pstat-lec-week06.pdf",
       "fileName": "pstat-lec-week06.pdf",
-      "courseCode": "PSTAT"
+      "courseCode": "PSTAT",
+      "chapter": 6
     },
     {
       "id": "gen-pstat-lectures-pstat-lec-week07-pdf",
@@ -12562,7 +12799,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pstat/lectures/pstat-lec-week07.pdf",
       "fileName": "pstat-lec-week07.pdf",
-      "courseCode": "PSTAT"
+      "courseCode": "PSTAT",
+      "chapter": 7
     },
     {
       "id": "gen-pstat-lectures-pstat-lec-week08-v2-pdf",
@@ -12582,7 +12820,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pstat/lectures/pstat-lec-week08-v2.pdf",
       "fileName": "pstat-lec-week08-v2.pdf",
-      "courseCode": "PSTAT"
+      "courseCode": "PSTAT",
+      "chapter": 8
     },
     {
       "id": "gen-pstat-lectures-pstat-lec-week08-pdf",
@@ -12602,7 +12841,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pstat/lectures/pstat-lec-week08.pdf",
       "fileName": "pstat-lec-week08.pdf",
-      "courseCode": "PSTAT"
+      "courseCode": "PSTAT",
+      "chapter": 8
     },
     {
       "id": "gen-pstat-lectures-pstat-lec-week09-v2-pdf",
@@ -12622,7 +12862,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pstat/lectures/pstat-lec-week09-v2.pdf",
       "fileName": "pstat-lec-week09-v2.pdf",
-      "courseCode": "PSTAT"
+      "courseCode": "PSTAT",
+      "chapter": 9
     },
     {
       "id": "gen-pstat-lectures-pstat-lec-week09-pdf",
@@ -12642,7 +12883,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pstat/lectures/pstat-lec-week09.pdf",
       "fileName": "pstat-lec-week09.pdf",
-      "courseCode": "PSTAT"
+      "courseCode": "PSTAT",
+      "chapter": 9
     },
     {
       "id": "gen-pstat-lectures-pstat-lec-week10-v2-pdf",
@@ -12662,7 +12904,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pstat/lectures/pstat-lec-week10-v2.pdf",
       "fileName": "pstat-lec-week10-v2.pdf",
-      "courseCode": "PSTAT"
+      "courseCode": "PSTAT",
+      "chapter": 10
     },
     {
       "id": "gen-pstat-lectures-pstat-lec-week10-pdf",
@@ -12682,7 +12925,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pstat/lectures/pstat-lec-week10.pdf",
       "fileName": "pstat-lec-week10.pdf",
-      "courseCode": "PSTAT"
+      "courseCode": "PSTAT",
+      "chapter": 10
     },
     {
       "id": "gen-pstat-lectures-pstat-lec-week11-v2-pdf",
@@ -12702,7 +12946,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pstat/lectures/pstat-lec-week11-v2.pdf",
       "fileName": "pstat-lec-week11-v2.pdf",
-      "courseCode": "PSTAT"
+      "courseCode": "PSTAT",
+      "chapter": 11
     },
     {
       "id": "gen-pstat-lectures-pstat-lec-week11-pdf",
@@ -12722,7 +12967,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pstat/lectures/pstat-lec-week11.pdf",
       "fileName": "pstat-lec-week11.pdf",
-      "courseCode": "PSTAT"
+      "courseCode": "PSTAT",
+      "chapter": 11
     },
     {
       "id": "gen-pstat-lectures-pstat-lec-week12-v2-pdf",
@@ -12742,7 +12988,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pstat/lectures/pstat-lec-week12-v2.pdf",
       "fileName": "pstat-lec-week12-v2.pdf",
-      "courseCode": "PSTAT"
+      "courseCode": "PSTAT",
+      "chapter": 12
     },
     {
       "id": "gen-pstat-lectures-pstat-lec-week12-pdf",
@@ -12762,7 +13009,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pstat/lectures/pstat-lec-week12.pdf",
       "fileName": "pstat-lec-week12.pdf",
-      "courseCode": "PSTAT"
+      "courseCode": "PSTAT",
+      "chapter": 12
     },
     {
       "id": "gen-pstat-lectures-pstat-lec-week13-v2-pdf",
@@ -12782,7 +13030,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pstat/lectures/pstat-lec-week13-v2.pdf",
       "fileName": "pstat-lec-week13-v2.pdf",
-      "courseCode": "PSTAT"
+      "courseCode": "PSTAT",
+      "chapter": 13
     },
     {
       "id": "gen-pstat-lectures-pstat-lec-week13-pdf",
@@ -12802,7 +13051,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pstat/lectures/pstat-lec-week13.pdf",
       "fileName": "pstat-lec-week13.pdf",
-      "courseCode": "PSTAT"
+      "courseCode": "PSTAT",
+      "chapter": 13
     },
     {
       "id": "gen-pstat-lectures-pstat-lec-week14-v2-pdf",
@@ -12822,7 +13072,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pstat/lectures/pstat-lec-week14-v2.pdf",
       "fileName": "pstat-lec-week14-v2.pdf",
-      "courseCode": "PSTAT"
+      "courseCode": "PSTAT",
+      "chapter": 14
     },
     {
       "id": "gen-pstat-lectures-pstat-lec-week14-pdf",
@@ -12842,7 +13093,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pstat/lectures/pstat-lec-week14.pdf",
       "fileName": "pstat-lec-week14.pdf",
-      "courseCode": "PSTAT"
+      "courseCode": "PSTAT",
+      "chapter": 14
     },
     {
       "id": "gen-pstat-lectures-pstat-note-lnotes01-pdf",
@@ -13102,7 +13354,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pstat/lectures/pstat-note-week01.pdf",
       "fileName": "pstat-note-week01.pdf",
-      "courseCode": "PSTAT"
+      "courseCode": "PSTAT",
+      "chapter": 1
     },
     {
       "id": "gen-pstat-lectures-pstat-note-week02-pdf",
@@ -13122,7 +13375,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pstat/lectures/pstat-note-week02.pdf",
       "fileName": "pstat-note-week02.pdf",
-      "courseCode": "PSTAT"
+      "courseCode": "PSTAT",
+      "chapter": 2
     },
     {
       "id": "gen-pstat-lectures-pstat-note-week03-pdf",
@@ -13142,7 +13396,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pstat/lectures/pstat-note-week03.pdf",
       "fileName": "pstat-note-week03.pdf",
-      "courseCode": "PSTAT"
+      "courseCode": "PSTAT",
+      "chapter": 3
     },
     {
       "id": "gen-pstat-lectures-pstat-note-week04-pdf",
@@ -13162,7 +13417,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pstat/lectures/pstat-note-week04.pdf",
       "fileName": "pstat-note-week04.pdf",
-      "courseCode": "PSTAT"
+      "courseCode": "PSTAT",
+      "chapter": 4
     },
     {
       "id": "gen-pstat-lectures-pstat-note-week05-pdf",
@@ -13182,7 +13438,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pstat/lectures/pstat-note-week05.pdf",
       "fileName": "pstat-note-week05.pdf",
-      "courseCode": "PSTAT"
+      "courseCode": "PSTAT",
+      "chapter": 5
     },
     {
       "id": "gen-pstat-lectures-pstat-note-week06-pdf",
@@ -13202,7 +13459,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pstat/lectures/pstat-note-week06.pdf",
       "fileName": "pstat-note-week06.pdf",
-      "courseCode": "PSTAT"
+      "courseCode": "PSTAT",
+      "chapter": 6
     },
     {
       "id": "gen-pstat-lectures-pstat-note-week08-pdf",
@@ -13222,7 +13480,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pstat/lectures/pstat-note-week08.pdf",
       "fileName": "pstat-note-week08.pdf",
-      "courseCode": "PSTAT"
+      "courseCode": "PSTAT",
+      "chapter": 8
     },
     {
       "id": "gen-pstat-lectures-pstat-note-week09-pdf",
@@ -13242,7 +13501,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pstat/lectures/pstat-note-week09.pdf",
       "fileName": "pstat-note-week09.pdf",
-      "courseCode": "PSTAT"
+      "courseCode": "PSTAT",
+      "chapter": 9
     },
     {
       "id": "gen-pstat-lectures-pstat-note-week10-pdf",
@@ -13262,7 +13522,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pstat/lectures/pstat-note-week10.pdf",
       "fileName": "pstat-note-week10.pdf",
-      "courseCode": "PSTAT"
+      "courseCode": "PSTAT",
+      "chapter": 10
     },
     {
       "id": "gen-pstat-lectures-pstat-note-week11-pdf",
@@ -13282,7 +13543,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pstat/lectures/pstat-note-week11.pdf",
       "fileName": "pstat-note-week11.pdf",
-      "courseCode": "PSTAT"
+      "courseCode": "PSTAT",
+      "chapter": 11
     },
     {
       "id": "gen-pstat-lectures-pstat-note-week13-pdf",
@@ -13302,7 +13564,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pstat/lectures/pstat-note-week13.pdf",
       "fileName": "pstat-note-week13.pdf",
-      "courseCode": "PSTAT"
+      "courseCode": "PSTAT",
+      "chapter": 13
     },
     {
       "id": "gen-pstat-references-pstat-ref-casio-calculator-pdf",
@@ -13422,7 +13685,8 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/pstat/sheets/pstat-sheet-recap-week04-05.pdf",
       "fileName": "pstat-sheet-recap-week04-05.pdf",
-      "courseCode": "PSTAT"
+      "courseCode": "PSTAT",
+      "chapter": 4
     }
   ]
 }

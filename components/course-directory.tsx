@@ -4,11 +4,7 @@ import { useMemo, useState } from "react";
 import { GraduationCap, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useLocale, t, type LText } from "@/lib/i18n";
-import {
-  COURSES,
-  GROUPS,
-  courseDir,
-} from "@/lib/catalog";
+import { COURSES, GROUPS } from "@/lib/catalog";
 import { CourseBookCard } from "@/components/course-book-card";
 
 const L: Record<string, LText> = {
@@ -23,22 +19,19 @@ const L: Record<string, LText> = {
 };
 
 /**
- * @param overviews directory names (see courseDir) that have an overview
- *   document on disk. Resolved on the server so a course gains its overview
- *   chip the moment the markdown lands, with no edit here.
+ * @param readiness how many of the eleven spine modules each course fills,
+ *   keyed by course code. Measured on the server from what each module binds,
+ *   so a course's shelf badge moves the moment its content lands.
  */
-export function CourseDirectory({ overviews = [] }: { overviews?: string[] }) {
+export function CourseDirectory({
+  readiness = {},
+}: {
+  readiness?: Record<string, number>;
+}) {
   const { locale } = useLocale();
   const [query, setQuery] = useState("");
 
-  const courses = useMemo(() => {
-    const has = new Set(overviews);
-    return COURSES.map((c) =>
-      has.has(courseDir(c))
-        ? { ...c, tracks: { overview: `/courses/${courseDir(c)}`, ...c.tracks } }
-        : c,
-    );
-  }, [overviews]);
+  const courses = COURSES;
 
   const matches = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -105,7 +98,7 @@ export function CourseDirectory({ overviews = [] }: { overviews?: string[] }) {
               </div>
               <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
                 {courses.map((c) => (
-                  <CourseBookCard key={c.code} course={c} />
+                  <CourseBookCard key={c.code} course={c} readiness={readiness[c.code] ?? 0} />
                 ))}
               </div>
             </section>

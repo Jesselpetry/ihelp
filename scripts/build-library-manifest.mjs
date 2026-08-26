@@ -13,6 +13,12 @@
  *
  * Deliberately does NOT guess `scope`. Midterm/final is whatever the course's
  * own summary.md states, never an inference from a week number in a filename.
+ *
+ * It DOES read `chapter`, but only when the filename states one outright — a
+ * `week08` or `ch3` token. That is a fact the file is asserting about itself,
+ * not an inference about the term. Files that say nothing get no chapter, which
+ * is the same rule the dropzone SOP applies to everything else: leave it blank
+ * rather than guess, and let a curated entry fill it in later.
  */
 import fs from "fs";
 import path from "path";
@@ -81,6 +87,25 @@ function titleFrom(base, subjectFolder) {
   return rest || label || base;
 }
 
+/**
+ * The chapter or week a filename names outright.
+ *
+ * Matches the tokens the naming convention already uses — `week08`, `ch3`,
+ * `lec02`, `unit4` — and nothing else. A bare number in a filename is usually a
+ * year (`2564`) or a paper number, so it is ignored: a wrong chapter is worse
+ * than no chapter, because it files a slide under a week it does not belong to.
+ */
+function chapterFrom(base) {
+  for (const tok of base.split("-")) {
+    const m = tok.match(/^(week|wk|ch|chapter|lec|lecture|unit)0*(\d{1,2})$/);
+    if (m) {
+      const n = Number(m[2]);
+      if (n >= 1 && n <= 20) return n;
+    }
+  }
+  return undefined;
+}
+
 function walk(dir) {
   const out = [];
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -93,6 +118,7 @@ function walk(dir) {
 
 const manifest = {};
 let skipped = 0;
+let chaptered = 0;
 
 for (const file of walk(ASSETS).sort()) {
   const rel = path.relative(ASSETS, file).split(path.sep);
@@ -109,6 +135,8 @@ for (const file of walk(ASSETS).sort()) {
   const shelf = SHELF[categoryFolder] ?? "reference";
   const extClean = ext.replace(/^\./, "").toLowerCase();
   const baseId = `gen-${subjectFolder}-${categoryFolder}-${base}${extClean ? '-' + extClean : ''}`;
+  const chapter = chapterFrom(base);
+  if (chapter !== undefined) chaptered++;
 
   (manifest[code] ??= []).push({
     id: baseId,
@@ -120,6 +148,7 @@ for (const file of walk(ASSETS).sort()) {
     url: "/assets/" + rel.join("/"),
     fileName: name,
     courseCode: code,
+    ...(chapter !== undefined ? { chapter } : {}),
   });
 }
 
@@ -127,5 +156,6 @@ fs.writeFileSync(OUT, JSON.stringify(manifest, null, 2) + "\n");
 const total = Object.values(manifest).reduce((a, v) => a + v.length, 0);
 console.log(
   `wrote ${total} entries across ${Object.keys(manifest).length} subjects ` +
-  `to ${path.relative(ROOT, OUT)}` + (skipped ? ` (${skipped} unmapped, skipped)` : ""),
+  `to ${path.relative(ROOT, OUT)}, ${chaptered} with a chapter` +
+  (skipped ? ` (${skipped} unmapped, skipped)` : ""),
 );

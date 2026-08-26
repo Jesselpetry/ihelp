@@ -2,165 +2,36 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Navbar } from "@/components/navbar";
 import { SubjectHub } from "@/components/subject-hub";
-import { COURSES, courseDir, resolveCourse, tracksFor } from "@/lib/catalog";
-import { buildCourseTracks, type CourseTrackMetrics } from "@/lib/course-tracks";
-import { getCourseScrapedInfo, loadCourseOverview } from "@/lib/course-content";
+import { COURSES, courseDir, resolveCourse } from "@/lib/catalog";
+import { COURSE_BINDINGS } from "@/lib/course-bindings";
+import { moduleBinding, resolveCourseSpine } from "@/lib/course-spine";
+import type { SpineMetrics } from "@/lib/spine";
+import { getCourseScrapedInfo } from "@/lib/course-content";
 import { assetsForCourse } from "@/lib/subject-library";
-import { loadIcs, loadMfit } from "@/lib/it-kmitl";
-import { loadEnKmitl, loadChem } from "@/lib/en-kmitl";
 import type { LText } from "@/lib/i18n";
-import type { QuizQuestion } from "@/lib/quiz";
-
-// Interactive quiz & chapter metadata imports
-import { ITF_QUIZ } from "@/lib/itf-quiz";
-import { ICS_QUIZ } from "@/lib/ics-quiz";
-import { MFIT_QUIZ, MFIT_BLUEPRINT_QUIZ } from "@/lib/mfit-quiz";
-import { EN_KMITL_QUIZ } from "@/lib/en-kmitl-quiz";
-import { EN_KMITL_MOCK_EXAM } from "@/lib/en-kmitl-mock-exam";
-import { CHEM_QUIZ } from "@/lib/chem-quiz";
-
-export const dynamic = "force-dynamic";
 
 const L = {
   backLabel: { th: "← รายวิชาทั้งหมด", en: "← All courses" },
-  overviewTitle: { th: "ภาพรวมเนื้อหา", en: "Content Overview" },
 };
 
 /**
- * Everything a hub needs beyond its track cards. The cards themselves come
- * from lib/course-tracks.ts; this only carries the page framing and whatever
- * live data the badges quote.
+ * Question-bank sizes, measured from the banks the course actually binds.
+ *
+ * Counted rather than declared: the hub used to carry hand-written counts in a
+ * `questionCounts` map that had already drifted from the banks it described.
  */
-interface CourseHub {
-  title: LText;
-  subtitle: LText;
-  questions?: QuizQuestion[];
-  footerNote?: LText;
-  /** Track hrefs beyond the catalogue's, keyed by track id. */
-  extraHrefs?: Record<string, string | undefined>;
-  /** Question-bank sizes the card badges quote, keyed by track id. */
-  questionCounts?: Record<string, number>;
-}
-
-/**
- * Per-course framing. Only the subjects with bespoke copy appear here; every
- * other course falls through to a heading built from the catalogue, which is
- * what the standard hub already did.
- */
-function hubFor(code: string, base: string): CourseHub | undefined {
-  switch (code) {
-    case "ITF":
-      return {
-        title: { th: "ITF — พื้นฐานทางด้านเทคโนโลยีสารสนเทศ", en: "IT Fundamentals" },
-        subtitle: {
-          th: "06016402 · เตรียมสอบกลางภาค · Lecture 01–07",
-          en: "06016402 · Midterm prep · Lectures 01–07",
-        },
-        questions: ITF_QUIZ,
-        questionCounts: { quiz: ITF_QUIZ.length },
-        footerNote: {
-          th: "คลังข้อสอบสร้างจากคู่มือทบทวนกลางภาค ไม่ใช่ข้อสอบจริง — ใช้ทบทวนความเข้าใจ ไม่ใช่เดาแนวข้อสอบ",
-          en: "Questions derived from midterm review guides for concept reinforcement.",
-        },
-      };
-
-    case "ICS": {
-      const ics = loadIcs();
-      return {
-        title: {
-          th: "ICS — ระบบคอมพิวเตอร์เบื้องต้น",
-          en: "ICS — Intro to Computer Systems",
-        },
-        subtitle: {
-          th: "06016411 · เตรียมสอบกลางภาค · บทที่ 1-6 (120 คะแนน + เสริม 10)",
-          en: "06016411 · Midterm prep · Chapters 1-6 (120 marks + 10 bonus)",
-        },
-        questions: ICS_QUIZ,
-        questionCounts: { quiz: ICS_QUIZ.length },
-        extraHrefs: {
-          analysis: ics.analysisMd ? `${base}/analysis` : undefined,
-        },
-        footerNote: {
-          th: "ข้อสอบเป็นอัตนัยทั้งฉบับ — ต้องแสดงวิธีทำทุกข้อ คะแนนกระจุกที่พีชคณิตบูลีน + K-Map + ออกแบบวงจร รวม 90 จาก 120 คะแนน (75%)",
-          en: "The exam is constructed-response — Boolean algebra + K-maps + circuit design carry 75% of marks.",
-        },
-      };
-    }
-
-    case "MFIT": {
-      const mfit = loadMfit();
-      return {
-        title: {
-          th: "MFIT — คณิตศาสตร์สำหรับเทคโนโลยีสารสนเทศ",
-          en: "MFIT — Mathematics for IT",
-        },
-        subtitle: {
-          th: "06016401 · เตรียมสอบกลางภาค · 10 ข้อ 180 นาที (พีชคณิตเชิงเส้น Week 1-7)",
-          en: "06016401 · Midterm prep · 10 questions in 180 minutes (linear algebra, weeks 1-7)",
-        },
-        questions: [...MFIT_QUIZ, ...MFIT_BLUEPRINT_QUIZ],
-        questionCounts: {
-          quiz: MFIT_QUIZ.length + MFIT_BLUEPRINT_QUIZ.length,
-          speed_quiz: MFIT_BLUEPRINT_QUIZ.length,
-        },
-        extraHrefs: {
-          cram: mfit.cramMd ? `${base}/cram` : undefined,
-          learning_path: mfit.learningPathMd ? `${base}/plan` : undefined,
-          speed_quiz: mfit.mockExamMd ? `${base}/mock` : undefined,
-        },
-        footerNote: {
-          th: "โครงข้อสอบจากสไลด์ Q&A ของอาจารย์: 10 ข้อ · 180 นาที · ตอบเป็นตัวเลข · มีเครื่องคิดเลขให้ — ข้อ 10 (ค่าเจาะจง) ได้เวลามากสุด 20 นาที",
-          en: "Blueprint from instructor's Q&A: 10 questions in 180 minutes with calculators allowed.",
-        },
-      };
-    }
-
-    case "COMPRO":
-      return {
-        title: {
-          th: "Computer Programming — การเขียนโปรแกรมคอมพิวเตอร์",
-          en: "Computer Programming",
-        },
-        subtitle: {
-          th: "01006012 · เตรียมสอบกลางภาค (บทที่ 1-5)",
-          en: "01006012 · Midterm Prep (Chapters 1-5)",
-        },
-        questions: [...EN_KMITL_QUIZ, ...EN_KMITL_MOCK_EXAM],
-        questionCounts: {
-          quiz: EN_KMITL_QUIZ.length + EN_KMITL_MOCK_EXAM.length,
-        },
-      };
-
-    case "CHEM":
-      return {
-        title: { th: "General Chemistry — เคมีทั่วไป", en: "General Chemistry" },
-        subtitle: {
-          th: "เตรียมสอบกลางภาค · บทที่ 1-5",
-          en: "Midterm Prep · Chapters 1-5",
-        },
-        questions: CHEM_QUIZ,
-        questionCounts: { quiz: CHEM_QUIZ.length },
-      };
-
-    case "PSCP":
-      return {
-        title: {
-          th: "PSCP — การแก้ปัญหาและการโปรแกรมคอมพิวเตอร์",
-          en: "Problem Solving and Computer Programming",
-        },
-        subtitle: {
-          th: "06066303 · คลังโจทย์และสื่อการเรียนรู้",
-          en: "06066303 · Problem sets & learning materials",
-        },
-      };
-
-    default:
-      return undefined;
+function bankCounts(code: string): SpineMetrics["questions"] {
+  const bindings = COURSE_BINDINGS[code.toUpperCase()] ?? {};
+  const counts: Record<string, number> = {};
+  for (const [id, binding] of Object.entries(bindings)) {
+    const size = binding?.bank?.().length ?? 0;
+    if (size > 0) counts[id] = size;
   }
+  return counts as SpineMetrics["questions"];
 }
 
-/** PDF / image / in-app-document split for the resource library's card. */
-function libraryMetrics(code: string): CourseTrackMetrics["library"] {
+/** PDF / image / in-app-document split for the archive module's card. */
+function libraryMetrics(code: string): SpineMetrics["library"] {
   const assets = assetsForCourse(code);
   if (!assets || assets.length === 0) return undefined;
   return {
@@ -203,31 +74,24 @@ export default async function CoursePage({
   if (!course) notFound();
 
   const cDir = courseDir(course);
-  const baseHref = `/courses/${cDir}`;
-  const hub = hubFor(course.code, baseHref);
-  const officialInfo = getCourseScrapedInfo(course.code);
-
-  let summaryMarkdown: string | null = null;
-  if (course.code === "COMPRO") {
-    summaryMarkdown = loadEnKmitl().summaryMd;
-  } else if (course.code === "CHEM") {
-    summaryMarkdown = loadChem().summaryMd;
-  } else {
-    summaryMarkdown = loadCourseOverview(cDir);
-  }
-
-  // The catalogue owns the standard tracks; a course's own config adds the
-  // ones only it has (MFIT's cram sheet, ICS's exam analysis) and answers
-  // whether their markdown is actually on disk.
-  const hrefs: Record<string, string | undefined> = {
-    ...tracksFor(course.code),
-    ...hub?.extraHrefs,
-  };
-
-  const tracks = buildCourseTracks(course.code, hrefs, {
-    questions: hub?.questionCounts,
+  const modules = resolveCourseSpine(course.code, cDir, {
+    questions: bankCounts(course.code),
     library: libraryMetrics(course.code),
   });
+
+  // The overview document is whatever the course bound to its orientation
+  // module. This replaces a six-branch switch that picked between three
+  // different loaders by course code.
+  const orientation = moduleBinding(course.code, "orientation");
+  const summaryMarkdown =
+    orientation?.docs?.map((doc) => doc.load()).find((md) => md !== null) ?? null;
+
+  // Caveats a course attached to individual modules — that a bank is derived
+  // from a review guide rather than the real paper, where the marks actually
+  // sit — gathered under the grid so they stay attached to their module.
+  const notes = modules
+    .filter((mod) => mod.note !== undefined)
+    .map((mod) => ({ title: mod.title, note: mod.note! }));
 
   return (
     <>
@@ -235,29 +99,26 @@ export default async function CoursePage({
       <SubjectHub
         backHref="/"
         backLabel={L.backLabel}
-        title={
-          hub?.title ?? {
-            th: `${course.code} — ${course.nameTh}`,
-            en: `${course.code} — ${course.nameEn}`,
-          }
-        }
-        subtitle={
-          hub?.subtitle ?? {
-            th: `${course.officialCode ? course.officialCode + " · " : ""}${course.nameEn}${course.credits ? " · " + course.credits : ""}`,
-            en: `${course.officialCode ? course.officialCode + " · " : ""}${course.nameEn}${course.credits ? " · " + course.credits : ""}`,
-          }
-        }
-        courseCode={course.code}
-        courseNameTh={course.nameTh}
-        courseNameEn={course.nameEn}
-        officialCode={course.officialCode}
-        credits={course.credits}
+        title={{
+          th: `${course.code} — ${course.nameTh}`,
+          en: `${course.code} — ${course.nameEn}`,
+        }}
+        subtitle={hubSubtitle(course.officialCode, course.nameEn, course.credits)}
         summaryMarkdown={summaryMarkdown}
         officialUrl={course.officialUrl}
-        officialInfo={officialInfo}
-        tracks={tracks}
-        footerNote={hub?.footerNote}
+        officialInfo={getCourseScrapedInfo(course.code)}
+        modules={modules}
+        notes={notes}
       />
     </>
   );
+}
+
+function hubSubtitle(
+  officialCode: string | undefined,
+  nameEn: string,
+  credits: string | undefined,
+): LText {
+  const line = [officialCode, nameEn, credits].filter(Boolean).join(" · ");
+  return { th: line, en: line };
 }

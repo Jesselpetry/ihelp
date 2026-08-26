@@ -3,18 +3,12 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useLocale, t, type LText } from "@/lib/i18n";
-import type { QuizQuestion } from "@/lib/quiz";
-import type { CourseTrackItem } from "@/lib/course-tracks";
+import type { ResolvedModule } from "@/lib/spine";
 import { SubjectTrackGrid } from "@/components/subject-track-grid";
 import { ItKmitlBadge } from "@/components/it-kmitl-badge";
 import { CourseSummaryCard } from "@/components/course-summary-card";
 import { CourseOfficialInfo } from "@/components/course-official-info";
 import type { ScrapedCourseInfo } from "@/lib/course-content";
-
-export interface SubjectChapter {
-  chapter: number;
-  title: LText;
-}
 
 interface SubjectHubProps {
   /** Link back to the course directory */
@@ -22,23 +16,17 @@ interface SubjectHubProps {
   backLabel: LText;
   title: LText;
   subtitle: LText;
-  courseCode?: string;
-  courseNameTh?: string;
-  courseNameEn?: string;
-  officialCode?: string;
-  credits?: string;
   summaryMarkdown?: string | null;
   /** Official subject details page on https://www.it.kmitl.ac.th */
   officialUrl?: string;
-  /** Action cards, already resolved by lib/course-tracks.ts. */
-  tracks: CourseTrackItem[];
-  overviewTitle?: LText;
-  chapters?: SubjectChapter[];
-  questions?: QuizQuestion[];
-  /** Optional footer note rendered below the chapter table */
-  footerNote?: LText;
-  /** Overrides the "Ch." prefix in the overview list (e.g. "Week" for MFIT) */
-  chapterLabel?: LText;
+  /** All eleven spine modules, already resolved by lib/spine.ts. */
+  modules: ResolvedModule[];
+  /**
+   * Caveats a course attached to individual modules, each labelled with the
+   * module it belongs to — that a bank is derived from a review guide rather
+   * than the real paper, where the marks actually sit, and so on.
+   */
+  notes?: { title: LText; note: LText }[];
   /** Official scraped IT KMITL subject information */
   officialInfo?: ScrapedCourseInfo | null;
 }
@@ -48,15 +36,10 @@ export function SubjectHub({
   backLabel,
   title,
   subtitle,
-  courseCode: _courseCode,
-  courseNameTh: _courseNameTh,
-  courseNameEn: _courseNameEn,
-  officialCode: _officialCode,
-  credits: _credits,
   summaryMarkdown,
   officialUrl,
-  tracks,
-  footerNote,
+  modules,
+  notes,
   officialInfo,
 }: SubjectHubProps) {
   const { locale } = useLocale();
@@ -91,7 +74,7 @@ export function SubjectHub({
         </p>
       </div>
 
-      <SubjectTrackGrid tracks={tracks} />
+      <SubjectTrackGrid modules={modules} />
 
       {/* Summary Markdown Card — on top of ภาพรวมรายวิชาอย่างเป็นทางการ card */}
       {summaryMarkdown && (
@@ -107,10 +90,16 @@ export function SubjectHub({
         <CourseOfficialInfo info={officialInfo} officialUrl={officialUrl} />
       )}
 
-      {footerNote && (
-        <p className="text-xs sm:text-sm text-muted-foreground">
-          {t(footerNote, locale)}
-        </p>
+      {notes && notes.length > 0 && (
+        <div className="space-y-2 text-xs sm:text-sm text-muted-foreground">
+          {notes.map(({ title, note }) => (
+            <p key={t(title, locale)}>
+              <span className="font-medium text-foreground/80">{t(title, locale)}</span>
+              {" — "}
+              {t(note, locale)}
+            </p>
+          ))}
+        </div>
       )}
     </main>
   );

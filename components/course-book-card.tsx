@@ -3,20 +3,26 @@
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { useLocale } from "@/lib/i18n";
-import {
-  TRACK_ORDER,
-  courseHref,
-  type CatalogCourse,
-  COURSE_COLORS,
-} from "@/lib/catalog";
+import { courseHref, type CatalogCourse, COURSE_COLORS } from "@/lib/catalog";
 import { ItKmitlBadge, ItKmitlLogoSvg } from "@/components/it-kmitl-badge";
 
 const DEFAULT_THEME_COLOR = "#2357A5";
 
-export function CourseBookCard({ course }: { course: CatalogCourse }) {
+/**
+ * @param readiness how many of the eleven spine modules this course fills.
+ *   Counted on the server from what each module actually binds, so the number
+ *   on the shelf is the same number the hub reports.
+ */
+export function CourseBookCard({
+  course,
+  readiness = 0,
+}: {
+  course: CatalogCourse;
+  readiness?: number;
+}) {
   const { locale } = useLocale();
   const href = courseHref(course);
-  const liveCount = TRACK_ORDER.filter((k) => course.tracks[k]).length;
+  const liveCount = readiness;
   const courseColor = COURSE_COLORS[course.code] ?? DEFAULT_THEME_COLOR;
 
   const title = locale === "th" ? course.nameTh : course.nameEn;
@@ -84,6 +90,12 @@ export function CourseBookCard({ course }: { course: CatalogCourse }) {
                   {course.officialCode}
                 </span>
               )}
+              <span
+                className="font-mono text-[11px] font-semibold text-muted-foreground/70"
+                title={locale === "th" ? "โมดูลที่พร้อมแล้ว" : "Modules ready"}
+              >
+                {readiness}/11
+              </span>
             </div>
 
             {/* Official IT KMITL Link Badge */}

@@ -59,3 +59,35 @@ export function courseWithOverview(param: string): CatalogCourse | undefined {
   return fs.existsSync(overviewPath(dir)) ? course : undefined;
 }
 
+
+/**
+ * Any Markdown file inside a course directory, by path relative to it.
+ *
+ * Exists for the archive/ tree. Twenty-eight files sat under
+ * each course's archive/ folder that no route read — among them MFIT's weeks 8-15,
+ * which is the only final-scope material in the whole project. loadCourseOverview()
+ * only ever opens summary.md, so nothing could reach them.
+ *
+ * Traversal outside the course directory is refused rather than sanitized: a
+ * content path is authored, never user input, so a "../" in one is a bug to
+ * surface, not something to quietly repair.
+ */
+export function loadCourseDoc(param: string, relPath: string): string | null {
+  const course = resolveCourse(param);
+  const dir = course ? courseDir(course) : param;
+  const base = path.join(COURSES_DIR, dir);
+  const file = path.join(base, relPath);
+  if (!file.startsWith(base + path.sep)) return null;
+  return fs.existsSync(file) ? fs.readFileSync(file, "utf-8") : null;
+}
+
+/** Reads a JSON file inside a course directory. Returns null when absent or invalid. */
+export function loadCourseJson<T>(param: string, relPath: string): T | null {
+  const raw = loadCourseDoc(param, relPath);
+  if (raw === null) return null;
+  try {
+    return JSON.parse(raw) as T;
+  } catch {
+    return null;
+  }
+}

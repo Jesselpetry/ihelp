@@ -202,6 +202,7 @@ const L = {
   gallery: { th: "มุมมองแกลเลอรี", en: "Gallery view" },
   list: { th: "มุมมองรายการ", en: "Compact list" },
   topics: { th: "หัวข้อ", en: "Topics" },
+  chapters: { th: "บท/สัปดาห์", en: "Chapter" },
   scopeAll: { th: "ทั้งหมด", en: "All" },
   termWide: { th: "ตลอดภาคการศึกษา", en: "All term" },
   examScope: { th: "ช่วงสอบ", en: "Exam scope" },
@@ -1213,6 +1214,7 @@ export function SubjectLibrary({
   const [filter, setFilter] = useState<Filter>("all");
   const [scope, setScope] = useState<ScopeFilter>("all");
   const [activeTag, setActiveTag] = useState<string | null>(null);
+  const [activeChapter, setActiveChapter] = useState<number | null>(null);
   const [layout, setLayout] = useState<LayoutMode>("gallery");
   const [openStacks, setOpenStacks] = useState<ReadonlySet<string>>(new Set());
   const [preview, setPreview] = useState<Preview | null>(null);
@@ -1249,6 +1251,15 @@ export function SubjectLibrary({
   // milestone to choose between, so the control stays out of the way.
   const scoped = scopeCounts.midterm > 0 && scopeCounts.final > 0;
 
+  // Chapters this shelf actually carries. Only assets that state one appear;
+  // material with no chapter survives every chapter filter rather than being
+  // hidden by a cut it never claimed to belong to.
+  const allChapters = useMemo(() => {
+    const found = new Set<number>();
+    for (const asset of assets) if (asset.chapter !== undefined) found.add(asset.chapter);
+    return Array.from(found).sort((a, b) => a - b);
+  }, [assets]);
+
   const allTags = useMemo(() => {
     const tags = new Set<string>();
     for (const asset of assets) for (const tag of asset.tags) tags.add(tag);
@@ -1264,6 +1275,7 @@ export function SubjectLibrary({
         if (scope !== "all" && asset.scope && asset.scope !== scope) return false;
         if (filter !== "all" && category !== filter) return false;
         if (activeTag && !asset.tags.includes(activeTag)) return false;
+        if (activeChapter !== null && asset.chapter !== activeChapter) return false;
         if (!query) return true;
         const group = asset.groupId ? ASSET_GROUPS[asset.groupId] : undefined;
         return (
@@ -1277,7 +1289,7 @@ export function SubjectLibrary({
         );
       })
       .map(({ asset }) => asset);
-  }, [shelved, search, filter, activeTag, scope, locale]);
+  }, [shelved, search, filter, activeTag, activeChapter, scope, locale]);
 
   /**
    * Collapse each surviving scan run into one entry, in the position of its
@@ -1351,13 +1363,15 @@ export function SubjectLibrary({
     setSearch("");
     setFilter("all");
     setActiveTag(null);
+    setActiveChapter(null);
     setScope("all");
   };
 
   const filtersActive =
-    search !== "" || filter !== "all" || activeTag !== null || scope !== "all";
+    search !== "" || filter !== "all" || activeTag !== null || activeChapter !== null || scope !== "all";
   /** True when something other than the milestone is doing the filtering. */
-  const filtersNarrowed = search !== "" || filter !== "all" || activeTag !== null;
+  const filtersNarrowed =
+    search !== "" || filter !== "all" || activeTag !== null || activeChapter !== null;
 
   const renderGrid = (list: GalleryEntry[]) => (
     <div className="grid grid-cols-[repeat(auto-fill,minmax(9.5rem,1fr))] gap-x-4 gap-y-6">
@@ -1562,6 +1576,34 @@ export function SubjectLibrary({
             );
           })}
         </div>
+
+        {/* Chapter — the cut a student actually thinks in ("what did week 3
+            cover"), which the shelf could not offer until assets carried one. */}
+        {allChapters.length > 1 && (
+          <div className="flex items-center gap-2">
+            <span className="shrink-0 text-[11px] font-medium text-muted-foreground">
+              {t(L.chapters, locale)}
+            </span>
+            <div className="flex flex-1 gap-1.5 overflow-x-auto pb-1 [scrollbar-width:thin]">
+              {allChapters.map((chapter) => (
+                <button
+                  key={chapter}
+                  type="button"
+                  onClick={() =>
+                    setActiveChapter(activeChapter === chapter ? null : chapter)
+                  }
+                  className={`shrink-0 rounded-full border px-2.5 py-0.5 text-[11px] font-medium tabular-nums transition-colors ${
+                    activeChapter === chapter
+                      ? "border-primary bg-primary text-primary-foreground"
+                      : "bg-card text-muted-foreground hover:border-primary/40 hover:text-foreground"
+                  }`}
+                >
+                  {chapter}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Topic tags — the finer cut, kept on its own scrollable line so the
             category chips above stay the primary control on a phone. */}

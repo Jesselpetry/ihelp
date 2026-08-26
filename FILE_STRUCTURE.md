@@ -3,8 +3,9 @@
 เอกสารนี้อธิบาย **ว่าไฟล์แต่ละอย่างอยู่ที่ไหน ตั้งชื่อยังไง และทำไม** เพื่อให้
 repo ยังเป็นระเบียบเมื่อมีคนเพิ่มวิชาใหม่เข้ามาเรื่อย ๆ
 
-อ่านคู่กับ [CONTRIBUTING.md](./CONTRIBUTING.md) (ขั้นตอนการส่ง PR) และ
-[README.md](./README.md) (ภาพรวมโปรเจกต์)
+อ่านคู่กับ [CONTRIBUTING.md](./CONTRIBUTING.md) (ขั้นตอนการส่ง PR),
+[README.md](./README.md) (ภาพรวมโปรเจกต์) และ
+[docs/LEARNING_BLUEPRINT.md](./docs/LEARNING_BLUEPRINT.md) (สัญญาว่า "หนึ่งวิชา" แปลว่าอะไร)
 
 ---
 
@@ -264,30 +265,57 @@ data/
 
 ---
 
-## 7. `lib/catalog.ts` — จุดลงทะเบียนรายวิชา
+## 7. `lib/catalog.ts` + `lib/course-bindings.ts` — จุดลงทะเบียนรายวิชา
 
-รายวิชาจะ “มีอยู่จริง” ก็ต่อเมื่ออยู่ใน `COURSES` — ทุกอย่างอื่นอ้างอิงจากที่นี่
+หน้าที่แยกกันชัดเจน:
+
+| ไฟล์ | ตอบคำถาม |
+|---|---|
+| `lib/catalog.ts` | **วิชานี้คือวิชาอะไร** — code, officialCode, slug, ชื่อ, หน่วยกิต, group |
+| `lib/spine.ts` | **หนึ่งวิชาประกอบด้วยอะไรบ้าง** — 11 โมดูล เหมือนกันทุกวิชา |
+| `lib/course-bindings.ts` | **วิชานี้เติมโมดูลไหนได้บ้าง** — ผูกโมดูลกับ loader / คลังข้อสอบ |
 
 ```ts
+// lib/catalog.ts — identity เท่านั้น ไม่มี tracks อีกแล้ว
 {
-  code: "PSCP",                     // รหัสสั้น ใช้เป็น key ทุกที่
+  code: "PSCP",
   officialCode: "06066303",
   slug: "Problem-Solving-and-Computer-Programming",
   nameTh: "...", nameEn: "...",
   credits: "3 (2-2-5)",
   group: "Y1-S1",                   // Y1-S1 | Y1-S2 | EN-KMITL
-  tracks: {                         // ใส่เฉพาะ track ที่ render ได้จริงแล้ว
-    overview: "/courses/06066303-.../",
-    library:  "/courses/06066303-.../library",
-  },
+}
+
+// lib/course-bindings.ts — วิชานี้เติมอะไรได้จริง
+PSCP: {
+  orientation:  { docs: [overview("06066303-...")] },
+  deep_summary: { docs: [overview("06066303-...")] },
+  applied:      { href: "/pscp" },
+  archive:      {},
 }
 ```
 
-**`tracks` ใส่เฉพาะที่ทำเสร็จแล้ว** — track ที่ไม่ได้ใส่ยังโชว์ในเว็บ แต่เป็นช่อง
-ล็อก เพื่อให้นักศึกษาเห็น roadmap ทั้งหมด และแยกออกว่า “ยังไม่ทำ” กับ “ไม่มี”
+**ผูกเฉพาะโมดูลที่ทำเสร็จแล้ว** — โมดูลที่ไม่ได้ผูกยังโชว์ครบทั้ง 11 ช่อง แต่เป็นช่อง
+ล็อก เพื่อให้นักศึกษาเห็น roadmap ทั้งหมด และแยกออกว่า "ยังไม่ทำ" กับ "ไม่มี"
 
-> ⚠️ ชั้นวางที่ไม่ได้ประกาศ `library` track จะ **เข้าไม่ถึง** — ไฟล์อยู่บนดิสก์
-> แต่ไม่มีลิงก์ไปหา
+รายละเอียดทั้งหมดอยู่ใน [docs/LEARNING_BLUEPRINT.md](./docs/LEARNING_BLUEPRINT.md)
+
+### `chapter` — ฟิลด์ที่เชื่อมสไลด์เข้ากับสัปดาห์
+
+`SubjectAsset` และ `QuizQuestion` มี `chapter?: number` เหมือนกัน ทำให้ชั้นวาง
+กรองตามสัปดาห์ได้ และข้อสอบชี้กลับไปสไลด์ที่มันมาจากได้
+
+`scripts/build-library-manifest.mjs` อ่าน `chapter` **เฉพาะเมื่อชื่อไฟล์ระบุตรงๆ**
+(`week08`, `ch3`, `lec02`, `unit4`) เลขลอยๆ เช่นปี พ.ศ. ถูกข้าม — chapter ที่ผิด
+แย่กว่าไม่มี chapter
+
+**`chapter` เป็น metadata ไม่ใช่ระดับโฟลเดอร์** ด้วยเหตุผลเดียวกับ `scope` ในข้อ 3
+
+### ไวยากรณ์เน้นข้อความในเนื้อหา
+
+`==คำสำคัญ|def==` — ชนิด: `def` / `formula` / `example` / `trap` / `term` / `exam-hot`
+คำที่ซ้ำๆ ประกาศไว้ใน `content/courses/<dir>/glossary.json` แล้วระบบไฮไลต์ให้เอง
+(ยังไม่ได้ทำ — อยู่ในเฟส 1 ของพิมพ์เขียว)
 
 ---
 
@@ -306,14 +334,20 @@ data/
 
 ## 8. เพิ่มวิชาใหม่ — checklist
 
-1. `lib/catalog.ts` → เพิ่ม entry ใน `COURSES` (ยังไม่ต้องใส่ `tracks`)
-2. `content/courses/<officialCode>-<slug>/summary.md` → เขียนตามโครง 6 หัวข้อ
-3. `public/assets/<ns>/<subject>/<category>/` → วางไฟล์ ตั้งชื่อ kebab-case
-4. `npm run library:build` → สร้าง manifest + stats ใหม่
-5. `lib/subject-library.ts` → เขียน entry มือให้ไฟล์เด่น ๆ พร้อม `scope`
+1. `lib/catalog.ts` → เพิ่ม entry ใน `COURSES` (identity เท่านั้น)
+2. `content/courses/<officialCode>-<slug>/summary.md` → เขียนตามโครง 5 ส่วน
+3. `lib/course-bindings.ts` → เพิ่ม binding เริ่มที่ `baseline(dir)` ก็ได้
+4. `public/assets/<ns>/<subject>/<category>/` → วางไฟล์ ตั้งชื่อ kebab-case
+   (ใส่ `week08` / `ch3` ในชื่อไฟล์ ถ้าอยากให้ `chapter` ถูกอ่านอัตโนมัติ)
+5. `npm run library:build` → สร้าง manifest + stats ใหม่
+6. `lib/subject-library.ts` → เขียน entry มือให้ไฟล์เด่น ๆ พร้อม `scope` + `chapter`
    (ไฟล์ที่เหลือ manifest จัดการให้แล้ว)
-6. `lib/catalog.ts` → เติม `tracks.overview` / `tracks.library` ที่พร้อมใช้
-7. `npm run lint && npm run build` → ต้องผ่านทั้งคู่
+7. `npm run content:check` → สัญญาพิมพ์เขียวต้องผ่าน
+8. `npm run readiness` → ดูว่าวิชาใหม่ได้กี่ /11
+9. `npm run lint && npm run build` → ต้องผ่านทั้งคู่
+
+**ไม่ต้องแตะ route ใดเลย** — `app/courses/[dir]/[module]/page.tsx` รองรับทุกวิชา
+และทุกโมดูลอยู่แล้ว
 
 ---
 

@@ -51,6 +51,20 @@ export interface SubjectAsset {
    * of 26 identical cards. Only images are grouped.
    */
   groupId?: string;
+  /**
+   * Which chapter or week this material belongs to.
+   *
+   * The join key the library was missing. The app knew MFIT week 3 covers
+   * systems of linear equations and knew `mfit-lec-week03-*.pdf` existed, and
+   * nothing connected the two — so a 101-card shelf could not be cut by week,
+   * and a quiz question could not point at the deck it came from.
+   *
+   * Filled by scripts/build-library-manifest.mjs only when the filename states
+   * a chapter outright, and by hand on curated entries. Left unset otherwise:
+   * material that genuinely spans the term has no chapter, and a wrong chapter
+   * files a slide under a week it does not belong to.
+   */
+  chapter?: number;
   /** PDF page count. Filled in from library-stats.json by withAssetStats(). */
   pages?: number;
   /** File size in bytes. Filled in from library-stats.json by withAssetStats(). */

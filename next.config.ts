@@ -7,6 +7,14 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // Modules that moved when the eleven-module spine replaced the ad-hoc
+      // track list. The documents did not move — they became documents inside a
+      // module rather than routes of their own — so these are permanent enough
+      // to keep, and shared links keep working.
+      { source: "/courses/:dir/exam", destination: "/courses/:dir/mock", permanent: false },
+      { source: "/courses/:dir/plan", destination: "/courses/:dir/cram", permanent: false },
+      { source: "/courses/:dir/analysis", destination: "/courses/:dir/overview", permanent: false },
+
       { source: "/it-kmitl", destination: "/", permanent: false },
       { source: "/en-kmitl", destination: "/", permanent: false },
       { source: "/it-kmitl/itf", destination: "/courses/06016402-IT-Fundamentals", permanent: false },
