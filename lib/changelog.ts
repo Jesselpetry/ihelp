@@ -1,5 +1,8 @@
 import type { LText } from "@/lib/i18n";
 
+/** owner/repo on GitHub — used to build commit and compare links below. */
+export const GITHUB_REPO = "Jesselpetry/ihelp";
+
 export interface Contributor {
   name: string;
   github: string; // handle, no @
@@ -15,6 +18,16 @@ export interface ChangeEntry {
 export interface VersionEntry {
   version: string; // e.g. "0.3.0", or "Unreleased"
   date: string | null; // ISO date, null for Unreleased
+  /**
+   * The commit that marks this entry, short SHA.
+   *
+   * For a released version, the commit itself — the badge links straight to it
+   * on GitHub. For "Unreleased", the previous release's commit instead: the
+   * badge links to a compare view from there to `main`, which is what "what's
+   * new since the last release" actually means until this entry gets its own
+   * release commit and date.
+   */
+  commit?: string;
   contributors: Contributor[];
   changes: ChangeEntry[];
 }
@@ -24,8 +37,73 @@ export const CHANGELOG: VersionEntry[] = [
   {
     version: "Unreleased",
     date: null,
+    commit: "6cac82c",
     contributors: [{ name: "Chatan Petry", github: "Jesselpetry" }],
     changes: [
+      // ── Added ──────────────────────────────────────────────────────────
+      {
+        kind: "added",
+        text: {
+          th: "ฮับวิชา EN-KMITL (คอมโปร): หน้าสารบัญก่อนเริ่มทำแบบทดสอบ ปุ่มกระโดดไปข้อที่ต้องการ และข้อสอบจำลอง 60 ข้อ รวมกับ 10 ข้อคัดสรรเป็น 70 ข้อ",
+          en: "EN-KMITL (ComPro) hub: a syllabus screen before the quiz starts, a jump-to-question navigator, and a 60-question mock exam merged with the 10 curated questions for 70 total",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "หมวดวิชา IT-KMITL — ฮับ ICS/Digital Logic: สรุปเนื้อหา แบบทดสอบ 50 ข้อ ข้อสอบฝึกพร้อมเฉลยละเอียด บทวิเคราะห์โครงข้อสอบ และคลังทรัพยากร",
+          en: "IT-KMITL faculty section — ICS / Digital Logic hub: summary, a 50-question quiz, a practice exam with worked solutions, an exam-blueprint analysis, and a resource library",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "ฮับวิชา MFIT (คณิตศาสตร์สำหรับ IT): สรุปเนื้อหา แบบทดสอบ 45 ข้อ ข้อสอบจำลอง และคลังทรัพยากร ครอบคลุมพีชคณิตเชิงเส้นสัปดาห์ 1–7",
+          en: "MFIT (Math for IT) hub: summary, a 45-question quiz, a mock exam, and a resource library covering linear algebra weeks 1-7",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "เตรียมสอบ MFIT ตามโครงข้อสอบจริง: สรุปเร่งด่วนเรียงตามข้อสอบ 10 ข้อจริง แผนอ่าน 6 ชั่วโมงตามน้ำหนักคะแนน และชุดฝึกจับเวลา (ปรนัย 20 + คำนวณ 5) รวมคลังข้อสอบเป็น 65 ข้อ",
+          en: "MFIT blueprint-led exam prep: a crash summary ordered by the real 10-question exam, a 6-hour study plan weighted by actual marks, and a timed drill (20 MCQ + 5 calculations), bringing the quiz bank to 65 questions",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "ฮับ EN-KMITL แบบหลายวิชา พร้อมข้อสอบจำลองเคมีทั่วไป 60 ข้อ และคลังทรัพยากรของตัวเอง",
+          en: "A multi-subject EN-KMITL hub with a 60-question General Chemistry mock exam and its own resource library",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "สารบัญด้านข้างแบบโต้ตอบในทุกหน้าอ่าน: ไล่ตามตำแหน่งที่อ่าน แถบความคืบหน้า ค้นหาหัวข้อ พับ/ขยายได้ และเลื่อนแยกอิสระจากเนื้อหา",
+          en: "An interactive table-of-contents side panel on every reader: scroll-spy, live reading progress, a search filter, and independent, foldable scrolling",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "route เดียว /courses/[dir] รองรับทุกวิชา แทนโครง en-kmitl และ it-kmitl ที่แยกกันคนละต้นไม้",
+          en: "One unified /courses route tree serving every subject, replacing the separate en-kmitl and it-kmitl route trees",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "route /pscp — ฮับห้องแลป Python พร้อมหน้าย่อยแยกตามโมดูล",
+          en: "The /pscp route: a Python lab hub with per-module pages",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "คลังทรัพยากรสร้างการ์ดจากไฟล์อัตโนมัติ (scripts/build-library-manifest.mjs) — วางไฟล์ลง public/assets/ ตามกติกาแล้วขึ้นเว็บทันที ไม่ต้องเขียน entry มือ",
+          en: "The resource library now generates cards from the file tree (scripts/build-library-manifest.mjs) — drop a file into public/assets/ and it appears without a hand-written entry",
+        },
+      },
       {
         kind: "added",
         text: {
@@ -36,29 +114,173 @@ export const CHANGELOG: VersionEntry[] = [
       {
         kind: "added",
         text: {
-          th: "คลังทรัพยากรสร้างการ์ดจากไฟล์อัตโนมัติ — วางไฟล์ลง public/assets/ ตามกติกาแล้วขึ้นเว็บทันที ไม่ต้องเขียน entry มือ",
-          en: "The Media Library now generates cards from the file tree — drop a file into public/assets/ and it appears without a hand-written entry",
+          th: "นำเข้าเอกสาร Markdown จาก kmitl-archive และ iLearn — 30 ไฟล์ รวมคู่มือทบทวน MFIT สัปดาห์ 8–15",
+          en: "Ingested 30 course markdown documents from kmitl-archive and iLearn, including MFIT's weeks 8-15 study guide",
         },
       },
       {
         kind: "added",
         text: {
-          th: "workflow _dropzone/ — วางไฟล์ที่ยังไม่ได้จัดหมวด แล้วให้ AI agent จัดให้ตาม docs/DROPZONE_SOP.md",
-          en: "The _dropzone/ workflow — drop unsorted files and let an AI agent file them per docs/DROPZONE_SOP.md",
+          th: "workflow _dropzone/ — วางไฟล์ที่ยังไม่ได้จัดหมวด แล้วให้ AI agent จัดวิชา/หมวด/ขอบเขตสอบให้ตาม docs/DROPZONE_SOP.md",
+          en: "The _dropzone/ workflow — drop unsorted files and let an AI agent classify subject, category, and exam scope per docs/DROPZONE_SOP.md",
         },
       },
       {
         kind: "added",
         text: {
-          th: "เอกสาร FILE_STRUCTURE.md — กติกา path การตั้งชื่อไฟล์ และ taxonomy กลางภาค/ปลายภาค",
-          en: "FILE_STRUCTURE.md — path rules, filename conventions, and the midterm/final taxonomy",
+          th: "เอกสาร FILE_STRUCTURE.md — กติกา path การตั้งชื่อไฟล์ และ taxonomy กลางภาค/ปลายภาคที่ทุกวิชาต้องทำตาม",
+          en: "FILE_STRUCTURE.md — the path rules, filename conventions, and midterm/final taxonomy every subject follows",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "พิมพ์เขียวการเรียนรู้ 11 โมดูล (lib/spine.ts) — สัญญาเดียวว่าหน้าวิชาต้องมีอะไรบ้าง แทนที่ track 6 แบบเดิมที่เขียนตายตัวในแต่ละหน้า เชื่อมกับแต่ละวิชาผ่าน lib/course-bindings.ts",
+          en: "An eleven-module learning spine (lib/spine.ts) — one declared contract for what a course page offers, replacing six hard-coded tracks; lib/course-bindings.ts declares what each course actually fills",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "สัญญาคลังข้อสอบที่ตรวจได้ด้วยเครื่อง (lib/schemas/content.ts, npm run content:check) รันในขั้น build — ทุกข้อต้องมีแหล่งอ้างอิง ตัวเลือกห้าม id ซ้ำ คลังข้อสอบแต่ละชุดต้องมี progress key ไม่ชนกัน",
+          en: "A machine-checked content contract (lib/schemas/content.ts, npm run content:check) wired into the build — every question needs a source reference, option ids must be unique, and quiz banks need unique progress keys",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "npm run readiness — รายงานความครบของพิมพ์เขียวแต่ละวิชาเป็นคะแนน x/11",
+          en: "npm run readiness — reports each course's spine completion as an x/11 score",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "เอกสาร docs/LEARNING_BLUEPRINT.md — สัญญาเต็มของพิมพ์เขียว 11 โมดูลที่ระบบตรวจอยู่",
+          en: "docs/LEARNING_BLUEPRINT.md — the full eleven-module contract the build enforces",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "การ์ดสรุปวิชาแบบพับ/ขยายได้ พร้อมสารบัญของตัวเองเมื่อดูเนื้อหาเต็ม",
+          en: "A collapsible course summary card with its own table-of-contents panel when viewing the full content",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "ฟิลด์ chapter บนไฟล์ในคลังทรัพยากรและข้อสอบ อ่านจากชื่อไฟล์อัตโนมัติ — กรองคลังทรัพยากรตามบท/สัปดาห์ได้แล้ว",
+          en: "A chapter field on library assets and quiz questions, backfilled from filenames — the resource library can now be filtered by chapter/week",
+        },
+      },
+
+      // ── Changed ────────────────────────────────────────────────────────
+      {
+        kind: "changed",
+        text: {
+          th: "ออกแบบใหม่: navbar, footer, splash screen, subject hub และหน้าต่างพรีวิวคลังทรัพยากร",
+          en: "Redesigned the navbar, footer, splash screen, subject hub, and the library preview modal",
         },
       },
       {
         kind: "changed",
         text: {
-          th: "เปลี่ยนชื่อไฟล์ใน public/assets/ ทั้งหมดเป็น kebab-case — ไฟล์เคมีที่มีช่องว่างในชื่อไม่ต้อง escape ใน URL อีกต่อไป",
-          en: "Renamed every file under public/assets/ to kebab-case — the chemistry PDFs with spaces no longer need URL escaping",
+          th: "คอมโพเนนต์ร่วมชุดใหม่: course directory, module/track grid, การ์ดโมดูล PSCP, lab hub และ badge ของแต่ละวิชา",
+          en: "New shared components: course directory, module/track grid, PSCP module cards, lab hub, and subject badges",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "เปลี่ยนชื่อไฟล์ใน public/assets/ ทั้งหมดเป็น kebab-case (155 ไฟล์) และจัดเข้าโฟลเดอร์หมวด — ไฟล์เคมีที่มีช่องว่างในชื่อไม่ต้อง escape ใน URL อีกต่อไป",
+          en: "Renamed every file under public/assets/ to kebab-case (155 files) and sorted into category folders — the chemistry PDFs with spaces no longer need URL escaping",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "บีบอัด PDF ทุกไฟล์ผ่านการตรวจสอบภาพก่อน-หลัง (visual regression gate) — จาก 1,328 MB เหลือ 908 MB (ลด 32%) ใน 475 จาก 621 ไฟล์ ส่วน 101 ไฟล์ที่ภาพจะเสียถูกกันไว้ที่ขนาดเดิม",
+          en: "PDFs recompressed behind a visual-regression gate — 1,328 MB down to 908 MB (32% smaller) across 475 of 621 files, holding back the 101 that would visibly degrade",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "แยกข้อสอบจำลอง 60 ข้อของ COMPRO ออกจากคลังฝึก 10 ข้อ เป็นโมดูลของตัวเองพร้อม progress แยกต่างหาก (เดิมต่อท้ายกันเงียบๆ ทำให้เจอ 70 ข้อตอนกดทำแบบทดสอบ)",
+          en: "COMPRO's 60-question mock paper is now its own module with its own progress tracking, separated from its 10-question practice quiz (previously concatenated silently, so a student saw 70 questions when practicing 10)",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "URL เก่า /exam /plan /analysis redirect ไปยัง segment ใหม่ของแต่ละโมดูล",
+          en: "Legacy /exam, /plan, and /analysis URLs redirect to their new module segments",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "sitemap สร้างจากพิมพ์เขียว 11 โมดูลอัตโนมัติ แทนรายการ route ที่เขียนมือ",
+          en: "The sitemap is generated from the eleven-module spine instead of a hand-maintained route list",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "การ์ดโมดูลในหน้าวิชาเรียงลำดับที่พร้อมใช้ก่อนในแต่ละเฟส และดึงคลังทรัพยากรขึ้นเป็นแบนเนอร์เด่นเหนือกริดโมดูล",
+          en: "Module cards on a course page sort available-first within each phase, and the resource archive is promoted to a featured banner above the module grid",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "ปรับข้อความ modal ต้อนรับให้ตรงกับสิ่งที่ ihelp เป็นตอนนี้ — คลังการเรียนรู้เปิด ไม่ใช่แค่เครื่องมือ PSCP",
+          en: "Refreshed the welcome/disclaimer modal copy for what ihelp actually offers today — an open learning hub, not just the PSCP tool",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "แปลงหลาย route จาก force-dynamic เป็น static generation เพื่อให้อยู่ในโควตา 12 serverless function ของ Vercel Hobby",
+          en: "Converted several force-dynamic routes to static generation to stay within Vercel Hobby's 12-function limit",
+        },
+      },
+
+      // ── Fixed ──────────────────────────────────────────────────────────
+      {
+        kind: "fixed",
+        text: {
+          th: "รวมเนื้อหา EN-KMITL เข้า repo เอง — deploy จริงไม่มี repo พี่น้องที่โค้ดเคยอ้างอิง ทำให้หน้าเพจ 404",
+          en: "Bundled EN-KMITL content into this repo — production only deploys this repo, so the page 404'd looking for markdown in a sibling repo that doesn't exist there",
+        },
+      },
+      {
+        kind: "fixed",
+        text: {
+          th: "แก้การเรนเดอร์สูตรคณิตศาสตร์ (KaTeX) ใน markdown viewer",
+          en: "Fixed math formula rendering (KaTeX) in the markdown viewer",
+        },
+      },
+      {
+        kind: "fixed",
+        text: {
+          th: "แก้ asset ID ชนกันในตัวสร้าง library manifest",
+          en: "Fixed a duplicate asset ID collision in the library manifest generator",
+        },
+      },
+      {
+        kind: "fixed",
+        text: {
+          th: "สูตร $$...$$ แบบหลายบรรทัดเคยกลืนหัวข้อและย่อหน้าที่เหลือทั้งไฟล์ให้กลายเป็นข้อความดิบ — เกิดกับทุกหน้า markdown ในเว็บ ไม่ใช่แค่ไฟล์เดียว",
+          en: "Multi-line $$...$$ math blocks were silently swallowing every heading and paragraph after them into raw text — affecting every markdown page in the app, not just one file",
+        },
+      },
+      {
+        kind: "fixed",
+        text: {
+          th: "แก้คำเตือน workspace-root ของ Turbopack และลบ lockfile ที่ไม่ตรงกับตัวจัดการแพ็กเกจของโปรเจกต์อีกต่อไป",
+          en: "Fixed a Turbopack workspace-root warning and dropped a stray lockfile that no longer matched the project's package manager",
         },
       },
     ],
@@ -66,6 +288,7 @@ export const CHANGELOG: VersionEntry[] = [
   {
     version: "0.5.0",
     date: "2026-08-17",
+    commit: "6cac82c",
     contributors: [{ name: "Chatan Petry", github: "Jesselpetry" }],
     changes: [
       {
@@ -122,6 +345,7 @@ export const CHANGELOG: VersionEntry[] = [
   {
     version: "0.4.0",
     date: "2026-07-21",
+    commit: "0f7b7ce",
     contributors: [
       { name: "Meaookung144", github: "Meaookung144" },
       { name: "Chatan Petry", github: "Jesselpetry" },
@@ -181,6 +405,7 @@ export const CHANGELOG: VersionEntry[] = [
   {
     version: "0.3.0",
     date: "2026-07-20",
+    commit: "e2f4b32",
     contributors: [{ name: "Chatan Petry", github: "Jesselpetry" }],
     changes: [
       {
@@ -195,6 +420,7 @@ export const CHANGELOG: VersionEntry[] = [
   {
     version: "0.2.0",
     date: "2026-07-18",
+    commit: "9f653a5",
     contributors: [{ name: "Chatan Petry", github: "Jesselpetry" }],
     changes: [
       {
@@ -220,6 +446,7 @@ export const CHANGELOG: VersionEntry[] = [
   {
     version: "0.1.1",
     date: "2026-07-13",
+    commit: "1c1136f",
     contributors: [{ name: "Chatan Petry", github: "Jesselpetry" }],
     changes: [
       {
@@ -234,6 +461,7 @@ export const CHANGELOG: VersionEntry[] = [
   {
     version: "0.1.0",
     date: "2026-07-12",
+    commit: "c288176",
     contributors: [{ name: "Chatan Petry", github: "Jesselpetry" }],
     changes: [
       {

@@ -1,10 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, GitCommitHorizontal } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarBadge, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { CHANGELOG, type ChangeKind } from "@/lib/changelog";
+import { CHANGELOG, GITHUB_REPO, type ChangeKind, type VersionEntry } from "@/lib/changelog";
 import { useLocale, t } from "@/lib/i18n";
 
 const L = {
@@ -19,11 +19,13 @@ const L = {
     th: "ดูฉบับเต็มบน GitHub",
     en: "View the full changelog on GitHub",
   },
+  viewCommit: { th: "ดู commit บน GitHub", en: "View commit on GitHub" },
+  viewDiff: { th: "ดูการเปลี่ยนแปลงบน GitHub", en: "View changes on GitHub" },
 };
 
 const KIND_LABEL: Record<ChangeKind, { th: string; en: string }> = {
   added: { th: "เพิ่ม", en: "Added" },
-  changed: { th: "เปลี่ยนแปลง", en: "Changed" },
+  changed: { th: "ปรับปรุง", en: "Improved" },
   fixed: { th: "แก้ไข", en: "Fixed" },
 };
 
@@ -37,6 +39,21 @@ function formatDate(iso: string, locale: "th" | "en"): string {
   return new Date(iso).toLocaleDateString(locale === "th" ? "th-TH" : "en-GB", {
     dateStyle: "long",
   });
+}
+
+/**
+ * Where a version's badge links on GitHub.
+ *
+ * A released entry links straight to the commit that marks it. "Unreleased"
+ * has no commit of its own yet, so it links to a compare view from the last
+ * release's commit to `main` instead — "everything since v0.5.0", which is
+ * what a reader actually wants from an in-progress entry.
+ */
+function githubHref(entry: VersionEntry): string | null {
+  if (!entry.commit) return null;
+  return entry.date
+    ? `https://github.com/${GITHUB_REPO}/commit/${entry.commit}`
+    : `https://github.com/${GITHUB_REPO}/compare/${entry.commit}...main`;
 }
 
 export function VersionView() {
@@ -64,13 +81,30 @@ export function VersionView() {
       </div>
 
       <div className="space-y-4">
-        {CHANGELOG.map((v) => (
+        {CHANGELOG.map((v) => {
+          const href = githubHref(v);
+          return (
           <div key={v.version} className="rounded-xl border bg-card shadow-xs p-5 space-y-4">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b pb-3">
               <div className="flex items-center gap-2.5">
-                <span className="font-mono text-xl font-bold text-primary">
-                  {v.date ? `v${v.version}` : v.version}
-                </span>
+                {href ? (
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noreferrer"
+                    title={t(v.date ? L.viewCommit : L.viewDiff, locale)}
+                    className="group inline-flex items-center gap-1.5"
+                  >
+                    <span className="font-mono text-xl font-bold text-primary transition-colors group-hover:underline">
+                      {v.date ? `v${v.version}` : v.version}
+                    </span>
+                    <GitCommitHorizontal className="size-4 text-muted-foreground transition-colors group-hover:text-primary" />
+                  </a>
+                ) : (
+                  <span className="font-mono text-xl font-bold text-primary">
+                    {v.date ? `v${v.version}` : v.version}
+                  </span>
+                )}
                 {v.date && (
                   <span className="text-xs text-muted-foreground bg-muted px-2.5 py-1 rounded-md">
                     {formatDate(v.date, locale)}
@@ -116,7 +150,8 @@ export function VersionView() {
               ))}
             </ul>
           </div>
-        ))}
+          );
+        })}
       </div>
     </main>
   );
