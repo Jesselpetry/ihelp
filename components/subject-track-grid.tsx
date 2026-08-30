@@ -22,6 +22,13 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { useLocale, t, type LText } from "@/lib/i18n";
 import {
   PHASE_GOAL,
@@ -56,6 +63,8 @@ const SCOPE_ICON: Record<ModuleScope, LucideIcon> = {
   midterm: Milestone,
   final: Flag,
 };
+
+const SCOPE_OPTIONS = ["all", "midterm", "final"] as const;
 
 const SCOPE_LABEL: Record<ModuleScope, LText> = {
   all: { th: "ทั้งหมด", en: "All" },
@@ -304,33 +313,72 @@ export function SubjectTrackGrid({ modules }: { modules: ResolvedModule[] }) {
         </h2>
 
         {scoped && (
-          <div
-            role="group"
-            aria-label={t(L.examScope, locale)}
-            className="flex w-full gap-1 rounded-full border bg-card p-1 sm:w-auto"
-          >
-            {(["all", "midterm", "final"] as const).map((option) => {
-              const active = scope === option;
-              const Icon = SCOPE_ICON[option];
-              return (
-                <button
-                  key={option}
-                  type="button"
-                  onClick={() => setScope(option)}
-                  aria-pressed={active}
-                  className={`inline-flex flex-1 items-center justify-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold transition-colors sm:flex-none sm:px-3.5 ${
-                    active
-                      ? "bg-primary text-primary-foreground shadow-xs"
-                      : "text-muted-foreground hover:bg-muted hover:text-foreground"
-                  }`}
+          <>
+            {/*
+              Below sm the three-way segmented control does not fit: the Thai
+              labels ("ก่อนมิดเทอม") plus an icon and a count overflow a 360px
+              row and truncate to nothing useful. A dropdown shows the full
+              label of whichever scope is active and keeps the rest one tap
+              away.
+            */}
+            <div className="w-full sm:hidden">
+              <Select
+                value={scope}
+                onValueChange={(value) => setScope(value as ModuleScope)}
+              >
+                <SelectTrigger
+                  className="h-9 w-full"
+                  aria-label={t(L.examScope, locale)}
                 >
-                  <Icon className="size-3.5" />
-                  <span className="truncate">{t(SCOPE_LABEL[option], locale)}</span>
-                  <span className="tabular-nums opacity-70">{counts[option]}</span>
-                </button>
-              );
-            })}
-          </div>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {SCOPE_OPTIONS.map((option) => {
+                    const Icon = SCOPE_ICON[option];
+                    return (
+                      <SelectItem key={option} value={option}>
+                        <Icon className="size-3.5" />
+                        <span>{t(SCOPE_LABEL[option], locale)}</span>
+                        <span className="tabular-nums text-muted-foreground">
+                          {counts[option]}
+                        </span>
+                      </SelectItem>
+                    );
+                  })}
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div
+              role="group"
+              aria-label={t(L.examScope, locale)}
+              className="hidden gap-1 rounded-full border bg-card p-1 sm:flex"
+            >
+              {SCOPE_OPTIONS.map((option) => {
+                const active = scope === option;
+                const Icon = SCOPE_ICON[option];
+                return (
+                  <button
+                    key={option}
+                    type="button"
+                    onClick={() => setScope(option)}
+                    aria-pressed={active}
+                    className={`inline-flex items-center justify-center gap-1.5 rounded-full px-3.5 py-1.5 text-xs font-semibold transition-colors ${
+                      active
+                        ? "bg-primary text-primary-foreground shadow-xs"
+                        : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                    }`}
+                  >
+                    <Icon className="size-3.5" />
+                    <span>{t(SCOPE_LABEL[option], locale)}</span>
+                    <span className="tabular-nums opacity-70">
+                      {counts[option]}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </>
         )}
       </div>
 
