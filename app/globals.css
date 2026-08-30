@@ -124,16 +124,20 @@
   --sidebar-ring: #5c9bf5;
 }
 
-/* PSCP Theme: preserved magenta-pink palette */
+/* PSCP Theme: signature PSCP Pink.
+   Light uses pink-600 (#db2777) so text/icons on the page background clear
+   contrast; dark uses pink-500 (#ec4899), which is the brand mid-tone and
+   reads correctly against the dark surface. --ring tracks --primary so focus
+   rings are pink rather than falling back to the global blue. */
 .pscp-theme {
-  --primary: #c62d58;
-  --ring: #c62d58;
+  --primary: #db2777;
+  --ring: #db2777;
   --primary-foreground: oklch(0.985 0 0);
 }
 .dark .pscp-theme,
 .dark.pscp-theme {
-  --primary: #f0708f;
-  --ring: #f0708f;
+  --primary: #ec4899;
+  --ring: #ec4899;
   --primary-foreground: #1a0d12;
 }
 

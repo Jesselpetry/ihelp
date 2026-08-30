@@ -59,6 +59,16 @@ const L: Record<string, LText> = {
     en: "Style results never block test pass — shown for code quality improvement.",
   },
   testCasesTitle: { th: "ชุดเคสทดสอบ (Expected Input / Output)", en: "Test Cases (Expected Input / Output)" },
+  officialGroup: { th: "เคสทางการ / ตัวอย่างจากโจทย์", en: "Official / Sample Cases" },
+  officialGroupNote: {
+    th: "ตัวอย่างที่ iJudge แสดงไว้ในหน้าโจทย์",
+    en: "The samples iJudge publishes on the problem page.",
+  },
+  edgeGroup: { th: "เคสขอบเขต / ตรวจเพิ่มเติม", en: "Edge Cases / Extra Validation" },
+  edgeGroupNote: {
+    th: "สร้างเพิ่มจากการแปรค่าอินพุตทีละตัวจากตัวอย่างจริง โดยคำตอบที่คาดหวังมาจากโปรแกรมต้นแบบที่ผ่านการตรวจแล้ว — ไม่ใช่เคสลับของ iJudge แต่ช่วยจับ off-by-one, การปัดเศษ และรูปแบบเอาต์พุตที่ผิด",
+    en: "Derived by varying one input token at a time from a real sample; expected output comes from a verified model program. Not iJudge's hidden tests — but they catch off-by-one, rounding, and output-format bugs.",
+  },
   official: { th: "ทางการ", en: "Official" },
   extra: { th: "เพิ่มเติม", en: "Extra" },
   stdin: { th: "อินพุต (stdin)", en: "Input (stdin)" },
@@ -350,18 +360,37 @@ export function CodeGrader({
   problemName,
   initialCode,
   compact = false,
+  cases: providedCases,
+  onReport,
+  prefill = true,
 }: {
   problemId: number;
   problemName: string;
   initialCode?: string;
   compact?: boolean;
+  /**
+   * Suite to grade against. Defaults to the bundled TEST_CASES table, which is
+   * what /recommended relies on; /pscp passes the ingested official iJudge
+   * samples for its problem instead.
+   */
+  cases?: TestCase[];
+  /** Fires after every completed run, for callers that persist progress. */
+  onReport?: (report: GradeReport) => void;
+  /**
+   * Whether `initialCode` seeds an empty editor. /recommended seeds it (its
+   * pages are walkthroughs of the worked solution); /pscp does not, so the
+   * 108 practice problems are not answered before the student starts. Either
+   * way the "Load Sample" button stays available.
+   */
+  prefill?: boolean;
 }) {
   const { locale } = useLocale();
   const draftKey = `ihelp-grader-draft-v1-${problemId}`;
 
-  const defaultStarter = initialCode
+  const referenceStarter = initialCode
     ? `${t(L.starterComment, locale)}\n${initialCode}`
     : "";
+  const defaultStarter = prefill ? referenceStarter : "";
 
   const [code, setCode] = useDraft<string>(draftKey, defaultStarter);
   const [engineStatus, setEngineStatus] = useState<"idle" | "loading" | "ready" | "error">("idle");
@@ -369,7 +398,13 @@ export function CodeGrader({
   const [report, setReport] = useState<GradeReport | null>(null);
   const runIdRef = useRef(0);
 
-  const cases = useMemo(() => TEST_CASES[problemId] ?? [], [problemId]);
+  const cases = useMemo(
+    () => providedCases ?? TEST_CASES[problemId] ?? [],
+    [providedCases, problemId],
+  );
+
+  const officialCases = useMemo(() => cases.filter((c) => c.official), [cases]);
+  const edgeCases = useMemo(() => cases.filter((c) => !c.official), [cases]);
 
   // Per-testcase fold state: all folded by default (normally folded)
   const [openCases, setOpenCases] = useState<Record<string, boolean>>({});
@@ -462,6 +497,7 @@ export function CodeGrader({
         ranAt: Date.now(),
       };
       setReport(newReport);
+      onReport?.(newReport);
 
       // Automatically unfold failing test cases so the user can immediately diagnose mismatches
       if (failingIds.length > 0) {
@@ -474,7 +510,7 @@ export function CodeGrader({
     } finally {
       if (runIdRef.current === myRunId) setRunning(false);
     }
-  }, [code, cases, engineStatus, running]);
+  }, [code, cases, engineStatus, running, onReport]);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if ((e.metaKey || e.ctrlKey) && e.key === "Enter") {
@@ -484,8 +520,8 @@ export function CodeGrader({
   };
 
   const handleLoadStarter = () => {
-    if (initialCode) {
-      setCode(`${t(L.starterComment, locale)}\n${initialCode}`);
+    if (referenceStarter) {
+      setCode(referenceStarter);
     }
   };
 
@@ -672,18 +708,39 @@ export function CodeGrader({
           </div>
         </div>
 
-        <div className="space-y-2">
-          {cases.map((tc) => (
-            <TestCaseRow
-              key={tc.id}
-              tc={tc}
-              result={resultsByCase.get(tc.id)}
-              locale={locale}
-              isOpen={Boolean(openCases[tc.id])}
-              onToggle={() => toggleCase(tc.id)}
-            />
+        {/* Two labelled suites: what iJudge published, and what we derived. */}
+        {(
+          [
+            [officialCases, L.officialGroup, L.officialGroupNote] as const,
+            [edgeCases, L.edgeGroup, L.edgeGroupNote] as const,
+          ] as const
+        )
+          .filter(([group]) => group.length > 0)
+          .map(([group, heading, note]) => (
+            <div key={t(heading, "en")} className="space-y-2">
+              <div className="rounded-xl border bg-muted/20 px-3 py-2">
+                <div className="flex items-center gap-1.5">
+                  <h4 className="text-[11px] font-bold text-foreground">{t(heading, locale)}</h4>
+                  <Badge variant="outline" className="rounded-full px-1.5 py-0 text-[9px]">
+                    {group.length}
+                  </Badge>
+                </div>
+                <p className="mt-0.5 text-[10px] leading-relaxed text-muted-foreground">
+                  {t(note, locale)}
+                </p>
+              </div>
+              {group.map((tc) => (
+                <TestCaseRow
+                  key={tc.id}
+                  tc={tc}
+                  result={resultsByCase.get(tc.id)}
+                  locale={locale}
+                  isOpen={Boolean(openCases[tc.id])}
+                  onToggle={() => toggleCase(tc.id)}
+                />
+              ))}
+            </div>
           ))}
-        </div>
       </div>
     </div>
   );

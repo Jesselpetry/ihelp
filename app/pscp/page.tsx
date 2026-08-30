@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Navbar } from "@/components/navbar";
 import { PscpModules } from "@/components/pscp-modules";
 import { ProblemsView } from "@/components/problems-view";
-import { loadProblems } from "@/lib/master";
+import { loadPscpHub } from "@/lib/pscp";
 
 export const dynamic = "force-static";
 
@@ -18,7 +18,7 @@ export default function PscpPage() {
     <>
       <Navbar />
       <PscpModules />
-      <ProblemsView problems={loadProblems()} />
+      <ProblemsView data={loadPscpHub()} />
     </>
   );
 }
