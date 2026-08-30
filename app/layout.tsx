@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { IBM_Plex_Sans_Thai, Geist_Mono, Mali } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -6,6 +7,7 @@ import { LocaleProvider } from "@/lib/i18n";
 import { ThemeProvider, THEME_SCRIPT } from "@/lib/theme";
 import { Footer } from "@/components/footer";
 import { DisclaimerModal } from "@/components/disclaimer-modal";
+import { WelcomeChoiceModal } from "@/components/welcome-choice-modal";
 import { Splash } from "@/components/splash";
 import "./globals.css";
 
@@ -32,7 +34,7 @@ const mali = Mali({
 const SITE_URL = "https://pscp.chatan.in.th";
 const TITLE = "<i>Help";
 const DESCRIPTION =
-  "เครื่องมือสร้าง submission.md / ai_reflection.md แบบทีละขั้นตอน สำหรับนักศึกษา PSCP IT KMITL — เลือกโจทย์ ทำตามขั้นตอน แล้วดาวน์โหลดไฟล์ Learning Log ของคุณ";
+  "คลังเรียนรู้สำหรับนักศึกษาปี 1 คณะ IT สจล. — สรุปเนื้อหา แบบทดสอบ ข้อสอบเก่า และคลังสไลด์ ครบทุกวิชา PSCP ITF ICS MFIT";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -43,14 +45,21 @@ export const metadata: Metadata = {
   description: DESCRIPTION,
   applicationName: "<i>Help",
   keywords: [
-    "PSCP",
     "IT KMITL",
+    "สจล",
+    "เทคโนโลยีสารสนเทศ",
+    "สรุป",
+    "ข้อสอบเก่า",
+    "แบบทดสอบ",
+    "ติวสอบกลางภาค",
+    "PSCP",
+    "ITF",
+    "ICS",
+    "MFIT",
     "Learning Log",
     "submission.md",
     "ai_reflection.md",
     "iJudge",
-    "problem solving",
-    "programming",
   ],
   authors: [{ name: "Chatan Petry", url: "https://github.com/Jesselpetry" }],
   creator: "Chatan Petry",
@@ -77,14 +86,12 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: SITE_URL,
-    siteName: "<i>help — PSCP Learning-Log Maker",
-    title: TITLE,
+    siteName: "<i>help — คลังเรียนรู้ IT KMITL",
     description: DESCRIPTION,
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: TITLE }],
   },
   twitter: {
     card: "summary_large_image",
-    title: TITLE,
     description: DESCRIPTION,
     images: ["/og-image.png"],
   },
@@ -101,15 +108,22 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${plexThai.variable} ${geistMono.variable} ${mali.variable} h-full antialiased`}
     >
-      <head>
-        {/* Runs before paint so the theme class is set on <html> with no flash. */}
-        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
-      </head>
       <body className="min-h-full flex flex-col">
+        {/*
+          beforeInteractive Scripts must be placed inside <body>, not as a
+          direct child of <html>. Next.js hoists them into <head> regardless
+          of where they're placed in the component.
+        */}
+        <Script
+          id="theme-script"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }}
+        />
         <ThemeProvider>
           <LocaleProvider>
             <Splash />
             <DisclaimerModal />
+            <WelcomeChoiceModal />
             {children}
             <Footer />
           </LocaleProvider>

@@ -4,7 +4,11 @@ import { Navbar } from "@/components/navbar";
 import { RecommendedReader } from "@/components/recommended-reader";
 import { loadRecommendedProblem } from "@/lib/recommended";
 
-export const dynamic = "force-dynamic";
+import { loadRecommendedProblems } from "@/lib/recommended";
+
+export async function generateStaticParams() {
+  return loadRecommendedProblems().map((p) => ({ slug: p.slug }));
+}
 
 export async function generateMetadata({
   params,

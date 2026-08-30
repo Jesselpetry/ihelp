@@ -5,9 +5,9 @@ export const dynamic = "force-dynamic";
 
 export default function RepoPage() {
   return (
-    <>
+    <div className="pscp-theme min-h-screen w-full">
       <Navbar />
       <RepoEditor />
-    </>
+    </div>
   );
 }

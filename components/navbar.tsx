@@ -1,64 +1,43 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { usePathname } from "next/navigation";
 import {
-  BookOpen,
-  CircuitBoard,
-  ExternalLink,
-  GraduationCap,
-  History,
+  Code2,
+  Library,
   Menu,
-  Sparkles,
   Tag,
   X,
 } from "lucide-react";
-import { loadHistory, HISTORY_EVENT } from "@/lib/history";
 import { useLocale, t, type LText } from "@/lib/i18n";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { AccountMenu } from "@/components/account/account-menu";
 
-const NAV_LINKS: { href: string; label: LText; icon: typeof BookOpen }[] = [
+const NAV_LINKS: { href: string; label: LText; icon: typeof Library }[] = [
   {
-    href: "/recommended",
-    label: { th: "โจทย์แนะนำ", en: "Recommended" },
-    icon: Sparkles,
+    href: "/",
+    label: { th: "รายวิชา", en: "Courses" },
+    icon: Library,
   },
   {
-    href: "/library",
-    label: { th: "ห้องสมุด", en: "Library" },
-    icon: BookOpen,
+    href: "/pscp",
+    label: { th: "PSCP", en: "PSCP" },
+    icon: Code2,
   },
-  {
-    href: "/en-kmitl",
-    label: { th: "EN-KMITL", en: "EN-KMITL" },
-    icon: GraduationCap,
-  },
-  {
-    href: "/it-kmitl",
-    label: { th: "IT-KMITL", en: "IT-KMITL" },
-    icon: CircuitBoard,
-  },
-  { href: "/history", label: { th: "ประวัติ", en: "History" }, icon: History },
   { href: "/version", label: { th: "เวอร์ชัน", en: "Version" }, icon: Tag },
 ];
+
+// "/" is an exact match only — otherwise the home link lights up everywhere.
+function isActive(pathname: string, href: string): boolean {
+  if (href === "/") return pathname === "/";
+  return pathname === href || pathname.startsWith(href + "/");
+}
 
 export function Navbar() {
   const { locale, setLocale } = useLocale();
   const pathname = usePathname();
-  const [historyCount, setHistoryCount] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    const update = () => setHistoryCount(loadHistory().length);
-    update();
-    window.addEventListener(HISTORY_EVENT, update);
-    window.addEventListener("storage", update);
-    return () => {
-      window.removeEventListener(HISTORY_EVENT, update);
-      window.removeEventListener("storage", update);
-    };
-  }, []);
 
   return (
     <nav className="sticky top-0 z-30 bg-card border-b shadow-[0_1px_2px_0_rgba(0,0,0,0.05)] dark:shadow-none">
@@ -74,8 +53,7 @@ export function Navbar() {
           </Link>
           <div className="hidden md:flex items-center gap-1">
             {NAV_LINKS.map(({ href, label, icon: Icon }) => {
-              const active =
-                pathname === href || pathname.startsWith(href + "/");
+              const active = isActive(pathname, href);
               return (
                 <Link
                   key={href}
@@ -89,18 +67,6 @@ export function Navbar() {
                 >
                   <Icon className="size-4" />
                   <span>{t(label, locale)}</span>
-                  {href === "/history" && historyCount > 0 && (
-                    <span
-                      className={
-                        "min-w-4.5 rounded-full px-1.5 py-px text-center text-[10px] font-semibold tabular-nums " +
-                        (active
-                          ? "bg-primary text-primary-foreground"
-                          : "bg-primary/10 text-primary")
-                      }
-                    >
-                      {historyCount}
-                    </span>
-                  )}
                 </Link>
               );
             })}
@@ -124,15 +90,7 @@ export function Navbar() {
             ))}
           </div>
           <ThemeToggle />
-          <a
-            href="https://ijudge.it.kmitl.ac.th"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary transition-colors"
-          >
-            iJudge
-            <ExternalLink className="size-3.5" />
-          </a>
+          <AccountMenu />
         </div>
 
         {/* Mobile controls & hamburger button */}
@@ -154,8 +112,7 @@ export function Navbar() {
         <div className="border-b bg-card px-4 py-4 md:hidden flex flex-col gap-3 animate-in fade-in-0 slide-in-from-top-2 duration-200">
           <div className="flex flex-col gap-1">
             {NAV_LINKS.map(({ href, label, icon: Icon }) => {
-              const active =
-                pathname === href || pathname.startsWith(href + "/");
+              const active = isActive(pathname, href);
               return (
                 <Link
                   key={href}
@@ -172,18 +129,6 @@ export function Navbar() {
                     <Icon className="size-5" />
                     <span>{t(label, locale)}</span>
                   </div>
-                  {href === "/history" && historyCount > 0 && (
-                    <span
-                      className={
-                        "rounded-full px-2 py-0.5 text-xs font-semibold tabular-nums " +
-                        (active
-                          ? "bg-primary text-primary-foreground"
-                          : "bg-primary/10 text-primary")
-                      }
-                    >
-                      {historyCount}
-                    </span>
-                  )}
                 </Link>
               );
             })}
@@ -191,7 +136,11 @@ export function Navbar() {
 
           <hr className="border-border" />
 
-          <div className="flex items-center justify-between pt-1">
+          <div className="flex justify-start pt-1">
+            <AccountMenu onNavigate={() => setIsOpen(false)} />
+          </div>
+
+          <div className="flex items-center pt-1">
             <div className="flex items-center gap-2">
               <span className="text-xs text-muted-foreground font-medium">
                 {locale === "th" ? "ภาษา" : "Language"}
@@ -213,16 +162,6 @@ export function Navbar() {
                 ))}
               </div>
             </div>
-
-            <a
-              href="https://ijudge.it.kmitl.ac.th"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
-            >
-              iJudge
-              <ExternalLink className="size-4" />
-            </a>
           </div>
         </div>
       )}

@@ -8,6 +8,7 @@ import {
   GITHUB_URL,
   INSTAGRAM_URL,
 } from "@/components/social-icons";
+import { SiteStats } from "@/components/site-stats";
 
 const SOCIALS = [
   {
@@ -39,7 +40,7 @@ export function Footer() {
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 py-6 sm:flex-row">
         <p className="text-xs text-muted-foreground">
           Built for{" "}
-          <span className="font-medium text-foreground">PSCP · IT KMITL</span> ·
+          <span className="font-medium text-foreground">IT KMITL</span> ·
           © {new Date().getFullYear()} Chatan Petry
         </p>
         <div className="flex items-center gap-2">
@@ -56,6 +57,12 @@ export function Footer() {
               {s.handle}
             </Link>
           ))}
+        </div>
+      </div>
+
+      <div className="border-t">
+        <div className="mx-auto flex max-w-6xl justify-center px-6 py-3 sm:justify-end">
+          <SiteStats />
         </div>
       </div>
     </footer>

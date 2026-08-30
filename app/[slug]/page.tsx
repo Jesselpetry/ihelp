@@ -1,8 +1,16 @@
 import { redirect, notFound } from "next/navigation";
-import { loadRecommendedProblem } from "@/lib/recommended";
-import { loadLibraryDoc } from "@/lib/library";
+import { loadRecommendedProblem, loadRecommendedProblems } from "@/lib/recommended";
+import { loadLibraryDoc, loadLibrary } from "@/lib/library";
 
-export const dynamic = "force-dynamic";
+export async function generateStaticParams() {
+  const recSlugs = loadRecommendedProblems().flatMap((p) => [
+    { slug: p.slug },
+    { slug: String(p.id) },
+    { slug: `oj${p.id}` },
+  ]);
+  const libSlugs = loadLibrary().map((d) => ({ slug: d.slug }));
+  return [...recSlugs, ...libSlugs];
+}
 
 export default async function TopLevelSlugPage({
   params,

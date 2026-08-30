@@ -7,10 +7,12 @@ import { OJ_PROBLEMS_FILE } from "./paths";
 interface RawProblem {
   id: number;
   name: string;
+  week?: number;
   difficulty: number;
   expire_date: string; // e.g. "31 July 2026, 00:00"
   is_learning_log: boolean;
   is_recommended?: boolean;
+  is_midterm?: boolean;
   url: string;
 }
 
@@ -44,7 +46,7 @@ export function parseExpire(expire: string): string | null {
 
 export function cleanProblemName(name: string): string {
   return name
-    .replace(/\[\s*(?:LEARNING\s*LOGS?|RECOMMEND(?:ED)?)\s*\]/gi, "")
+    .replace(/\[\s*(?:LEARNING\s*LOGS?|RECOMMEND(?:ED)?|MIDTERM)\s*\]/gi, "")
     .trim();
 }
 
@@ -56,8 +58,7 @@ export function isRecommendedProblem(raw: RawProblem): boolean {
 export function loadProblems(): MasterProblem[] {
   const raw: RawProblem[] = JSON.parse(fs.readFileSync(OJ_PROBLEMS_FILE, "utf-8"));
 
-  // Week number derived from distinct expire dates, sorted ascending:
-  // earliest = Week 1, next distinct date = Week 2, ...
+  // Week number fallback derived from distinct expire dates, sorted ascending
   const dates = [...new Set(
     raw.map((p) => parseExpire(p.expire_date)).filter((d): d is string => d !== null),
   )].sort();
@@ -72,7 +73,7 @@ export function loadProblems(): MasterProblem[] {
       difficulty: p.difficulty,
       expireIso: iso,
       expireLabel: p.expire_date,
-      week: iso ? weekOf.get(iso)! : null,
+      week: p.week ?? (iso ? weekOf.get(iso)! : null),
       learningLog: p.is_learning_log,
       recommended: isRecommendedProblem(p),
       url: p.url,

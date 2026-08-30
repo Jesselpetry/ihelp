@@ -1,0 +1,1482 @@
+{
+  "$schema_version": "1.0",
+  "generated_for": "iHelp learning portal",
+  "generated_on": "2026-08-25",
+  "course": {
+    "name_en": "Mathematics for Information Technology",
+    "name_th": "คณิตศาสตร์สำหรับเทคโนโลยีสารสนเทศ",
+    "track": "Calculus",
+    "institution": "King Mongkut's Institute of Technology Ladkrabang (KMITL)",
+    "faculty": "Faculty of Information Technology",
+    "year_semester": "Y1-S1",
+    "archive_path": "archive/Y1-S1/Math-for-IT",
+    "known_course_codes": [
+      "06016201",
+      "06016302",
+      "06026101"
+    ],
+    "language_of_materials": "Thai (with English technical terms)"
+  },
+  "scope": {
+    "label": "Final Exam Scope",
+    "weeks": [
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "week_start": 8,
+    "week_end": 15,
+    "source_slides": [
+      "MFIT_Lec_Calculus-01",
+      "MFIT_Lec_Calculus-02",
+      "MFIT_Lec_Calculus-03",
+      "MFIT_Lec_Calculus-04",
+      "MFIT_Lec_Calculus-05",
+      "MFIT_Lec_Calculus-06",
+      "MFIT_Lec_Calculus-07",
+      "MFIT_Lec_Calculus-08"
+    ],
+    "pillars": [
+      "Limit Literacy",
+      "Differentiation Mechanics",
+      "Derivative as a Tool",
+      "Integration Mechanics",
+      "Integration as a Tool"
+    ]
+  },
+  "assessment": {
+    "grading_model": "all_or_nothing",
+    "partial_credit": false,
+    "full_solution_required": true,
+    "full_solution_note_th": "ต้องแสดงวิธีทำทีละขั้นตอน ห้ามเขียนคำตอบอย่างเดียว",
+    "handwritten_required": true,
+    "typed_submission_allowed": false,
+    "zero_score_conditions": [
+      "Typed instead of handwritten",
+      "Submitted outside the designated Assignment tab",
+      "Submitted after the deadline",
+      "Answer given without step-by-step work"
+    ],
+    "ta_revision_policy": {
+      "allowed": true,
+      "description_en": "Incorrect problems may be corrected and resubmitted to the TA.",
+      "description_th": "ข้อที่ถูกตัดเป็น 0 สามารถขอแก้ไขและส่งใหม่กับ TA ได้",
+      "recommended_practice": "Rewrite the entire problem on a new sheet, attach the original, and label it as revision 1."
+    }
+  },
+  "homework_schedule": {
+    "cadence": {
+      "release_day": "Tuesday",
+      "release_time": "11:00",
+      "due_day": "Saturday",
+      "due_time": "23:59",
+      "timezone": "Asia/Bangkok",
+      "working_window_hours": 108.98
+    },
+    "weeks_with_homework": [
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "weeks_without_homework": [
+      15
+    ],
+    "total_assignments": 7,
+    "note": "calendar_date fields are null; populate them from the MS Teams announcement for the running term."
+  },
+  "weeks": [
+    {
+      "week": 8,
+      "id": "W08",
+      "title_th": "ฟังก์ชัน ลิมิต และความต่อเนื่อง",
+      "title_en": "Function, Limit and Continuity",
+      "source_slide": "MFIT_Lec_Calculus-01",
+      "pillar": "Limit Literacy",
+      "topics": [
+        "Function definition & notation",
+        "Domain and range",
+        "One-to-one functions",
+        "Limit concept (intuitive)",
+        "One-sided limits",
+        "Limit laws",
+        "Indeterminate form 0/0",
+        "Dividing out technique",
+        "Rationalizing technique",
+        "Absolute value limits",
+        "Infinite limits & vertical asymptotes",
+        "Limits at infinity & horizontal asymptotes",
+        "Continuity (3 conditions)",
+        "Removable vs non-removable discontinuity"
+      ],
+      "key_formulas": [
+        {
+          "name": "Limit of a constant",
+          "latex": "\\lim_{x\\to c} b = b"
+        },
+        {
+          "name": "Limit of a power",
+          "latex": "\\lim_{x\\to c} x^{n} = c^{n}"
+        },
+        {
+          "name": "Limit of a radical",
+          "latex": "\\lim_{x\\to c}\\sqrt[n]{x}=\\sqrt[n]{c}"
+        },
+        {
+          "name": "Quotient law",
+          "latex": "\\lim_{x\\to c}\\frac{f(x)}{g(x)}=\\frac{\\lim f}{\\lim g},\\;\\lim g\\neq 0"
+        },
+        {
+          "name": "Two-sided existence",
+          "latex": "\\lim_{x\\to c}f(x)=L \\iff \\lim_{x\\to c^-}f(x)=\\lim_{x\\to c^+}f(x)=L"
+        },
+        {
+          "name": "Special trig limit",
+          "latex": "\\lim_{x\\to 0}\\frac{\\sin x}{x}=1"
+        },
+        {
+          "name": "Limit at infinity",
+          "latex": "\\lim_{x\\to\\pm\\infty}\\frac{1}{x^{n}}=0"
+        },
+        {
+          "name": "Continuity at c",
+          "latex": "f(c)\\text{ defined},\\; \\lim_{x\\to c}f(x)\\text{ exists},\\; \\lim_{x\\to c}f(x)=f(c)"
+        },
+        {
+          "name": "Conjugate identity",
+          "latex": "(\\sqrt{a}-b)(\\sqrt{a}+b)=a-b^{2}"
+        }
+      ],
+      "solution_patterns": [
+        "Direct Substitution",
+        "Dividing Out (factor & cancel)",
+        "Rationalizing (conjugate)",
+        "Piecewise split for absolute value",
+        "Divide by highest power (limits at infinity)",
+        "3-condition continuity check"
+      ],
+      "pitfalls": [
+        "Reporting 0/0 as 'no answer' instead of simplifying",
+        "Dropping the lim symbol while variables remain",
+        "Cancelling non-factors (additive terms)",
+        "Forgetting one-sided split with absolute value",
+        "Expanding the denominator after multiplying by the conjugate",
+        "Checking only one of the three continuity conditions",
+        "Confusing k/0 (infinite limit) with 0/0 (indeterminate)"
+      ],
+      "files": {
+        "summary": "week08_summary.md",
+        "quiz": "week08_quiz.md"
+      },
+      "homework": {
+        "code": "HW1",
+        "portal_file": "hw08.pdf",
+        "archive_file": "Exercises/MFIT_HW_Week08-FunctionLimitContinuity.pdf",
+        "topic": "Limit & Continuity",
+        "problem_count": 8,
+        "release": {
+          "day_of_week": "Tuesday",
+          "time": "11:00",
+          "timezone": "Asia/Bangkok",
+          "calendar_date": null
+        },
+        "due": {
+          "day_of_week": "Saturday",
+          "time": "23:59",
+          "timezone": "Asia/Bangkok",
+          "calendar_date": null
+        },
+        "submission": {
+          "platform": "MS Teams",
+          "location": "Assignment tab matching the topic",
+          "format": [
+            "pdf",
+            "jpg"
+          ],
+          "handwritten_required": true,
+          "typed_allowed": false
+        },
+        "mirrored_problem_ids": [
+          "W08-Q1",
+          "W08-Q2",
+          "W08-Q3",
+          "W08-Q4",
+          "W08-Q5",
+          "W08-Q6",
+          "W08-Q7",
+          "W08-Q8"
+        ]
+      },
+      "practice": {
+        "file": "week08_quiz.md",
+        "problem_count": 10,
+        "problem_ids": [
+          "W08-Q1",
+          "W08-Q2",
+          "W08-Q3",
+          "W08-Q4",
+          "W08-Q5",
+          "W08-Q6",
+          "W08-Q7",
+          "W08-Q8",
+          "W08-Q9",
+          "W08-Q10"
+        ]
+      }
+    },
+    {
+      "week": 9,
+      "id": "W09",
+      "title_th": "อนุพันธ์ ภาค 1",
+      "title_en": "Differentiation (I)",
+      "source_slide": "MFIT_Lec_Calculus-02",
+      "pillar": "Differentiation Mechanics",
+      "topics": [
+        "Tangent line problem",
+        "Derivative by the limit definition",
+        "Differentiability vs continuity",
+        "Constant Rule",
+        "Power Rule",
+        "Constant Multiple Rule",
+        "Sum and Difference Rules",
+        "Product Rule",
+        "Quotient Rule",
+        "Derivatives of sine and cosine",
+        "Rates of change",
+        "Velocity and acceleration",
+        "Tangent and normal lines"
+      ],
+      "key_formulas": [
+        {
+          "name": "Limit definition",
+          "latex": "f'(x)=\\lim_{\\Delta x\\to 0}\\frac{f(x+\\Delta x)-f(x)}{\\Delta x}"
+        },
+        {
+          "name": "Power Rule",
+          "latex": "\\frac{d}{dx}[x^{n}]=n x^{n-1}"
+        },
+        {
+          "name": "Constant Rule",
+          "latex": "\\frac{d}{dx}[c]=0"
+        },
+        {
+          "name": "Product Rule",
+          "latex": "(uv)'=u'v+uv'"
+        },
+        {
+          "name": "Quotient Rule",
+          "latex": "\\left(\\frac{u}{v}\\right)'=\\frac{u'v-uv'}{v^{2}}"
+        },
+        {
+          "name": "Trig derivatives",
+          "latex": "(\\sin x)'=\\cos x,\\;(\\cos x)'=-\\sin x,\\;(\\tan x)'=\\sec^{2}x"
+        },
+        {
+          "name": "Reciprocal trig",
+          "latex": "(\\sec x)'=\\sec x\\tan x,\\;(\\csc x)'=-\\csc x\\cot x,\\;(\\cot x)'=-\\csc^{2}x"
+        },
+        {
+          "name": "Exp and log",
+          "latex": "(e^{x})'=e^{x},\\;(\\ln x)'=\\frac{1}{x}"
+        },
+        {
+          "name": "Tangent line",
+          "latex": "y-f(a)=f'(a)(x-a)"
+        }
+      ],
+      "solution_patterns": [
+        "4-step limit definition",
+        "Rewrite radicals/fractions as powers before differentiating",
+        "Declare u, v, u', v' before Product/Quotient Rule",
+        "Simplify the final quotient fully"
+      ],
+      "pitfalls": [
+        "Writing (uv)' = u'v'",
+        "Reversing the Quotient Rule numerator order",
+        "Not distributing the minus sign in the Quotient Rule",
+        "Differentiating constants that look like variables (pi^5, 5^3)",
+        "Not converting radicals to exponents first",
+        "Leaving the answer unsimplified",
+        "Using shortcut rules when the problem demands the limit definition"
+      ],
+      "files": {
+        "summary": "week09_summary.md",
+        "quiz": "week09_quiz.md"
+      },
+      "homework": {
+        "code": "HW2",
+        "portal_file": "hw09.pdf",
+        "archive_file": "Exercises/MFIT_HW_Week09-Derivative-I.pdf",
+        "topic": "Derivative: Product & Quotient Rule",
+        "problem_count": 3,
+        "release": {
+          "day_of_week": "Tuesday",
+          "time": "11:00",
+          "timezone": "Asia/Bangkok",
+          "calendar_date": null
+        },
+        "due": {
+          "day_of_week": "Saturday",
+          "time": "23:59",
+          "timezone": "Asia/Bangkok",
+          "calendar_date": null
+        },
+        "submission": {
+          "platform": "MS Teams",
+          "location": "Assignment tab matching the topic",
+          "format": [
+            "pdf",
+            "jpg"
+          ],
+          "handwritten_required": true,
+          "typed_allowed": false
+        },
+        "mirrored_problem_ids": [
+          "W09-Q3",
+          "W09-Q4",
+          "W09-Q5"
+        ]
+      },
+      "practice": {
+        "file": "week09_quiz.md",
+        "problem_count": 9,
+        "problem_ids": [
+          "W09-Q1",
+          "W09-Q2",
+          "W09-Q3",
+          "W09-Q4",
+          "W09-Q5",
+          "W09-Q6",
+          "W09-Q7",
+          "W09-Q8",
+          "W09-Q9"
+        ]
+      }
+    },
+    {
+      "week": 10,
+      "id": "W10",
+      "title_th": "อนุพันธ์ ภาค 2",
+      "title_en": "Differentiation (II)",
+      "source_slide": "MFIT_Lec_Calculus-03",
+      "pillar": "Differentiation Mechanics",
+      "topics": [
+        "Higher-order derivatives",
+        "Chain Rule",
+        "General Power Rule",
+        "Chain Rule with trigonometric functions",
+        "Derivatives of logarithmic and exponential functions",
+        "Implicit differentiation",
+        "Related rates"
+      ],
+      "key_formulas": [
+        {
+          "name": "Chain Rule",
+          "latex": "\\frac{dy}{dx}=\\frac{dy}{du}\\cdot\\frac{du}{dx}"
+        },
+        {
+          "name": "Chain Rule (composite form)",
+          "latex": "\\frac{d}{dx}[f(g(x))]=f'(g(x))\\,g'(x)"
+        },
+        {
+          "name": "General Power Rule",
+          "latex": "\\frac{d}{dx}[u^{n}]=n u^{n-1}u'"
+        },
+        {
+          "name": "Chain with trig",
+          "latex": "\\frac{d}{dx}[\\sin u]=\\cos u\\cdot u'"
+        },
+        {
+          "name": "Chain with exp",
+          "latex": "\\frac{d}{dx}[e^{u}]=e^{u}u'"
+        },
+        {
+          "name": "Chain with log",
+          "latex": "\\frac{d}{dx}[\\ln u]=\\frac{u'}{u}"
+        },
+        {
+          "name": "Implicit rule",
+          "latex": "\\frac{d}{dx}[y^{n}]=n y^{n-1}\\frac{dy}{dx}"
+        },
+        {
+          "name": "Implicit product",
+          "latex": "\\frac{d}{dx}[xy]=y+x\\frac{dy}{dx}"
+        },
+        {
+          "name": "Sphere volume (related rates)",
+          "latex": "V=\\frac{4}{3}\\pi r^{3}\\Rightarrow \\frac{dV}{dt}=4\\pi r^{2}\\frac{dr}{dt}"
+        }
+      ],
+      "solution_patterns": [
+        "Outside-in layering for Chain Rule",
+        "4-step implicit differentiation (differentiate, collect, factor, divide)",
+        "6-step related rates (differentiate first, substitute last)"
+      ],
+      "pitfalls": [
+        "Forgetting to multiply by u' (the Chain Rule tail)",
+        "Forgetting dy/dx when differentiating y implicitly",
+        "Forgetting the Product Rule on xy terms",
+        "Sign errors when moving dy/dx terms across the equals sign",
+        "Substituting numeric values before differentiating in related rates",
+        "Confusing f^{(4)} with f^{4}",
+        "Trying to eliminate y from an implicit answer"
+      ],
+      "files": {
+        "summary": "week10_summary.md",
+        "quiz": "week10_quiz.md"
+      },
+      "homework": {
+        "code": "HW3",
+        "portal_file": "hw10.pdf",
+        "archive_file": "Exercises/MFIT_HW_Week10-Derivative-II.pdf",
+        "topic": "Implicit Differentiation",
+        "problem_count": 3,
+        "release": {
+          "day_of_week": "Tuesday",
+          "time": "11:00",
+          "timezone": "Asia/Bangkok",
+          "calendar_date": null
+        },
+        "due": {
+          "day_of_week": "Saturday",
+          "time": "23:59",
+          "timezone": "Asia/Bangkok",
+          "calendar_date": null
+        },
+        "submission": {
+          "platform": "MS Teams",
+          "location": "Assignment tab matching the topic",
+          "format": [
+            "pdf",
+            "jpg"
+          ],
+          "handwritten_required": true,
+          "typed_allowed": false
+        },
+        "mirrored_problem_ids": [
+          "W10-Q4",
+          "W10-Q5",
+          "W10-Q6"
+        ]
+      },
+      "practice": {
+        "file": "week10_quiz.md",
+        "problem_count": 9,
+        "problem_ids": [
+          "W10-Q1",
+          "W10-Q2",
+          "W10-Q3",
+          "W10-Q4",
+          "W10-Q5",
+          "W10-Q6",
+          "W10-Q7",
+          "W10-Q8",
+          "W10-Q9"
+        ]
+      }
+    },
+    {
+      "week": 11,
+      "id": "W11",
+      "title_th": "การประยุกต์ของอนุพันธ์",
+      "title_en": "Application of Differentiation",
+      "source_slide": "MFIT_Lec_Calculus-04",
+      "pillar": "Derivative as a Tool",
+      "topics": [
+        "Critical numbers",
+        "Extrema on a closed interval",
+        "Rolle's Theorem",
+        "Mean Value Theorem",
+        "Increasing and decreasing intervals",
+        "First Derivative Test",
+        "Concavity",
+        "Points of inflection",
+        "Second Derivative Test",
+        "Curve sketching",
+        "Optimization",
+        "Differentials",
+        "Newton's Method"
+      ],
+      "key_formulas": [
+        {
+          "name": "Critical number",
+          "latex": "f'(c)=0 \\text{ or } f'(c) \\text{ undefined}"
+        },
+        {
+          "name": "First Derivative Test",
+          "latex": "f' : + \\to -\\;\\Rightarrow\\;\\text{local max};\\quad f' : - \\to +\\;\\Rightarrow\\;\\text{local min}"
+        },
+        {
+          "name": "Second Derivative Test",
+          "latex": "f''(c)>0\\Rightarrow\\text{local min};\\; f''(c)<0\\Rightarrow\\text{local max}"
+        },
+        {
+          "name": "Mean Value Theorem",
+          "latex": "f'(c)=\\frac{f(b)-f(a)}{b-a}"
+        },
+        {
+          "name": "Differential",
+          "latex": "dy=f'(x)\\,dx,\\quad f(x+\\Delta x)\\approx f(x)+f'(x)\\Delta x"
+        },
+        {
+          "name": "Newton's Method",
+          "latex": "x_{n+1}=x_{n}-\\frac{f(x_{n})}{f'(x_{n})}"
+        }
+      ],
+      "solution_patterns": [
+        "Candidate Test (critical numbers + both endpoints)",
+        "Sign chart for f' and f''",
+        "6-step optimization (objective, constraint, single variable, critical, test, answer)"
+      ],
+      "pitfalls": [
+        "Omitting the endpoints on a closed interval",
+        "Missing critical numbers where f' is undefined",
+        "Assuming f''(c)=0 implies an inflection point",
+        "Failing to reduce the objective function to one variable",
+        "Not discarding solutions outside the physical domain",
+        "Answering the location instead of the requested extreme value",
+        "Omitting units",
+        "Ignoring the variable the problem prescribes"
+      ],
+      "files": {
+        "summary": "week11_summary.md",
+        "quiz": "week11_quiz.md"
+      },
+      "homework": {
+        "code": "HW4",
+        "portal_file": "hw11.pdf",
+        "archive_file": "Exercises/MFIT_HW_Week11-DerivativeApps.pdf",
+        "topic": "Optimization: largest isosceles triangle in a circle",
+        "problem_count": 1,
+        "release": {
+          "day_of_week": "Tuesday",
+          "time": "11:00",
+          "timezone": "Asia/Bangkok",
+          "calendar_date": null
+        },
+        "due": {
+          "day_of_week": "Saturday",
+          "time": "23:59",
+          "timezone": "Asia/Bangkok",
+          "calendar_date": null
+        },
+        "submission": {
+          "platform": "MS Teams",
+          "location": "Assignment tab matching the topic",
+          "format": [
+            "pdf",
+            "jpg"
+          ],
+          "handwritten_required": true,
+          "typed_allowed": false
+        },
+        "mirrored_problem_ids": [
+          "W11-Q5"
+        ]
+      },
+      "practice": {
+        "file": "week11_quiz.md",
+        "problem_count": 8,
+        "problem_ids": [
+          "W11-Q1",
+          "W11-Q2",
+          "W11-Q3",
+          "W11-Q4",
+          "W11-Q5",
+          "W11-Q6",
+          "W11-Q7",
+          "W11-Q8"
+        ]
+      }
+    },
+    {
+      "week": 12,
+      "id": "W12",
+      "title_th": "ปริพันธ์ ภาค 1",
+      "title_en": "Integration (I)",
+      "source_slide": "MFIT_Lec_Calculus-05",
+      "pillar": "Integration Mechanics",
+      "topics": [
+        "Antiderivatives",
+        "Indefinite integrals and the constant of integration",
+        "Basic integration rules",
+        "Differential equations with initial conditions",
+        "Sigma notation",
+        "Riemann sums and area approximation",
+        "The definite integral as a limit",
+        "Properties of definite integrals",
+        "Fundamental Theorem of Calculus",
+        "Second Fundamental Theorem",
+        "Mean Value Theorem for Integrals",
+        "Average value of a function"
+      ],
+      "key_formulas": [
+        {
+          "name": "Power Rule for integration",
+          "latex": "\\int x^{n}dx=\\frac{x^{n+1}}{n+1}+C,\\; n\\neq -1"
+        },
+        {
+          "name": "Special case n = -1",
+          "latex": "\\int \\frac{1}{x}dx=\\ln|x|+C"
+        },
+        {
+          "name": "Sine and cosine",
+          "latex": "\\int\\sin x\\,dx=-\\cos x+C,\\;\\int\\cos x\\,dx=\\sin x+C"
+        },
+        {
+          "name": "Secant squared",
+          "latex": "\\int\\sec^{2}x\\,dx=\\tan x+C"
+        },
+        {
+          "name": "Cosecant cotangent",
+          "latex": "\\int\\csc x\\cot x\\,dx=-\\csc x+C"
+        },
+        {
+          "name": "Exponential",
+          "latex": "\\int e^{x}dx=e^{x}+C"
+        },
+        {
+          "name": "Sum of first n integers",
+          "latex": "\\sum_{i=1}^{n}i=\\frac{n(n+1)}{2}"
+        },
+        {
+          "name": "Sum of squares",
+          "latex": "\\sum_{i=1}^{n}i^{2}=\\frac{n(n+1)(2n+1)}{6}"
+        },
+        {
+          "name": "Fundamental Theorem",
+          "latex": "\\int_{a}^{b}f(x)dx=F(b)-F(a)"
+        },
+        {
+          "name": "Second FTC",
+          "latex": "\\frac{d}{dx}\\left[\\int_{a}^{x}f(t)dt\\right]=f(x)"
+        },
+        {
+          "name": "Average value",
+          "latex": "f_{avg}=\\frac{1}{b-a}\\int_{a}^{b}f(x)dx"
+        }
+      ],
+      "solution_patterns": [
+        "Rewrite radicals and split fractions into powers of x before integrating",
+        "Find C from an initial condition",
+        "4-line FTC evaluation with bracket notation",
+        "Verify by differentiating the result"
+      ],
+      "pitfalls": [
+        "Omitting + C",
+        "Applying the Power Rule to x^{-1}",
+        "Omitting the absolute value in ln|x|",
+        "Assuming a product or quotient rule exists for integration",
+        "Splitting a fraction across a multi-term denominator",
+        "Leaving + C on a definite integral",
+        "Forgetting parentheses when substituting the lower limit",
+        "Mis-dividing by a fractional exponent",
+        "Not verifying by differentiating back"
+      ],
+      "files": {
+        "summary": "week12_summary.md",
+        "quiz": "week12_quiz.md"
+      },
+      "homework": {
+        "code": "HW5",
+        "portal_file": "hw12.pdf",
+        "archive_file": "Exercises/MFIT_HW_Week12-Integration-I.pdf",
+        "topic": "Antiderivatives",
+        "problem_count": 3,
+        "release": {
+          "day_of_week": "Tuesday",
+          "time": "11:00",
+          "timezone": "Asia/Bangkok",
+          "calendar_date": null
+        },
+        "due": {
+          "day_of_week": "Saturday",
+          "time": "23:59",
+          "timezone": "Asia/Bangkok",
+          "calendar_date": null
+        },
+        "submission": {
+          "platform": "MS Teams",
+          "location": "Assignment tab matching the topic",
+          "format": [
+            "pdf",
+            "jpg"
+          ],
+          "handwritten_required": true,
+          "typed_allowed": false
+        },
+        "mirrored_problem_ids": [
+          "W12-Q1",
+          "W12-Q2",
+          "W12-Q3"
+        ]
+      },
+      "practice": {
+        "file": "week12_quiz.md",
+        "problem_count": 9,
+        "problem_ids": [
+          "W12-Q1",
+          "W12-Q2",
+          "W12-Q3",
+          "W12-Q4",
+          "W12-Q5",
+          "W12-Q6",
+          "W12-Q7",
+          "W12-Q8",
+          "W12-Q9"
+        ]
+      }
+    },
+    {
+      "week": 13,
+      "id": "W13",
+      "title_th": "ปริพันธ์ ภาค 2",
+      "title_en": "Integration (II)",
+      "source_slide": "MFIT_Lec_Calculus-06",
+      "pillar": "Integration Mechanics",
+      "topics": [
+        "Integration by substitution (u-substitution)",
+        "Change of limits for definite integrals",
+        "Back-substitution for leftover x",
+        "Even and odd functions on symmetric intervals",
+        "Integrals of absolute value functions",
+        "Displacement vs total distance",
+        "Trapezoidal Rule",
+        "Simpson's Rule"
+      ],
+      "key_formulas": [
+        {
+          "name": "u-Substitution",
+          "latex": "\\int f(g(x))g'(x)dx=\\int f(u)du,\\; u=g(x)"
+        },
+        {
+          "name": "Definite u-substitution",
+          "latex": "\\int_{a}^{b}f(g(x))g'(x)dx=\\int_{g(a)}^{g(b)}f(u)du"
+        },
+        {
+          "name": "Log pattern",
+          "latex": "\\int\\frac{u'}{u}dx=\\ln|u|+C"
+        },
+        {
+          "name": "Odd function",
+          "latex": "\\int_{-a}^{a}f_{odd}(x)dx=0"
+        },
+        {
+          "name": "Even function",
+          "latex": "\\int_{-a}^{a}f_{even}(x)dx=2\\int_{0}^{a}f(x)dx"
+        },
+        {
+          "name": "Displacement",
+          "latex": "\\int_{a}^{b}v(t)dt"
+        },
+        {
+          "name": "Total distance",
+          "latex": "\\int_{a}^{b}|v(t)|dt"
+        },
+        {
+          "name": "Trapezoidal Rule",
+          "latex": "\\int_a^b f\\,dx\\approx\\frac{b-a}{2n}\\left[f(x_0)+2f(x_1)+\\cdots+2f(x_{n-1})+f(x_n)\\right]"
+        }
+      ],
+      "solution_patterns": [
+        "6-step u-substitution",
+        "Change-of-limits table for definite integrals",
+        "5-step absolute value split",
+        "Sign chart of v(t) for total distance"
+      ],
+      "pitfalls": [
+        "Leaving x in the integrand after substituting u",
+        "Using the original limits with the new variable u",
+        "Forgetting to substitute u back to x",
+        "Not splitting the interval for an absolute value integrand",
+        "Flipping the piecewise cases for an absolute value",
+        "Getting a negative answer for an absolute value integral",
+        "Believing (-1)^{2/5} is undefined",
+        "Omitting + C",
+        "Using the even/odd shortcut without showing work"
+      ],
+      "files": {
+        "summary": "week13_summary.md",
+        "quiz": "week13_quiz.md"
+      },
+      "homework": {
+        "code": "HW6",
+        "portal_file": "hw13.pdf",
+        "archive_file": "Exercises/MFIT_HW_Week13-Integration-II.pdf",
+        "topic": "Definite integrals & u-substitution",
+        "problem_count": 3,
+        "release": {
+          "day_of_week": "Tuesday",
+          "time": "11:00",
+          "timezone": "Asia/Bangkok",
+          "calendar_date": null
+        },
+        "due": {
+          "day_of_week": "Saturday",
+          "time": "23:59",
+          "timezone": "Asia/Bangkok",
+          "calendar_date": null
+        },
+        "submission": {
+          "platform": "MS Teams",
+          "location": "Assignment tab matching the topic",
+          "format": [
+            "pdf",
+            "jpg"
+          ],
+          "handwritten_required": true,
+          "typed_allowed": false
+        },
+        "mirrored_problem_ids": [
+          "W13-Q1",
+          "W13-Q2",
+          "W13-Q3"
+        ]
+      },
+      "practice": {
+        "file": "week13_quiz.md",
+        "problem_count": 10,
+        "problem_ids": [
+          "W13-Q1",
+          "W13-Q2",
+          "W13-Q3",
+          "W13-Q4",
+          "W13-Q5",
+          "W13-Q6",
+          "W13-Q7",
+          "W13-Q8",
+          "W13-Q9",
+          "W13-Q10"
+        ]
+      }
+    },
+    {
+      "week": 14,
+      "id": "W14",
+      "title_th": "ปริพันธ์ทีละส่วน และการประยุกต์ ภาค 1",
+      "title_en": "Integration by Parts + Applications of Integration (I)",
+      "source_slide": "MFIT_Lec_Calculus-07",
+      "pillar": "Integration as a Tool",
+      "topics": [
+        "Integration by parts",
+        "LIATE selection rule",
+        "Tabular method",
+        "Cyclic (recursive) integration by parts",
+        "Area between two curves",
+        "Volume of a solid of revolution",
+        "Disk method",
+        "Washer method",
+        "Shell method"
+      ],
+      "key_formulas": [
+        {
+          "name": "Integration by parts",
+          "latex": "\\int u\\,dv=uv-\\int v\\,du"
+        },
+        {
+          "name": "LIATE order",
+          "latex": "\\text{Log} \\to \\text{Inverse trig} \\to \\text{Algebraic} \\to \\text{Trig} \\to \\text{Exponential}"
+        },
+        {
+          "name": "Integral of ln",
+          "latex": "\\int\\ln x\\,dx=x\\ln x-x+C"
+        },
+        {
+          "name": "Cyclic result",
+          "latex": "\\int e^{x}\\sin x\\,dx=\\frac{e^{x}(\\sin x-\\cos x)}{2}+C"
+        },
+        {
+          "name": "Area between curves",
+          "latex": "A=\\int_{a}^{b}\\left[f_{top}(x)-f_{bottom}(x)\\right]dx"
+        },
+        {
+          "name": "Disk method",
+          "latex": "V=\\pi\\int_{a}^{b}[R(x)]^{2}dx"
+        },
+        {
+          "name": "Washer method",
+          "latex": "V=\\pi\\int_{a}^{b}\\left([R]^{2}-[r]^{2}\\right)dx"
+        },
+        {
+          "name": "Shell method",
+          "latex": "V=2\\pi\\int_{a}^{b}(\\text{radius})(\\text{height})\\,dx"
+        }
+      ],
+      "solution_patterns": [
+        "5-step integration by parts with a 4-cell table",
+        "Tabular method for polynomial times sin/cos/exp",
+        "Set I = integral and solve algebraically for the cyclic case",
+        "5-step area between curves (sketch, intersect, order, integrate, split if needed)",
+        "Expand the squared radius before integrating"
+      ],
+      "pitfalls": [
+        "Choosing u against LIATE and making the integral harder",
+        "Using + instead of - in the by-parts formula",
+        "Wrong alternating signs or non-diagonal reading in the tabular method",
+        "Switching the u type on the second cyclic pass",
+        "Omitting + C after dividing by 2 in the cyclic case",
+        "Writing [R-r]^2 instead of [R]^2-[r]^2",
+        "Omitting pi or the square in the disk formula",
+        "Not expanding [(x-1)^2+1]^2 before integrating",
+        "Not sketching and swapping top/bottom curves",
+        "Omitting units"
+      ],
+      "files": {
+        "summary": "week14_summary.md",
+        "quiz": "week14_quiz.md"
+      },
+      "homework": {
+        "code": "HW7",
+        "portal_file": "hw14.pdf",
+        "archive_file": "Exercises/MFIT_HW_Week14-IntegrationApps.pdf",
+        "topic": "Integration by parts & volume (disk method)",
+        "problem_count": 4,
+        "release": {
+          "day_of_week": "Tuesday",
+          "time": "11:00",
+          "timezone": "Asia/Bangkok",
+          "calendar_date": null
+        },
+        "due": {
+          "day_of_week": "Saturday",
+          "time": "23:59",
+          "timezone": "Asia/Bangkok",
+          "calendar_date": null
+        },
+        "submission": {
+          "platform": "MS Teams",
+          "location": "Assignment tab matching the topic",
+          "format": [
+            "pdf",
+            "jpg"
+          ],
+          "handwritten_required": true,
+          "typed_allowed": false
+        },
+        "mirrored_problem_ids": [
+          "W14-Q1",
+          "W14-Q2",
+          "W14-Q3",
+          "W14-Q4"
+        ]
+      },
+      "practice": {
+        "file": "week14_quiz.md",
+        "problem_count": 9,
+        "problem_ids": [
+          "W14-Q1",
+          "W14-Q2",
+          "W14-Q3",
+          "W14-Q4",
+          "W14-Q5",
+          "W14-Q6",
+          "W14-Q7",
+          "W14-Q8",
+          "W14-Q9"
+        ]
+      }
+    },
+    {
+      "week": 15,
+      "id": "W15",
+      "title_th": "การประยุกต์ปริพันธ์ ภาค 2 และอนุพันธ์ย่อย",
+      "title_en": "Applications of Integration (II) + Partial Derivatives",
+      "source_slide": "MFIT_Lec_Calculus-08",
+      "pillar": "Integration as a Tool",
+      "topics": [
+        "Moments",
+        "Center of mass of a discrete system",
+        "Centroid of a planar lamina",
+        "Constant density and cancellation of rho",
+        "Symmetry shortcut",
+        "Theorem of Pappus",
+        "Functions of two or more variables",
+        "Partial derivatives",
+        "Higher-order partial derivatives",
+        "Clairaut's theorem"
+      ],
+      "key_formulas": [
+        {
+          "name": "Moment",
+          "latex": "M=m\\cdot d"
+        },
+        {
+          "name": "Discrete moments",
+          "latex": "M_{y}=\\sum m_{i}x_{i},\\quad M_{x}=\\sum m_{i}y_{i}"
+        },
+        {
+          "name": "Center of mass",
+          "latex": "\\bar{x}=\\frac{M_{y}}{m},\\quad \\bar{y}=\\frac{M_{x}}{m}"
+        },
+        {
+          "name": "Lamina area",
+          "latex": "A=\\int_{a}^{b}[f(x)-g(x)]dx"
+        },
+        {
+          "name": "Centroid x",
+          "latex": "\\bar{x}=\\frac{1}{A}\\int_{a}^{b}x[f(x)-g(x)]dx"
+        },
+        {
+          "name": "Centroid y",
+          "latex": "\\bar{y}=\\frac{1}{2A}\\int_{a}^{b}\\left([f(x)]^{2}-[g(x)]^{2}\\right)dx"
+        },
+        {
+          "name": "Theorem of Pappus",
+          "latex": "V=2\\pi\\bar{r}A"
+        },
+        {
+          "name": "Partial derivative",
+          "latex": "f_{x}=\\frac{\\partial f}{\\partial x}\\;(\\text{treat }y\\text{ as constant})"
+        },
+        {
+          "name": "Clairaut",
+          "latex": "f_{xy}=f_{yx}\\;(\\text{when continuous})"
+        }
+      ],
+      "solution_patterns": [
+        "4-step centroid computation (A, M_y, M_x, divide)",
+        "Use symmetry to short-circuit one coordinate",
+        "Hold the other variable constant for partial derivatives",
+        "Differentiate first, substitute the point last"
+      ],
+      "pitfalls": [
+        "Swapping M_x and M_y",
+        "Omitting the average (f+g)/2 in the y-bar formula",
+        "Writing (f-g)^2 instead of f^2-g^2",
+        "Differentiating the held-constant variable",
+        "Substituting the point before differentiating",
+        "Forgetting that rho cancels",
+        "Reporting a centroid as a single number instead of a coordinate pair"
+      ],
+      "files": {
+        "summary": "week15_summary.md",
+        "quiz": "week15_quiz.md"
+      },
+      "homework": null,
+      "practice": {
+        "file": "week15_quiz.md",
+        "problem_count": 7,
+        "problem_ids": [
+          "W15-Q1",
+          "W15-Q2",
+          "W15-Q3",
+          "W15-Q4",
+          "W15-Q5",
+          "W15-Q6",
+          "W15-Q7"
+        ]
+      }
+    }
+  ],
+  "mock_exam": {
+    "file": "mock_exam.md",
+    "total_points": 100,
+    "total_problems": 24,
+    "duration_minutes": 180,
+    "calculator_allowed": false,
+    "covers_weeks": [
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "sections": [
+      {
+        "section": 1,
+        "title_th": "ลิมิตและความต่อเนื่อง",
+        "title_en": "Limits and Continuity",
+        "weeks": [
+          8
+        ],
+        "points": 15,
+        "problems": [
+          {
+            "id": "M1",
+            "points": 3,
+            "topic": "Direct substitution",
+            "answer": "64"
+          },
+          {
+            "id": "M2",
+            "points": 3,
+            "topic": "Dividing out",
+            "answer": "-6"
+          },
+          {
+            "id": "M3",
+            "points": 3,
+            "topic": "Rationalizing",
+            "answer": "1/6"
+          },
+          {
+            "id": "M4",
+            "points": 3,
+            "topic": "Limit at infinity",
+            "answer": "4/3"
+          },
+          {
+            "id": "M5",
+            "points": 3,
+            "topic": "Continuity, solve for constants",
+            "answer": "A = -1, B = 1"
+          }
+        ]
+      },
+      {
+        "section": 2,
+        "title_th": "อนุพันธ์",
+        "title_en": "Differentiation",
+        "weeks": [
+          9,
+          10
+        ],
+        "points": 25,
+        "problems": [
+          {
+            "id": "M6",
+            "points": 5,
+            "topic": "Limit definition of the derivative",
+            "answer": "8x - 1"
+          },
+          {
+            "id": "M7",
+            "points": 4,
+            "topic": "Product Rule",
+            "answer": "5x^4 + 3x^2 - 6"
+          },
+          {
+            "id": "M8",
+            "points": 4,
+            "topic": "Quotient Rule",
+            "answer": "(-2x^2 + 2x + 8)/(x^2 + 4)^2"
+          },
+          {
+            "id": "M9",
+            "points": 4,
+            "topic": "Chain Rule (three layers)",
+            "answer": "-12 cos^2(4x) sin(4x)"
+          },
+          {
+            "id": "M10",
+            "points": 4,
+            "topic": "Chain Rule with ln",
+            "answer": "(3x^2 + 5)/(x^3 + 5x)"
+          },
+          {
+            "id": "M11",
+            "points": 4,
+            "topic": "Implicit differentiation",
+            "answer": "(2y - x^2)/(y^2 - 2x)"
+          }
+        ]
+      },
+      {
+        "section": 3,
+        "title_th": "การประยุกต์ของอนุพันธ์",
+        "title_en": "Applications of Differentiation",
+        "weeks": [
+          11
+        ],
+        "points": 15,
+        "problems": [
+          {
+            "id": "M12",
+            "points": 5,
+            "topic": "Absolute extrema on a closed interval",
+            "answer": "max = 9 at x = 3; min = 0 at x = 0"
+          },
+          {
+            "id": "M13",
+            "points": 5,
+            "topic": "Curve analysis: monotonicity, extrema, concavity, inflection",
+            "answer": "increasing on (-inf,1) and (3,inf); decreasing on (1,3); local max (1,4); local min (3,0); inflection (2,2)"
+          },
+          {
+            "id": "M14",
+            "points": 5,
+            "topic": "Optimization with a constraint",
+            "answer": "50 x 25 m; A = 1250 sq.m"
+          }
+        ]
+      },
+      {
+        "section": 4,
+        "title_th": "ปริพันธ์",
+        "title_en": "Integration",
+        "weeks": [
+          12,
+          13
+        ],
+        "points": 25,
+        "problems": [
+          {
+            "id": "M15",
+            "points": 4,
+            "topic": "Indefinite integral with ln case",
+            "answer": "2x^3 - 4 ln|x| + (2/3)x^{3/2} + C"
+          },
+          {
+            "id": "M16",
+            "points": 4,
+            "topic": "Definite integral via FTC",
+            "answer": "2"
+          },
+          {
+            "id": "M17",
+            "points": 5,
+            "topic": "u-substitution (indefinite)",
+            "answer": "(x^3 + 2)^5 / 15 + C"
+          },
+          {
+            "id": "M18",
+            "points": 4,
+            "topic": "u-substitution with change of limits",
+            "answer": "ln(5/2)"
+          },
+          {
+            "id": "M19",
+            "points": 4,
+            "topic": "Absolute value integrand",
+            "answer": "5"
+          },
+          {
+            "id": "M20",
+            "points": 4,
+            "topic": "Integration by parts",
+            "answer": "-x cos x + sin x + C"
+          }
+        ]
+      },
+      {
+        "section": 5,
+        "title_th": "การประยุกต์ปริพันธ์ และอนุพันธ์ย่อย",
+        "title_en": "Applications of Integration and Partial Derivatives",
+        "weeks": [
+          14,
+          15
+        ],
+        "points": 20,
+        "problems": [
+          {
+            "id": "M21",
+            "points": 5,
+            "topic": "Area between curves",
+            "answer": "32/3 square units"
+          },
+          {
+            "id": "M22",
+            "points": 5,
+            "topic": "Volume by the disk method",
+            "answer": "8 pi cubic units"
+          },
+          {
+            "id": "M23",
+            "points": 5,
+            "topic": "Integration by parts with ln",
+            "answer": "(x^3 ln x)/3 - x^3/9 + C"
+          },
+          {
+            "id": "M24",
+            "points": 5,
+            "topic": "Partial derivatives and Clairaut check",
+            "answer": "f_x = 3x^2 y - 2y^2; f_y = x^3 - 4xy + 3y^2; f_xy = f_yx = 3x^2 - 4y"
+          }
+        ]
+      }
+    ],
+    "grade_bands": [
+      {
+        "min": 85,
+        "max": 100,
+        "label": "ready",
+        "action": "Review pitfall lists and redo hw08-hw14"
+      },
+      {
+        "min": 70,
+        "max": 84,
+        "label": "close",
+        "action": "Reread the weakest week's summary and redo its quiz"
+      },
+      {
+        "min": 50,
+        "max": 69,
+        "label": "needs work",
+        "action": "Prioritise sections 2 and 4 (50 points combined)"
+      },
+      {
+        "min": 0,
+        "max": 49,
+        "label": "restart",
+        "action": "Reread week08_summary.md in full"
+      }
+    ]
+  },
+  "files": [
+    {
+      "path": "syllabus.md",
+      "type": "roadmap",
+      "language": "th"
+    },
+    {
+      "path": "week08_summary.md",
+      "type": "weekly_guide",
+      "week": 8,
+      "language": "th"
+    },
+    {
+      "path": "week09_summary.md",
+      "type": "weekly_guide",
+      "week": 9,
+      "language": "th"
+    },
+    {
+      "path": "week10_summary.md",
+      "type": "weekly_guide",
+      "week": 10,
+      "language": "th"
+    },
+    {
+      "path": "week11_summary.md",
+      "type": "weekly_guide",
+      "week": 11,
+      "language": "th"
+    },
+    {
+      "path": "week12_summary.md",
+      "type": "weekly_guide",
+      "week": 12,
+      "language": "th"
+    },
+    {
+      "path": "week13_summary.md",
+      "type": "weekly_guide",
+      "week": 13,
+      "language": "th"
+    },
+    {
+      "path": "week14_summary.md",
+      "type": "weekly_guide",
+      "week": 14,
+      "language": "th"
+    },
+    {
+      "path": "week15_summary.md",
+      "type": "weekly_guide",
+      "week": 15,
+      "language": "th"
+    },
+    {
+      "path": "week08_quiz.md",
+      "type": "practice_set",
+      "week": 8,
+      "language": "th"
+    },
+    {
+      "path": "week09_quiz.md",
+      "type": "practice_set",
+      "week": 9,
+      "language": "th"
+    },
+    {
+      "path": "week10_quiz.md",
+      "type": "practice_set",
+      "week": 10,
+      "language": "th"
+    },
+    {
+      "path": "week11_quiz.md",
+      "type": "practice_set",
+      "week": 11,
+      "language": "th"
+    },
+    {
+      "path": "week12_quiz.md",
+      "type": "practice_set",
+      "week": 12,
+      "language": "th"
+    },
+    {
+      "path": "week13_quiz.md",
+      "type": "practice_set",
+      "week": 13,
+      "language": "th"
+    },
+    {
+      "path": "week14_quiz.md",
+      "type": "practice_set",
+      "week": 14,
+      "language": "th"
+    },
+    {
+      "path": "week15_quiz.md",
+      "type": "practice_set",
+      "week": 15,
+      "language": "th"
+    },
+    {
+      "path": "mock_exam.md",
+      "type": "mock_exam",
+      "language": "th"
+    },
+    {
+      "path": "curriculum.json",
+      "type": "index",
+      "language": "en"
+    }
+  ],
+  "source_materials": {
+    "lectures": [
+      "Lectures/MFIT_Lec_Calculus-01.pdf",
+      "Lectures/MFIT_Lec_Calculus-02.pdf",
+      "Lectures/MFIT_Lec_Calculus-03.pdf",
+      "Lectures/MFIT_Lec_Calculus-04.pdf",
+      "Lectures/MFIT_Lec_Calculus-05.pdf",
+      "Lectures/MFIT_Lec_Calculus-06.pdf",
+      "Lectures/MFIT_Lec_Calculus-07.pdf",
+      "Lectures/MFIT_Lec_Calculus-08.pdf"
+    ],
+    "lecture_handouts": [
+      "Lectures/MFIT_Lec_Calculus-01-Handout.pdf",
+      "Lectures/MFIT_Lec_Calculus-02-Handout.pdf",
+      "Lectures/MFIT_Lec_Calculus-03-Handout.pdf",
+      "Lectures/MFIT_Lec_Calculus-04-Handout.pdf",
+      "Lectures/MFIT_Lec_Calculus-05-Handout.pdf",
+      "Lectures/MFIT_Lec_Calculus-06-Handout.pdf",
+      "Lectures/MFIT_Lec_Calculus-07-Handout.pdf",
+      "Lectures/MFIT_Lec_Calculus-08-Handout.pdf"
+    ],
+    "homework": [
+      "Exercises/MFIT_HW_Week08-FunctionLimitContinuity.pdf",
+      "Exercises/MFIT_HW_Week09-Derivative-I.pdf",
+      "Exercises/MFIT_HW_Week10-Derivative-II.pdf",
+      "Exercises/MFIT_HW_Week11-DerivativeApps.pdf",
+      "Exercises/MFIT_HW_Week12-Integration-I.pdf",
+      "Exercises/MFIT_HW_Week13-Integration-II.pdf",
+      "Exercises/MFIT_HW_Week14-IntegrationApps.pdf"
+    ],
+    "recap_sheets": [
+      "Sheets/MFIT_Sheet_FinalRecap-Week08-13.pdf",
+      "Sheets/MFIT_Sheet_FinalRecap-Week08-13_v2.pdf",
+      "Sheets/MFIT_Sheet_Recap-Calculus.pdf",
+      "Sheets/MFIT_Sheet_FinalCheatSheet-2023.pdf"
+    ],
+    "past_final_exams": [
+      "Exams/MFIT_Final_Final-Mathit-2559.pdf",
+      "Exams/MFIT_Final_2560.pdf",
+      "Exams/MFIT_Final_Final-Mathit-2561.pdf"
+    ],
+    "external_links": "archive/Y1-S1/Math-for-IT/links.md"
+  }
+}

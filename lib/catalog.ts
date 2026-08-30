@@ -1,0 +1,283 @@
+import type { LText } from "@/lib/i18n";
+
+/**
+ * Course catalogue for the home directory.
+ *
+ * Ported from iLearn's lib/taxonomy.ts (which mirrors the kmitl-archive folder
+ * contract) and narrowed to year 1, plus the two EN-KMITL courses iHelp already
+ * carries. Single source of truth for the home page and /courses/[slug].
+ *
+ * Identity only. What a course *offers* is declared in lib/course-bindings.ts
+ * against the eleven modules of lib/spine.ts; this file answers "which course is
+ * this" and nothing else.
+ */
+
+export const COURSE_COLORS: Record<string, string> = {
+  MFIT: "#2357A5",
+  ITF: "#2357A5",
+  ICS: "#2357A5",
+  PSCP: "#2357A5",
+  CHARM: "#2357A5",
+  FE: "#2357A5",
+  SPORT: "#2357A5",
+  BFIT: "#2357A5",
+  DSA: "#2357A5",
+  OOP: "#2357A5",
+  PSTAT: "#2357A5",
+  FE2: "#2357A5",
+  DL: "#2357A5",
+  COMPRO: "#2357A5",
+  CHEM: "#2357A5",
+};
+
+export type CourseGroup = "Y1-S1" | "Y1-S2" | "EN-KMITL";
+
+export const GROUPS: { id: CourseGroup; label: LText; note: LText }[] = [
+  {
+    id: "Y1-S1",
+    label: { th: "ปี 1 เทอม 1", en: "Year 1 · Semester 1" },
+    note: { th: "หลักสูตร IT สจล. (ปรับปรุง 2565)", en: "IT KMITL curriculum (2022 revision)" },
+  },
+  {
+    id: "Y1-S2",
+    label: { th: "ปี 1 เทอม 2", en: "Year 1 · Semester 2" },
+    note: { th: "หลักสูตร IT สจล. (ปรับปรุง 2565)", en: "IT KMITL curriculum (2022 revision)" },
+  },
+  {
+    id: "EN-KMITL",
+    label: { th: "EN-KMITL", en: "EN-KMITL" },
+    note: { th: "วิชาคณะวิศวกรรมศาสตร์ที่เปิดให้ลงข้ามคณะ", en: "Engineering faculty courses" },
+  },
+];
+
+export interface CatalogCourse {
+  /** Short code used in filenames and badges, e.g. "MFIT" */
+  code: string;
+  /** Official KMITL subject code. Absent for courses with no published code. */
+  officialCode?: string;
+  /** Folder slug, shared with content/courses/{officialCode}-{slug}/ */
+  slug: string;
+  nameTh: string;
+  nameEn: string;
+  credits?: string;
+  group: CourseGroup;
+  /** Subject hub, when this course has its own portal. */
+  portalHref?: string;
+  /** Official subject details page on https://www.it.kmitl.ac.th */
+  officialUrl?: string;
+}
+
+export const COURSES: CatalogCourse[] = [
+  // ── ปี 1 เทอม 1 ─────────────────────────────────────────────────────────────
+  {
+    code: "ITF",
+    officialCode: "06016402",
+    slug: "IT-Fundamentals",
+    nameTh: "พื้นฐานทางด้านเทคโนโลยีสารสนเทศ",
+    nameEn: "IT Fundamentals",
+    credits: "3 (2-2-5)",
+    group: "Y1-S1",
+    portalHref: "/courses/06016402-IT-Fundamentals",
+    officialUrl:
+      "https://www.it.kmitl.ac.th/th/subjects/06016402-information-technology-fundamentals",
+  },
+  {
+    code: "ICS",
+    officialCode: "06016411",
+    slug: "Intro-to-Computer-Systems",
+    nameTh: "ระบบคอมพิวเตอร์เบื้องต้น",
+    nameEn: "Intro to Computer Systems",
+    credits: "3 (2-2-5)",
+    group: "Y1-S1",
+    portalHref: "/courses/06016411-Intro-to-Computer-Systems",
+    officialUrl:
+      "https://www.it.kmitl.ac.th/th/subjects/06016411-introduction-to-computer-systems",
+  },
+  {
+    code: "MFIT",
+    officialCode: "06016401",
+    slug: "Math-for-IT",
+    nameTh: "คณิตศาสตร์สำหรับเทคโนโลยีสารสนเทศ",
+    nameEn: "Mathematics for Information Technology",
+    credits: "3 (3-0-6)",
+    group: "Y1-S1",
+    portalHref: "/courses/06016401-Math-for-IT",
+    officialUrl:
+      "https://www.it.kmitl.ac.th/th/subjects/06016401-mathematics-for-information-technology",
+  },
+  {
+    code: "PSCP",
+    officialCode: "06066303",
+    slug: "Problem-Solving-and-Computer-Programming",
+    nameTh: "การแก้ปัญหาและการโปรแกรมคอมพิวเตอร์",
+    nameEn: "Problem Solving and Computer Programming",
+    credits: "3 (2-2-5)",
+    group: "Y1-S1",
+    portalHref: "/courses/06066303-Problem-Solving-and-Computer-Programming",
+    officialUrl:
+      "https://www.it.kmitl.ac.th/th/subjects/06066303-problem-solving-and-computer-programming",
+  },
+  {
+    code: "CHARM",
+    officialCode: "90641001",
+    slug: "Charm-School",
+    nameTh: "โรงเรียนสร้างเสน่ห์",
+    nameEn: "Charm School",
+    credits: "2 (1-2-3)",
+    group: "Y1-S1",
+    portalHref: "/courses/90641001-Charm-School",
+    officialUrl: "https://www.it.kmitl.ac.th/th/subjects/90641001-charm-school",
+  },
+  {
+    code: "FE",
+    officialCode: "90644007",
+    slug: "Foundation-English",
+    nameTh: "ภาษาอังกฤษพื้นฐาน 1",
+    nameEn: "Foundation English",
+    credits: "3 (3-0-6)",
+    group: "Y1-S1",
+    portalHref: "/courses/90644007-Foundation-English",
+    officialUrl: "https://www.it.kmitl.ac.th/th/subjects/90644007-foundation-english-1",
+  },
+  {
+    code: "SPORT",
+    officialCode: "90641003",
+    slug: "Sports-and-Recreational-Activities",
+    nameTh: "กีฬาและนันทนาการ",
+    nameEn: "Sports and Recreational Activities",
+    credits: "1 (0-2-1)",
+    group: "Y1-S1",
+    portalHref: "/courses/90641003-Sports-and-Recreational-Activities",
+    officialUrl:
+      "https://www.it.kmitl.ac.th/th/subjects/90641003-sports-and-recreational-activities",
+  },
+
+  // ── ปี 1 เทอม 2 ─────────────────────────────────────────────────────────────
+  {
+    code: "BFIT",
+    officialCode: "06066101",
+    slug: "Business-for-IT",
+    nameTh: "พื้นฐานทางธุรกิจสำหรับเทคโนโลยีสารสนเทศ",
+    nameEn: "Business for IT",
+    credits: "3 (3-0-6)",
+    group: "Y1-S2",
+    portalHref: "/courses/06066101-Business-for-IT",
+    officialUrl:
+      "https://www.it.kmitl.ac.th/th/subjects/06066101-business-fundamentals-for-information",
+  },
+  {
+    code: "DSA",
+    officialCode: "06066301",
+    slug: "Data-Structures-and-Algorithms",
+    nameTh: "โครงสร้างข้อมูลและอัลกอริทึม",
+    nameEn: "Data Structures and Algorithms",
+    credits: "3 (2-2-5)",
+    group: "Y1-S2",
+    portalHref: "/courses/06066301-Data-Structures-and-Algorithms",
+    officialUrl:
+      "https://www.it.kmitl.ac.th/th/subjects/06066301-data-structures-and-algorithms",
+  },
+  {
+    code: "OOP",
+    officialCode: "06016408",
+    slug: "Object-Oriented-Programming",
+    nameTh: "การสร้างโปรแกรมเชิงวัตถุ",
+    nameEn: "Object-Oriented Programming",
+    credits: "3 (2-2-5)",
+    group: "Y1-S2",
+    portalHref: "/courses/06016408-Object-Oriented-Programming",
+    officialUrl:
+      "https://www.it.kmitl.ac.th/th/subjects/06016408-object-oriented-programming",
+  },
+  {
+    code: "PSTAT",
+    officialCode: "06066001",
+    slug: "Probability-and-Statistics",
+    nameTh: "ความน่าจะเป็นและสถิติ",
+    nameEn: "Probability and Statistics",
+    credits: "3 (3-0-6)",
+    group: "Y1-S2",
+    portalHref: "/courses/06066001-Probability-and-Statistics",
+    officialUrl:
+      "https://www.it.kmitl.ac.th/th/subjects/06066001-probability-and-statistics",
+  },
+  {
+    code: "FE2",
+    officialCode: "90644008",
+    slug: "Foundation-English-II",
+    nameTh: "ภาษาอังกฤษพื้นฐาน 2",
+    nameEn: "Foundation English II",
+    credits: "3 (3-0-6)",
+    group: "Y1-S2",
+    portalHref: "/courses/90644008-Foundation-English-II",
+    officialUrl: "https://www.it.kmitl.ac.th/th/subjects/90644008-foundation-english-2",
+  },
+  {
+    code: "DL",
+    officialCode: "90641002",
+    slug: "Digital-Literacy",
+    nameTh: "ความฉลาดทางดิจิทัล",
+    nameEn: "Digital Literacy",
+    credits: "3 (3-0-6)",
+    group: "Y1-S2",
+    portalHref: "/courses/90641002-Digital-Literacy",
+    officialUrl:
+      "https://www.it.kmitl.ac.th/th/subjects/90641002-digital-intelligence-quotient",
+  },
+
+  // ── EN-KMITL ───────────────────────────────────────────────────────────────
+  {
+    code: "COMPRO",
+    officialCode: "01006012",
+    slug: "Computer-Programming",
+    nameTh: "การเขียนโปรแกรมคอมพิวเตอร์",
+    nameEn: "Computer Programming",
+    group: "EN-KMITL",
+    portalHref: "/courses/01006012-Computer-Programming",
+  },
+  {
+    code: "CHEM",
+    slug: "General-Chemistry",
+    nameTh: "เคมีทั่วไป",
+    nameEn: "General Chemistry",
+    group: "EN-KMITL",
+    portalHref: "/courses/General-Chemistry",
+  },
+];
+
+/** Directory name under content/courses/ — matches iLearn's summaries layout. */
+export function courseDir(course: CatalogCourse): string {
+  return course.officialCode
+    ? `${course.officialCode}-${course.slug}`
+    : course.slug;
+}
+
+export function coursesByGroup(group: CourseGroup): CatalogCourse[] {
+  return COURSES.filter((c) => c.group === group);
+}
+
+/** Resolves a course by directory name, code, or slug (case-insensitive). */
+export function resolveCourse(param: string): CatalogCourse | undefined {
+  const decoded = decodeURIComponent(param).trim();
+  const lower = decoded.toLowerCase();
+  return COURSES.find(
+    (c) =>
+      courseDir(c).toLowerCase() === lower ||
+      c.code.toLowerCase() === lower ||
+      c.slug.toLowerCase() === lower ||
+      (c.officialCode && c.officialCode.toLowerCase() === lower),
+  );
+}
+
+export function findCourse(dir: string): CatalogCourse | undefined {
+  return resolveCourse(dir);
+}
+
+/** Where a course card points: its portal, its overview, or nowhere yet. */
+export function courseHref(course: CatalogCourse): string | null {
+  return course.portalHref ?? `/courses/${courseDir(course)}`;
+}
+
+export function findCourseByCode(code: string): CatalogCourse | undefined {
+  return COURSES.find((c) => c.code.toLowerCase() === code.toLowerCase());
+}

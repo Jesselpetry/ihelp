@@ -1,13 +1,15 @@
-# \<i\>Help — PSCP Learning-Log Maker
+# \<i\>Help — คลังการเรียนรู้ IT KMITL
 
-![<i>Help — PSCP Learning-Log Maker](./public/og-image-hd.png)
+![<i>Help](./public/og-image-hd.png)
 
-เครื่องมือสร้าง `submission.md` / `ai_reflection.md` แบบทีละขั้นตอน สำหรับนักศึกษา
-PSCP IT KMITL ดีไซน์ตามสไตล์ [iJudge](https://ijudge.it.kmitl.ac.th)
+ศูนย์รวมสื่อการเรียนของนักศึกษา IT สจล. ปี 1 — สรุปเนื้อหา สไลด์บรรยาย ข้อสอบเก่า
+แบบฝึกหัด และเครื่องมือสร้าง Learning Log ของวิชา PSCP รวมอยู่ในเว็บเดียว
+ดีไซน์ตามสไตล์ [iJudge](https://ijudge.it.kmitl.ac.th)
 
-เว็บนี้ไม่เขียนเนื้อหาแทนคุณ — ทุกขั้นตอนเก็บคำตอบที่คุณเขียนเอง แล้วจัดลง
-template ทางการของรายวิชา (ไทย/อังกฤษ) จากนั้นดาวน์โหลดไฟล์ไปส่งเอง
-ไม่มีการส่งอะไรไปที่ OJ
+**14 รายวิชา · 679 การ์ดสื่อการเรียน · 662 ไฟล์**
+
+> เว็บนี้ไม่เขียนเนื้อหาแทนคุณ — เครื่องมือสร้างไฟล์ทุกตัวเก็บคำตอบที่คุณเขียนเอง
+> แล้วจัดลง template ทางการของรายวิชา ไม่มีการส่งอะไรไปที่ OJ
 
 ## วิธีรัน
 
@@ -21,27 +23,64 @@ bun run dev   # http://localhost:3000
 
 หมายเหตุ: ห้ามใช้ `bun --bun next ...` — Next 16 build จะ crash บน Bun 1.2.x (SIGTRAP)
 
-## ฟีเจอร์
+## ภาพรวม
+
+เนื้อหาแบ่งเป็น **track** ต่อรายวิชา นักศึกษาไล่จากบนลงล่างได้เลย
+
+| Track          | คืออะไร                                             |
+| -------------- | --------------------------------------------------- |
+| ภาพรวมรายวิชา  | ขอบเขตรายสัปดาห์ หน่วยกิต ผู้สอน สัดส่วนคะแนน       |
+| สรุปเนื้อหา    | ชีทสรุปอ่านต่อเนื่อง พร้อมสารบัญด้านข้าง            |
+| แบบทดสอบ       | ควิซพร้อมคำอธิบายว่าทำไมตัวเลือกอื่นผิด             |
+| ข้อสอบจำลอง    | ข้อสอบชุดเต็มพร้อมเฉลยแสดงวิธีทำ                    |
+| คลังโจทย์      | โจทย์ฝึกและโจทย์ OJ พร้อมกำหนดส่ง                   |
+| คลังทรัพยากร   | สไลด์ PDF ข้อสอบเก่า ภาพสมุดจด                      |
+
+track ที่ยังไม่เสร็จจะโชว์เป็นช่องล็อก เพื่อให้เห็น roadmap ทั้งหมด และแยกออกว่า
+“ยังไม่ทำ” กับ “ไม่มี”
+
+### รายวิชาที่มีอยู่
+
+**ปี 1 เทอม 1** — ITF · ICS · MFIT · PSCP · CHARM · FE · SPORT
+**ปี 1 เทอม 2** — BFIT · DSA · OOP · PSTAT · FE2 · DL
+**EN-KMITL** (ลงข้ามคณะ) — ComPro · General Chemistry
+
+### คลังทรัพยากร (Media Library)
+
+สื่อทุกชิ้นจัดกลุ่มตาม **ขอบเขตสอบ** — ก่อนมิดเทอม / หลังมิดเทอม — โดยเส้นแบ่งของ
+แต่ละวิชาอ่านจาก `summary.md` ของวิชานั้น ไม่ได้เดาจากเลขสัปดาห์ในชื่อไฟล์
+(ITF/ICS/MFIT/PSCP แบ่งที่สัปดาห์ 7, DSA/PSTAT ที่บทที่ 7, BFIT ที่สัปดาห์ 8)
+สื่อที่คร่อมทั้งเทอม เช่นแผนการสอนหรือตารางค่าวิกฤต จะโชว์ใต้ทั้งสองหมุด
+
+การ์ดมาจากสองชั้น: entry ที่เขียนมือใน `lib/subject-library.ts` (มีชื่อสองภาษา
+คำอธิบาย และขอบเขตสอบ) ซ้อนบน manifest ที่ scan จากไฟล์จริง — ไฟล์ที่วางลง
+`public/assets/` ตามกติกาจะขึ้นเว็บทันทีโดยไม่ต้องรอใครมาเขียน entry
+
+รายละเอียดโครงสร้าง กติกาตั้งชื่อ และ taxonomy กลางภาค/ปลายภาค อยู่ใน
+**[FILE_STRUCTURE.md](./FILE_STRUCTURE.md)**
+
+มีไฟล์กองใหญ่ที่ยังไม่ได้จัดหมวด — วางลง `_dropzone/` แล้วชี้ AI agent ไปที่
+**[docs/DROPZONE_SOP.md](./docs/DROPZONE_SOP.md)** เดี๋ยวจัดให้ทั้งชุด
+
+## ฟีเจอร์เครื่องมือ PSCP
 
 - **รายการโจทย์** จาก `data/oj_problems.json` (override ได้ด้วย env `OJ_PROBLEMS_PATH`)
   พร้อมระดับความยาก วันหมดเขต ป้าย Learning Log และแท็บกรองรายสัปดาห์
 - **Wizard ทีละขั้นตอน** ตาม template ทางการ พร้อมคำแนะนำและตัวอย่างจากรายวิชา
 - **Preview + ดาวน์โหลด** ไฟล์ `submission.md` / `ai_reflection.md`
 - **แบบร่างบันทึกอัตโนมัติ** ใน browser (localStorage) แยกตามโจทย์
-- **ประวัติไฟล์ที่สร้าง** (`/history`) — ทุกไฟล์ที่ generate ถูกเก็บในเครื่อง
-  ดูย้อนหลัง โหลดซ้ำ ลบได้ ไม่มีข้อมูลออกจาก browser
+- **ประวัติไฟล์ที่สร้าง** (`/history`) — เก็บในเครื่อง ดูย้อนหลัง โหลดซ้ำ ลบได้
+  ไม่มีข้อมูลออกจาก browser
 - **ห้องสมุด** (`/library`) — อ่านเอกสาร AI-Guidelines-PSCP ทั้งชุดแบบหนังสือ
   (bundle อยู่ใน `data/ai-guidelines/`, override ด้วย env `AI_GUIDELINES_PATH`)
 - **ทางลัดประจำสัปดาห์** บนหน้าแรก — แก้ลิงก์ได้ที่ `lib/shortcuts.ts`
 - **สลับ TH / EN** ทั้ง UI และภาษาของ template ที่ใช้สร้างไฟล์
-- **Push ขึ้น GitHub** (ไม่บังคับ) — เชื่อมบัญชี GitHub แล้ว push ไฟล์เข้า repo
-  ของคุณที่ `oj<id>/submission.md` และ `oj<id>/ai_reflection.md` ได้โดยตรง
-  ทั้งจากหน้า wizard และหน้า `/history` (แก้ไฟล์ raw ก่อน push ได้) หน้าแรกจะ
-  แสดงป้ายว่าโจทย์ไหน upload แล้ว (ดูการตั้งค่าด้านล่าง)
-- **หน้าแก้ไฟล์ใน repo** (`/repo`, ปุ่ม “เปิดไฟล์ใน repo” บนแผงเชื่อม GitHub) —
-  ดูไฟล์ทั้งหมดใน repo, แก้ `submission.md` / `ai_reflection.md` ได้ทั้งแบบ
-  **Raw** และ **ทีละขั้นตอน** (ถอดกลับจากไฟล์เป็นฟอร์มคำถามอัตโนมัติ), สร้าง
-  ไฟล์ใหม่ และกด **บันทึก (commit)** ขึ้น repo ได้จากหน้าเดียว
+- **Push ขึ้น GitHub** (ไม่บังคับ) — push ไฟล์เข้า repo ของคุณที่
+  `oj<id>/submission.md` และ `oj<id>/ai_reflection.md` ได้โดยตรง ทั้งจากหน้า wizard
+  และหน้า `/history` หน้าแรกจะแสดงป้ายว่าโจทย์ไหน upload แล้ว
+- **หน้าแก้ไฟล์ใน repo** (`/repo`) — ดูไฟล์ทั้งหมดใน repo, แก้ `submission.md` /
+  `ai_reflection.md` ได้ทั้งแบบ **Raw** และ **ทีละขั้นตอน** (ถอดกลับจากไฟล์เป็น
+  ฟอร์มคำถามอัตโนมัติ), สร้างไฟล์ใหม่ และ commit ขึ้น repo ได้จากหน้าเดียว
 
 ## ตั้งค่า Push ขึ้น GitHub (ไม่บังคับ)
 
@@ -62,13 +101,37 @@ bun run dev   # http://localhost:3000
 ## Tech stack
 
 - [Next.js 16](https://nextjs.org) (App Router) บน Node
-- [Tailwind CSS](https://tailwindcss.com) + shadcn-style UI
+- [React 19](https://react.dev) + TypeScript
+- [Tailwind CSS 4](https://tailwindcss.com) + shadcn-style UI (radix-ui)
+- [KaTeX](https://katex.org) + remark/rehype สำหรับสูตรคณิตศาสตร์ใน Markdown
+- [Pyodide](https://pyodide.org) — รัน Python ตรวจโจทย์ในเบราว์เซอร์
 - [Bun](https://bun.sh) เป็น package manager
+
+## Scripts
+
+```bash
+bun run dev              # dev server
+bun run build            # production build
+bun run lint             # eslint
+bun run library:build    # สร้าง manifest + stats ของคลังทรัพยากรใหม่
+```
+
+`library:build` ต้องรันทุกครั้งที่เพิ่ม/ลบ/เปลี่ยนชื่อไฟล์ใน `public/assets/`
 
 ## ร่วมพัฒนา
 
-Open source — อยากอัปเดตรายการโจทย์สัปดาห์ใหม่ แก้บั๊ก หรือเพิ่มฟีเจอร์
-อ่าน [CONTRIBUTING.md](./CONTRIBUTING.md)
+Open source — อยากเพิ่มวิชาใหม่ เขียนสรุป อัปเดตโจทย์ แก้บั๊ก หรือเพิ่มฟีเจอร์
+อ่าน [CONTRIBUTING.md](./CONTRIBUTING.md) และ [FILE_STRUCTURE.md](./FILE_STRUCTURE.md)
+
+## ที่มาของสื่อการเรียน
+
+ไฟล์ใน `public/assets/` คัดมาจากคลัง `kmitl-archive` ซึ่งเป็นที่เก็บสื่อการเรียน
+ของหลักสูตรตั้งแต่ปี 1 ถึงปี 4 — repo นี้เก็บเฉพาะส่วนปี 1
+
+**ก่อน deploy สาธารณะ** ต้องเคลียร์สองเรื่อง: ลิขสิทธิ์ของสไลด์บรรยายและ workbook
+(บาง `summary.md` มีหมายเหตุ `ห้ามเผยแพร่สาธารณะ` กำกับไว้) และข้อมูลส่วนบุคคลใน
+ไฟล์ที่ลงท้าย `-completed` ดูรายละเอียดในหัวข้อ 9 ของ
+[FILE_STRUCTURE.md](./FILE_STRUCTURE.md)
 
 ## เครดิต
 
@@ -78,3 +141,6 @@ Instagram: [@chatann\_](https://instagram.com/chatann_)
 ## License
 
 [MIT License](./LICENSE) — © 2026 Chatan Petry
+
+โค้ดเป็น MIT ส่วนสื่อการเรียนใน `public/assets/` เป็นลิขสิทธิ์ของผู้สอนและ
+ผู้จัดพิมพ์ตามเดิม ไม่ได้อยู่ภายใต้ MIT

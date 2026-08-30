@@ -2,7 +2,13 @@
 
 import type { LText } from "@/lib/i18n";
 
-export type QuizKind = "mcq" | "predict-output" | "spot-the-bug" | "pep8";
+export type QuizKind =
+  | "mcq"
+  | "predict-output"
+  | "spot-the-bug"
+  | "pep8"
+  | "true-false"
+  | "short-answer";
 
 export interface QuizOption {
   id: string; // stable "a".."d", must survive option shuffling
@@ -17,10 +23,19 @@ export interface QuizQuestion {
   prompt: LText;
   snippet?: string; // <= 5 lines, never a full solution
   stdin?: string; // predict-output only: copied verbatim from problem.md §4 or §6
-  options: QuizOption[]; // exactly 4
-  correctId: string;
+  options: QuizOption[]; // 4 for mcq, 2 for true-false, empty for short-answer
+  correctId: string; // unused by short-answer, which is self-assessed
   sourceRef: string; // REQUIRED — e.g. "problem.md §5.2" or "main.py:7-14"
   chapter?: number; // optional syllabus grouping, e.g. 1..5 for EN-KMITL chapters
+  /**
+   * Question-level explanation as raw Markdown (tables, bold, lists).
+   *
+   * When set, the engine renders it once after the answer is checked and
+   * skips the per-option `why` blocks — banks written this way carry their
+   * teaching in one prose block rather than split across four options.
+   * For "short-answer" this is the model answer.
+   */
+  explanationMd?: string;
 }
 
 export const QUIZ_PROGRESS_KEY = "ihelp-quiz-progress-v1";
@@ -68,6 +83,16 @@ export function recordQuizAttempt(
   window.dispatchEvent(new Event(QUIZ_PROGRESS_EVENT));
 }
 
+// Self-assessment verdicts stored in place of an option id for "short-answer".
+export const SELF_CORRECT = "self:correct";
+export const SELF_WRONG = "self:wrong";
+
+/**
+ * "short-answer" questions are open essays with a model answer, not fill-ins —
+ * no string comparison can grade them, so the student marks their own work and
+ * we record that verdict. Every other kind compares against correctId.
+ */
 export function gradeAnswer(question: QuizQuestion, selectedId: string): boolean {
+  if (question.kind === "short-answer") return selectedId === SELF_CORRECT;
   return selectedId === question.correctId;
 }

@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 
-export type Locale = "th" | "en";
+import type { Locale } from "@/lib/ltext";
 
 const LocaleContext = createContext<{
   locale: Locale;
@@ -34,12 +34,7 @@ export function useLocale() {
   return useContext(LocaleContext);
 }
 
-// t({ th: "...", en: "..." }, locale)
-export interface LText {
-  th: string;
-  en: string;
-}
-
-export function t(text: LText, locale: Locale): string {
-  return text[locale];
-}
+// The shape and the accessor live in lib/ltext.ts so server code can read an
+// LText without crossing the client boundary; re-exported here because every
+// existing call site imports them from this module.
+export { t, type LText, type Locale } from "@/lib/ltext";

@@ -44,7 +44,7 @@ export function Splash() {
         <span className="ml-1 inline-block h-[1em] w-[2px] bg-primary animate-[ihelp-caret_0.8s_step-end_infinite]" />
       </p>
       <p className="text-sm text-muted-foreground opacity-0 animate-[ihelp-fadeup_0.5s_ease-out_0.9s_forwards]">
-        PSCP Learning-Log Maker · IT KMITL
+        คลังเรียนรู้ IT KMITL
       </p>
     </div>
   );

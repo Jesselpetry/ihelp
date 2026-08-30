@@ -51,16 +51,15 @@
 }
 
 :root {
-  /* iJudge palette: light gray canvas, white cards, magenta-pink primary.
-     Pink deepened #de3561 -> #c62d58 and muted-foreground darkened so all
-     text combos pass WCAG AA 4.5:1 (incl. primary text on primary/10 tint). */
+  /* KMITL Blue primary palette: light gray canvas, white cards, #2357A5 primary.
+     All text combos pass WCAG AA 4.5:1 (incl. primary text on primary/10 tint). */
   --background: #f4f6f8;
   --foreground: #111827;
   --card: oklch(1 0 0);
   --card-foreground: #111827;
   --popover: oklch(1 0 0);
   --popover-foreground: #111827;
-  --primary: #c62d58;
+  --primary: #2357A5;
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
@@ -71,7 +70,7 @@
   --destructive: oklch(0.577 0.245 27.325);
   --border: #e2e8f0;
   --input: #e2e8f0;
-  --ring: #c62d58;
+  --ring: #2357A5;
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
@@ -80,28 +79,26 @@
   --radius: 0.625rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary: #2357A5;
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-accent: oklch(0.97 0 0);
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --sidebar-ring: #2357A5;
 }
 
 .dark {
   /* Mirrors the light palette's cool gray-blue cast rather than a neutral gray,
-     so both themes read as the same product. Pink is lightened #c62d58 ->
-     #f0708f to stay legible on a dark canvas; because it is now a *light*
-     color, --primary-foreground flips to dark ink (white on it is only 2.8:1).
-     All text combos verified >= WCAG AA 4.5:1, incl. primary on primary/10. */
+     so both themes read as the same product. Blue is lightened #2357A5 ->
+     #5c9bf5 to stay legible on a dark canvas. */
   --background: #0f1318;
   --foreground: #e7eaef;
   --card: #171c23;
   --card-foreground: #e7eaef;
   --popover: #171c23;
   --popover-foreground: #e7eaef;
-  --primary: #f0708f;
-  --primary-foreground: #1a0d12;
+  --primary: #5c9bf5;
+  --primary-foreground: #09152b;
   --secondary: #232932;
   --secondary-foreground: #e7eaef;
   --muted: #232932;
@@ -111,7 +108,7 @@
   --destructive: #ff6b6b;
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
-  --ring: #f0708f;
+  --ring: #5c9bf5;
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
@@ -119,12 +116,86 @@
   --chart-5: oklch(0.269 0 0);
   --sidebar: #171c23;
   --sidebar-foreground: #e7eaef;
-  --sidebar-primary: #f0708f;
-  --sidebar-primary-foreground: #1a0d12;
+  --sidebar-primary: #5c9bf5;
+  --sidebar-primary-foreground: #09152b;
   --sidebar-accent: #232932;
   --sidebar-accent-foreground: #e7eaef;
   --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: #f0708f;
+  --sidebar-ring: #5c9bf5;
+}
+
+/* PSCP Theme: signature PSCP Pink.
+   Light uses pink-600 (#db2777) so text/icons on the page background clear
+   contrast; dark uses pink-500 (#ec4899), which is the brand mid-tone and
+   reads correctly against the dark surface. --ring tracks --primary so focus
+   rings are pink rather than falling back to the global blue. */
+.pscp-theme {
+  --primary: #db2777;
+  --ring: #db2777;
+  --primary-foreground: oklch(0.985 0 0);
+}
+.dark .pscp-theme,
+.dark.pscp-theme {
+  --primary: #ec4899;
+  --ring: #ec4899;
+  --primary-foreground: #1a0d12;
+}
+
+/* Resource-library shelf ladder.
+   The gallery used to colour its six shelves with six unrelated hues (sky,
+   amber, rose, emerald, violet, slate), which fought both the brand and each
+   other. It now runs on one hue at six weights: the deepest for the primary
+   source material, the palest for supporting lookups.
+
+   Declared on a class rather than :root so each step is computed inside the
+   course wrapper — app/courses/[dir]/layout.tsx rebinds --primary per course,
+   and a :root declaration would have been substituted before that override
+   applied. Mixing against --background/--foreground rather than fixed hexes
+   means the ladder inverts by itself in dark mode. */
+.brand-shelf {
+  --shelf-1: color-mix(in oklab, var(--primary) 68%, var(--foreground));
+  --shelf-2: var(--primary);
+  --shelf-3: color-mix(in oklab, var(--primary) 76%, var(--background));
+  --shelf-4: color-mix(in oklab, var(--primary) 62%, var(--background));
+  --shelf-5: color-mix(in oklab, var(--primary) 50%, var(--background));
+  --shelf-6: color-mix(in oklab, var(--primary) 38%, var(--background));
+}
+
+/* A card picks its rung with .shelf-N; everything inside it then reads --shelf.
+   Written as real CSS rather than Tailwind arbitrary values because the class
+   names would otherwise be built by template literal at runtime, which the
+   scanner cannot see and so would never emit. */
+.shelf-1 { --shelf: var(--shelf-1); }
+.shelf-2 { --shelf: var(--shelf-2); }
+.shelf-3 { --shelf: var(--shelf-3); }
+.shelf-4 { --shelf: var(--shelf-4); }
+.shelf-5 { --shelf: var(--shelf-5); }
+.shelf-6 { --shelf: var(--shelf-6); }
+
+/* Spine, top edge, and the compact list's rule. */
+.shelf-accent {
+  background-color: var(--shelf);
+}
+
+/* The book cover's paper. */
+.shelf-wash {
+  background-image: linear-gradient(
+    to bottom right,
+    color-mix(in oklab, var(--shelf) 16%, transparent),
+    color-mix(in oklab, var(--shelf) 3%, transparent)
+  );
+}
+
+/* Category label and the modal's icon chip. Pair with text-primary — the pale
+   rungs are fill colours and fall below contrast if used for type. */
+.shelf-pill {
+  border-color: color-mix(in oklab, var(--shelf) 45%, transparent);
+  background-color: color-mix(in oklab, var(--shelf) 12%, transparent);
+}
+
+/* Oversized glyph watermarked on a book cover. */
+.shelf-glyph {
+  color: color-mix(in oklab, var(--shelf) 42%, transparent);
 }
 
 @layer base {

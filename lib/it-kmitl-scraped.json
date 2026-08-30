@@ -1,0 +1,273 @@
+{
+  "ITF": {
+    "code": "ITF",
+    "dir": "06016402-IT-Fundamentals",
+    "officialCode": "06016402",
+    "year": 1,
+    "term": 1,
+    "termId": "Y1-S1",
+    "nameTh": "พื้นฐานทางด้านเทคโนโลยีสารสนเทศ",
+    "credits": "3 (3-0-6)",
+    "descTh": "วิวัฒนาการของเทคโนโลยีสารสนเทศ องค์ประกอบของระบบคอมพิวเตอร์ ระบบประมวลผลข้อมูล ฮาร์ดแวร์และซอฟต์แวร์ภาพรวมการทำงานของระบบปฏิบัติการ ข้อมูลและการแทนค่าข้อมูล การจัดการข้อมูล แนวคิดพื้นฐานสำหรับการสร้างโปรแกรมเทคโนโลยีฐานข้อมูล การสื่อสารข้อมูล ระบบเครือข่ายคอมพิวเตอร์และอินเทอร์เน็ต ประเด็นทางด้านจริยธรรมและสังคมกับเทคโนโลยีสารสนเทศ",
+    "descEn": "Evolution of information technology, components of computer systems, data processing systems, hardware and software, overview of operating system, data and data representation, data management, basic concepts for programming, database technology, data communication, computer network systems and the Internet, ethical and social issues in information technology",
+    "prerequisites": "ไม่มีวิชาบังคับก่อน",
+    "instructors": [
+      {
+        "name": "ศ.ดร. กิติ์สุชาต พสุภา",
+        "role": "รองคณบดี"
+      },
+      {
+        "name": "ผศ.ดร. พรสุรีย์ แจ่มศรี",
+        "role": ""
+      },
+      {
+        "name": "ผศ.ดร. สุวิทย์ ภูมิฤทธิกุล",
+        "role": ""
+      }
+    ],
+    "programs": []
+  },
+  "ICS": {
+    "code": "ICS",
+    "dir": "06016411-Intro-to-Computer-Systems",
+    "officialCode": "06016411",
+    "year": 1,
+    "term": 1,
+    "termId": "Y1-S1",
+    "nameTh": "ระบบคอมพิวเตอร์เบื้องต้น",
+    "credits": "3 (3-0-6)",
+    "descTh": "ระบบจำนวนระบบฐานสองพีชคณิตบูลีนเทคนิคการออกแบบเชิงดิจิทัล ลอจิกเกตและการลดจำนวน วงจรเชิงผสมเบื้องต้นหน่วยคำนวณและตรรก วิวัฒนาการของคอมพิวเตอร์ องค์ประกอบของระบบคอมพิวเตอร์และการเชื่อมต่อระหว่างกัน วิธีการคำนวณทางคณิตศาสตร์ของเครื่องคอมพิวเตอร์",
+    "descEn": "Number systems, binary system, Boolean algebras, digital design techniques, logic gate and minimization, basic combinational circuits, arithmetic logic units, computer evolution, computer function and interconnection, computer arithmetic.",
+    "prerequisites": "ไม่มีวิชาบังคับก่อน",
+    "instructors": [
+      {
+        "name": "ศ.ดร. สุขสันต์ พาณิชพาพิบูล",
+        "role": ""
+      },
+      {
+        "name": "ผศ.ดร. สุภกิจ นุตยะสกุล",
+        "role": ""
+      }
+    ],
+    "programs": []
+  },
+  "MFIT": {
+    "code": "MFIT",
+    "dir": "06016401-Math-for-IT",
+    "officialCode": "06016401",
+    "year": 1,
+    "term": 1,
+    "termId": "Y1-S1",
+    "nameTh": "คณิตศาสตร์สำหรับเทคโนโลยีสารสนเทศ",
+    "credits": "3 (3-0-6)",
+    "descTh": "ลิมิตและความต่อเนื่องอนุพันธ์ของฟังก์ชันอนุพันธ์อันดับสูงการประยุกต์ของอนุพันธ์ปัญหาค่าสูงสุดและต่ำสุดของฟังก์ชัน การอินทิเกรตและเทคนิคของการอินทเกรต การประยุกต์ของการอินทิเกรตฟังก์ชันสองตัวแปร อนุพันธ์ย่อยพีชคณิตเชิงเส้น เมทริกซ์และดีเทอร์มิแนนท์ ระบบสมการเชิงเส้นและการหาผลเฉลยของระบบสมการเชิงเส้น เวกเตอร์สเปซ การแปลงเชิงเส้น การแปลงเมทริกซ์ เมทริกซ์เชิงตั้งฉาก",
+    "descEn": "Limit and continuity, derivative of functions, higher derivatives, applications of derivative, maxima and minima of functions, integration and techniques of integration, applications of integration, functions of two variables, partial derivatives, linear algebra, matrices and determinants, system of linear equations and its solutions, vector spaces, linear transformations, matrix transformation, orthogonal matrix.",
+    "prerequisites": "ไม่มีวิชาบังคับก่อน",
+    "instructors": [
+      {
+        "name": "ผศ.ดร. สมเกียรติ วังศิริพิทักษ์",
+        "role": ""
+      },
+      {
+        "name": "ผศ.ดร. ประพันธ์ ปวรางกูร",
+        "role": ""
+      }
+    ],
+    "programs": []
+  },
+  "PSCP": {
+    "code": "PSCP",
+    "dir": "06066303-Problem-Solving-and-Computer-Programming",
+    "officialCode": "06066303",
+    "year": 1,
+    "term": 1,
+    "termId": "Y1-S1",
+    "nameTh": "การแก้ปัญหาและการโปรแกรมคอมพิวเตอร์",
+    "credits": "3 (3-0-6)",
+    "descTh": "กลยุทธ์และหลักการแก้ปัญหา การคิดแบบขั้นตอนวิธี ผังงาน แนวคิดและเกริ่นนำการเขียนโปรแกรมคอมพิวเตอร์",
+    "descEn": "Problem solving strategies and concepts, algorithmic thinking, flowchart, concepts and introduction to computer programming.",
+    "prerequisites": "ไม่มีวิชาบังคับก่อน",
+    "instructors": [
+      {
+        "name": "รศ.ดร. โชติพัชร์ ภรณวลัย",
+        "role": ""
+      },
+      {
+        "name": "ผศ.ดร. สามารถ หมุดและ",
+        "role": ""
+      }
+    ],
+    "programs": []
+  },
+  "CHARM": {
+    "code": "CHARM",
+    "dir": "90641001-Charm-School",
+    "officialCode": "90641001",
+    "year": 1,
+    "term": 1,
+    "termId": "Y1-S1",
+    "nameTh": "โรงเรียนสร้างเสน่ห์",
+    "credits": "3 (3-0-6)",
+    "descTh": "เรียนรู้วิธีการสร้างเสน่ห์ให้ตนเองเพื่อการใช้ชีวิตและการทำงานในอนาคตอย่างมีความสุข ฝึกวิธีการวางตัว การสื่อสาร การมีมนุษยสัมพันธ์ การปรับบุคลิกภาพ และการมีจิตอาสา เพื่อสะท้อนคุณลักษณะความเป็นลูกพระจอมเกล้าลาดกระบัง",
+    "descEn": "Learn how to make yourself charming in order to live and work happily by practicing appropriate manners, communication and interpersonal skills, personalities, and voluntary spirits to reflect KMITL characteristics and identities.",
+    "prerequisites": "ไม่มีวิชาบังคับก่อน",
+    "instructors": [],
+    "programs": []
+  },
+  "FE": {
+    "code": "FE",
+    "dir": "90644007-Foundation-English",
+    "officialCode": "90644007",
+    "year": 1,
+    "term": 1,
+    "termId": "Y1-S1",
+    "nameTh": "ภาษาอังกฤษพื้นฐาน 1",
+    "credits": "3 (3-0-6)",
+    "descTh": "ฝึกการใช้ทักษะทั้งสี่ของภาษาอังกฤษ ได้แก่ การฟัง การพูด การอ่าน และการอ่านเขียน เพื่อใช้ในชีวิตประจำวันและเพื่อการศึกษาในระดับที่สูงขึ้น ผู้เรียนควรผ่านระดับ A2 หรือสูงกว่า ของกรอบอ้างอิงความสามารถทางภาษาของสภายุโรป (Common European Framework of Reference for Languages- CEFR)",
+    "descEn": "A practice of four skills in English: listening, speaking, reading, and writing, for daily use as well as for further studies. Students are expected to reach the A2 or a higher level of Common European Framework of Reference for Languages (CEFR).",
+    "prerequisites": "ไม่มีวิชาบังคับก่อน",
+    "instructors": [],
+    "programs": []
+  },
+  "SPORT": {
+    "code": "SPORT",
+    "dir": "90641003-Sports-and-Recreational-Activities",
+    "officialCode": "90641003",
+    "year": 1,
+    "term": 1,
+    "termId": "Y1-S1",
+    "nameTh": "กีฬาและนันทนาการ",
+    "credits": "3 (3-0-6)",
+    "descTh": "ศึกษากฎ กติกา วัฒนธรรม สังคมทางกีฬา ความมีน้ำใจนักกีฬา หลักการออกกำลังกายที่ถูกต้อง การฝึกทักษะกีฬา และกิจกรรมนันทนาการ",
+    "descEn": "Study sport rules, etiquette of playing, sportsmanship, principles of doing exercises. Practice sports, fitness, gaming and/or recreational activities.",
+    "prerequisites": "ไม่มีวิชาบังคับก่อน",
+    "instructors": [],
+    "programs": []
+  },
+  "BFIT": {
+    "code": "BFIT",
+    "dir": "06066101-Business-for-IT",
+    "officialCode": "06066101",
+    "year": 1,
+    "term": 2,
+    "termId": "Y1-S2",
+    "nameTh": "พื้นฐานทางธุรกิจสำหรับเทคโนโลยีสารสนเทศ",
+    "credits": "3 (3-0-6)",
+    "descTh": "สภาพแวดล้อมทางธุรกิจและระบบเศรษฐกิจ พื้นฐานของการบริหารการเงิน มูลค่าของเงินและต้นทุนของเงินทุน งบการเงิน การบริหารการผลิต การควบคุมสินค้าคงคลัง การตลาด พื้นฐานการจัดการ การจัดองค์กร การบริหารงานบุคคล จริยธรรมทางธุรกิจและความรับผิดชอบต่อสังคม",
+    "descEn": "Business environment and economic system, foundations of financial management, valuation and cost of capital, financial statement, production management, inventory control, marketing concept and management, management perspectives and processes, organization management, human resource management, business ethics and social responsibility.",
+    "prerequisites": "ไม่มีวิชาบังคับก่อน",
+    "instructors": [
+      {
+        "name": "ศ.ดร. อาริต ธรรมโน",
+        "role": ""
+      },
+      {
+        "name": "ผศ.ดร. พรสุรีย์ แจ่มศรี",
+        "role": ""
+      },
+      {
+        "name": "ผศ.ดร. โอฬาร วงศ์วิรัตน์",
+        "role": "รองคณบดี"
+      }
+    ],
+    "programs": []
+  },
+  "DSA": {
+    "code": "DSA",
+    "dir": "06066301-Data-Structures-and-Algorithms",
+    "officialCode": "06066301",
+    "year": 1,
+    "term": 2,
+    "termId": "Y1-S2",
+    "nameTh": "โครงสร้างข้อมูลและอัลกอริทึม",
+    "credits": "3 (3-0-6)",
+    "descTh": "ชนิดของข้อมูล โครงสร้างข้อมูลและชนิดข้อมูลแบบนามธรรม โครงสร้างข้อมูลพื้นฐาน เช่น ลิสท์ สแต็ก และคิว โครงสร้างข้อมูลแบบพลวัต คำศัพท์เฉพาะเกี่ยวกับทรี ไบนารีทรี ไบนารีเสิร์ชทรี เอวีแอลทรี กราฟ การวิเคราะห์โปรแกรมเชิงเวลาและพื้นที่ อัลกอริทึมการเรียงลำดับและการค้นหาข้อมูล อัลกอริทึมแบบละโมบ อัลกอริทึมแบบแบ่งเพื่อเอาชนะ อัลกอริทึมเกี่ยวกับกราฟ และการเขียนโปรแกรมพลวัต",
+    "descEn": "Data types, data structures and abstract data types, basic data structures e.g. list, stack, and queue, dynamic data structures, terminology of trees, binary trees, binary search trees, AVL trees, graph, time and space analysis of programs, sorting and searching algorithms, greedy algorithm, divide and conquer algorithm, graph algorithms, and dynamic programming.",
+    "prerequisites": "ไม่มีวิชาบังคับก่อน",
+    "instructors": [
+      {
+        "name": "ผศ.ดร. สุพัณณดา โชติพันธ์",
+        "role": "ผู้ช่วยคณบดี"
+      },
+      {
+        "name": "ดร. ภัทรภร วัฒนาชีพ",
+        "role": ""
+      }
+    ],
+    "programs": []
+  },
+  "OOP": {
+    "code": "OOP",
+    "dir": "06016408-Object-Oriented-Programming",
+    "officialCode": "06016408",
+    "year": 1,
+    "term": 2,
+    "termId": "Y1-S2",
+    "nameTh": "การสร้างโปรแกรมเชิงวัตถุ",
+    "credits": "3 (3-0-6)",
+    "descTh": "การออกแบบและพัฒนาโปรแกรมเชิงอ็อบเจกต์ หลักการห่อหุ้ม คลาสและอ็อบเจกต์ เมธอดและการส่งสาร การสืบทอดคุณลักษณะ ภาวะพหุสัณฐาน การพัฒนาส่วนต่อประสานกราฟิกกับผู้ใช้และการจัดการกับเหตุการณ์ อาร์เรย์และคอลเลคชัน การจัดการกับสิ่งผิดปกติ คลาสที่เกี่ยวข้องกับอินพุตและเอาต์พุต เธรด",
+    "descEn": "Object-oriented program design and development, encapsulation, classes and objects, methods and message passing, inheritance and polymorphism, graphical user interface development and event handling, data structures, arrays and collections, exception handling, input/output classes, threads.",
+    "prerequisites": "ไม่มีวิชาบังคับก่อน",
+    "instructors": [
+      {
+        "name": "ผศ.ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+        "role": ""
+      }
+    ],
+    "programs": []
+  },
+  "PSTAT": {
+    "code": "PSTAT",
+    "dir": "06066001-Probability-and-Statistics",
+    "officialCode": "06066001",
+    "year": 1,
+    "term": 2,
+    "termId": "Y1-S2",
+    "nameTh": "ความน่าจะเป็นและสถิติ",
+    "credits": "3 (3-0-6)",
+    "descTh": "ความน่าจะเป็นและตัวแปรสุ่ม การแจกแจงความน่าจะเป็นแบบไม่ต่อเนื่องและแบบต่อเนื่อง ฟังก์ชันของตัวแปรสุ่ม การแจกแจงของตัวอย่าง ช่วงความเชื่อมั่น การทดสอบสมมติฐาน การถดถอยอย่างง่ายและการถดถอยเชิงซ้อนในตัวแบบเชิงเส้น การวิเคราะห์สหสัมพันธ์",
+    "descEn": "Probability and random variables, discrete and continuous probability distributions, functions of random variables, sampling distribution, confidence intervals, hypothesis testing, simple and multiple linear regression, correlation analysis.",
+    "prerequisites": "ไม่มีวิชาบังคับก่อน",
+    "instructors": [
+      {
+        "name": "ศ.ดร. สุขสันต์ พาณิชพาพิบูล",
+        "role": ""
+      },
+      {
+        "name": "ผศ.ดร. สุวิทย์ ภูมิฤทธิกุล",
+        "role": ""
+      }
+    ],
+    "programs": []
+  },
+  "FE2": {
+    "code": "FE2",
+    "dir": "90644008-Foundation-English-II",
+    "officialCode": "90644008",
+    "year": 1,
+    "term": 2,
+    "termId": "Y1-S2",
+    "nameTh": "ภาษาอังกฤษพื้นฐาน 2",
+    "credits": "3 (3-0-6)",
+    "descTh": "ฝึกการใช้ทักษะทั้งสี่ของภาษาอังกฤษ ได้แก่ การฟัง การพูด การอ่าน และการอ่านเขียน ในบริบทและสถานการณ์ที่หลากหลายยิ่งขึ้น เพื่อใช้ในชีวิตประจำวันและเพื่อการศึกษาในระดับที่สูงขึ้น ผู้เรียนควรผ่านระดับ B1 หรือสูงกว่า ของกรอบอ้างอิงความสามารถทางภาษาของสภายุโรป (Common European Framework of Reference for Languages-CEFR)",
+    "descEn": "A practice of four skills in English: listening, speaking, reading, and writing, within a wider variety of contexts and situations, for daily use as well as for further studies. Students are expected to reach the B1 or a higher level of Common European Framework of Reference for Languages (CEFR).",
+    "prerequisites": "ไม่มีวิชาบังคับก่อน",
+    "instructors": [],
+    "programs": []
+  },
+  "DL": {
+    "code": "DL",
+    "dir": "90641002-Digital-Literacy",
+    "officialCode": "90641002",
+    "year": 1,
+    "term": 2,
+    "termId": "Y1-S2",
+    "nameTh": "ความฉลาดทางดิจิทัล",
+    "credits": "3 (3-0-6)",
+    "descTh": "ศึกษาทัศนคติและค่านิยมที่จำเป็นต่อการใช้ชีวิตในโลกออนไลน์ เรียนรู้ทักษะที่จำเป็นในการใช้สื่อและการเข้าสังคมในโลกออนไลน์ การรักษาอัตลักษณ์ที่ดีของตนเอง การคิดวิเคราะห์มีวิจารณญาณที่ดี การรักษาความปลอดภัยของตนเองในโลกไซเบอร์ การรักษาข้อมูลส่วนตัว การจัดสรรเวลาหน้าจอการบริหารจัดการข้อมูลที่ผู้ใช้งานมีการทิ้งไว้บนโลกออนไลน์ การรับมือกับการกลั่นแกล้งบนโลกไซเบอร์ การใช้เทคโนโลยีอย่างมีจริยธรรม เพื่อให้เท่าทันกับเทคโนโลยี และใช้ชีวิตในยุคดิจิทัลได้อย่างชาญฉลาด",
+    "descEn": "Study attitudes and values essential for living in digital world; develop substantial skills for socialization in digital world focusing on digital citizen identity, critical thinking, cybersecurity management, privacy management, screen time management, digital footprints, cyberbullying management, and digital empathy to live wisely in digital world.",
+    "prerequisites": "ไม่มีวิชาบังคับก่อน",
+    "instructors": [],
+    "programs": []
+  }
+}
