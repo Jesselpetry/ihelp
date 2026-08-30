@@ -5,7 +5,6 @@ import { useState } from "react";
 import { usePathname } from "next/navigation";
 import {
   Code2,
-  ExternalLink,
   Library,
   Menu,
   Tag,
@@ -13,6 +12,7 @@ import {
 } from "lucide-react";
 import { useLocale, t, type LText } from "@/lib/i18n";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { AccountMenu } from "@/components/account/account-menu";
 
 const NAV_LINKS: { href: string; label: LText; icon: typeof Library }[] = [
   {
@@ -90,15 +90,7 @@ export function Navbar() {
             ))}
           </div>
           <ThemeToggle />
-          <a
-            href="https://ijudge.it.kmitl.ac.th"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary transition-colors"
-          >
-            iJudge
-            <ExternalLink className="size-3.5" />
-          </a>
+          <AccountMenu />
         </div>
 
         {/* Mobile controls & hamburger button */}
@@ -144,7 +136,11 @@ export function Navbar() {
 
           <hr className="border-border" />
 
-          <div className="flex items-center justify-between pt-1">
+          <div className="flex justify-start pt-1">
+            <AccountMenu onNavigate={() => setIsOpen(false)} />
+          </div>
+
+          <div className="flex items-center pt-1">
             <div className="flex items-center gap-2">
               <span className="text-xs text-muted-foreground font-medium">
                 {locale === "th" ? "ภาษา" : "Language"}
@@ -166,16 +162,6 @@ export function Navbar() {
                 ))}
               </div>
             </div>
-
-            <a
-              href="https://ijudge.it.kmitl.ac.th"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
-            >
-              iJudge
-              <ExternalLink className="size-4" />
-            </a>
           </div>
         </div>
       )}
