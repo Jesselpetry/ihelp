@@ -22,6 +22,7 @@ import {
   INSTAGRAM_URL,
 } from "@/components/social-icons";
 import { useLocale, t, type LText } from "@/lib/i18n";
+import { DISCLAIMER_ACCEPTED_EVENT } from "@/components/welcome-choice-modal";
 
 const ACK_KEY = "ihelp-welcome-ack-v2";
 
@@ -87,6 +88,9 @@ export function DisclaimerModal() {
       } catch {}
     }
     setOpen(false);
+    // Hand off to WelcomeChoiceModal, which queues behind this one so the two
+    // never stack.
+    window.dispatchEvent(new Event(DISCLAIMER_ACCEPTED_EVENT));
   }
 
   return (

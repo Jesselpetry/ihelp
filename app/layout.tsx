@@ -7,6 +7,7 @@ import { LocaleProvider } from "@/lib/i18n";
 import { ThemeProvider, THEME_SCRIPT } from "@/lib/theme";
 import { Footer } from "@/components/footer";
 import { DisclaimerModal } from "@/components/disclaimer-modal";
+import { WelcomeChoiceModal } from "@/components/welcome-choice-modal";
 import { Splash } from "@/components/splash";
 import "./globals.css";
 
@@ -122,6 +123,7 @@ export default function RootLayout({
           <LocaleProvider>
             <Splash />
             <DisclaimerModal />
+            <WelcomeChoiceModal />
             {children}
             <Footer />
           </LocaleProvider>

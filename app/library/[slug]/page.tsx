@@ -5,8 +5,12 @@ import { LibraryReader } from "@/components/library-reader";
 import { loadLibraryDoc } from "@/lib/library";
 
 import { loadLibrary } from "@/lib/library";
+import { LIBRARY_COMING_SOON } from "@/lib/flags";
 
 export async function generateStaticParams() {
+  // Behind the cover there is nothing to prerender, and leaving these routes
+  // reachable would make /library's placeholder trivial to walk around.
+  if (LIBRARY_COMING_SOON) return [];
   return loadLibrary().map((doc) => ({ slug: doc.slug }));
 }
 
@@ -25,6 +29,8 @@ export default async function LibraryDocPage({
 }: {
   params: Promise<{ slug: string }>;
 }) {
+  if (LIBRARY_COMING_SOON) notFound();
+
   const { slug } = await params;
   const doc = loadLibraryDoc(slug);
   if (!doc) notFound();

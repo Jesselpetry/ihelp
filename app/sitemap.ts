@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { loadRecommendedProblems } from "@/lib/recommended";
 import { loadLibrary } from "@/lib/library";
+import { LIBRARY_COMING_SOON } from "@/lib/flags";
 import { COURSES, courseDir } from "@/lib/catalog";
 import { resolveCourseSpine } from "@/lib/course-spine";
 import type { ModuleId } from "@/lib/spine";
@@ -84,13 +85,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   }
 
-  for (const doc of loadLibrary()) {
-    entries.push({
-      url: `${SITE_URL}/library/${doc.slug}`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.5,
-    });
+  // Skipped behind the cover: these routes 404 while the flag is set, and a
+  // sitemap full of 404s is worse than an absent entry.
+  if (!LIBRARY_COMING_SOON) {
+    for (const doc of loadLibrary()) {
+      entries.push({
+        url: `${SITE_URL}/library/${doc.slug}`,
+        lastModified: now,
+        changeFrequency: "monthly",
+        priority: 0.5,
+      });
+    }
   }
 
   return entries;
