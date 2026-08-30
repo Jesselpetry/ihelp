@@ -35,12 +35,83 @@ export interface VersionEntry {
 // Mirrors CHANGELOG.md at the repo root — keep both in sync when releasing.
 export const CHANGELOG: VersionEntry[] = [
   {
-    version: "Unreleased",
-    date: null,
-    commit: "6cac82c",
+    version: "0.6.0",
+    date: "2026-08-30",
     contributors: [{ name: "Chatan Petry", github: "Jesselpetry" }],
     changes: [
-      // ── Added ──────────────────────────────────────────────────────────
+      // ── Added: community learning hub ──────────────────────────────────
+      {
+        kind: "added",
+        text: {
+          th: "บัญชีผู้ใช้และการยืนยันตัวตน: เข้าสู่ระบบด้วย Google บัญชี @kmitl.ac.th ตรวจรหัสนักศึกษา 8 หลักและรหัสคณะ เปิดให้เฉพาะนักศึกษาคณะ IT",
+          en: "Accounts and verification: Google sign-in restricted to @kmitl.ac.th, checking the 8-digit student id and the faculty code so only IT students get in",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "โปรไฟล์สาธารณะ /profile/[รหัสนักศึกษา]: ชื่อเล่น สาขา ลิงก์โซเชียล และรายการทรัพยากรที่แชร์เข้าคลังทั้งหมด",
+          en: "Public profiles at /profile/[student id]: nickname, major, social links, and everything that student has shared",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "รูปโปรไฟล์: อัปโหลดเองพร้อมเครื่องมือครอบรูปและบีบอัดในเบราว์เซอร์ หรือใช้รูปจากบัญชี Google เป็นค่าเริ่มต้น",
+          en: "Profile pictures: upload with an in-browser cropper and compressor, or fall back to the Google account photo",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "แชร์เข้าคลัง /upload: อัปโหลดสไลด์ สรุป หรือโน้ต ระบุวิชา ประเภท และช่วงสอบ พร้อมให้เครดิตผู้แชร์",
+          en: "Community uploads at /upload: share slides, summaries, or notes tagged by subject, type, and exam scope, credited to the uploader",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "คลังข้อสอบเก่า /exams: จำกัดสิทธิ์เฉพาะบทบาท insider/admin ไฟล์อยู่ในที่เก็บแบบปิด เข้าถึงผ่านลิงก์ที่หมดอายุใน 10 นาที",
+          en: "Past-exam archive at /exams: insider/admin only, served from a private bucket through links that expire in 10 minutes",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "ตัวนับผู้เข้าชมที่ footer: วันนี้ / 7 วัน / ทั้งหมด นับตามวันเวลาไทย ไม่เก็บ IP และไม่ใช้คุกกี้ติดตาม",
+          en: "Footer visitor counter: today / 7 days / all time on Bangkok days, storing no IP and no tracking cookie",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "ไดอะล็อกต้อนรับแบบเลือกปลายทาง ถามผู้ใช้ใหม่ว่าอยากเริ่มที่ห้องแลป PSCP หรือคลังทรัพยากร",
+          en: "A welcome dialog that asks new visitors whether to start in the PSCP lab or the resource library",
+        },
+      },
+      // ── Changed: this release ──────────────────────────────────────────
+      {
+        kind: "changed",
+        text: {
+          th: "แท็บช่วงสอบในหน้ารายวิชาเป็นดรอปดาวน์บนมือถือ ปุ่มสามตัวพร้อมไอคอนและตัวเลขล้นแถวเดียวบนจอ 360px จนข้อความถูกตัด",
+          en: "The exam-scope tabs on subject pages become a dropdown on mobile: three buttons with icons and counts overflowed a 360px row and truncated",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "แถบนำทางแสดงรูปโปรไฟล์พร้อมชื่อเล่น และนำลิงก์ iJudge ออก (ยังอยู่ที่ footer)",
+          en: "The navbar shows your picture and nickname, and the iJudge link moved out of it (still in the footer)",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "คลังทรัพยากรขึ้นหน้า \"เร็วๆ นี้\" ชั่วคราวระหว่างจัดหมวดหมู่เอกสาร",
+          en: "The resource library sits behind a \"coming soon\" cover while its documents are being sorted",
+        },
+      },
+      // ── Added: earlier in this release ─────────────────────────────────
       {
         kind: "added",
         text: {
