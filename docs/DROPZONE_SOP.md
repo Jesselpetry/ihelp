@@ -575,9 +575,17 @@ mkdir -p public/assets/<ns>/<subj>/<cat>        # 3. route
 mv small.pdf "public/assets/<ns>/<subj>/<cat>/f.pdf"
 npm run library:build                   # 4. manifests
 #    edit lib/subject-library.ts for scoped entries
-npx tsc --noEmit && npm run build       # 5. verify
-find _dropzone -type f ! -name '.gitkeep' ! -name 'README.md'   # 6. must be empty
+npm run assets:sync                     # 5. upload to Supabase Storage
+npx tsc --noEmit && npm run build       # 6. verify
+find _dropzone -type f ! -name '.gitkeep' ! -name 'README.md'   # 7. must be empty
 ```
+
+> `public/assets/` is **gitignored**. The files are served from the public
+> `ihelp-library` Supabase Storage bucket, not from the repo — committing ~908 MB
+> of PDFs pushed the git pack to 881 MB and ran the Vercel build container out of
+> disk. A file that is routed but not synced will 404 in production even though it
+> works locally, so step 5 is not optional. `npm run assets:sync` only uploads what
+> the bucket is missing, so re-running it is cheap.
 
 | Never | Because |
 | --- | --- |
@@ -589,3 +597,4 @@ find _dropzone -type f ! -name '.gitkeep' ! -name 'README.md'   # 6. must be emp
 | trust page count alone after compressing | it passes while every embedded image is dropped — render and compare |
 | move a file with someone else's student ID | hard stop |
 | commit unprompted | the human reviews first |
+| expect a routed file to appear in production without `npm run assets:sync` | `public/assets/` is gitignored; the bucket is the source of truth |

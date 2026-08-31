@@ -16,7 +16,8 @@
     "prebuild": "npm run content:check",
     "db:generate": "drizzle-kit generate",
     "db:push": "drizzle-kit push",
-    "db:studio": "drizzle-kit studio"
+    "db:studio": "drizzle-kit studio",
+    "assets:sync": "tsx scripts/sync-library-assets.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.5",

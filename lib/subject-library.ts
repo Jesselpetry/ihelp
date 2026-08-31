@@ -1,4 +1,5 @@
 import type { LText } from "@/lib/i18n";
+import { assetUrl } from "@/lib/asset-url";
 import LIBRARY_STATS from "@/lib/library-stats.json";
 import LIBRARY_MANIFEST from "@/lib/library-manifest.json";
 
@@ -2593,8 +2594,17 @@ export function coursesWithAssets(): Set<string> {
   return new Set([...Object.keys(SUBJECT_ASSETS), ...Object.keys(GENERATED_ASSETS)]);
 }
 
-/** A course's library assets with page counts and file sizes filled in. */
+/**
+ * A course's library assets with page counts and file sizes filled in, and
+ * `url` rewritten to Supabase Storage.
+ *
+ * Order matters: withAssetStats() keys off the original "/assets/…" path, so
+ * the rewrite has to come last. Everything downstream — the gallery, the
+ * preview modal, the download link — just uses `url` and never learns where
+ * the bytes live.
+ */
 export function assetsForCourse(code: string): SubjectAsset[] | undefined {
   const assets = mergedAssets(code);
-  return assets.length ? withAssetStats(assets) : undefined;
+  if (!assets.length) return undefined;
+  return withAssetStats(assets).map((asset) => ({ ...asset, url: assetUrl(asset.url) }));
 }

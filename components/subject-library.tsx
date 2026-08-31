@@ -42,6 +42,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLocale, t, type LText } from "@/lib/i18n";
+import { assetDownloadUrl } from "@/lib/asset-url";
 import {
   ASSET_GROUPS,
   SCOPE_HEADING,
@@ -543,7 +544,7 @@ function PreviewModal({
 
           {asset.fileType !== "md" && (
             <a
-              href={asset.url}
+              href={assetDownloadUrl(asset.url, asset.fileName)}
               download={asset.fileName}
               aria-label={`${t(L.download, locale)}: ${asset.fileName}`}
               className="inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-1.5 text-xs font-semibold text-primary-foreground transition-opacity hover:opacity-90"
@@ -1070,7 +1071,7 @@ function CardActions({
         {t(L.preview, locale)}
       </button>
       <a
-        href={asset.url}
+        href={assetDownloadUrl(asset.url, asset.fileName)}
         download={asset.fileName}
         aria-label={`${t(L.download, locale)}: ${asset.fileName}`}
         className="inline-flex items-center justify-center rounded-full border px-2.5 py-1.5 text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary"
@@ -1140,7 +1141,7 @@ function CompactRow({
         </Link>
       ) : (
         <a
-          href={asset.url}
+          href={assetDownloadUrl(asset.url, asset.fileName)}
           download={asset.fileName}
           aria-label={`${t(L.download, locale)}: ${asset.fileName}`}
           className="shrink-0 rounded-full p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-primary"
