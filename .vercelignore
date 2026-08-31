@@ -1,0 +1,4 @@
+# Never ship the git directory to the build container. The repo's history still
+# carries the ~880 MB of library PDFs that used to live in public/assets, and
+# a stray file trace that picks it up blows the container's disk (ENOSPC).
+.git

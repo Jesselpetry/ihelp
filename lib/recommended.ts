@@ -5,16 +5,30 @@ import { loadProblems, type MasterProblem } from "@/lib/master";
 
 // Locate recommended directory
 export function getRecommendedDir(): string {
-  if (process.env.RECOMMENDED_PATH && fs.existsSync(process.env.RECOMMENDED_PATH)) {
-    return process.env.RECOMMENDED_PATH;
+  // Dev-only override. Gated on NODE_ENV so production resolves to the single
+  // static path below: an fs call on a value the bundler cannot resolve makes
+  // Turbopack's file tracer give up and pull the whole project — .git included —
+  // into the function bundle, which is what blew the Vercel build container's
+  // disk (ENOSPC).
+  if (process.env.NODE_ENV !== "production") {
+    if (process.env.RECOMMENDED_PATH && fs.existsSync(process.env.RECOMMENDED_PATH)) {
+      return process.env.RECOMMENDED_PATH;
+    }
   }
   const bundled = path.join(ROOT, "data", "recommended");
   if (fs.existsSync(bundled)) {
     return bundled;
   }
-  const sibling = path.join(ROOT, "..", "pscp-69070027", "recommended");
-  if (fs.existsSync(sibling)) {
-    return sibling;
+  // Dev-only fallback to the sibling course repo. Gated on NODE_ENV so the
+  // branch is dead-code-eliminated in a production build: a traced path that
+  // escapes the project root (ROOT/..) makes Turbopack give up and pull the
+  // whole project — .git included — into the function bundle, which is what
+  // blew the Vercel build container's disk.
+  if (process.env.NODE_ENV !== "production") {
+    const sibling = path.join(ROOT, "..", "pscp-69070027", "recommended");
+    if (fs.existsSync(sibling)) {
+      return sibling;
+    }
   }
   return bundled;
 }

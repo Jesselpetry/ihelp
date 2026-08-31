@@ -4,9 +4,12 @@ import path from "path";
 export const ROOT = process.cwd();
 const DATA_DIR = path.join(ROOT, "data");
 
-// Master problem list exported from iJudge. Override with OJ_PROBLEMS_PATH.
+// Master problem list exported from iJudge. OJ_PROBLEMS_PATH overrides it in
+// development only — see lib/it-kmitl.ts for why the gate exists.
 export const OJ_PROBLEMS_FILE =
-  process.env.OJ_PROBLEMS_PATH ?? path.join(DATA_DIR, "oj_problems.json");
+  process.env.NODE_ENV !== "production" && process.env.OJ_PROBLEMS_PATH
+    ? process.env.OJ_PROBLEMS_PATH
+    : path.join(DATA_DIR, "oj_problems.json");
 
 const TEMPLATES_DIR = path.join(DATA_DIR, "templates");
 

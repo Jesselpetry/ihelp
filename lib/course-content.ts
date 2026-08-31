@@ -32,9 +32,12 @@ export function getCourseScrapedInfo(codeOrDir: string): ScrapedCourseInfo | nul
 }
 
 // Course-overview documents ported from iLearn's content/summaries tree.
-// Override the folder with COURSE_CONTENT_PATH, same pattern as OJ_PROBLEMS_PATH.
+// COURSE_CONTENT_PATH overrides the folder in development only — see
+// lib/it-kmitl.ts for why the gate exists.
 const COURSES_DIR =
-  process.env.COURSE_CONTENT_PATH ?? path.join(ROOT, "content", "courses");
+  process.env.NODE_ENV !== "production" && process.env.COURSE_CONTENT_PATH
+    ? process.env.COURSE_CONTENT_PATH
+    : path.join(ROOT, "content", "courses");
 
 function overviewPath(dir: string): string {
   return path.join(COURSES_DIR, dir, "summary.md");

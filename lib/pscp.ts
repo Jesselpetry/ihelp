@@ -7,8 +7,11 @@ import type { TestCase } from "@/lib/grader-types";
 // Registry built by `scripts/build_pscp_registry.py` from the course archive
 // (oj_problems.json + all_problems_detail.json + oj*/main.py). Override the
 // location with PSCP_REGISTRY_PATH when running against a different export.
+// Development only — see lib/it-kmitl.ts for why the gate exists.
 const REGISTRY_FILE =
-  process.env.PSCP_REGISTRY_PATH ?? path.join(ROOT, "data", "pscp", "problems.json");
+  process.env.NODE_ENV !== "production" && process.env.PSCP_REGISTRY_PATH
+    ? process.env.PSCP_REGISTRY_PATH
+    : path.join(ROOT, "data", "pscp", "problems.json");
 
 export interface PscpStatement {
   description: string;

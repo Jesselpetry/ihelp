@@ -3,9 +3,12 @@ import path from "path";
 import { ROOT } from "@/lib/paths";
 
 // Bundled AI-Guidelines-PSCP docs, rendered as a book on /library.
-// Override the folder with AI_GUIDELINES_PATH (same pattern as OJ_PROBLEMS_PATH).
+// AI_GUIDELINES_PATH overrides the folder in development only — see
+// lib/it-kmitl.ts for why the gate exists.
 const GUIDELINES_DIR =
-  process.env.AI_GUIDELINES_PATH ?? path.join(ROOT, "data", "ai-guidelines");
+  process.env.NODE_ENV !== "production" && process.env.AI_GUIDELINES_PATH
+    ? process.env.AI_GUIDELINES_PATH
+    : path.join(ROOT, "data", "ai-guidelines");
 
 export interface LibrarySection {
   dir: string; // "" = repo root

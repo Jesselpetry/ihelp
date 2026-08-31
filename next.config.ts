@@ -5,6 +5,25 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: path.join(__dirname),
   },
+  // Belt-and-braces against the file trace pulling in things a server bundle
+  // never needs. The trace itself is kept honest by not reading outside the
+  // project root (see getRecommendedDir), but a single stray fs call is enough
+  // to drag .git — the biggest thing on disk — into the output and run the
+  // build container out of space.
+  outputFileTracingExcludes: {
+    "*": [
+      ".git/**",
+      ".next/cache/**",
+      // Nothing on the server reads public/ through fs — Vercel serves it as
+      // static output — but the whole-project trace sweeps it in anyway, which
+      // put ~920 MB into every route's bundle while the PDFs were still there.
+      "public/**",
+      "node_modules/@next/swc-*/**",
+      "node_modules/@esbuild/**",
+      "node_modules/esbuild/**",
+      "node_modules/typescript/**",
+    ],
+  },
   async redirects() {
     return [
       // Modules that moved when the eleven-module spine replaced the ad-hoc

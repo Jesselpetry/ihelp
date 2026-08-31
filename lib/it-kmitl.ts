@@ -2,11 +2,25 @@ import fs from "fs";
 import path from "path";
 import { ROOT } from "@/lib/paths";
 
+/**
+ * Why every path override below is gated on NODE_ENV:
+ *
+ * An fs call on a value the bundler cannot resolve statically makes Turbopack's
+ * file tracer give up and pull the whole project — .git included — into the
+ * function bundle. That put a 1 GB output on the Vercel build container and ran
+ * it out of disk (ENOSPC). Gating the overrides lets them be dead-code
+ * eliminated in a production build, leaving one static path the tracer can
+ * follow. The overrides still work in dev, which is the only place they are used.
+ */
+
 // IT-KMITL study material. Subjects: ICS / Digital Logic, MFIT (linear algebra).
 // Same bundled-then-override pattern as lib/en-kmitl.ts.
 export function getIcsDir(): string {
-  if (process.env.ICS_PATH && fs.existsSync(process.env.ICS_PATH)) {
-    return process.env.ICS_PATH;
+  // Dev-only override — see the note at the top of this file.
+  if (process.env.NODE_ENV !== "production") {
+    if (process.env.ICS_PATH && fs.existsSync(process.env.ICS_PATH)) {
+      return process.env.ICS_PATH;
+    }
   }
   return path.join(ROOT, "data", "it-kmitl", "ics");
 }
@@ -32,8 +46,11 @@ export function loadIcs(): IcsData {
 
 // ── MFIT (06016401 Mathematics for Information Technology) ────────────────────
 export function getMfitDir(): string {
-  if (process.env.MFIT_PATH && fs.existsSync(process.env.MFIT_PATH)) {
-    return process.env.MFIT_PATH;
+  // Dev-only override — see the note at the top of this file.
+  if (process.env.NODE_ENV !== "production") {
+    if (process.env.MFIT_PATH && fs.existsSync(process.env.MFIT_PATH)) {
+      return process.env.MFIT_PATH;
+    }
   }
   return path.join(ROOT, "data", "it-kmitl", "mfit");
 }
@@ -63,8 +80,11 @@ export function loadMfit(): MfitData {
 // ── ITF (06016402 Information Technology Fundamentals) ────────────────────────
 // Study guide and lecture bank ported from the iLearn project.
 export function getItfDir(): string {
-  if (process.env.ITF_PATH && fs.existsSync(process.env.ITF_PATH)) {
-    return process.env.ITF_PATH;
+  // Dev-only override — see the note at the top of this file.
+  if (process.env.NODE_ENV !== "production") {
+    if (process.env.ITF_PATH && fs.existsSync(process.env.ITF_PATH)) {
+      return process.env.ITF_PATH;
+    }
   }
   return path.join(ROOT, "data", "it-kmitl", "itf");
 }
