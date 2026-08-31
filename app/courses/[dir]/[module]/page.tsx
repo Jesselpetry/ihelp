@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import { Navbar } from "@/components/navbar";
 import { ModuleReader, type ReaderDoc } from "@/components/module-reader";
 import { SubjectQuizGate } from "@/components/subject-quiz-gate";
-import { SubjectLibrary } from "@/components/subject-library";
 import { ComProLabHub } from "@/components/compro-lab-hub";
 import { ModuleShell } from "@/components/module-shell";
 import { COURSES, courseDir, resolveCourse, type CatalogCourse } from "@/lib/catalog";
@@ -17,9 +16,8 @@ import {
   type ResolvedModule,
 } from "@/lib/spine";
 import { getCourseChapters } from "@/lib/course-chapters";
-import { assetsForCourse } from "@/lib/subject-library";
-import { ComingSoonOverlay } from "@/components/coming-soon-overlay";
-import { RESOURCE_LIBRARY_COMING_SOON } from "@/lib/flags";
+import { mergedAssets } from "@/lib/subject-library";
+import { SubjectLibraryGate } from "@/components/subject-library-gate";
 import { t, type LText } from "@/lib/ltext";
 
 /**
@@ -110,12 +108,10 @@ export async function generateMetadata({
     title: `${title} ${course.code} — ${course.nameTh}`,
     description: `${title} รายวิชา ${course.code} ${course.nameTh} (${course.nameEn}) IT KMITL — ${t(mod.subtitle, "th")}`,
     alternates: { canonical: `/courses/${cDir}/${segment}` },
-    // Behind the cover there is nothing worth indexing, and indexing it would
-    // leave the placeholder in search results after the library opens. Matches
-    // what /library already does while LIBRARY_COMING_SOON is set.
-    ...(spec.id === "archive" && RESOURCE_LIBRARY_COMING_SOON
-      ? { robots: { index: false, follow: true } }
-      : {}),
+    // The library is behind a sign-in, so the page holds nothing a crawler
+    // could index — and listing it would only advertise material the courses
+    // asked not to have published.
+    ...(spec.id === "archive" ? { robots: { index: false, follow: true } } : {}),
   };
 }
 
@@ -134,29 +130,24 @@ export default async function CourseModulePage({
 
   // ── archive ───────────────────────────────────────────────────────────────
   if (spec.id === "archive") {
-    const assets = assetsForCourse(course.code);
-    if (!assets || assets.length === 0) notFound();
-    const gallery = (
-      <SubjectLibrary
-        assets={assets}
-        courseCode={course.code}
-        backHref={backHref}
-        backLabel={backLabel}
-        title={{
-          th: `คลังทรัพยากร · ${course.code}`,
-          en: `Resource Library · ${course.code}`,
-        }}
-        subtitle={mod.subtitle}
-      />
-    );
+    // Existence only — the assets themselves are never rendered here. The
+    // library is for signed-in KMITL IT students, and this page is statically
+    // prerendered, so the list is fetched from /api/library/assets behind that
+    // check instead of being baked into HTML anyone can read.
+    if (mergedAssets(course.code).length === 0) notFound();
     return (
       <>
         <Navbar />
-        {RESOURCE_LIBRARY_COMING_SOON ? (
-          <ComingSoonOverlay backHref={backHref}>{gallery}</ComingSoonOverlay>
-        ) : (
-          gallery
-        )}
+        <SubjectLibraryGate
+          courseCode={course.code}
+          backHref={backHref}
+          backLabel={backLabel}
+          title={{
+            th: `คลังเรียนรู้ · ${course.code}`,
+            en: `Learning Library · ${course.code}`,
+          }}
+          subtitle={mod.subtitle}
+        />
       </>
     );
   }

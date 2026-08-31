@@ -18,19 +18,3 @@
  */
 export const LIBRARY_COMING_SOON =
   process.env.NEXT_PUBLIC_LIBRARY_COMING_SOON !== "0";
-
-/**
- * Covers the per-course resource library — the asset gallery on
- * /courses/[dir]/archive — with a "coming soon" overlay.
- *
- * Same default-ON convention as LIBRARY_COMING_SOON above: a build with no
- * configuration keeps the gallery covered, and developers opt out with
- * `NEXT_PUBLIC_RESOURCE_LIBRARY_COMING_SOON=0` in their gitignored .env.local.
- *
- * This is a presentation-level cover, not access control. The overlay dims and
- * disables the gallery, but the asset list is still in the page payload and the
- * Storage URLs it points at are public. Anything that must not be readable yet
- * has to be withheld server-side or moved to a private bucket instead.
- */
-export const RESOURCE_LIBRARY_COMING_SOON =
-  process.env.NEXT_PUBLIC_RESOURCE_LIBRARY_COMING_SOON !== "0";
