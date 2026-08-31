@@ -23,10 +23,18 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { storageKey } from "../lib/storage-key";
+import { coursesWithAssets, mergedAssets } from "../lib/subject-library";
+import { isRestrictedAsset } from "../lib/subject-library-ui";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const ASSETS_DIR = path.join(ROOT, "public", "assets");
 const BUCKET = "ihelp-library";
+/**
+ * Past exams are insider-only, so they go to a private bucket instead. Keeping
+ * the same object key in both means reclassifying a file is a move, not a
+ * rename. See lib/library-exams.ts for the read side.
+ */
+const RESTRICTED_BUCKET = "ihelp-library-exams";
 const CONCURRENCY = 8;
 // Assets are immutable in practice — a revised handout arrives under a new
 // name — so let the CDN hold them for a year instead of Storage's 1h default.
@@ -79,7 +87,7 @@ function walk(dir: string): string[] {
 }
 
 /** Every object key already in the bucket, so a re-run only sends what is new. */
-async function existingKeys(): Promise<Set<string>> {
+async function existingKeys(bucket: string): Promise<Set<string>> {
   const keys = new Set<string>();
   const seen = new Set<string>();
   const queue = [""];
@@ -89,7 +97,7 @@ async function existingKeys(): Promise<Set<string>> {
     seen.add(prefix);
     let offset = 0;
     for (;;) {
-      const res = await fetch(`${SUPABASE_URL}/storage/v1/object/list/${BUCKET}`, {
+      const res = await fetch(`${SUPABASE_URL}/storage/v1/object/list/${bucket}`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${SERVICE_KEY}`,
@@ -119,9 +127,9 @@ async function existingKeys(): Promise<Set<string>> {
   return keys;
 }
 
-async function upload(file: string, key: string): Promise<number> {
+async function upload(file: string, key: string, bucket: string): Promise<number> {
   const body = fs.readFileSync(file);
-  const res = await fetch(`${SUPABASE_URL}/storage/v1/object/${BUCKET}/${key}`, {
+  const res = await fetch(`${SUPABASE_URL}/storage/v1/object/${bucket}/${key}`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${SERVICE_KEY}`,
@@ -139,20 +147,43 @@ async function upload(file: string, key: string): Promise<number> {
 // Wrapped rather than left at top level: tsx transforms this file to CJS,
 // where a top-level await throws ERR_REQUIRE_ASYNC_MODULE.
 async function main() {
+  // Which keys are past exams, decided by the library data rather than by path:
+  // ten scanned exam pages live outside any exams/ folder, and uploading those
+  // to the public bucket would publish them. Files on disk that the manifest
+  // does not know about fall back to isRestrictedAsset's path check.
+  const restricted = new Set<string>();
+  for (const code of coursesWithAssets()) {
+    for (const asset of mergedAssets(code)) {
+      if (isRestrictedAsset(asset)) restricted.add(storageKey(asset.url.split("#")[0]));
+    }
+  }
+
   const files = walk(ASSETS_DIR);
-  const have = force ? new Set<string>() : await existingKeys();
+  const have = force
+    ? new Set<string>()
+    : new Set([
+        ...(await existingKeys(BUCKET)),
+        ...[...(await existingKeys(RESTRICTED_BUCKET))].map((k) => `${RESTRICTED_BUCKET}/${k}`),
+      ]);
+
   const todo = files
-    .map((file) => ({
-      file,
-      key: storageKey(path.relative(ASSETS_DIR, file).split(path.sep).join("/")),
-    }))
-    .filter(({ key }) => !have.has(key));
+    .map((file) => {
+      const rel = path.relative(ASSETS_DIR, file).split(path.sep).join("/");
+      const key = storageKey(rel);
+      const isRestricted =
+        restricted.has(key) || isRestrictedAsset({ url: `/assets/${rel}` });
+      const bucket = isRestricted ? RESTRICTED_BUCKET : BUCKET;
+      return { file, key, bucket, seen: isRestricted ? `${RESTRICTED_BUCKET}/${key}` : key };
+    })
+    .filter(({ seen }) => !have.has(seen));
 
   const totalBytes = todo.reduce((sum, { file }) => sum + fs.statSync(file).size, 0);
   const totalJobs = todo.length;
+  const restrictedJobs = todo.filter((j) => j.bucket === RESTRICTED_BUCKET).length;
   console.log(
-    `${files.length} files on disk, ${have.size} already in ${BUCKET}, ` +
-      `${totalJobs} to upload (${(totalBytes / 1048576).toFixed(1)} MB)`,
+    `${files.length} files on disk, ${have.size} already uploaded, ` +
+      `${totalJobs} to upload (${(totalBytes / 1048576).toFixed(1)} MB) — ` +
+      `${restrictedJobs} of them past exams into ${RESTRICTED_BUCKET}`,
   );
 
   let done = 0;
@@ -165,7 +196,7 @@ async function main() {
       const job = todo.pop();
       if (!job) return;
       try {
-        const bytes = await upload(job.file, job.key);
+        const bytes = await upload(job.file, job.key, job.bucket);
         // Read-modify-write in one tick. `sent += await …` would re-read a stale
         // `sent` after the await and clobber whatever the other workers added.
         sent += bytes;

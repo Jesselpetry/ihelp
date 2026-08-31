@@ -43,6 +43,9 @@ import {
 import { Button } from "@/components/ui/button";
 import { useLocale, t, type LText } from "@/lib/i18n";
 import { assetDownloadUrl } from "@/lib/asset-url";
+// Imported from subject-library-ui, not subject-library: the latter pulls in
+// library-manifest.json and library-stats.json at module scope, which would
+// ship every asset's title and filename — past exams included — to the browser.
 import {
   ASSET_GROUPS,
   SCOPE_HEADING,
@@ -54,7 +57,7 @@ import {
   type AssetFileType,
   type AssetScope,
   type SubjectAsset,
-} from "@/lib/subject-library";
+} from "@/lib/subject-library-ui";
 
 interface SubjectLibraryProps {
   assets: SubjectAsset[];
@@ -1203,7 +1206,7 @@ function CompactStackRow({
 // ── Main component ───────────────────────────────────────────────────────────
 
 export function SubjectLibrary({
-  assets,
+  assets: publicAssets,
   backHref,
   backLabel,
   title,
@@ -1219,6 +1222,29 @@ export function SubjectLibrary({
   const [layout, setLayout] = useState<LayoutMode>("gallery");
   const [openStacks, setOpenStacks] = useState<ReadonlySet<string>>(new Set());
   const [preview, setPreview] = useState<Preview | null>(null);
+
+  // Past exams are insider-only: they live in a private bucket and are absent
+  // from this page's prerendered payload, so there is nothing to hide in the
+  // HTML. Ask for them once the gallery mounts. The endpoint answers with an
+  // empty list for everyone who is not an insider, which is also what a failed
+  // request leaves in place — the rest of the library still works.
+  const [examAssets, setExamAssets] = useState<SubjectAsset[]>([]);
+  useEffect(() => {
+    if (!courseCode) return;
+    const controller = new AbortController();
+    fetch(`/api/library/exams?course=${encodeURIComponent(courseCode)}`, {
+      signal: controller.signal,
+    })
+      .then((res) => (res.ok ? res.json() : { assets: [] }))
+      .then((body: { assets?: SubjectAsset[] }) => setExamAssets(body.assets ?? []))
+      .catch(() => {});
+    return () => controller.abort();
+  }, [courseCode]);
+
+  const assets = useMemo(
+    () => (examAssets.length ? [...publicAssets, ...examAssets] : publicAssets),
+    [publicAssets, examAssets],
+  );
 
   // Category is derived, so resolve it once per asset rather than on every
   // keystroke through the filter.
