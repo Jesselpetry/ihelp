@@ -18,6 +18,8 @@ import {
 } from "@/lib/spine";
 import { getCourseChapters } from "@/lib/course-chapters";
 import { assetsForCourse } from "@/lib/subject-library";
+import { ComingSoonOverlay } from "@/components/coming-soon-overlay";
+import { RESOURCE_LIBRARY_COMING_SOON } from "@/lib/flags";
 import { t, type LText } from "@/lib/ltext";
 
 /**
@@ -102,12 +104,18 @@ export async function generateMetadata({
   const { dir, module: segment } = await params;
   const found = lookup(dir, segment);
   if (!found) return { title: "ไม่พบเนื้อหา" };
-  const { course, mod, cDir } = found;
+  const { course, spec, mod, cDir } = found;
   const title = t(mod.title, "th");
   return {
     title: `${title} ${course.code} — ${course.nameTh}`,
     description: `${title} รายวิชา ${course.code} ${course.nameTh} (${course.nameEn}) IT KMITL — ${t(mod.subtitle, "th")}`,
     alternates: { canonical: `/courses/${cDir}/${segment}` },
+    // Behind the cover there is nothing worth indexing, and indexing it would
+    // leave the placeholder in search results after the library opens. Matches
+    // what /library already does while LIBRARY_COMING_SOON is set.
+    ...(spec.id === "archive" && RESOURCE_LIBRARY_COMING_SOON
+      ? { robots: { index: false, follow: true } }
+      : {}),
   };
 }
 
@@ -128,20 +136,27 @@ export default async function CourseModulePage({
   if (spec.id === "archive") {
     const assets = assetsForCourse(course.code);
     if (!assets || assets.length === 0) notFound();
+    const gallery = (
+      <SubjectLibrary
+        assets={assets}
+        courseCode={course.code}
+        backHref={backHref}
+        backLabel={backLabel}
+        title={{
+          th: `คลังทรัพยากร · ${course.code}`,
+          en: `Resource Library · ${course.code}`,
+        }}
+        subtitle={mod.subtitle}
+      />
+    );
     return (
       <>
         <Navbar />
-        <SubjectLibrary
-          assets={assets}
-          courseCode={course.code}
-          backHref={backHref}
-          backLabel={backLabel}
-          title={{
-            th: `คลังทรัพยากร · ${course.code}`,
-            en: `Resource Library · ${course.code}`,
-          }}
-          subtitle={mod.subtitle}
-        />
+        {RESOURCE_LIBRARY_COMING_SOON ? (
+          <ComingSoonOverlay backHref={backHref}>{gallery}</ComingSoonOverlay>
+        ) : (
+          gallery
+        )}
       </>
     );
   }
