@@ -4,10 +4,10 @@
 
 | | |
 |---|---|
-| Repository | `ihelp` (private, Next.js 16.2.10 / React 19.2.4, App Router) |
-| Version | `0.5.0` |
-| Branch scanned | `compressed` @ `7f8448c` |
-| Date of scan | 2026-08-26 |
+| Repository | `ihelp` (open source, MIT; Next.js 16.2.10 / React 19.2.4, App Router) |
+| Version | `0.6.0` |
+| Branch scanned | `main` @ `137d3b7` |
+| Date of scan | 2026-08-26, media/storage sections revised 2026-08-31 |
 | Audience | Redesign of the instructional architecture — taxonomy, content schemas, learning modality coverage |
 | Scope of this document | Descriptive only. No source files were modified during this scan. |
 
@@ -34,7 +34,7 @@ PDFs under `public/`. All learner state lives in the browser's `localStorage`.
 | Course overview documents | **13** | `content/courses/<dir>/summary.md`, 247 KB total |
 | Long-form study documents | **12** | `data/it-kmitl/`, `data/en-kmitl/`, 742 KB total |
 | Orphaned content files | **28** | `content/courses/*/archive/` — on disk, wired to no route (§5.4) |
-| Media assets | **670 files / 996 MB** | `public/assets/` — 621 PDFs (**12,263 pages**), 26 webp, 10 jpg, 7 `.circ`, 4 xlsx, 1 docx, 1 txt |
+| Media assets | **670 files / 908 MB** | Supabase Storage, **not** the repo — 621 PDFs (**12,263 pages**), 26 webp, 10 jpg, 7 `.circ`, 4 xlsx, 1 docx, 1 txt. Split across `ihelp-library` (501 public) and `ihelp-library-exams` (169 insider-only) |
 | Curated asset records | **172** | Hand-written entries in `lib/subject-library.ts` (137 KB) |
 | Generated asset records | **670** | `lib/library-manifest.json` (335 KB), built from the file tree |
 | Quiz / exam questions | **368** | 6 subject banks + 10 per-problem banks, all typed `QuizQuestion` |
@@ -174,7 +174,7 @@ Two of these files are **build artifacts and must not be hand-edited**:
 
 | File | Generator | Contents |
 |---|---|---|
-| `lib/library-manifest.json` (335 KB) | `npm run library:manifest` | One card per file under `public/assets/`, title humanized from the filename |
+| `lib/library-manifest.json` (335 KB) | `npm run library:manifest` | One card per file under `public/assets/`, title humanized from the filename. Server-only — a client import would ship every asset name to the browser, so display helpers live in `lib/subject-library-ui.ts` |
 | `lib/library-stats.json` (72 KB) | `npm run library:stats` | 670 entries of `{ sizeBytes, pages? }` — PDF page counts must be computed at build time |
 
 The asset path contract is **exactly four segments**:
@@ -209,9 +209,30 @@ to be held rather than filed.
 | **Cram sheet** | `data/it-kmitl/mfit/cram.md` | same reader | MFIT only |
 | **Study plan / learning path** | `data/it-kmitl/mfit/learning-path.md` | same reader | MFIT only (a 6-block, day-before-the-exam sprint) |
 | **Exam analysis** | `data/it-kmitl/ics/analysis.md` | same reader | ICS only (mark distribution across topics) |
-| **Lecture slides / past papers** | `public/assets/**` (621 PDFs, 12,263 pages) | `subject-library.tsx` (1,642 lines) — gallery/list toggle, category shelves, midterm/final segmented control, tag chips, search, in-modal PDF preview with zoom/pan/fullscreen | 13 courses |
+| **Lecture slides** | Supabase `ihelp-library` (public bucket) | `subject-library.tsx` (1,642 lines) — gallery/list toggle, category shelves, midterm/final segmented control, tag chips, search, in-modal PDF preview with zoom/pan/fullscreen | 13 courses |
 | **Handwritten note scans** | 26 webp + 10 jpg | same, collapsed into stacks via `groupId` | 2 groups defined (`itf-class-notes`, `ics-midterm-2564-scan`) |
 | **Policy book** | `data/ai-guidelines/**` (12 docs, th/en pairs) | `library-reader.tsx` — prev/next pagination, "doc *n* of *N*" | Course-wide |
+
+| **Past papers** | Supabase `ihelp-library-exams` (**private bucket**) | Same gallery, but the entries are fetched after mount from `/api/library/exams` and only for insiders | 10 courses, 169 files |
+
+### Media delivery
+
+Assets left the repository in 0.6.0. 908 MB of PDFs had pushed the git pack to 881 MB and the
+Turbopack file trace — which had gone project-wide because of an unresolvable `fs` path — to a
+1 GB build output, running the Vercel build container out of disk. They are now served from
+Supabase Storage:
+
+| | Public library | Past papers |
+|---|---|---|
+| Bucket | `ihelp-library` | `ihelp-library-exams` (private) |
+| Files | 501 | 169 |
+| Addressed by | `assetUrl()` → public URL | `libraryExamsForInsider()` → 10-minute signed URL |
+| Gate | none | `isInsider()`, before the service-role client is touched |
+| In prerendered HTML | yes | **no** — the page is static, and a signed URL cannot be baked into it |
+
+Classification is on `category === "exam"`, not on path: ten scanned exam pages live under
+`ics/pages/` rather than an `exams/` folder, and a path rule publishes them. `storageKey()` is
+shared by the uploader and the resolver so the two cannot disagree about where a file is.
 
 Markdown rendering is uniform: `react-markdown` + `remark-gfm` + `remark-math` + `rehype-katex`
 (LaTeX is used heavily by MFIT and PSTAT) with a shared heading-slug/TOC extractor (`lib/toc.ts`)

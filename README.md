@@ -54,7 +54,30 @@ track ที่ยังไม่เสร็จจะโชว์เป็น�
 
 การ์ดมาจากสองชั้น: entry ที่เขียนมือใน `lib/subject-library.ts` (มีชื่อสองภาษา
 คำอธิบาย และขอบเขตสอบ) ซ้อนบน manifest ที่ scan จากไฟล์จริง — ไฟล์ที่วางลง
-`public/assets/` ตามกติกาจะขึ้นเว็บทันทีโดยไม่ต้องรอใครมาเขียน entry
+`public/assets/` ตามกติกาจะได้การ์ดของตัวเองโดยไม่ต้องรอใครมาเขียน entry
+
+**ตัวไฟล์ไม่ได้อยู่ใน repo** — `public/assets/` ถูก gitignore ไว้ ไฟล์จริงอยู่บน
+Supabase Storage และเว็บเสิร์ฟจากที่นั่น (`lib/asset-url.ts` แปลง path
+`/assets/…` เป็น URL ของ bucket) เก็บไฟล์ไว้ในเครื่องต่อได้เพื่อให้
+`library:build` scan ได้ แต่ต้องรัน `assets:sync` เพื่ออัปโหลดขึ้น bucket
+ไม่งั้นไฟล์จะ 404 บน production ทั้งที่เปิดได้ในเครื่อง
+
+เหตุผล: PDF ~908 MB ทำให้ git pack โต 881 MB และ build output ทะลุ 1 GB
+จน build container ของ Vercel เนื้อที่หมด (ENOSPC)
+
+### ข้อสอบเก่า — เฉพาะ insider
+
+**ข้อสอบเก่าเป็นเนื้อหาที่จำกัดสิทธิ์** ไม่เสิร์ฟให้สาธารณะ ไฟล์อยู่ใน bucket
+แบบปิด `ihelp-library-exams` เข้าถึงผ่าน signed URL อายุ 10 นาที หลังผ่าน
+`isInsider()` แล้วเท่านั้น (`lib/library-exams.ts` → `/api/library/exams`)
+
+การจัดว่าอะไรเป็นข้อสอบดูจาก `category === "exam"` **ไม่ใช่ path** — หน้าข้อสอบ
+ที่ถ่ายมาเก็บไว้ที่ `/assets/it-kmitl/ics/pages/pg-*.jpg` อยู่นอกโฟลเดอร์
+`exams/` ถ้าใช้ path ตัดสินจะหลุดสาธารณะทันที ดู `isRestrictedAsset()` ใน
+`lib/subject-library-ui.ts`
+
+หน้าคลังทรัพยากรยังถูกครอบด้วย overlay "coming soon" อยู่ (flag
+`NEXT_PUBLIC_RESOURCE_LIBRARY_COMING_SOON`) — เป็นแค่การปิดหน้าจอ ไม่ใช่การจำกัดสิทธิ์
 
 รายละเอียดโครงสร้าง กติกาตั้งชื่อ และ taxonomy กลางภาค/ปลายภาค อยู่ใน
 **[FILE_STRUCTURE.md](./FILE_STRUCTURE.md)**
@@ -114,9 +137,12 @@ bun run dev              # dev server
 bun run build            # production build
 bun run lint             # eslint
 bun run library:build    # สร้าง manifest + stats ของคลังทรัพยากรใหม่
+bun run assets:sync      # อัปโหลดไฟล์ใน public/assets/ ขึ้น Supabase Storage
 ```
 
 `library:build` ต้องรันทุกครั้งที่เพิ่ม/ลบ/เปลี่ยนชื่อไฟล์ใน `public/assets/`
+จากนั้นต้อง `assets:sync` ด้วย — อัปโหลดเฉพาะไฟล์ที่ bucket ยังไม่มี และแยก
+ข้อสอบเก่าไปเข้า bucket แบบปิดให้เองตามกติกาเดียวกับ `isRestrictedAsset()`
 
 ## ร่วมพัฒนา
 
@@ -125,13 +151,21 @@ Open source — อยากเพิ่มวิชาใหม่ เขีย
 
 ## ที่มาของสื่อการเรียน
 
-ไฟล์ใน `public/assets/` คัดมาจากคลัง `kmitl-archive` ซึ่งเป็นที่เก็บสื่อการเรียน
-ของหลักสูตรตั้งแต่ปี 1 ถึงปี 4 — repo นี้เก็บเฉพาะส่วนปี 1
+ไฟล์สื่อการเรียนคัดมาจากคลัง `kmitl-archive` ซึ่งเป็นที่เก็บสื่อการเรียน
+ของหลักสูตรตั้งแต่ปี 1 ถึงปี 4 — โปรเจกต์นี้ใช้เฉพาะส่วนปี 1 ตัวไฟล์อยู่บน
+Supabase Storage ไม่ได้อยู่ใน repo
 
-**ก่อน deploy สาธารณะ** ต้องเคลียร์สองเรื่อง: ลิขสิทธิ์ของสไลด์บรรยายและ workbook
-(บาง `summary.md` มีหมายเหตุ `ห้ามเผยแพร่สาธารณะ` กำกับไว้) และข้อมูลส่วนบุคคลใน
-ไฟล์ที่ลงท้าย `-completed` ดูรายละเอียดในหัวข้อ 9 ของ
-[FILE_STRUCTURE.md](./FILE_STRUCTURE.md)
+**ยังไม่เคลียร์ ก่อน deploy สาธารณะ** — สองข้อนี้ยังค้างอยู่จริง ณ ตอนนี้:
+
+1. **ลิขสิทธิ์สื่อการสอน** — `summary.md` ของ Foundation English ระบุว่า workbook
+   เป็นของ Edusoft Ltd. และให้ *เก็บไว้หลังระบบล็อกอินเท่านั้น* ส่วน
+   IT-Fundamentals ระบุว่าสไลด์บรรยายเป็นเอกสารของผู้สอน *ห้ามเผยแพร่สาธารณะ
+   จนกว่าจะได้รับอนุญาต* — ตอนนี้ ITF ยังมีไฟล์สาธารณะ 77 ไฟล์
+2. **ข้อมูลส่วนบุคคล** — ไฟล์ที่ลงท้าย `-completed` คืองานที่ทำส่งแล้วของเจ้าของ
+   repo ตอนนี้ยังเป็นสาธารณะอยู่ 27 ไฟล์
+
+กลไกจำกัดสิทธิ์มีพร้อมแล้ว (bucket แบบปิด + `isInsider()` แบบเดียวกับข้อสอบเก่า)
+เหลือแค่ตัดสินใจว่าจะเอาอะไรเข้าไปหลังประตูบ้าง
 
 ## เครดิต
 
@@ -142,5 +176,9 @@ Instagram: [@chatann\_](https://instagram.com/chatann_)
 
 [MIT License](./LICENSE) — © 2026 Chatan Petry
 
-โค้ดเป็น MIT ส่วนสื่อการเรียนใน `public/assets/` เป็นลิขสิทธิ์ของผู้สอนและ
-ผู้จัดพิมพ์ตามเดิม ไม่ได้อยู่ภายใต้ MIT
+MIT ครอบเฉพาะ **โค้ด** สื่อการเรียน (สไลด์ ชีท ข้อสอบเก่า workbook) เป็นลิขสิทธิ์
+ของผู้สอนและผู้จัดพิมพ์ตามเดิม **ไม่ได้อยู่ภายใต้ MIT** และไม่ได้อยู่ใน repo นี้ —
+การ clone repo จึงไม่ได้สิทธิ์ในสื่อเหล่านั้นมาด้วย
+
+ตราสัญลักษณ์ KMITL (`public/kmitl-seal.svg`, `public/kmitl-emblem.svg`,
+`public/it-kmitl-logo.*`) เป็นเครื่องหมายของสถาบัน อยู่นอกขอบเขต MIT เช่นกัน

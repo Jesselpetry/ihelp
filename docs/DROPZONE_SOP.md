@@ -397,6 +397,26 @@ mv "_dropzone/ORIGINAL NAME.pdf" \
 | `.md` that is a **course overview** | `content/courses/<course-dir>/summary.md` — **see warning below** |
 | `.md` / `.json`, other study material | `content/courses/<course-dir>/archive/` |
 
+> ⚠️ **`public/assets/` is gitignored.** Moving a file there does not commit it.
+> The bytes are served from Supabase Storage, so a routed file is invisible in
+> production until `npm run assets:sync` uploads it — see Phase 5.
+
+### Routing past exams
+
+Anything that is a past paper — `category: "exam"` — is **restricted content**.
+It is uploaded to the private `ihelp-library-exams` bucket and served only to
+insiders through a short-lived signed URL. `npm run assets:sync` decides that
+from the same `isRestrictedAsset()` rule the app uses, so you do not route it by
+hand. What you must get right is the **classification**:
+
+- The rule keys on `category`, **not** on the folder. A past paper filed under
+  `notes/` or `pages/` because it is a photograph is still an exam, and it stays
+  public unless its entry says `category: "exam"`. Ten scanned exam pages under
+  `ics/pages/` are exactly this case.
+- If you are unsure whether something is a past paper, treat it as one and say
+  so in the Phase 8 report. Over-restricting is recoverable; publishing someone's
+  exam paper is not.
+
 > ⚠️ **`summary.md` is hand-maintained and follows a mandatory 6-section
 > structure.** Never overwrite it from the dropzone. If a dropped file looks
 > like a course overview, hold it (Phase 6) and let the human merge it.
@@ -406,7 +426,7 @@ over 100 MB outright.
 
 ---
 
-## Phase 5 — Data linkage
+## Phase 5 — Data linkage & upload
 
 ### 5.1 Regenerate the manifests — always
 
@@ -420,6 +440,24 @@ with no hand-written entry.
 
 **`lib/library-manifest.json` and `lib/library-stats.json` are generated. Never
 hand-edit them.**
+
+### 5.1b Upload to Storage — always, and after the manifests
+
+```bash
+npm run assets:sync
+```
+
+`public/assets/` is gitignored, so this is the step that actually publishes a
+file. It uploads only what the buckets are missing, and it reads the manifests
+you just regenerated to decide which bucket each file belongs in — public
+`ihelp-library`, or private `ihelp-library-exams` for anything classified as an
+exam. Run it **after** `library:build`, never before: run in the wrong order and
+a past paper whose `category` is only set in the fresh manifest gets uploaded to
+the public bucket.
+
+Check the line it prints — it names how many files went to the restricted
+bucket. If a past paper is not counted there, its classification is wrong; fix
+the entry and re-run rather than moving the object by hand.
 
 ### 5.2 Add curated entries — for anything carrying a scope
 

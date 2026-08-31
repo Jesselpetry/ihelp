@@ -91,6 +91,15 @@ public/assets/<namespace>/<subject>/<category>/<filename>
 ❌ Ch1 Atomic structure.pdf
 ```
 
+> **`public/assets/` ถูก gitignore** — วางไฟล์ไว้ในเครื่องเพื่อให้ `library:build`
+> scan ได้ แต่ตัวไฟล์เสิร์ฟจาก Supabase Storage ต้องรัน `bun run assets:sync`
+> ด้วย ไม่งั้นไฟล์จะเปิดได้ในเครื่องแต่ 404 บน production
+>
+> **ข้อสอบเก่าจำกัดสิทธิ์:** ไฟล์ที่ `category` เป็น `exam` (หรืออยู่ในโฟลเดอร์
+> `exams/`) จะถูก `assets:sync` อัปโหลดเข้า bucket แบบปิดโดยอัตโนมัติ และเสิร์ฟ
+> ผ่าน signed URL ให้เฉพาะ insider เท่านั้น — ไม่ต้องตั้งค่าเพิ่ม แต่ต้อง
+> **ใส่ `category` ให้ถูก** เพราะการจัดประเภทดูจาก `category` ไม่ใช่ path
+
 จากนั้น:
 
 ```bash
@@ -170,7 +179,7 @@ entry ที่เขียนมือชนะ manifest เสมอเมื�
 | `lib/`        | logic: โหลดโจทย์, สร้าง markdown, ประวัติ, i18n, ฯลฯ          |
 | `data/`       | ข้อมูลรายวิชา: โจทย์, template ทางการ, เอกสาร AI guidelines   |
 | `content/`    | Markdown ของรายวิชา (`content/courses/<code>-<slug>/`)        |
-| `public/assets/` | ไฟล์จริง: PDF สไลด์ ข้อสอบ ภาพสมุดจด                       |
+| `public/assets/` | ไฟล์จริง (gitignore ไว้ — เสิร์ฟจาก Supabase Storage)      |
 | `scripts/`    | ตัวสร้าง manifest / stats (รันมือ ไม่ได้รันตอน build)          |
 
 ธรรมเนียมของโค้ดเบสนี้:
@@ -180,6 +189,12 @@ entry ที่เขียนมือชนะ manifest เสมอเมื�
   แล้วเรียก `t(L.key, locale)` — ห้าม hardcode ภาษาเดียว
 - ข้อมูลผู้ใช้ (แบบร่าง, ประวัติ) เก็บใน localStorage เท่านั้น
   ห้ามส่งขึ้น server
+- **Client Component ห้าม import จาก `lib/subject-library.ts`** — ไฟล์นั้น import
+  `library-manifest.json` + `library-stats.json` ที่ระดับ module ถ้า client ดึงอะไร
+  จากมันไป ชื่อไฟล์และ metadata ของสื่อทุกชิ้น (รวมข้อสอบเก่า) จะติดไปใน bundle
+  ฝั่ง browser ด้วย ให้ import จาก `lib/subject-library-ui.ts` แทน
+- อะไรที่จำกัดสิทธิ์ ต้องกันตั้งแต่ฝั่ง server — อย่าซ่อนด้วย CSS หรือ overlay
+  เพราะข้อมูลยังอยู่ใน payload
 - หลักการสำคัญ: เว็บนี้ **ไม่เขียนเนื้อหาแทนนักศึกษา** —
   ฟีเจอร์ใหม่ต้องไม่ generate คำตอบ ไม่ solve โจทย์ และไม่ส่งอะไรไป OJ
 
@@ -187,6 +202,7 @@ entry ที่เขียนมือชนะ manifest เสมอเมื�
 
 ```bash
 bun run library:build   # ถ้าแตะไฟล์ใน public/assets/
+bun run assets:sync     # อัปโหลดไฟล์ใหม่ขึ้น Storage (แยก bucket ให้เอง)
 bun run lint            # ต้องผ่าน ไม่มี error
 bun run build           # ต้อง build ผ่าน
 ```

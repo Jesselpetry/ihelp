@@ -8,6 +8,41 @@
 
 ## [Unreleased]
 
+### Security
+
+- **ข้อสอบเก่าในคลังทรัพยากรจำกัดสิทธิ์เฉพาะ insider** — ไฟล์ข้อสอบ 169 ไฟล์
+  (10 วิชา) ย้ายจาก bucket สาธารณะไปอยู่ใน `ihelp-library-exams` แบบปิด เสิร์ฟผ่าน
+  signed URL อายุ 10 นาที หลังผ่าน `isInsider()` แล้วเท่านั้น URL สาธารณะเดิม
+  ตอบ 400 แล้ว การจัดประเภทดูจาก `category` ไม่ใช่ path — หน้าข้อสอบที่ถ่ายเก็บไว้
+  ใน `ics/pages/` อยู่นอกโฟลเดอร์ `exams/` ถ้าใช้ path ตัดสินจะหลุดสาธารณะ
+- **ชื่อไฟล์และ metadata ของสื่อไม่หลุดไป browser อีกต่อไป** — เดิม client
+  component import จาก `lib/subject-library.ts` ซึ่ง import manifest ที่ระดับ
+  module ทำให้ชื่อไฟล์ทุกชิ้นรวมข้อสอบเก่าติดไปใน JS bundle ตอนนี้ค่าที่ UI ใช้
+  ย้ายไป `lib/subject-library-ui.ts` ที่ไม่ import ข้อมูลใด ๆ
+
+### Added
+
+- **overlay "coming soon" บนหน้าคลังทรัพยากรรายวิชา** — ปิดหน้า
+  `/courses/<วิชา>/library` ไว้ก่อนเปิดใช้จริง ควบคุมด้วย flag
+  `NEXT_PUBLIC_RESOURCE_LIBRARY_COMING_SOON` (ค่าเริ่มต้น = ปิดหน้าไว้)
+  เป็นการปิดหน้าจอเท่านั้น ไม่ใช่การจำกัดสิทธิ์
+- **`npm run assets:sync`** — อัปโหลดไฟล์ใน `public/assets/` ขึ้น Supabase Storage
+  อัปเฉพาะไฟล์ที่ยังไม่มี และแยกข้อสอบเก่าเข้า bucket แบบปิดให้อัตโนมัติ
+
+### Changed
+
+- **สื่อการเรียนย้ายออกจาก repo ไปอยู่บน Supabase Storage** — ไฟล์ 670 ชิ้น
+  (~908 MB) ไม่ได้อยู่ใน git อีกต่อไป `public/assets/` ถูก gitignore แล้ว
+  การ clone repo จึงไม่ได้สื่อการเรียนติดไปด้วย
+
+### Fixed
+
+- **build บน Vercel ล้มเพราะเนื้อที่หมด (ENOSPC)** — file tracer ของ Turbopack
+  ลาก ทั้งโปรเจกต์ (รวม `.git`) เข้า bundle เพราะมี `fs` call บน path ที่
+  resolve ไม่ได้ตอน build ตอนนี้ override ทุกตัวถูก gate ด้วย `NODE_ENV` แล้ว
+  trace ของ route `sitemap` ลดจาก 938 MB เหลือ 14.8 MB และ build output
+  ลดจาก 1047 MB เหลือ 155 MB
+
 ## [0.6.0] - 2026-08-30
 
 **ผู้ร่วมพัฒนา:** Chatan Petry ([@Jesselpetry](https://github.com/Jesselpetry))
