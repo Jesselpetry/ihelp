@@ -67,21 +67,34 @@ export function ConceptTags({
   tags,
   limit,
   className,
+  tone = "color",
 }: {
   tags: string[];
   limit?: number;
   className?: string;
+  /**
+   * "color" gives each concept its own hue from `tagStyle` — right for the
+   * workspace drawer, where a handful of tags sit alone. "neutral" drops to a
+   * hairline outline so a 60-card grid does not read as confetti.
+   */
+  tone?: "color" | "neutral";
 }) {
   const { locale } = useLocale();
   const shown = limit ? tags.slice(0, limit) : tags;
   const hidden = limit ? tags.length - shown.length : 0;
+  const neutral = tone === "neutral";
   return (
     <div className={cn("flex flex-wrap items-center gap-1", className)}>
       {shown.map((tag) => (
         <Badge
           key={tag}
           variant="outline"
-          className={cn("rounded-full px-2 py-0 text-[10px] font-medium", tagStyle(tag))}
+          className={cn(
+            "rounded-md px-1.5 py-0 font-normal",
+            neutral
+              ? "border-border/70 bg-transparent text-xs text-muted-foreground"
+              : cn("rounded-full px-2 text-[10px] font-medium", tagStyle(tag)),
+          )}
         >
           {t(tagLabel(tag), locale)}
         </Badge>
@@ -89,7 +102,12 @@ export function ConceptTags({
       {hidden > 0 && (
         <Badge
           variant="outline"
-          className="rounded-full px-2 py-0 text-[10px] font-medium text-muted-foreground"
+          className={cn(
+            "px-1.5 py-0 font-normal text-muted-foreground",
+            neutral
+              ? "rounded-md border-border/70 bg-transparent text-xs"
+              : "rounded-full px-2 text-[10px] font-medium",
+          )}
         >
           +{hidden}
         </Badge>

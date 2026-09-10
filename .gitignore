@@ -59,3 +59,4 @@ next-env.d.ts
 # Keep them here locally so scripts/build-library-{manifest,stats} can scan
 # them, and run `bun run assets:sync` after adding any.
 /public/assets/
+__pycache__/

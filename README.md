@@ -8,6 +8,18 @@
 
 **14 รายวิชา · 679 การ์ดสื่อการเรียน · 662 ไฟล์**
 
+<p>
+  <img src="https://img.shields.io/badge/version-0.6.0-db2777?style=flat-square" alt="Version" />
+  <img src="https://img.shields.io/badge/Next.js-16-000000?style=flat-square&logo=nextdotjs&logoColor=white" alt="Next.js 16" />
+  <img src="https://img.shields.io/badge/React-19.2-61DAFB?style=flat-square&logo=react&logoColor=000000" alt="React 19" />
+  <img src="https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript 5" />
+  <img src="https://img.shields.io/badge/Tailwind-4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white" alt="Tailwind CSS 4" />
+  <img src="https://img.shields.io/badge/router-App-000000?style=flat-square" alt="App Router" />
+  <img src="https://img.shields.io/badge/Drizzle-ORM-C5F74F?style=flat-square&logo=drizzle&logoColor=000000" alt="Drizzle ORM" />
+  <img src="https://img.shields.io/badge/Supabase-Storage%20%2B%20Auth-3FCF8E?style=flat-square&logo=supabase&logoColor=white" alt="Supabase" />
+  <img src="https://img.shields.io/badge/license-MIT-3da639?style=flat-square" alt="MIT" />
+</p>
+
 > เว็บนี้ไม่เขียนเนื้อหาแทนคุณ — เครื่องมือสร้างไฟล์ทุกตัวเก็บคำตอบที่คุณเขียนเอง
 > แล้วจัดลง template ทางการของรายวิชา ไม่มีการส่งอะไรไปที่ OJ
 
@@ -137,12 +149,141 @@ Supabase Storage และเว็บเสิร์ฟจากที่นั
 
 ## Tech stack
 
-- [Next.js 16](https://nextjs.org) (App Router) บน Node
-- [React 19](https://react.dev) + TypeScript
-- [Tailwind CSS 4](https://tailwindcss.com) + shadcn-style UI (radix-ui)
-- [KaTeX](https://katex.org) + remark/rehype สำหรับสูตรคณิตศาสตร์ใน Markdown
-- [Pyodide](https://pyodide.org) — รัน Python ตรวจโจทย์ในเบราว์เซอร์
-- [Bun](https://bun.sh) เป็น package manager
+ทุกตัวในนี้ใช้งานจริง — คืออะไร และทำอะไรใน codebase นี้
+
+### Framework & ภาษา
+
+<table>
+  <tr>
+    <td align="center" width="96">
+      <img src="https://cdn.simpleicons.org/nextdotjs/000000/FFFFFF" width="48" height="48" alt="Next.js" /><br>
+      <sub><b>Next.js 16</b></sub>
+    </td>
+    <td><strong>App Router</strong> รันบน Node (ห้าม <code>bun --bun next</code> — build crash SIGTRAP บน Bun 1.2.x) หลาย route เป็น <code>force-static</code> เพื่ออยู่ในโควตา 12 serverless function ของ Vercel Hobby · redirect ของ route เก่าอยู่ใน <a href="proxy.ts">proxy.ts</a> · dev รันบน Turbopack</td>
+  </tr>
+  <tr>
+    <td align="center" width="96">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" width="48" height="48" alt="React" /><br>
+      <sub><b>React 19</b></sub>
+    </td>
+    <td>เรนเดอร์ทั้งหมด ส่วนใหญ่เป็น Server Component — หน้า <code>/pscp</code> โหลด registry ตอน build, ฝั่ง client มีแค่ตัวกรอง/มุมมองตาราง-การ์ดและ workspace drawer</td>
+  </tr>
+  <tr>
+    <td align="center" width="96">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" width="48" height="48" alt="TypeScript" /><br>
+      <sub><b>TypeScript 5</b></sub>
+    </td>
+    <td>ทั้ง codebase · <code>lib/schemas/content.ts</code> + <code>npm run content:check</code> ตรวจคลังข้อสอบตอน build — ทุกข้อต้องมีแหล่งอ้างอิง ตัวเลือกห้าม id ซ้ำ progress key ห้ามชน</td>
+  </tr>
+</table>
+
+### UI & Styling
+
+<table>
+  <tr>
+    <td align="center" width="96">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" width="48" height="48" alt="Tailwind CSS" /><br>
+      <sub><b>Tailwind 4</b></sub>
+    </td>
+    <td>Styling ทั้งเว็บ ผ่าน <code>@tailwindcss/postcss</code> ไม่มี <code>tailwind.config</code> · token อยู่ใน <a href="app/globals.css">globals.css</a> · ธีม PSCP Pink (<code>--primary</code> = <code>#db2777</code> / dark <code>#ec4899</code>) rebind ต่อ scope · <code>tw-animate-css</code> สำหรับ animation utility</td>
+  </tr>
+  <tr>
+    <td align="center" width="96">
+      <img src="https://cdn.simpleicons.org/radixui/161618/FFFFFF" width="48" height="48" alt="Radix UI" /><br>
+      <sub><b>Radix UI</b></sub>
+    </td>
+    <td>Primitive ที่เข้าถึงได้ใน <a href="components/ui/">components/ui/</a> — dialog, select, tabs ฯลฯ ใช้ที่ที่ focus trap และคีย์บอร์ดสำคัญกว่าสไตล์ เช่น workspace drawer ของโจทย์</td>
+  </tr>
+  <tr>
+    <td align="center" width="96">
+      <img src="https://cdn.simpleicons.org/shadcnui/000000/FFFFFF" width="48" height="48" alt="shadcn/ui" /><br>
+      <sub><b>shadcn/ui</b></sub>
+    </td>
+    <td>วิธีที่ primitive พวกนั้นมาถึง — generate ลง repo (<a href="components.json">components.json</a>, base neutral, CSS variable) ไม่ได้ลงเป็น dependency แต่ละตัวจึงเป็น source ที่แก้ได้ ใช้ convention <code>cn()</code> + <code>cva</code></td>
+  </tr>
+  <tr>
+    <td align="center" width="96">
+      <img src="https://cdn.simpleicons.org/lucide/db2777" width="48" height="48" alt="Lucide" /><br>
+      <sub><b>Lucide</b></sub>
+    </td>
+    <td>ไอคอนชุดเดียวทั้งเว็บ (<code>lucide-react</code>) มากับ shadcn/ui</td>
+  </tr>
+</table>
+
+### เนื้อหา & Markdown
+
+<table>
+  <tr>
+    <td align="center" width="96">
+      <img src="https://cdn.simpleicons.org/markdown/000000/FFFFFF" width="48" height="48" alt="react-markdown" /><br>
+      <sub><b>react-markdown</b></sub>
+    </td>
+    <td>เรนเดอร์สรุปเนื้อหา ชีท และเอกสาร AI-Guidelines ทุกหน้า pipeline: <code>remark-gfm</code> + <code>remark-frontmatter</code> + <code>remark-math</code> → <code>rehype-katex</code> · สารบัญด้านข้างแบบ scroll-spy สร้างจาก heading ที่ parse ได้</td>
+  </tr>
+  <tr>
+    <td align="center" width="96">
+      <img src="https://cdn.simpleicons.org/latex/008080" width="48" height="48" alt="KaTeX" /><br>
+      <sub><b>KaTeX</b></sub>
+    </td>
+    <td>สูตรคณิตศาสตร์ใน markdown (MFIT, PSTAT, DL) รองรับ inline <code>$…$</code> และ block <code>$$…$$</code> หลายบรรทัด</td>
+  </tr>
+  <tr>
+    <td align="center" width="96">
+      <img src="https://cdn.simpleicons.org/python/3776AB" width="48" height="48" alt="Pyodide" /><br>
+      <sub><b>Pyodide</b></sub>
+    </td>
+    <td>รัน Python ตรวจโจทย์ในเบราว์เซอร์ (WebAssembly) ใน Web Worker — client-side grader ของ <code>/recommended/[slug]</code> ไม่ส่งโค้ดขึ้น server และไม่ยิงอะไรไป OJ</td>
+  </tr>
+</table>
+
+### ข้อมูล & แพลตฟอร์ม
+
+<table>
+  <tr>
+    <td align="center" width="96">
+      <img src="https://cdn.simpleicons.org/supabase/3FCF8E" width="48" height="48" alt="Supabase" /><br>
+      <sub><b>Supabase</b></sub>
+    </td>
+    <td>Auth (Google OAuth จำกัด <code>@kmitl.ac.th</code> รหัสคณะ <code>07</code> ผ่าน <code>@supabase/ssr</code>) + Storage — สื่อการเรียน 670 ไฟล์ (~908 MB) อยู่บน bucket ไม่ได้อยู่ใน git ข้อสอบเก่าอยู่ bucket แบบปิด เสิร์ฟผ่าน signed URL อายุ 10 นาที</td>
+  </tr>
+  <tr>
+    <td align="center" width="96">
+      <img src="https://cdn.simpleicons.org/drizzle/C5F74F" width="48" height="48" alt="Drizzle ORM" /><br>
+      <sub><b>Drizzle ORM</b></sub>
+    </td>
+    <td>Schema ใน <a href="db/">db/</a> ต่อ Postgres ผ่านไดรเวอร์ <code>postgres</code> · <code>drizzle-kit</code> สำหรับ generate / push / studio (<a href="drizzle.config.ts">drizzle.config.ts</a>) เก็บโปรไฟล์ผู้ใช้ ทรัพยากรที่แชร์ ตัวนับผู้เข้าชม</td>
+  </tr>
+  <tr>
+    <td align="center" width="96">
+      <img src="https://cdn.simpleicons.org/zod/3E67B1" width="48" height="48" alt="Zod" /><br>
+      <sub><b>Zod</b></sub>
+    </td>
+    <td>Schema ของ content contract และ payload ฟอร์ม — ตรวจฝั่ง client เป็นชั้น UX ส่วน API ตรวจแยกอิสระ</td>
+  </tr>
+  <tr>
+    <td align="center" width="96">
+      <img src="https://cdn.simpleicons.org/vercel/000000/FFFFFF" width="48" height="48" alt="Vercel" /><br>
+      <sub><b>Vercel</b></sub>
+    </td>
+    <td>Deploy target (Hobby) · <code>@vercel/analytics</code> + <code>@vercel/speed-insights</code> mount ใน root layout · <code>prebuild</code> รัน <code>content:check</code> ก่อนทุก build</td>
+  </tr>
+  <tr>
+    <td align="center" width="96">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bun/bun-original.svg" width="48" height="48" alt="Bun" /><br>
+      <sub><b>Bun</b></sub>
+    </td>
+    <td>Package manager / script runner — <code>bun.lock</code> เป็น lockfile ที่ commit ไว้ Next.js เองยังรันบน Node</td>
+  </tr>
+  <tr>
+    <td align="center" width="96">
+      <img src="https://cdn.simpleicons.org/eslint/4B32C3" width="48" height="48" alt="ESLint" /><br>
+      <sub><b>ESLint</b></sub>
+    </td>
+    <td>Flat config (<a href="eslint.config.mjs">eslint.config.mjs</a>) บน <code>eslint-config-next</code> · ยังไม่มี test runner — <code>lint</code> + <code>content:check</code> + build ที่ผ่านคือ gate ตอนนี้</td>
+  </tr>
+</table>
+
+**ไลบรารีเสริม:** <code>react-easy-crop</code> (ครอบรูปโปรไฟล์ในเบราว์เซอร์ ย่อเป็น WebP 512px) · <code>class-variance-authority</code> + <code>tailwind-merge</code> + <code>clsx</code> (ตัวช่วย <code>cn()</code>) · <code>katex</code> โหลด CSS แยกใน layout
 
 ## Scripts
 

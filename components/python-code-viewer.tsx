@@ -318,9 +318,9 @@ function highlightPythonLine(line: string): React.ReactNode[] {
         </span>,
       );
     } else if (keyword) {
-      // iHelp Pink for Python Keywords!
+      // PSCP Pink (--primary) for Python keywords.
       nodes.push(
-        <span key={`kw-${match.index}`} className="text-pink-500 dark:text-pink-400 font-semibold">
+        <span key={`kw-${match.index}`} className="text-primary font-semibold">
           {keyword}
         </span>,
       );
@@ -348,7 +348,7 @@ function highlightPythonLine(line: string): React.ReactNode[] {
     } else if (operator) {
       // Violet for Operators
       nodes.push(
-        <span key={`op-${match.index}`} className="text-pink-400/90 dark:text-pink-300/90">
+        <span key={`op-${match.index}`} className="text-violet-500 dark:text-violet-300">
           {operator}
         </span>,
       );

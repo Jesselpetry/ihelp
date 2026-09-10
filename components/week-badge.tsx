@@ -12,7 +12,28 @@ const WEEK_STYLES = [
   "bg-purple-100 text-purple-700 border-purple-200 dark:bg-purple-950 dark:text-purple-300 dark:border-purple-900",
 ];
 
-export function WeekBadge({ week, className }: { week: number; className?: string }) {
+export function WeekBadge({
+  week,
+  className,
+  variant = "color",
+}: {
+  week: number;
+  className?: string;
+  /**
+   * "color" keeps the rotating per-week palette (workspace drawer, where a
+   * single badge has room to carry a hue). "plain" renders the week as quiet
+   * mono text — used by the problems list, where 60 rotating hues competed
+   * with the PSCP Pink accent and carried no state meaning.
+   */
+  variant?: "color" | "plain";
+}) {
+  if (variant === "plain") {
+    return (
+      <span className={cn("font-mono text-xs tabular-nums text-muted-foreground", className)}>
+        W{week}
+      </span>
+    );
+  }
   const style = WEEK_STYLES[(week - 1) % WEEK_STYLES.length];
   return (
     <Badge variant="outline" className={cn("font-semibold", style, className)}>

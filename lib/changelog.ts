@@ -35,6 +35,62 @@ export interface VersionEntry {
 // Mirrors CHANGELOG.md at the repo root — keep both in sync when releasing.
 export const CHANGELOG: VersionEntry[] = [
   {
+    version: "Unreleased",
+    date: null,
+    contributors: [{ name: "Chatan Petry", github: "Jesselpetry" }],
+    changes: [
+      {
+        kind: "changed",
+        text: {
+          th: "หน้ารายการโจทย์ PSCP เปิดมาเป็นมุมมองตารางเป็นค่าเริ่มต้น (เดิมเป็นการ์ด) และเอาคอลัมน์ \"แนวคิด\" ออกเพื่อให้แถวไม่ล้นจอ",
+          en: "The PSCP problem list opens in the table view by default (was cards), and the Concepts column was dropped so rows no longer overflow",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "เรียงโจทย์แบบ Learning Log ขึ้นก่อน แล้วตามด้วยสัปดาห์ล่าสุด",
+          en: "Problems now sort Learning Log first, then newest week",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "ระดับความยากแสดงเป็นดาว 5 ดวงแทนแถบ ใช้ทั้งมุมมองการ์ดและตาราง",
+          en: "Difficulty renders as five stars instead of bars, in both the card and table views",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "แถบนำทางเป็นแบบลอยขอบมนทุกหน้า",
+          en: "The navbar is now a floating, fully-rounded pill on every page",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "ปุ่มลัดในแถวตารางโจทย์ (ทำเครื่องหมายผ่าน, ดูแบบเร็ว, เปิด iJudge) แสดงตลอด ไม่ต้องเอาเมาส์ไปชี้",
+          en: "The per-row shortcut buttons in the problem table (mark solved, quick view, open on iJudge) are always visible instead of appearing on hover",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "ป้าย \"แนะนำ\" และ \"submission.md\" พร้อมปุ่มสร้าง submission.md ในแถวตารางของโจทย์ Learning Log",
+          en: "Recommended and submission.md badges, plus a submission.md maker button, on Learning Log rows in the table view",
+        },
+      },
+      {
+        kind: "fixed",
+        text: {
+          th: "สี pink ในตัวไฮไลต์โค้ด Python ใช้ PSCP Pink (--primary) ให้ตรงกันทั้งเว็บ",
+          en: "The pink in the Python code highlighter now uses PSCP Pink (--primary) so every pink in the app matches",
+        },
+      },
+    ],
+  },
+  {
     version: "0.6.0",
     date: "2026-08-30",
     contributors: [{ name: "Chatan Petry", github: "Jesselpetry" }],

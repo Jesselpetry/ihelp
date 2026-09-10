@@ -40,8 +40,8 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 z-30 bg-card border-b shadow-[0_1px_2px_0_rgba(0,0,0,0.05)] dark:shadow-none">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
+    <nav className="sticky top-3 z-30 px-3 pt-3 sm:px-6">
+      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between rounded-full border bg-card/85 pl-5 pr-3 shadow-lg shadow-black/5 backdrop-blur-md dark:shadow-none sm:pl-6 sm:pr-4">
         <div className="flex items-center gap-6">
           <Link
             href="/"
@@ -109,7 +109,7 @@ export function Navbar() {
 
       {/* Mobile menu panel */}
       {isOpen && (
-        <div className="border-b bg-card px-4 py-4 md:hidden flex flex-col gap-3 animate-in fade-in-0 slide-in-from-top-2 duration-200">
+        <div className="mx-auto mt-2 max-w-6xl rounded-3xl border bg-card/95 px-4 py-4 shadow-lg shadow-black/5 backdrop-blur-md dark:shadow-none md:hidden flex flex-col gap-3 animate-in fade-in-0 slide-in-from-top-2 duration-200">
           <div className="flex flex-col gap-1">
             {NAV_LINKS.map(({ href, label, icon: Icon }) => {
               const active = isActive(pathname, href);

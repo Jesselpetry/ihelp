@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Navbar } from "@/components/navbar";
-import { PscpModules } from "@/components/pscp-modules";
 import { ProblemsView } from "@/components/problems-view";
 import { loadPscpHub } from "@/lib/pscp";
 
@@ -17,7 +16,6 @@ export default function PscpPage() {
   return (
     <>
       <Navbar />
-      <PscpModules />
       <ProblemsView data={loadPscpHub()} />
     </>
   );
