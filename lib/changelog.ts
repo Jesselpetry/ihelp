@@ -82,6 +82,41 @@ export const CHANGELOG: VersionEntry[] = [
         },
       },
       {
+        kind: "added",
+        text: {
+          th: "โจทย์สัปดาห์ 8–9 ทั้ง 27 ข้อ (id 3290–3301, 3349–3363) เข้าสู่ระบบการเรียนรู้ครบ — มีเฉลยอ้างอิงที่ตรวจแล้ว concept tag จริงจากโค้ด และ edge case สำหรับตัวตรวจในเบราว์เซอร์",
+          en: "All 27 new Week 8-9 problems (ids 3290-3301, 3349-3363) are wired into the learning flow — verified reference solutions, real code-derived concept tags, and differential edge cases for the in-browser grader",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "โจทย์แนะนำเพิ่มเป็น 14 ข้อ — BigFrame, Left Arrow, กองชาม, Shorten เป็นโมดูลเต็มใน /recommended พร้อมคู่มือ 2 ภาษา แบบทดสอบ และเคสสำหรับ grader",
+          en: "The Recommended hub grows to 14 — BigFrame, Left Arrow, Bowl Stack, and Shorten are full /recommended modules with bilingual guides, quizzes, and grader test cases",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "คำใบ้เฉพาะโจทย์ในหน้าสร้าง submission.md สำหรับโจทย์ Learning Log หลังกลางภาค 6 ข้อ (แผงพับได้ที่ขั้นความเข้าใจโจทย์และแผนแรก)",
+          en: "Per-problem hints in the submission.md wizard for the 6 post-midterm Learning Log problems (a collapsible panel at the Understanding and First-Plan steps)",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "หน้าสรุปวิชา PSCP §3–§4 ปรับใหม่ตามคลังโจทย์ 135 ข้อ (สัปดาห์ 1–9) พร้อมชุดวันหมดเขตจริงของสัปดาห์ 8–9",
+          en: "The PSCP course summary §3-§4 is refreshed for the 135-problem bank (Weeks 1-9) with the real Week 8-9 deadline sets",
+        },
+      },
+      {
+        kind: "fixed",
+        text: {
+          th: "concept tag ของโจทย์สัปดาห์ 8–9 เดิมเพี้ยน (`strings`/`conditionals` เกือบทุกข้อ) เพราะไม่มีเฉลยให้ตัววิเคราะห์ AST อ่าน ตอนนี้มาจากเฉลยจริง; โจทย์ที่ยังเป็น stub ได้ธง tagsProvisional",
+          en: "Week 8-9 concept tags were noise (nearly every problem tagged strings/conditionals) because there was no solution for the AST tagger to read; they now come from real solutions, and any still-stubbed problem is flagged tagsProvisional",
+        },
+      },
+      {
         kind: "fixed",
         text: {
           th: "สี pink ในตัวไฮไลต์โค้ด Python ใช้ PSCP Pink (--primary) ให้ตรงกันทั้งเว็บ",
