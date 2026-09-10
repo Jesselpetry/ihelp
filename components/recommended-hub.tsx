@@ -48,7 +48,7 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
-import { PROBLEM_TAKEAWAYS } from "@/components/python-code-viewer";
+import { PROBLEM_TAKEAWAYS } from "@/lib/problem-takeaways";
 import {
   Table,
   TableBody,
@@ -121,7 +121,7 @@ const PDF_BOOKS = [
 
 const L: Record<string, LText> = {
   hubBadge: { th: "คลังโจทย์แนะนำ · PSCP", en: "PSCP Recommended Hub" },
-  title: { th: "10 โจทย์แนะนำสำหรับฝึกฝน", en: "10 Recommended Problems" },
+  title: { th: "โจทย์แนะนำสำหรับฝึกฝน", en: "Recommended Problems" },
   subtitle: {
     th: "โจทย์สำคัญที่คัดสรรมาเพื่อฝึกฝน Pattern และเทคนิคการเขียนโปรแกรมด้วย Python พร้อมระบบซิงก์ GitHub และเช็คสถานะความคืบหน้า",
     en: "Core curriculum problems to master algorithmic patterns with GitHub repo sync and interactive progress tracking.",
@@ -292,7 +292,9 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
                 />
                 <Code2 className="size-4 mr-2 shrink-0" />
                 <span>
-                  {locale === "th" ? "โจทย์ (10 ข้อ)" : "Problems (10)"}
+                  {locale === "th"
+                    ? `โจทย์ (${data.problems.length} ข้อ)`
+                    : `Problems (${data.problems.length})`}
                 </span>
                 <ArrowRight className="size-4 ml-1.5 transition-transform group-hover:translate-x-0.5" />
               </a>
@@ -378,7 +380,7 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
                   <Sparkles className="size-3.5 sm:size-4 text-primary shrink-0" />
                 </div>
                 <p className="mt-1 font-mono text-xl sm:text-2xl font-bold text-primary">
-                  10 Patterns
+                  {data.problems.length} Patterns
                 </p>
               </div>
             )}

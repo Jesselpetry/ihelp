@@ -7,7 +7,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Recommended Problems",
-  description: "Explore the 10 PSCP Recommended Problems with complete problem explanations, Python techniques, test cases, and solution code.",
+  description: "Explore the 14 PSCP Recommended Problems with complete problem explanations, Python techniques, test cases, and solution code.",
   alternates: { canonical: "/recommended" },
 };
 

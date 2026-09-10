@@ -57,6 +57,10 @@ export const IJUDGE_SCRAPED_STATS: Record<number, ProblemStats> = {
   3167: { passed: 180, attempt: 183, percentage: "98.36%", expireDate: "4 September 2026, 00:00" },
   3226: { passed: 92, attempt: 160, percentage: "57.50%", expireDate: "11 September 2026, 00:00" },
   3237: { passed: 161, attempt: 167, percentage: "96.41%", expireDate: "11 September 2026, 00:00" },
+  3290: { passed: 70, attempt: 72, percentage: "97.22%", expireDate: "25 September 2026, 23:59" },
+  3293: { passed: 36, attempt: 42, percentage: "85.71%", expireDate: "25 September 2026, 23:59" },
+  3349: { passed: 7, attempt: 8, percentage: "87.50%", expireDate: "9 October 2026, 00:00" },
+  3355: { passed: 4, attempt: 4, percentage: "100.00%", expireDate: "9 October 2026, 00:00" },
 };
 
 export interface RecommendedProblem {

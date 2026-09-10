@@ -14,6 +14,7 @@ const FACT_COLORS = { Yes: "amber", No: "gray" } as const;
 const COPIED_COLORS = { No: "green", Yes: "red" } as const;
 import { SUBMISSION_CERT_STATEMENTS, statementLabel } from "@/lib/statements";
 import { SUBMISSION_STEPS, TIME_OPTIONS, HOW_TO_COUNT_TIME } from "@/lib/wizard-content";
+import { PSCP_LL_HINTS } from "@/lib/pscp-learning-log-hints";
 import { useDraft, downloadMarkdown } from "@/lib/draft";
 import { addHistoryEntry } from "@/lib/history";
 import { GithubPushSection } from "@/components/github/github-push-section";
@@ -92,6 +93,10 @@ const L = {
     th: "อย่าลืม: เขียน รัน และทดสอบ code จริงใน VS Code และส่ง code ในระบบ OJ ด้วยตนเอง",
     en: "Remember: write, run, and test your real code in VS Code, and submit the code to the OJ yourself.",
   },
+  llHintTitle: {
+    th: "คำใบ้เฉพาะโจทย์นี้ (สำหรับ Learning Log) — ยังต้องเขียนด้วยคำพูดของตนเอง",
+    en: "A nudge for this specific Learning Log problem — still write it in your own words",
+  },
 };
 
 export function SubmissionWizard({ problemId, ojTitle }: { problemId: string; ojTitle: string }) {
@@ -111,6 +116,8 @@ export function SubmissionWizard({ problemId, ojTitle }: { problemId: string; oj
 
   const steps = STEP_KEYS.map((k) => SUBMISSION_STEPS[k]);
   const key = STEP_KEYS[stepIndex];
+  // Course-specific nudge for the six post-midterm Learning Log problems.
+  const llHint = PSCP_LL_HINTS[Number(problemId)] ?? null;
   const patch = (p: Partial<Draft>) => setDraft((d) => ({ ...d, ...p }));
   const patchTest = (i: number, p: Partial<Draft["tests"][number]>) =>
     setDraft((d) => ({
@@ -213,11 +220,35 @@ export function SubmissionWizard({ problemId, ojTitle }: { problemId: string; oj
       )}
 
       {key === "understanding" && (
-        <TextField label={t(L.understanding, locale)} value={draft.understanding} onChange={(v) => patch({ understanding: v })} rows={8} />
+        <>
+          {llHint && (
+            <details className="mb-3 rounded-lg border border-primary/30 bg-primary/5 px-3 py-2 text-xs">
+              <summary className="cursor-pointer font-medium text-primary">
+                {t(L.llHintTitle, locale)}
+              </summary>
+              <p className="mt-2 leading-relaxed text-muted-foreground">
+                {t(llHint.understanding, locale)}
+              </p>
+            </details>
+          )}
+          <TextField label={t(L.understanding, locale)} value={draft.understanding} onChange={(v) => patch({ understanding: v })} rows={8} />
+        </>
       )}
 
       {key === "first_plan" && (
-        <TextField label={t(L.firstPlan, locale)} value={draft.first_plan} onChange={(v) => patch({ first_plan: v })} rows={8} />
+        <>
+          {llHint && (
+            <details className="mb-3 rounded-lg border border-primary/30 bg-primary/5 px-3 py-2 text-xs">
+              <summary className="cursor-pointer font-medium text-primary">
+                {t(L.llHintTitle, locale)}
+              </summary>
+              <p className="mt-2 leading-relaxed text-muted-foreground">
+                {t(llHint.firstPlan, locale)}
+              </p>
+            </details>
+          )}
+          <TextField label={t(L.firstPlan, locale)} value={draft.first_plan} onChange={(v) => patch({ first_plan: v })} rows={8} />
+        </>
       )}
 
       {key === "final_approach" && (

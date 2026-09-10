@@ -1,6 +1,6 @@
 # 🌟 PSCP Recommended Problems Hub
 
-This folder contains all **10 Recommended Problems** from the course curriculum. Each problem is designed to teach a core algorithmic pattern or Python technique.
+This folder contains all **14 Recommended Problems** from the course curriculum. Each problem is designed to teach a core algorithmic pattern or Python technique.
 
 ---
 
@@ -18,6 +18,10 @@ This folder contains all **10 Recommended Problems** from the course curriculum.
 | **3167** | [oj3167-FizzBuzz](./oj3167-FizzBuzz)                       | FizzBuzz            | 180 / 183        | 98.36%     | 04 Sep 2026, 00:00    | Modulo `%` and condition ordering (`% 15` first)       |
 | **3226** | [oj3226-Inflation](./oj3226-Inflation)                     | Inflation           | 92 / 160         | 57.50%     | 11 Sep 2026, 00:00    | 3.81% compounding loop / yearly truncation via `//` (integer satang) |
 | **3237** | [oj3237-Triangle](./oj3237-Triangle)                       | สามเหลี่ยม          | 161 / 167        | 96.41%     | 11 Sep 2026, 00:00    | Hollow triangle, string multiplication (`"0"`/`"1"`)   |
+| **3290** | [oj3290-Left_Arrow](./oj3290-Left_Arrow)                   | Left Arrow          | 70 / 72          | 97.22%     | 25 Sep 2026, 23:59    | 2D shape in one loop, `indent = abs(row - mid)`        |
+| **3293** | [oj3293-BigFrame](./oj3293-BigFrame)                       | BigFrame            | 36 / 42          | 85.71%     | 25 Sep 2026, 23:59    | `max(len(line))` width, `.rstrip()`, `.ljust(width)`   |
+| **3349** | [oj3349-Bowl_Stack](./oj3349-Bowl_Stack)                   | กองชาม             | 7 / 8            | 87.50%     | 09 Oct 2026, 00:00    | `Counter` frequency, answer is `max(counts.values())`  |
+| **3355** | [oj3355-Shorten](./oj3355-Shorten)                         | Shorten             | 4 / 4            | 100.00%    | 09 Oct 2026, 00:00    | Range compression, track `start` / `prev`, sentinel `-1` |
 
 ---
 

@@ -2045,7 +2045,768 @@ const triangle: QuizQuestion[] = [
 ];
 
 // ---------------------------------------------------------------------------
-// QUIZ_BANK registry for all 10 PSCP Recommended Problems
+// 3290 — Left Arrow (ป้ายไฟเลี้ยวซ้าย)
+// ---------------------------------------------------------------------------
+const leftArrow: QuizQuestion[] = [
+  {
+    id: "3290-q1",
+    kind: "mcq",
+    prompt: {
+      th: "ในโจทย์ Left Arrow ทำไมจึงใช้ mid = n // 2 เป็นดัชนีของแถวกลาง?",
+      en: "In Left Arrow, why is mid = n // 2 the index of the middle row?",
+    },
+    options: [
+      {
+        id: "a",
+        label: { th: "เพราะ n เป็นเลขคี่เสมอ n // 2 จึงชี้ไปที่แถวกลางพอดี (เช่น n=5 -> 2)", en: "n is always odd, so n // 2 lands exactly on the middle row (e.g. n=5 -> 2)" },
+        why: { th: "ถูกต้อง — แถว 0..n-1 มีแถวกลางแถวเดียวเมื่อ n คี่ และดัชนีของมันคือ n // 2", en: "Correct — rows 0..n-1 have one middle row when n is odd, at index n // 2." },
+      },
+      {
+        id: "b",
+        label: { th: "เพราะ // ปัดขึ้นเสมอ", en: "Because // always rounds up" },
+        why: { th: "ผิด — // คือ floor division ปัดลง", en: "Wrong — // is floor division, it rounds down." },
+      },
+      {
+        id: "c",
+        label: { th: "เพราะแถวกลางต้องเยื้องมากที่สุด", en: "Because the middle row must be indented the most" },
+        why: { th: "ผิด — แถวกลางเยื้อง 0 (ชิดซ้ายสุด) ในลูกศรชี้ซ้าย", en: "Wrong — the middle row has indent 0 (flush left) in a left arrow." },
+      },
+      {
+        id: "d",
+        label: { th: "เพราะ n // 2 คือจำนวนดาวในแต่ละแถว", en: "Because n // 2 is the number of stars per row" },
+        why: { th: "ผิด — จำนวนดาวต่อแถวคือ k ไม่เกี่ยวกับ n", en: "Wrong — stars per row is k, unrelated to n." },
+      },
+    ],
+    correctId: "a",
+    sourceRef: "main.py:9",
+  },
+  {
+    id: "3290-q2",
+    kind: "mcq",
+    prompt: {
+      th: "การเยื้อง (จำนวนช่องว่างนำหน้า) ของแถว i ในลูกศรชี้ซ้ายคำนวณอย่างไร?",
+      en: "How is the indent (leading spaces) of row i computed for a left arrow?",
+    },
+    options: [
+      {
+        id: "a",
+        label: { th: "abs(i - mid) — ระยะห่างจากแถวกลาง", en: "abs(i - mid) — the distance from the middle row" },
+        why: { th: "ถูกต้อง — abs() ทำให้ค่าไต่ขึ้นถึงแถวกลางแล้วไต่ลง โดยไม่ต้องแยก if", en: "Correct — abs() ramps up to the middle then back down with no separate if." },
+      },
+      {
+        id: "b",
+        label: { th: "i - mid", en: "i - mid" },
+        why: { th: "ผิด — แถวก่อนแถวกลางจะได้ค่าติดลบ ทำให้ \" \" * ค่าติดลบ = สตริงว่าง", en: "Wrong — rows before the middle get a negative value; \" \" * negative is empty." },
+      },
+      {
+        id: "c",
+        label: { th: "mid - abs(i - mid)", en: "mid - abs(i - mid)" },
+        why: { th: "ผิด — นั่นคือสูตรของลูกศรชี้ขวา (OJ 3291) ที่แถวกลางเยื้องมากสุด", en: "Wrong — that is the right-arrow formula (OJ 3291), where the middle is indented most." },
+      },
+      {
+        id: "d",
+        label: { th: "k - i", en: "k - i" },
+        why: { th: "ผิด — ผสมความกว้าง k กับดัชนีแถว ไม่มีความหมาย", en: "Wrong — mixes the width k with the row index." },
+      },
+    ],
+    correctId: "a",
+    sourceRef: "main.py:12",
+  },
+  {
+    id: "3290-q3",
+    kind: "predict-output",
+    prompt: {
+      th: "Left Arrow: k คือความกว้าง (จำนวน '*' ต่อบรรทัด), n คือความสูง (คี่) แต่ละแถวเยื้องตามระยะห่างจากแถวกลาง อินพุตคือ k=3, n=3 ผลลัพธ์คือข้อใด?",
+      en: "Left Arrow: k is the width (stars per line), n the odd height; each row is indented by its distance from the middle. For k=3, n=3, what is the output?",
+    },
+    stdin: "3\n3\n",
+    options: [
+      {
+        id: "a",
+        label: { th: "' ***' / '***' / ' ***'", en: "' ***' / '***' / ' ***'" },
+        why: { th: "ถูกต้อง — mid=1 การเยื้องคือ abs(0-1), abs(1-1), abs(2-1) = 1, 0, 1", en: "Correct — mid=1; indents are abs(0-1), abs(1-1), abs(2-1) = 1, 0, 1." },
+      },
+      {
+        id: "b",
+        label: { th: "'***' / ' ***' / '***'", en: "'***' / ' ***' / '***'" },
+        why: { th: "ผิด — นั่นคือลูกศรชี้ขวา แถวกลางเยื้องเข้า", en: "Wrong — that is a right arrow, with the middle row indented in." },
+      },
+      {
+        id: "c",
+        label: { th: "'***' / '***' / '***'", en: "'***' / '***' / '***'" },
+        why: { th: "ผิด — ไม่มีการเยื้องเลย ต้องมีช่องว่างนำหน้าแถวบน-ล่าง", en: "Wrong — no indentation at all; the top and bottom rows need a leading space." },
+      },
+      {
+        id: "d",
+        label: { th: "'  ***' / ' ***' / '***'", en: "'  ***' / ' ***' / '***'" },
+        why: { th: "ผิด — นั่นเยื้อง 2,1,0 ซึ่งเป็นครึ่งบนของลูกศรที่สูงกว่านี้", en: "Wrong — that is indent 2,1,0, the top half of a taller arrow." },
+      },
+    ],
+    correctId: "a",
+    sourceRef: "problem.md §6 (row 3×3)",
+  },
+  {
+    id: "3290-q4",
+    kind: "spot-the-bug",
+    prompt: {
+      th: "โค้ดนี้ควรวาดลูกศรชี้ซ้าย แต่แถวบนครึ่งหนึ่งไม่มีช่องว่างนำหน้า บั๊กอยู่ที่ใด?",
+      en: "This should draw a left arrow, but the top half of the rows have no leading spaces. Where is the bug?",
+    },
+    snippet: [
+      "mid = n // 2",
+      "for row in range(n):",
+      "    indent = row - mid",
+      '    print(" " * indent + "*" * k)',
+    ].join("\n"),
+    options: [
+      {
+        id: "a",
+        label: { th: "indent = row - mid ควรเป็น abs(row - mid)", en: "indent = row - mid should be abs(row - mid)" },
+        why: { th: "ถูกต้อง — เมื่อ row < mid ค่าเป็นลบ และ \" \" * (ลบ) คืนสตริงว่าง แถวบนจึงชิดซ้าย", en: "Correct — when row < mid the value is negative, and \" \" * negative is empty, so the top rows sit flush left." },
+      },
+      {
+        id: "b",
+        label: { th: "range(n) ควรเป็น range(1, n + 1)", en: "range(n) should be range(1, n + 1)" },
+        why: { th: "ผิด — โจทย์นี้ใช้ดัชนีแถว 0..n-1 อยู่แล้ว การเลื่อนเป็น 1-indexed จะทำให้ mid ผิด", en: "Wrong — this uses 0-based rows already; shifting to 1-based breaks the mid calculation." },
+      },
+      {
+        id: "c",
+        label: { th: 'print ควรใช้ "*" * k + " " * indent', en: 'print should be "*" * k + " " * indent' },
+        why: { th: "ผิด — นั่นย้ายช่องว่างไปต่อท้าย ทำให้ขอบซ้ายตรงและ iJudge ไม่ผ่านเพราะมีช่องว่างท้ายบรรทัด", en: "Wrong — that moves the spaces to the end, straightening the left edge and adding trailing spaces iJudge rejects." },
+      },
+      {
+        id: "d",
+        label: { th: "mid = n // 2 ควรเป็น n / 2", en: "mid = n // 2 should be n / 2" },
+        why: { th: "ผิด — n / 2 คืน float ใช้เป็นตัวคูณสตริงไม่ได้ // ถูกแล้ว", en: "Wrong — n / 2 returns a float, which cannot multiply a string; // is correct." },
+      },
+    ],
+    correctId: "a",
+    sourceRef: "main.py:11-13",
+  },
+  {
+    id: "3290-q5",
+    kind: "pep8",
+    prompt: {
+      th: "แต่ละแถวของลูกศรสร้างจากสตริงคูณอย่างไรจึงถือว่าอ่านง่ายและตรงตาม PEP-8?",
+      en: "How should each arrow row be built from string multiplication to stay readable and PEP-8 clean?",
+    },
+    snippet: '" " * indent + "*" * k',
+    options: [
+      {
+        id: "a",
+        label: { th: '" " * indent + "*" * k — เว้นวรรครอบ * และ + ตามมาตรฐาน', en: '" " * indent + "*" * k — spaces around * and + per the standard' },
+        why: { th: "ถูกต้อง — PEP-8 ให้เว้นวรรครอบ binary operator; สื่อว่า 'ช่องว่างนำหน้า แล้วดาว'", en: "Correct — PEP-8 wants spaces around binary operators; it reads as 'leading spaces, then stars'." },
+      },
+      {
+        id: "b",
+        label: { th: '" "*indent+"*"*k', en: '" "*indent+"*"*k' },
+        why: { th: "ผิด — ติดกันหมด อ่านยากและผิด PEP-8 (E225 missing whitespace around operator)", en: "Wrong — everything is jammed together; PEP-8 E225, missing whitespace around operator." },
+      },
+      {
+        id: "c",
+        label: { th: 'f"{\' \' * indent}{\'*\' * k}"', en: 'f"{\' \' * indent}{\'*\' * k}"' },
+        why: { th: "ผิด — f-string ที่มีนิพจน์ซับซ้อนข้างในอ่านยากกว่าการต่อสตริงตรง ๆ", en: "Wrong — an f-string with complex expressions inside is harder to read than plain concatenation." },
+      },
+      {
+        id: "d",
+        label: { th: 'str(" " * indent) + str("*" * k)', en: 'str(" " * indent) + str("*" * k)' },
+        why: { th: "ผิด — str() ซ้ำซ้อน ผลของการคูณสตริงเป็นสตริงอยู่แล้ว", en: "Wrong — the str() calls are redundant; string multiplication already returns a string." },
+      },
+    ],
+    correctId: "a",
+    sourceRef: "main.py:13",
+  },
+];
+
+// ---------------------------------------------------------------------------
+// 3293 — BigFrame (กรอบข้อความ)
+// ---------------------------------------------------------------------------
+const bigFrame: QuizQuestion[] = [
+  {
+    id: "3293-q1",
+    kind: "mcq",
+    prompt: {
+      th: "ใน BigFrame ทำไมต้องอ่านข้อความครบทั้ง 5 บรรทัดก่อน แล้วจึงพิมพ์กรอบ?",
+      en: "In BigFrame, why must you read all 5 lines before printing the frame?",
+    },
+    options: [
+      {
+        id: "a",
+        label: { th: "เพราะความกว้างของกรอบขึ้นกับบรรทัดที่ยาวที่สุด ซึ่งรู้ได้ก็ต่อเมื่ออ่านครบแล้ว", en: "The frame width depends on the longest line, which is only known once every line has been read" },
+        why: { th: "ถูกต้อง — ขอบบนต้องยาว width + 4 แต่ width = max(len(บรรทัด)) ต้องเห็นทุกบรรทัดก่อน", en: "Correct — the top border is width + 4 long, but width = max(len(line)) needs every line first." },
+      },
+      {
+        id: "b",
+        label: { th: "เพราะ input() อ่านได้ครั้งเดียว", en: "Because input() can only be called once" },
+        why: { th: "ผิด — เรียก input() ได้หลายครั้ง โค้ดนี้เรียก 5 ครั้งใน list comprehension", en: "Wrong — input() can be called many times; this code calls it 5 times in a comprehension." },
+      },
+      {
+        id: "c",
+        label: { th: "เพราะต้องเรียงบรรทัดตามความยาวก่อน", en: "Because the lines must be sorted by length first" },
+        why: { th: "ผิด — ไม่มีการเรียงลำดับ บรรทัดพิมพ์ตามลำดับที่รับเข้ามา", en: "Wrong — nothing is sorted; the lines print in input order." },
+      },
+      {
+        id: "d",
+        label: { th: "เพราะกรอบล่างต่างจากกรอบบน", en: "Because the bottom border differs from the top" },
+        why: { th: "ผิด — กรอบบนและล่างเป็นสตริงเดียวกัน ใช้ซ้ำได้", en: "Wrong — the top and bottom borders are the same string, reused." },
+      },
+    ],
+    correctId: "a",
+    sourceRef: "main.py:7-9",
+  },
+  {
+    id: "3293-q2",
+    kind: "mcq",
+    prompt: {
+      th: "ความยาวของขอบกรอบ (บรรทัดดาวล้วน) เท่ากับเท่าใด เมื่อ width คือความยาวของบรรทัดที่ยาวที่สุด?",
+      en: "How long is a border row (all stars), where width is the longest line's length?",
+    },
+    options: [
+      {
+        id: "a",
+        label: { th: "width + 4 — ดาวซ้าย+ขวา และช่องว่างข้างละ 1", en: "width + 4 — left/right star plus one pad space on each side" },
+        why: { th: "ถูกต้อง — \"* \" (2) + พื้นที่ข้อความ (width) + \" *\" (2) = width + 4", en: "Correct — \"* \" (2) + text area (width) + \" *\" (2) = width + 4." },
+      },
+      {
+        id: "b",
+        label: { th: "width + 2 — ดาวซ้ายกับขวาเท่านั้น", en: "width + 2 — just the left and right star" },
+        why: { th: "ผิด — ลืมช่องว่าง 1 ช่องระหว่างดาวกับข้อความทั้งสองด้าน", en: "Wrong — forgets the one space between the star and the text on each side." },
+      },
+      {
+        id: "c",
+        label: { th: "width", en: "width" },
+        why: { th: "ผิด — ขอบต้องกว้างกว่าพื้นที่ข้อความเพื่อครอบมันไว้", en: "Wrong — the border must be wider than the text area to enclose it." },
+      },
+      {
+        id: "d",
+        label: { th: "width * 2", en: "width * 2" },
+        why: { th: "ผิด — ความกว้างเพิ่มแบบคงที่ (+4) ไม่ใช่คูณสอง", en: "Wrong — the width grows by a fixed 4, not doubled." },
+      },
+    ],
+    correctId: "a",
+    sourceRef: "main.py:10",
+  },
+  {
+    id: "3293-q3",
+    kind: "mcq",
+    prompt: {
+      th: "ทำไมต้องเรียก .rstrip() กับแต่ละบรรทัดก่อนวัดความกว้าง?",
+      en: "Why call .rstrip() on each line before measuring the width?",
+    },
+    options: [
+      {
+        id: "a",
+        label: { th: "ช่องว่างท้ายบรรทัดในอินพุตไม่นับเป็นข้อความ ถ้าไม่ตัดออก กรอบจะกว้างเกินจริง", en: "Trailing spaces in the input are not part of the text; leaving them makes the frame too wide" },
+        why: { th: "ถูกต้อง — ตัวอย่างที่ 1 มี \"Hello World       \" ถ้าไม่ rstrip width จะเป็น 17 แทน 11", en: "Correct — Example 1 has \"Hello World       \"; without rstrip, width becomes 17 instead of 11." },
+      },
+      {
+        id: "b",
+        label: { th: "เพื่อลบช่องว่างนำหน้าด้วย", en: "To also remove leading spaces" },
+        why: { th: "ผิด — .rstrip() ตัดเฉพาะด้านขวา ช่องว่างนำหน้า (ถ้ามี) ยังอยู่", en: "Wrong — .rstrip() only trims the right side; leading spaces stay." },
+      },
+      {
+        id: "c",
+        label: { th: "เพื่อแปลงบรรทัดว่างให้เป็น None", en: "To turn empty lines into None" },
+        why: { th: "ผิด — บรรทัดว่างหลัง rstrip ยังเป็นสตริงว่าง \"\" ไม่ใช่ None", en: "Wrong — an empty line after rstrip is still \"\", not None." },
+      },
+      {
+        id: "d",
+        label: { th: "เพราะ input() เก็บ \\n ไว้ท้ายสตริง", en: "Because input() keeps the trailing \\n" },
+        why: { th: "ผิด — input() ตัด newline ให้อยู่แล้ว rstrip ที่นี่จัดการช่องว่างที่ผู้ใช้พิมพ์", en: "Wrong — input() already strips the newline; this rstrip handles user-typed spaces." },
+      },
+    ],
+    correctId: "a",
+    sourceRef: "main.py:7",
+  },
+  {
+    id: "3293-q4",
+    kind: "predict-output",
+    prompt: {
+      th: "BigFrame: รับข้อความ 5 บรรทัด ครอบด้วยกรอบ '*' โดยเว้น 1 ช่องระหว่างข้อความกับกรอบ และเติมช่องว่างท้ายให้ทุกบรรทัดยาวเท่าบรรทัดที่ยาวสุด อินพุต 5 บรรทัด: 'Hi' แล้วบรรทัดว่างอีก 4 บรรทัด ขอบกรอบบนคือบรรทัดใด?",
+      en: "BigFrame: 5 lines are framed with '*', one space between text and frame, every line right-padded to the longest line's width. Input: 'Hi' then 4 empty lines. What is the top border row?",
+    },
+    stdin: "Hi\n\n\n\n\n",
+    options: [
+      {
+        id: "a",
+        label: { th: "'******' (ดาว 6 ตัว)", en: "'******' (6 stars)" },
+        why: { th: "ถูกต้อง — บรรทัดยาวสุดคือ 'Hi' (2) width+4 = 6", en: "Correct — the longest line is 'Hi' (2); width + 4 = 6." },
+      },
+      {
+        id: "b",
+        label: { th: "'****' (ดาว 4 ตัว)", en: "'****' (4 stars)" },
+        why: { th: "ผิด — นั่นคือกรณี width=0 (ทุกบรรทัดว่าง) แต่ 'Hi' ยาว 2", en: "Wrong — that is the width=0 case (all lines empty), but 'Hi' has length 2." },
+      },
+      {
+        id: "c",
+        label: { th: "'**' (ดาว 2 ตัว)", en: "'**' (2 stars)" },
+        why: { th: "ผิด — width อย่างเดียว ลืม +4 สำหรับดาวและช่องว่าง", en: "Wrong — width alone, forgetting the +4 for the stars and spaces." },
+      },
+      {
+        id: "d",
+        label: { th: "'* Hi *'", en: "'* Hi *'" },
+        why: { th: "ผิด — นั่นคือแถวข้อความ ไม่ใช่ขอบกรอบ", en: "Wrong — that is a text row, not the border." },
+      },
+    ],
+    correctId: "a",
+    sourceRef: "problem.md §6 (Hi + 4 empty)",
+  },
+  {
+    id: "3293-q5",
+    kind: "spot-the-bug",
+    prompt: {
+      th: "โค้ดนี้ควรตีกรอบข้อความ แต่กับตัวอย่างที่ 1 กรอบกว้างเกินไปและทุกแถวมีช่องว่างเกิน บั๊กอยู่ที่ใด?",
+      en: "This should frame the text, but on Example 1 the frame is too wide and every row has extra padding. Where is the bug?",
+    },
+    snippet: [
+      "lines = [input() for _ in range(5)]",
+      "width = max(len(s) for s in lines)",
+      'border = "*" * (width + 4)',
+      "print(border)",
+    ].join("\n"),
+    options: [
+      {
+        id: "a",
+        label: { th: "input() ควรเป็น input().rstrip()", en: "input() should be input().rstrip()" },
+        why: { th: "ถูกต้อง — ช่องว่างท้ายบรรทัดในอินพุตทำให้ len() มากเกินจริง width จึงกว้างเกิน", en: "Correct — trailing spaces in the input inflate len(), so width comes out too large." },
+      },
+      {
+        id: "b",
+        label: { th: "range(5) ควรเป็น range(7)", en: "range(5) should be range(7)" },
+        why: { th: "ผิด — อินพุตมี 5 บรรทัด เอาต์พุต 7 บรรทัดเกิดจากกรอบบน-ล่าง", en: "Wrong — the input is 5 lines; the 7 output lines come from adding the borders." },
+      },
+      {
+        id: "c",
+        label: { th: "width + 4 ควรเป็น width + 2", en: "width + 4 should be width + 2" },
+        why: { th: "ผิด — +4 ถูกแล้ว (ดาว 2 + ช่องว่าง 2) ปัญหาคือ width เองผิด", en: "Wrong — +4 is right (2 stars + 2 spaces); the problem is width itself." },
+      },
+      {
+        id: "d",
+        label: { th: "max(...) ควรเป็น min(...)", en: "max(...) should be min(...)" },
+        why: { th: "ผิด — กรอบต้องกว้างพอสำหรับบรรทัดที่ยาวที่สุด จึงต้องใช้ max", en: "Wrong — the frame must fit the longest line, so max is correct." },
+      },
+    ],
+    correctId: "a",
+    sourceRef: "main.py:7",
+  },
+  {
+    id: "3293-q6",
+    kind: "mcq",
+    prompt: {
+      th: "s.ljust(width) ทำอะไร เมื่อ s สั้นกว่า width?",
+      en: "What does s.ljust(width) do when s is shorter than width?",
+    },
+    options: [
+      {
+        id: "a",
+        label: { th: "คืน s ที่เติมช่องว่างต่อท้ายจนยาวเท่า width", en: "Returns s with spaces appended until it is width characters long" },
+        why: { th: "ถูกต้อง — จัดชิดซ้ายในความกว้าง width ทำให้ขอบขวาของทุกแถวตรงกัน", en: "Correct — left-justifies within width, so every row's right border lines up." },
+      },
+      {
+        id: "b",
+        label: { th: "คืน s ที่เติมช่องว่างนำหน้า (ชิดขวา)", en: "Returns s padded with leading spaces (right-justified)" },
+        why: { th: "ผิด — นั่นคือ .rjust() ; .ljust() ชิดซ้าย เติมท้าย", en: "Wrong — that is .rjust(); .ljust() left-aligns, padding the end." },
+      },
+      {
+        id: "c",
+        label: { th: "ตัด s ให้เหลือ width ตัวอักษร", en: "Truncates s to width characters" },
+        why: { th: "ผิด — ljust ไม่เคยตัด ถ้า s ยาวกว่า width จะคืน s เดิม", en: "Wrong — ljust never truncates; if s is longer it returns s unchanged." },
+      },
+      {
+        id: "d",
+        label: { th: "เติม '0' นำหน้า", en: "Pads with leading '0'" },
+        why: { th: "ผิด — นั่นคือ .zfill() ; ljust เติมช่องว่าง (หรืออักขระที่ระบุ)", en: "Wrong — that is .zfill(); ljust pads with spaces (or a given fill char)." },
+      },
+    ],
+    correctId: "a",
+    sourceRef: "main.py:15",
+  },
+];
+
+// ---------------------------------------------------------------------------
+// 3349 — Bowl Stack (กองชาม)
+// ---------------------------------------------------------------------------
+const bowlStack: QuizQuestion[] = [
+  {
+    id: "3349-q1",
+    kind: "mcq",
+    prompt: {
+      th: "ในโจทย์ กองชาม จำนวนกองที่น้อยที่สุดเท่ากับอะไร?",
+      en: "In Bowl Stack, the minimum number of stacks equals what?",
+    },
+    options: [
+      {
+        id: "a",
+        label: { th: "จำนวนชามของขนาดที่ปรากฏซ้ำมากที่สุด", en: "The count of the size that appears most often" },
+        why: { th: "ถูกต้อง — ขนาดเท่ากันซ้อนกันไม่ได้ ชามที่ขนาดซ้ำ k ครั้งต้องอยู่ k กอง; ที่เหลือแทรกรอบ ๆ ได้", en: "Correct — equal sizes cannot stack, so a size repeated k times needs k stacks; the rest slot in around them." },
+      },
+      {
+        id: "b",
+        label: { th: "จำนวนขนาดที่แตกต่างกันทั้งหมด", en: "The number of distinct sizes" },
+        why: { th: "ผิด — ขนาดที่ต่างกันทั้งหมดเรียงเป็นกองเดียวได้ (ถ้าไม่มีตัวซ้ำ คำตอบคือ 1)", en: "Wrong — all-distinct sizes form one stack; with no repeats the answer is 1." },
+      },
+      {
+        id: "c",
+        label: { th: "N หารด้วย 2 ปัดขึ้น", en: "N divided by 2, rounded up" },
+        why: { th: "ผิด — ไม่เกี่ยวกับ N โดยตรง ขึ้นกับการซ้ำของขนาด", en: "Wrong — it does not depend on N directly, only on how sizes repeat." },
+      },
+      {
+        id: "d",
+        label: { th: "ค่ามากสุดของขนาดชาม", en: "The largest bowl size" },
+        why: { th: "ผิด — ค่าของขนาดไม่เกี่ยว มีแต่ความถี่ของมัน", en: "Wrong — the size values do not matter, only their frequencies." },
+      },
+    ],
+    correctId: "a",
+    sourceRef: "main.py:12-15",
+  },
+  {
+    id: "3349-q2",
+    kind: "mcq",
+    prompt: {
+      th: "ทำไมจึงใช้ sys.stdin.read().split() แทน input() ทีละบรรทัด?",
+      en: "Why use sys.stdin.read().split() instead of input() line by line?",
+    },
+    options: [
+      {
+        id: "a",
+        label: { th: "ขนาดชามมาทีละบรรทัด (สูงสุด 100,000 บรรทัด) split() บน whitespace อ่านทั้งหมดได้ในครั้งเดียว", en: "Sizes arrive one per line (up to 100,000); split() on whitespace reads them all at once" },
+        why: { th: "ถูกต้อง — .split() แยกทั้งช่องว่างและ newline จึงรับได้ทั้งแบบบรรทัดละตัวและหลายตัวต่อบรรทัด", en: "Correct — .split() breaks on spaces and newlines alike, handling both one-per-line and many-per-line input." },
+      },
+      {
+        id: "b",
+        label: { th: "เพราะ input() ใช้กับตัวเลขไม่ได้", en: "Because input() cannot read numbers" },
+        why: { th: "ผิด — input() อ่านได้ แต่ต้อง int() เอง; ประเด็นคือความเร็วและความยืดหยุ่นของรูปแบบ", en: "Wrong — input() works, you just int() it yourself; the point is speed and format flexibility." },
+      },
+      {
+        id: "c",
+        label: { th: "เพราะต้องเรียงข้อมูลก่อน", en: "Because the data must be sorted first" },
+        why: { th: "ผิด — วิธีนับความถี่ไม่ต้องเรียงเลย", en: "Wrong — the frequency-count approach needs no sorting." },
+      },
+      {
+        id: "d",
+        label: { th: "เพราะ read() คืน list ของ int ให้เลย", en: "Because read() returns a list of ints directly" },
+        why: { th: "ผิด — read() คืนสตริง ต้อง .split() แล้ว map(int, ...) เอง", en: "Wrong — read() returns a string; you .split() then map(int, ...) yourself." },
+      },
+    ],
+    correctId: "a",
+    sourceRef: "main.py:8",
+  },
+  {
+    id: "3349-q3",
+    kind: "predict-output",
+    prompt: {
+      th: "กองชาม: บรรทัดแรกคือ N ตามด้วยขนาดชาม N ค่า ชามขนาดเท่ากันซ้อนกันไม่ได้ ต้องหาจำนวนกองน้อยสุด อินพุต: N=4 ขนาด 5 5 5 5 ผลลัพธ์คือข้อใด?",
+      en: "Bowl Stack: line 1 is N, then N bowl sizes; equal sizes cannot share a stack; find the minimum number of stacks. Input: N=4, sizes 5 5 5 5. What is the output?",
+    },
+    stdin: "4\n5\n5\n5\n5\n",
+    options: [
+      {
+        id: "a",
+        label: { th: "4", en: "4" },
+        why: { th: "ถูกต้อง — ชามขนาด 5 มี 4 ใบ ซ้อนกันไม่ได้เลย ต้อง 4 กอง", en: "Correct — four bowls of size 5, none can stack, so 4 stacks." },
+      },
+      {
+        id: "b",
+        label: { th: "1", en: "1" },
+        why: { th: "ผิด — ขนาดเท่ากันต้อง 'เล็กกว่า' อย่างเดียว ซ้อนกันไม่ได้", en: "Wrong — equal sizes need to be strictly smaller to stack; they cannot." },
+      },
+      {
+        id: "c",
+        label: { th: "2", en: "2" },
+        why: { th: "ผิด — นั่นคือคำตอบของตัวอย่างทางการ (ขนาดหลากหลาย) ไม่ใช่กรณีนี้", en: "Wrong — that is the official example's answer (varied sizes), not this case." },
+      },
+      {
+        id: "d",
+        label: { th: "0", en: "0" },
+        why: { th: "ผิด — มีชาม 4 ใบ ต้องมีกองอย่างน้อย 1", en: "Wrong — there are 4 bowls; there must be at least 1 stack." },
+      },
+    ],
+    correctId: "a",
+    sourceRef: "problem.md §6 (4 / 5 5 5 5)",
+  },
+  {
+    id: "3349-q4",
+    kind: "spot-the-bug",
+    prompt: {
+      th: "โค้ดนี้ควรหาจำนวนกองชามน้อยสุด แต่ตอบผิดเมื่อชามบางขนาดซ้ำกัน บั๊กอยู่ที่ใด?",
+      en: "This should find the minimum stacks, but it is wrong when some sizes repeat. Where is the bug?",
+    },
+    snippet: [
+      "data = list(map(int, sys.stdin.read().split()))",
+      "n = data[0]",
+      "sizes = data[1:1 + n]",
+      "counts = Counter(sizes)",
+      "print(len(counts))",
+    ].join("\n"),
+    options: [
+      {
+        id: "a",
+        label: { th: "print(len(counts)) ควรเป็น print(max(counts.values()))", en: "print(len(counts)) should be print(max(counts.values()))" },
+        why: { th: "ถูกต้อง — len(counts) นับจำนวนขนาดที่ต่างกัน; คำตอบคือความถี่สูงสุดของขนาดใดขนาดหนึ่ง", en: "Correct — len(counts) counts distinct sizes; the answer is the highest frequency of any one size." },
+      },
+      {
+        id: "b",
+        label: { th: "data[1:1 + n] ควรเป็น data[1:n]", en: "data[1:1 + n] should be data[1:n]" },
+        why: { th: "ผิด — ต้องเอา n ค่าหลังตัวแรก คือ index 1..n ซึ่งคือ [1:1+n]", en: "Wrong — you need n values after the first, indices 1..n, which is [1:1+n]." },
+      },
+      {
+        id: "c",
+        label: { th: "Counter(sizes) ควรเป็น sorted(sizes)", en: "Counter(sizes) should be sorted(sizes)" },
+        why: { th: "ผิด — การนับความถี่คือหัวใจของวิธีนี้ ไม่ต้องเรียง", en: "Wrong — frequency counting is the whole method; no sort needed." },
+      },
+      {
+        id: "d",
+        label: { th: "n = data[0] ควรเป็น n = len(data)", en: "n = data[0] should be n = len(data)" },
+        why: { th: "ผิด — data[0] คือ N ที่โจทย์ให้มา len(data) จะรวม N เข้าไปด้วย", en: "Wrong — data[0] is the given N; len(data) would include the N itself." },
+      },
+    ],
+    correctId: "a",
+    sourceRef: "main.py:14-15",
+  },
+  {
+    id: "3349-q5",
+    kind: "mcq",
+    prompt: {
+      th: "Counter(sizes) จากโมดูล collections คืนค่าอะไร?",
+      en: "What does Counter(sizes) from the collections module return?",
+    },
+    options: [
+      {
+        id: "a",
+        label: { th: "dict-like ที่จับคู่ค่าแต่ละตัวกับจำนวนครั้งที่ปรากฏ", en: "A dict-like mapping each value to how many times it appears" },
+        why: { th: "ถูกต้อง — เช่น Counter([2,7,2,3,7]) -> {2: 2, 7: 2, 3: 1}", en: "Correct — e.g. Counter([2,7,2,3,7]) -> {2: 2, 7: 2, 3: 1}." },
+      },
+      {
+        id: "b",
+        label: { th: "list ที่เรียงลำดับแล้ว", en: "A sorted list" },
+        why: { th: "ผิด — Counter ไม่เรียงลำดับและไม่คืน list", en: "Wrong — Counter does not sort and does not return a list." },
+      },
+      {
+        id: "c",
+        label: { th: "จำนวนสมาชิกทั้งหมด (เท่ากับ len)", en: "The total number of elements (same as len)" },
+        why: { th: "ผิด — นั่นคือ len(sizes) ; Counter คืนตารางความถี่", en: "Wrong — that is len(sizes); Counter returns a frequency table." },
+      },
+      {
+        id: "d",
+        label: { th: "set ของค่าที่ไม่ซ้ำ", en: "A set of the unique values" },
+        why: { th: "ผิด — set(sizes) ทิ้งจำนวนครั้ง Counter เก็บไว้", en: "Wrong — set(sizes) drops the counts; Counter keeps them." },
+      },
+    ],
+    correctId: "a",
+    sourceRef: "main.py:14",
+  },
+];
+
+// ---------------------------------------------------------------------------
+// 3355 — Shorten (ย่อช่วงตัวเลข)
+// ---------------------------------------------------------------------------
+const shorten: QuizQuestion[] = [
+  {
+    id: "3355-q1",
+    kind: "mcq",
+    prompt: {
+      th: "ใน Shorten การอ่านอินพุตหยุดเมื่อใด?",
+      en: "In Shorten, when does reading the input stop?",
+    },
+    options: [
+      {
+        id: "a",
+        label: { th: "เมื่ออ่านได้ค่า -1 (sentinel) — ค่าอื่นทั้งหมดก่อนหน้านั้นคือข้อมูลจริง", en: "When it reads -1 (the sentinel) — everything before that is real data" },
+        why: { th: "ถูกต้อง — for token ...: if int(token) == -1: break", en: "Correct — for token ...: if int(token) == -1: break." },
+      },
+      {
+        id: "b",
+        label: { th: "เมื่ออ่านครบ N บรรทัด", en: "After reading N lines" },
+        why: { th: "ผิด — โจทย์ไม่บอก N จำนวนบรรทัดไม่แน่นอน จบด้วย -1", en: "Wrong — there is no N; the line count is unknown, ended by -1." },
+      },
+      {
+        id: "c",
+        label: { th: "เมื่อค่าเริ่มลดลง", en: "When a value decreases" },
+        why: { th: "ผิด — โจทย์รับประกันว่าค่าเพิ่มขึ้นเสมอ (ยกเว้น -1 ปิดท้าย)", en: "Wrong — values are guaranteed increasing (except the -1 terminator)." },
+      },
+      {
+        id: "d",
+        label: { th: "เมื่อเจอบรรทัดว่าง", en: "On an empty line" },
+        why: { th: "ผิด — ตัวจบคือ -1 ไม่ใช่บรรทัดว่าง", en: "Wrong — the terminator is -1, not a blank line." },
+      },
+    ],
+    correctId: "a",
+    sourceRef: "main.py:8-12",
+  },
+  {
+    id: "3355-q2",
+    kind: "mcq",
+    prompt: {
+      th: "ตัวแปร start และ prev ในลูปหลักเก็บอะไร?",
+      en: "What do start and prev hold in the main loop?",
+    },
+    options: [
+      {
+        id: "a",
+        label: { th: "start = เลขแรกของช่วงที่กำลังสร้าง, prev = เลขล่าสุดที่เพิ่งเพิ่มเข้าช่วงนั้น", en: "start = the first number of the current range; prev = the most recent number added to it" },
+        why: { th: "ถูกต้อง — เมื่อเจอ gap จะ emit ช่วง start..prev แล้วเปิดช่วงใหม่", en: "Correct — on a gap it emits the range start..prev, then opens a new range." },
+      },
+      {
+        id: "b",
+        label: { th: "start = 0 เสมอ, prev = ตัวนับ", en: "start is always 0; prev is a counter" },
+        why: { th: "ผิด — start เริ่มที่ nums[0] และเปลี่ยนทุกครั้งที่ขึ้นช่วงใหม่", en: "Wrong — start begins at nums[0] and changes at every new range." },
+      },
+      {
+        id: "c",
+        label: { th: "start = ผลรวม, prev = ค่าเฉลี่ย", en: "start = a sum; prev = an average" },
+        why: { th: "ผิด — ไม่มีการบวกหรือหาค่าเฉลี่ยในโจทย์นี้", en: "Wrong — there is no summing or averaging in this problem." },
+      },
+      {
+        id: "d",
+        label: { th: "start = index, prev = ค่า", en: "start = an index; prev = a value" },
+        why: { th: "ผิด — ทั้งคู่เป็นค่าตัวเลขจากอินพุต ไม่ใช่ดัชนี", en: "Wrong — both are values from the input, not indices." },
+      },
+    ],
+    correctId: "a",
+    sourceRef: "main.py:15-16",
+  },
+  {
+    id: "3355-q3",
+    kind: "predict-output",
+    prompt: {
+      th: "Shorten: รับจำนวนเต็มบวกทีละบรรทัด (เรียงเพิ่มขึ้น) จนเจอ -1 แล้วย่อช่วงต่อเนื่องเป็น a-b ตัวเดี่ยวเป็น a คั่นด้วย ', ' อินพุตก่อน -1 คือ 1 3 5 7 ผลลัพธ์คือข้อใด?",
+      en: "Shorten: read increasing positive integers, one per line, until -1; compress consecutive runs to a-b, singletons to a, joined by ', '. Input before -1 is 1 3 5 7. What is the output?",
+    },
+    stdin: "1\n3\n5\n7\n-1\n",
+    options: [
+      {
+        id: "a",
+        label: { th: "1, 3, 5, 7", en: "1, 3, 5, 7" },
+        why: { th: "ถูกต้อง — ไม่มีคู่ที่ต่างกัน 1 เลย ทุกตัวเป็น singleton", en: "Correct — no pair differs by 1, so every value is a singleton." },
+      },
+      {
+        id: "b",
+        label: { th: "1-7", en: "1-7" },
+        why: { th: "ผิด — 1 ถึง 7 ไม่ต่อเนื่อง (ขาด 2, 4, 6)", en: "Wrong — 1 to 7 is not consecutive (2, 4, 6 are missing)." },
+      },
+      {
+        id: "c",
+        label: { th: "1-3, 5-7", en: "1-3, 5-7" },
+        why: { th: "ผิด — 1 กับ 3 ไม่ติดกัน ต้อง prev + 1 เท่านั้นจึงต่อช่วง", en: "Wrong — 1 and 3 are not adjacent; a range continues only on prev + 1." },
+      },
+      {
+        id: "d",
+        label: { th: "1 3 5 7", en: "1 3 5 7" },
+        why: { th: "ผิด — ต้องคั่นด้วย ', ' (จุลภาคและช่องว่าง) ไม่ใช่ช่องว่างเปล่า", en: "Wrong — pieces are joined by ', ' (comma and space), not a bare space." },
+      },
+    ],
+    correctId: "a",
+    sourceRef: "problem.md §6 (1 3 5 7)",
+  },
+  {
+    id: "3355-q4",
+    kind: "spot-the-bug",
+    prompt: {
+      th: "โค้ดนี้ควรย่อช่วงตัวเลข แต่ผลลัพธ์ขาดช่วงสุดท้ายไปเสมอ บั๊กอยู่ที่ใด?",
+      en: "This should shorten the ranges, but the output always drops the final range. Where is the bug?",
+    },
+    snippet: [
+      "start = prev = nums[0]",
+      "for value in nums[1:]:",
+      "    if value == prev + 1:",
+      "        prev = value",
+      "        continue",
+      '    parts.append(str(start) if start == prev else f"{start}-{prev}")',
+      "    start = prev = value",
+    ].join("\n"),
+    options: [
+      {
+        id: "a",
+        label: { th: "ขาดการ emit ช่วงสุดท้ายหลังจบลูป — ต้องมี parts.append(...) อีกครั้ง", en: "Missing a final emit after the loop — one more parts.append(...) is needed" },
+        why: { th: "ถูกต้อง — ลูป emit เฉพาะตอนเจอ gap ช่วงสุดท้ายไม่มี gap ตามหลัง จึงไม่ถูกเพิ่ม", en: "Correct — the loop only emits on a gap; the last range has no trailing gap, so it is never added." },
+      },
+      {
+        id: "b",
+        label: { th: "nums[1:] ควรเป็น nums[0:]", en: "nums[1:] should be nums[0:]" },
+        why: { th: "ผิด — nums[0] ถูกใช้ตั้งค่า start/prev แล้ว ลูปต้องเริ่มที่ตัวที่สอง", en: "Wrong — nums[0] already seeds start/prev; the loop must start at the second value." },
+      },
+      {
+        id: "c",
+        label: { th: "value == prev + 1 ควรเป็น value >= prev + 1", en: "value == prev + 1 should be value >= prev + 1" },
+        why: { th: "ผิด — ช่วงต่อเนื่องแปลว่าห่างกันพอดี 1 การใช้ >= จะรวมเลขที่ไม่ติดกัน", en: "Wrong — a consecutive run means exactly +1; >= would merge non-adjacent numbers." },
+      },
+      {
+        id: "d",
+        label: { th: "continue ควรเป็น break", en: "continue should be break" },
+        why: { th: "ผิด — break จะออกจากลูปทันทีเมื่อเจอคู่ต่อเนื่องคู่แรก", en: "Wrong — break would exit the loop at the first consecutive pair." },
+      },
+    ],
+    correctId: "a",
+    sourceRef: "main.py:20-22",
+  },
+  {
+    id: "3355-q5",
+    kind: "mcq",
+    prompt: {
+      th: 'นิพจน์ str(start) if start == prev else f"{start}-{prev}" ทำหน้าที่อะไร?',
+      en: 'What does str(start) if start == prev else f"{start}-{prev}" do?',
+    },
+    options: [
+      {
+        id: "a",
+        label: { th: "พิมพ์ช่วงเป็น a ถ้ามีตัวเดียว (start == prev) หรือ a-b ถ้าเป็นช่วง", en: "Renders the range as a when it is a singleton (start == prev), or a-b for a real range" },
+        why: { th: "ถูกต้อง — ternary เดียวจัดการทั้งสองกรณี ไม่ต้อง if/else สองชั้น", en: "Correct — one ternary handles both cases without a nested if/else." },
+      },
+      {
+        id: "b",
+        label: { th: "บวก start กับ prev", en: "Adds start and prev" },
+        why: { th: "ผิด — ไม่มีการบวก มีแต่การจัดรูปแบบเป็นสตริง", en: "Wrong — nothing is added; it only formats a string." },
+      },
+      {
+        id: "c",
+        label: { th: "ตรวจว่า start น้อยกว่า prev หรือไม่", en: "Checks whether start is less than prev" },
+        why: { th: "ผิด — เทียบ == (เท่ากัน) ไม่ใช่ < ", en: "Wrong — it compares == (equal), not <." },
+      },
+      {
+        id: "d",
+        label: { th: "แปลง start เป็น int", en: "Converts start to int" },
+        why: { th: "ผิด — start เป็น int อยู่แล้ว str() แปลงเป็นสตริงเพื่อพิมพ์", en: "Wrong — start is already an int; str() makes it a string for output." },
+      },
+    ],
+    correctId: "a",
+    sourceRef: "main.py:20",
+  },
+  {
+    id: "3355-q6",
+    kind: "pep8",
+    prompt: {
+      th: "การเขียน start = prev = nums[0] ในบรรทัดเดียวถือว่าอย่างไรตาม PEP-8?",
+      en: "How does PEP-8 view start = prev = nums[0] on one line?",
+    },
+    options: [
+      {
+        id: "a",
+        label: { th: "ใช้ได้ — chained assignment ตั้งค่าสองตัวแปรให้ค่าเดียวกันอย่างชัดเจน", en: "Fine — a chained assignment clearly sets two names to the same value" },
+        why: { th: "ถูกต้อง — PEP-8 ยอมรับ a = b = value เมื่อสองตัวแปรควรเริ่มเท่ากันจริง ๆ", en: "Correct — PEP-8 accepts a = b = value when both names genuinely should start equal." },
+      },
+      {
+        id: "b",
+        label: { th: "ผิด — ต้องแยกเป็นสองบรรทัดเสมอ", en: "Wrong — it must always be two separate lines" },
+        why: { th: "ผิด — PEP-8 ไม่ห้าม chained assignment", en: "Wrong — PEP-8 does not forbid chained assignment." },
+      },
+      {
+        id: "c",
+        label: { th: "ผิด — ควรใช้ tuple: start, prev = nums[0], nums[0]", en: "Wrong — use a tuple: start, prev = nums[0], nums[0]" },
+        why: { th: "ผิด — นั่นทำงานเหมือนกันแต่ยาวกว่าและซ้ำ nums[0] ", en: "Wrong — that behaves the same but is longer and repeats nums[0]." },
+      },
+      {
+        id: "d",
+        label: { th: "ผิด — chained assignment ทำให้ทั้งสองตัวชี้ list เดียวกัน", en: "Wrong — chained assignment makes both names share one list" },
+        why: { th: "ผิด — nums[0] เป็น int (immutable) ไม่มีปัญหา aliasing เหมือน list", en: "Wrong — nums[0] is an int (immutable); there is no list-aliasing issue here." },
+      },
+    ],
+    correctId: "a",
+    sourceRef: "main.py:15",
+  },
+];
+
+// ---------------------------------------------------------------------------
+// QUIZ_BANK registry for all 14 PSCP Recommended Problems
 // ---------------------------------------------------------------------------
 export const QUIZ_BANK: Record<number, QuizQuestion[]> = {
   2996: swapCharacters,
@@ -2058,4 +2819,8 @@ export const QUIZ_BANK: Record<number, QuizQuestion[]> = {
   3167: fizzbuzz,
   3226: inflation,
   3237: triangle,
+  3290: leftArrow,
+  3293: bigFrame,
+  3349: bowlStack,
+  3355: shorten,
 };

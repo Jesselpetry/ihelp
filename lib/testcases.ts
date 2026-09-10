@@ -574,4 +574,176 @@ export const TEST_CASES: Record<number, TestCase[]> = {
       tests: { th: "ยืนยันฐานทึบ ไม่ใช่ 01110", en: "Confirms the base is solid, not 01110" },
     },
   ],
+
+  // OJ 3290 - Left Arrow
+  3290: [
+    {
+      id: "3290-off-1",
+      stdin: "7\n5",
+      expected: "  *******\n *******\n*******\n *******\n  *******",
+      label: { th: "ตัวอย่างทางการที่ 1", en: "Official Example 1" },
+      official: true,
+    },
+    {
+      id: "3290-off-2",
+      stdin: "10\n11",
+      expected:
+        "     **********\n    **********\n   **********\n  **********\n **********\n**********\n **********\n  **********\n   **********\n    **********\n     **********",
+      label: { th: "ตัวอย่างทางการที่ 2", en: "Official Example 2" },
+      official: true,
+    },
+    {
+      id: "3290-extra-1",
+      stdin: "1\n1",
+      expected: "*",
+      label: { th: "เคสทดสอบเพิ่มเติม 1", en: "Extra Case 1" },
+      official: false,
+      tests: { th: "n = 1 มีแค่แถวกลาง เยื้อง 0", en: "n = 1: a single middle row, indent 0" },
+    },
+    {
+      id: "3290-extra-2",
+      stdin: "3\n3",
+      expected: " ***\n***\n ***",
+      label: { th: "เคสทดสอบเพิ่มเติม 2", en: "Extra Case 2" },
+      official: false,
+      tests: { th: "ลูกศรเล็กสุด mid = 1", en: "Smallest real arrow, mid = 1" },
+    },
+    {
+      id: "3290-extra-3",
+      stdin: "5\n1",
+      expected: "*****",
+      label: { th: "เคสทดสอบเพิ่มเติม 3", en: "Extra Case 3" },
+      official: false,
+      tests: { th: "หนึ่งแถว ความกว้างเท่าใดก็ได้", en: "One row, any width" },
+    },
+  ],
+
+  // OJ 3293 - BigFrame
+  3293: [
+    {
+      id: "3293-off-1",
+      stdin: "Hello World       \nin \na \nbig\nframe",
+      expected:
+        "***************\n* Hello World *\n* in          *\n* a           *\n* big         *\n* frame       *\n***************",
+      label: { th: "ตัวอย่างทางการที่ 1", en: "Official Example 1" },
+      official: true,
+    },
+    {
+      id: "3293-off-2",
+      stdin: "Hello\nWorld in      \na\n\nbig frame",
+      expected:
+        "*************\n* Hello     *\n* World in  *\n* a         *\n*           *\n* big frame *\n*************",
+      label: { th: "ตัวอย่างทางการที่ 2", en: "Official Example 2" },
+      official: true,
+    },
+    {
+      id: "3293-extra-1",
+      stdin: "Hi\n\n\n\n",
+      expected: "******\n* Hi *\n*    *\n*    *\n*    *\n*    *\n******",
+      label: { th: "เคสทดสอบเพิ่มเติม 1", en: "Extra Case 1" },
+      official: false,
+      tests: { th: "สี่บรรทัดว่าง", en: "Four empty lines" },
+    },
+    {
+      id: "3293-extra-2",
+      stdin: "\n\n\n\n",
+      expected: "****\n*  *\n*  *\n*  *\n*  *\n*  *\n****",
+      label: { th: "เคสทดสอบเพิ่มเติม 2", en: "Extra Case 2" },
+      official: false,
+      tests: { th: "ว่างทั้งหมด ความกว้าง 0", en: "All empty — width 0" },
+    },
+    {
+      id: "3293-extra-3",
+      stdin: "X\nXX\nXXX\nXXXX\nXXXXX",
+      expected:
+        "*********\n* X     *\n* XX    *\n* XXX   *\n* XXXX  *\n* XXXXX *\n*********",
+      label: { th: "เคสทดสอบเพิ่มเติม 3", en: "Extra Case 3" },
+      official: false,
+      tests: { th: "ความกว้างมาจากบรรทัดสุดท้าย", en: "Width comes from the last line" },
+    },
+  ],
+
+  // OJ 3349 - Bowl Stack
+  3349: [
+    {
+      id: "3349-off-1",
+      stdin: "10\n1\n5\n2\n7\n3\n2\n7\n3\n8\n4",
+      expected: "2",
+      label: { th: "ตัวอย่างทางการที่ 1", en: "Official Example 1" },
+      official: true,
+    },
+    {
+      id: "3349-off-2",
+      stdin: "1\n42",
+      expected: "1",
+      label: { th: "ตัวอย่างทางการที่ 2", en: "Official Example 2" },
+      official: true,
+    },
+    {
+      id: "3349-extra-1",
+      stdin: "4\n5\n5\n5\n5",
+      expected: "4",
+      label: { th: "เคสทดสอบเพิ่มเติม 1", en: "Extra Case 1" },
+      official: false,
+      tests: { th: "ขนาดเท่ากันทั้งหมด แต่ละใบเป็นกองของตัวเอง", en: "All identical — every bowl its own stack" },
+    },
+    {
+      id: "3349-extra-2",
+      stdin: "5\n1\n2\n3\n4\n5",
+      expected: "1",
+      label: { th: "เคสทดสอบเพิ่มเติม 2", en: "Extra Case 2" },
+      official: false,
+      tests: { th: "ขนาดต่างกันหมด กองเดียวพอ", en: "All distinct — one decreasing stack" },
+    },
+    {
+      id: "3349-extra-3",
+      stdin: "6\n3\n1\n3\n1\n3\n1",
+      expected: "3",
+      label: { th: "เคสทดสอบเพิ่มเติม 3", en: "Extra Case 3" },
+      official: false,
+      tests: { th: "สองขนาด อย่างละสามใบ", en: "Two sizes, three of each" },
+    },
+  ],
+
+  // OJ 3355 - Shorten
+  3355: [
+    {
+      id: "3355-off-1",
+      stdin: "1\n2\n3\n5\n7\n9\n10\n-1",
+      expected: "1-3, 5, 7, 9-10",
+      label: { th: "ตัวอย่างทางการที่ 1", en: "Official Example 1" },
+      official: true,
+    },
+    {
+      id: "3355-off-2",
+      stdin: "1\n2\n3\n4\n5\n-1",
+      expected: "1-5",
+      label: { th: "ตัวอย่างทางการที่ 2", en: "Official Example 2" },
+      official: true,
+    },
+    {
+      id: "3355-extra-1",
+      stdin: "4\n-1",
+      expected: "4",
+      label: { th: "เคสทดสอบเพิ่มเติม 1", en: "Extra Case 1" },
+      official: false,
+      tests: { th: "ตัวเลขตัวเดียว", en: "A single number" },
+    },
+    {
+      id: "3355-extra-2",
+      stdin: "1\n3\n5\n7\n-1",
+      expected: "1, 3, 5, 7",
+      label: { th: "เคสทดสอบเพิ่มเติม 2", en: "Extra Case 2" },
+      official: false,
+      tests: { th: "ไม่มีคู่ต่อเนื่องเลย", en: "No consecutive pairs" },
+    },
+    {
+      id: "3355-extra-3",
+      stdin: "2\n3\n10\n11\n12\n-1",
+      expected: "2-3, 10-12",
+      label: { th: "เคสทดสอบเพิ่มเติม 3", en: "Extra Case 3" },
+      official: false,
+      tests: { th: "สองช่วง ไม่มีอะไรคั่น", en: "Two ranges, nothing between" },
+    },
+  ],
 };

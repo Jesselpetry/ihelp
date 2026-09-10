@@ -20,6 +20,10 @@ import { COURSE_BINDINGS } from "../lib/course-bindings";
 import { resolveCourseSpine } from "../lib/course-spine";
 import { MODULE_IDS, STANDARD_SPINE, type ModuleId } from "../lib/spine";
 import { checkBank, isFakeBilingual, type Finding } from "../lib/schemas/content";
+import { loadRecommendedProblems, IJUDGE_SCRAPED_STATS } from "../lib/recommended";
+import { QUIZ_BANK } from "../lib/quiz-content";
+import { TEST_CASES } from "../lib/testcases";
+import { PROBLEM_TAKEAWAYS } from "../lib/problem-takeaways";
 
 const findings: Finding[] = [];
 
@@ -130,6 +134,63 @@ for (const [code, binding] of Object.entries(COURSE_BINDINGS)) {
         requireChapter: CHAPTERED_MODULES.includes(id as ModuleId),
       }),
     );
+  }
+}
+
+// ── 5. the /recommended per-problem registries ───────────────────────────────
+// Four parallel maps keyed by OJ id, none previously validated. A folder added
+// without its QUIZ_BANK entry 404s the quiz page in production; a stale entry
+// is dead weight. Also run every recommended quiz through the same checkBank
+// rigor the spine banks get.
+{
+  const packages = loadRecommendedProblems();
+  const folderIds = new Set(packages.map((p) => p.id));
+
+  for (const p of packages) {
+    const where = `recommended/${p.slug}`;
+    if (!p.markdown.trim()) {
+      findings.push({ severity: "error", rule: "recommended-file", where, message: "problem.md is empty or missing" });
+    }
+    if (!p.markdownTh || !p.markdownTh.trim()) {
+      findings.push({ severity: "error", rule: "recommended-file", where, message: "problem.th.md is empty or missing" });
+    }
+    if (!p.hasCode) {
+      findings.push({ severity: "error", rule: "recommended-file", where, message: "main.py is empty or missing" });
+    }
+    for (const [name, map] of [
+      ["QUIZ_BANK", QUIZ_BANK],
+      ["TEST_CASES", TEST_CASES],
+      ["PROBLEM_TAKEAWAYS", PROBLEM_TAKEAWAYS],
+      ["IJUDGE_SCRAPED_STATS", IJUDGE_SCRAPED_STATS],
+    ] as const) {
+      if (!(p.id in map)) {
+        findings.push({ severity: "error", rule: "recommended-registry", where, message: `no ${name}[${p.id}] entry` });
+      }
+    }
+  }
+
+  // Stale entries — a key with no folder behind it.
+  for (const [name, map] of [
+    ["QUIZ_BANK", QUIZ_BANK],
+    ["TEST_CASES", TEST_CASES],
+    ["PROBLEM_TAKEAWAYS", PROBLEM_TAKEAWAYS],
+    ["IJUDGE_SCRAPED_STATS", IJUDGE_SCRAPED_STATS],
+  ] as const) {
+    for (const key of Object.keys(map)) {
+      if (!folderIds.has(Number(key))) {
+        findings.push({
+          severity: "error",
+          rule: "recommended-registry",
+          where: `${name}[${key}]`,
+          message: "entry has no data/recommended/ folder",
+        });
+      }
+    }
+  }
+
+  // The quizzes themselves, held to the spine-bank contract.
+  for (const [id, bank] of Object.entries(QUIZ_BANK)) {
+    findings.push(...checkBank(`recommended.quiz.${id}`, bank));
   }
 }
 
