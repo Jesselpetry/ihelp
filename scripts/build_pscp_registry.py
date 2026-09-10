@@ -32,7 +32,15 @@ HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parent
 OUT_FILE = PROJECT / "data" / "pscp" / "problems.json"
 
-DEFAULT_ARCHIVE = PROJECT.parent / "pscp-69070027"
+_ARCHIVE_REPO = PROJECT.parent / "pscp-69070027"
+
+# The archive repo's working branch keeps empty stubs so new problems start
+# clean; the finished solutions live on its solutions/* branch, checked out as
+# a worktree at .pscp-archive. Prefer that worktree when it exists, so a
+# rebuild picks up real reference code instead of blanking 63 problems.
+# Recreate it with:  git worktree add .pscp-archive solutions/2026-s1
+_ARCHIVE_WORKTREE = _ARCHIVE_REPO / ".pscp-archive"
+DEFAULT_ARCHIVE = _ARCHIVE_WORKTREE if _ARCHIVE_WORKTREE.is_dir() else _ARCHIVE_REPO
 
 IJUDGE_URL = "https://ijudge.it.kmitl.ac.th/problems/{id}/description"
 
