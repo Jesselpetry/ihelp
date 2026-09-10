@@ -57,6 +57,11 @@ export interface PscpProblem {
   limits: PscpLimits | null;
   /** Concept tags, most distinctive first. See TAG_META for display labels. */
   tags: string[];
+  /**
+   * True when the reference solution is still a stub, so `tags` is a weak
+   * ["io"] placeholder rather than something derived from real code.
+   */
+  tagsProvisional?: boolean;
   takeaway: { points: PscpTakeawayPoint[] };
   pitfalls: LText[];
   /** Official iJudge sample cases. */

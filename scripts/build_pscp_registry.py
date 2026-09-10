@@ -150,6 +150,16 @@ class _CodeFacts(ast.NodeVisitor):
         self._walk_loop(node)
 
     def visit_If(self, node: ast.If) -> None:
+        # Ignore top-level `if __name__ == "__main__":` boilerplate
+        if isinstance(node.test, ast.Compare):
+            left = node.test.left
+            if isinstance(left, ast.Name) and left.id == "__name__":
+                for stmt in node.body:
+                    self.visit(stmt)
+                for stmt in node.orelse:
+                    self.visit(stmt)
+                return
+
         # `elif X:` and `else: if X:` are the same AST shape — a single If as
         # the sole orelse statement. Both are one flat ladder, not nesting, so
         # the chain continues at the current depth. Only an If reached through
@@ -286,8 +296,42 @@ class _CodeFacts(ast.NodeVisitor):
         self.generic_visit(node)
 
 
-def derive_tags(code: str, statement: str) -> tuple[list[str], bool]:
-    """Returns (tags, parsed_ok). Falls back to text heuristics if unparsable."""
+def is_stub(code: str) -> bool:
+    """True when main.py has no real solution body yet — a module docstring,
+    an (effectively) empty def main(), and the __main__ guard, nothing else.
+    Such a file tells us nothing about the concepts a problem exercises."""
+    try:
+        tree = ast.parse(code)
+    except SyntaxError:
+        return False
+    for node in tree.body:
+        if isinstance(node, ast.Expr) and isinstance(node.value, ast.Constant):
+            continue  # module docstring
+        if isinstance(node, ast.If):
+            continue  # the `if __name__ == "__main__":` guard
+        if isinstance(node, ast.FunctionDef):
+            body = [
+                n for n in node.body
+                if not (isinstance(n, ast.Expr) and isinstance(n.value, ast.Constant))
+                and not isinstance(n, ast.Pass)
+            ]
+            if body:
+                return False
+            continue
+        return False
+    return True
+
+
+def derive_tags(code: str, statement: str) -> tuple[list[str], bool, bool]:
+    """Returns (tags, parsed_ok, provisional). `provisional` is True when the
+    reference solution is still a stub, so the tags are a weak guess."""
+    if is_stub(code):
+        # No solution to read. Emit a minimal, honest tag set and flag it —
+        # the keyword heuristics below fabricate noisy tags from the statement
+        # prose (every string problem gets `strings`, every worded one gets
+        # `conditionals`), which is worse than saying "we don't know yet".
+        return ["io"], True, True
+
     facts = _CodeFacts()
     parsed = True
     try:
@@ -339,10 +383,23 @@ def derive_tags(code: str, statement: str) -> tuple[list[str], bool]:
                     tags.add("accumulator")
                     break
 
+    # Last-resort statement heuristics, only for a real (non-stub) solution that
+    # the AST could not classify at all — e.g. a one-liner. Kept deliberately
+    # narrow: `conditionals` is never guessed (it must come from the AST), and
+    # only unambiguous structural words trigger a tag.
+    if not any(t in tags for t in ("nested-loops", "loops-for", "loops-while", "nested-lists", "dictionaries", "sets", "string-slicing", "lists", "sorting")):
+        if re.search(r"\bกรอบ\b|\bframe\b|ตาราง 2 มิติ|เมทริกซ์|matrix|ลูปซ้อน|nested loop", statement, re.I):
+            tags.add("nested-loops")
+            tags.add("loops-for")
+        if re.search(r"เรียงลำดับ|จากมากไปน้อย|จากน้อยไปมาก|\bsort\b", statement, re.I):
+            tags.add("sorting")
+        if re.search(r"\bสตริง\b|พิมพ์ใหญ่|พิมพ์เล็ก|\.upper\(|\.lower\(", statement, re.I):
+            tags.add("strings")
+
     if not tags:
         tags.add("io")
 
-    return sorted(tags), parsed
+    return sorted(tags), parsed, False
 
 
 # Ordered so the two or three most characteristic tags sort to the front of a
@@ -652,7 +709,9 @@ def main() -> int:
         blob = " ".join(
             [statement.get("description", ""), statement.get("inputSpec", ""), statement.get("outputSpec", ""), markdown]
         )
-        tags, parsed_ok = derive_tags(code, blob) if code else (["io"], True)
+        tags, parsed_ok, provisional = (
+            derive_tags(code, blob) if code else (["io"], True, True)
+        )
         if code and not parsed_ok:
             unparsable.append(pid)
         ranked = rank_tags(tags)
@@ -681,6 +740,7 @@ def main() -> int:
             "note": note or None,
             "limits": limits,
             "tags": ranked,
+            "tagsProvisional": provisional,
             "takeaway": build_takeaway(ranked),
             "pitfalls": build_pitfalls(code, cases, ranked),
             "referenceCode": code or None,
@@ -688,6 +748,7 @@ def main() -> int:
             # the same text as `statement` and its §4 samples are the same
             # pairs as `cases`. It is still read above, to feed tag derivation.
             "cases": cases,
+            "edgeCases": [],
         })
 
     OUT_FILE.parent.mkdir(parents=True, exist_ok=True)
@@ -708,6 +769,10 @@ def main() -> int:
     print(f"  with statement : {with_stmt}")
     print(f"  with test cases: {with_cases}  (total cases: {sum(len(p['cases']) for p in problems)})")
     print(f"  with main.py   : {with_code}")
+    provisional = [p["id"] for p in problems if p.get("tagsProvisional")]
+    print(f"  provisional tags (stub solution): {len(provisional)}")
+    if provisional:
+        print(f"    {provisional}")
     if unparsable:
         print(f"  WARN unparsable main.py: {unparsable}")
     return 0
