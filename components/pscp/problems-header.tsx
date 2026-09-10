@@ -59,7 +59,7 @@ function Meter({
 }) {
   const pct = total > 0 ? Math.round((value / total) * 100) : 0;
   return (
-    <div className="min-w-28 flex-1 space-y-1">
+    <div className="min-w-0 flex-1 basis-full space-y-1 sm:basis-28">
       <div className="flex items-baseline justify-between gap-3 text-xs text-muted-foreground">
         <span className="truncate">{label}</span>
         <span className="shrink-0 font-mono font-medium tabular-nums text-foreground">
@@ -124,7 +124,9 @@ export function ProblemsHeader({
             {t(L.crumbCourses, locale)} <span className="text-muted-foreground/40">/</span>{" "}
             {t(L.crumbCourse, locale)}
           </p>
-          <h1 className="mt-1 text-2xl font-semibold tracking-tight">{t(L.heading, locale)}</h1>
+          <h1 className="mt-1 text-xl font-semibold tracking-tight sm:text-2xl">
+            {t(L.heading, locale)}
+          </h1>
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
@@ -168,13 +170,13 @@ export function ProblemsHeader({
       {/* Collapsed course-info disclosure: real, but reference material. It
           sits one click away rather than between the reader and the problems. */}
       <details className="group rounded-xl border bg-card">
-        <summary className="flex cursor-pointer list-none items-center gap-2 px-4 py-2.5 text-xs font-medium">
-          <GraduationCap className="size-3.5 text-muted-foreground" />
-          <span className="font-mono text-muted-foreground">{COURSE.code}</span>
-          <span>{t(COURSE.name, locale)}</span>
-          <ChevronDown className="ml-auto size-3.5 text-muted-foreground transition-transform group-open:rotate-180" />
+        <summary className="flex cursor-pointer list-none items-center gap-2 px-3 py-2.5 text-xs font-medium sm:px-4">
+          <GraduationCap className="size-3.5 shrink-0 text-muted-foreground" />
+          <span className="shrink-0 font-mono text-muted-foreground">{COURSE.code}</span>
+          <span className="min-w-0 flex-1 truncate">{t(COURSE.name, locale)}</span>
+          <ChevronDown className="size-3.5 shrink-0 text-muted-foreground transition-transform group-open:rotate-180" />
         </summary>
-        <div className="border-t px-4 py-3">
+        <div className="border-t px-3 py-3 sm:px-4">
           <p className="text-xs leading-relaxed text-muted-foreground">
             {t(COURSE.description, locale)}
           </p>
@@ -210,7 +212,7 @@ export function ProblemsHeader({
       </details>
 
       {/* Row 2: unified strip — scope tags, progress meters, GitHub status. */}
-      <div className="flex flex-wrap items-center gap-4 rounded-2xl border bg-card/60 p-3.5">
+      <div className="flex flex-col gap-4 rounded-2xl border bg-card/60 p-3 sm:flex-row sm:flex-wrap sm:items-center sm:p-3.5">
         <div className="flex flex-wrap items-center gap-1.5">
           <ScopeTag value={data.total} label={t(L.total, locale)} />
           <ScopeTag value={data.gradableCount} label={t(L.gradable, locale)} />
@@ -219,7 +221,7 @@ export function ProblemsHeader({
 
         <div className="h-8 w-px bg-border max-sm:hidden" />
 
-        <div className="flex min-w-0 flex-1 flex-wrap items-center gap-x-6 gap-y-3">
+        <div className="flex min-w-0 flex-1 flex-wrap items-center gap-x-6 gap-y-3 max-sm:w-full">
           <Meter
             label={t(L.progressSolved, locale)}
             value={solvedCount}
@@ -238,16 +240,18 @@ export function ProblemsHeader({
         {/* Connected is the steady state, so it collapses to one line; the
             connect action is a single button when there is a decision to make. */}
         {gh.hydrated && gh.connected && gh.repo ? (
-          <span className="inline-flex shrink-0 items-center gap-1.5 text-xs text-muted-foreground">
-            <GithubIcon className="size-3.5" />
-            <span className="font-mono">
+          <span className="inline-flex min-w-0 max-w-full shrink-0 flex-wrap items-center gap-x-1.5 gap-y-0.5 text-xs text-muted-foreground max-sm:w-full">
+            <GithubIcon className="size-3.5 shrink-0" />
+            <span className="min-w-0 truncate font-mono">
               {gh.repo.owner}/{gh.repo.repo}
             </span>
-            <span className="text-emerald-600 dark:text-emerald-400">· {t(L.synced, locale)} ✓</span>
+            <span className="shrink-0 text-emerald-600 dark:text-emerald-400">
+              · {t(L.synced, locale)} ✓
+            </span>
             <button
               type="button"
               onClick={gh.refresh}
-              className="cursor-pointer underline underline-offset-4 hover:text-foreground"
+              className="shrink-0 cursor-pointer underline underline-offset-4 hover:text-foreground"
             >
               {t(L.change, locale)}
             </button>
@@ -258,7 +262,7 @@ export function ProblemsHeader({
             // eslint-disable-next-line @next/next/no-html-link-for-pages -- OAuth redirect API endpoint requires full navigation
             <a
               href="/api/github/login"
-              className="inline-flex shrink-0 items-center gap-1.5 rounded-lg border bg-background px-3 py-1.5 text-xs font-medium shadow-xs transition-colors hover:bg-muted"
+              className="inline-flex shrink-0 items-center justify-center gap-1.5 rounded-lg border bg-background px-3 py-1.5 text-xs font-medium shadow-xs transition-colors hover:bg-muted max-sm:w-full"
             >
               <GithubIcon className="size-3.5" />
               {t(L.connect, locale)}
