@@ -5,8 +5,8 @@
 [`DROPZONE_SOP.md`](./DROPZONE_SOP.md) (ขั้นตอนนำเข้า)
 
 > **บังคับด้วยเครื่อง ไม่ใช่ด้วยวินัย**
-> ทุกกฎในเอกสารนี้ที่ตรวจได้ ถูกตรวจโดย `npm run content:check`
-> ([`../scripts/validate-content.ts`](../scripts/validate-content.ts)) และรันอัตโนมัติก่อน `npm run build`
+> ทุกกฎในเอกสารนี้ที่ตรวจได้ ถูกตรวจโดย `bun run content:check`
+> ([`../scripts/validate-content.ts`](../scripts/validate-content.ts)) และรันอัตโนมัติก่อน `bun run build`
 > ถ้าเขียนกฎไว้แล้วไม่มีเครื่องตรวจ ภายในสองสปรินต์กฎนั้นจะหายไป
 
 ---
@@ -148,7 +148,7 @@ export interface ModuleBinding {
 
 ## 6. Readiness Index
 
-`npm run readiness` — คะแนน x/11 ต่อวิชา
+`bun run readiness` — คะแนน x/11 ต่อวิชา
 
 เป็นทั้งตัวเลขเดียวที่ตอบว่า "แพลตฟอร์มดีขึ้นไหม" และ backlog การผลิตเนื้อหาที่เรียงลำดับตัวเอง:
 แถวล่างสุดคือที่ที่เนื้อหาชิ้นถัดไปควรไปลง
@@ -171,8 +171,8 @@ export interface ModuleBinding {
 1. เพิ่ม record ใน [`../lib/catalog.ts`](../lib/catalog.ts) — **identity เท่านั้น** (code / officialCode / slug / group / credits / officialUrl)
 2. สร้าง `content/courses/<officialCode>-<Slug>/summary.md` ตามโครง 5 ส่วนใน [`../content/courses/README.md`](../content/courses/README.md)
 3. เพิ่ม binding ใน [`../lib/course-bindings.ts`](../lib/course-bindings.ts) — เริ่มที่ `baseline(dir)` ก็ได้ (2–3/11)
-4. วางไฟล์สื่อตามกติกา 4 ระดับใน `FILE_STRUCTURE.md` §2 แล้วรัน `npm run library:build`
-5. รัน `npm run content:check` และ `npm run readiness`
+4. วางไฟล์สื่อตามกติกา 4 ระดับใน `FILE_STRUCTURE.md` §2 แล้วรัน `bun run library:build`
+5. รัน `bun run content:check` และ `bun run readiness`
 
 ไม่ต้องแตะ route ใดเลย — `app/courses/[dir]/[module]/page.tsx` รองรับทุกวิชาและทุกโมดูล
 

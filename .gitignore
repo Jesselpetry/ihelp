@@ -10,6 +10,9 @@
 !.yarn/releases
 !.yarn/versions
 
+# this project uses Bun (bun.lock) — don't commit an npm lockfile
+package-lock.json
+
 # testing
 /coverage
 
@@ -54,5 +57,5 @@ next-env.d.ts
 # lib/asset-url.ts. Committing them pushed the git pack to 881 MB and the
 # Vercel build output past 1 GB, which ran the build container out of disk.
 # Keep them here locally so scripts/build-library-{manifest,stats} can scan
-# them, and run `npm run assets:sync` after adding any.
+# them, and run `bun run assets:sync` after adding any.
 /public/assets/

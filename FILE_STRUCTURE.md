@@ -199,10 +199,10 @@ LIBRARY_MANIFEST (สร้างอัตโนมัติ) ← พื้น�
 
 | ไฟล์                        | สร้างโดย                            |
 | --------------------------- | ----------------------------------- |
-| `lib/library-manifest.json` | `npm run library:manifest`          |
-| `lib/library-stats.json`    | `npm run library:stats`             |
+| `lib/library-manifest.json` | `bun run library:manifest`          |
+| `lib/library-stats.json`    | `bun run library:stats`             |
 
-รันทั้งสองพร้อมกัน: `npm run library:build`
+รันทั้งสองพร้อมกัน: `bun run library:build`
 
 > `library-stats.json` เก็บจำนวนหน้า PDF และขนาดไฟล์ ที่ต้องนับตอน build
 > เพราะการนับหน้าคือการ inflate content stream ของ PDF ทุกไฟล์ — ทำตอน request
@@ -350,12 +350,12 @@ PSCP: {
 3. `lib/course-bindings.ts` → เพิ่ม binding เริ่มที่ `baseline(dir)` ก็ได้
 4. `public/assets/<ns>/<subject>/<category>/` → วางไฟล์ ตั้งชื่อ kebab-case
    (ใส่ `week08` / `ch3` ในชื่อไฟล์ ถ้าอยากให้ `chapter` ถูกอ่านอัตโนมัติ)
-5. `npm run library:build` → สร้าง manifest + stats ใหม่
+5. `bun run library:build` → สร้าง manifest + stats ใหม่
 6. `lib/subject-library.ts` → เขียน entry มือให้ไฟล์เด่น ๆ พร้อม `scope` + `chapter`
    (ไฟล์ที่เหลือ manifest จัดการให้แล้ว)
-7. `npm run content:check` → สัญญาพิมพ์เขียวต้องผ่าน
-8. `npm run readiness` → ดูว่าวิชาใหม่ได้กี่ /11
-9. `npm run lint && npm run build` → ต้องผ่านทั้งคู่
+7. `bun run content:check` → สัญญาพิมพ์เขียวต้องผ่าน
+8. `bun run readiness` → ดูว่าวิชาใหม่ได้กี่ /11
+9. `bun run lint && bun run build` → ต้องผ่านทั้งคู่
 
 **ไม่ต้องแตะ route ใดเลย** — `app/courses/[dir]/[module]/page.tsx` รองรับทุกวิชา
 และทุกโมดูลอยู่แล้ว

@@ -119,7 +119,7 @@
   ประกาศสองภาษาปลอม) บันทึกเป็น warning รอซ่อม
 - `npm run readiness` — รายงาน Readiness Index (x/11) ของทุกวิชา
 - เอกสาร **[docs/LEARNING_BLUEPRINT.md](./docs/LEARNING_BLUEPRINT.md)** — สัญญาเต็มของ
-  พิมพ์เขียว 11 โมดูล และ **[Current_Architecture_Report.md](./Current_Architecture_Report.md)**
+  พิมพ์เขียว 11 โมดูล และ **[Current_Architecture_Report.md](./docs/Current_Architecture_Report.md)**
   รายงานสถาปัตยกรรมที่พิมพ์เขียวนี้อ้างอิง
 
 ### Changed
