@@ -17,7 +17,12 @@
     "db:generate": "drizzle-kit generate",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
-    "assets:sync": "tsx scripts/sync-library-assets.ts"
+    "assets:sync": "tsx scripts/sync-library-assets.ts",
+    "pscp:registry": "python3 scripts/build_pscp_registry.py",
+    "pscp:edges": "python3 scripts/build_pscp_edge_cases.py",
+    "pscp:build": "bun run pscp:registry && bun run pscp:edges && bun run pscp:verify",
+    "compro:labs": "python3 scripts/build_compro_labs.py",
+    "pscp:verify": "python3 scripts/verify_solutions.py"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.5",

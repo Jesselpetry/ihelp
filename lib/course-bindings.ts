@@ -349,8 +349,8 @@ export const COURSE_BINDINGS: Record<string, CourseBinding> = {
     applied: {
       title: { th: "คลังโจทย์ iJudge", en: "iJudge Problems" },
       subtitle: {
-        th: "รายการโจทย์ทั้งหมดพร้อมกำหนดส่ง · โจทย์แนะนำ 10 ข้อพร้อมเฉลยและตัวตรวจโค้ดในเบราว์เซอร์",
-        en: "Every problem with its deadline, plus ten annotated problems with a browser-based grader",
+        th: "คลังโจทย์ 135 ข้อ สัปดาห์ที่ 1–9 พร้อมตัวตรวจโค้ดในเบราว์เซอร์ และตัวช่วยสร้าง submission.md สำหรับ Learning Logs",
+        en: "135 problems spanning Weeks 1–9 with an in-browser Python grader and submission.md maker for Learning Logs",
       },
       href: "/pscp",
     },

@@ -37,6 +37,13 @@ yarn-error.log*
 .env*
 !.env.example
 
+# iJudge session material written by scripts/sync_oj_problems.py.
+# Short-lived bearer tokens — never commit.
+submit_config.json
+.ijudge_cookie
+*.cookie
+session.json
+
 # vercel
 .vercel
 
@@ -60,3 +67,8 @@ next-env.d.ts
 # them, and run `bun run assets:sync` after adding any.
 /public/assets/
 __pycache__/
+
+# Raw iJudge page cache — a scrape artifact for debugging the RSC parsers.
+# Nothing in the app reads it; the archive repo (pscp-69070027) keeps the one
+# copy. 7.2MB that does not belong in git.
+/data/html_cache/
