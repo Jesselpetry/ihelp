@@ -4,10 +4,15 @@ import { CourseDirectory } from "@/components/course-directory";
 import { COURSES, courseDir, courseHref } from "@/lib/catalog";
 import { readinessIndex } from "@/lib/course-spine";
 
+// No `description` here on purpose: the home page is the site, so it inherits
+// DESCRIPTION from app/layout.tsx. Overriding it locally is how og:description
+// and <meta name="description"> drifted apart.
 export const metadata: Metadata = {
-  title: "คลังเรียนรู้ IT KMITL — สรุป แบบทดสอบ และข้อสอบเก่า",
-  description:
-    "คลังเรียนรู้สำหรับนักศึกษาปี 1 คณะ IT สจล. — สรุปเนื้อหา แบบทดสอบ ข้อสอบเก่า และคลังสไลด์ ครบทุกวิชา PSCP ITF ICS MFIT",
+  // The root layout's `%s · <i>Help` template does NOT apply here — a template
+  // only reaches CHILD segments, and app/page.tsx is the same segment as
+  // app/layout.tsx. So the brand suffix has to be written out by hand to
+  // match what every other page renders.
+  title: "คลังเรียนรู้ IT KMITL — สรุป แบบทดสอบ และข้อสอบเก่า · <i>Help",
   alternates: { canonical: "/" },
 };
 

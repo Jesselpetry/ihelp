@@ -19,13 +19,14 @@ export function getRecommendedDir(): string {
   if (fs.existsSync(bundled)) {
     return bundled;
   }
-  // Dev-only fallback to the sibling course repo. Gated on NODE_ENV so the
+  // Dev-only fallback to the PSCP course archive repo, which lives elsewhere
+  // in the notes tree (this app used to sit next to it). Gated on NODE_ENV so the
   // branch is dead-code-eliminated in a production build: a traced path that
   // escapes the project root (ROOT/..) makes Turbopack give up and pull the
   // whole project — .git included — into the function bundle, which is what
   // blew the Vercel build container's disk.
   if (process.env.NODE_ENV !== "production") {
-    const sibling = path.join(ROOT, "..", "pscp-69070027", "recommended");
+    const sibling = path.join(ROOT, "..", "Y1-S1", "PSCP", "pscp-69070027", "recommended");
     if (fs.existsSync(sibling)) {
       return sibling;
     }

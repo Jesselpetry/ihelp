@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     "คลังโจทย์ PSCP 06066303 IT KMITL — รายการโจทย์ iJudge พร้อมกำหนดส่ง โจทย์แนะนำพร้อมเฉลย ตัวช่วยสร้าง submission.md และ ai_reflection.md",
   openGraph: {
     type: "website",
-    url: "https://pscp.chatan.in.th/pscp",
+    url: "https://ihelp.chatan.in.th/pscp",
     title: "PSCP · การแก้ปัญหาและการโปรแกรมคอมพิวเตอร์",
     description:
       "คลังโจทย์ PSCP 06066303 IT KMITL — รายการโจทย์ iJudge พร้อมกำหนดส่ง โจทย์แนะนำพร้อมเฉลย ตัวช่วยสร้าง submission.md และ ai_reflection.md",

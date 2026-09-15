@@ -24,7 +24,11 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parent
-ARCHIVE = Path(os.environ.get("PSCP_ARCHIVE", PROJECT.parent / "pscp-69070027"))
+ARCHIVE = Path(
+    os.environ.get(
+        "PSCP_ARCHIVE", PROJECT.parent / "Y1-S1" / "PSCP" / "pscp-69070027"
+    )
+)
 
 DETAIL_JSON = PROJECT / "data" / "all_problems_detail.json"
 INDEX_JSON = ARCHIVE / "oj_problems.json"

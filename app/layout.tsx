@@ -31,10 +31,10 @@ const mali = Mali({
 // Keep in sync with app/robots.ts and app/sitemap.ts.
 // NOTE: domain is chatan.in.th (one "n") — a typo here silently breaks
 // og:image fetches for social crawlers.
-const SITE_URL = "https://pscp.chatan.in.th";
+const SITE_URL = "https://ihelp.chatan.in.th";
 const TITLE = "<i>Help";
 const DESCRIPTION =
-  "คลังเรียนรู้สำหรับนักศึกษาปี 1 คณะ IT สจล. — สรุปเนื้อหา แบบทดสอบ ข้อสอบเก่า และคลังสไลด์ ครบทุกวิชา PSCP ITF ICS MFIT";
+  "<i>help — คลังเรียนรู้สำหรับนักศึกษาปี 1 คณะ IT สจล. สรุปเนื้อหา แบบทดสอบ ข้อสอบเก่า และคลังสไลด์ ครบทุกวิชา PSCP ITF ICS MFIT";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -45,6 +45,9 @@ export const metadata: Metadata = {
   description: DESCRIPTION,
   applicationName: "<i>Help",
   keywords: [
+    "ihelp",
+    "<i>help",
+    "ihelp kmitl",
     "IT KMITL",
     "สจล",
     "เทคโนโลยีสารสนเทศ",
@@ -86,6 +89,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: SITE_URL,
+    title: TITLE,
     siteName: "<i>help — คลังเรียนรู้ IT KMITL",
     description: DESCRIPTION,
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: TITLE }],

@@ -32,7 +32,11 @@ HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parent
 OUT_FILE = PROJECT / "data" / "pscp" / "problems.json"
 
-_ARCHIVE_REPO = PROJECT.parent / "pscp-69070027"
+_ARCHIVE_REPO = Path(
+    os.environ.get(
+        "PSCP_ARCHIVE_REPO", PROJECT.parent / "Y1-S1" / "PSCP" / "pscp-69070027"
+    )
+)
 
 # main keeps the week 8-9 problems as empty stubs for hand-solving; their
 # authored solutions live on the archive repo's solutions/* branch, checked

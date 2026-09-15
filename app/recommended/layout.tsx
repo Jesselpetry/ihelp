@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     "Explore the 10 PSCP Recommended Problems with complete problem explanations, Python techniques, test cases, and solution code.",
   openGraph: {
     type: "website",
-    url: "https://pscp.chatan.in.th/recommended",
+    url: "https://ihelp.chatan.in.th/recommended",
     title: "Recommended Problems · PSCP",
     description:
       "Explore the 10 PSCP Recommended Problems with complete problem explanations, Python techniques, test cases, and solution code.",

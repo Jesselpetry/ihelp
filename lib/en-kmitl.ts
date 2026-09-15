@@ -26,12 +26,14 @@ export function getEnKmitlDir(): string {
   if (fs.existsSync(bundled)) {
     return bundled;
   }
-  // Source markdown still lives under the course repo's original ce-kmitl
-  // folder name — only this app's route/UI naming changed to EN-KMITL.
+  // Source markdown still lives under the PSCP course archive repo's original
+  // ce-kmitl folder name — only this app's route/UI naming changed to EN-KMITL.
   // Dev-only, and gated on NODE_ENV for the same file-tracing reason as
   // getRecommendedDir().
   if (process.env.NODE_ENV !== "production") {
-    const sibling = path.join(ROOT, "..", "pscp-69070027", "recommended", "ce-kmitl");
+    const sibling = path.join(
+      ROOT, "..", "Y1-S1", "PSCP", "pscp-69070027", "recommended", "ce-kmitl",
+    );
     if (fs.existsSync(sibling)) {
       return sibling;
     }

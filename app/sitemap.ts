@@ -7,7 +7,7 @@ import { resolveCourseSpine } from "@/lib/course-spine";
 import type { ModuleId } from "@/lib/spine";
 
 // Keep this in sync with SITE_URL in app/layout.tsx.
-const SITE_URL = "https://pscp.chatan.in.th";
+const SITE_URL = "https://ihelp.chatan.in.th";
 
 type Entry = MetadataRoute.Sitemap[number];
 
