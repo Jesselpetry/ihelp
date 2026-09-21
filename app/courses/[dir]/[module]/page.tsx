@@ -16,7 +16,7 @@ import {
   type ResolvedModule,
 } from "@/lib/spine";
 import { getCourseChapters } from "@/lib/course-chapters";
-import { mergedAssets } from "@/lib/subject-library";
+import { assetsForCourse, mergedAssets } from "@/lib/subject-library";
 import { SubjectLibraryGate } from "@/components/subject-library-gate";
 import { t, type LText } from "@/lib/ltext";
 
@@ -197,7 +197,16 @@ export default async function CourseModulePage({
          * squeeze that sidebar into the card instead of letting it sit beside
          * the reader.
          */}
-        {docs.length > 0 && <ModuleReader docs={docs} backHref={backHref} backLabel={backLabel} />}
+        {docs.length > 0 && (
+          <ModuleReader
+            docs={docs}
+            backHref={backHref}
+            backLabel={backLabel}
+            assets={assetsForCourse(course.code) ?? []}
+            courseCode={course.code}
+            moduleKey={`${course.code}/${spec.segment}`}
+          />
+        )}
       </>
     );
   }
@@ -206,6 +215,8 @@ export default async function CourseModulePage({
   const docs = readerDocs(course.code, spec.id);
   if (docs.length === 0) notFound();
   const forward = forwardHref(course, cDir);
+
+  const assets = assetsForCourse(course.code) ?? [];
 
   return (
     <>
@@ -216,6 +227,11 @@ export default async function CourseModulePage({
         backLabel={backLabel}
         nextHref={forward?.href}
         nextLabel={forward?.label ?? L.quizFallback}
+        assets={assets}
+        courseCode={course.code}
+        title={mod.title}
+        subtitle={mod.subtitle}
+        moduleKey={`${course.code}/${spec.segment}`}
       />
     </>
   );

@@ -28,7 +28,7 @@ DOcyT0i8_yQ | บรรยาย — ALU and CPU creation
 | สไลด์บรรยาย — *Chapter 7: ALU and CPU creation* | 40 | `ics-lec-chapter07-alu-cpu-2569.pdf` |
 | รายการอุปกรณ์ที่ต้องซื้อ (ทั้งเทอม) | 1 | `ics-ref-hardware-component-list-2569.pdf` |
 
-ดาวน์โหลดได้ที่ [คลังเรียนรู้ของวิชา](../library) — ต้องเข้าสู่ระบบด้วยอีเมล `@kmitl.ac.th` ก่อน
+สามารถกดเปิดดูหรือดาวน์โหลดไฟล์ได้ทันที หรือค้นหาเอกสารทั้งหมดได้ที่ [คลังเรียนรู้ของวิชา](../library)
 
 ---
 

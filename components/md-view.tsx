@@ -1,8 +1,10 @@
 "use client";
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import ReactMarkdown, { type Components } from "react-markdown";
+import { SessionMaterialsDeck, type SessionDocumentItem } from "@/components/session-materials";
+import type { SubjectAsset } from "@/lib/subject-library-ui";
 import remarkGfm from "remark-gfm";
 import remarkFrontmatter from "remark-frontmatter";
 import remarkMath from "remark-math";
@@ -311,7 +313,131 @@ function normalizeDisplayMath(markdown: string): string {
   });
 }
 
-export function MdView({ markdown }: { markdown: string }) {
+export interface MdViewProps {
+  markdown: string;
+  assets?: SubjectAsset[];
+  courseCode?: string;
+  onOpenPreview?: (asset: SubjectAsset) => void;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function getHastText(node: any): string {
+  if (!node) return "";
+  if (typeof node === "string") return node;
+  if (node.type === "text") return node.value || "";
+  if (Array.isArray(node.children)) {
+    return node.children.map(getHastText).join("");
+  }
+  return "";
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function parseSessionDocTable(node: any, assets?: SubjectAsset[]): SessionDocumentItem[] | null {
+  if (!node || node.tagName !== "table") return null;
+
+  // Search for thead and tbody
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const thead = node.children?.find((c: any) => c.type === "element" && c.tagName === "thead");
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const tbody = node.children?.find((c: any) => c.type === "element" && c.tagName === "tbody");
+  if (!thead || !tbody) return null;
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const headerRow = thead.children?.find((c: any) => c.type === "element" && c.tagName === "tr");
+  if (!headerRow) return null;
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const thCells = (headerRow.children ?? []).filter((c: any) => c.type === "element" && c.tagName === "th");
+  const headers = thCells.map(getHastText).map((s: string) => s.trim().toLowerCase());
+
+  const isStatusTable = headers.some(
+    (h: string) => h.includes("สถานะ") || h.includes("status") || h.includes("ผลกระทบ"),
+  );
+  if (isStatusTable) return null;
+
+  const isDocTable =
+    headers.some((h: string) => h.includes("ไฟล์ในคลัง") || h.includes("คลัง")) ||
+    (headers.some((h: string) => h.includes("เอกสาร") || h.includes("document") || h.includes("title") || h.includes("ชื่อ")) &&
+      headers.some((h: string) => h.includes("ไฟล์") || h.includes("file")));
+
+  if (!isDocTable) return null;
+
+  let fileColIdx = headers.findIndex((h: string) => h.includes("ไฟล์") || h.includes("file"));
+  let titleColIdx = headers.findIndex((h: string) => h.includes("เอกสาร") || h.includes("document") || h.includes("title") || h.includes("ชื่อ"));
+  const pagesColIdx = headers.findIndex((h: string) => h.includes("หน้า") || h.includes("page"));
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const rows = (tbody.children ?? []).filter((c: any) => c.type === "element" && c.tagName === "tr");
+  if (rows.length === 0) return null;
+
+  // If fileColIdx not detected from header, check if cells look like filenames (.pdf, .png, etc.)
+  if (fileColIdx === -1) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const firstRowCells = (rows[0].children ?? []).filter((c: any) => c.type === "element" && c.tagName === "td");
+    const cellTexts = firstRowCells.map(getHastText);
+    const candidateIdx = cellTexts.findIndex((t: string) => /\.(pdf|png|jpg|docx|pptx)$/i.test(t.replace(/[`'"]/g, "").trim()));
+    if (candidateIdx !== -1) {
+      fileColIdx = candidateIdx;
+    }
+  }
+
+  if (fileColIdx === -1) return null;
+  if (titleColIdx === -1) titleColIdx = 0 === fileColIdx ? 1 : 0;
+
+  const items: SessionDocumentItem[] = [];
+  for (const row of rows) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const cells = (row.children ?? []).filter((c: any) => c.type === "element" && c.tagName === "td");
+    if (!cells[fileColIdx]) continue;
+
+    const rawFileName = getHastText(cells[fileColIdx]).replace(/[`'"]/g, "").trim();
+    if (!rawFileName) continue;
+
+    const title = cells[titleColIdx] ? getHastText(cells[titleColIdx]).trim() : rawFileName;
+    const pages = pagesColIdx >= 0 && cells[pagesColIdx] ? getHastText(cells[pagesColIdx]).trim() : undefined;
+
+    const cleanName = rawFileName.toLowerCase();
+    const baseName = cleanName.replace(/\.[^/.]+$/, "");
+    const matchedAsset = assets?.find((a) => {
+      const aFile = a.fileName.toLowerCase();
+      return aFile === cleanName || aFile === `${cleanName}.pdf` || aFile.replace(/\.[^/.]+$/, "") === baseName;
+    });
+
+    items.push({
+      title,
+      pages,
+      fileName: rawFileName,
+      matchedAsset,
+    });
+  }
+
+  return items.length > 0 ? items : null;
+}
+
+export function MdView({ markdown, assets, courseCode, onOpenPreview }: MdViewProps) {
+  const components: Components = useMemo(() => {
+    return {
+      ...mdComponents,
+      table: ({ node, ...p }) => {
+        const sessionDocs = parseSessionDocTable(node, assets);
+        if (sessionDocs) {
+          return (
+            <SessionMaterialsDeck
+              items={sessionDocs}
+              courseCode={courseCode}
+              onOpenPreview={onOpenPreview}
+            />
+          );
+        }
+        return (
+          <div className="my-4 overflow-x-auto rounded-lg border">
+            <table className="w-full text-sm border-collapse" {...p} />
+          </div>
+        );
+      },
+    };
+  }, [assets, courseCode, onOpenPreview]);
+
   return (
     <div className="text-[15px] text-foreground/90 overflow-hidden">
       <ReactMarkdown
@@ -331,7 +457,7 @@ export function MdView({ markdown }: { markdown: string }) {
             },
           ],
         ]}
-        components={mdComponents}
+        components={components}
       >
         {normalizeDisplayMath(markdown)}
       </ReactMarkdown>

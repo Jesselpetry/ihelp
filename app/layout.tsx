@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { IBM_Plex_Sans_Thai, Geist_Mono, Mali } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
@@ -78,13 +78,13 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/favicon.png", type: "image/png" },
-    ],
-    shortcut: "/favicon.png",
-    apple: "/favicon.png",
+  // Icons come from the App Router file conventions (app/favicon.ico,
+  // app/icon.svg, app/apple-icon.png). Declaring metadata.icons here would
+  // override them, so don't re-add it.
+  appleWebApp: {
+    capable: true,
+    title: "iHelp",
+    statusBarStyle: "black-translucent",
   },
   openGraph: {
     type: "website",
@@ -99,6 +99,19 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     images: ["/og-image.png"],
   },
+};
+
+/**
+ * themeColor paints the standalone/installed title bar. Both entries track
+ * --background in app/globals.css so the PWA chrome matches the page behind
+ * it in either scheme.
+ */
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f4f6f8" },
+    { media: "(prefers-color-scheme: dark)", color: "#0f1318" },
+  ],
+  colorScheme: "light dark",
 };
 
 export default function RootLayout({
@@ -123,11 +136,17 @@ export default function RootLayout({
           strategy="beforeInteractive"
           dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }}
         />
+        {/*
+          Registers public/sw.js. It replaces the old self-unregistering
+          worker: taking over the scope neutralizes any rogue worker on this
+          origin/port just as well, and a live worker is what makes the app
+          installable in Chromium.
+        */}
         <Script
-          id="sw-cleaner"
+          id="sw-register"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
-            __html: `if(typeof window!=='undefined'&&'serviceWorker' in navigator){navigator.serviceWorker.getRegistrations().then(function(r){for(var s of r){s.unregister();}});}`,
+            __html: `if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(){});});}`,
           }}
         />
         <ThemeProvider>

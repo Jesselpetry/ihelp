@@ -6,8 +6,7 @@ import { useLocale, t, type LText } from "@/lib/i18n";
 import type { ResolvedModule } from "@/lib/spine";
 import { SubjectTrackGrid } from "@/components/subject-track-grid";
 import { ItKmitlBadge } from "@/components/it-kmitl-badge";
-import { CourseSummaryCard } from "@/components/course-summary-card";
-import { CourseOfficialInfo } from "@/components/course-official-info";
+import { CourseOverview } from "@/components/course-overview";
 import type { ScrapedCourseInfo } from "@/lib/course-content";
 
 interface SubjectHubProps {
@@ -74,21 +73,21 @@ export function SubjectHub({
         </p>
       </div>
 
+      {/*
+        Context first, work second. Someone who has just clicked into a course
+        wants to know what the subject *is* before being handed a path through
+        it; the overview used to sit below the path, where a first-time reader
+        met a numbered to-do list before a single sentence about the course.
+      */}
+      <CourseOverview
+        summaryMarkdown={summaryMarkdown}
+        officialInfo={officialInfo}
+        officialUrl={officialUrl}
+        expanded={isSummaryExpanded}
+        onExpandedChange={setIsSummaryExpanded}
+      />
+
       <SubjectTrackGrid modules={modules} />
-
-      {/* Summary Markdown Card — on top of ภาพรวมรายวิชาอย่างเป็นทางการ card */}
-      {summaryMarkdown && (
-        <CourseSummaryCard
-          markdown={summaryMarkdown}
-          expanded={isSummaryExpanded}
-          onExpandedChange={setIsSummaryExpanded}
-        />
-      )}
-
-      {/* Official Scraped IT KMITL Overview */}
-      {officialInfo && (
-        <CourseOfficialInfo info={officialInfo} officialUrl={officialUrl} />
-      )}
 
       {notes && notes.length > 0 && (
         <div className="space-y-2 text-xs sm:text-sm text-muted-foreground">

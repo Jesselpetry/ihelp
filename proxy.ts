@@ -16,8 +16,8 @@ export const config = {
      * - _next internals and the dev overlay
      * - api/github/*, the pre-existing cookie-based GitHub OAuth flow, which
      *   has nothing to do with the Supabase session
-     * - favicon and static image extensions
+     * - favicon, the web app manifest, and static image extensions
      */
-    "/((?!_next|__nextjs|api/github|favicon.ico|sw.js|.*\\.(?:svg|png|jpg|jpeg|gif|webp|js|css|woff2?)$).*)",
+    "/((?!_next|__nextjs|api/github|favicon.ico|manifest.webmanifest|sw.js|.*\\.(?:svg|png|ico|jpg|jpeg|gif|webp|js|css|webmanifest|woff2?)$).*)",
   ],
 };

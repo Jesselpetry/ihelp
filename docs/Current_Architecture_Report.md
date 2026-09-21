@@ -204,7 +204,7 @@ to be held rather than filed.
 
 | Modality | Storage | Engine | Coverage |
 |---|---|---|---|
-| **Course overview / syllabus** | `content/courses/<dir>/summary.md` with YAML front matter | `course-summary-card.tsx` — collapsible card with live outline panel and read-progress | 13 courses |
+| **Course overview / syllabus** | `content/courses/<dir>/summary.md` with YAML front matter | `course-overview.tsx` — tabbed overview card (curated summary / official info) with live outline panel and read-progress | 13 courses |
 | **Study notes (long form)** | `data/it-kmitl/<subj>/summarize.md`, `data/en-kmitl/…` | `subject-summary-reader.tsx` + `toc-side-panel.tsx` | ITF, ICS, MFIT, COMPRO, CHEM |
 | **Cram sheet** | `data/it-kmitl/mfit/cram.md` | same reader | MFIT only |
 | **Study plan / learning path** | `data/it-kmitl/mfit/learning-path.md` | same reader | MFIT only (a 6-block, day-before-the-exam sprint) |
@@ -767,7 +767,7 @@ the final-exam material that does exist (MFIT weeks 8–15) is the orphaned set 
 | Route | Rendering | Engine |
 |---|---|---|
 | `/` | dynamic | `course-directory.tsx` + `Course` JSON-LD for 15 courses |
-| `/courses/[dir]` | dynamic | `subject-hub.tsx` + `subject-track-grid.tsx` + `course-summary-card.tsx` |
+| `/courses/[dir]` | dynamic | `subject-hub.tsx` + `subject-track-grid.tsx` + `course-overview.tsx` |
 | `/courses/[dir]/summary` · `/exam` · `/mock` · `/cram` · `/plan` · `/analysis` | dynamic | `subject-summary-reader.tsx` (one shared Markdown reader, five entry points) |
 | `/courses/[dir]/quiz` | dynamic | `subject-quiz-gate.tsx` → `technique-quiz.tsx` |
 | `/courses/[dir]/library` | dynamic | `subject-library.tsx` |

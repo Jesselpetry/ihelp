@@ -42,6 +42,22 @@ export const PHASE_LABEL: Record<Phase, LText> = {
   prove: { th: "พิสูจน์", en: "Prove & Repair" },
 };
 
+/**
+ * What the phase is *for*, said as a thing a student wants to do.
+ *
+ * PHASE_LABEL is the spine's own vocabulary — เข้าใจ / ย่อ / ฝึก / พิสูจน์ — and
+ * stays the name of the phase in data. The hub shows this instead: "ขั้นที่ 1
+ * เข้าใจ" reads as an order to obey, and a student who only came to grind
+ * questions bounces off it. A named category ("ตะลุยโจทย์และแบบฝึกหัด") invites
+ * the same person into the same module.
+ */
+export const PHASE_CATEGORY: Record<Phase, LText> = {
+  orient: { th: "ปูพื้นฐานเนื้อหา", en: "Build the foundation" },
+  compress: { th: "ย่อก่อนเข้าห้องสอบ", en: "Compress before the exam room" },
+  retrieve: { th: "ตะลุยโจทย์และแบบฝึกหัด", en: "Drill questions and exercises" },
+  prove: { th: "จำลองสอบจริงและซ่อมจุดอ่อน", en: "Mock the exam, repair the gaps" },
+};
+
 export const PHASE_GOAL: Record<Phase, LText> = {
   orient: { th: "รู้ว่าต้องเรียนอะไร และสอบอะไร", en: "Know what to learn, and what the exam asks" },
   compress: { th: "เหลือเฉพาะสิ่งที่ต้องจำเข้าห้องสอบ", en: "Keep only what walks into the exam room" },

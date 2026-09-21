@@ -18,6 +18,7 @@ import {
   ArrowUpDown,
   CalendarRange,
   Check,
+  ChevronDown,
   ChevronLeft,
   ChevronRight,
   Copy,
@@ -43,11 +44,22 @@ import {
   Search,
   Sigma,
   Table2,
+  Tag,
   X,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { useLocale, t, type LText } from "@/lib/i18n";
 import { assetDownloadUrl } from "@/lib/asset-url";
+import { PreviewModal, type Preview } from "@/components/preview-modal";
+
 // Imported from subject-library-ui, not subject-library: the latter pulls in
 // library-manifest.json and library-stats.json at module scope, which would
 // ship every asset's title and filename — past exams included — to the browser.
@@ -90,12 +102,6 @@ type GalleryEntry =
 function entryScope(entry: GalleryEntry): ScopeBucket {
   const asset = entry.kind === "single" ? entry.asset : entry.assets[0];
   return asset.scope ?? "term";
-}
-
-/** What the modal is currently showing, and where in its run. */
-interface Preview {
-  items: SubjectAsset[];
-  index: number;
 }
 
 // ── Category styling ─────────────────────────────────────────────────────────
@@ -203,6 +209,19 @@ const L = {
   noResults: { th: "ไม่พบทรัพยากรที่ตรงกับคำค้นหา", en: "No resources match your search" },
   noResultsHint: { th: "ลองล้างตัวกรองหรือเปลี่ยนคำค้นหา", en: "Try clearing the filters or searching for something else" },
   clear: { th: "ล้างตัวกรอง", en: "Clear filters" },
+  clearSearch: { th: "ล้างคำค้นหา", en: "Clear search" },
+  clearAll: { th: "ล้างตัวกรองทั้งหมด", en: "Clear all filters" },
+  activeFilters: { th: "ตัวกรองที่เลือก", en: "Active filters" },
+  sortBy: { th: "เรียงตาม", en: "Sort by" },
+  sortDefault: { th: "ค่าเริ่มต้น (แนะนำ)", en: "Default (Curated)" },
+  allChapters: { th: "ทุกบท", en: "All chapters" },
+  allTopics: { th: "หัวข้อทั้งหมด", en: "All topics" },
+  moreTopics: { th: "หัวข้อเพิ่มเติม", en: "More topics" },
+  filterScope: { th: "ช่วงสอบ", en: "Scope" },
+  filterCat: { th: "หมวดหมู่", en: "Category" },
+  filterCh: { th: "บทที่", en: "Ch." },
+  filterTag: { th: "หัวข้อ", en: "Topic" },
+  filterQuery: { th: "คำค้น", en: "Search" },
   preview: { th: "ดูตัวอย่าง", en: "Preview" },
   download: { th: "ดาวน์โหลด", en: "Download" },
   viewContent: { th: "ดูเนื้อหา", en: "View Content" },
@@ -301,432 +320,7 @@ const DEFERRED: CSSProperties = {
   containIntrinsicSize: "auto 260px",
 };
 
-// ── Preview modal ────────────────────────────────────────────────────────────
 
-interface Transform {
-  scale: number;
-  x: number;
-  y: number;
-}
-
-const IDENTITY: Transform = { scale: 1, x: 0, y: 0 };
-const MIN_SCALE = 1;
-const MAX_SCALE = 6;
-
-const clampScale = (scale: number) => Math.min(MAX_SCALE, Math.max(MIN_SCALE, scale));
-
-/** Safari still ships the prefixed Fullscreen API. */
-type FullscreenCapable = HTMLElement & { webkitRequestFullscreen?: () => Promise<void> };
-type FullscreenDocument = Document & {
-  webkitFullscreenElement?: Element | null;
-  webkitExitFullscreen?: () => Promise<void>;
-};
-
-/**
- * Full-screen preview. PDFs get an embedded viewer with a real fullscreen
- * toggle and a download link; images get a zoom-and-pan surface; in-app
- * markdown gets a link out to its reader. When opened from a scan set the
- * modal pages through the whole run.
- */
-function PreviewModal({
-  preview,
-  courseCode,
-  onIndexChange,
-  onClose,
-}: {
-  preview: Preview;
-  courseCode?: string;
-  onIndexChange: (index: number) => void;
-  onClose: () => void;
-}) {
-  const { locale } = useLocale();
-  const { items, index } = preview;
-  const asset = items[index];
-  const category = resolveCategory(asset);
-  const style = CATEGORY[category];
-  const Icon = style.icon;
-
-  const rootRef = useRef<HTMLDivElement>(null);
-  const stageRef = useRef<HTMLDivElement>(null);
-  const closeRef = useRef<HTMLButtonElement>(null);
-  const [transform, setTransform] = useState<Transform>(IDENTITY);
-  // The origin only feeds the pointer maths, but whether a drag is in flight
-  // also decides the cursor and whether the image animates, so that half is
-  // state rather than a ref.
-  const dragOrigin = useRef<{ x: number; y: number } | null>(null);
-  const [dragging, setDragging] = useState(false);
-  const [isFullscreen, setIsFullscreen] = useState(false);
-
-  const zoomable = asset.fileType === "image";
-  const paged = items.length > 1;
-  const meta = metaLine(asset, locale);
-  const chapter = chapterTag(asset);
-
-  const step = useCallback(
-    (delta: number) => {
-      if (!paged) return;
-      onIndexChange((index + delta + items.length) % items.length);
-    },
-    [paged, index, items.length, onIndexChange],
-  );
-
-  // A new page starts fresh rather than inheriting the last one's zoom. This is
-  // the adjust-state-during-render pattern rather than an effect, so the reset
-  // lands in the same commit as the page change instead of one frame later.
-  const [shownIndex, setShownIndex] = useState(index);
-  if (shownIndex !== index) {
-    setShownIndex(index);
-    setTransform(IDENTITY);
-  }
-
-  useEffect(() => {
-    const onKey = (event: KeyboardEvent) => {
-      // In fullscreen the browser's own Escape exits it; closing the modal too
-      // would drop the reader two levels in one keypress.
-      if (event.key === "Escape" && !document.fullscreenElement) onClose();
-      if (event.key === "ArrowRight") step(1);
-      if (event.key === "ArrowLeft") step(-1);
-    };
-    document.addEventListener("keydown", onKey);
-    const previous = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    closeRef.current?.focus();
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      document.body.style.overflow = previous;
-    };
-  }, [onClose, step]);
-
-  // Fullscreen can also be left through the browser chrome or Escape, so the
-  // button's label follows the document rather than its own click history.
-  useEffect(() => {
-    const doc = document as FullscreenDocument;
-    const sync = () =>
-      setIsFullscreen(
-        (doc.fullscreenElement ?? doc.webkitFullscreenElement) === rootRef.current,
-      );
-    document.addEventListener("fullscreenchange", sync);
-    document.addEventListener("webkitfullscreenchange", sync);
-    return () => {
-      document.removeEventListener("fullscreenchange", sync);
-      document.removeEventListener("webkitfullscreenchange", sync);
-    };
-  }, []);
-
-  const toggleFullscreen = () => {
-    const doc = document as FullscreenDocument;
-    const root = rootRef.current as FullscreenCapable | null;
-    if (doc.fullscreenElement ?? doc.webkitFullscreenElement) {
-      void (doc.exitFullscreen?.() ?? doc.webkitExitFullscreen?.());
-    } else {
-      void (root?.requestFullscreen?.() ?? root?.webkitRequestFullscreen?.());
-    }
-  };
-
-  // React attaches wheel handlers passively, so zoom-on-scroll has to be bound
-  // natively or the page scrolls underneath the image instead of zooming it.
-  useEffect(() => {
-    const stage = stageRef.current;
-    if (!stage || !zoomable) return;
-
-    const onWheel = (event: WheelEvent) => {
-      event.preventDefault();
-      setTransform((current) => {
-        const next = clampScale(current.scale * (event.deltaY < 0 ? 1.12 : 1 / 1.12));
-        // Zooming all the way out re-centres, so the image can never be left
-        // parked off-screen with no way back.
-        if (next === MIN_SCALE) return IDENTITY;
-        return { ...current, scale: next };
-      });
-    };
-
-    stage.addEventListener("wheel", onWheel, { passive: false });
-    return () => stage.removeEventListener("wheel", onWheel);
-  }, [zoomable]);
-
-  const onPointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
-    if (!zoomable || transform.scale === MIN_SCALE) return;
-    event.currentTarget.setPointerCapture(event.pointerId);
-    dragOrigin.current = { x: event.clientX - transform.x, y: event.clientY - transform.y };
-    setDragging(true);
-  };
-
-  const onPointerMove = (event: ReactPointerEvent<HTMLDivElement>) => {
-    const origin = dragOrigin.current;
-    if (!origin) return;
-    setTransform((current) => ({
-      ...current,
-      x: event.clientX - origin.x,
-      y: event.clientY - origin.y,
-    }));
-  };
-
-  const endDrag = () => {
-    dragOrigin.current = null;
-    setDragging(false);
-  };
-
-  const zoomBy = (factor: number) =>
-    setTransform((current) => {
-      const next = clampScale(current.scale * factor);
-      return next === MIN_SCALE ? IDENTITY : { ...current, scale: next };
-    });
-
-  const arrowClass =
-    "absolute top-1/2 z-10 -translate-y-1/2 rounded-full border bg-card/90 p-2 text-foreground shadow-lg backdrop-blur transition-colors hover:bg-card disabled:opacity-40";
-
-  return (
-    // Backdrop. Clicking it dismisses; the panel stops the event so a click
-    // that starts inside — the end of a pan drag, say — never closes.
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-0 backdrop-blur-sm sm:p-4 lg:p-6"
-      onPointerDown={(event) => {
-        if (event.target === event.currentTarget) onClose();
-      }}
-    >
-      <div
-        ref={rootRef}
-        role="dialog"
-        aria-modal="true"
-        aria-label={t(asset.title, locale)}
-        // Fullscreen paints the panel's own background over the whole screen,
-        // so it drops the floating chrome and the size cap while it is up.
-        className={
-          isFullscreen
-            ? "flex size-full flex-col bg-card"
-            : "flex h-full max-h-none w-full flex-col overflow-hidden border bg-card shadow-2xl sm:h-[96vh] sm:max-h-[96vh] sm:w-[96vw] sm:max-w-7xl sm:rounded-2xl"
-        }
-      >
-      {/* Header */}
-      <header className="flex shrink-0 items-start justify-between gap-3 border-b bg-card/80 px-4 py-3 sm:px-6">
-        <div className="flex min-w-0 items-start gap-3">
-          <div className="flex size-9 shrink-0 items-center justify-center rounded-xl border shelf-pill text-primary">
-            <Icon className="size-4" />
-          </div>
-          <div className="min-w-0">
-            <h2 className="truncate text-sm font-semibold leading-tight sm:text-base">
-              {t(asset.title, locale)}
-            </h2>
-            <div className="mt-1 flex flex-wrap items-center gap-1.5">
-              {chapter && (
-                <span className="rounded-full border bg-muted px-1.5 py-0.5 text-[9px] font-semibold text-muted-foreground">
-                  {chapter}
-                </span>
-              )}
-              {asset.scope && <ScopeBadge scope={asset.scope} />}
-              <span className="truncate text-xs text-muted-foreground">
-                {[
-                  courseCode ?? asset.courseCode,
-                  t(style.label, locale),
-                  meta,
-                  paged ? `${index + 1} / ${items.length}` : "",
-                ]
-                  .filter(Boolean)
-                  .join(" · ")}
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div className="flex shrink-0 items-center gap-1.5">
-          {zoomable && (
-            <div className="hidden items-center gap-1 rounded-full border bg-card p-1 sm:flex">
-              <button
-                type="button"
-                onClick={() => zoomBy(1 / 1.4)}
-                aria-label={t(L.zoomOut, locale)}
-                className="rounded-full p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-              >
-                <Minus className="size-3.5" />
-              </button>
-              <span className="min-w-10 text-center text-[11px] font-medium tabular-nums text-muted-foreground">
-                {Math.round(transform.scale * 100)}%
-              </span>
-              <button
-                type="button"
-                onClick={() => zoomBy(1.4)}
-                aria-label={t(L.zoomIn, locale)}
-                className="rounded-full p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-              >
-                <Plus className="size-3.5" />
-              </button>
-              <button
-                type="button"
-                onClick={() => setTransform(IDENTITY)}
-                aria-label={t(L.resetZoom, locale)}
-                className="rounded-full p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-              >
-                <RotateCcw className="size-3.5" />
-              </button>
-            </div>
-          )}
-
-          {asset.fileType !== "md" && (
-            <a
-              href={assetDownloadUrl(asset.url, asset.fileName)}
-              download={asset.fileName}
-              aria-label={`${t(L.download, locale)}: ${asset.fileName}`}
-              className="inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-1.5 text-xs font-semibold text-primary-foreground transition-opacity hover:opacity-90"
-            >
-              <Download className="size-3.5" />
-              <span className="hidden sm:inline">{t(L.download, locale)}</span>
-            </a>
-          )}
-
-          <button
-            type="button"
-            onClick={toggleFullscreen}
-            aria-label={t(isFullscreen ? L.exitFullscreen : L.fullscreen, locale)}
-            aria-pressed={isFullscreen}
-            className="rounded-lg p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-          >
-            {isFullscreen ? <Minimize className="size-4" /> : <Maximize className="size-4" />}
-          </button>
-
-          <button
-            ref={closeRef}
-            type="button"
-            onClick={onClose}
-            aria-label={t(L.closePreview, locale)}
-            className="rounded-lg p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-          >
-            <X className="size-4" />
-          </button>
-        </div>
-      </header>
-
-      {/* Stage */}
-      <div
-        ref={stageRef}
-        className="relative min-h-0 flex-1 overflow-hidden bg-muted/40"
-        onPointerDown={onPointerDown}
-        onPointerMove={onPointerMove}
-        onPointerUp={endDrag}
-        onPointerCancel={endDrag}
-        onDoubleClick={() => zoomable && setTransform(IDENTITY)}
-        style={{
-          cursor: zoomable
-            ? transform.scale > MIN_SCALE
-              ? dragging
-                ? "grabbing"
-                : "grab"
-              : "zoom-in"
-            : undefined,
-        }}
-      >
-        {asset.fileType === "pdf" && (
-          <iframe
-            // Keyed so paging between PDFs remounts the viewer instead of
-            // leaving the previous document's scroll position behind.
-            key={asset.url}
-            src={asset.url}
-            title={t(asset.title, locale)}
-            // min-h ensures the iframe is never squashed to zero on short
-            // viewports while flex-1 on the stage still fills whatever remains.
-            className="h-full min-h-[60vh] w-full border-0 bg-white"
-          />
-        )}
-
-        {asset.fileType === "file" && (
-          // Logisim circuits, spreadsheets and the like: nothing to preview
-          // inline, so the stage becomes a plain hand-off to the download.
-          <div className="flex size-full flex-col items-center justify-center gap-3 p-8 text-center">
-            <FileDown className="size-10 text-muted-foreground" strokeWidth={1.5} />
-            <p className="text-sm font-medium text-foreground">
-              {t(L.noPreview, locale)}
-            </p>
-            <p className="text-xs text-muted-foreground">{asset.fileName}</p>
-          </div>
-        )}
-
-        {asset.fileType === "image" && (
-          // No extra padding — the image itself has a shadow and the stage
-          // bg provides visual separation, so the image fills the full stage.
-          <div className="flex size-full items-center justify-center overflow-hidden">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={asset.url}
-              alt={t(asset.title, locale)}
-              draggable={false}
-              className="max-h-full max-w-full select-none object-contain"
-              style={{
-                transform: `translate(${transform.x}px, ${transform.y}px) scale(${transform.scale})`,
-                transition: dragging ? "none" : "transform 120ms ease-out",
-              }}
-            />
-          </div>
-        )}
-
-        {asset.fileType === "md" && (
-          <div className="mx-auto flex h-full max-w-lg flex-col items-center justify-center gap-4 px-6 text-center">
-            <div className="flex size-14 items-center justify-center rounded-2xl border shelf-pill text-primary">
-              <Library className="size-6" />
-            </div>
-            <p className="text-sm leading-relaxed text-muted-foreground">{t(L.mdHint, locale)}</p>
-          </div>
-        )}
-
-        {paged && (
-          <>
-            <button
-              type="button"
-              onClick={() => step(-1)}
-              aria-label={t(L.prev, locale)}
-              className={`${arrowClass} left-3`}
-            >
-              <ChevronLeft className="size-5" />
-            </button>
-            <button
-              type="button"
-              onClick={() => step(1)}
-              aria-label={t(L.next, locale)}
-              className={`${arrowClass} right-3`}
-            >
-              <ChevronRight className="size-5" />
-            </button>
-          </>
-        )}
-
-        {zoomable && (
-          <p className="pointer-events-none absolute inset-x-0 bottom-3 text-center text-[11px] text-muted-foreground">
-            {t(L.panHint, locale)}
-          </p>
-        )}
-      </div>
-
-      {/* Footer — kept compact so as much vertical space as possible goes to
-          the content stage. Description is shown on one line only. */}
-      <footer className="shrink-0 border-t bg-card/80 px-4 py-2 sm:px-6">
-        <div className="flex flex-wrap items-center gap-2">
-          {asset.description && (
-            <p className="mr-auto line-clamp-1 text-xs leading-relaxed text-muted-foreground">
-              {t(asset.description, locale)}
-            </p>
-          )}
-          {asset.fileType === "md" ? (
-            <Button asChild size="sm" className="gap-1.5 rounded-full">
-              <Link href={asset.url}>
-                <Eye className="size-3.5" />
-                {t(L.viewContent, locale)}
-              </Link>
-            </Button>
-          ) : (
-            <Button asChild size="sm" variant="outline" className="gap-1.5 rounded-full">
-              <a href={asset.url} target="_blank" rel="noreferrer">
-                <Maximize2 className="size-3.5" />
-                {t(L.openInTab, locale)}
-              </a>
-            </Button>
-          )}
-          <span className="hidden truncate font-mono text-[11px] text-muted-foreground sm:inline">
-            {asset.fileName}
-          </span>
-        </div>
-      </footer>
-      </div>
-    </div>
-  );
-}
 
 // ── Gallery cards ────────────────────────────────────────────────────────────
 
@@ -1219,10 +813,81 @@ function CompactStackRow({
   );
 }
 
-// ── Table View ───────────────────────────────────────────────────────────────
+// ── Global Sorting & Table View ──────────────────────────────────────────────
 
-type TableSortColumn = "name" | "category" | "scope" | "chapter" | "size";
-type SortDirection = "asc" | "desc";
+export type SortColumn = "default" | "chapter" | "name" | "size" | "category" | "scope";
+export type SortDirection = "asc" | "desc";
+
+interface SortOptionItem {
+  id: string;
+  col: SortColumn;
+  dir: SortDirection;
+  label: LText;
+}
+
+const SORT_OPTIONS: SortOptionItem[] = [
+  { id: "default", col: "default", dir: "asc", label: { th: "ค่าเริ่มต้น (แนะนำ)", en: "Default (Curated)" } },
+  { id: "chapter-asc", col: "chapter", dir: "asc", label: { th: "บท/สัปดาห์: น้อย → มาก", en: "Chapter: Low to High" } },
+  { id: "chapter-desc", col: "chapter", dir: "desc", label: { th: "บท/สัปดาห์: มาก → น้อย", en: "Chapter: High to Low" } },
+  { id: "name-asc", col: "name", dir: "asc", label: { th: "ชื่อเอกสาร: ก-ฮ / A-Z", en: "Name: A to Z" } },
+  { id: "name-desc", col: "name", dir: "desc", label: { th: "ชื่อเอกสาร: ฮ-ก / Z-A", en: "Name: Z to A" } },
+  { id: "size-desc", col: "size", dir: "desc", label: { th: "ขนาดไฟล์: ใหญ่ที่สุด", en: "File Size: Largest" } },
+  { id: "size-asc", col: "size", dir: "asc", label: { th: "ขนาดไฟล์: เล็กที่สุด", en: "File Size: Smallest" } },
+  { id: "category", col: "category", dir: "asc", label: { th: "ตามหมวดหมู่เอกสาร", en: "By Category" } },
+];
+
+function sortGalleryEntries(
+  entries: GalleryEntry[],
+  sortCol: SortColumn,
+  sortDir: SortDirection,
+  locale: "th" | "en",
+): GalleryEntry[] {
+  if (sortCol === "default") return entries;
+  const sorted = [...entries];
+  sorted.sort((a, b) => {
+    if (sortCol === "name") {
+      const aTitle = t(a.kind === "single" ? a.asset.title : a.title, locale);
+      const bTitle = t(b.kind === "single" ? b.asset.title : b.title, locale);
+      const cmp = aTitle.localeCompare(bTitle, locale);
+      return sortDir === "asc" ? cmp : -cmp;
+    }
+    if (sortCol === "category") {
+      const aCat = resolveCategory(a.kind === "single" ? a.asset : a.assets[0]);
+      const bCat = resolveCategory(b.kind === "single" ? b.asset : b.assets[0]);
+      const cmp = aCat.localeCompare(bCat);
+      return sortDir === "asc" ? cmp : -cmp;
+    }
+    if (sortCol === "scope") {
+      const aScope = entryScope(a);
+      const bScope = entryScope(b);
+      const cmp = aScope.localeCompare(bScope);
+      return sortDir === "asc" ? cmp : -cmp;
+    }
+    if (sortCol === "chapter") {
+      const aAsset = a.kind === "single" ? a.asset : a.assets[0];
+      const bAsset = b.kind === "single" ? b.asset : b.assets[0];
+      const aCh = aAsset.chapter ?? (sortDir === "asc" ? 999 : -1);
+      const bCh = bAsset.chapter ?? (sortDir === "asc" ? 999 : -1);
+      if (aCh !== bCh) return sortDir === "asc" ? aCh - bCh : bCh - aCh;
+      const aTitle = t(a.kind === "single" ? a.asset.title : a.title, locale);
+      const bTitle = t(b.kind === "single" ? b.asset.title : b.title, locale);
+      return aTitle.localeCompare(bTitle, locale);
+    }
+    if (sortCol === "size") {
+      const aBytes =
+        a.kind === "single"
+          ? (a.asset.sizeBytes ?? 0)
+          : a.assets.reduce((sum, item) => sum + (item.sizeBytes ?? 0), 0);
+      const bBytes =
+        b.kind === "single"
+          ? (b.asset.sizeBytes ?? 0)
+          : b.assets.reduce((sum, item) => sum + (item.sizeBytes ?? 0), 0);
+      return sortDir === "asc" ? aBytes - bBytes : bBytes - aBytes;
+    }
+    return 0;
+  });
+  return sorted;
+}
 
 function shortDesc(text: string, maxLen = 42): string {
   if (!text) return "";
@@ -1232,17 +897,21 @@ function shortDesc(text: string, maxLen = 42): string {
 function SubjectLibraryTable({
   entries,
   courseCode,
+  sortCol = "default",
+  sortDir = "asc",
+  onSort,
   onOpenSingle,
   onOpenStack,
 }: {
   entries: GalleryEntry[];
   courseCode?: string;
+  sortCol?: SortColumn;
+  sortDir?: SortDirection;
+  onSort?: (col: SortColumn) => void;
   onOpenSingle: (asset: SubjectAsset) => void;
   onOpenStack: (assets: SubjectAsset[], index: number) => void;
 }) {
   const { locale } = useLocale();
-  const [sortCol, setSortCol] = useState<TableSortColumn | null>(null);
-  const [sortDir, setSortDir] = useState<SortDirection>("asc");
   const [openStacks, setOpenStacks] = useState<ReadonlySet<string>>(new Set());
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
@@ -1262,62 +931,11 @@ function SubjectLibraryTable({
     });
   };
 
-  const handleSort = (col: TableSortColumn) => {
-    if (sortCol !== col) {
-      setSortCol(col);
-      setSortDir("asc");
-    } else if (sortDir === "asc") {
-      setSortDir("desc");
-    } else {
-      setSortCol(null);
-      setSortDir("asc");
-    }
+  const handleSort = (col: SortColumn) => {
+    if (onSort) onSort(col);
   };
 
-  const sortedEntries = useMemo(() => {
-    if (!sortCol) return entries;
-    const sorted = [...entries];
-    sorted.sort((a, b) => {
-      if (sortCol === "name") {
-        const aTitle = t(a.kind === "single" ? a.asset.title : a.title, locale);
-        const bTitle = t(b.kind === "single" ? b.asset.title : b.title, locale);
-        const cmp = aTitle.localeCompare(bTitle, locale);
-        return sortDir === "asc" ? cmp : -cmp;
-      }
-      if (sortCol === "category") {
-        const aCat = resolveCategory(a.kind === "single" ? a.asset : a.assets[0]);
-        const bCat = resolveCategory(b.kind === "single" ? b.asset : b.assets[0]);
-        const cmp = aCat.localeCompare(bCat);
-        return sortDir === "asc" ? cmp : -cmp;
-      }
-      if (sortCol === "scope") {
-        const aScope = entryScope(a);
-        const bScope = entryScope(b);
-        const cmp = aScope.localeCompare(bScope);
-        return sortDir === "asc" ? cmp : -cmp;
-      }
-      if (sortCol === "chapter") {
-        const aAsset = a.kind === "single" ? a.asset : a.assets[0];
-        const bAsset = b.kind === "single" ? b.asset : b.assets[0];
-        const aCh = aAsset.chapter ?? (sortDir === "asc" ? 999 : -1);
-        const bCh = bAsset.chapter ?? (sortDir === "asc" ? 999 : -1);
-        return sortDir === "asc" ? aCh - bCh : bCh - aCh;
-      }
-      if (sortCol === "size") {
-        const aBytes =
-          a.kind === "single"
-            ? (a.asset.sizeBytes ?? 0)
-            : a.assets.reduce((sum, item) => sum + (item.sizeBytes ?? 0), 0);
-        const bBytes =
-          b.kind === "single"
-            ? (b.asset.sizeBytes ?? 0)
-            : b.assets.reduce((sum, item) => sum + (item.sizeBytes ?? 0), 0);
-        return sortDir === "asc" ? aBytes - bBytes : bBytes - aBytes;
-      }
-      return 0;
-    });
-    return sorted;
-  }, [entries, sortCol, sortDir, locale]);
+  const sortedEntries = entries;
 
   return (
     <div className="overflow-hidden rounded-2xl border bg-card shadow-xs">
@@ -1789,14 +1407,32 @@ export function SubjectLibrary({
   courseCode,
 }: SubjectLibraryProps) {
   const { locale } = useLocale();
+  const searchInputRef = useRef<HTMLInputElement>(null);
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState<Filter>("all");
   const [scope, setScope] = useState<ScopeFilter>("all");
   const [activeTag, setActiveTag] = useState<string | null>(null);
   const [activeChapter, setActiveChapter] = useState<number | null>(null);
   const [layout, setLayout] = useState<LayoutMode>("table");
+  const [sortCol, setSortCol] = useState<SortColumn>("default");
+  const [sortDir, setSortDir] = useState<SortDirection>("asc");
   const [openStacks, setOpenStacks] = useState<ReadonlySet<string>>(new Set());
   const [preview, setPreview] = useState<Preview | null>(null);
+
+  // Quick keyboard shortcut: press '/' to focus search
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (
+        e.key === "/" &&
+        !["INPUT", "TEXTAREA"].includes((document.activeElement as HTMLElement)?.tagName)
+      ) {
+        e.preventDefault();
+        searchInputRef.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
 
   // Category is derived, so resolve it once per asset rather than on every
   // keystroke through the filter.
@@ -1830,9 +1466,7 @@ export function SubjectLibrary({
   // milestone to choose between, so the control stays out of the way.
   const scoped = scopeCounts.midterm > 0 && scopeCounts.final > 0;
 
-  // Chapters this shelf actually carries. Only assets that state one appear;
-  // material with no chapter survives every chapter filter rather than being
-  // hidden by a cut it never claimed to belong to.
+  // Chapters this shelf actually carries.
   const allChapters = useMemo(() => {
     const found = new Set<number>();
     for (const asset of assets) if (asset.chapter !== undefined) found.add(asset.chapter);
@@ -1844,6 +1478,27 @@ export function SubjectLibrary({
     for (const asset of assets) for (const tag of asset.tags) tags.add(tag);
     return Array.from(tags).sort((a, b) => a.localeCompare(b, locale));
   }, [assets, locale]);
+
+  // Tally frequency of each tag to offer popular quick chips
+  const tagCounts = useMemo(() => {
+    const tally: Record<string, number> = {};
+    for (const asset of assets) {
+      for (const tag of asset.tags) {
+        tally[tag] = (tally[tag] ?? 0) + 1;
+      }
+    }
+    return tally;
+  }, [assets]);
+
+  const popularTags = useMemo(() => {
+    return [...allTags]
+      .sort((a, b) => (tagCounts[b] ?? 0) - (tagCounts[a] ?? 0))
+      .slice(0, 8);
+  }, [allTags, tagCounts]);
+
+  const remainingTags = useMemo(() => {
+    return allTags.filter((tag) => !popularTags.includes(tag));
+  }, [allTags, popularTags]);
 
   const filtered = useMemo(() => {
     const query = search.trim().toLowerCase();
@@ -1862,19 +1517,12 @@ export function SubjectLibrary({
           t(asset.description, locale).toLowerCase().includes(query) ||
           asset.fileName.toLowerCase().includes(query) ||
           asset.tags.some((tag) => tag.toLowerCase().includes(query)) ||
-          // Searching the stack's name has to reach its pages, or "สมุดจด"
-          // would hide the very set it names.
           (group ? t(group, locale).toLowerCase().includes(query) : false)
         );
       })
       .map(({ asset }) => asset);
   }, [shelved, search, filter, activeTag, activeChapter, scope, locale]);
 
-  /**
-   * Collapse each surviving scan run into one entry, in the position of its
-   * first page. A run reduced to a single page by filtering is left as a plain
-   * card — a stack of one is just a card with extra chrome.
-   */
   const entries = useMemo<GalleryEntry[]>(() => {
     const members = new Map<string, SubjectAsset[]>();
     for (const asset of filtered) {
@@ -1905,22 +1553,20 @@ export function SubjectLibrary({
     return out;
   }, [filtered]);
 
-  /**
-   * Entries split by milestone, in reading order: what you revise first, then
-   * what comes after it, then the material that never stops applying. Only
-   * used when nothing narrower is selected — once a scope is chosen the grid
-   * is already one section and a heading would just repeat the control.
-   */
+  const sortedEntries = useMemo(() => {
+    return sortGalleryEntries(entries, sortCol, sortDir, locale);
+  }, [entries, sortCol, sortDir, locale]);
+
   const sections = useMemo(() => {
     if (!scoped || scope !== "all") return null;
     const order: ScopeBucket[] = ["midterm", "final", "term"];
     return order
       .map((bucket) => ({
         bucket,
-        entries: entries.filter((entry) => entryScope(entry) === bucket),
+        entries: sortedEntries.filter((entry) => entryScope(entry) === bucket),
       }))
       .filter((section) => section.entries.length > 0);
-  }, [entries, scope, scoped]);
+  }, [sortedEntries, scope, scoped]);
 
   const openSingle = useCallback(
     (asset: SubjectAsset) => setPreview({ items: [asset], index: 0 }),
@@ -1944,13 +1590,39 @@ export function SubjectLibrary({
     setActiveTag(null);
     setActiveChapter(null);
     setScope("all");
+    setSortCol("default");
+    setSortDir("asc");
   };
 
   const filtersActive =
-    search !== "" || filter !== "all" || activeTag !== null || activeChapter !== null || scope !== "all";
-  /** True when something other than the milestone is doing the filtering. */
+    search !== "" ||
+    filter !== "all" ||
+    activeTag !== null ||
+    activeChapter !== null ||
+    scope !== "all" ||
+    sortCol !== "default";
+
   const filtersNarrowed =
     search !== "" || filter !== "all" || activeTag !== null || activeChapter !== null;
+
+  const currentSortLabel = useMemo(() => {
+    const match = SORT_OPTIONS.find(
+      (opt) => opt.col === sortCol && (opt.col === "default" || opt.dir === sortDir),
+    );
+    return match ? t(match.label, locale) : t(L.sortDefault, locale);
+  }, [sortCol, sortDir, locale]);
+
+  const handleTableSort = (col: SortColumn) => {
+    if (sortCol !== col) {
+      setSortCol(col);
+      setSortDir(col === "size" ? "desc" : "asc");
+    } else if (sortDir === "asc") {
+      setSortDir("desc");
+    } else {
+      setSortCol("default");
+      setSortDir("asc");
+    }
+  };
 
   const renderGrid = (list: GalleryEntry[]) => (
     <div className="grid grid-cols-[repeat(auto-fill,minmax(9.5rem,1fr))] gap-x-4 gap-y-6">
@@ -2029,6 +1701,9 @@ export function SubjectLibrary({
         <SubjectLibraryTable
           entries={list}
           courseCode={courseCode}
+          sortCol={sortCol}
+          sortDir={sortDir}
+          onSort={handleTableSort}
           onOpenSingle={openSingle}
           onOpenStack={openIn}
         />
@@ -2057,171 +1732,422 @@ export function SubjectLibrary({
         </p>
       </header>
 
-      {/* Controls */}
-      <div className="mb-6 space-y-3">
-        {/* Exam milestone. Sits above search and the category chips because it
-            is the coarsest cut a student makes: which exam am I revising for. */}
-        {scoped && (
-          <div
-            role="group"
-            aria-label={t(L.examScope, locale)}
-            className="flex w-full gap-1 rounded-full border bg-card p-1 sm:w-auto sm:inline-flex"
-          >
-            {(["all", "midterm", "final"] as const).map((option) => {
-              const active = scope === option;
-              const Icon = option === "all" ? null : SCOPE_ICON[option];
-              const label =
-                option === "all" ? t(L.scopeAll, locale) : t(SCOPE_LABEL[option], locale);
-              const total =
-                option === "all"
-                  ? assets.length
-                  : scopeCounts[option] + scopeCounts.term;
-              return (
-                <button
-                  key={option}
-                  type="button"
-                  onClick={() => setScope(option)}
-                  aria-pressed={active}
-                  className={`inline-flex flex-1 items-center justify-center gap-1.5 rounded-full px-3 py-2 text-xs font-semibold transition-colors sm:flex-none sm:px-4 ${
-                    active
-                      ? "bg-primary text-primary-foreground shadow-xs"
-                      : "text-muted-foreground hover:bg-muted hover:text-foreground"
-                  }`}
-                >
-                  {Icon && <Icon className="size-3.5" />}
-                  <span className="truncate">{label}</span>
-                  <span className="tabular-nums opacity-70">{total}</span>
-                </button>
-              );
-            })}
-          </div>
-        )}
-
-        <div className="flex gap-2">
+      {/* Control Deck */}
+      <div className="mb-8 rounded-2xl border bg-card/75 p-3.5 sm:p-5 shadow-xs backdrop-blur-md space-y-3.5">
+        {/* Row 1: Command Toolbar (Search + Sort Dropdown + View Switcher) */}
+        <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center">
+          {/* Search input with Clear and Keyboard Shortcut */}
           <div className="relative flex-1">
             <Search className="pointer-events-none absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
             <input
+              ref={searchInputRef}
               id="library-search"
               type="search"
               value={search}
               onChange={(event) => setSearch(event.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Escape") {
+                  if (search) setSearch("");
+                  else e.currentTarget.blur();
+                }
+              }}
               placeholder={t(L.searchPlaceholder, locale)}
-              className="w-full rounded-full border bg-card py-2.5 pl-10 pr-4 text-sm transition-shadow placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30"
+              className="w-full rounded-full border bg-background/90 py-2.5 pl-10 pr-20 text-sm shadow-2xs transition-shadow placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/25"
             />
-          </div>
-
-          <div className="flex shrink-0 items-center gap-0.5 rounded-full border bg-card p-1">
-            {(
-              [
-                ["table", Table2, L.table],
-                ["gallery", LayoutGrid, L.gallery],
-                ["list", Rows3, L.list],
-              ] as const
-            ).map(([mode, Icon, label]) => (
-              <button
-                key={mode}
-                type="button"
-                onClick={() => setLayout(mode)}
-                aria-label={t(label, locale)}
-                aria-pressed={layout === mode}
-                className={`rounded-full p-2 transition-colors ${
-                  layout === mode
-                    ? "bg-primary text-primary-foreground"
-                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
-                }`}
-              >
-                <Icon className="size-4" />
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Category chips */}
-        <div className="flex flex-wrap gap-1.5">
-          <button
-            type="button"
-            onClick={() => setFilter("all")}
-            className={`rounded-full border px-3 py-1 text-xs font-medium transition-colors ${
-              filter === "all"
-                ? "border-primary bg-primary text-primary-foreground"
-                : "bg-card text-muted-foreground hover:border-primary/40 hover:text-foreground"
-            }`}
-          >
-            {t(L.filterAll, locale)} · {assets.length}
-          </button>
-          {chips.map((category) => {
-            const style = CATEGORY[category];
-            const Icon = style.icon;
-            const active = filter === category;
-            return (
-              <button
-                key={category}
-                type="button"
-                onClick={() => setFilter(active ? "all" : category)}
-                className={`${style.shelf} inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-medium transition-colors ${
-                  active
-                    ? "border-primary bg-primary text-primary-foreground"
-                    : "shelf-pill text-primary hover:brightness-95"
-                }`}
-              >
-                <Icon className="size-3" />
-                {t(style.label, locale)} · {counts[category]}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Chapter — the cut a student actually thinks in ("what did week 3
-            cover"), which the shelf could not offer until assets carried one. */}
-        {allChapters.length > 1 && (
-          <div className="flex items-center gap-2">
-            <span className="shrink-0 text-[11px] font-medium text-muted-foreground">
-              {t(L.chapters, locale)}
-            </span>
-            <div className="flex flex-1 gap-1.5 overflow-x-auto pb-1 [scrollbar-width:thin]">
-              {allChapters.map((chapter) => (
+            <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1.5">
+              {search.trim() ? (
                 <button
-                  key={chapter}
                   type="button"
-                  onClick={() =>
-                    setActiveChapter(activeChapter === chapter ? null : chapter)
-                  }
-                  className={`shrink-0 rounded-full border px-2.5 py-0.5 text-[11px] font-medium tabular-nums transition-colors ${
-                    activeChapter === chapter
-                      ? "border-primary bg-primary text-primary-foreground"
-                      : "bg-card text-muted-foreground hover:border-primary/40 hover:text-foreground"
+                  onClick={() => {
+                    setSearch("");
+                    searchInputRef.current?.focus();
+                  }}
+                  aria-label={t(L.clearSearch, locale)}
+                  className="rounded-full p-1 text-muted-foreground hover:bg-muted hover:text-foreground transition-colors cursor-pointer"
+                >
+                  <X className="size-3.5" />
+                </button>
+              ) : (
+                <kbd className="hidden sm:inline-flex items-center rounded border border-border/80 bg-muted/70 px-1.5 py-0.5 text-[10px] font-mono text-muted-foreground/70 select-none">
+                  /
+                </kbd>
+              )}
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2 self-stretch justify-between sm:self-auto sm:justify-start">
+            {/* Sort Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button
+                  type="button"
+                  className={`inline-flex items-center gap-1.5 rounded-full border px-3.5 py-2 text-xs font-medium shadow-2xs transition-colors cursor-pointer ${
+                    sortCol !== "default"
+                      ? "border-primary bg-primary/10 text-primary hover:bg-primary/15"
+                      : "bg-background/90 text-muted-foreground hover:bg-muted hover:text-foreground"
+                  }`}
+                  aria-label={t(L.sortBy, locale)}
+                >
+                  <ArrowUpDown className="size-3.5 shrink-0" />
+                  <span className="hidden sm:inline text-muted-foreground">{t(L.sortBy, locale)}:</span>
+                  <span className="font-semibold text-foreground max-w-[130px] truncate">
+                    {currentSortLabel}
+                  </span>
+                  <ChevronDown className="size-3 opacity-60 ml-0.5" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-56 p-1 text-xs">
+                <DropdownMenuLabel className="text-[11px] text-muted-foreground font-semibold px-2 py-1">
+                  {t(L.sortBy, locale)}
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                {SORT_OPTIONS.map((opt) => {
+                  const isSelected =
+                    opt.col === sortCol && (opt.col === "default" || opt.dir === sortDir);
+                  return (
+                    <DropdownMenuItem
+                      key={opt.id}
+                      onClick={() => {
+                        setSortCol(opt.col);
+                        if (opt.dir) setSortDir(opt.dir);
+                      }}
+                      className="flex items-center justify-between py-1.5 px-2 cursor-pointer text-xs"
+                    >
+                      <span className={isSelected ? "font-semibold text-primary" : ""}>
+                        {t(opt.label, locale)}
+                      </span>
+                      {isSelected && <Check className="size-3.5 text-primary ml-2 shrink-0" />}
+                    </DropdownMenuItem>
+                  );
+                })}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            {/* View Mode Switcher */}
+            <div className="flex shrink-0 items-center gap-0.5 rounded-full border bg-background/90 p-1 shadow-2xs">
+              {(
+                [
+                  ["table", Table2, L.table],
+                  ["gallery", LayoutGrid, L.gallery],
+                  ["list", Rows3, L.list],
+                ] as const
+              ).map(([mode, Icon, label]) => (
+                <button
+                  key={mode}
+                  type="button"
+                  onClick={() => setLayout(mode)}
+                  aria-label={t(label, locale)}
+                  aria-pressed={layout === mode}
+                  className={`rounded-full p-1.5 transition-colors cursor-pointer ${
+                    layout === mode
+                      ? "bg-primary text-primary-foreground shadow-2xs"
+                      : "text-muted-foreground hover:bg-muted hover:text-foreground"
                   }`}
                 >
-                  {chapter}
+                  <Icon className="size-3.5" />
                 </button>
               ))}
             </div>
+          </div>
+        </div>
+
+        {/* Row 2: Scope Tabs & Category Shelf Pills */}
+        <div className="flex flex-col gap-2.5 lg:flex-row lg:items-center lg:justify-between border-t border-border/40 pt-3">
+          {/* Exam Milestone Tabs */}
+          {scoped && (
+            <div
+              role="group"
+              aria-label={t(L.examScope, locale)}
+              className="inline-flex shrink-0 gap-1 rounded-full border bg-muted/40 p-1 self-start"
+            >
+              {(["all", "midterm", "final"] as const).map((option) => {
+                const active = scope === option;
+                const Icon = option === "all" ? null : SCOPE_ICON[option];
+                const label =
+                  option === "all" ? t(L.scopeAll, locale) : t(SCOPE_LABEL[option], locale);
+                const total =
+                  option === "all"
+                    ? assets.length
+                    : scopeCounts[option] + scopeCounts.term;
+                return (
+                  <button
+                    key={option}
+                    type="button"
+                    onClick={() => setScope(option)}
+                    aria-pressed={active}
+                    className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold transition-all cursor-pointer ${
+                      active
+                        ? "bg-background text-foreground shadow-2xs font-bold"
+                        : "text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    {Icon && <Icon className="size-3.5" />}
+                    <span>{label}</span>
+                    <span className="tabular-nums text-[10px] opacity-70">({total})</span>
+                  </button>
+                );
+              })}
+            </div>
+          )}
+
+          {/* Category Chips */}
+          <div className="flex flex-wrap items-center gap-1.5">
+            <button
+              type="button"
+              onClick={() => setFilter("all")}
+              className={`rounded-full border px-3 py-1 text-xs font-medium transition-colors cursor-pointer ${
+                filter === "all"
+                  ? "border-primary bg-primary text-primary-foreground shadow-2xs"
+                  : "bg-background/80 text-muted-foreground hover:border-primary/40 hover:text-foreground"
+              }`}
+            >
+              {t(L.filterAll, locale)} · {assets.length}
+            </button>
+            {chips.map((category) => {
+              const style = CATEGORY[category];
+              const Icon = style.icon;
+              const active = filter === category;
+              return (
+                <button
+                  key={category}
+                  type="button"
+                  onClick={() => setFilter(active ? "all" : category)}
+                  className={`${style.shelf} inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium transition-colors cursor-pointer ${
+                    active
+                      ? "border-primary bg-primary text-primary-foreground shadow-2xs"
+                      : "shelf-pill text-primary hover:brightness-95"
+                  }`}
+                >
+                  <Icon className="size-3" />
+                  <span>{t(style.label, locale)}</span>
+                  <span className="text-[10px] opacity-80 tabular-nums">· {counts[category]}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Row 3: Chapters & Topics / Tags */}
+        {(allChapters.length > 1 || allTags.length > 0) && (
+          <div className="space-y-2 border-t border-border/40 pt-3 text-xs">
+            {/* Chapter Row */}
+            {allChapters.length > 1 && (
+              <div className="flex items-center gap-1.5 overflow-x-auto pb-1 [scrollbar-width:none]">
+                <span className="shrink-0 text-xs font-medium text-muted-foreground mr-1">
+                  {t(L.chapters, locale)}:
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setActiveChapter(null)}
+                  className={`shrink-0 rounded-full border px-2.5 py-0.5 text-xs font-medium transition-colors cursor-pointer ${
+                    activeChapter === null
+                      ? "border-primary bg-primary text-primary-foreground shadow-2xs"
+                      : "bg-background/80 text-muted-foreground hover:border-primary/40 hover:text-foreground"
+                  }`}
+                >
+                  {t(L.allChapters, locale)}
+                </button>
+                {allChapters.map((chapter) => (
+                  <button
+                    key={chapter}
+                    type="button"
+                    onClick={() =>
+                      setActiveChapter(activeChapter === chapter ? null : chapter)
+                    }
+                    className={`shrink-0 rounded-full border px-2.5 py-0.5 text-xs font-medium tabular-nums transition-colors cursor-pointer ${
+                      activeChapter === chapter
+                        ? "border-primary bg-primary text-primary-foreground shadow-2xs"
+                        : "bg-background/80 text-muted-foreground hover:border-primary/40 hover:text-foreground"
+                    }`}
+                  >
+                    {locale === "th" ? `บท ${chapter}` : `Ch. ${chapter}`}
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {/* Topics Row */}
+            {allTags.length > 0 && (
+              <div className="flex items-center gap-1.5 overflow-x-auto pb-1 [scrollbar-width:none]">
+                <span className="shrink-0 text-xs font-medium text-muted-foreground mr-1">
+                  {t(L.topics, locale)}:
+                </span>
+                {/* Active tag if not in popularTags */}
+                {activeTag && !popularTags.includes(activeTag) && (
+                  <button
+                    type="button"
+                    onClick={() => setActiveTag(null)}
+                    className="shrink-0 inline-flex items-center gap-1 rounded-full border border-primary bg-primary text-primary-foreground px-2.5 py-0.5 text-xs font-medium shadow-2xs cursor-pointer"
+                  >
+                    <span>{activeTag}</span>
+                    <X className="size-2.5" />
+                  </button>
+                )}
+                {/* Popular Tags */}
+                {popularTags.map((tag) => (
+                  <button
+                    key={tag}
+                    type="button"
+                    onClick={() => setActiveTag(activeTag === tag ? null : tag)}
+                    className={`shrink-0 rounded-full border px-2.5 py-0.5 text-xs font-medium transition-colors cursor-pointer ${
+                      activeTag === tag
+                        ? "border-primary bg-primary text-primary-foreground shadow-2xs"
+                        : "bg-background/80 text-muted-foreground hover:border-primary/40 hover:text-foreground"
+                    }`}
+                  >
+                    {tag}
+                    <span className="ml-1 text-[10px] opacity-60 tabular-nums">
+                      {tagCounts[tag]}
+                    </span>
+                  </button>
+                ))}
+                {/* All remaining tags in a Dropdown */}
+                {remainingTags.length > 0 && (
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <button
+                        type="button"
+                        className="shrink-0 inline-flex items-center gap-1 rounded-full border bg-background/80 px-2.5 py-0.5 text-xs font-medium text-muted-foreground hover:border-primary/40 hover:text-foreground transition-colors cursor-pointer"
+                      >
+                        <Tag className="size-3 opacity-60" />
+                        <span>+{remainingTags.length} {t(L.moreTopics, locale)}</span>
+                        <ChevronDown className="size-2.5 opacity-60" />
+                      </button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="start" className="w-56 max-h-72 overflow-y-auto p-1 text-xs">
+                      <DropdownMenuLabel className="text-[11px] text-muted-foreground px-2 py-1">
+                        {t(L.allTopics, locale)} ({allTags.length})
+                      </DropdownMenuLabel>
+                      <DropdownMenuSeparator />
+                      {activeTag && (
+                        <>
+                          <DropdownMenuItem
+                            onClick={() => setActiveTag(null)}
+                            className="flex items-center justify-between text-destructive cursor-pointer"
+                          >
+                            <span>{t(L.clear, locale)} ({activeTag})</span>
+                            <X className="size-3" />
+                          </DropdownMenuItem>
+                          <DropdownMenuSeparator />
+                        </>
+                      )}
+                      {allTags.map((tag) => {
+                        const isSelected = activeTag === tag;
+                        return (
+                          <DropdownMenuItem
+                            key={tag}
+                            onClick={() => setActiveTag(isSelected ? null : tag)}
+                            className="flex items-center justify-between py-1.5 px-2 cursor-pointer"
+                          >
+                            <span className={isSelected ? "font-semibold text-primary" : ""}>
+                              {tag}
+                            </span>
+                            <div className="flex items-center gap-1.5">
+                              <span className="text-[10px] text-muted-foreground tabular-nums">
+                                {tagCounts[tag]}
+                              </span>
+                              {isSelected && <Check className="size-3 text-primary shrink-0" />}
+                            </div>
+                          </DropdownMenuItem>
+                        );
+                      })}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                )}
+              </div>
+            )}
           </div>
         )}
 
-        {/* Topic tags — the finer cut, kept on its own scrollable line so the
-            category chips above stay the primary control on a phone. */}
-        {allTags.length > 1 && (
-          <div className="flex items-center gap-2">
-            <span className="shrink-0 text-[11px] font-medium text-muted-foreground">
-              {t(L.topics, locale)}
+        {/* Row 4: Active Filters Bar & Match Summary (conditional) */}
+        {filtersActive && (
+          <div className="flex flex-wrap items-center gap-1.5 border-t border-border/50 pt-2.5 text-xs animate-in fade-in-0 duration-200">
+            <span className="text-[11px] font-medium text-muted-foreground mr-1">
+              {t(L.activeFilters, locale)}:
             </span>
-            <div className="flex flex-1 gap-1.5 overflow-x-auto pb-1 [scrollbar-width:thin]">
-              {allTags.map((tag) => (
+            {search.trim() && (
+              <span className="inline-flex items-center gap-1 rounded-full border border-primary/30 bg-primary/10 px-2 py-0.5 text-[11px] font-medium text-primary">
+                {t(L.filterQuery, locale)}: &ldquo;{search.trim()}&rdquo;
                 <button
-                  key={tag}
                   type="button"
-                  onClick={() => setActiveTag(activeTag === tag ? null : tag)}
-                  className={`shrink-0 rounded-full border px-2.5 py-0.5 text-[11px] font-medium transition-colors ${
-                    activeTag === tag
-                      ? "border-foreground bg-foreground text-background"
-                      : "bg-card text-muted-foreground hover:border-primary/40 hover:text-foreground"
-                  }`}
+                  onClick={() => setSearch("")}
+                  className="rounded-full p-0.5 hover:bg-primary/20 cursor-pointer"
                 >
-                  {tag}
+                  <X className="size-2.5" />
                 </button>
-              ))}
-            </div>
+              </span>
+            )}
+            {scope !== "all" && (
+              <span className="inline-flex items-center gap-1 rounded-full border border-primary/30 bg-primary/10 px-2 py-0.5 text-[11px] font-medium text-primary">
+                {t(L.filterScope, locale)}: {t(SCOPE_LABEL[scope], locale)}
+                <button
+                  type="button"
+                  onClick={() => setScope("all")}
+                  className="rounded-full p-0.5 hover:bg-primary/20 cursor-pointer"
+                >
+                  <X className="size-2.5" />
+                </button>
+              </span>
+            )}
+            {filter !== "all" && (
+              <span className="inline-flex items-center gap-1 rounded-full border border-primary/30 bg-primary/10 px-2 py-0.5 text-[11px] font-medium text-primary">
+                {t(L.filterCat, locale)}: {t(CATEGORY[filter].label, locale)}
+                <button
+                  type="button"
+                  onClick={() => setFilter("all")}
+                  className="rounded-full p-0.5 hover:bg-primary/20 cursor-pointer"
+                >
+                  <X className="size-2.5" />
+                </button>
+              </span>
+            )}
+            {activeChapter !== null && (
+              <span className="inline-flex items-center gap-1 rounded-full border border-primary/30 bg-primary/10 px-2 py-0.5 text-[11px] font-medium text-primary">
+                {t(L.filterCh, locale)} {activeChapter}
+                <button
+                  type="button"
+                  onClick={() => setActiveChapter(null)}
+                  className="rounded-full p-0.5 hover:bg-primary/20 cursor-pointer"
+                >
+                  <X className="size-2.5" />
+                </button>
+              </span>
+            )}
+            {activeTag !== null && (
+              <span className="inline-flex items-center gap-1 rounded-full border border-primary/30 bg-primary/10 px-2 py-0.5 text-[11px] font-medium text-primary">
+                {t(L.filterTag, locale)}: {activeTag}
+                <button
+                  type="button"
+                  onClick={() => setActiveTag(null)}
+                  className="rounded-full p-0.5 hover:bg-primary/20 cursor-pointer"
+                >
+                  <X className="size-2.5" />
+                </button>
+              </span>
+            )}
+            {sortCol !== "default" && (
+              <span className="inline-flex items-center gap-1 rounded-full border bg-muted px-2 py-0.5 text-[11px] font-medium text-muted-foreground">
+                {t(L.sortBy, locale)}: {currentSortLabel}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSortCol("default");
+                    setSortDir("asc");
+                  }}
+                  className="rounded-full p-0.5 hover:bg-muted-foreground/20 cursor-pointer"
+                >
+                  <X className="size-2.5" />
+                </button>
+              </span>
+            )}
+            <button
+              type="button"
+              onClick={clearFilters}
+              className="ml-auto inline-flex items-center gap-1 text-[11px] font-semibold text-primary hover:underline cursor-pointer"
+            >
+              <RotateCcw className="size-3" />
+              {t(L.clearAll, locale)}
+            </button>
           </div>
         )}
       </div>
@@ -2262,7 +2188,7 @@ export function SubjectLibrary({
           })}
         </div>
       ) : (
-        renderEntries(entries)
+        renderEntries(sortedEntries)
       )}
 
       {preview && (
