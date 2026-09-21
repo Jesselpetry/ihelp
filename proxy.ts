@@ -18,6 +18,6 @@ export const config = {
      *   has nothing to do with the Supabase session
      * - favicon and static image extensions
      */
-    "/((?!_next|__nextjs|api/github|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
+    "/((?!_next|__nextjs|api/github|favicon.ico|sw.js|.*\\.(?:svg|png|jpg|jpeg|gif|webp|js|css|woff2?)$).*)",
   ],
 };

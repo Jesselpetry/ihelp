@@ -7,6 +7,7 @@ import {
   BookOpenText,
   BrainCircuit,
   CalendarRange,
+  Check,
   FileCheck2,
   Flag,
   FlaskConical,
@@ -89,17 +90,23 @@ const SCOPE_BADGE: Record<Exclude<ModuleScope, "all">, string> = {
 
 const L = {
   heading: { th: "เส้นทางการเรียนในวิชานี้", en: "The learning path for this course" },
+  lead: {
+    th: "เดินตามลำดับ 4 ขั้น ตั้งแต่ทำความเข้าใจวิชา จนถึงพิสูจน์ว่าพร้อมสอบ",
+    en: "Four steps in order — from understanding the course to proving you are exam-ready",
+  },
   examScope: { th: "ช่วงสอบ", en: "Exam scope" },
   empty: {
     th: "ยังไม่มีเนื้อหาสำหรับช่วงสอบนี้",
     en: "Nothing prepared for this milestone yet",
   },
   browse: { th: "เปิดคลัง", en: "Browse the archive" },
+  step: { th: "ขั้นที่", en: "Step" },
+  ready: { th: "เปิดใช้ได้แล้ว", en: "open now" },
+  stepLocked: { th: "ยังไม่เปิด", en: "not open yet" },
+  open: { th: "เปิด", en: "Open" },
 } satisfies Record<string, LText>;
 
 const PHASE_ORDER: Phase[] = ["orient", "compress", "retrieve", "prove"];
-
-const CARD_BASE = "rounded-3xl border p-5 transition-colors";
 
 /** Shared with the sort in SubjectTrackGrid, so "available first" agrees with what actually renders as clickable. */
 function isLocked(mod: ResolvedModule): boolean {
@@ -119,59 +126,53 @@ function ScopeTag({ scope }: { scope: Exclude<ModuleScope, "all"> }) {
   );
 }
 
-function ModuleCard({ module: mod }: { module: ResolvedModule }) {
+/**
+ * One module, as a row on the journey rather than a tile in a grid.
+ *
+ * A row, not a card: the steps are ordered, and a three-column grid inside an
+ * ordered step reads as "pick one of these", which is the opposite of what the
+ * spine says. Stacked rows keep the top-to-bottom reading order the phases
+ * already imply, and leave the horizontal room for the title and its subtitle
+ * to sit on one line at the width the hub actually renders at (max-w-3xl).
+ */
+function ModuleRow({ module: mod }: { module: ResolvedModule }) {
   const { locale } = useLocale();
   const Icon = MODULE_ICONS[mod.id];
   const unavailable = isLocked(mod);
 
-  const body = (
-    <>
-      <div className="flex items-start justify-between gap-2">
-        {unavailable ? <Lock className="size-6" /> : <Icon className="size-6 text-primary" />}
-        {mod.badge && (
-          <Badge
-            variant="outline"
-            className="rounded-full text-[10px] font-medium whitespace-nowrap"
-          >
-            {t(mod.badge, locale)}
-          </Badge>
-        )}
-      </div>
-
-      <h3
-        className={`mt-3 text-base font-semibold ${
-          unavailable ? "" : "transition-colors group-hover:text-primary"
-        }`}
-      >
-        {t(mod.title, locale)}
-      </h3>
-
-      <p
-        className={`mt-1.5 text-xs leading-relaxed ${
-          unavailable ? "" : "text-muted-foreground"
-        }`}
-      >
-        {t(mod.subtitle, locale)}
-      </p>
-
-      <div className="mt-3 flex flex-wrap items-center gap-1.5">
-        {mod.scope !== "all" && <ScopeTag scope={mod.scope} />}
-        {mod.stats && (
-          <span className="text-[10px] font-medium tabular-nums text-muted-foreground">
-            {t(mod.stats, locale)}
-          </span>
-        )}
-      </div>
-    </>
+  const tags = (
+    <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
+      {mod.scope !== "all" && <ScopeTag scope={mod.scope} />}
+      {mod.badge && (
+        <Badge
+          variant="outline"
+          className="rounded-full text-[10px] font-medium whitespace-nowrap"
+        >
+          {t(mod.badge, locale)}
+        </Badge>
+      )}
+      {mod.stats && (
+        <span className="text-[10px] font-medium tabular-nums text-muted-foreground">
+          {t(mod.stats, locale)}
+        </span>
+      )}
+    </div>
   );
 
   if (unavailable) {
     return (
       <div
         aria-disabled="true"
-        className={`${CARD_BASE} pointer-events-none cursor-not-allowed border-dashed bg-muted text-muted-foreground opacity-40`}
+        className="flex items-start gap-3 rounded-2xl border border-dashed bg-muted/30 p-3 text-muted-foreground sm:p-3.5"
       >
-        {body}
+        <span className="flex size-9 shrink-0 items-center justify-center rounded-xl border border-dashed bg-background/60">
+          <Lock className="size-4" />
+        </span>
+        <div className="min-w-0 flex-1">
+          <h3 className="text-sm font-semibold">{t(mod.title, locale)}</h3>
+          <p className="mt-0.5 text-xs leading-relaxed">{t(mod.subtitle, locale)}</p>
+          {tags}
+        </div>
       </div>
     );
   }
@@ -179,24 +180,37 @@ function ModuleCard({ module: mod }: { module: ResolvedModule }) {
   return (
     <Link
       href={mod.href!}
-      className={`${CARD_BASE} group bg-card shadow-xs hover:-translate-y-0.5 hover:border-primary/50 hover:bg-primary/5 hover:shadow-md`}
+      className="group flex items-start gap-3 rounded-2xl border bg-card p-3 shadow-xs transition-colors hover:border-primary/50 hover:bg-primary/5 sm:p-3.5"
     >
-      {body}
+      <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+        <Icon className="size-4" />
+      </span>
+
+      <div className="min-w-0 flex-1">
+        <h3 className="text-sm font-semibold transition-colors group-hover:text-primary">
+          {t(mod.title, locale)}
+        </h3>
+        <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">
+          {t(mod.subtitle, locale)}
+        </p>
+        {tags}
+      </div>
+
+      <ArrowRight className="mt-1 size-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-primary" />
     </Link>
   );
 }
 
 /**
- * The archive, pulled out of the grid and promoted above it.
+ * The archive, pulled out of the journey and promoted above it.
  *
  * It is almost always the richest thing on the hub — hundreds of slides and
- * past papers behind one card — and it used to render as an identically-sized
- * tile buried in the last phase group, indistinguishable from a locked stub
- * except for opacity. Rendered here as its own banner, first thing on the
- * page, whenever there's something behind it to open. When there is nothing
- * (a course with no assets at all), it stays a normal locked card in its D
- * phase slot — an empty promo banner at the top of the page would be worse
- * than no banner.
+ * past papers behind one card — and it belongs to no single step: a student
+ * reaches for it at every one of them. Rendered here as its own banner, above
+ * the numbered path, whenever there's something behind it to open. When there
+ * is nothing (a course with no assets at all), it stays a normal locked row in
+ * its D phase slot — an empty promo banner at the top of the page would be
+ * worse than no banner.
  */
 function ArchiveHero({ module: mod }: { module: ResolvedModule }) {
   const { locale } = useLocale();
@@ -240,23 +254,102 @@ function ArchiveHero({ module: mod }: { module: ResolvedModule }) {
 }
 
 /**
- * The hub's action cards: all eleven spine modules, grouped by phase.
+ * One phase of the spine, drawn as a step on a vertical rail.
  *
- * Phases are shown, not just implied by order. A student who reads notes and
- * then jumps straight to a timed mock — skipping untimed retrieval — scores
- * badly and concludes they are bad at the subject rather than that they skipped
- * a step, so the sequence is worth naming on screen.
+ * The node carries the step number — the thing the old grid could not say. A
+ * phase whose modules are all locked gets an outlined node instead of a filled
+ * one, so a reader scanning only the rail can see how far the course is
+ * actually built before reading a single card.
+ *
+ * `last` drops the connector so the rail stops at the final node rather than
+ * trailing into the summary card below it.
+ */
+function JourneyStep({
+  phase,
+  index,
+  items,
+  last,
+}: {
+  phase: Phase;
+  index: number;
+  items: ResolvedModule[];
+  last: boolean;
+}) {
+  const { locale } = useLocale();
+  const open = items.filter((mod) => !isLocked(mod)).length;
+  const started = open > 0;
+
+  return (
+    <li className="relative flex gap-3 sm:gap-4">
+      {/* Rail: the connector runs behind the next node, so it is drawn first. */}
+      {!last && (
+        <span
+          aria-hidden="true"
+          className="absolute left-[15px] top-9 bottom-0 w-px bg-border sm:left-[17px]"
+        />
+      )}
+
+      <span
+        aria-hidden="true"
+        className={`relative z-10 mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-full text-xs font-bold tabular-nums sm:size-9 ${
+          started
+            ? "bg-primary text-primary-foreground shadow-xs"
+            : "border border-dashed bg-background text-muted-foreground"
+        }`}
+      >
+        {started && open === items.length ? <Check className="size-4" /> : index + 1}
+      </span>
+
+      <div className={`min-w-0 flex-1 ${last ? "" : "pb-7"}`}>
+        <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
+          <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+            {t(L.step, locale)} {index + 1}
+          </span>
+          <h3 className="text-sm font-bold text-primary sm:text-base">
+            {t(PHASE_LABEL[phase], locale)}
+          </h3>
+          <span className="text-[11px] tabular-nums text-muted-foreground">
+            {started
+              ? `${open}/${items.length} ${t(L.ready, locale)}`
+              : t(L.stepLocked, locale)}
+          </span>
+        </div>
+
+        <p className="mt-0.5 text-xs text-muted-foreground">
+          {t(PHASE_GOAL[phase], locale)}
+        </p>
+
+        <div className="mt-3 space-y-2">
+          {items.map((mod) => (
+            <ModuleRow key={mod.id} module={mod} />
+          ))}
+        </div>
+      </div>
+    </li>
+  );
+}
+
+/**
+ * The hub's action list: all eleven spine modules, walked as a numbered path.
+ *
+ * Phases are shown as steps, not just implied by order. A student who reads
+ * notes and then jumps straight to a timed mock — skipping untimed retrieval —
+ * scores badly and concludes they are bad at the subject rather than that they
+ * skipped a step, so the sequence is worth numbering on screen.
  *
  * The milestone control filters and reorders in one move: picking a milestone
- * floats the modules specific to it above the ones that apply all term.
+ * floats the modules specific to it above the ones that apply all term. Step
+ * numbers come from the phase's fixed position in the spine, not from its
+ * position after filtering, so "ขั้นที่ 3" means the same thing on every course
+ * and under every milestone.
  */
 export function SubjectTrackGrid({ modules }: { modules: ResolvedModule[] }) {
   const { locale } = useLocale();
   const [scope, setScope] = useState<ModuleScope>("all");
 
-  // Pulled out and rendered as its own banner above the phase groups — see
+  // Pulled out and rendered as its own banner above the steps — see
   // ArchiveHero. Kept out of `shown` so it never also renders inside the D
-  // phase grid, and kept independent of the milestone tabs below: it's a
+  // phase step, and kept independent of the milestone tabs below: it's a
   // permanent fixture of the page, not one more filtered card.
   const archiveHero = modules.find((mod) => mod.id === "archive" && !isLocked(mod));
 
@@ -281,14 +374,18 @@ export function SubjectTrackGrid({ modules }: { modules: ResolvedModule[] }) {
 
   const readiness = modules.filter((mod) => mod.status === "available").length;
 
-  const byPhase = useMemo(
+  const steps = useMemo(
     () =>
-      PHASE_ORDER.map((phase) => ({
+      PHASE_ORDER.map((phase, index) => ({
         phase,
-        // Available modules first within a phase — a locked stub is only
-        // useful as "here's what's coming," and burying it behind whatever a
-        // student can actually open means they never have to scan past grey
-        // cards to reach the one that works. Ties (available-vs-available,
+        // The number is the phase's place in the spine, kept even when an
+        // earlier step filters out entirely — a path that jumps 1, 2, 4 is
+        // honest; one that renumbers 4 to 3 quietly lies about the order.
+        index,
+        // Available modules first within a step — a locked stub is only useful
+        // as "here's what's coming," and burying it behind whatever a student
+        // can actually open means they never have to scan past grey rows to
+        // reach the one that works. Ties (available-vs-available,
         // locked-vs-locked) keep the spine's fixed order.
         items: shown
           .filter((mod) => mod.phase === phase)
@@ -304,13 +401,16 @@ export function SubjectTrackGrid({ modules }: { modules: ResolvedModule[] }) {
     <section>
       {archiveHero && <ArchiveHero module={archiveHero} />}
 
-      <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
-        <h2 className="flex items-baseline gap-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-          {t(L.heading, locale)}
-          <span className="font-mono text-[11px] normal-case tracking-normal text-primary">
-            {readiness}/11
-          </span>
-        </h2>
+      <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
+        <div>
+          <h2 className="flex items-baseline gap-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+            {t(L.heading, locale)}
+            <span className="font-mono text-[11px] normal-case tracking-normal text-primary">
+              {readiness}/11
+            </span>
+          </h2>
+          <p className="mt-1 text-xs text-muted-foreground">{t(L.lead, locale)}</p>
+        </div>
 
         {scoped && (
           <>
@@ -382,30 +482,22 @@ export function SubjectTrackGrid({ modules }: { modules: ResolvedModule[] }) {
         )}
       </div>
 
-      {byPhase.length === 0 ? (
+      {steps.length === 0 ? (
         <p className="rounded-3xl border bg-muted/20 py-12 text-center text-sm text-muted-foreground">
           {t(L.empty, locale)}
         </p>
       ) : (
-        <div className="space-y-6">
-          {byPhase.map(({ phase, items }) => (
-            <div key={phase}>
-              <div className="mb-2.5 flex items-baseline gap-2">
-                <span className="text-[11px] font-semibold uppercase tracking-wider text-primary">
-                  {t(PHASE_LABEL[phase], locale)}
-                </span>
-                <span className="text-[11px] text-muted-foreground">
-                  {t(PHASE_GOAL[phase], locale)}
-                </span>
-              </div>
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {items.map((mod) => (
-                  <ModuleCard key={mod.id} module={mod} />
-                ))}
-              </div>
-            </div>
+        <ol className="relative">
+          {steps.map(({ phase, index, items }, position) => (
+            <JourneyStep
+              key={phase}
+              phase={phase}
+              index={index}
+              items={items}
+              last={position === steps.length - 1}
+            />
           ))}
-        </div>
+        </ol>
       )}
     </section>
   );

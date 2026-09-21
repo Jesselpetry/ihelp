@@ -123,6 +123,13 @@ export default function RootLayout({
           strategy="beforeInteractive"
           dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }}
         />
+        <Script
+          id="sw-cleaner"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `if(typeof window!=='undefined'&&'serviceWorker' in navigator){navigator.serviceWorker.getRegistrations().then(function(r){for(var s of r){s.unregister();}});}`,
+          }}
+        />
         <ThemeProvider>
           <LocaleProvider>
             <Splash />

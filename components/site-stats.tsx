@@ -37,7 +37,14 @@ export function SiteStats() {
     }
 
     fetch("/api/views", { method: counted ? "GET" : "POST" })
-      .then((res) => (res.ok ? res.json() : null))
+      .then(async (res) => {
+        if (!res.ok) return null;
+        try {
+          return (await res.json()) as Stats;
+        } catch {
+          return null;
+        }
+      })
       .then((data: Stats | null) => {
         if (cancelled || !data) return;
         setStats(data);

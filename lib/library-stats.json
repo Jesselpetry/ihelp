@@ -687,10 +687,6 @@
     "sizeBytes": 68109,
     "pages": 2
   },
-  "/assets/it-kmitl/ics/exams/ics-midterm-exam.pdf": {
-    "sizeBytes": 785922,
-    "pages": 2
-  },
   "/assets/it-kmitl/ics/exams/ics-midterm-exam2.pdf": {
     "sizeBytes": 218645,
     "pages": 5
@@ -770,12 +766,9 @@
     "sizeBytes": 865432,
     "pages": 8
   },
-  "/assets/it-kmitl/ics/labs/ics-lab-01-completed.circ": {
-    "sizeBytes": 12360
-  },
-  "/assets/it-kmitl/ics/labs/ics-lab-01-completed.pdf": {
-    "sizeBytes": 266454,
-    "pages": 7
+  "/assets/it-kmitl/ics/labs/ics-lab-01-multimeter-2569.pdf": {
+    "sizeBytes": 104762,
+    "pages": 2
   },
   "/assets/it-kmitl/ics/labs/ics-lab-01-v2.pdf": {
     "sizeBytes": 53544,
@@ -789,12 +782,8 @@
     "sizeBytes": 213521,
     "pages": 4
   },
-  "/assets/it-kmitl/ics/labs/ics-lab-02-completed-v2.pdf": {
-    "sizeBytes": 181582,
-    "pages": 5
-  },
-  "/assets/it-kmitl/ics/labs/ics-lab-02-completed.pdf": {
-    "sizeBytes": 147894,
+  "/assets/it-kmitl/ics/labs/ics-lab-02-oscilloscope-2569.pdf": {
+    "sizeBytes": 45832,
     "pages": 2
   },
   "/assets/it-kmitl/ics/labs/ics-lab-02-v2.pdf": {
@@ -817,25 +806,21 @@
     "sizeBytes": 101080,
     "pages": 5
   },
-  "/assets/it-kmitl/ics/labs/ics-lab-03-completed.pdf": {
-    "sizeBytes": 366476,
-    "pages": 9
+  "/assets/it-kmitl/ics/labs/ics-lab-03-breadboard-basics-2569.pdf": {
+    "sizeBytes": 179534,
+    "pages": 2
   },
   "/assets/it-kmitl/ics/labs/ics-lab-03-v2.pdf": {
     "sizeBytes": 202222,
     "pages": 8
   },
-  "/assets/it-kmitl/ics/labs/ics-lab-03-y1-s1.pdf": {
-    "sizeBytes": 167131,
-    "pages": 2
-  },
   "/assets/it-kmitl/ics/labs/ics-lab-03.pdf": {
     "sizeBytes": 245358,
     "pages": 8
   },
-  "/assets/it-kmitl/ics/labs/ics-lab-04-completed.pdf": {
-    "sizeBytes": 1379052,
-    "pages": 10
+  "/assets/it-kmitl/ics/labs/ics-lab-04-inverter-oscillator-2569.pdf": {
+    "sizeBytes": 121915,
+    "pages": 2
   },
   "/assets/it-kmitl/ics/labs/ics-lab-04-y1-s1.pdf": {
     "sizeBytes": 140219,
@@ -844,6 +829,10 @@
   "/assets/it-kmitl/ics/labs/ics-lab-04.pdf": {
     "sizeBytes": 218172,
     "pages": 10
+  },
+  "/assets/it-kmitl/ics/labs/ics-lab-05-logic-gates-2569.pdf": {
+    "sizeBytes": 180821,
+    "pages": 2
   },
   "/assets/it-kmitl/ics/labs/ics-lab-05-v2.pdf": {
     "sizeBytes": 554632,
@@ -857,8 +846,8 @@
     "sizeBytes": 974903,
     "pages": 11
   },
-  "/assets/it-kmitl/ics/labs/ics-lab-lab04.pdf": {
-    "sizeBytes": 154005,
+  "/assets/it-kmitl/ics/labs/ics-lab-06-fpga-basys2-2569.pdf": {
+    "sizeBytes": 126180,
     "pages": 2
   },
   "/assets/it-kmitl/ics/labs/ics-lab-mock-lab01.pdf": {
@@ -889,9 +878,17 @@
     "sizeBytes": 2365954,
     "pages": 40
   },
+  "/assets/it-kmitl/ics/lectures/ics-lec-chapter01-computer-system-2569.pdf": {
+    "sizeBytes": 2127390,
+    "pages": 55
+  },
   "/assets/it-kmitl/ics/lectures/ics-lec-chapter01.pdf": {
     "sizeBytes": 1339180,
     "pages": 37
+  },
+  "/assets/it-kmitl/ics/lectures/ics-lec-chapter02-memory-io-addressing-2569.pdf": {
+    "sizeBytes": 2438520,
+    "pages": 49
   },
   "/assets/it-kmitl/ics/lectures/ics-lec-chapter02-v2.pdf": {
     "sizeBytes": 2068173,
@@ -901,9 +898,17 @@
     "sizeBytes": 1054026,
     "pages": 12
   },
+  "/assets/it-kmitl/ics/lectures/ics-lec-chapter03-mux-latch-buffer-2569.pdf": {
+    "sizeBytes": 1021695,
+    "pages": 39
+  },
   "/assets/it-kmitl/ics/lectures/ics-lec-chapter03.pdf": {
     "sizeBytes": 1197708,
     "pages": 24
+  },
+  "/assets/it-kmitl/ics/lectures/ics-lec-chapter04-counter-adc-2569.pdf": {
+    "sizeBytes": 1014299,
+    "pages": 59
   },
   "/assets/it-kmitl/ics/lectures/ics-lec-chapter04-v2.pdf": {
     "sizeBytes": 917032,
@@ -913,9 +918,21 @@
     "sizeBytes": 1759456,
     "pages": 47
   },
+  "/assets/it-kmitl/ics/lectures/ics-lec-chapter05-dac-adc-part2-2569.pdf": {
+    "sizeBytes": 878970,
+    "pages": 32
+  },
   "/assets/it-kmitl/ics/lectures/ics-lec-chapter05.pdf": {
     "sizeBytes": 713852,
     "pages": 27
+  },
+  "/assets/it-kmitl/ics/lectures/ics-lec-chapter06-memory-circuit-2569.pdf": {
+    "sizeBytes": 678909,
+    "pages": 26
+  },
+  "/assets/it-kmitl/ics/lectures/ics-lec-chapter07-alu-cpu-2569.pdf": {
+    "sizeBytes": 625074,
+    "pages": 40
   },
   "/assets/it-kmitl/ics/lectures/ics-lec-slide03-1.pdf": {
     "sizeBytes": 929741,
@@ -1013,6 +1030,9 @@
     "sizeBytes": 295389,
     "pages": 18
   },
+  "/assets/it-kmitl/ics/misc/ics-ref-random-exam-number-tool.zip": {
+    "sizeBytes": 289789
+  },
   "/assets/it-kmitl/ics/misc/quiz-2-test.circ": {
     "sizeBytes": 14477
   },
@@ -1045,6 +1065,18 @@
   },
   "/assets/it-kmitl/ics/pages/pg-10.jpg": {
     "sizeBytes": 104664
+  },
+  "/assets/it-kmitl/ics/references/ics-ref-hardware-component-list-2569.pdf": {
+    "sizeBytes": 89924,
+    "pages": 1
+  },
+  "/assets/it-kmitl/ics/references/ics-ref-syllabus-2569.pdf": {
+    "sizeBytes": 2080889,
+    "pages": 10
+  },
+  "/assets/it-kmitl/ics/references/ics-ref-textbook-v05.pdf": {
+    "sizeBytes": 7650567,
+    "pages": 251
   },
   "/assets/it-kmitl/ics/sheets/ics-sheet-recap-boolean.pdf": {
     "sizeBytes": 406452,

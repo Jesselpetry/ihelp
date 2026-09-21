@@ -131,6 +131,42 @@ function mfitWeekDocs(kind: "summary" | "quiz"): ModuleDoc[] {
   });
 }
 
+/**
+ * ICS's second half: one page per session, lecture and lab and videos together.
+ *
+ * Same shape as mfitWeekDocs() above — a doc per week, read off disk — because
+ * the reader already gives a doc-chip row, a live outline and a Previous/Next
+ * footer once a module binds more than one document. That is the whole of the
+ * "weekly page" UI; nothing here needs a route of its own.
+ *
+ * Deliberately no `chapter`. These are Supakit's session numbers 1-7, which are
+ * sessions 8-15 of the syllabus — they do NOT line up with the chapter numbers
+ * the ICS drill bank uses, where chapter 2 means Boolean algebra. Tagging them
+ * 1-7 would make the map claim an agreement with the quiz bank that does not
+ * hold, and the repo's rule is that a wrong chapter is worse than none.
+ */
+const ICS_SESSIONS = [
+  { week: 1, th: "ระบบคอมพิวเตอร์ · มัลติมิเตอร์", en: "Computer Systems · Multimeter" },
+  { week: 2, th: "หน่วยความจำและการระบุตำแหน่ง · ออสซิลโลสโคป", en: "Memory & I/O Addressing · Oscilloscope" },
+  { week: 3, th: "MUX, Latch, Buffer · สวิตช์กับ LED", en: "MUX, Latch, Buffer · Switches & LEDs" },
+  { week: 4, th: "ฟลิปฟลอปและวงจรนับ · ออสซิลเลเตอร์", en: "Flip-flops & Counters · Oscillator" },
+  { week: 5, th: "DAC และ ADC · มัลติเพล็กเซอร์จาก NAND", en: "DAC & ADC · MUX from NAND" },
+  { week: 6, th: "วงจรหน่วยความจำ · FPGA", en: "Memory Circuits · FPGA" },
+  { week: 7, th: "ALU และการสร้างซีพียู", en: "ALU & Building a CPU" },
+] as const;
+
+function icsSessionDocs(): ModuleDoc[] {
+  return ICS_SESSIONS.map(({ week, th, en }) => {
+    const padded = String(week).padStart(2, "0");
+    return {
+      slug: `week${padded}`,
+      title: { th: `คาบที่ ${week} — ${th}`, en: `Session ${week} — ${en}` },
+      load: () => loadCourseDoc("06016411", `archive/week${padded}.md`),
+      scope: "final" as const,
+    };
+  });
+}
+
 // ── Per-course bindings ──────────────────────────────────────────────────────
 
 export const COURSE_BINDINGS: Record<string, CourseBinding> = {
@@ -189,6 +225,35 @@ export const COURSE_BINDINGS: Record<string, CourseBinding> = {
           load: () => loadIcs().analysisMd,
           scope: "midterm",
         },
+      ],
+    },
+    /**
+     * The half of ICS the rest of this binding does not cover.
+     *
+     * Everything else bound here is midterm-scoped: the notes stop at chapter
+     * 6, the drill and the practice paper are both built on the 1/2564 midterm.
+     * The 1/2569 syllabus splits the course between two instructors — sessions
+     * 1-7 digital logic, sessions 8-15 computer hardware — so binding this doc
+     * is what makes the second instructor's half reachable at all, together
+     * with the 35 lecture and lab videos that only exist on his channel.
+     */
+    syllabus_map: {
+      title: { th: "คาบเรียนรายสัปดาห์ + วิดีโอ", en: "Weekly Sessions + Videos" },
+      subtitle: {
+        th: "หนึ่งหน้าต่อหนึ่งคาบ — เป้าหมาย วิดีโอบรรยายและสาธิตแล็บ เอกสาร อุปกรณ์ที่ต้องเตรียม และสรุปว่าใบงานสั่งทำอะไร",
+        en: "One page per session — objectives, lecture and lab videos, documents, the parts to bring, and what the lab sheet actually asks for",
+      },
+      docs: [
+        {
+          slug: "course-materials-2569",
+          title: {
+            th: "ภาพรวมและตารางเรียน ภาค 1/2569",
+            en: "Overview & Schedule, 1/2569",
+          },
+          load: () =>
+            loadCourseDoc("06016411", "archive/course-materials-2569.md"),
+        },
+        ...icsSessionDocs(),
       ],
     },
     deep_summary: {

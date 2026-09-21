@@ -3500,26 +3500,6 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-exams-ics-midterm-exam-pdf",
-      "title": {
-        "th": "Midterm · Exam",
-        "en": "Midterm · Exam"
-      },
-      "description": {
-        "th": "",
-        "en": ""
-      },
-      "tags": [
-        "ICS",
-        "exams"
-      ],
-      "category": "exam",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/ics/exams/ics-midterm-exam.pdf",
-      "fileName": "ics-midterm-exam.pdf",
-      "courseCode": "ICS"
-    },
-    {
       "id": "gen-ics-exams-ics-midterm-exam2-pdf",
       "title": {
         "th": "Midterm · Exam 2",
@@ -3941,30 +3921,10 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-labs-ics-lab-01-completed-circ",
+      "id": "gen-ics-labs-ics-lab-01-multimeter-2569-pdf",
       "title": {
-        "th": "Lab · 01 Completed",
-        "en": "Lab · 01 Completed"
-      },
-      "description": {
-        "th": "",
-        "en": ""
-      },
-      "tags": [
-        "ICS",
-        "labs"
-      ],
-      "category": "exercise",
-      "fileType": "file",
-      "url": "/assets/it-kmitl/ics/labs/ics-lab-01-completed.circ",
-      "fileName": "ics-lab-01-completed.circ",
-      "courseCode": "ICS"
-    },
-    {
-      "id": "gen-ics-labs-ics-lab-01-completed-pdf",
-      "title": {
-        "th": "Lab · 01 Completed",
-        "en": "Lab · 01 Completed"
+        "th": "Lab · 01 Multimeter 2569",
+        "en": "Lab · 01 Multimeter 2569"
       },
       "description": {
         "th": "",
@@ -3976,8 +3936,8 @@
       ],
       "category": "exercise",
       "fileType": "pdf",
-      "url": "/assets/it-kmitl/ics/labs/ics-lab-01-completed.pdf",
-      "fileName": "ics-lab-01-completed.pdf",
+      "url": "/assets/it-kmitl/ics/labs/ics-lab-01-multimeter-2569.pdf",
+      "fileName": "ics-lab-01-multimeter-2569.pdf",
       "courseCode": "ICS"
     },
     {
@@ -4041,10 +4001,10 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-labs-ics-lab-02-completed-v2-pdf",
+      "id": "gen-ics-labs-ics-lab-02-oscilloscope-2569-pdf",
       "title": {
-        "th": "Lab · 02 Completed V 2",
-        "en": "Lab · 02 Completed V 2"
+        "th": "Lab · 02 Oscilloscope 2569",
+        "en": "Lab · 02 Oscilloscope 2569"
       },
       "description": {
         "th": "",
@@ -4056,28 +4016,8 @@
       ],
       "category": "exercise",
       "fileType": "pdf",
-      "url": "/assets/it-kmitl/ics/labs/ics-lab-02-completed-v2.pdf",
-      "fileName": "ics-lab-02-completed-v2.pdf",
-      "courseCode": "ICS"
-    },
-    {
-      "id": "gen-ics-labs-ics-lab-02-completed-pdf",
-      "title": {
-        "th": "Lab · 02 Completed",
-        "en": "Lab · 02 Completed"
-      },
-      "description": {
-        "th": "",
-        "en": ""
-      },
-      "tags": [
-        "ICS",
-        "labs"
-      ],
-      "category": "exercise",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/ics/labs/ics-lab-02-completed.pdf",
-      "fileName": "ics-lab-02-completed.pdf",
+      "url": "/assets/it-kmitl/ics/labs/ics-lab-02-oscilloscope-2569.pdf",
+      "fileName": "ics-lab-02-oscilloscope-2569.pdf",
       "courseCode": "ICS"
     },
     {
@@ -4181,10 +4121,10 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-labs-ics-lab-03-completed-pdf",
+      "id": "gen-ics-labs-ics-lab-03-breadboard-basics-2569-pdf",
       "title": {
-        "th": "Lab · 03 Completed",
-        "en": "Lab · 03 Completed"
+        "th": "Lab · 03 Breadboard Basics 2569",
+        "en": "Lab · 03 Breadboard Basics 2569"
       },
       "description": {
         "th": "",
@@ -4196,8 +4136,8 @@
       ],
       "category": "exercise",
       "fileType": "pdf",
-      "url": "/assets/it-kmitl/ics/labs/ics-lab-03-completed.pdf",
-      "fileName": "ics-lab-03-completed.pdf",
+      "url": "/assets/it-kmitl/ics/labs/ics-lab-03-breadboard-basics-2569.pdf",
+      "fileName": "ics-lab-03-breadboard-basics-2569.pdf",
       "courseCode": "ICS"
     },
     {
@@ -4221,26 +4161,6 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-labs-ics-lab-03-y1-s1-pdf",
-      "title": {
-        "th": "Lab · 03 Y 1 S 1",
-        "en": "Lab · 03 Y 1 S 1"
-      },
-      "description": {
-        "th": "",
-        "en": ""
-      },
-      "tags": [
-        "ICS",
-        "labs"
-      ],
-      "category": "exercise",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/ics/labs/ics-lab-03-y1-s1.pdf",
-      "fileName": "ics-lab-03-y1-s1.pdf",
-      "courseCode": "ICS"
-    },
-    {
       "id": "gen-ics-labs-ics-lab-03-pdf",
       "title": {
         "th": "Lab · 03",
@@ -4261,10 +4181,10 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-labs-ics-lab-04-completed-pdf",
+      "id": "gen-ics-labs-ics-lab-04-inverter-oscillator-2569-pdf",
       "title": {
-        "th": "Lab · 04 Completed",
-        "en": "Lab · 04 Completed"
+        "th": "Lab · 04 Inverter Oscillator 2569",
+        "en": "Lab · 04 Inverter Oscillator 2569"
       },
       "description": {
         "th": "",
@@ -4276,8 +4196,8 @@
       ],
       "category": "exercise",
       "fileType": "pdf",
-      "url": "/assets/it-kmitl/ics/labs/ics-lab-04-completed.pdf",
-      "fileName": "ics-lab-04-completed.pdf",
+      "url": "/assets/it-kmitl/ics/labs/ics-lab-04-inverter-oscillator-2569.pdf",
+      "fileName": "ics-lab-04-inverter-oscillator-2569.pdf",
       "courseCode": "ICS"
     },
     {
@@ -4318,6 +4238,26 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/ics/labs/ics-lab-04.pdf",
       "fileName": "ics-lab-04.pdf",
+      "courseCode": "ICS"
+    },
+    {
+      "id": "gen-ics-labs-ics-lab-05-logic-gates-2569-pdf",
+      "title": {
+        "th": "Lab · 05 Logic Gates 2569",
+        "en": "Lab · 05 Logic Gates 2569"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "labs"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/ics/labs/ics-lab-05-logic-gates-2569.pdf",
+      "fileName": "ics-lab-05-logic-gates-2569.pdf",
       "courseCode": "ICS"
     },
     {
@@ -4381,10 +4321,10 @@
       "courseCode": "ICS"
     },
     {
-      "id": "gen-ics-labs-ics-lab-lab04-pdf",
+      "id": "gen-ics-labs-ics-lab-06-fpga-basys2-2569-pdf",
       "title": {
-        "th": "Lab · Lab 04",
-        "en": "Lab · Lab 04"
+        "th": "Lab · 06 Fpga Basys 2 2569",
+        "en": "Lab · 06 Fpga Basys 2 2569"
       },
       "description": {
         "th": "",
@@ -4396,8 +4336,8 @@
       ],
       "category": "exercise",
       "fileType": "pdf",
-      "url": "/assets/it-kmitl/ics/labs/ics-lab-lab04.pdf",
-      "fileName": "ics-lab-lab04.pdf",
+      "url": "/assets/it-kmitl/ics/labs/ics-lab-06-fpga-basys2-2569.pdf",
+      "fileName": "ics-lab-06-fpga-basys2-2569.pdf",
       "courseCode": "ICS"
     },
     {
@@ -4546,6 +4486,27 @@
       "courseCode": "ICS"
     },
     {
+      "id": "gen-ics-lectures-ics-lec-chapter01-computer-system-2569-pdf",
+      "title": {
+        "th": "Lecture · Chapter 01 Computer System 2569",
+        "en": "Lecture · Chapter 01 Computer System 2569"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "lectures"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/ics/lectures/ics-lec-chapter01-computer-system-2569.pdf",
+      "fileName": "ics-lec-chapter01-computer-system-2569.pdf",
+      "courseCode": "ICS",
+      "chapter": 1
+    },
+    {
       "id": "gen-ics-lectures-ics-lec-chapter01-pdf",
       "title": {
         "th": "Lecture · Chapter 01",
@@ -4565,6 +4526,27 @@
       "fileName": "ics-lec-chapter01.pdf",
       "courseCode": "ICS",
       "chapter": 1
+    },
+    {
+      "id": "gen-ics-lectures-ics-lec-chapter02-memory-io-addressing-2569-pdf",
+      "title": {
+        "th": "Lecture · Chapter 02 Memory IO Addressing 2569",
+        "en": "Lecture · Chapter 02 Memory IO Addressing 2569"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "lectures"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/ics/lectures/ics-lec-chapter02-memory-io-addressing-2569.pdf",
+      "fileName": "ics-lec-chapter02-memory-io-addressing-2569.pdf",
+      "courseCode": "ICS",
+      "chapter": 2
     },
     {
       "id": "gen-ics-lectures-ics-lec-chapter02-v2-pdf",
@@ -4609,6 +4591,27 @@
       "chapter": 2
     },
     {
+      "id": "gen-ics-lectures-ics-lec-chapter03-mux-latch-buffer-2569-pdf",
+      "title": {
+        "th": "Lecture · Chapter 03 MUX Latch Buffer 2569",
+        "en": "Lecture · Chapter 03 MUX Latch Buffer 2569"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "lectures"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/ics/lectures/ics-lec-chapter03-mux-latch-buffer-2569.pdf",
+      "fileName": "ics-lec-chapter03-mux-latch-buffer-2569.pdf",
+      "courseCode": "ICS",
+      "chapter": 3
+    },
+    {
       "id": "gen-ics-lectures-ics-lec-chapter03-pdf",
       "title": {
         "th": "Lecture · Chapter 03",
@@ -4628,6 +4631,27 @@
       "fileName": "ics-lec-chapter03.pdf",
       "courseCode": "ICS",
       "chapter": 3
+    },
+    {
+      "id": "gen-ics-lectures-ics-lec-chapter04-counter-adc-2569-pdf",
+      "title": {
+        "th": "Lecture · Chapter 04 Counter Adc 2569",
+        "en": "Lecture · Chapter 04 Counter Adc 2569"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "lectures"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/ics/lectures/ics-lec-chapter04-counter-adc-2569.pdf",
+      "fileName": "ics-lec-chapter04-counter-adc-2569.pdf",
+      "courseCode": "ICS",
+      "chapter": 4
     },
     {
       "id": "gen-ics-lectures-ics-lec-chapter04-v2-pdf",
@@ -4672,6 +4696,27 @@
       "chapter": 4
     },
     {
+      "id": "gen-ics-lectures-ics-lec-chapter05-dac-adc-part2-2569-pdf",
+      "title": {
+        "th": "Lecture · Chapter 05 Dac Adc Part 2 2569",
+        "en": "Lecture · Chapter 05 Dac Adc Part 2 2569"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "lectures"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/ics/lectures/ics-lec-chapter05-dac-adc-part2-2569.pdf",
+      "fileName": "ics-lec-chapter05-dac-adc-part2-2569.pdf",
+      "courseCode": "ICS",
+      "chapter": 5
+    },
+    {
       "id": "gen-ics-lectures-ics-lec-chapter05-pdf",
       "title": {
         "th": "Lecture · Chapter 05",
@@ -4691,6 +4736,48 @@
       "fileName": "ics-lec-chapter05.pdf",
       "courseCode": "ICS",
       "chapter": 5
+    },
+    {
+      "id": "gen-ics-lectures-ics-lec-chapter06-memory-circuit-2569-pdf",
+      "title": {
+        "th": "Lecture · Chapter 06 Memory Circuit 2569",
+        "en": "Lecture · Chapter 06 Memory Circuit 2569"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "lectures"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/ics/lectures/ics-lec-chapter06-memory-circuit-2569.pdf",
+      "fileName": "ics-lec-chapter06-memory-circuit-2569.pdf",
+      "courseCode": "ICS",
+      "chapter": 6
+    },
+    {
+      "id": "gen-ics-lectures-ics-lec-chapter07-alu-cpu-2569-pdf",
+      "title": {
+        "th": "Lecture · Chapter 07 Alu CPU 2569",
+        "en": "Lecture · Chapter 07 Alu CPU 2569"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "lectures"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/ics/lectures/ics-lec-chapter07-alu-cpu-2569.pdf",
+      "fileName": "ics-lec-chapter07-alu-cpu-2569.pdf",
+      "courseCode": "ICS",
+      "chapter": 7
     },
     {
       "id": "gen-ics-lectures-ics-lec-slide03-1-pdf",
@@ -5196,6 +5283,26 @@
       "chapter": 7
     },
     {
+      "id": "gen-ics-misc-ics-ref-random-exam-number-tool-zip",
+      "title": {
+        "th": "Reference · Random Exam Number Tool",
+        "en": "Reference · Random Exam Number Tool"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "misc"
+      ],
+      "category": "reference",
+      "fileType": "file",
+      "url": "/assets/it-kmitl/ics/misc/ics-ref-random-exam-number-tool.zip",
+      "fileName": "ics-ref-random-exam-number-tool.zip",
+      "courseCode": "ICS"
+    },
+    {
       "id": "gen-ics-misc-quiz-2-test-circ",
       "title": {
         "th": "Quiz · 2 Test",
@@ -5413,6 +5520,66 @@
       "fileType": "image",
       "url": "/assets/it-kmitl/ics/pages/pg-10.jpg",
       "fileName": "pg-10.jpg",
+      "courseCode": "ICS"
+    },
+    {
+      "id": "gen-ics-references-ics-ref-hardware-component-list-2569-pdf",
+      "title": {
+        "th": "Reference · Hardware Component List 2569",
+        "en": "Reference · Hardware Component List 2569"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "references"
+      ],
+      "category": "reference",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/ics/references/ics-ref-hardware-component-list-2569.pdf",
+      "fileName": "ics-ref-hardware-component-list-2569.pdf",
+      "courseCode": "ICS"
+    },
+    {
+      "id": "gen-ics-references-ics-ref-syllabus-2569-pdf",
+      "title": {
+        "th": "Reference · Syllabus 2569",
+        "en": "Reference · Syllabus 2569"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "references"
+      ],
+      "category": "reference",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/ics/references/ics-ref-syllabus-2569.pdf",
+      "fileName": "ics-ref-syllabus-2569.pdf",
+      "courseCode": "ICS"
+    },
+    {
+      "id": "gen-ics-references-ics-ref-textbook-v05-pdf",
+      "title": {
+        "th": "Reference · Textbook V 05",
+        "en": "Reference · Textbook V 05"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "references"
+      ],
+      "category": "reference",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/ics/references/ics-ref-textbook-v05.pdf",
+      "fileName": "ics-ref-textbook-v05.pdf",
       "courseCode": "ICS"
     },
     {

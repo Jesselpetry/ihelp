@@ -11,7 +11,7 @@ export const THEME_KEY = "ihelp-theme";
 // .dark class is already on <html> when the browser paints. Without this the
 // page flashes light before the provider hydrates. Keep the localStorage key
 // and the class name in sync with the provider below.
-export const THEME_SCRIPT = `(function(){try{var t=localStorage.getItem("${THEME_KEY}");var d=t==="dark"||((!t||t==="system")&&matchMedia("(prefers-color-scheme: dark)").matches);document.documentElement.classList.toggle("dark",d);document.documentElement.style.colorScheme=d?"dark":"light";}catch(e){}})()`;
+export const THEME_SCRIPT = `(function(){try{var t=localStorage.getItem("${THEME_KEY}");var d=t==="dark"||(t==="system"&&matchMedia("(prefers-color-scheme: dark)").matches);document.documentElement.classList.toggle("dark",d);document.documentElement.style.colorScheme=d?"dark":"light";}catch(e){}})()`;
 
 const ThemeContext = createContext<{
   theme: Theme;
@@ -31,7 +31,7 @@ function apply(theme: Theme) {
 }
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>("system");
+  const [theme, setThemeState] = useState<Theme>("light");
   const [resolved, setResolved] = useState<"light" | "dark">("light");
 
   useEffect(() => {
@@ -39,7 +39,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const initial =
       saved === "light" || saved === "dark" || saved === "system"
         ? saved
-        : "system";
+        : "light";
     // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time hydration from localStorage after mount, matching LocaleProvider in lib/i18n.tsx
     setThemeState(initial);
     setResolved(apply(initial));

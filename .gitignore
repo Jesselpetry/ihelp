@@ -72,3 +72,7 @@ __pycache__/
 # Nothing in the app reads it; the archive repo (pscp-69070027) keeps the one
 # copy. 7.2MB that does not belong in git.
 /data/html_cache/
+
+# Quarantined assets containing PII or sensitive data
+/_quarantine/
+

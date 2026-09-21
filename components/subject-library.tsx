@@ -12,10 +12,15 @@ import {
 } from "react";
 import Link from "next/link";
 import {
+  ArrowDown,
   ArrowLeft,
+  ArrowUp,
+  ArrowUpDown,
   CalendarRange,
+  Check,
   ChevronLeft,
   ChevronRight,
+  Copy,
   Download,
   Eye,
   FileDown,
@@ -69,7 +74,7 @@ interface SubjectLibraryProps {
   courseCode?: string;
 }
 
-type LayoutMode = "gallery" | "list";
+type LayoutMode = "gallery" | "table" | "list";
 type Filter = AssetCategory | "all";
 
 /**
@@ -204,7 +209,18 @@ const L = {
   closePreview: { th: "ปิดหน้าต่างตัวอย่าง", en: "Close preview" },
   openInTab: { th: "เปิดในแท็บใหม่", en: "Open in new tab" },
   gallery: { th: "มุมมองแกลเลอรี", en: "Gallery view" },
-  list: { th: "มุมมองรายการ", en: "Compact list" },
+  table: { th: "มุมมองตาราง", en: "Table view" },
+  list: { th: "มุมมองกระชับ", en: "Compact list" },
+  colName: { th: "ชื่อเอกสาร", en: "Name" },
+  colCategory: { th: "หมวดหมู่", en: "Category" },
+  colScope: { th: "ช่วงสอบ", en: "Scope" },
+  colChapter: { th: "บท/สัปดาห์", en: "Chapter/Week" },
+  colSize: { th: "ขนาด", en: "Size" },
+  colActions: { th: "การดำเนินการ", en: "Actions" },
+  copyLink: { th: "คัดลอกลิงก์", en: "Copy link" },
+  linkCopied: { th: "คัดลอกแล้ว!", en: "Link copied!" },
+  expandStack: { th: "ขยายรายการ", en: "Expand set" },
+  collapseStack: { th: "ย่อรายการ", en: "Collapse set" },
   topics: { th: "หัวข้อ", en: "Topics" },
   chapters: { th: "บท/สัปดาห์", en: "Chapter" },
   scopeAll: { th: "ทั้งหมด", en: "All" },
@@ -1203,6 +1219,565 @@ function CompactStackRow({
   );
 }
 
+// ── Table View ───────────────────────────────────────────────────────────────
+
+type TableSortColumn = "name" | "category" | "scope" | "chapter" | "size";
+type SortDirection = "asc" | "desc";
+
+function shortDesc(text: string, maxLen = 42): string {
+  if (!text) return "";
+  return text.length > maxLen ? `${text.slice(0, maxLen - 1).trimEnd()}…` : text;
+}
+
+function SubjectLibraryTable({
+  entries,
+  courseCode,
+  onOpenSingle,
+  onOpenStack,
+}: {
+  entries: GalleryEntry[];
+  courseCode?: string;
+  onOpenSingle: (asset: SubjectAsset) => void;
+  onOpenStack: (assets: SubjectAsset[], index: number) => void;
+}) {
+  const { locale } = useLocale();
+  const [sortCol, setSortCol] = useState<TableSortColumn | null>(null);
+  const [sortDir, setSortDir] = useState<SortDirection>("asc");
+  const [openStacks, setOpenStacks] = useState<ReadonlySet<string>>(new Set());
+  const [copiedId, setCopiedId] = useState<string | null>(null);
+
+  const toggleStack = (key: string) => {
+    setOpenStacks((prev) => {
+      const next = new Set(prev);
+      if (!next.delete(key)) next.add(key);
+      return next;
+    });
+  };
+
+  const copyUrl = (id: string, path: string) => {
+    const url = typeof window !== "undefined" ? `${window.location.origin}${path}` : path;
+    void navigator.clipboard.writeText(url).then(() => {
+      setCopiedId(id);
+      setTimeout(() => setCopiedId(null), 2000);
+    });
+  };
+
+  const handleSort = (col: TableSortColumn) => {
+    if (sortCol !== col) {
+      setSortCol(col);
+      setSortDir("asc");
+    } else if (sortDir === "asc") {
+      setSortDir("desc");
+    } else {
+      setSortCol(null);
+      setSortDir("asc");
+    }
+  };
+
+  const sortedEntries = useMemo(() => {
+    if (!sortCol) return entries;
+    const sorted = [...entries];
+    sorted.sort((a, b) => {
+      if (sortCol === "name") {
+        const aTitle = t(a.kind === "single" ? a.asset.title : a.title, locale);
+        const bTitle = t(b.kind === "single" ? b.asset.title : b.title, locale);
+        const cmp = aTitle.localeCompare(bTitle, locale);
+        return sortDir === "asc" ? cmp : -cmp;
+      }
+      if (sortCol === "category") {
+        const aCat = resolveCategory(a.kind === "single" ? a.asset : a.assets[0]);
+        const bCat = resolveCategory(b.kind === "single" ? b.asset : b.assets[0]);
+        const cmp = aCat.localeCompare(bCat);
+        return sortDir === "asc" ? cmp : -cmp;
+      }
+      if (sortCol === "scope") {
+        const aScope = entryScope(a);
+        const bScope = entryScope(b);
+        const cmp = aScope.localeCompare(bScope);
+        return sortDir === "asc" ? cmp : -cmp;
+      }
+      if (sortCol === "chapter") {
+        const aAsset = a.kind === "single" ? a.asset : a.assets[0];
+        const bAsset = b.kind === "single" ? b.asset : b.assets[0];
+        const aCh = aAsset.chapter ?? (sortDir === "asc" ? 999 : -1);
+        const bCh = bAsset.chapter ?? (sortDir === "asc" ? 999 : -1);
+        return sortDir === "asc" ? aCh - bCh : bCh - aCh;
+      }
+      if (sortCol === "size") {
+        const aBytes =
+          a.kind === "single"
+            ? (a.asset.sizeBytes ?? 0)
+            : a.assets.reduce((sum, item) => sum + (item.sizeBytes ?? 0), 0);
+        const bBytes =
+          b.kind === "single"
+            ? (b.asset.sizeBytes ?? 0)
+            : b.assets.reduce((sum, item) => sum + (item.sizeBytes ?? 0), 0);
+        return sortDir === "asc" ? aBytes - bBytes : bBytes - aBytes;
+      }
+      return 0;
+    });
+    return sorted;
+  }, [entries, sortCol, sortDir, locale]);
+
+  return (
+    <div className="overflow-hidden rounded-2xl border bg-card shadow-xs">
+      <div className="overflow-x-auto [scrollbar-width:thin]">
+        <table className="w-full min-w-[620px] border-collapse text-left text-sm">
+          <thead>
+            <tr className="border-b bg-muted/40 text-xs font-semibold text-muted-foreground select-none">
+              <th
+                scope="col"
+                className="py-3 pl-4 pr-3 cursor-pointer transition-colors hover:text-foreground"
+                onClick={() => handleSort("name")}
+              >
+                <div className="inline-flex items-center gap-1.5">
+                  <span>{t(L.colName, locale)}</span>
+                  {sortCol === "name" ? (
+                    sortDir === "asc" ? (
+                      <ArrowUp className="size-3.5 text-primary" />
+                    ) : (
+                      <ArrowDown className="size-3.5 text-primary" />
+                    )
+                  ) : (
+                    <ArrowUpDown className="size-3 opacity-30" />
+                  )}
+                </div>
+              </th>
+              <th
+                scope="col"
+                className="py-3 px-3 whitespace-nowrap cursor-pointer transition-colors hover:text-foreground"
+                onClick={() => handleSort("category")}
+              >
+                <div className="inline-flex items-center gap-1.5">
+                  <span>{t(L.colCategory, locale)}</span>
+                  {sortCol === "category" ? (
+                    sortDir === "asc" ? (
+                      <ArrowUp className="size-3.5 text-primary" />
+                    ) : (
+                      <ArrowDown className="size-3.5 text-primary" />
+                    )
+                  ) : (
+                    <ArrowUpDown className="size-3 opacity-30" />
+                  )}
+                </div>
+              </th>
+              <th
+                scope="col"
+                className="py-3 px-3 whitespace-nowrap cursor-pointer transition-colors hover:text-foreground"
+                onClick={() => handleSort("scope")}
+              >
+                <div className="inline-flex items-center gap-1.5">
+                  <span>{t(L.colScope, locale)}</span>
+                  {sortCol === "scope" ? (
+                    sortDir === "asc" ? (
+                      <ArrowUp className="size-3.5 text-primary" />
+                    ) : (
+                      <ArrowDown className="size-3.5 text-primary" />
+                    )
+                  ) : (
+                    <ArrowUpDown className="size-3 opacity-30" />
+                  )}
+                </div>
+              </th>
+              <th
+                scope="col"
+                className="py-3 px-3 whitespace-nowrap cursor-pointer transition-colors hover:text-foreground"
+                onClick={() => handleSort("chapter")}
+              >
+                <div className="inline-flex items-center gap-1.5">
+                  <span>{t(L.colChapter, locale)}</span>
+                  {sortCol === "chapter" ? (
+                    sortDir === "asc" ? (
+                      <ArrowUp className="size-3.5 text-primary" />
+                    ) : (
+                      <ArrowDown className="size-3.5 text-primary" />
+                    )
+                  ) : (
+                    <ArrowUpDown className="size-3 opacity-30" />
+                  )}
+                </div>
+              </th>
+              <th
+                scope="col"
+                className="py-3 px-3 whitespace-nowrap cursor-pointer transition-colors hover:text-foreground"
+                onClick={() => handleSort("size")}
+              >
+                <div className="inline-flex items-center gap-1.5">
+                  <span>{t(L.colSize, locale)}</span>
+                  {sortCol === "size" ? (
+                    sortDir === "asc" ? (
+                      <ArrowUp className="size-3.5 text-primary" />
+                    ) : (
+                      <ArrowDown className="size-3.5 text-primary" />
+                    )
+                  ) : (
+                    <ArrowUpDown className="size-3 opacity-30" />
+                  )}
+                </div>
+              </th>
+              <th
+                scope="col"
+                className="sticky right-0 z-10 w-28 whitespace-nowrap bg-muted/95 backdrop-blur-xs py-3 pl-2 pr-4 text-right shadow-[-6px_0_10px_-4px_rgba(0,0,0,0.06)]"
+              >
+                <span>{t(L.colActions, locale)}</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-border/40">
+            {sortedEntries.map((entry, idx) => {
+              const itemKey =
+                entry.kind === "single"
+                  ? `${entry.key}-${entry.asset.url || idx}`
+                  : entry.key;
+
+              if (entry.kind === "stack") {
+                const isExpanded = openStacks.has(entry.key);
+                const firstAsset = entry.assets[0];
+                const cat = resolveCategory(firstAsset);
+                const style = CATEGORY[cat];
+                const totalBytes = entry.assets.reduce(
+                  (sum, a) => sum + (a.sizeBytes ?? 0),
+                  0,
+                );
+                const isCopied = copiedId === entry.key;
+
+                return (
+                  <Fragment key={itemKey}>
+                    <tr
+                      className={`${style.shelf} group transition-colors hover:bg-muted/35`}
+                    >
+                      <td className="py-2.5 pl-4 pr-3 max-w-[220px] sm:max-w-[280px] md:max-w-[360px]">
+                        <div className="flex items-center gap-2.5">
+                          <button
+                            type="button"
+                            onClick={() => toggleStack(entry.key)}
+                            aria-label={
+                              isExpanded
+                                ? t(L.collapseStack, locale)
+                                : t(L.expandStack, locale)
+                            }
+                            className="flex size-6 shrink-0 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                          >
+                            <ChevronRight
+                              className={`size-3.5 transition-transform duration-200 ${
+                                isExpanded ? "rotate-90" : ""
+                              }`}
+                            />
+                          </button>
+                          <span
+                            aria-hidden
+                            className="shelf-accent h-7 w-1 shrink-0 rounded-full"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => onOpenStack(entry.assets, 0)}
+                            className="flex min-w-0 flex-1 items-center gap-2 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+                          >
+                            <Images className="size-4 shrink-0 text-muted-foreground transition-colors group-hover:text-primary" />
+                            <div className="min-w-0 flex-1">
+                              <span className="block truncate text-sm font-medium text-foreground transition-colors group-hover:text-primary">
+                                {t(entry.title, locale)}
+                              </span>
+                              <span className="block truncate text-[11px] text-muted-foreground">
+                                {entry.assets.length} {t(L.images, locale)}
+                              </span>
+                            </div>
+                          </button>
+                        </div>
+                      </td>
+                      <td className="py-2.5 px-3 whitespace-nowrap">
+                        <span
+                          className={`${style.shelf} shelf-pill inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium text-primary`}
+                        >
+                          <Images className="size-3" />
+                          {t(style.label, locale)}
+                        </span>
+                      </td>
+                      <td className="py-2.5 px-3 whitespace-nowrap">
+                        {firstAsset.scope ? (
+                          <ScopeBadge scope={firstAsset.scope} />
+                        ) : (
+                          <span className="text-xs text-muted-foreground">—</span>
+                        )}
+                      </td>
+                      <td className="py-2.5 px-3 whitespace-nowrap">
+                        {firstAsset.chapter !== undefined ? (
+                          <span className="inline-flex items-center rounded-md border bg-muted/40 px-2 py-0.5 text-xs font-medium tabular-nums">
+                            {chapterTag(firstAsset) ?? `Ch. ${firstAsset.chapter}`}
+                          </span>
+                        ) : (
+                          <span className="text-xs text-muted-foreground">—</span>
+                        )}
+                      </td>
+                      <td className="py-2.5 px-3 tabular-nums text-xs text-muted-foreground whitespace-nowrap">
+                        {[
+                          `${entry.assets.length} ${t(L.images, locale)}`,
+                          totalBytes > 0 ? formatBytes(totalBytes) : "",
+                        ]
+                          .filter(Boolean)
+                          .join(" · ")}
+                      </td>
+                      <td className="sticky right-0 z-10 w-28 whitespace-nowrap bg-card/95 backdrop-blur-xs py-2.5 pl-2 pr-4 text-right shadow-[-6px_0_10px_-4px_rgba(0,0,0,0.06)]">
+                        <div className="flex items-center justify-end gap-1">
+                          <button
+                            type="button"
+                            onClick={() => onOpenStack(entry.assets, 0)}
+                            aria-label={t(L.preview, locale)}
+                            className="rounded-full p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-primary"
+                          >
+                            <Eye className="size-3.5" />
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => copyUrl(entry.key, firstAsset.url)}
+                            aria-label={t(L.copyLink, locale)}
+                            title={
+                              isCopied
+                                ? t(L.linkCopied, locale)
+                                : t(L.copyLink, locale)
+                            }
+                            className="rounded-full p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-primary"
+                          >
+                            {isCopied ? (
+                              <Check className="size-3.5 text-emerald-600" />
+                            ) : (
+                              <Copy className="size-3.5" />
+                            )}
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    {isExpanded &&
+                      entry.assets.map((asset, pageIdx) => {
+                        const pageCopied = copiedId === asset.id;
+                        return (
+                          <tr
+                            key={`${entry.key}-p-${asset.id || pageIdx}`}
+                            className="bg-muted/15 text-xs text-muted-foreground transition-colors hover:bg-muted/30"
+                          >
+                            <td className="py-2 pl-12 pr-3 max-w-[220px] sm:max-w-[280px] md:max-w-[360px]">
+                              <div className="flex items-center gap-2">
+                                <span className="font-mono text-[11px] text-muted-foreground/70">
+                                  #{pageIdx + 1}
+                                </span>
+                                <button
+                                  type="button"
+                                  onClick={() => onOpenStack(entry.assets, pageIdx)}
+                                  className="truncate text-left font-medium text-foreground transition-colors hover:text-primary"
+                                >
+                                  {t(asset.title, locale) ||
+                                    `${t(L.page, locale)} ${pageIdx + 1}`}
+                                </button>
+                              </div>
+                            </td>
+                            <td className="py-2 px-3 whitespace-nowrap">
+                              <span className="text-[11px] text-muted-foreground">
+                                {FILE_TYPE_LABEL[asset.fileType]}
+                              </span>
+                            </td>
+                            <td className="py-2 px-3 whitespace-nowrap">—</td>
+                            <td className="py-2 px-3 whitespace-nowrap">
+                              {asset.chapter !== undefined ? (
+                                <span className="tabular-nums">
+                                  Ch. {asset.chapter}
+                                </span>
+                              ) : (
+                                "—"
+                              )}
+                            </td>
+                            <td className="py-2 px-3 tabular-nums whitespace-nowrap">
+                              {asset.sizeBytes
+                                ? formatBytes(asset.sizeBytes)
+                                : "—"}
+                            </td>
+                            <td className="sticky right-0 z-10 w-28 whitespace-nowrap bg-muted/20 backdrop-blur-xs py-2 pl-2 pr-4 text-right shadow-[-6px_0_10px_-4px_rgba(0,0,0,0.06)]">
+                              <div className="flex items-center justify-end gap-1">
+                                <button
+                                  type="button"
+                                  onClick={() =>
+                                    onOpenStack(entry.assets, pageIdx)
+                                  }
+                                  aria-label={t(L.preview, locale)}
+                                  className="rounded-full p-1 text-muted-foreground transition-colors hover:bg-muted hover:text-primary"
+                                >
+                                  <Eye className="size-3" />
+                                </button>
+                                <a
+                                  href={assetDownloadUrl(
+                                    asset.url,
+                                    asset.fileName,
+                                  )}
+                                  download={asset.fileName}
+                                  aria-label={`${t(L.download, locale)}: ${asset.fileName}`}
+                                  className="rounded-full p-1 text-muted-foreground transition-colors hover:bg-muted hover:text-primary"
+                                >
+                                  <Download className="size-3" />
+                                </a>
+                                <button
+                                  type="button"
+                                  onClick={() => copyUrl(asset.id, asset.url)}
+                                  aria-label={t(L.copyLink, locale)}
+                                  className="rounded-full p-1 text-muted-foreground transition-colors hover:bg-muted hover:text-primary"
+                                >
+                                  {pageCopied ? (
+                                    <Check className="size-3 text-emerald-600" />
+                                  ) : (
+                                    <Copy className="size-3" />
+                                  )}
+                                </button>
+                              </div>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                  </Fragment>
+                );
+              }
+
+              const asset = entry.asset;
+              const cat = resolveCategory(asset);
+              const style = CATEGORY[cat];
+              const Icon = style.icon;
+              const meta = metaLine(asset, locale);
+              const isCopied = copiedId === asset.id;
+              const code = asset.courseCode ?? courseCode;
+              const desc = asset.description ? shortDesc(t(asset.description, locale), 42) : "";
+
+              return (
+                <tr
+                  key={itemKey}
+                  className={`${style.shelf} group transition-colors hover:bg-muted/35`}
+                >
+                  <td className="py-2.5 pl-4 pr-3 max-w-[220px] sm:max-w-[280px] md:max-w-[360px]">
+                    <div className="flex items-center gap-2.5">
+                      <span
+                        aria-hidden
+                        className="shelf-accent h-7 w-1 shrink-0 rounded-full"
+                      />
+                      {asset.fileType === "md" ? (
+                        <Link
+                          href={asset.url}
+                          className="flex min-w-0 flex-1 items-center gap-2 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+                        >
+                          <Icon className="size-4 shrink-0 text-muted-foreground transition-colors group-hover:text-primary" />
+                          <div className="min-w-0 flex-1">
+                            <span className="block truncate text-sm font-medium text-foreground transition-colors group-hover:text-primary">
+                              {t(asset.title, locale)}
+                            </span>
+                            <span className="block truncate text-[11px] text-muted-foreground">
+                              {[code, desc]
+                                .filter(Boolean)
+                                .join(" · ")}
+                            </span>
+                          </div>
+                        </Link>
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={() => onOpenSingle(asset)}
+                          className="flex min-w-0 flex-1 items-center gap-2 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+                        >
+                          <Icon className="size-4 shrink-0 text-muted-foreground transition-colors group-hover:text-primary" />
+                          <div className="min-w-0 flex-1">
+                            <span className="block truncate text-sm font-medium text-foreground transition-colors group-hover:text-primary">
+                              {t(asset.title, locale)}
+                            </span>
+                            <span className="block truncate text-[11px] text-muted-foreground">
+                              {[code, desc]
+                                .filter(Boolean)
+                                .join(" · ")}
+                            </span>
+                          </div>
+                        </button>
+                      )}
+                    </div>
+                  </td>
+                  <td className="py-2.5 px-3 whitespace-nowrap">
+                    <span
+                      className={`${style.shelf} shelf-pill inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium text-primary`}
+                    >
+                      <Icon className="size-3" />
+                      {t(style.label, locale)}
+                    </span>
+                  </td>
+                  <td className="py-2.5 px-3 whitespace-nowrap">
+                    {asset.scope ? (
+                      <ScopeBadge scope={asset.scope} />
+                    ) : (
+                      <span className="text-xs text-muted-foreground">—</span>
+                    )}
+                  </td>
+                  <td className="py-2.5 px-3 whitespace-nowrap">
+                    {chapterTag(asset) ? (
+                      <span className="inline-flex items-center rounded-md border bg-muted/40 px-2 py-0.5 text-xs font-medium tabular-nums">
+                        {chapterTag(asset)}
+                      </span>
+                    ) : (
+                      <span className="text-xs text-muted-foreground">—</span>
+                    )}
+                  </td>
+                  <td className="py-2.5 px-3 tabular-nums text-xs text-muted-foreground whitespace-nowrap">
+                    {meta || "—"}
+                  </td>
+                  <td className="sticky right-0 z-10 w-28 whitespace-nowrap bg-card/95 backdrop-blur-xs py-2.5 pl-2 pr-4 text-right shadow-[-6px_0_10px_-4px_rgba(0,0,0,0.06)]">
+                    <div className="flex items-center justify-end gap-1">
+                      {asset.fileType === "md" ? (
+                        <Link
+                          href={asset.url}
+                          aria-label={t(L.viewContent, locale)}
+                          className="rounded-full p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-primary"
+                        >
+                          <Eye className="size-3.5" />
+                        </Link>
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={() => onOpenSingle(asset)}
+                          aria-label={t(L.preview, locale)}
+                          className="rounded-full p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-primary"
+                        >
+                          <Eye className="size-3.5" />
+                        </button>
+                      )}
+                      {asset.fileType !== "md" && (
+                        <a
+                          href={assetDownloadUrl(asset.url, asset.fileName)}
+                          download={asset.fileName}
+                          aria-label={`${t(L.download, locale)}: ${asset.fileName}`}
+                          className="rounded-full p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-primary"
+                        >
+                          <Download className="size-3.5" />
+                        </a>
+                      )}
+                      <button
+                        type="button"
+                        onClick={() => copyUrl(asset.id, asset.url)}
+                        aria-label={t(L.copyLink, locale)}
+                        title={
+                          isCopied
+                            ? t(L.linkCopied, locale)
+                            : t(L.copyLink, locale)
+                        }
+                        className="rounded-full p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-primary"
+                      >
+                        {isCopied ? (
+                          <Check className="size-3.5 text-emerald-600" />
+                        ) : (
+                          <Copy className="size-3.5" />
+                        )}
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
 // ── Main component ───────────────────────────────────────────────────────────
 
 export function SubjectLibrary({
@@ -1219,7 +1794,7 @@ export function SubjectLibrary({
   const [scope, setScope] = useState<ScopeFilter>("all");
   const [activeTag, setActiveTag] = useState<string | null>(null);
   const [activeChapter, setActiveChapter] = useState<number | null>(null);
-  const [layout, setLayout] = useState<LayoutMode>("gallery");
+  const [layout, setLayout] = useState<LayoutMode>("table");
   const [openStacks, setOpenStacks] = useState<ReadonlySet<string>>(new Set());
   const [preview, setPreview] = useState<Preview | null>(null);
 
@@ -1448,8 +2023,22 @@ export function SubjectLibrary({
     </div>
   );
 
-  const renderEntries = (list: GalleryEntry[]) =>
-    layout === "list" ? renderList(list) : renderGrid(list);
+  const renderEntries = (list: GalleryEntry[]) => {
+    if (layout === "table") {
+      return (
+        <SubjectLibraryTable
+          entries={list}
+          courseCode={courseCode}
+          onOpenSingle={openSingle}
+          onOpenStack={openIn}
+        />
+      );
+    }
+    if (layout === "list") {
+      return renderList(list);
+    }
+    return renderGrid(list);
+  };
 
   return (
     <main className="brand-shelf mx-auto w-full max-w-6xl px-3 py-6 sm:px-6 sm:py-10">
@@ -1524,6 +2113,7 @@ export function SubjectLibrary({
           <div className="flex shrink-0 items-center gap-0.5 rounded-full border bg-card p-1">
             {(
               [
+                ["table", Table2, L.table],
                 ["gallery", LayoutGrid, L.gallery],
                 ["list", Rows3, L.list],
               ] as const

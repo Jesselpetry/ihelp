@@ -26,6 +26,9 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // User typo redirect
+      { source: "/libary", destination: "/library", permanent: true },
+
       // Modules that moved when the eleven-module spine replaced the ad-hoc
       // track list. The documents did not move — they became documents inside a
       // module rather than routes of their own — so these are permanent enough
