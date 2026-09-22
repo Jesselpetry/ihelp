@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { TOKEN_COOKIE, USER_COOKIE, REPO_COOKIE } from "@/lib/github-server";
+import { TOKEN_COOKIE, USER_COOKIE, REPO_COOKIE } from "@/lib/github/github-server";
 
 // Disconnect: clear the token, identity, and linked-repo cookies.
 export async function POST() {

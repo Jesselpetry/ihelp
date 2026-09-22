@@ -15,15 +15,15 @@
  * The point of running them as warnings first is that the debt becomes a number
  * that moves, instead of a paragraph in a report.
  */
-import { COURSES, courseDir } from "../lib/catalog";
-import { COURSE_BINDINGS } from "../lib/course-bindings";
-import { resolveCourseSpine } from "../lib/course-spine";
-import { MODULE_IDS, STANDARD_SPINE, type ModuleId } from "../lib/spine";
+import { COURSES, courseDir } from "../lib/courses/catalog";
+import { COURSE_BINDINGS } from "../lib/courses/course-bindings";
+import { resolveCourseSpine } from "../lib/courses/course-spine";
+import { MODULE_IDS, STANDARD_SPINE, type ModuleId } from "../lib/courses/spine";
 import { checkBank, isFakeBilingual, type Finding } from "../lib/schemas/content";
-import { loadRecommendedProblems, IJUDGE_SCRAPED_STATS } from "../lib/recommended";
-import { QUIZ_BANK } from "../lib/quiz-content";
-import { TEST_CASES } from "../lib/testcases";
-import { PROBLEM_TAKEAWAYS } from "../lib/problem-takeaways";
+import { loadRecommendedProblems, IJUDGE_SCRAPED_STATS } from "../lib/pscp/recommended";
+import { QUIZ_BANK } from "../lib/quiz/quiz-content";
+import { TEST_CASES } from "../lib/pscp/testcases";
+import { PROBLEM_TAKEAWAYS } from "../lib/pscp/problem-takeaways";
 
 const findings: Finding[] = [];
 

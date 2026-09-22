@@ -13,7 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { COURSES } from "@/lib/catalog";
+import { COURSES } from "@/lib/courses/catalog";
 import { createClient } from "@/lib/supabase/client";
 import { createResource } from "@/lib/actions/upload";
 import {
@@ -21,7 +21,7 @@ import {
   MAX_UPLOAD_BYTES,
   RESOURCE_BUCKET,
   type UploadState,
-} from "@/lib/resources";
+} from "@/lib/library/resources";
 
 const TYPES = [
   { value: "slide", label: "สไลด์เรียน" },

@@ -2,7 +2,7 @@
 
 import { BookOpen, ShieldCheck, Users } from "lucide-react";
 import { useLocale, t, type LText } from "@/lib/i18n";
-import type { ScrapedCourseInfo } from "@/lib/course-content";
+import type { ScrapedCourseInfo } from "@/lib/courses/course-content";
 
 /**
  * What the faculty publishes about the course, as a panel rather than a card.

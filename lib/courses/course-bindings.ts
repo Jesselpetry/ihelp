@@ -1,17 +1,17 @@
 import type { LText } from "@/lib/i18n";
-import type { QuizQuestion } from "@/lib/quiz";
-import type { ModuleId, ModuleScope } from "@/lib/spine";
-import { loadCourseDoc, loadCourseOverview } from "@/lib/course-content";
-import { loadIcs, loadItf, loadMfit } from "@/lib/it-kmitl";
-import { loadChem, loadEnKmitl } from "@/lib/en-kmitl";
+import type { QuizQuestion } from "@/lib/quiz/quiz";
+import type { ModuleId, ModuleScope } from "@/lib/courses/spine";
+import { loadCourseDoc, loadCourseOverview } from "@/lib/courses/course-content";
+import { loadIcs, loadItf, loadMfit } from "@/lib/courses/it-kmitl";
+import { loadChem, loadEnKmitl } from "@/lib/courses/en-kmitl";
 
-import { ITF_QUIZ, ITF_QUIZ_ID } from "@/lib/itf-quiz";
-import { ICS_QUIZ, ICS_QUIZ_ID } from "@/lib/ics-quiz";
-import { MFIT_BLUEPRINT_QUIZ, MFIT_QUIZ, MFIT_QUIZ_ID } from "@/lib/mfit-quiz";
-import { EN_KMITL_CURATED_QUIZ, EN_KMITL_QUIZ_ID } from "@/lib/en-kmitl-quiz";
-import { EN_KMITL_MOCK_EXAM } from "@/lib/en-kmitl-mock-exam";
-import { CHEM_QUIZ, CHEM_QUIZ_ID } from "@/lib/chem-quiz";
-import { COMPRO_PROBLEMS } from "@/lib/compro-labs";
+import { ITF_QUIZ, ITF_QUIZ_ID } from "@/lib/quiz/itf-quiz";
+import { ICS_QUIZ, ICS_QUIZ_ID } from "@/lib/quiz/ics-quiz";
+import { MFIT_BLUEPRINT_QUIZ, MFIT_QUIZ, MFIT_QUIZ_ID } from "@/lib/quiz/mfit-quiz";
+import { EN_KMITL_CURATED_QUIZ, EN_KMITL_QUIZ_ID } from "@/lib/quiz/en-kmitl-quiz";
+import { EN_KMITL_MOCK_EXAM } from "@/lib/quiz/en-kmitl-mock-exam";
+import { CHEM_QUIZ, CHEM_QUIZ_ID } from "@/lib/quiz/chem-quiz";
+import { COMPRO_PROBLEMS } from "@/lib/pscp/compro-labs";
 
 /**
  * Progress key for COMPRO's mock paper, now that it is its own module.

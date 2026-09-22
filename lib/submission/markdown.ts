@@ -1,5 +1,5 @@
 import fs from "fs";
-import { reflectionTemplatePath, submissionTemplatePath } from "./paths";
+import { reflectionTemplatePath, submissionTemplatePath } from "@/lib/paths";
 import {
   SUBMISSION_BLOCK_FIELDS,
   SUBMISSION_CERT_STATEMENTS,

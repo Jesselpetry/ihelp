@@ -1,14 +1,14 @@
 import type { LText } from "@/lib/i18n";
-import type { SubjectChapter } from "@/lib/spine";
-import { loadCourseOverview } from "@/lib/course-content";
-import { resolveCourse } from "@/lib/catalog";
+import type { SubjectChapter } from "@/lib/courses/spine";
+import { loadCourseOverview } from "@/lib/courses/course-content";
+import { resolveCourse } from "@/lib/courses/catalog";
 
 // Pre-registered interactive quizzes chapters
-import { ITF_CHAPTERS } from "@/lib/itf-quiz";
-import { ICS_CHAPTERS } from "@/lib/ics-quiz";
-import { MFIT_CHAPTERS } from "@/lib/mfit-quiz";
-import { EN_KMITL_CHAPTERS } from "@/lib/en-kmitl-quiz";
-import { CHEM_CHAPTERS } from "@/lib/chem-quiz";
+import { ITF_CHAPTERS } from "@/lib/quiz/itf-quiz";
+import { ICS_CHAPTERS } from "@/lib/quiz/ics-quiz";
+import { MFIT_CHAPTERS } from "@/lib/quiz/mfit-quiz";
+import { EN_KMITL_CHAPTERS } from "@/lib/quiz/en-kmitl-quiz";
+import { CHEM_CHAPTERS } from "@/lib/quiz/chem-quiz";
 
 export interface CourseChapterConfig {
   chapterLabel?: LText;

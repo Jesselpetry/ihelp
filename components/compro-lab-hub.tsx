@@ -22,7 +22,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { DiffView } from "@/components/diff-view";
 import { MdView } from "@/components/md-view";
-import { useDraft } from "@/lib/draft";
+import { useDraft } from "@/lib/submission/draft";
 import { useLocale, t, type LText } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 import {
@@ -36,8 +36,8 @@ import {
   problemsForWeek,
   type ComProCase,
   type ComProProblem,
-} from "@/lib/compro-labs";
-import { COMPRO_LESSONS, COMPRO_WEEK_LESSONS } from "@/lib/compro-lessons";
+} from "@/lib/pscp/compro-labs";
+import { COMPRO_LESSONS, COMPRO_WEEK_LESSONS } from "@/lib/pscp/compro-lessons";
 
 const STORAGE_KEY = "ihelp-compro-labs-v1";
 
@@ -287,7 +287,7 @@ export function ComProLabHub() {
       if (running || !code.trim()) return;
       setRunning(true);
       try {
-        const { preloadPyodide, runTestCase } = await import("@/lib/pyodide-client");
+        const { preloadPyodide, runTestCase } = await import("@/lib/pscp/pyodide-client");
         if (engine !== "ready") {
           setEngine("loading");
           try {

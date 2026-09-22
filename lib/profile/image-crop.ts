@@ -3,7 +3,7 @@ import {
   AVATAR_SIZE,
   ACCEPTED_AVATAR_TYPES,
   MAX_AVATAR_INPUT_BYTES,
-} from "@/lib/avatar";
+} from "@/lib/profile/avatar";
 
 /** Pixel rectangle react-easy-crop reports, in the source image's own scale. */
 export type CropArea = {

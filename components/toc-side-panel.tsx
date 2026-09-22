@@ -15,7 +15,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useLocale, type LText } from "@/lib/i18n";
-import type { TocItem } from "@/lib/toc";
+import type { TocItem } from "@/lib/docs/toc";
 
 interface TocSidePanelProps {
   items: TocItem[];

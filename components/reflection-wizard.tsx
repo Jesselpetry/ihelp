@@ -15,19 +15,19 @@ import {
   REFLECTION_CERT_STATEMENTS,
   REFLECTION_POLICY_STATEMENTS,
   statementLabel,
-} from "@/lib/statements";
-import { REFLECTION_STEPS } from "@/lib/wizard-content";
-import { useDraft, downloadMarkdown } from "@/lib/draft";
-import { addHistoryEntry } from "@/lib/history";
+} from "@/lib/submission/statements";
+import { REFLECTION_STEPS } from "@/lib/submission/wizard-content";
+import { useDraft, downloadMarkdown } from "@/lib/submission/draft";
+import { addHistoryEntry } from "@/lib/submission/history";
 import { GithubPushSection } from "@/components/github/github-push-section";
 import {
   emptyReflectionDraft,
   reflectionFieldsFromDraft,
   composeAiTool,
   type ReflectionDraft as Draft,
-} from "@/lib/wizard-fields";
+} from "@/lib/submission/wizard-fields";
 import { useLocale, t } from "@/lib/i18n";
-import { validateReflectionUpTo } from "@/lib/validation";
+import { validateReflectionUpTo } from "@/lib/submission/validation";
 
 const STEP_KEYS = [
   "language", "info", "tool", "policy", "asked", "noticed", "checked", "learned",

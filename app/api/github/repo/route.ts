@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { REPO_COOKIE } from "@/lib/github-server";
+import { REPO_COOKIE } from "@/lib/github/github-server";
 
 // Persist the selected destination repo as part of the session (a cookie), so
 // it survives reloads and is available to the server. POST sets it, DELETE

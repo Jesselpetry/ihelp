@@ -6,9 +6,9 @@
  * production backlog that orders itself: the lowest rows are where the next
  * piece of content belongs. Run with `npm run readiness`.
  */
-import { COURSES, courseDir } from "../lib/catalog";
-import { resolveCourseSpine } from "../lib/course-spine";
-import { MODULE_IDS } from "../lib/spine";
+import { COURSES, courseDir } from "../lib/courses/catalog";
+import { resolveCourseSpine } from "../lib/courses/course-spine";
+import { MODULE_IDS } from "../lib/courses/spine";
 
 let total = 0;
 const missingTally = new Map<string, number>();

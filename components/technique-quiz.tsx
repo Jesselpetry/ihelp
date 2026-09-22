@@ -21,7 +21,7 @@ import {
   SELF_CORRECT,
   SELF_WRONG,
   type QuizQuestion,
-} from "@/lib/quiz";
+} from "@/lib/quiz/quiz";
 
 const L: Record<string, LText> = {
   questionOf: { th: "ข้อที่", en: "Question" },

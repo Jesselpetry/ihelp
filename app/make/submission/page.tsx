@@ -1,6 +1,6 @@
 import { SubmissionWizard } from "@/components/submission-wizard";
 import { Navbar } from "@/components/navbar";
-import { loadProblems } from "@/lib/master";
+import { loadProblems } from "@/lib/pscp/master";
 
 export const dynamic = "force-dynamic";
 

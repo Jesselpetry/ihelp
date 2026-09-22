@@ -9,7 +9,7 @@ import {
   clientSecret,
   appBaseUrl,
   type GithubUser,
-} from "@/lib/github-server";
+} from "@/lib/github/github-server";
 
 // OAuth callback: verify state, exchange the code for an access token, keep the
 // token in an httpOnly cookie and a readable identity cookie for the UI, then

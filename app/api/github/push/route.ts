@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { githubFetch, UnauthenticatedError } from "@/lib/github-server";
+import { githubFetch, UnauthenticatedError } from "@/lib/github/github-server";
 
 const FILE_NAMES = {
   submission: "submission.md",

@@ -41,7 +41,7 @@ import {
   resolveCategory,
   type AssetCategory,
   type SubjectAsset,
-} from "@/lib/subject-library-ui";
+} from "@/lib/library/subject-library-ui";
 
 import { BookCover, ImageTile } from "./subject-library/book-cover";
 import { PhotoStack, StackSheet } from "./subject-library/photo-stack";

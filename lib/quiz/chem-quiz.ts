@@ -1,5 +1,5 @@
 import type { LText } from "@/lib/i18n";
-import type { QuizQuestion } from "@/lib/quiz";
+import type { QuizQuestion } from "@/lib/quiz/quiz";
 
 // EN-KMITL General Chemistry — 60-question mock exam
 // Source: /Users/chatan/Downloads/CH-EN/quiz.md (KMITL, 2569)

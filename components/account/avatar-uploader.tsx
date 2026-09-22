@@ -16,8 +16,8 @@ import {
 } from "@/components/ui/dialog";
 import { createClient } from "@/lib/supabase/client";
 import { resetAvatar, setAvatar } from "@/lib/actions/profile";
-import { AVATAR_BUCKET, ACCEPTED_AVATAR_TYPES } from "@/lib/avatar";
-import { cropToAvatarBlob, validateAvatarFile } from "@/lib/image-crop";
+import { AVATAR_BUCKET, ACCEPTED_AVATAR_TYPES } from "@/lib/profile/avatar";
+import { cropToAvatarBlob, validateAvatarFile } from "@/lib/profile/image-crop";
 
 const ACCEPT = ACCEPTED_AVATAR_TYPES.join(",");
 

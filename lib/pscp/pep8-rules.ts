@@ -1,5 +1,5 @@
 import type { LText } from "@/lib/i18n";
-import type { Pep8Violation } from "@/lib/grader-types";
+import type { Pep8Violation } from "@/lib/pscp/grader-types";
 
 // ---------------------------------------------------------------------------
 // (a) pycodestyle raw output -> bilingual Pep8Violation translation layer

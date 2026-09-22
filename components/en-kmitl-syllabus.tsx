@@ -5,8 +5,8 @@ import { ListChecks, PlayCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useLocale, t, type LText } from "@/lib/i18n";
-import type { QuizQuestion } from "@/lib/quiz";
-import { EN_KMITL_CHAPTERS } from "@/lib/en-kmitl-quiz";
+import type { QuizQuestion } from "@/lib/quiz/quiz";
+import { EN_KMITL_CHAPTERS } from "@/lib/quiz/en-kmitl-quiz";
 
 const L: Record<string, LText> = {
   title: { th: "แบบทดสอบ EN-KMITL", en: "EN-KMITL Self-test" },

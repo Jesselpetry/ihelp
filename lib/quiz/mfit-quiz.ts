@@ -1,5 +1,5 @@
 import type { LText } from "@/lib/i18n";
-import type { QuizQuestion } from "@/lib/quiz";
+import type { QuizQuestion } from "@/lib/quiz/quiz";
 
 // IT-KMITL — 06016401 Mathematics for Information Technology (MFIT) midterm self-test.
 // Source: data/it-kmitl/mfit/{summarize,midterm-exam}.md

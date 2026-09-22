@@ -1,9 +1,9 @@
 import { NextResponse, type NextRequest } from "next/server";
 
 import { currentStudentId } from "@/lib/auth/guards";
-import { libraryExamsForInsider } from "@/lib/library-exams";
-import { assetsForCourse } from "@/lib/subject-library";
-import type { SubjectAsset } from "@/lib/subject-library-ui";
+import { libraryExamsForInsider } from "@/lib/library/library-exams";
+import { assetsForCourse } from "@/lib/library/subject-library";
+import type { SubjectAsset } from "@/lib/library/subject-library-ui";
 
 /** Reads the session cookie and may return signed URLs, so it must never be cached. */
 export const dynamic = "force-dynamic";

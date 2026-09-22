@@ -64,12 +64,12 @@ track ที่ยังไม่เสร็จจะโชว์เป็น�
 (ITF/ICS/MFIT/PSCP แบ่งที่สัปดาห์ 7, DSA/PSTAT ที่บทที่ 7, BFIT ที่สัปดาห์ 8)
 สื่อที่คร่อมทั้งเทอม เช่นแผนการสอนหรือตารางค่าวิกฤต จะโชว์ใต้ทั้งสองหมุด
 
-การ์ดมาจากสองชั้น: entry ที่เขียนมือใน `lib/subject-library.ts` (มีชื่อสองภาษา
+การ์ดมาจากสองชั้น: entry ที่เขียนมือใน `lib/library/subject-library.ts` (มีชื่อสองภาษา
 คำอธิบาย และขอบเขตสอบ) ซ้อนบน manifest ที่ scan จากไฟล์จริง — ไฟล์ที่วางลง
 `public/assets/` ตามกติกาจะได้การ์ดของตัวเองโดยไม่ต้องรอใครมาเขียน entry
 
 **ตัวไฟล์ไม่ได้อยู่ใน repo** — `public/assets/` ถูก gitignore ไว้ ไฟล์จริงอยู่บน
-Supabase Storage และเว็บเสิร์ฟจากที่นั่น (`lib/asset-url.ts` แปลง path
+Supabase Storage และเว็บเสิร์ฟจากที่นั่น (`lib/library/asset-url.ts` แปลง path
 `/assets/…` เป็น URL ของ bucket) เก็บไฟล์ไว้ในเครื่องต่อได้เพื่อให้
 `library:build` scan ได้ แต่ต้องรัน `assets:sync` เพื่ออัปโหลดขึ้น bucket
 ไม่งั้นไฟล์จะ 404 บน production ทั้งที่เปิดได้ในเครื่อง
@@ -81,12 +81,12 @@ Supabase Storage และเว็บเสิร์ฟจากที่นั
 
 **ข้อสอบเก่าเป็นเนื้อหาที่จำกัดสิทธิ์** ไม่เสิร์ฟให้สาธารณะ ไฟล์อยู่ใน bucket
 แบบปิด `ihelp-library-exams` เข้าถึงผ่าน signed URL อายุ 10 นาที หลังผ่าน
-`isInsider()` แล้วเท่านั้น (`lib/library-exams.ts` → `/api/library/exams`)
+`isInsider()` แล้วเท่านั้น (`lib/library/library-exams.ts` → `/api/library/exams`)
 
 การจัดว่าอะไรเป็นข้อสอบดูจาก `category === "exam"` **ไม่ใช่ path** — หน้าข้อสอบ
 ที่ถ่ายมาเก็บไว้ที่ `/assets/it-kmitl/ics/pages/pg-*.jpg` อยู่นอกโฟลเดอร์
 `exams/` ถ้าใช้ path ตัดสินจะหลุดสาธารณะทันที ดู `isRestrictedAsset()` ใน
-`lib/subject-library-ui.ts`
+`lib/library/subject-library-ui.ts`
 
 ### คลังเรียนรู้ต้องเข้าสู่ระบบ
 
@@ -122,7 +122,7 @@ Supabase Storage และเว็บเสิร์ฟจากที่นั
   ไม่มีข้อมูลออกจาก browser
 - **ห้องสมุด** (`/library`) — อ่านเอกสาร AI-Guidelines-PSCP ทั้งชุดแบบหนังสือ
   (bundle อยู่ใน `data/ai-guidelines/`, override ด้วย env `AI_GUIDELINES_PATH`)
-- **ทางลัดประจำสัปดาห์** บนหน้าแรก — แก้ลิงก์ได้ที่ `lib/shortcuts.ts`
+- **ทางลัดประจำสัปดาห์** บนหน้าแรก — แก้ลิงก์ได้ที่ `lib/courses/shortcuts.ts`
 - **สลับ TH / EN** ทั้ง UI และภาษาของ template ที่ใช้สร้างไฟล์
 - **Push ขึ้น GitHub** (ไม่บังคับ) — push ไฟล์เข้า repo ของคุณที่
   `oj<id>/submission.md` และ `oj<id>/ai_reflection.md` ได้โดยตรง ทั้งจากหน้า wizard
@@ -145,7 +145,7 @@ Supabase Storage และเว็บเสิร์ฟจากที่นั
 3. รันแอป กด **Sign in with GitHub** บนหน้าแรก แล้วเลือก repository ปลายทาง
 
 > scope ที่ขอคือ `public_repo` (เขียน public repo ได้) หากต้องการ push เข้า
-> private repo เปลี่ยนเป็น `repo` ที่ `OAUTH_SCOPE` ใน `lib/github-server.ts`
+> private repo เปลี่ยนเป็น `repo` ที่ `OAUTH_SCOPE` ใน `lib/github/github-server.ts`
 
 ## Tech stack
 

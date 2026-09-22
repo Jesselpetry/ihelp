@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { Check, Code2, Clock, ExternalLink, PanelsTopLeft, Star, TriangleAlert } from "lucide-react";
-import type { PscpProblem } from "@/lib/pscp";
-import type { PscpProgress } from "@/lib/pscp-client";
+import type { PscpProblem } from "@/lib/pscp/pscp";
+import type { PscpProgress } from "@/lib/pscp/pscp-client";
 import { Button } from "@/components/ui/button";
 import { t, type LText, type Locale } from "@/lib/i18n";
 import { cn } from "@/lib/utils";

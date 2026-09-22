@@ -5,7 +5,7 @@ import Link from "next/link";
 import { BookOpenText, BrainCircuit } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useLocale, t, type LText } from "@/lib/i18n";
-import { EN_KMITL_CHAPTERS, EN_KMITL_QUIZ } from "@/lib/en-kmitl-quiz";
+import { EN_KMITL_CHAPTERS, EN_KMITL_QUIZ } from "@/lib/quiz/en-kmitl-quiz";
 
 const L: Record<string, LText> = {
   title: { th: "EN-KMITL · Computer Programming", en: "EN-KMITL · Computer Programming" },

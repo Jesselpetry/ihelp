@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { buildSubmissionMd } from "@/lib/markdown";
+import { buildSubmissionMd } from "@/lib/submission/markdown";
 
 export async function POST(req: Request) {
   try {

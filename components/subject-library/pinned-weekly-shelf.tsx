@@ -14,9 +14,9 @@ import {
   Sparkles,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { assetDownloadUrl } from "@/lib/asset-url";
+import { assetDownloadUrl } from "@/lib/library/asset-url";
 import { useLocale, t, type LText } from "@/lib/i18n";
-import type { SubjectAsset } from "@/lib/subject-library-ui";
+import type { SubjectAsset } from "@/lib/library/subject-library-ui";
 import { L, metaLine } from "./types";
 
 const PINNED_ACTIONS_CELL =

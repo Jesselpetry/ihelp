@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { githubFetch, UnauthenticatedError } from "@/lib/github-server";
+import { githubFetch, UnauthenticatedError } from "@/lib/github/github-server";
 
 // List every file (blob) in the linked repo for the repo-editor file browser.
 export async function GET(req: Request) {

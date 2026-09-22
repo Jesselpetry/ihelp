@@ -1,4 +1,4 @@
-import type { TestCase } from "@/lib/grader-types";
+import type { TestCase } from "@/lib/pscp/grader-types";
 
 // Test cases for each recommended problem (keyed by OJ id), extracted verbatim
 // from each problem's `data/recommended/<folder>/problem.md`:

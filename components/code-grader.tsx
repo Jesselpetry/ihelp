@@ -23,16 +23,16 @@ import { Textarea } from "@/components/ui/textarea";
 import { Separator } from "@/components/ui/separator";
 import { ScoreString } from "@/components/score-string";
 import { DiffView } from "@/components/diff-view";
-import { useDraft } from "@/lib/draft";
+import { useDraft } from "@/lib/submission/draft";
 import { useLocale, t, type LText } from "@/lib/i18n";
-import { TEST_CASES } from "@/lib/testcases";
+import { TEST_CASES } from "@/lib/pscp/testcases";
 import type {
   CaseResult,
   CaseStatus,
   GradeReport,
   Pep8Violation,
   TestCase,
-} from "@/lib/grader-types";
+} from "@/lib/pscp/grader-types";
 
 const L: Record<string, LText> = {
   title: { th: "ตรวจให้คะแนนโค้ด (Client-Side Grader)", en: "Client-Side Python Grader" },
@@ -94,7 +94,7 @@ const L: Record<string, LText> = {
 
 /** Small wrapper around the engine so integration is a one-line fix. */
 async function ensurePyodideReady(onProgress: (status: "loading" | "ready" | "error") => void) {
-  const { preloadPyodide } = await import("@/lib/pyodide-client");
+  const { preloadPyodide } = await import("@/lib/pscp/pyodide-client");
   await preloadPyodide(onProgress);
 }
 
@@ -102,14 +102,14 @@ async function runOneCase(
   code: string,
   stdin: string,
 ): Promise<{ stdout: string; error: string | null; durationMs: number; timedOut: boolean }> {
-  const { runTestCase } = await import("@/lib/pyodide-client");
+  const { runTestCase } = await import("@/lib/pscp/pyodide-client");
   return runTestCase(code, stdin, { timeoutMs: 5000 });
 }
 
 async function lintOne(code: string): Promise<Pep8Violation[]> {
   const [{ lintCode }, { translatePep8Violations, checkCustomRules }] = await Promise.all([
-    import("@/lib/pyodide-client"),
-    import("@/lib/pep8-rules"),
+    import("@/lib/pscp/pyodide-client"),
+    import("@/lib/pscp/pep8-rules"),
   ]);
   const raw = await lintCode(code);
   return [...translatePep8Violations(raw), ...checkCustomRules(code)];

@@ -2,9 +2,9 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { Navbar } from "@/components/navbar";
 import { LibraryReader } from "@/components/library-reader";
-import { loadLibraryDoc } from "@/lib/library";
+import { loadLibraryDoc } from "@/lib/library/library";
 
-import { loadLibrary } from "@/lib/library";
+import { loadLibrary } from "@/lib/library/library";
 
 export async function generateStaticParams() {
   return loadLibrary().map((doc) => ({ slug: doc.slug }));

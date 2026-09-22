@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Navbar } from "@/components/navbar";
 import { CourseDirectory } from "@/components/course-directory";
-import { COURSES, courseDir, courseHref } from "@/lib/catalog";
-import { readinessIndex } from "@/lib/course-spine";
+import { COURSES, courseDir, courseHref } from "@/lib/courses/catalog";
+import { readinessIndex } from "@/lib/courses/course-spine";
 
 // No `description` here on purpose: the home page is the site, so it inherits
 // DESCRIPTION from app/layout.tsx. Overriding it locally is how og:description

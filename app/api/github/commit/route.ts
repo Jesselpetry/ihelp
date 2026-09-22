@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { githubFetch, UnauthenticatedError } from "@/lib/github-server";
+import { githubFetch, UnauthenticatedError } from "@/lib/github/github-server";
 
 // Generic Contents API commit for the repo editor. The client already holds the
 // blob `sha` (from /api/github/file) when updating; new files send no sha.

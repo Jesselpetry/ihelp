@@ -10,7 +10,7 @@ import { GoogleMark } from "@/components/account/google-mark";
 import { SubjectLibrary } from "@/components/subject-library";
 import { createClient } from "@/lib/supabase/client";
 import { useLocale, t, type LText } from "@/lib/i18n";
-import type { SubjectAsset } from "@/lib/subject-library-ui";
+import type { SubjectAsset } from "@/lib/library/subject-library-ui";
 
 const L: Record<string, LText> = {
   badge: { th: "เฉพาะนักศึกษา IT", en: "IT students only" },

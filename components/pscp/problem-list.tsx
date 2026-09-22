@@ -2,8 +2,8 @@
 
 import { Fragment } from "react";
 import { ChevronDown, Info, LayoutGrid, List, Search } from "lucide-react";
-import type { PscpProblem } from "@/lib/pscp";
-import type { PscpProgress } from "@/lib/pscp-client";
+import type { PscpProblem } from "@/lib/pscp/pscp";
+import type { PscpProgress } from "@/lib/pscp/pscp-client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -17,7 +17,7 @@ import {
 import { ProblemCard } from "@/components/pscp/problem-card";
 import { ProblemRow } from "@/components/pscp/problem-row";
 import { isExpired } from "@/components/pscp/problem-primitives";
-import { tagLabel } from "@/lib/pscp-tags";
+import { tagLabel } from "@/lib/pscp/pscp-tags";
 import { t, type LText, type Locale } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 

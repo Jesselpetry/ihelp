@@ -12,19 +12,19 @@ const STATUS_COLORS = { Pass: "green", "Not Pass": "red", "Not Submit": "gray" }
 const RESULT_COLORS = { Pass: "green", "Not Pass": "red" } as const;
 const FACT_COLORS = { Yes: "amber", No: "gray" } as const;
 const COPIED_COLORS = { No: "green", Yes: "red" } as const;
-import { SUBMISSION_CERT_STATEMENTS, statementLabel } from "@/lib/statements";
-import { SUBMISSION_STEPS, TIME_OPTIONS, HOW_TO_COUNT_TIME } from "@/lib/wizard-content";
-import { PSCP_LL_HINTS } from "@/lib/pscp-learning-log-hints";
-import { useDraft, downloadMarkdown } from "@/lib/draft";
-import { addHistoryEntry } from "@/lib/history";
+import { SUBMISSION_CERT_STATEMENTS, statementLabel } from "@/lib/submission/statements";
+import { SUBMISSION_STEPS, TIME_OPTIONS, HOW_TO_COUNT_TIME } from "@/lib/submission/wizard-content";
+import { PSCP_LL_HINTS } from "@/lib/pscp/pscp-learning-log-hints";
+import { useDraft, downloadMarkdown } from "@/lib/submission/draft";
+import { addHistoryEntry } from "@/lib/submission/history";
 import { GithubPushSection } from "@/components/github/github-push-section";
 import {
   emptySubmissionDraft,
   submissionFieldsFromDraft,
   type SubmissionDraft as Draft,
-} from "@/lib/wizard-fields";
+} from "@/lib/submission/wizard-fields";
 import { useLocale, t } from "@/lib/i18n";
-import { validateSubmissionUpTo } from "@/lib/validation";
+import { validateSubmissionUpTo } from "@/lib/submission/validation";
 
 const STEP_KEYS = [
   "language", "info", "understanding", "first_plan", "final_approach",

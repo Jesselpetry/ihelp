@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { Navbar } from "@/components/navbar";
 import { PscpWorkspace } from "@/components/pscp-workspace";
-import { loadPscpProblem, loadPscpProblems } from "@/lib/pscp";
+import { loadPscpProblem, loadPscpProblems } from "@/lib/pscp/pscp";
 
 export const dynamic = "force-static";
 

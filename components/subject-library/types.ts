@@ -20,7 +20,7 @@ import {
   type AssetFileType,
   type AssetScope,
   type SubjectAsset,
-} from "@/lib/subject-library-ui";
+} from "@/lib/library/subject-library-ui";
 
 export type LayoutMode = "gallery" | "table" | "list";
 export type Filter = AssetCategory | "all";

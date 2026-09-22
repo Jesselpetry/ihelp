@@ -42,9 +42,9 @@ import {
   type RepoFile,
   type FileContent,
   type LinkedRepo,
-} from "@/lib/github";
-import { parseSubmissionMd, parseReflectionMd } from "@/lib/md-parse";
-import { basename, dirname, buildTree, type TreeNode } from "@/lib/repo-tree";
+} from "@/lib/github/github";
+import { parseSubmissionMd, parseReflectionMd } from "@/lib/submission/md-parse";
+import { basename, dirname, buildTree, type TreeNode } from "@/lib/github/repo-tree";
 import {
   emptySubmissionDraft,
   emptyReflectionDraft,
@@ -52,7 +52,7 @@ import {
   reflectionFieldsFromDraft,
   type SubmissionDraft,
   type ReflectionDraft,
-} from "@/lib/wizard-fields";
+} from "@/lib/submission/wizard-fields";
 import { useLocale, t } from "@/lib/i18n";
 
 type Kind = "submission" | "reflection";

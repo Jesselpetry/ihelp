@@ -34,7 +34,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLocale, t, type LText } from "@/lib/i18n";
-import { assetDownloadUrl } from "@/lib/asset-url";
+import { assetDownloadUrl } from "@/lib/library/asset-url";
 import {
   formatBytes,
   resolveCategory,
@@ -42,7 +42,7 @@ import {
   type AssetCategory,
   type AssetScope,
   type SubjectAsset,
-} from "@/lib/subject-library-ui";
+} from "@/lib/library/subject-library-ui";
 
 export interface Preview {
   items: SubjectAsset[];

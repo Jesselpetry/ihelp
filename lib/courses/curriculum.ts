@@ -1,6 +1,6 @@
-import { loadCourseJson } from "@/lib/course-content";
+import { loadCourseJson } from "@/lib/courses/course-content";
 import type { LText } from "@/lib/i18n";
-import type { SubjectChapter } from "@/lib/spine";
+import type { SubjectChapter } from "@/lib/courses/spine";
 
 /**
  * The structured curriculum spec a course can ship beside its Markdown.

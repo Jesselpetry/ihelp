@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import { Download, Eye } from "lucide-react";
-import { assetDownloadUrl } from "@/lib/asset-url";
+import { assetDownloadUrl } from "@/lib/library/asset-url";
 import { useLocale, t } from "@/lib/i18n";
-import type { SubjectAsset } from "@/lib/subject-library-ui";
+import type { SubjectAsset } from "@/lib/library/subject-library-ui";
 import { L } from "./types";
 
 /**

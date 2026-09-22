@@ -4,7 +4,7 @@ import { useCallback, useState } from "react";
 import { Play, Loader2, Terminal, Code2, TriangleAlert } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { useDraft } from "@/lib/draft";
+import { useDraft } from "@/lib/submission/draft";
 import { useLocale, t, type LText } from "@/lib/i18n";
 
 const L: Record<string, LText> = {
@@ -60,7 +60,7 @@ export function ScratchRunner({ problemId }: { problemId: number }) {
       if (engineStatus !== "ready") {
         setEngineStatus("loading");
         try {
-          const { preloadPyodide } = await import("@/lib/pyodide-client");
+          const { preloadPyodide } = await import("@/lib/pscp/pyodide-client");
           await preloadPyodide((s) => setEngineStatus(s));
           setEngineStatus("ready");
         } catch {
@@ -68,7 +68,7 @@ export function ScratchRunner({ problemId }: { problemId: number }) {
           return;
         }
       }
-      const { runTestCase } = await import("@/lib/pyodide-client");
+      const { runTestCase } = await import("@/lib/pscp/pyodide-client");
       const run = await runTestCase(typeof code === "string" ? code : "", stdin, {
         timeoutMs: 5000,
       });

@@ -1,20 +1,20 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import type { PscpHubData } from "@/lib/pscp";
+import type { PscpHubData } from "@/lib/pscp/pscp";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
-import { useGithub } from "@/lib/github";
+import { useGithub } from "@/lib/github/github";
 import { PscpWorkspace } from "@/components/pscp-workspace";
 import { ProblemsHeader } from "@/components/pscp/problems-header";
 import { ProblemList, type Filter, type ViewMode } from "@/components/pscp/problem-list";
 import { isExpired } from "@/components/pscp/problem-primitives";
-import { tagLabel } from "@/lib/pscp-tags";
+import { tagLabel } from "@/lib/pscp/pscp-tags";
 import {
   loadPscpProgress,
   setPscpSolved,
   PSCP_PROGRESS_EVENT,
   type PscpProgress,
-} from "@/lib/pscp-client";
+} from "@/lib/pscp/pscp-client";
 import { useLocale, t } from "@/lib/i18n";
 
 /**

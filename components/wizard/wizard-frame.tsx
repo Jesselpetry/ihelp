@@ -5,7 +5,7 @@ import { ArrowDown, ArrowLeft, ArrowRight, Check, ChevronDown, ChevronRight, Hou
 import { Fragment, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useLocale, t, type LText } from "@/lib/i18n";
-import type { StepContent } from "@/lib/wizard-content";
+import type { StepContent } from "@/lib/submission/wizard-content";
 
 const LABELS: Record<string, LText> = {
   back: { th: "ย้อนกลับ", en: "Back" },

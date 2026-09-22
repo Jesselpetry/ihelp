@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import { GraduationCap, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useLocale, t, type LText } from "@/lib/i18n";
-import { COURSES, GROUPS } from "@/lib/catalog";
+import { COURSES, GROUPS } from "@/lib/courses/catalog";
 import { CourseBookCard } from "@/components/course-book-card";
 
 const L: Record<string, LText> = {

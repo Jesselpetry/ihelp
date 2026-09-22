@@ -15,7 +15,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { QuizLaunchButton } from "@/components/quiz-launch-button";
 
-import { PROBLEM_TAKEAWAYS } from "@/lib/problem-takeaways";
+import { PROBLEM_TAKEAWAYS } from "@/lib/pscp/problem-takeaways";
 
 
 /**

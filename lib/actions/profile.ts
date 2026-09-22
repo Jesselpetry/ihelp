@@ -6,10 +6,10 @@ import { z } from "zod";
 
 import { db, users } from "@/db";
 import { requireUser } from "@/lib/auth/guards";
-import { MAJOR_KEYS } from "@/lib/majors";
+import { MAJOR_KEYS } from "@/lib/courses/majors";
 import { createClient } from "@/lib/supabase/server";
-import { AVATAR_BUCKET } from "@/lib/avatar";
-import type { ProfileFormState } from "@/lib/profile-form";
+import { AVATAR_BUCKET } from "@/lib/profile/avatar";
+import type { ProfileFormState } from "@/lib/profile/profile-form";
 
 /** An empty optional URL field arrives as "" - treat it as absent. */
 const optionalUrl = z

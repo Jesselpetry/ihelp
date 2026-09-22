@@ -2,7 +2,7 @@
 
 import { Copy, Sparkles } from "lucide-react";
 import { useLocale, t } from "@/lib/i18n";
-import { SCOPE_SHORT, type AssetScope, type SubjectAsset } from "@/lib/subject-library-ui";
+import { SCOPE_SHORT, type AssetScope, type SubjectAsset } from "@/lib/library/subject-library-ui";
 import { SCOPE_BADGE, SCOPE_BADGE_ON_MEDIA, SCOPE_ICON } from "./types";
 
 /**

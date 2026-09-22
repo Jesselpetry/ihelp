@@ -6,8 +6,8 @@ import {
   courseDir,
   resolveCourse,
   type CatalogCourse,
-} from "@/lib/catalog";
-import scrapedSubjectsJson from "@/lib/it-kmitl-scraped.json";
+} from "@/lib/courses/catalog";
+import scrapedSubjectsJson from "@/lib/courses/it-kmitl-scraped.json";
 
 export interface ScrapedCourseInfo {
   code: string;

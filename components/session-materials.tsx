@@ -9,8 +9,8 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLocale, t, type LText } from "@/lib/i18n";
-import { assetDownloadUrl } from "@/lib/asset-url";
-import { formatBytes, type SubjectAsset, type AssetCategory } from "@/lib/subject-library-ui";
+import { assetDownloadUrl } from "@/lib/library/asset-url";
+import { formatBytes, type SubjectAsset, type AssetCategory } from "@/lib/library/subject-library-ui";
 import { CATEGORY, ScopeBadge } from "@/components/preview-modal";
 
 export interface SessionDocumentItem {

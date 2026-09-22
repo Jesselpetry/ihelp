@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { ROOT } from "@/lib/paths";
-import { loadProblems, type MasterProblem } from "@/lib/master";
+import { loadProblems, type MasterProblem } from "@/lib/pscp/master";
 
 // Locate recommended directory
 export function getRecommendedDir(): string {

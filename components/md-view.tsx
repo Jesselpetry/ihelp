@@ -4,13 +4,13 @@
 import { useMemo, useState } from "react";
 import ReactMarkdown, { type Components } from "react-markdown";
 import { SessionMaterialsDeck, type SessionDocumentItem } from "@/components/session-materials";
-import type { SubjectAsset } from "@/lib/subject-library-ui";
+import type { SubjectAsset } from "@/lib/library/subject-library-ui";
 import remarkGfm from "remark-gfm";
 import remarkFrontmatter from "remark-frontmatter";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import "katex/dist/katex.min.css";
-import { slugifyHeading } from "@/lib/toc";
+import { slugifyHeading } from "@/lib/docs/toc";
 import { useLocale, t, type LText } from "@/lib/i18n";
 
 function getNodeText(node: React.ReactNode): string {

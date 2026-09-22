@@ -1,13 +1,13 @@
 import type { LText } from "@/lib/i18n";
-import { COURSE_BINDINGS, type ModuleBinding } from "@/lib/course-bindings";
-import { coursesWithAssets } from "@/lib/subject-library";
+import { COURSE_BINDINGS, type ModuleBinding } from "@/lib/courses/course-bindings";
+import { coursesWithAssets } from "@/lib/library/subject-library";
 import {
   STANDARD_SPINE,
   type ModuleId,
   type ModuleStatus,
   type ResolvedModule,
   type SpineMetrics,
-} from "@/lib/spine";
+} from "@/lib/courses/spine";
 
 /**
  * Joins the eleven-module spine to what a course actually bound.

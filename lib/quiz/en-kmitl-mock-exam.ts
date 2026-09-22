@@ -1,4 +1,4 @@
-import type { QuizQuestion } from "@/lib/quiz";
+import type { QuizQuestion } from "@/lib/quiz/quiz";
 
 // Auto-generated from ข้อสอบ-Mock-Midterm-60ข้อ.md — 5-choice mock exam.
 // Same Thai/English text on both locale keys: the mock exam has no official

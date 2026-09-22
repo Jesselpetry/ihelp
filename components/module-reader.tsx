@@ -25,12 +25,12 @@ import {
 import { MdView } from "@/components/md-view";
 import { ModuleIndex, ScopeTag } from "@/components/module-index";
 import { TocSidePanel } from "@/components/toc-side-panel";
-import { extractToc } from "@/lib/toc";
-import { useOpenedDocs } from "@/lib/reading-progress";
+import { extractToc } from "@/lib/docs/toc";
+import { useOpenedDocs } from "@/lib/docs/reading-progress";
 import { useLocale, t, type LText } from "@/lib/i18n";
 import { PreviewModal, type Preview } from "@/components/preview-modal";
-import type { SubjectAsset } from "@/lib/subject-library-ui";
-import { splitTitle } from "@/lib/doc-index";
+import type { SubjectAsset } from "@/lib/library/subject-library-ui";
+import { splitTitle } from "@/lib/docs/doc-index";
 
 /** One document, already read on the server. */
 export interface ReaderDoc {

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Navbar } from "@/components/navbar";
 import { ProblemsView } from "@/components/problems-view";
-import { loadPscpHub } from "@/lib/pscp";
+import { loadPscpHub } from "@/lib/pscp/pscp";
 
 export const dynamic = "force-static";
 

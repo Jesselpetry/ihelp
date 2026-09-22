@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useLocale, t, type LText } from "@/lib/i18n";
 import { TechniqueQuiz } from "@/components/technique-quiz";
-import type { QuizQuestion } from "@/lib/quiz";
+import type { QuizQuestion } from "@/lib/quiz/quiz";
 
 interface SubjectChapter {
   chapter: number;

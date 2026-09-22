@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { resolveCourse, COURSE_COLORS } from "@/lib/catalog";
+import { resolveCourse, COURSE_COLORS } from "@/lib/courses/catalog";
 
 export default async function CourseLayout({
   children,

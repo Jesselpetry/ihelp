@@ -32,7 +32,7 @@
  *    `stdin`. The student reasons from the spec, like a real exam question.
  */
 
-import type { QuizQuestion } from "@/lib/quiz";
+import type { QuizQuestion } from "@/lib/quiz/quiz";
 
 // ---------------------------------------------------------------------------
 // 2996 — Swap Characters (สลับตัวอักษร)

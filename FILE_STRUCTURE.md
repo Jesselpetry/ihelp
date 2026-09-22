@@ -33,7 +33,7 @@ ihelp/
 | ไฟล์ binary ที่ผู้ใช้เปิด/ดาวน์โหลด (PDF, รูป) | `public/assets/` (ในเครื่อง) → Supabase Storage |
 | Markdown ที่ render เป็นหน้าเว็บของรายวิชา     | `content/courses/`    |
 | JSON/Markdown ที่เป็น input ของฟีเจอร์         | `data/`               |
-| คำอธิบาย/metadata ของไฟล์ใน `public/assets/`   | `lib/subject-library.ts` |
+| คำอธิบาย/metadata ของไฟล์ใน `public/assets/`   | `lib/library/subject-library.ts` |
 
 ---
 
@@ -61,7 +61,7 @@ public/assets/<namespace>/<subject>/<category>/<filename>
 | ระดับ         | ค่าที่ใช้ได้                                                                            |
 | ------------- | --------------------------------------------------------------------------------------- |
 | `<namespace>` | `it-kmitl` (คณะ IT) · `en-kmitl` (วิชาคณะวิศวฯ ที่ลงข้ามคณะ)                              |
-| `<subject>`   | รหัสสั้นตัวพิมพ์เล็ก ตรงกับ `code` ใน `lib/catalog.ts` เช่น `itf` `ics` `mfit` `pscp`     |
+| `<subject>`   | รหัสสั้นตัวพิมพ์เล็ก ตรงกับ `code` ใน `lib/courses/catalog.ts` เช่น `itf` `ics` `mfit` `pscp`     |
 | `<category>`  | ดูตารางด้านล่าง                                                                          |
 | `<filename>`  | kebab-case ดูหัวข้อ 2.2                                                                  |
 
@@ -148,7 +148,7 @@ chip ที่ใช้กรองใน gallery — แมปกันที�
 
 ### ทำงานยังไง
 
-field `scope` บน `SubjectAsset` ใน [`lib/subject-library.ts`](./lib/subject-library.ts):
+field `scope` บน `SubjectAsset` ใน [`lib/library/subject-library.ts`](./lib/library/subject-library.ts):
 
 ```ts
 scope?: "midterm" | "final";
@@ -176,7 +176,7 @@ UI จะจัดกลุ่มการ์ดตาม `scope` ให้เ�
 
 ---
 
-## 4. `lib/subject-library.ts` กับ manifest อัตโนมัติ
+## 4. `lib/library/subject-library.ts` กับ manifest อัตโนมัติ
 
 การ์ดในหน้า Media Library มาจากสองชั้น ซ้อนกัน:
 
@@ -191,7 +191,7 @@ LIBRARY_MANIFEST (สร้างอัตโนมัติ) ← พื้น�
 **ชั้นเขียนมือ** (`SUBJECT_ASSETS`) ให้สิ่งที่ชื่อไฟล์ให้ไม่ได้:
 ชื่อเรื่องสองภาษา คำอธิบาย แท็ก และ `scope`
 
-**ชั้นอัตโนมัติ** (`lib/library-manifest.json`) รับประกันว่าไฟล์ที่วางลง
+**ชั้นอัตโนมัติ** (`lib/library/library-manifest.json`) รับประกันว่าไฟล์ที่วางลง
 `public/assets/` ตามกติกาข้อ 2 จะได้การ์ดของตัวเอง ไม่ต้องรอใครมาเขียน entry
 (ยังต้อง `assets:sync` เพื่อให้ไฟล์ขึ้น production)
 
@@ -199,8 +199,8 @@ LIBRARY_MANIFEST (สร้างอัตโนมัติ) ← พื้น�
 
 | ไฟล์                        | สร้างโดย                            |
 | --------------------------- | ----------------------------------- |
-| `lib/library-manifest.json` | `bun run library:manifest`          |
-| `lib/library-stats.json`    | `bun run library:stats`             |
+| `lib/library/library-manifest.json` | `bun run library:manifest`          |
+| `lib/library/library-stats.json`    | `bun run library:stats`             |
 
 รันทั้งสองพร้อมกัน: `bun run library:build`
 
@@ -220,7 +220,7 @@ content/courses/<officialCode>-<slug>/
 ```
 
 ชื่อโฟลเดอร์ต้องเป็น `<officialCode>-<slug>` ให้ตรงกับ `officialCode` และ `slug`
-ใน `lib/catalog.ts` เป๊ะ ๆ — `lib/course-content.ts` ใช้ประกอบ path ตรง ๆ
+ใน `lib/courses/catalog.ts` เป๊ะ ๆ — `lib/courses/course-content.ts` ใช้ประกอบ path ตรง ๆ
 
 ### `summary.md`
 
@@ -276,18 +276,18 @@ data/
 
 ---
 
-## 7. `lib/catalog.ts` + `lib/course-bindings.ts` — จุดลงทะเบียนรายวิชา
+## 7. `lib/courses/catalog.ts` + `lib/courses/course-bindings.ts` — จุดลงทะเบียนรายวิชา
 
 หน้าที่แยกกันชัดเจน:
 
 | ไฟล์ | ตอบคำถาม |
 |---|---|
-| `lib/catalog.ts` | **วิชานี้คือวิชาอะไร** — code, officialCode, slug, ชื่อ, หน่วยกิต, group |
-| `lib/spine.ts` | **หนึ่งวิชาประกอบด้วยอะไรบ้าง** — 11 โมดูล เหมือนกันทุกวิชา |
-| `lib/course-bindings.ts` | **วิชานี้เติมโมดูลไหนได้บ้าง** — ผูกโมดูลกับ loader / คลังข้อสอบ |
+| `lib/courses/catalog.ts` | **วิชานี้คือวิชาอะไร** — code, officialCode, slug, ชื่อ, หน่วยกิต, group |
+| `lib/courses/spine.ts` | **หนึ่งวิชาประกอบด้วยอะไรบ้าง** — 11 โมดูล เหมือนกันทุกวิชา |
+| `lib/courses/course-bindings.ts` | **วิชานี้เติมโมดูลไหนได้บ้าง** — ผูกโมดูลกับ loader / คลังข้อสอบ |
 
 ```ts
-// lib/catalog.ts — identity เท่านั้น ไม่มี tracks อีกแล้ว
+// lib/courses/catalog.ts — identity เท่านั้น ไม่มี tracks อีกแล้ว
 {
   code: "PSCP",
   officialCode: "06066303",
@@ -297,7 +297,7 @@ data/
   group: "Y1-S1",                   // Y1-S1 | Y1-S2 | EN-KMITL
 }
 
-// lib/course-bindings.ts — วิชานี้เติมอะไรได้จริง
+// lib/courses/course-bindings.ts — วิชานี้เติมอะไรได้จริง
 PSCP: {
   orientation:  { docs: [overview("06066303-...")] },
   deep_summary: { docs: [overview("06066303-...")] },
@@ -345,13 +345,13 @@ PSCP: {
 
 ## 8. เพิ่มวิชาใหม่ — checklist
 
-1. `lib/catalog.ts` → เพิ่ม entry ใน `COURSES` (identity เท่านั้น)
+1. `lib/courses/catalog.ts` → เพิ่ม entry ใน `COURSES` (identity เท่านั้น)
 2. `content/courses/<officialCode>-<slug>/summary.md` → เขียนตามโครง 5 ส่วน
-3. `lib/course-bindings.ts` → เพิ่ม binding เริ่มที่ `baseline(dir)` ก็ได้
+3. `lib/courses/course-bindings.ts` → เพิ่ม binding เริ่มที่ `baseline(dir)` ก็ได้
 4. `public/assets/<ns>/<subject>/<category>/` → วางไฟล์ ตั้งชื่อ kebab-case
    (ใส่ `week08` / `ch3` ในชื่อไฟล์ ถ้าอยากให้ `chapter` ถูกอ่านอัตโนมัติ)
 5. `bun run library:build` → สร้าง manifest + stats ใหม่
-6. `lib/subject-library.ts` → เขียน entry มือให้ไฟล์เด่น ๆ พร้อม `scope` + `chapter`
+6. `lib/library/subject-library.ts` → เขียน entry มือให้ไฟล์เด่น ๆ พร้อม `scope` + `chapter`
    (ไฟล์ที่เหลือ manifest จัดการให้แล้ว)
 7. `bun run content:check` → สัญญาพิมพ์เขียวต้องผ่าน
 8. `bun run readiness` → ดูว่าวิชาใหม่ได้กี่ /11
@@ -390,7 +390,7 @@ repo นี้เก็บสื่อการเรียนจริงจา
 | workbook FE (Edusoft) ที่ระบุว่าให้อยู่หลังล็อกอิน | **แก้แล้ว** | ตรงตามที่ `summary.md` เรียกร้องพอดี |
 | ไฟล์ `-completed` (งานที่ทำส่งแล้ว) | 27 ไฟล์ หลังล็อกอิน | ไม่สาธารณะแล้ว แต่นักศึกษา IT คนอื่นยังเห็น — ถ้าไม่ต้องการ ต้องจำกัดเพิ่ม |
 | งานกลุ่ม `lab06-*group*` | 2 ไฟล์ หลังล็อกอิน | มีรหัสนักศึกษาที่ไม่ใช่ของเจ้าของ repo (`66899515`) — เพื่อนร่วมกลุ่มไม่ได้ให้ความยินยอม ควรถอดออก |
-| ชื่อไฟล์ข้อสอบใน `lib/library-manifest.json` | 159 entry | ตัวไฟล์ปิดแล้ว แต่ *รายชื่อ* ยัง commit อยู่ใน repo สาธารณะ |
+| ชื่อไฟล์ข้อสอบใน `lib/library/library-manifest.json` | 159 entry | ตัวไฟล์ปิดแล้ว แต่ *รายชื่อ* ยัง commit อยู่ใน repo สาธารณะ |
 
 กลไกพร้อมแล้ว: ทำให้เป็น `category` ที่จำกัดสิทธิ์ หรือย้ายเข้า
 `ihelp-library-exams` แล้วเสิร์ฟผ่าน `libraryExamsForInsider()` เหมือนข้อสอบเก่า

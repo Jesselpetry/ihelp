@@ -1,6 +1,6 @@
 import { redirect, notFound } from "next/navigation";
-import { loadRecommendedProblem, loadRecommendedProblems } from "@/lib/recommended";
-import { loadLibraryDoc, loadLibrary } from "@/lib/library";
+import { loadRecommendedProblem, loadRecommendedProblems } from "@/lib/pscp/recommended";
+import { loadLibraryDoc, loadLibrary } from "@/lib/library/library";
 
 export async function generateStaticParams() {
   const recSlugs = loadRecommendedProblems().flatMap((p) => [

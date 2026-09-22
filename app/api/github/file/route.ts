@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { githubFetch, UnauthenticatedError } from "@/lib/github-server";
+import { githubFetch, UnauthenticatedError } from "@/lib/github/github-server";
 
 // Read a single file's content (base64-decoded) + its blob sha, for editing.
 export async function GET(req: Request) {

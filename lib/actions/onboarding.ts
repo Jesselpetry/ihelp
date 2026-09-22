@@ -4,10 +4,10 @@ import { redirect } from "next/navigation";
 import { z } from "zod";
 
 import { db, users } from "@/db";
-import { MAJOR_KEYS } from "@/lib/majors";
+import { MAJOR_KEYS } from "@/lib/courses/majors";
 import { getSessionUser } from "@/lib/supabase/server";
 import { verifyKmitlIt } from "@/lib/auth/verify";
-import type { ProfileFormState } from "@/lib/profile-form";
+import type { ProfileFormState } from "@/lib/profile/profile-form";
 
 /** An empty optional URL field arrives as "" — treat it as absent. */
 const optionalUrl = z

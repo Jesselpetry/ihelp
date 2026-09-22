@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { githubFetch, UnauthenticatedError } from "@/lib/github-server";
+import { githubFetch, UnauthenticatedError } from "@/lib/github/github-server";
 
 // Which problems already have files pushed to the linked repo. Reads the repo
 // tree once and reports, per problem id, whether oj<id>/submission.md and

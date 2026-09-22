@@ -18,7 +18,7 @@ import { fileURLToPath } from "url";
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 const ASSETS = path.join(ROOT, "public", "assets");
-const OUT = path.join(ROOT, "lib", "library-stats.json");
+const OUT = path.join(ROOT, "lib", "library", "library-stats.json");
 
 const PAGE_TYPE = /\/Type\s*\/Page(?![sA-Za-z])/;
 

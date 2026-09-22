@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import { Download, Eye, Images, Layers } from "lucide-react";
-import { assetDownloadUrl } from "@/lib/asset-url";
+import { assetDownloadUrl } from "@/lib/library/asset-url";
 import { useLocale, t, type LText } from "@/lib/i18n";
-import { formatBytes, resolveCategory, type SubjectAsset } from "@/lib/subject-library-ui";
+import { formatBytes, resolveCategory, type SubjectAsset } from "@/lib/library/subject-library-ui";
 import { ScopeBadge, StatusBadges } from "./badges";
 import { CATEGORY, L, metaLine } from "./types";
 

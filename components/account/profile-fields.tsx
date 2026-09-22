@@ -9,8 +9,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { MAJORS } from "@/lib/majors";
-import type { ProfileFieldDefaults } from "@/lib/profile-form";
+import { MAJORS } from "@/lib/courses/majors";
+import type { ProfileFieldDefaults } from "@/lib/profile/profile-form";
 
 function Field({
   id,

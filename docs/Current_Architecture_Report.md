@@ -29,14 +29,14 @@ PDFs under `public/`. All learner state lives in the browser's `localStorage`.
 
 | Dimension | Count | Where |
 |---|---:|---|
-| Courses in the catalogue | **15** | `lib/catalog.ts` — 7× Y1-S1, 6× Y1-S2, 2× cross-faculty (EN-KMITL) |
+| Courses in the catalogue | **15** | `lib/courses/catalog.ts` — 7× Y1-S1, 6× Y1-S2, 2× cross-faculty (EN-KMITL) |
 | Courses with a resource library | **14** | 13 auto-manifested + ComPro (in-app docs only). `SPORT` has zero assets |
 | Course overview documents | **13** | `content/courses/<dir>/summary.md`, 247 KB total |
 | Long-form study documents | **12** | `data/it-kmitl/`, `data/en-kmitl/`, 742 KB total |
 | Orphaned content files | **28** | `content/courses/*/archive/` — on disk, wired to no route (§5.4) |
 | Media assets | **670 files / 908 MB** | Supabase Storage, **not** the repo — 621 PDFs (**12,263 pages**), 26 webp, 10 jpg, 7 `.circ`, 4 xlsx, 1 docx, 1 txt. Split across `ihelp-library` (501 public) and `ihelp-library-exams` (169 insider-only) |
-| Curated asset records | **172** | Hand-written entries in `lib/subject-library.ts` (137 KB) |
-| Generated asset records | **670** | `lib/library-manifest.json` (335 KB), built from the file tree |
+| Curated asset records | **172** | Hand-written entries in `lib/library/subject-library.ts` (137 KB) |
+| Generated asset records | **670** | `lib/library/library-manifest.json` (335 KB), built from the file tree |
 | Quiz / exam questions | **368** | 6 subject banks + 10 per-problem banks, all typed `QuizQuestion` |
 | Executable coding problems | **35** | 10 OJ "recommended" problems (66 cases) + 25 ComPro labs (123 cases) |
 | Problem-set index | **64** | `data/oj_problems.json` — iJudge export incl. 14 learning logs |
@@ -79,7 +79,7 @@ codebase's server surface.
 
 ### 2.1 How subjects are grouped
 
-The catalogue is a **flat array of 15 records** in `lib/catalog.ts`, partitioned by a single
+The catalogue is a **flat array of 15 records** in `lib/courses/catalog.ts`, partitioned by a single
 `group` field:
 
 ```ts
@@ -124,7 +124,7 @@ reflecting that the portal was built during a midterm cram cycle.
 **(b) Asset scope — `AssetScope`, on the media library card.**
 
 ```ts
-export type AssetScope = "midterm" | "final";           // lib/subject-library.ts (optional field)
+export type AssetScope = "midterm" | "final";           // lib/library/subject-library.ts (optional field)
 ```
 This is the project's most deliberate design decision, and it is documented in `FILE_STRUCTURE.md`
 §3: **exam scope is metadata, never a directory level**. Rationale recorded in-repo: (1) some
@@ -146,7 +146,7 @@ week number in a filename:
 Each quiz bank ships its own chapter list (`ITF_CHAPTERS`, `ICS_CHAPTERS`, `MFIT_CHAPTERS`,
 `EN_KMITL_CHAPTERS`, `CHEM_CHAPTERS`), and the label varies per subject: MFIT uses
 `สัปดาห์ที่` (Week), ITF uses `Lecture`, ICS/OOP use `บทที่` (Ch.), FE uses `Unit`. For a course with
-no registered chapter list, `lib/course-chapters.ts` **screen-scrapes section 2 of its own
+no registered chapter list, `lib/courses/course-chapters.ts` **screen-scrapes section 2 of its own
 `summary.md`** with a regex over Markdown table rows, sniffing the header cell for
 `สัปดาห์` / `บท` / `Unit` to pick the label. This is the only place in the system where a syllabus
 is parsed rather than authored.
@@ -156,7 +156,7 @@ is parsed rather than authored.
 Four registries, layered:
 
 ```
-lib/catalog.ts          15 course records + a `tracks` map of TrackKind -> href
+lib/courses/catalog.ts          15 course records + a `tracks` map of TrackKind -> href
         │                  (a track appears here only once it actually renders)
         ▼
 lib/course-tracks.ts    per-course roadmap blueprints -> buildCourseTracks(code, hrefs, metrics)
@@ -165,17 +165,17 @@ lib/course-tracks.ts    per-course roadmap blueprints -> buildCourseTracks(code,
 app/courses/[dir]/page.tsx   a switch on course code that supplies bespoke copy, extra
         │                    hrefs (cram/plan/analysis/mock), and live question counts
         ▼
-lib/subject-library.ts  mergedAssets(code) = curated entries ++ generated manifest entries
+lib/library/subject-library.ts  mergedAssets(code) = curated entries ++ generated manifest entries
                         (curated wins on matching URL), then withAssetStats() stamps
-                        page counts and byte sizes from lib/library-stats.json
+                        page counts and byte sizes from lib/library/library-stats.json
 ```
 
 Two of these files are **build artifacts and must not be hand-edited**:
 
 | File | Generator | Contents |
 |---|---|---|
-| `lib/library-manifest.json` (335 KB) | `npm run library:manifest` | One card per file under `public/assets/`, title humanized from the filename. Server-only — a client import would ship every asset name to the browser, so display helpers live in `lib/subject-library-ui.ts` |
-| `lib/library-stats.json` (72 KB) | `npm run library:stats` | 670 entries of `{ sizeBytes, pages? }` — PDF page counts must be computed at build time |
+| `lib/library/library-manifest.json` (335 KB) | `npm run library:manifest` | One card per file under `public/assets/`, title humanized from the filename. Server-only — a client import would ship every asset name to the browser, so display helpers live in `lib/library/subject-library-ui.ts` |
+| `lib/library/library-stats.json` (72 KB) | `npm run library:stats` | 670 entries of `{ sizeBytes, pages? }` — PDF page counts must be computed at build time |
 
 The asset path contract is **exactly four segments**:
 
@@ -235,7 +235,7 @@ Classification is on `category === "exam"`, not on path: ten scanned exam pages 
 shared by the uploader and the resolver so the two cannot disagree about where a file is.
 
 Markdown rendering is uniform: `react-markdown` + `remark-gfm` + `remark-math` + `rehype-katex`
-(LaTeX is used heavily by MFIT and PSTAT) with a shared heading-slug/TOC extractor (`lib/toc.ts`)
+(LaTeX is used heavily by MFIT and PSTAT) with a shared heading-slug/TOC extractor (`lib/docs/toc.ts`)
 that preserves Thai characters in anchors.
 
 ### 3.2 Active assessment
@@ -247,7 +247,7 @@ Flow: gate screen listing chapters and per-chapter question counts → **Start**
 screen → select → **Check** → feedback → Next → summary screen with per-question review and Retry.
 Keyboard shortcuts (1–9 to select, Enter to advance) are wired.
 
-Supported kinds (`QuizKind` in `lib/quiz.ts`):
+Supported kinds (`QuizKind` in `lib/quiz/quiz.ts`):
 
 | Kind | Grading | Count | Notes |
 |---|---|---:|---|
@@ -274,7 +274,7 @@ Two **independent** code-practice systems with different data models, different 
 persistence keys:
 
 **(a) PSCP recommended problems** — `/recommended/<slug>/grade`, `components/code-grader.tsx`
-(690 lines) over `lib/pyodide-client.ts`.
+(690 lines) over `lib/pscp/pyodide-client.ts`.
 
 - Runs **CPython in the browser** via Pyodide in a dedicated Web Worker
   (`public/workers/python-runner.worker.js`), with the full runtime vendored into `public/pyodide/`.
@@ -285,8 +285,8 @@ persistence keys:
   limit) / `E` (runtime error), presented as a score string like `PPPP-`, with a diff view.
 - Style feedback is separate and **non-blocking**: `pycodestyle` via micropip, plus four bespoke
   course rules (`PSCP-NOT-MOD`, `PSCP-CONSIDER-IN`, `PSCP-IMPORT-ALIAS`, `PSCP-CONST-CASE`) in
-  `lib/pep8-rules.ts`, each able to carry a `sourceRef` back into the teaching material.
-- Coverage: **10 problems, 66 test cases** (`lib/testcases.ts`), split `official: true` (copied
+  `lib/pscp/pep8-rules.ts`, each able to carry a `sourceRef` back into the teaching material.
+- Coverage: **10 problems, 66 test cases** (`lib/pscp/testcases.ts`), split `official: true` (copied
   verbatim from the problem's §4) and `official: false` (extra cases from §6, each annotated with
   what it tests, e.g. "boundary N=0").
 
@@ -297,14 +297,14 @@ persistence keys:
   `scripts/build_compro_labs.py` from the course portal and re-verified by piping recovered stdin
   through a reference solution in a real CPython subprocess.
 - Grading is **byte-exact stdout match** (the portal grades on spacing quirks), not the P/-/T/E model.
-- Teaching material is deliberately kept out of the generated JSON: `lib/compro-lessons.ts` (1,204
+- Teaching material is deliberately kept out of the generated JSON: `lib/pscp/compro-lessons.ts` (1,204
   lines, hand-written Thai) keys walkthroughs by the same problem ids — `goal`, `concepts[]`,
   ordered `steps[]` with snippets, `pitfalls[]`, and a `starter` scaffold that is structure + TODOs
   rather than the answer.
 
 **(c) Problem index** — `/pscp` renders all 64 iJudge problems from `data/oj_problems.json` with
 deadlines. Week numbers are **derived, not stored**: distinct expiry dates are sorted ascending and
-the ordinal becomes the week (`lib/master.ts`).
+the ordinal becomes the week (`lib/pscp/master.ts`).
 
 ### 3.4 Coursework compliance (adjacent to learning)
 
@@ -318,7 +318,7 @@ and can be pushed to GitHub through 13 OAuth-backed API routes.
 
 ## 4. Data Structures & Content Schemas
 
-### 4.1 Course catalogue — `lib/catalog.ts`
+### 4.1 Course catalogue — `lib/courses/catalog.ts`
 
 ```ts
 export type TrackKind =
@@ -364,7 +364,7 @@ Badges are **measured, not typed in**: `buildCourseTracks(code, hrefs, metrics)`
 roadmap to live counts, a fix for a documented drift where the same bank was labelled "63 ข้อ" in
 one file and "65 ข้อ" in another.
 
-### 4.3 Question schema — `lib/quiz.ts` (the one schema every bank shares)
+### 4.3 Question schema — `lib/quiz/quiz.ts` (the one schema every bank shares)
 
 ```ts
 export interface QuizQuestion {
@@ -390,7 +390,7 @@ export interface QuizOption {
 Two properties are pedagogically load-bearing:
 
 - **`sourceRef` is mandatory.** Every question must name the line of source material it came from.
-  `lib/quiz-content.ts` opens with a five-clause verification procedure: correct answers must
+  `lib/quiz/quiz-content.ts` opens with a five-clause verification procedure: correct answers must
   describe something literally present in the reference `main.py`; every `predict-output` pair is
   either copied verbatim from the problem statement or produced by *actually running*
   `printf '<stdin>' | python3 main.py` (hand-computed answers are forbidden); every
@@ -415,7 +415,7 @@ export type QuizProgress = Record<number, QuizProblemProgress>;  // keyed by OJ 
 Because the key is a number tied to iJudge, subject banks need synthetic ids to avoid collision with
 real 4-digit OJ ids: `EN_KMITL 900001`, `CHEM 900002`, `ICS 900003`, `MFIT 900004`, `ITF 900005`.
 
-### 4.4 Asset schema — `lib/subject-library.ts`
+### 4.4 Asset schema — `lib/library/subject-library.ts`
 
 ```ts
 export type AssetFileType = "pdf" | "image" | "md" | "file";
@@ -450,7 +450,7 @@ PDFs but never belong on the same shelf. When `category` is absent, `resolveCate
 bilingual tag vocabulary most-specific-first (`note` → `lecture` → `exercise` → `cheatsheet` →
 `reference` → `exam`), falling back to `note` for images and `lecture` for everything else.
 
-Generated entries (`lib/library-manifest.json`) use the identical shape, so the two layers merge
+Generated entries (`lib/library/library-manifest.json`) use the identical shape, so the two layers merge
 without adaptation:
 
 ```json
@@ -463,7 +463,7 @@ without adaptation:
   "fileName": "ch1-atomic-structure.pdf", "courseCode": "CHEM" }
 ```
 
-### 4.5 Grader schemas — `lib/grader-types.ts` vs `lib/compro-labs.ts`
+### 4.5 Grader schemas — `lib/pscp/grader-types.ts` vs `lib/pscp/compro-labs.ts`
 
 ```ts
 // (a) PSCP — iJudge-compatible
@@ -522,7 +522,7 @@ sources:
 ---
 ```
 
-Every field here **duplicates a field in `lib/catalog.ts`** — including `year` and `term`, which
+Every field here **duplicates a field in `lib/courses/catalog.ts`** — including `year` and `term`, which
 the runtime taxonomy does *not* model separately. `remark-frontmatter` is installed; the TOC
 extractor strips the block with a regex; no loader parses it. Its real value is `sources:`, the
 only provenance trail from a rendered page back to the archive it was built from.
@@ -785,19 +785,19 @@ the final-exam material that does exist (MFIT weeks 8–15) is the orphaned set 
 
 | Concern | File |
 |---|---|
-| Course registry / taxonomy | `lib/catalog.ts` |
+| Course registry / taxonomy | `lib/courses/catalog.ts` |
 | Track roadmap and badges | `lib/course-tracks.ts` |
-| Chapter/week lists (+ summary.md fallback parser) | `lib/course-chapters.ts` |
-| Course document loaders | `lib/course-content.ts`, `lib/it-kmitl.ts`, `lib/en-kmitl.ts` |
-| Question schema, grading, progress | `lib/quiz.ts` |
+| Chapter/week lists (+ summary.md fallback parser) | `lib/courses/course-chapters.ts` |
+| Course document loaders | `lib/courses/course-content.ts`, `lib/courses/it-kmitl.ts`, `lib/courses/en-kmitl.ts` |
+| Question schema, grading, progress | `lib/quiz/quiz.ts` |
 | Question banks | `lib/{quiz-content,itf-quiz,ics-quiz,mfit-quiz,chem-quiz,en-kmitl-quiz,en-kmitl-mock-exam}.ts` |
-| Asset registry (curated) | `lib/subject-library.ts` |
-| Asset registry (generated) | `lib/library-manifest.json` ← `scripts/build-library-manifest.mjs` |
-| Asset file stats | `lib/library-stats.json` ← `scripts/build-library-stats.mjs` |
-| Python execution | `lib/pyodide-client.ts`, `public/workers/python-runner.worker.js` |
-| Grading contracts | `lib/grader-types.ts`, `lib/testcases.ts`, `lib/pep8-rules.ts` |
-| ComPro labs | `lib/compro-labs.ts`, `lib/compro-lessons.ts`, `data/en-kmitl/compro/labs.json` |
-| Problem index | `lib/master.ts`, `data/oj_problems.json` |
+| Asset registry (curated) | `lib/library/subject-library.ts` |
+| Asset registry (generated) | `lib/library/library-manifest.json` ← `scripts/build-library-manifest.mjs` |
+| Asset file stats | `lib/library/library-stats.json` ← `scripts/build-library-stats.mjs` |
+| Python execution | `lib/pscp/pyodide-client.ts`, `public/workers/python-runner.worker.js` |
+| Grading contracts | `lib/pscp/grader-types.ts`, `lib/pscp/testcases.ts`, `lib/pscp/pep8-rules.ts` |
+| ComPro labs | `lib/pscp/compro-labs.ts`, `lib/pscp/compro-lessons.ts`, `data/en-kmitl/compro/labs.json` |
+| Problem index | `lib/pscp/master.ts`, `data/oj_problems.json` |
 | Localization | `lib/i18n.tsx` (`LText`, `t()`) |
 | Ingest procedure | `docs/DROPZONE_SOP.md`, `FILE_STRUCTURE.md` |
 

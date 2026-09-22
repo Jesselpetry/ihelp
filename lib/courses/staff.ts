@@ -1,5 +1,5 @@
 import type { LText } from "@/lib/i18n";
-import staffJson from "@/lib/it-kmitl-staff.json";
+import staffJson from "@/lib/courses/it-kmitl-staff.json";
 
 /**
  * The faculty's academic staff, as its own directory prints them.

@@ -30,13 +30,13 @@ import {
   Cpu,
   ShieldCheck,
 } from "lucide-react";
-import type { RecommendedHubData, RecommendedProblem } from "@/lib/recommended";
+import type { RecommendedHubData, RecommendedProblem } from "@/lib/pscp/recommended";
 import {
   getStoredProblemStatuses,
   setStoredProblemStatus,
   RECOMMENDED_STATUS_EVENT,
-} from "@/lib/recommended-client";
-import { useGithub } from "@/lib/github";
+} from "@/lib/pscp/recommended-client";
+import { useGithub } from "@/lib/github/github";
 import { GithubConnect } from "@/components/github/github-connect";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -48,7 +48,7 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
-import { PROBLEM_TAKEAWAYS } from "@/lib/problem-takeaways";
+import { PROBLEM_TAKEAWAYS } from "@/lib/pscp/problem-takeaways";
 import {
   Table,
   TableBody,
@@ -59,7 +59,7 @@ import {
 } from "@/components/ui/table";
 import { MdView } from "@/components/md-view";
 import { QuizLaunchButton } from "@/components/quiz-launch-button";
-import { loadQuizProgress, QUIZ_PROGRESS_EVENT, type QuizProgress } from "@/lib/quiz";
+import { loadQuizProgress, QUIZ_PROGRESS_EVENT, type QuizProgress } from "@/lib/quiz/quiz";
 import { useLocale, t, type LText } from "@/lib/i18n";
 
 const PDF_BOOKS = [

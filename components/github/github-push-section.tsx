@@ -26,7 +26,7 @@ import {
   saveLinkedRepo,
   type FileKind,
   type LinkedRepo,
-} from "@/lib/github";
+} from "@/lib/github/github";
 import { useLocale, t } from "@/lib/i18n";
 
 const GH_BTN =

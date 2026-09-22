@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import { ROOT } from "@/lib/paths";
 import type { LText } from "@/lib/ltext";
-import type { TestCase } from "@/lib/grader-types";
+import type { TestCase } from "@/lib/pscp/grader-types";
 
 // Registry built by `scripts/build_pscp_registry.py` from the course archive
 // (oj_problems.json + all_problems_detail.json + oj*/main.py). Override the

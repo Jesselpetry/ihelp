@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Navbar } from "@/components/navbar";
 import { RecommendedHub } from "@/components/recommended-hub";
-import { loadRecommendedHub } from "@/lib/recommended";
+import { loadRecommendedHub } from "@/lib/pscp/recommended";
 
 export const dynamic = "force-dynamic";
 

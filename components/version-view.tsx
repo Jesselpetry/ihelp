@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ArrowLeft, GitCommitHorizontal } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarBadge, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { CHANGELOG, GITHUB_REPO, type ChangeKind, type VersionEntry } from "@/lib/changelog";
+import { CHANGELOG, GITHUB_REPO, type ChangeKind, type VersionEntry } from "@/lib/docs/changelog";
 import { useLocale, t } from "@/lib/i18n";
 
 const L = {

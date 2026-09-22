@@ -2,9 +2,9 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { Navbar } from "@/components/navbar";
 import { CodeGrader } from "@/components/code-grader";
-import { loadRecommendedProblem } from "@/lib/recommended";
+import { loadRecommendedProblem } from "@/lib/pscp/recommended";
 
-import { loadRecommendedProblems } from "@/lib/recommended";
+import { loadRecommendedProblems } from "@/lib/pscp/recommended";
 
 export async function generateStaticParams() {
   return loadRecommendedProblems().map((p) => ({ slug: p.slug }));

@@ -17,8 +17,8 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLocale, t, type LText } from "@/lib/i18n";
-import { docFacts, splitTitle } from "@/lib/doc-index";
-import type { ModuleScope } from "@/lib/spine";
+import { docFacts, splitTitle } from "@/lib/docs/doc-index";
+import type { ModuleScope } from "@/lib/courses/spine";
 import type { ReaderDoc } from "@/components/module-reader";
 
 /**

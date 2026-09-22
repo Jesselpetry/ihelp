@@ -20,10 +20,10 @@ import {
 } from "@/components/ui/avatar";
 import { AvatarUploader } from "@/components/account/avatar-uploader";
 import { currentStudentId } from "@/lib/auth/guards";
-import { avatarInitial, resolveAvatarUrl } from "@/lib/avatar";
-import { resourcePublicUrl } from "@/lib/resources";
-import { findCourseByCode } from "@/lib/catalog";
-import { majorLabel } from "@/lib/majors";
+import { avatarInitial, resolveAvatarUrl } from "@/lib/profile/avatar";
+import { resourcePublicUrl } from "@/lib/library/resources";
+import { findCourseByCode } from "@/lib/courses/catalog";
+import { majorLabel } from "@/lib/courses/majors";
 
 const TYPE_LABELS: Record<Resource["type"], string> = {
   slide: "สไลด์",

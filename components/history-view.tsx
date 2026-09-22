@@ -5,9 +5,9 @@ import Link from "next/link";
 import { ArrowLeft, ChevronDown, ChevronRight, Download, Pencil, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { downloadMarkdown } from "@/lib/draft";
+import { downloadMarkdown } from "@/lib/submission/draft";
 import { MarkdownPreview } from "@/components/md-preview";
-import { useGithub } from "@/lib/github";
+import { useGithub } from "@/lib/github/github";
 import { PushToGithubButton } from "@/components/github/push-to-github";
 import {
   loadHistory,
@@ -16,7 +16,7 @@ import {
   clearHistory,
   type HistoryEntry,
   type HistoryKind,
-} from "@/lib/history";
+} from "@/lib/submission/history";
 import { useLocale, t } from "@/lib/i18n";
 
 const L = {

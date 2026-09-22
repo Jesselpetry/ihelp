@@ -1,4 +1,4 @@
-import type { LText } from "./i18n";
+import type { LText } from "@/lib/i18n";
 
 // Guidance and example texts for each wizard step. Guidance follows the
 // official templates in AI-Guidelines-PSCP/templates; examples are excerpts

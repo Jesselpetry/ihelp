@@ -6,7 +6,7 @@ import { EditProfileForm } from "@/components/account/edit-profile-form";
 import { AvatarUploader } from "@/components/account/avatar-uploader";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { currentStudentId, currentUser } from "@/lib/auth/guards";
-import { avatarInitial, resolveAvatarUrl } from "@/lib/avatar";
+import { avatarInitial, resolveAvatarUrl } from "@/lib/profile/avatar";
 
 export const metadata: Metadata = {
   title: "แก้ไขโปรไฟล์",

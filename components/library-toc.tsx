@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { ArrowLeft, BookOpen } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import type { LibraryDoc } from "@/lib/library";
+import type { LibraryDoc } from "@/lib/library/library";
 import { useLocale, t, type LText } from "@/lib/i18n";
 
 const L: Record<string, LText> = {

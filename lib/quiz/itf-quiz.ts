@@ -1,5 +1,5 @@
 import type { LText } from "@/lib/i18n";
-import type { QuizQuestion } from "@/lib/quiz";
+import type { QuizQuestion } from "@/lib/quiz/quiz";
 
 // ITF (06016402) midterm question bank — 63 items ported from the iLearn
 // project (data/quiz/itf-midterm.json), itself built from the Lecture 01–07

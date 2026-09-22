@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 import { currentStudentId, currentUser } from "@/lib/auth/guards";
-import { avatarInitial, resolveAvatarUrl } from "@/lib/avatar";
+import { avatarInitial, resolveAvatarUrl } from "@/lib/profile/avatar";
 
 /** Reads the session cookie, so it must never be cached. */
 export const dynamic = "force-dynamic";

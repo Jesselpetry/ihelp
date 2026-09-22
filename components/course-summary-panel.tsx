@@ -5,7 +5,7 @@ import { ArrowUp, ChevronDown, ChevronUp, Compass, Eye, ListTree } from "lucide-
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { MdView } from "@/components/md-view";
-import { extractToc } from "@/lib/toc";
+import { extractToc } from "@/lib/docs/toc";
 import { useLocale, t, type LText } from "@/lib/i18n";
 
 /**

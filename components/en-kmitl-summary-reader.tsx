@@ -6,7 +6,7 @@ import { ArrowLeft, BrainCircuit } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { MdView } from "@/components/md-view";
 import { TocSidePanel } from "@/components/toc-side-panel";
-import { extractToc } from "@/lib/toc";
+import { extractToc } from "@/lib/docs/toc";
 import { useLocale, t, type LText } from "@/lib/i18n";
 
 const L: Record<string, LText> = {

@@ -2,7 +2,7 @@
 
 import { ExternalLink, Megaphone, CalendarDays } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { SHORTCUTS } from "@/lib/shortcuts";
+import { SHORTCUTS } from "@/lib/courses/shortcuts";
 import { useLocale, t, type LText } from "@/lib/i18n";
 
 const L: Record<string, LText> = {

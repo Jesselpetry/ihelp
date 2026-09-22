@@ -4,10 +4,10 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { Navbar } from "@/components/navbar";
 import { TechniqueQuiz } from "@/components/technique-quiz";
-import { loadRecommendedProblem } from "@/lib/recommended";
-import { QUIZ_BANK } from "@/lib/quiz-content";
+import { loadRecommendedProblem } from "@/lib/pscp/recommended";
+import { QUIZ_BANK } from "@/lib/quiz/quiz-content";
 
-import { loadRecommendedProblems } from "@/lib/recommended";
+import { loadRecommendedProblems } from "@/lib/pscp/recommended";
 
 export async function generateStaticParams() {
   return loadRecommendedProblems().map((p) => ({ slug: p.slug }));

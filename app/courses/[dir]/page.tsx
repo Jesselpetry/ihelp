@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Navbar } from "@/components/navbar";
 import { SubjectHub } from "@/components/subject-hub";
-import { COURSES, courseDir, resolveCourse } from "@/lib/catalog";
-import { COURSE_BINDINGS } from "@/lib/course-bindings";
-import { moduleBinding, resolveCourseSpine } from "@/lib/course-spine";
-import type { SpineMetrics } from "@/lib/spine";
-import { getCourseScrapedInfo } from "@/lib/course-content";
-import { assetsForCourse } from "@/lib/subject-library";
+import { COURSES, courseDir, resolveCourse } from "@/lib/courses/catalog";
+import { COURSE_BINDINGS } from "@/lib/courses/course-bindings";
+import { moduleBinding, resolveCourseSpine } from "@/lib/courses/course-spine";
+import type { SpineMetrics } from "@/lib/courses/spine";
+import { getCourseScrapedInfo } from "@/lib/courses/course-content";
+import { assetsForCourse } from "@/lib/library/subject-library";
 import type { LText } from "@/lib/i18n";
 
 const L = {

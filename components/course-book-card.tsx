@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { useLocale } from "@/lib/i18n";
-import { courseHref, type CatalogCourse, COURSE_COLORS } from "@/lib/catalog";
+import { courseHref, type CatalogCourse, COURSE_COLORS } from "@/lib/courses/catalog";
 import { ItKmitlBadge, ItKmitlLogoSvg } from "@/components/it-kmitl-badge";
 
 const DEFAULT_THEME_COLOR = "#2357A5";

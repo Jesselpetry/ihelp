@@ -1,5 +1,5 @@
 import type { LText } from "@/lib/i18n";
-import type { QuizQuestion } from "@/lib/quiz";
+import type { QuizQuestion } from "@/lib/quiz/quiz";
 
 // IT-KMITL — ICS / Digital Logic midterm self-test.
 // Source: data/it-kmitl/ics/{summarize,midterm-exam,analysis}.md

@@ -26,7 +26,7 @@ import { fileURLToPath } from "url";
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 const ASSETS = path.join(ROOT, "public", "assets");
-const OUT = path.join(ROOT, "lib", "library-manifest.json");
+const OUT = path.join(ROOT, "lib", "library", "library-manifest.json");
 
 /** Asset-tree folder name -> the course code the gallery keys on. */
 const SUBJECT_CODE = {

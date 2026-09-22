@@ -4,8 +4,8 @@ import { FileLock2, Lock } from "lucide-react";
 
 import { Navbar } from "@/components/navbar";
 import { Badge } from "@/components/ui/badge";
-import { findCourseByCode } from "@/lib/catalog";
-import { listExamsForInsider } from "@/lib/exams";
+import { findCourseByCode } from "@/lib/courses/catalog";
+import { listExamsForInsider } from "@/lib/library/exams";
 import { ForbiddenError, UnauthorizedError } from "@/lib/auth/guards";
 
 export const metadata: Metadata = {

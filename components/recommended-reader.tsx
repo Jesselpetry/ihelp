@@ -21,13 +21,13 @@ import {
   Terminal,
   Play,
 } from "lucide-react";
-import type { RecommendedProblemDetail } from "@/lib/recommended";
+import type { RecommendedProblemDetail } from "@/lib/pscp/recommended";
 import {
   getStoredProblemStatuses,
   setStoredProblemStatus,
   RECOMMENDED_STATUS_EVENT,
-} from "@/lib/recommended-client";
-import { useGithub } from "@/lib/github";
+} from "@/lib/pscp/recommended-client";
+import { useGithub } from "@/lib/github/github";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { MdView } from "@/components/md-view";

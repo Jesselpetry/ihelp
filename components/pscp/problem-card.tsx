@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { ChevronRight, FileText, Lightbulb, Sparkles } from "lucide-react";
-import type { PscpProblem } from "@/lib/pscp";
-import type { PscpProgress } from "@/lib/pscp-client";
+import type { PscpProblem } from "@/lib/pscp/pscp";
+import type { PscpProgress } from "@/lib/pscp/pscp-client";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { WeekBadge } from "@/components/week-badge";

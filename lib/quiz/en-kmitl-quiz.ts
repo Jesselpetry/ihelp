@@ -1,6 +1,6 @@
 import type { LText } from "@/lib/i18n";
-import type { QuizQuestion } from "@/lib/quiz";
-import { EN_KMITL_MOCK_EXAM } from "@/lib/en-kmitl-mock-exam";
+import type { QuizQuestion } from "@/lib/quiz/quiz";
+import { EN_KMITL_MOCK_EXAM } from "@/lib/quiz/en-kmitl-mock-exam";
 
 // EN-KMITL 01006012 midterm self-test bank.
 // Not an OJ problem — uses a fixed pseudo problem-id so progress tracking

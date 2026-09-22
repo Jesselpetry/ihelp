@@ -25,7 +25,7 @@ iHelp ไม่ได้ขาดเนื้อหา — มี 670 ไฟล�
 
 ## 2. Spine — 11 โมดูล ที่ทุกวิชาต้อง**ประกาศ**
 
-ประกาศไว้ที่เดียวใน [`../lib/spine.ts`](../lib/spine.ts) → `STANDARD_SPINE`
+ประกาศไว้ที่เดียวใน [`../lib/courses/spine.ts`](../lib/courses/spine.ts) → `STANDARD_SPINE`
 
 **"ประกาศ" ไม่ใช่ "มี"** — ทุกวิชาแสดงครบ 11 ช่องเสมอ
 ช่องที่ยังไม่มี binding แสดงเป็น locked slot พร้อมบอกว่าขาดอะไร
@@ -65,7 +65,7 @@ segment คงของเดิมไว้ทั้งหมด (`summary`, `q
 
 ## 3. Binding — วิชาส่งแค่ "ผูกอะไรกับอะไร"
 
-[`../lib/course-bindings.ts`](../lib/course-bindings.ts) → `COURSE_BINDINGS`
+[`../lib/courses/course-bindings.ts`](../lib/courses/course-bindings.ts) → `COURSE_BINDINGS`
 เป็น**ทั้งหมด**ของ config ต่อหนึ่งวิชา
 
 ```ts
@@ -79,13 +79,13 @@ export interface ModuleBinding {
 }
 ```
 
-[`../lib/course-spine.ts`](../lib/course-spine.ts) เชื่อม spine กับ binding
+[`../lib/courses/course-spine.ts`](../lib/courses/course-spine.ts) เชื่อม spine กับ binding
 ทุก route เรียก `resolveCourseSpine()` / `resolveModule()` เหมือนกันหมด — **ไม่มี `switch (course.code)` ที่ไหนอีก**
 
 ### แยกไฟล์เพราะ client boundary
 
-- `lib/spine.ts` — ข้อมูลล้วน (types + `STANDARD_SPINE` + labels) · client component import ได้
-- `lib/course-spine.ts` — เชื่อมกับ binding · แตะ `fs` · server เท่านั้น
+- `lib/courses/spine.ts` — ข้อมูลล้วน (types + `STANDARD_SPINE` + labels) · client component import ได้
+- `lib/courses/course-spine.ts` — เชื่อมกับ binding · แตะ `fs` · server เท่านั้น
 - `ResolvedModule` ต้อง serialize ได้ (ไม่มี function) เพราะข้ามไป client component
 
 ---
@@ -158,7 +158,7 @@ export interface ModuleBinding {
 ## 7. สิ่งที่ห้ามทำพัง
 
 1. **`sourceRef` บังคับ และขั้นตอนตรวจที่ต้อง "รันจริง"**
-   วินัยนี้เคยอยู่ใน comment หัวไฟล์ `lib/quiz-content.ts` เท่านั้น
+   วินัยนี้เคยอยู่ใน comment หัวไฟล์ `lib/quiz/quiz-content.ts` เท่านั้น
    ตอนนี้เป็น CI rule แล้ว — **ห้ามย้ายคลังก่อนแปลงกฎเป็นเครื่องตรวจ**
 2. **`scope` เป็น metadata ไม่ใช่ระดับโฟลเดอร์** (และ `chapter` ก็เช่นกัน)
 3. **สถานะความล้มเหลวที่ซื่อสัตย์** — locked slot · `LText` ที่ยอมตกกลับเป็นไทยแทนแปลด้วยเครื่อง ·
@@ -168,9 +168,9 @@ export interface ModuleBinding {
 
 ## 8. เพิ่มวิชาใหม่ให้ครบพิมพ์เขียว
 
-1. เพิ่ม record ใน [`../lib/catalog.ts`](../lib/catalog.ts) — **identity เท่านั้น** (code / officialCode / slug / group / credits / officialUrl)
+1. เพิ่ม record ใน [`../lib/courses/catalog.ts`](../lib/courses/catalog.ts) — **identity เท่านั้น** (code / officialCode / slug / group / credits / officialUrl)
 2. สร้าง `content/courses/<officialCode>-<Slug>/summary.md` ตามโครง 5 ส่วนใน [`../content/courses/README.md`](../content/courses/README.md)
-3. เพิ่ม binding ใน [`../lib/course-bindings.ts`](../lib/course-bindings.ts) — เริ่มที่ `baseline(dir)` ก็ได้ (2–3/11)
+3. เพิ่ม binding ใน [`../lib/courses/course-bindings.ts`](../lib/courses/course-bindings.ts) — เริ่มที่ `baseline(dir)` ก็ได้ (2–3/11)
 4. วางไฟล์สื่อตามกติกา 4 ระดับใน `FILE_STRUCTURE.md` §2 แล้วรัน `bun run library:build`
 5. รัน `bun run content:check` และ `bun run readiness`
 

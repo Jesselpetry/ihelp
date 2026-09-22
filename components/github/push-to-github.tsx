@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Check, ExternalLink, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { GithubIcon } from "@/components/social-icons";
-import { pushFile, type FileKind, type LinkedRepo } from "@/lib/github";
+import { pushFile, type FileKind, type LinkedRepo } from "@/lib/github/github";
 import { useLocale, t } from "@/lib/i18n";
 
 const L = {

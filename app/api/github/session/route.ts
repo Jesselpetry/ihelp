@@ -5,7 +5,7 @@ import {
   USER_COOKIE,
   REPO_COOKIE,
   type GithubUser,
-} from "@/lib/github-server";
+} from "@/lib/github/github-server";
 
 // Report the current connection state to the UI (reads cookies only).
 export async function GET() {

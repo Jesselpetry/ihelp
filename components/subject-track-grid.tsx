@@ -32,7 +32,7 @@ import {
   type ModuleScope,
   type Phase,
   type ResolvedModule,
-} from "@/lib/spine";
+} from "@/lib/courses/spine";
 
 /**
  * One icon per module. Keyed by ModuleId rather than by a separate icon union:

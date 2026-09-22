@@ -1,7 +1,7 @@
 "use client";
 
 import { Check, X, Clock, AlertTriangle } from "lucide-react";
-import type { CaseResult, CaseStatus } from "@/lib/grader-types";
+import type { CaseResult, CaseStatus } from "@/lib/pscp/grader-types";
 import { Badge } from "@/components/ui/badge";
 import { useLocale, t, type LText } from "@/lib/i18n";
 

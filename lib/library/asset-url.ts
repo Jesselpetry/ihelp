@@ -13,7 +13,7 @@
  * off it. This function is the single point where that path becomes a URL.
  */
 
-import { storageKey } from "@/lib/storage-key";
+import { storageKey } from "@/lib/library/storage-key";
 
 const BUCKET = "ihelp-library";
 

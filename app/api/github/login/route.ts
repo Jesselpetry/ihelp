@@ -5,7 +5,7 @@ import {
   OAUTH_SCOPE,
   clientId,
   appBaseUrl,
-} from "@/lib/github-server";
+} from "@/lib/github/github-server";
 
 // Kick off the OAuth web flow: store a random CSRF state in a short-lived
 // httpOnly cookie and redirect to GitHub's consent screen.

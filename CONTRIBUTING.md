@@ -24,7 +24,7 @@ bun run dev   # http://localhost:3000
 
 ## 1) เพิ่มรายวิชาใหม่
 
-รายวิชา “มีอยู่จริง” ก็ต่อเมื่ออยู่ใน `COURSES` ใน **`lib/catalog.ts`** —
+รายวิชา “มีอยู่จริง” ก็ต่อเมื่ออยู่ใน `COURSES` ใน **`lib/courses/catalog.ts`** —
 ทุกอย่างอื่นอ้างอิงจากที่นี่
 
 ```ts
@@ -47,8 +47,8 @@ bun run dev   # http://localhost:3000
 
 หนึ่งไฟล์ต่อหนึ่งวิชา ที่
 `content/courses/<officialCode>-<slug>/summary.md` — ชื่อโฟลเดอร์ต้องตรงกับ
-`officialCode` และ `slug` ใน `lib/catalog.ts` เป๊ะ ๆ เพราะ
-`lib/course-content.ts` ประกอบ path ตรง ๆ
+`officialCode` และ `slug` ใน `lib/courses/catalog.ts` เป๊ะ ๆ เพราะ
+`lib/courses/course-content.ts` ประกอบ path ตรง ๆ
 
 ต้องมี frontmatter และโครง **6 หัวข้อ** ครบ (ดูตัวอย่างเต็มใน
 [FILE_STRUCTURE.md §5](./FILE_STRUCTURE.md)):
@@ -80,7 +80,7 @@ public/assets/<namespace>/<subject>/<category>/<filename>
 ```
 
 - `<namespace>` = `it-kmitl` หรือ `en-kmitl`
-- `<subject>` = รหัสสั้นตัวพิมพ์เล็ก ตรงกับ `code` ใน `lib/catalog.ts`
+- `<subject>` = รหัสสั้นตัวพิมพ์เล็ก ตรงกับ `code` ใน `lib/courses/catalog.ts`
 - `<category>` = `lectures` `sheets` `exams` `exercises` `labs` `notes`
   `references` … (ตารางเต็มใน FILE_STRUCTURE.md §2.1)
 - `<filename>` = **kebab-case ล้วน** ห้ามช่องว่าง ห้าม `_` ห้ามตัวพิมพ์ใหญ่
@@ -107,7 +107,7 @@ bun run library:build   # สร้าง manifest + stats ใหม่ — ต�
 ```
 
 ไฟล์จะขึ้นเว็บทันทีโดยยังไม่ต้องเขียน entry มือ ถ้าอยากให้การ์ดมีชื่อสองภาษา
-คำอธิบาย และ **ขอบเขตสอบ** ให้เพิ่ม entry ใน `lib/subject-library.ts`:
+คำอธิบาย และ **ขอบเขตสอบ** ให้เพิ่ม entry ใน `lib/library/subject-library.ts`:
 
 ```ts
 {
@@ -132,7 +132,7 @@ entry ที่เขียนมือชนะ manifest เสมอเมื�
 - **ข้อมูลส่วนบุคคล** — ห้ามอัปโหลดไฟล์ที่มีชื่อหรือรหัสนักศึกษาของคนอื่น
   ใบงานที่ทำแล้ว (`-completed`) และงานกลุ่มต้องเช็คในเนื้อไฟล์ก่อนเสมอ
 - **ขนาด** — ไฟล์เกิน 20 MB ให้บีบก่อน; GitHub ปฏิเสธไฟล์เกิน 100 MB ทันที
-- **ห้ามแก้มือ** `lib/library-manifest.json` และ `lib/library-stats.json`
+- **ห้ามแก้มือ** `lib/library/library-manifest.json` และ `lib/library/library-stats.json`
   ทั้งสองไฟล์ generate ขึ้นมา — แก้ที่ต้นทางแล้วรัน `bun run library:build`
 
 ## 4) อัปเดตรายการโจทย์ (มีโจทย์สัปดาห์ใหม่)
@@ -165,7 +165,7 @@ entry ที่เขียนมือชนะ manifest เสมอเมื�
 ขั้นตอน: แก้/แทนที่ `data/oj_problems.json` → รัน `bun run dev`
 เช็คหน้าแรกว่าโจทย์ + week + ป้ายถูกต้อง → เปิด PR
 
-ลิงก์ประจำสัปดาห์ (ฟอร์มเช็คชื่อ, รายชื่อคู่ pair) แก้ที่ **`lib/shortcuts.ts`**
+ลิงก์ประจำสัปดาห์ (ฟอร์มเช็คชื่อ, รายชื่อคู่ pair) แก้ที่ **`lib/courses/shortcuts.ts`**
 และเอกสารในห้องสมุด (`/library`) อยู่ที่ **`data/ai-guidelines/`**
 
 ## 5) ปรับปรุงระบบ (แก้บั๊ก / เพิ่มฟีเจอร์)
@@ -189,10 +189,10 @@ entry ที่เขียนมือชนะ manifest เสมอเมื�
   แล้วเรียก `t(L.key, locale)` — ห้าม hardcode ภาษาเดียว
 - ข้อมูลผู้ใช้ (แบบร่าง, ประวัติ) เก็บใน localStorage เท่านั้น
   ห้ามส่งขึ้น server
-- **Client Component ห้าม import จาก `lib/subject-library.ts`** — ไฟล์นั้น import
+- **Client Component ห้าม import จาก `lib/library/subject-library.ts`** — ไฟล์นั้น import
   `library-manifest.json` + `library-stats.json` ที่ระดับ module ถ้า client ดึงอะไร
   จากมันไป ชื่อไฟล์และ metadata ของสื่อทุกชิ้น (รวมข้อสอบเก่า) จะติดไปใน bundle
-  ฝั่ง browser ด้วย ให้ import จาก `lib/subject-library-ui.ts` แทน
+  ฝั่ง browser ด้วย ให้ import จาก `lib/library/subject-library-ui.ts` แทน
 - อะไรที่จำกัดสิทธิ์ ต้องกันตั้งแต่ฝั่ง server — อย่าซ่อนด้วย CSS หรือ overlay
   เพราะข้อมูลยังอยู่ใน payload
 - หลักการสำคัญ: เว็บนี้ **ไม่เขียนเนื้อหาแทนนักศึกษา** —

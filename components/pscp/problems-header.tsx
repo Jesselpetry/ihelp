@@ -10,8 +10,8 @@ import {
   Sparkles,
 } from "lucide-react";
 import { GithubIcon } from "@/components/social-icons";
-import type { PscpHubData } from "@/lib/pscp";
-import type { GithubUser, LinkedRepo } from "@/lib/github";
+import type { PscpHubData } from "@/lib/pscp/pscp";
+import type { GithubUser, LinkedRepo } from "@/lib/github/github";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -19,7 +19,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Shortcuts } from "@/components/shortcuts";
-import { COURSE } from "@/lib/course";
+import { COURSE } from "@/lib/courses/course";
 import { t, type LText, type Locale } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 

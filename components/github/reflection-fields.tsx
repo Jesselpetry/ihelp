@@ -9,9 +9,9 @@ import {
   REFLECTION_CERT_STATEMENTS,
   REFLECTION_POLICY_STATEMENTS,
   statementLabel,
-} from "@/lib/statements";
-import { REFLECTION_STEPS } from "@/lib/wizard-content";
-import { composeAiTool, type ReflectionDraft } from "@/lib/wizard-fields";
+} from "@/lib/submission/statements";
+import { REFLECTION_STEPS } from "@/lib/submission/wizard-content";
+import { composeAiTool, type ReflectionDraft } from "@/lib/submission/wizard-fields";
 import { useLocale, t } from "@/lib/i18n";
 
 const STATUS_COLORS = { Pass: "green", "Not Pass": "red", "Not Submit": "gray" } as const;

@@ -3,11 +3,11 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useLocale, t, type LText } from "@/lib/i18n";
-import type { ResolvedModule } from "@/lib/spine";
+import type { ResolvedModule } from "@/lib/courses/spine";
 import { SubjectTrackGrid } from "@/components/subject-track-grid";
 import { ItKmitlBadge } from "@/components/it-kmitl-badge";
 import { CourseOverview } from "@/components/course-overview";
-import type { ScrapedCourseInfo } from "@/lib/course-content";
+import type { ScrapedCourseInfo } from "@/lib/courses/course-content";
 
 interface SubjectHubProps {
   /** Link back to the course directory */

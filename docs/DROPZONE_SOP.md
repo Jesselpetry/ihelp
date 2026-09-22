@@ -26,7 +26,7 @@ public/assets/<namespace>/<subject>/<category>/<filename>
 Exactly four segments. `scripts/build-library-manifest.mjs` skips anything
 shallower, so a file written to `<subject>/<scope>/<file>` lands on disk but
 **never appears in the UI**. Scope is carried by the `scope?: "midterm" | "final"`
-field on `SubjectAsset` in `lib/subject-library.ts`.
+field on `SubjectAsset` in `lib/library/subject-library.ts`.
 
 Rationale: some material spans the whole term (course plans, Z-tables,
 submission guides) and belongs in neither bucket; a file's exam scope can change
@@ -123,7 +123,7 @@ Resolve in this order, stopping at the first hit:
    carries it.
 2. **Code prefix** in the filename: `ITF_`, `ics-`, `MFIT-1-2026-`, …
 3. **Course name**, Thai or English, in filename or content — match against
-   `nameTh` / `nameEn` in `lib/catalog.ts`.
+   `nameTh` / `nameEn` in `lib/courses/catalog.ts`.
 4. **Topic keywords** (weakest — use only to confirm, never alone):
 
 | Code | Keywords |
@@ -438,7 +438,7 @@ This runs `library:manifest` then `library:stats`. Every moved asset gets a card
 from its filename alone, so the file is visible in the UI after this step even
 with no hand-written entry.
 
-**`lib/library-manifest.json` and `lib/library-stats.json` are generated. Never
+**`lib/library/library-manifest.json` and `lib/library/library-stats.json` are generated. Never
 hand-edit them.**
 
 ### 5.1b Upload to Storage — always, and after the manifests
@@ -463,7 +463,7 @@ the entry and re-run rather than moving the object by hand.
 
 The manifest cannot supply a bilingual title, a description, or an exam scope.
 For every file where you determined a **confident** scope in Phase 2.3, add an
-entry to the right `*_ASSETS` array in `lib/subject-library.ts`:
+entry to the right `*_ASSETS` array in `lib/library/subject-library.ts`:
 
 ```ts
 {
@@ -494,7 +494,7 @@ Rules:
 ### 5.3 Check the course is reachable
 
 A shelf with no declared track is unreachable — the files exist but nothing
-links to them. In `lib/catalog.ts`, confirm the course's `tracks` includes:
+links to them. In `lib/courses/catalog.ts`, confirm the course's `tracks` includes:
 
 ```ts
 library: "/courses/<officialCode>-<slug>/library",
@@ -514,7 +514,7 @@ bun run build             # must complete
 ```
 
 Pre-existing lint errors live in `app/courses/[dir]/quiz/page.tsx`,
-`lib/draft.ts`, and vendored `public/pyodide/pyodide.asm.js`. Anything else is
+`lib/submission/draft.ts`, and vendored `public/pyodide/pyodide.asm.js`. Anything else is
 yours — fix it.
 
 Then confirm every curated URL still resolves:
@@ -522,7 +522,7 @@ Then confirm every curated URL still resolves:
 ```bash
 node -e '
 const fs=require("fs");
-const urls=[...fs.readFileSync("lib/subject-library.ts","utf8")
+const urls=[...fs.readFileSync("lib/library/subject-library.ts","utf8")
   .matchAll(/url: "(\/assets\/[^"]+)"/g)].map(m=>m[1].split("#")[0]);
 const bad=urls.filter(u=>!fs.existsSync("public"+u));
 console.log(bad.length?"BROKEN:\n"+bad.join("\n"):"all "+urls.length+" urls resolve");
@@ -587,7 +587,7 @@ MOVED
   <original name>  →  <target path>   [SUBJECT · CATEGORY · SCOPE]
   …
 
-CURATED       M entries added to lib/subject-library.ts
+CURATED       M entries added to lib/library/subject-library.ts
 DUPLICATES    K files already present, deleted from dropzone
 HELD          J files in _dropzone/_hold/ — <one-line reason each>
 
@@ -612,7 +612,7 @@ gs -sDEVICE=pdfwrite -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH \
 mkdir -p public/assets/<ns>/<subj>/<cat>        # 3. route
 mv small.pdf "public/assets/<ns>/<subj>/<cat>/f.pdf"
 bun run library:build                   # 4. manifests
-#    edit lib/subject-library.ts for scoped entries
+#    edit lib/library/subject-library.ts for scoped entries
 bun run assets:sync                     # 5. upload to Supabase Storage
 bunx tsc --noEmit && bun run build       # 6. verify
 find _dropzone -type f ! -name '.gitkeep' ! -name 'README.md'   # 7. must be empty

@@ -5,18 +5,18 @@ import { ModuleReader, type ReaderDoc } from "@/components/module-reader";
 import { SubjectQuizGate } from "@/components/subject-quiz-gate";
 import { ComProLabHub } from "@/components/compro-lab-hub";
 import { ModuleShell } from "@/components/module-shell";
-import { COURSES, courseDir, resolveCourse, type CatalogCourse } from "@/lib/catalog";
-import { COURSE_BINDINGS } from "@/lib/course-bindings";
-import { moduleBinding, resolveModule } from "@/lib/course-spine";
+import { COURSES, courseDir, resolveCourse, type CatalogCourse } from "@/lib/courses/catalog";
+import { COURSE_BINDINGS } from "@/lib/courses/course-bindings";
+import { moduleBinding, resolveModule } from "@/lib/courses/course-spine";
 import {
   moduleBySegment,
   STANDARD_SPINE,
   type ModuleId,
   type ModuleSpec,
   type ResolvedModule,
-} from "@/lib/spine";
-import { getCourseChapters } from "@/lib/course-chapters";
-import { assetsForCourse, mergedAssets } from "@/lib/subject-library";
+} from "@/lib/courses/spine";
+import { getCourseChapters } from "@/lib/courses/course-chapters";
+import { assetsForCourse, mergedAssets } from "@/lib/library/subject-library";
 import { SubjectLibraryGate } from "@/components/subject-library-gate";
 import { t, type LText } from "@/lib/ltext";
 

@@ -8,7 +8,7 @@ import { CheckCircle2, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ProfileFields } from "@/components/account/profile-fields";
 import { updateProfile } from "@/lib/actions/profile";
-import type { ProfileFieldDefaults, ProfileFormState } from "@/lib/profile-form";
+import type { ProfileFieldDefaults, ProfileFormState } from "@/lib/profile/profile-form";
 
 function SubmitButton() {
   const { pending } = useFormStatus();

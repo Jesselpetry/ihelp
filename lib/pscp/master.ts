@@ -1,5 +1,5 @@
 import fs from "fs";
-import { OJ_PROBLEMS_FILE } from "./paths";
+import { OJ_PROBLEMS_FILE } from "@/lib/paths";
 
 // Shape of one entry in oj_problems.json (exported from iJudge).
 // Only the fields actually rendered are typed here; the export carries extra

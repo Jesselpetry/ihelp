@@ -10,7 +10,7 @@ import {
 } from "@/components/course-summary-panel";
 import { CourseOfficialInfo } from "@/components/course-official-info";
 import { useLocale, t, type LText } from "@/lib/i18n";
-import type { ScrapedCourseInfo } from "@/lib/course-content";
+import type { ScrapedCourseInfo } from "@/lib/courses/course-content";
 
 /**
  * "What is this course?", answered once, at the top of the hub.

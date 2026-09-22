@@ -1,9 +1,9 @@
 import type { MetadataRoute } from "next";
-import { loadRecommendedProblems } from "@/lib/recommended";
-import { loadLibrary } from "@/lib/library";
-import { COURSES, courseDir } from "@/lib/catalog";
-import { resolveCourseSpine } from "@/lib/course-spine";
-import type { ModuleId } from "@/lib/spine";
+import { loadRecommendedProblems } from "@/lib/pscp/recommended";
+import { loadLibrary } from "@/lib/library/library";
+import { COURSES, courseDir } from "@/lib/courses/catalog";
+import { resolveCourseSpine } from "@/lib/courses/course-spine";
+import type { ModuleId } from "@/lib/courses/spine";
 
 // Keep this in sync with SITE_URL in app/layout.tsx.
 const SITE_URL = "https://ihelp.chatan.in.th";

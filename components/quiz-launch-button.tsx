@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/dialog";
 import { TechniqueQuiz } from "@/components/technique-quiz";
 import { useLocale, t, type LText } from "@/lib/i18n";
-import { QUIZ_BANK } from "@/lib/quiz-content";
+import { QUIZ_BANK } from "@/lib/quiz/quiz-content";
 
 const L: Record<string, LText> = {
   triggerLabel: {

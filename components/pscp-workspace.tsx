@@ -20,10 +20,10 @@ import { MdView } from "@/components/md-view";
 import { WeekBadge } from "@/components/week-badge";
 import { CodeGrader } from "@/components/code-grader";
 import { ScratchRunner } from "@/components/scratch-runner";
-import { recordPscpRun } from "@/lib/pscp-client";
-import { tagLabel, tagStyle } from "@/lib/pscp-tags";
-import type { PscpProblem } from "@/lib/pscp";
-import type { GradeReport } from "@/lib/grader-types";
+import { recordPscpRun } from "@/lib/pscp/pscp-client";
+import { tagLabel, tagStyle } from "@/lib/pscp/pscp-tags";
+import type { PscpProblem } from "@/lib/pscp/pscp";
+import type { GradeReport } from "@/lib/pscp/grader-types";
 import { useLocale, t, type LText } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 

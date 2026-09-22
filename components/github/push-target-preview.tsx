@@ -3,8 +3,8 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { FileText, FolderOpen, Loader2 } from "lucide-react";
 import { GithubIcon } from "@/components/social-icons";
-import { useGithub, listFiles, type RepoFile, type FileKind } from "@/lib/github";
-import { buildTree, type TreeNode } from "@/lib/repo-tree";
+import { useGithub, listFiles, type RepoFile, type FileKind } from "@/lib/github/github";
+import { buildTree, type TreeNode } from "@/lib/github/repo-tree";
 import { useLocale, t } from "@/lib/i18n";
 
 const L = {

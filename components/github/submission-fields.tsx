@@ -3,9 +3,9 @@
 import { Checkbox } from "@/components/ui/checkbox";
 import { ChoiceBadges, SectionTitle, TextField } from "@/components/form-fields";
 import { FileLanguagePicker } from "@/components/wizard/wizard-frame";
-import { SUBMISSION_CERT_STATEMENTS, statementLabel } from "@/lib/statements";
-import { SUBMISSION_STEPS, TIME_OPTIONS } from "@/lib/wizard-content";
-import { type SubmissionDraft } from "@/lib/wizard-fields";
+import { SUBMISSION_CERT_STATEMENTS, statementLabel } from "@/lib/submission/statements";
+import { SUBMISSION_STEPS, TIME_OPTIONS } from "@/lib/submission/wizard-content";
+import { type SubmissionDraft } from "@/lib/submission/wizard-fields";
 import { useLocale, t } from "@/lib/i18n";
 
 const STATUS_COLORS = { Pass: "green", "Not Pass": "red", "Not Submit": "gray" } as const;

@@ -4,10 +4,10 @@ import { revalidatePath } from "next/cache";
 import { z } from "zod";
 
 import { db, resources } from "@/db";
-import { COURSES } from "@/lib/catalog";
+import { COURSES } from "@/lib/courses/catalog";
 import { requireUser } from "@/lib/auth/guards";
 import { UPLOADS_ENABLED } from "@/lib/flags";
-import type { UploadState } from "@/lib/resources";
+import type { UploadState } from "@/lib/library/resources";
 
 const SUBJECT_CODES = COURSES.map((c) => c.code) as [string, ...string[]];
 

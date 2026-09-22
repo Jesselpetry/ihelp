@@ -7,7 +7,7 @@ import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ProfileFields } from "@/components/account/profile-fields";
 import { completeOnboarding } from "@/lib/actions/onboarding";
-import type { ProfileFormState } from "@/lib/profile-form";
+import type { ProfileFormState } from "@/lib/profile/profile-form";
 
 function SubmitButton() {
   const { pending } = useFormStatus();

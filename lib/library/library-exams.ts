@@ -2,9 +2,9 @@ import "server-only";
 
 import { createAdminClient } from "@/lib/supabase/admin";
 import { isInsider } from "@/lib/auth/guards";
-import { restrictedAssetsForCourse } from "@/lib/subject-library";
-import { storageKey } from "@/lib/storage-key";
-import type { SubjectAsset } from "@/lib/subject-library-ui";
+import { restrictedAssetsForCourse } from "@/lib/library/subject-library";
+import { storageKey } from "@/lib/library/storage-key";
+import type { SubjectAsset } from "@/lib/library/subject-library-ui";
 
 /**
  * Private bucket holding the library's past exam papers.

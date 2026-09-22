@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Navbar } from "@/components/navbar";
 import { LibraryToc } from "@/components/library-toc";
-import { loadLibrary } from "@/lib/library";
+import { loadLibrary } from "@/lib/library/library";
 
 export const dynamic = "force-static";
 

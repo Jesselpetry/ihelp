@@ -22,9 +22,9 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { storageKey } from "../lib/storage-key";
-import { coursesWithAssets, mergedAssets } from "../lib/subject-library";
-import { isRestrictedAsset } from "../lib/subject-library-ui";
+import { storageKey } from "../lib/library/storage-key";
+import { coursesWithAssets, mergedAssets } from "../lib/library/subject-library";
+import { isRestrictedAsset } from "../lib/library/subject-library-ui";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const ASSETS_DIR = path.join(ROOT, "public", "assets");
