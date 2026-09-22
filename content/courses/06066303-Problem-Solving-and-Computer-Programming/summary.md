@@ -32,7 +32,7 @@ sources:
 | วิชาบังคับก่อน | ไม่มี |
 | หลักสูตรที่ใช้ร่วม | IT, DSBA, AIT |
 | ภาษาโปรแกรม | **Python 3** |
-| ผู้สอน | รศ.ดร. โชติพัชร์ ภรณวลัย · ผศ.ดร. สามารถ หมุดและ |
+| ผู้สอน | **รศ.ดร. โชติพัชร์ ภรณวลัย** (Assoc. Prof. Dr. Chotipat Pornavalai) · **ผศ.ดร. สามารถ หมุดและ** (Asst. Prof. Dr. Samart Moodleah) |
 | ระบบตรวจงาน | **iJudge** (`ijudge.it.kmitl.ac.th`) — auto-grader ตรวจด้วย test case |
 
 ### คำอธิบายรายวิชา (จากเว็บคณะ)

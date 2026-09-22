@@ -139,7 +139,7 @@ function mfitWeekDocs(kind: "summary" | "quiz"): ModuleDoc[] {
  * footer once a module binds more than one document. That is the whole of the
  * "weekly page" UI; nothing here needs a route of its own.
  *
- * Deliberately no `chapter`. These are Supakit's session numbers 1-7, which are
+ * Deliberately no `chapter`. These are Asst. Prof. Supakit's session numbers 1-7, which are
  * sessions 8-15 of the syllabus — they do NOT line up with the chapter numbers
  * the ICS drill bank uses, where chapter 2 means Boolean algebra. Tagging them
  * 1-7 would make the map claim an agreement with the quiz bank that does not

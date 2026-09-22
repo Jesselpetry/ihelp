@@ -2,7 +2,7 @@
 
 > **รายวิชา:** 06016401 Mathematics for Information Technology (คณิตศาสตร์สำหรับเทคโนโลยีสารสนเทศ)
 > **คณะเทคโนโลยีสารสนเทศ สจล. (KMITL IT)** · 3 (3-0-6) หน่วยกิต · 17 สัปดาห์
-> **ผู้สอนช่วงมิดเทอม:** ผศ. ดร.ประพันธ์ ภาวรังกูล (Praphan Pavarangkoon)
+> **ผู้สอนช่วงมิดเทอม:** ผศ.ดร. ประพันธ์ ปวรางกูร (Asst. Prof. Dr. Praphan Pavarangkoon)
 > **สอบมิดเทอม:** เสาร์ 22 สิงหาคม เวลา 13:30 – 16:30 (3 ชั่วโมง) · **ขอบเขต Week 1 – Week 7**
 > **สัดส่วนคะแนน:** Midterm 35% · Final 35% · Class Participation / Homework / Quiz 30%
 > **ตำราหลัก:** *Elementary Linear Algebra* — Ron Larson & David C. Falvo

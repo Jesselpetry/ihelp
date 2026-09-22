@@ -28,7 +28,7 @@ sources:
 | ชั้นปี/เทอม | ปี 1 เทอม 1 |
 | วิชาบังคับก่อน | ไม่มี |
 | ระยะเวลา | 17 สัปดาห์ (รวมสัปดาห์สอบกลางภาคและปลายภาค) |
-| ผู้สอน | Dr. Praphan Pavarangkoon (พีชคณิตเชิงเส้น, W1–7) · Asst. Prof. Dr. Somkiat Wangsiripitak (แคลคูลัส, W9–16) |
+| ผู้สอน | **ผศ.ดร. ประพันธ์ ปวรางกูร** (Asst. Prof. Dr. Praphan Pavarangkoon) — พีชคณิตเชิงเส้น W1–7 · **ผศ.ดร. สมเกียรติ วังศิริพิทักษ์** (Asst. Prof. Dr. Somkiat Wangsiripitak) — แคลคูลัส W9–16 |
 | ตำรา | Larson & Edwards, *Calculus* (Brooks/Cole) · Larson & Falvo, *Elementary Linear Algebra* (Houghton Mifflin Harcourt) |
 
 ### คำอธิบายรายวิชา (จากสไลด์ Week 01)

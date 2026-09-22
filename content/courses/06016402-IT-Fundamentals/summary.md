@@ -30,7 +30,7 @@ sources:
 | ชั้นปี/เทอม | ปี 1 เทอม 1 |
 | วิชาบังคับก่อน | ไม่มี |
 | หลักสูตร | IT |
-| ผู้สอน (1/2026) | Prof. Dr. Kitsuchart Pasupa (KP) · Asst. Prof. Dr. Pornsuree Jamsri (PJ) · Asst. Prof. Dr. Suvit Poomrittigul |
+| ผู้สอน (1/2026) | **ศ.ดร. กิติ์สุชาต พสุภา** (Prof. Dr. Kitsuchart Pasupa · KP) · **ผศ.ดร. พรสุรีย์ แจ่มศรี** (Asst. Prof. Dr. Pornsuree Jamsri · PJ) · **ผศ.ดร. สุวิทย์ ภูมิฤทธิกุล** (Asst. Prof. Dr. Suvit Poomrittigul) |
 | ตำรา | O'Leary, O'Leary & O'Leary (2026), *Computing Essentials 2026* |
 | ระบบเรียน | OnLearn (`onlearn.it.kmitl.ac.th`) — บรรยายวันอังคาร · แล็บวันศุกร์ |
 

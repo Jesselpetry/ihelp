@@ -2,7 +2,7 @@
 ## 06016402 Information Technology Fundamentals (1/2026)
 
 > **วันสอบ:** อังคารที่ 18 สิงหาคม 2026 เวลา 13:30–16:30 | **สัดส่วนคะแนน:** 30%
-> **ผู้สอน:** Prof. Dr. Kitsuchart Pasupa (KP) · Asst. Prof. Dr. Pornsuree Jamsri (PJ) · Asst. Prof. Dr. Suvit Poomrittigul
+> **ผู้สอน:** ศ.ดร. กิติ์สุชาต พสุภา (Prof. Dr. Kitsuchart Pasupa · KP) · ผศ.ดร. พรสุรีย์ แจ่มศรี (Asst. Prof. Dr. Pornsuree Jamsri · PJ) · ผศ.ดร. สุวิทย์ ภูมิฤทธิกุล (Asst. Prof. Dr. Suvit Poomrittigul
 > **หนังสืออ้างอิง:** O'Leary, O'Leary & O'Leary (2026) *Computing Essentials 2026*
 
 ### 🎯 ขอบเขตการสอบ (Week 01–07)
