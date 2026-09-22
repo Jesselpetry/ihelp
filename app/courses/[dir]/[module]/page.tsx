@@ -39,6 +39,18 @@ const L = {
 } satisfies Record<string, LText>;
 
 /** The documents a module can actually show, read from disk. */
+/**
+ * Modules that read as study material, and so get MdView's notebook accents.
+ *
+ * "mock" is deliberately absent. It is where a course keeps its practice
+ * paper — ICS renders a 1224-line midterm there — and an exam should not look
+ * marked up before the student has written on it. The other markdown-bearing
+ * modules are lecture notes by another name: ICS alone puts its 566-line
+ * syllabus summary on "summary" and a 179-line exam-analysis walkthrough,
+ * built out of 12 "กลไกของกับดัก" callouts, on "overview".
+ */
+const NOTEBOOK_SEGMENTS = new Set(["summary", "overview"]);
+
 function readerDocs(code: string, id: ModuleId): ReaderDoc[] {
   return (moduleBinding(code, id)?.docs ?? []).flatMap((doc) => {
     const markdown = doc.load();
@@ -205,7 +217,7 @@ export default async function CourseModulePage({
             assets={assetsForCourse(course.code) ?? []}
             courseCode={course.code}
             moduleKey={`${course.code}/${spec.segment}`}
-            variant={spec.segment === "summary" ? "notebook" : "default"}
+            variant={NOTEBOOK_SEGMENTS.has(spec.segment) ? "notebook" : "default"}
           />
         )}
       </>
@@ -233,7 +245,7 @@ export default async function CourseModulePage({
         title={mod.title}
         subtitle={mod.subtitle}
         moduleKey={`${course.code}/${spec.segment}`}
-        variant={spec.segment === "summary" ? "notebook" : "default"}
+        variant={NOTEBOOK_SEGMENTS.has(spec.segment) ? "notebook" : "default"}
       />
     </>
   );

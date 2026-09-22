@@ -257,11 +257,23 @@ $C ../../app/fonts/THSarabunNew-BoldItalic.woff2 thsarabunnew_bolditalic-webfont
 <MdView markdown={content} variant="notebook" />
 ```
 
-ตอนนี้เปิดอยู่ที่ **module `summary` เท่านั้น** — เซตที่
+เปิดที่ module ไหนบ้าง กำหนดด้วย `NOTEBOOK_SEGMENTS` ใน
 [`app/courses/[dir]/[module]/page.tsx`](../app/courses/[dir]/[module]/page.tsx)
-ส่งผ่าน `ModuleReader` ลงมา ดังนั้น mock exam, lab และ overview
-ยังเป็นเอกสารเรียบเหมือนเดิม (28 จาก 30 หน้า summary ได้ class นี้
-อีก 2 หน้าไม่มีเอกสารให้ render)
+แล้วส่งผ่าน `ModuleReader` ลงมา ปัจจุบันคือ **`summary` กับ `overview`**
+รวม 58 หน้า (28 + 30)
+
+**`mock` จงใจไม่เปิด** — เป็นที่เก็บข้อสอบจำลอง (ICS วาง `midterm-exam.md`
+1224 บรรทัดไว้ตรงนั้น) ข้อสอบไม่ควรดูเหมือนถูกขีดเขียนมาก่อนที่นักศึกษาจะลงมือทำ
+ส่วน `map` / `library` / `quiz` ไม่มี markdown อยู่แล้ว
+
+ตัวอย่าง ICS — 2 จาก 6 modules:
+
+| module | เอกสาร | notebook |
+| --- | --- | --- |
+| `summary` | `summarize.md` (566 บรรทัด) | ✅ |
+| `overview` | ภาพรวมรายวิชา + `analysis.md` (179 บรรทัด, 2 แท็บ) | ✅ |
+| `mock` | `midterm-exam.md` (1224 บรรทัด) | ❌ ข้อสอบ |
+| `map` / `library` / `quiz` | ไม่มี markdown | — |
 
 > **หมายเหตุ:** proposal เดิมระบุให้ทดสอบที่ `en-kmitl-summary-reader.tsx`
 > แต่ component นั้น **ไม่มีใคร import** — เป็น dead code ไม่มี route ไหนเรียก
