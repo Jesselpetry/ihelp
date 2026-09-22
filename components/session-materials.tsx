@@ -7,6 +7,7 @@ import {
   FileText,
   Layers,
 } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { useLocale, t, type LText } from "@/lib/i18n";
 import { assetDownloadUrl } from "@/lib/asset-url";
 import { formatBytes, type SubjectAsset, type AssetCategory } from "@/lib/subject-library-ui";
@@ -82,8 +83,152 @@ export function SessionMaterialsDeck({
         </span>
       </div>
 
-      {/* Table view matching the /library style */}
-      <div className="overflow-hidden rounded-2xl border bg-card shadow-xs">
+      {/* Mobile Card View (shown on < sm) */}
+      <div className="sm:hidden space-y-2.5">
+        {items.map((item, idx) => {
+          const categoryKey = item.matchedAsset?.category ?? inferCategory(item.fileName, item.title);
+          const style = CATEGORY[categoryKey] ?? CATEGORY.lecture;
+          const Icon = style.icon;
+
+          const effectiveAsset: SubjectAsset = item.matchedAsset ?? {
+            id: item.fileName,
+            title: { th: item.title, en: item.title },
+            description: { th: item.title, en: item.title },
+            tags: [],
+            category: categoryKey,
+            fileType: item.fileName.endsWith(".pdf") ? "pdf" : "file",
+            url: item.fileName,
+            fileName: item.fileName,
+            pages: item.pages ? parseInt(item.pages, 10) || undefined : undefined,
+          };
+
+          const canPreview = Boolean(
+            effectiveAsset.url &&
+              effectiveAsset.url.startsWith("http") &&
+              effectiveAsset.fileType === "pdf",
+          );
+          const downloadUrl = effectiveAsset.url.startsWith("http")
+            ? assetDownloadUrl(effectiveAsset.url, effectiveAsset.fileName)
+            : undefined;
+
+          const pagesCount =
+            effectiveAsset.pages ??
+            (item.pages ? parseInt(item.pages, 10) || undefined : undefined);
+
+          return (
+            <div
+              key={`mobile-${item.fileName}-${idx}`}
+              className={`${style.shelf} relative overflow-hidden rounded-2xl border bg-card p-3 shadow-2xs`}
+            >
+              <div
+                aria-hidden
+                className="shelf-accent absolute left-0 top-0 bottom-0 w-1"
+              />
+
+              <div className="pl-1.5 space-y-2.5">
+                {/* Category, Scope & Meta */}
+                <div className="flex items-center justify-between gap-1.5 flex-wrap">
+                  <span
+                    className={`${style.shelf} shelf-pill inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-medium text-primary`}
+                  >
+                    <Icon className="size-3" />
+                    {t(style.label, locale)}
+                  </span>
+
+                  <div className="flex items-center gap-2 text-[11px] text-muted-foreground">
+                    {effectiveAsset.scope && <ScopeBadge scope={effectiveAsset.scope} />}
+                    {pagesCount && (
+                      <span className="inline-flex items-center gap-0.5">
+                        <FileText className="size-3" />
+                        {pagesCount} {t(L.pages, locale)}
+                      </span>
+                    )}
+                    {effectiveAsset.sizeBytes && (
+                      <span className="font-mono">{formatBytes(effectiveAsset.sizeBytes)}</span>
+                    )}
+                  </div>
+                </div>
+
+                {/* Title and Filename */}
+                {canPreview && onOpenPreview ? (
+                  <button
+                    type="button"
+                    onClick={() => onOpenPreview(effectiveAsset)}
+                    className="block text-left w-full group/title cursor-pointer focus-visible:outline-none"
+                  >
+                    <p className="text-xs sm:text-sm font-semibold text-foreground group-hover/title:text-primary transition-colors line-clamp-2">
+                      {item.title}
+                    </p>
+                    <p className="font-mono text-[10px] text-muted-foreground truncate mt-0.5">
+                      {item.fileName}
+                    </p>
+                  </button>
+                ) : (
+                  <div>
+                    <p className="text-xs sm:text-sm font-semibold text-foreground line-clamp-2">
+                      {item.title}
+                    </p>
+                    <p className="font-mono text-[10px] text-muted-foreground truncate mt-0.5">
+                      {item.fileName}
+                    </p>
+                  </div>
+                )}
+
+                {/* Touch Actions */}
+                <div className="flex items-center gap-1.5 pt-2 border-t border-border/40">
+                  {canPreview && onOpenPreview && (
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      onClick={() => onOpenPreview(effectiveAsset)}
+                      className="h-8 px-2.5 text-xs gap-1.5 rounded-xl flex-1 shadow-2xs cursor-pointer"
+                    >
+                      <Eye className="size-3.5 text-primary" />
+                      <span>{t(L.preview, locale)}</span>
+                    </Button>
+                  )}
+
+                  {downloadUrl && (
+                    <Button
+                      asChild
+                      variant="outline"
+                      size="sm"
+                      className="h-8 px-2.5 text-xs gap-1.5 rounded-xl flex-1 shadow-2xs"
+                    >
+                      <a href={downloadUrl} download={effectiveAsset.fileName}>
+                        <Download className="size-3.5 text-muted-foreground" />
+                        <span>{t(L.download, locale)}</span>
+                      </a>
+                    </Button>
+                  )}
+
+                  {effectiveAsset.url && effectiveAsset.url.startsWith("http") && (
+                    <Button
+                      asChild
+                      variant="ghost"
+                      size="sm"
+                      className="h-8 w-8 p-0 rounded-xl text-muted-foreground shrink-0"
+                    >
+                      <a
+                        href={effectiveAsset.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        title={t(L.openInTab, locale)}
+                      >
+                        <ExternalLink className="size-3.5" />
+                      </a>
+                    </Button>
+                  )}
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Desktop Table view matching the /library style */}
+      <div className="hidden sm:block overflow-hidden rounded-2xl border bg-card shadow-xs">
         <div className="overflow-x-auto [scrollbar-width:thin]">
           <table className="w-full min-w-[580px] border-collapse text-left text-sm">
             <thead>

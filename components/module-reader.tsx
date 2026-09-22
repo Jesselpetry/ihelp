@@ -1,9 +1,27 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, BrainCircuit, LayoutGrid } from "lucide-react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  BrainCircuit,
+  Check,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  LayoutGrid,
+  Table2,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { MdView } from "@/components/md-view";
 import { ModuleIndex, ScopeTag } from "@/components/module-index";
 import { TocSidePanel } from "@/components/toc-side-panel";
@@ -12,6 +30,7 @@ import { useOpenedDocs } from "@/lib/reading-progress";
 import { useLocale, t, type LText } from "@/lib/i18n";
 import { PreviewModal, type Preview } from "@/components/preview-modal";
 import type { SubjectAsset } from "@/lib/subject-library-ui";
+import { splitTitle } from "@/lib/doc-index";
 
 /** One document, already read on the server. */
 export interface ReaderDoc {
@@ -64,12 +83,24 @@ const DOC_PARAM = "doc";
 
 const L = {
   docs: { th: "เอกสารในโมดูลนี้", en: "Documents in this module" },
-  index: { th: "ดูทั้งหมด", en: "All documents" },
-  backToIndex: { th: "กลับไปหน้ารวม", en: "Back to the index" },
+  index: { th: "ดูตารางรวม", en: "Table view" },
+  backToIndex: { th: "กลับไปหน้ารวมตาราง", en: "Back to table view" },
   prev: { th: "ก่อนหน้า", en: "Previous" },
   next: { th: "ถัดไป", en: "Next" },
   defaultNext: { th: "ทำแบบทดสอบ", en: "Take the quiz" },
+  allSessions: { th: "บทเรียนทั้งหมด", en: "All Sessions" },
 } satisfies Record<string, LText>;
+
+function compactTitle(doc: ReaderDoc, locale: "th" | "en"): string {
+  const full = t(doc.title, locale);
+  const { eyebrow } = splitTitle(full);
+  if (eyebrow) return eyebrow;
+  if (doc.chapter !== undefined) return locale === "th" ? `บทที่ ${doc.chapter}` : `Ch. ${doc.chapter}`;
+  if (doc.slug.includes("overview") || doc.slug.includes("materials")) {
+    return locale === "th" ? "ภาพรวม" : "Overview";
+  }
+  return full.length > 22 ? `${full.slice(0, 20)}…` : full;
+}
 
 /**
  * Reads one module's documents, with a live outline panel.
@@ -99,12 +130,23 @@ export function ModuleReader({
   const { locale } = useLocale();
   const [isTocCollapsed, setIsTocCollapsed] = useState(false);
   const [preview, setPreview] = useState<Preview | null>(null);
+  const activePillRef = useRef<HTMLButtonElement | null>(null);
   const { opened, markOpened } = useOpenedDocs(moduleKey);
 
   const hasIndex = docs.length >= INDEX_MIN_DOCS;
 
   /** The open document's position, or null while the index is showing. */
   const [index, setIndex] = useState<number | null>(hasIndex ? null : 0);
+
+  useEffect(() => {
+    if (activePillRef.current) {
+      activePillRef.current.scrollIntoView({
+        behavior: "smooth",
+        inline: "center",
+        block: "nearest",
+      });
+    }
+  }, [index]);
 
   const active = index === null ? null : docs[Math.min(index, docs.length - 1)];
   const tocItems = useMemo(() => extractToc(active?.markdown ?? ""), [active?.markdown]);
@@ -167,19 +209,19 @@ export function ModuleReader({
   return (
     <>
       <main className="mx-auto max-w-6xl xl:max-w-7xl px-3 sm:px-6 py-5 sm:py-8 w-full">
-      <div className="mb-4 sm:mb-6 flex items-center justify-between gap-3 text-xs sm:text-sm">
+      <div className="mb-4 sm:mb-6 flex items-center justify-between gap-2 sm:gap-3 text-xs sm:text-sm">
         <Link
           href={backHref}
-          className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors font-medium"
+          className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors font-medium min-w-0"
         >
-          <ArrowLeft className="size-3.5 sm:size-4" />
-          {t(backLabel, locale)}
+          <ArrowLeft className="size-3.5 sm:size-4 shrink-0" />
+          <span className="truncate">{t(backLabel, locale)}</span>
         </Link>
         {nextHref && (
-          <Button asChild size="sm" variant="outline" className="gap-1.5 rounded-full shadow-xs">
+          <Button asChild size="sm" variant="outline" className="gap-1.5 rounded-full shadow-xs shrink-0 text-xs sm:text-sm">
             <Link href={nextHref}>
-              <BrainCircuit className="size-3.5 text-primary" />
-              {t(nextLabel, locale)}
+              <BrainCircuit className="size-3.5 text-primary shrink-0" />
+              <span>{t(nextLabel, locale)}</span>
             </Link>
           </Button>
         )}
@@ -196,37 +238,150 @@ export function ModuleReader({
       ) : (
         <>
           {docs.length > 1 && (
-            <nav aria-label={t(L.docs, locale)} className="mb-4">
-              <div className="flex flex-wrap gap-1.5">
-                {hasIndex && (
-                  <button
-                    type="button"
-                    onClick={() => goTo(null)}
-                    className="inline-flex items-center gap-1.5 rounded-full border bg-card px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-primary/50 hover:text-foreground"
-                  >
-                    <LayoutGrid className="size-3" />
-                    {t(L.index, locale)}
-                  </button>
-                )}
-                {docs.map((doc, i) => {
-                  const activeDoc = i === index;
-                  return (
+            <nav aria-label={t(L.docs, locale)} className="mb-5">
+              <div className="rounded-2xl border bg-card/85 p-2 sm:p-2.5 shadow-xs backdrop-blur-md">
+                {/* Row 1: Session Selector, Table View button & Quick Stepper */}
+                <div className="flex items-center justify-between gap-1.5 sm:gap-2">
+                  {hasIndex && (
                     <button
-                      key={doc.slug}
                       type="button"
-                      onClick={() => goTo(i)}
-                      aria-current={activeDoc ? "true" : undefined}
-                      className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium transition-colors ${
-                        activeDoc
-                          ? "border-transparent bg-primary text-primary-foreground shadow-xs"
-                          : "bg-card text-muted-foreground hover:border-primary/50 hover:text-foreground"
-                      }`}
+                      onClick={() => goTo(null)}
+                      aria-label={t(L.index, locale)}
+                      title={t(L.backToIndex, locale)}
+                      className="inline-flex shrink-0 items-center justify-center gap-1.5 rounded-xl border bg-background/90 px-2 sm:px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-primary/40 hover:bg-muted/50 hover:text-foreground cursor-pointer shadow-2xs h-8 sm:h-9"
                     >
-                      {t(doc.title, locale)}
-                      {!activeDoc && doc.scope && <ScopeTag scope={doc.scope} />}
+                      <Table2 className="size-3.5 text-primary" />
+                      <span className="hidden sm:inline">{t(L.index, locale)}</span>
                     </button>
-                  );
-                })}
+                  )}
+
+                  {/* Dropdown showing current session name with full list */}
+                  <div className="min-w-0 flex-1">
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <button
+                          type="button"
+                          className="flex w-full min-w-0 items-center justify-between gap-1.5 sm:gap-2 rounded-xl border bg-background/90 px-2.5 sm:px-3 py-1.5 text-left text-xs sm:text-sm font-semibold transition-colors hover:border-primary/40 hover:bg-muted/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 shadow-2xs cursor-pointer h-8 sm:h-9"
+                        >
+                          <div className="flex min-w-0 items-center gap-1.5 sm:gap-2">
+                            <span className="shrink-0 font-mono text-[11px] sm:text-xs font-bold text-primary">
+                              {index !== null ? `${index + 1}/${docs.length}` : ""}
+                            </span>
+                            <span className="truncate">
+                              {active ? t(active.title, locale) : ""}
+                            </span>
+                            {active?.scope && (
+                              <span className="hidden md:inline-flex shrink-0">
+                                <ScopeTag scope={active.scope} />
+                              </span>
+                            )}
+                          </div>
+                          <ChevronDown className="size-3.5 sm:size-4 shrink-0 text-muted-foreground ml-1" />
+                        </button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent
+                        align="start"
+                        className="w-[calc(100vw-1.5rem)] max-w-sm sm:max-w-md max-h-[70vh] sm:max-h-[380px] overflow-y-auto p-1.5 rounded-xl shadow-xl"
+                      >
+                        <DropdownMenuLabel className="text-[11px] font-semibold text-muted-foreground px-2 py-1.5">
+                          {t(L.allSessions, locale)} ({docs.length})
+                        </DropdownMenuLabel>
+                        <DropdownMenuSeparator />
+                        {docs.map((doc, i) => {
+                          const isCurrent = i === index;
+                          const isOpened = opened.has(doc.slug);
+                          return (
+                            <DropdownMenuItem
+                              key={doc.slug}
+                              onClick={() => goTo(i)}
+                              className={`flex items-center justify-between gap-2 px-2.5 py-2 sm:py-2.5 rounded-lg cursor-pointer text-xs ${
+                                isCurrent
+                                  ? "bg-primary/10 text-primary font-semibold"
+                                  : "hover:bg-muted text-foreground"
+                              }`}
+                            >
+                              <div className="flex min-w-0 items-center gap-2">
+                                <span
+                                  className={`flex size-5 shrink-0 items-center justify-center rounded-full text-[10px] font-mono font-bold ${
+                                    isCurrent
+                                      ? "bg-primary text-primary-foreground"
+                                      : "bg-muted text-muted-foreground"
+                                  }`}
+                                >
+                                  {i + 1}
+                                </span>
+                                <span className="truncate text-xs sm:text-sm">
+                                  {t(doc.title, locale)}
+                                </span>
+                              </div>
+                              <div className="flex shrink-0 items-center gap-1.5">
+                                {doc.scope && <ScopeTag scope={doc.scope} />}
+                                {isOpened && <Check className="size-3 text-emerald-600 dark:text-emerald-400" />}
+                              </div>
+                            </DropdownMenuItem>
+                          );
+                        })}
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </div>
+
+                  {/* Quick Stepper (< >) */}
+                  <div className="flex shrink-0 items-center gap-1">
+                    <Button
+                      type="button"
+                      size="sm"
+                      variant="outline"
+                      disabled={index === 0}
+                      onClick={() => goTo((index ?? 1) - 1)}
+                      aria-label={t(L.prev, locale)}
+                      title={t(L.prev, locale)}
+                      className="size-8 sm:h-9 sm:w-9 rounded-xl p-0 shadow-2xs"
+                    >
+                      <ChevronLeft className="size-4" />
+                    </Button>
+                    <Button
+                      type="button"
+                      size="sm"
+                      variant="outline"
+                      disabled={index === docs.length - 1}
+                      onClick={() => goTo((index ?? 0) + 1)}
+                      aria-label={t(L.next, locale)}
+                      title={t(L.next, locale)}
+                      className="size-8 sm:h-9 sm:w-9 rounded-xl p-0 shadow-2xs"
+                    >
+                      <ChevronRight className="size-4" />
+                    </Button>
+                  </div>
+                </div>
+
+                {/* Row 2: Single-line Compact Horizontal Pill Rail */}
+                <div className="mt-2 flex items-center gap-1.5 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden pt-1.5 border-t border-border/40 touch-pan-x overscroll-x-contain scroll-smooth px-0.5">
+                  {docs.map((doc, i) => {
+                    const activeDoc = i === index;
+                    const isOpened = opened.has(doc.slug);
+                    const label = compactTitle(doc, locale);
+                    return (
+                      <button
+                        key={doc.slug}
+                        ref={activeDoc ? activePillRef : null}
+                        type="button"
+                        onClick={() => goTo(i)}
+                        title={t(doc.title, locale)}
+                        aria-current={activeDoc ? "true" : undefined}
+                        className={`inline-flex shrink-0 items-center gap-1 rounded-lg px-2.5 py-1 text-xs font-medium transition-colors cursor-pointer active:scale-95 transition-transform ${
+                          activeDoc
+                            ? "bg-primary text-primary-foreground shadow-xs font-semibold"
+                            : "bg-muted/40 text-muted-foreground hover:bg-muted hover:text-foreground"
+                        }`}
+                      >
+                        <span>{label}</span>
+                        {!activeDoc && isOpened && (
+                          <Check className="size-2.5 text-emerald-600 dark:text-emerald-400 opacity-80" />
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
             </nav>
           )}
@@ -257,12 +412,12 @@ export function ModuleReader({
               </article>
 
               {(docs.length > 1 || nextHref) && (
-                <div className="flex items-center justify-between gap-3">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 sm:gap-3 pt-6 border-t">
                   {hasIndex ? (
                     <Button
                       variant="ghost"
                       size="sm"
-                      className="gap-1.5 rounded-full"
+                      className="gap-1.5 rounded-full justify-center text-xs sm:text-sm"
                       onClick={() => goTo(null)}
                     >
                       <LayoutGrid className="size-3.5" />
@@ -272,7 +427,7 @@ export function ModuleReader({
                     <Button
                       variant="ghost"
                       size="sm"
-                      className="gap-1.5 rounded-full"
+                      className="gap-1.5 rounded-full justify-center text-xs sm:text-sm"
                       disabled={index === 0}
                       onClick={() => goTo((index ?? 0) - 1)}
                     >
@@ -283,21 +438,21 @@ export function ModuleReader({
 
                   {isLast ? (
                     nextHref && (
-                      <Button asChild size="sm" className="gap-1.5 rounded-full">
+                      <Button asChild size="sm" className="gap-1.5 rounded-full justify-center text-xs sm:text-sm">
                         <Link href={nextHref}>
-                          {t(nextLabel, locale)}
-                          <ArrowRight className="size-3.5" />
+                          <span className="truncate">{t(nextLabel, locale)}</span>
+                          <ArrowRight className="size-3.5 shrink-0" />
                         </Link>
                       </Button>
                     )
                   ) : (
                     <Button
                       size="sm"
-                      className="gap-1.5 rounded-full"
+                      className="gap-1.5 rounded-full justify-center text-xs sm:text-sm max-w-full"
                       onClick={() => goTo((index ?? 0) + 1)}
                     >
-                      {t(docs[(index ?? 0) + 1].title, locale)}
-                      <ArrowRight className="size-3.5" />
+                      <span className="truncate">{t(docs[(index ?? 0) + 1].title, locale)}</span>
+                      <ArrowRight className="size-3.5 shrink-0" />
                     </Button>
                   )}
                 </div>

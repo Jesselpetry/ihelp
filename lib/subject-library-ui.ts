@@ -78,6 +78,18 @@ export interface SubjectAsset {
   pages?: number;
   /** File size in bytes. Filled in from library-stats.json by withAssetStats(). */
   sizeBytes?: number;
+  /** Whether this resource belongs to the official current academic year (e.g. 2569) */
+  isCurrentYear?: boolean;
+  /** Whether this file is a duplicate or alternate compressed copy of a canonical asset */
+  isDuplicate?: boolean;
+  /** Canonical asset ID or filename this entry duplicates */
+  duplicateOf?: string;
+  /** Classification: primary, current_year, duplicate, compact, or legacy */
+  status?: "primary" | "current_year" | "duplicate" | "compact" | "legacy";
+  /** Academic year or cohort tag, e.g. "2569", "Y1/S1" */
+  edition?: string;
+  /** Course syllabus week number (1..15 or session 1..7) */
+  week?: number;
 }
 
 

@@ -21,13 +21,16 @@ import {
   ChevronDown,
   ChevronLeft,
   ChevronRight,
+  ChevronUp,
   Copy,
+  Cpu,
   Download,
   Eye,
   FileDown,
   FileText,
   FlaskConical,
   Images,
+  Layers,
   LayoutGrid,
   Library,
   Flag,
@@ -37,12 +40,14 @@ import {
   Minimize,
   Minus,
   NotebookPen,
+  Pin,
   Plus,
   Rows3,
   RotateCcw,
   ScrollText,
   Search,
   Sigma,
+  Sparkles,
   Table2,
   Tag,
   X,
@@ -300,6 +305,46 @@ function ScopeBadge({
   );
 }
 
+/** Badges indicating current academic year (2569) or duplicate/variant status. */
+function StatusBadges({
+  asset,
+  className = "",
+}: {
+  asset: SubjectAsset;
+  className?: string;
+}) {
+  const { locale } = useLocale();
+  return (
+    <>
+      {asset.isCurrentYear && (
+        <span
+          className={`inline-flex items-center gap-0.5 rounded-full border border-emerald-500/35 bg-emerald-500/15 px-1.5 py-0.5 text-[9px] font-bold text-emerald-700 dark:text-emerald-300 shadow-2xs ${className}`}
+          title={locale === "th" ? "เนื้อหาประจำปีการศึกษา 2569 ล่าสุด" : "Current AY 2569 Curriculum"}
+        >
+          <Sparkles className="size-2.5" />
+          <span>2569</span>
+        </span>
+      )}
+      {asset.isDuplicate && (
+        <span
+          className={`inline-flex items-center gap-0.5 rounded-full border border-amber-500/35 bg-amber-500/15 px-1.5 py-0.5 text-[9px] font-medium text-amber-700 dark:text-amber-300 shadow-2xs ${className}`}
+          title={asset.duplicateOf ? `ฉบับสำรองของ ${asset.duplicateOf}` : undefined}
+        >
+          <Copy className="size-2.5" />
+          <span>{locale === "th" ? "สำรอง" : "Alt"}</span>
+        </span>
+      )}
+      {!asset.isDuplicate && asset.edition && asset.edition !== "2569" && (
+        <span
+          className={`inline-flex items-center gap-0.5 rounded-full border border-border/80 bg-muted/60 px-1.5 py-0.5 text-[9px] font-medium text-muted-foreground ${className}`}
+        >
+          {asset.edition}
+        </span>
+      )}
+    </>
+  );
+}
+
 /**
  * The tag that names where in the course an asset sits. Tags are a flat list,
  * so pick the first one shaped like a chapter or week reference and fall back
@@ -384,6 +429,7 @@ function BookCover({
                 {t(style.label, locale)}
               </span>
               {asset.scope && <ScopeBadge scope={asset.scope} />}
+              <StatusBadges asset={asset} />
             </div>
             {meta && (
               <p className="text-[10px] font-medium tabular-nums text-muted-foreground">{meta}</p>
@@ -732,6 +778,7 @@ function CompactRow({
       </button>
 
       {asset.scope && <ScopeBadge scope={asset.scope} className="shrink-0" />}
+      <StatusBadges asset={asset} className="shrink-0" />
 
       <div className="hidden shrink-0 gap-1 md:flex">
         {asset.tags.slice(0, 3).map((tag) => (
@@ -1319,11 +1366,14 @@ function SubjectLibraryTable({
                     </span>
                   </td>
                   <td className="py-2.5 px-3 whitespace-nowrap">
-                    {asset.scope ? (
-                      <ScopeBadge scope={asset.scope} />
-                    ) : (
-                      <span className="text-xs text-muted-foreground">—</span>
-                    )}
+                    <div className="flex items-center gap-1">
+                      {asset.scope ? (
+                        <ScopeBadge scope={asset.scope} />
+                      ) : (
+                        <span className="text-xs text-muted-foreground">—</span>
+                      )}
+                      <StatusBadges asset={asset} />
+                    </div>
                   </td>
                   <td className="py-2.5 px-3 whitespace-nowrap">
                     {chapterTag(asset) ? (
@@ -1396,6 +1446,438 @@ function SubjectLibraryTable({
   );
 }
 
+// ── Pinned Weekly Courseware Shelf ──────────────────────────────────────────
+
+const PINNED_ACTIONS_CELL =
+  "sticky right-0 z-10 w-24 whitespace-nowrap bg-card/95 backdrop-blur-xs pl-2 pr-4 text-right shadow-[-6px_0_10px_-4px_rgba(0,0,0,0.06)]";
+
+const PINNED_KIND = {
+  lecture: {
+    icon: ScrollText,
+    label: { th: "สไลด์บรรยาย", en: "Lecture" } satisfies LText,
+    accent: "bg-primary/60",
+    text: "text-primary",
+    pill: "border-primary/30 bg-primary/10 text-primary",
+  },
+  lab: {
+    icon: FlaskConical,
+    label: { th: "ใบงานแล็บ", en: "Lab sheet" } satisfies LText,
+    accent: "bg-emerald-500/60",
+    text: "text-emerald-600 dark:text-emerald-400",
+    pill: "border-emerald-500/30 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300",
+  },
+} as const;
+
+type PinnedKind = keyof typeof PINNED_KIND;
+
+/** One asset line inside a week group — mirrors the main table's row anatomy. */
+function PinnedWeekRow({
+  asset,
+  kind,
+  onOpen,
+}: {
+  asset: SubjectAsset;
+  kind: PinnedKind;
+  onOpen: (asset: SubjectAsset) => void;
+}) {
+  const { locale } = useLocale();
+  const style = PINNED_KIND[kind];
+  const Icon = style.icon;
+
+  return (
+    <tr className="group transition-colors hover:bg-muted/35">
+      <td className="py-2.5 pl-4 pr-3 max-w-[220px] sm:max-w-[320px] md:max-w-[460px]">
+        <div className="flex items-center gap-2.5">
+          <span aria-hidden className={`h-7 w-1 shrink-0 rounded-full ${style.accent}`} />
+          <button
+            type="button"
+            onClick={() => onOpen(asset)}
+            className="flex min-w-0 flex-1 items-center gap-2 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+          >
+            <Icon className={`size-4 shrink-0 ${style.text}`} />
+            <span className="block truncate text-sm font-medium text-foreground transition-colors group-hover:text-primary">
+              {t(asset.title, locale)}
+            </span>
+          </button>
+        </div>
+      </td>
+      <td className="py-2.5 px-3 whitespace-nowrap">
+        <span
+          className={`inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-xs font-medium ${style.pill}`}
+        >
+          <Icon className="size-3" />
+          {t(style.label, locale)}
+        </span>
+      </td>
+      <td className="py-2.5 px-3 tabular-nums text-xs text-muted-foreground whitespace-nowrap">
+        {metaLine(asset, locale) || "—"}
+      </td>
+      <td className={`${PINNED_ACTIONS_CELL} py-2.5`}>
+        <div className="flex items-center justify-end gap-1">
+          <button
+            type="button"
+            onClick={() => onOpen(asset)}
+            aria-label={t(L.preview, locale)}
+            className="rounded-full p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-primary"
+          >
+            <Eye className="size-3.5" />
+          </button>
+          <a
+            href={assetDownloadUrl(asset.url, asset.fileName)}
+            download={asset.fileName}
+            aria-label={`${t(L.download, locale)}: ${asset.fileName}`}
+            className="rounded-full p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-primary"
+          >
+            <Download className="size-3.5" />
+          </a>
+        </div>
+      </td>
+    </tr>
+  );
+}
+
+/** Placeholder line for a week that never shipped a slide or a lab sheet. */
+function PinnedWeekEmptyRow({ kind, label }: { kind: PinnedKind; label: string }) {
+  const Icon = PINNED_KIND[kind].icon;
+  return (
+    <tr className="text-xs text-muted-foreground">
+      <td colSpan={3} className="py-2 pl-4 pr-3">
+        <div className="flex items-center gap-2.5">
+          <span aria-hidden className="h-7 w-1 shrink-0 rounded-full bg-border" />
+          <Icon className="size-3.5 shrink-0 opacity-50" />
+          <span className="truncate">{label}</span>
+        </div>
+      </td>
+      <td className={`${PINNED_ACTIONS_CELL} py-2`}>—</td>
+    </tr>
+  );
+}
+
+interface PinnedWeeklyShelfProps {
+  assets: SubjectAsset[];
+  onOpen: (asset: SubjectAsset) => void;
+  courseCode?: string;
+}
+
+function PinnedWeeklyShelf({ assets, onOpen }: PinnedWeeklyShelfProps) {
+  const { locale } = useLocale();
+  const [activeTrack, setActiveTrack] = useState<"hardware" | "digital">("hardware");
+  // Starts folded: the shelf is a jump-list, not the page's main content.
+  const [isCollapsed, setIsCollapsed] = useState(true);
+
+  // 2569 hardware parts list reference
+  const hardwareList = useMemo(() => {
+    return assets.find(
+      (a) => a.id === "ics-hardware-list-2569" || a.fileName.includes("component-list"),
+    );
+  }, [assets]);
+
+  // Weeks 1 to 7
+  const weeklyPairs = useMemo(() => {
+    const weeks = [1, 2, 3, 4, 5, 6, 7];
+    return weeks.map((w) => {
+      let slide: SubjectAsset | undefined;
+      let lab: SubjectAsset | undefined;
+      let topicTitle = { th: `สัปดาห์ที่ ${w}`, en: `Week ${w}` };
+
+      if (activeTrack === "hardware") {
+        slide = assets.find(
+          (a) =>
+            a.scope === "final" &&
+            (a.isCurrentYear || a.status === "current_year") &&
+            a.category === "lecture" &&
+            a.week === w,
+        );
+        lab = assets.find(
+          (a) =>
+            a.scope === "final" &&
+            (a.isCurrentYear || a.status === "current_year") &&
+            a.category === "exercise" &&
+            a.week === w,
+        );
+        const titlesTh: Record<number, string> = {
+          1: "ภาพรวมระบบคอมพิวเตอร์ และการใช้มัลติมิเตอร์",
+          2: "หน่วยความจำ แอดเดรส I/O และออสซิลโลสโคป",
+          3: "มัลติเพล็กเซอร์ แลตช์ และเบรดบอร์ดเบื้องต้น",
+          4: "ฟลิปฟล็อป เคาน์เตอร์ และวงจรออสซิลเลเตอร์",
+          5: "วงจรแปลงสัญญาณ DAC/ADC และลอจิกเกต",
+          6: "วงจรหน่วยความจำ และการต่อบอร์ด FPGA Basys2",
+          7: "วงจร ALU และการสร้างซีพียู 4 บิต (สอบแล็บ)",
+        };
+        const titlesEn: Record<number, string> = {
+          1: "Computer Systems Overview & Multimeter",
+          2: "Memory Addressing, I/O & Oscilloscope",
+          3: "MUX, Latch, Buffer & Breadboard Basics",
+          4: "Flip-Flops, Counters, ADC & Oscillator",
+          5: "DAC/ADC Part 2 & Multiplexers via Logic Gates",
+          6: "Memory Circuits & FPGA Basys2",
+          7: "ALU & 4-bit CPU Synthesis (Lab Exam)",
+        };
+        topicTitle = {
+          th: titlesTh[w] ?? `สัปดาห์ที่ ${w}`,
+          en: titlesEn[w] ?? `Week ${w}`,
+        };
+      } else {
+        slide = assets.find(
+          (a) =>
+            a.scope === "midterm" &&
+            a.category === "lecture" &&
+            a.week === w &&
+            !a.isDuplicate,
+        );
+        lab = assets.find(
+          (a) =>
+            a.scope === "midterm" &&
+            a.category === "exercise" &&
+            a.week === w &&
+            !a.isDuplicate,
+        );
+        const titlesTh: Record<number, string> = {
+          1: "ระบบดิจิทัลเบื้องต้น และโปรแกรม Logisim",
+          2: "พีชคณิตบูลีน ทฤษฎีเดอมอร์แกน และเกตลอจิก",
+          3: "รูปแบบมาตรฐานคาโนนิคอล SOP & POS",
+          4: "การลดรูปฟังก์ชันลอจิกด้วย K-map",
+          5: "การตอบสนองเชิงเวลา (Time Response & Delay)",
+          6: "ระบบเลขฐานและการคำนวณเลขฐานสอง (Arithmetic)",
+          7: "วงจรมัลติเพล็กเซอร์และดีมัลติเพล็กเซอร์ (MUX/DEMUX)",
+        };
+        const titlesEn: Record<number, string> = {
+          1: "Digital Systems Intro & Logisim Simulator",
+          2: "Boolean Algebra & DeMorgan's Theorems",
+          3: "Canonical SOP & POS Forms",
+          4: "Logic Minimization via K-map",
+          5: "Time Response & Propagation Delay",
+          6: "Number Systems & Signed Binary Arithmetic",
+          7: "Multiplexer & Demultiplexer Trees",
+        };
+        topicTitle = {
+          th: titlesTh[w] ?? `สัปดาห์ที่ ${w}`,
+          en: titlesEn[w] ?? `Week ${w}`,
+        };
+      }
+
+      return { week: w, topicTitle, slide, lab };
+    });
+  }, [assets, activeTrack]);
+
+  return (
+    <section
+      aria-label="Pinned Courseware"
+      className="mb-8 overflow-hidden rounded-3xl border border-primary/25 bg-gradient-to-b from-primary/5 via-card to-card p-4 shadow-sm backdrop-blur-md sm:p-6"
+    >
+      {/* Header bar */}
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="inline-flex items-center gap-1 rounded-full border border-primary/35 bg-primary/10 px-2 py-0.5 text-[11px] font-bold text-primary shadow-2xs">
+              <Pin className="size-3" />
+              <span>{locale === "th" ? "ปักหมุดเอกสารประจำปี 2569" : "Pinned AY 2569"}</span>
+            </span>
+            <span className="inline-flex items-center gap-1 rounded-full border border-emerald-500/35 bg-emerald-500/10 px-2 py-0.5 text-[11px] font-semibold text-emerald-700 dark:text-emerald-300">
+              <Sparkles className="size-3" />
+              <span>
+                {locale === "th"
+                  ? "จัดเรียงสไลด์คู่ใบงานแล็บรายสัปดาห์"
+                  : "Weekly Paired Slide & Lab"}
+              </span>
+            </span>
+          </div>
+          <h2 className="mt-1.5 text-lg font-bold tracking-tight text-foreground sm:text-xl">
+            {locale === "th"
+              ? "สื่อการสอนประจำปีการศึกษา 2569 (จัดเรียงรายสัปดาห์ 1–7)"
+              : "Academic Year 2569 Courseware (Sorted by Week 1–7)"}
+          </h2>
+          <p className="mt-0.5 text-xs text-muted-foreground sm:text-sm">
+            {locale === "th"
+              ? "จับคู่สไลด์บรรยายและใบงานแล็บประจำแต่ละสัปดาห์ สามารถกดเปิดอ่านตัวอย่างหรือดาวน์โหลดได้ทันที"
+              : "Paired weekly lecture slides and lab sheets with direct 1-click preview and download."}
+          </p>
+        </div>
+
+        <button
+          type="button"
+          onClick={() => setIsCollapsed(!isCollapsed)}
+          className="inline-flex items-center gap-1.5 self-start rounded-full border bg-background/80 px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground cursor-pointer sm:self-center"
+        >
+          {isCollapsed ? (
+            <>
+              <span>{locale === "th" ? "แสดงทั้งหมด" : "Expand"}</span>
+              <ChevronDown className="size-3.5" />
+            </>
+          ) : (
+            <>
+              <span>{locale === "th" ? "ย่อแถบปักหมุด" : "Collapse"}</span>
+              <ChevronUp className="size-3.5" />
+            </>
+          )}
+        </button>
+      </div>
+
+      {/* Hardware Parts List Banner */}
+      {hardwareList && !isCollapsed && (
+        <div className="mt-4 flex flex-col gap-3 rounded-2xl border border-primary/20 bg-background/90 p-3 shadow-2xs sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-start gap-2.5 min-w-0">
+            <div className="rounded-xl border border-primary/30 bg-primary/10 p-2 text-primary shrink-0">
+              <Cpu className="size-4" />
+            </div>
+            <div className="min-w-0">
+              <div className="flex items-center gap-1.5">
+                <span className="text-xs font-bold text-foreground truncate">
+                  {t(hardwareList.title, locale)}
+                </span>
+                <span className="rounded-full bg-emerald-500/15 border border-emerald-500/30 px-1.5 py-0.2 text-[9px] font-bold text-emerald-700 dark:text-emerald-300 shrink-0">
+                  2569
+                </span>
+              </div>
+              <p className="line-clamp-1 text-[11px] text-muted-foreground">
+                {t(hardwareList.description, locale)}
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-1.5 shrink-0 self-end sm:self-auto">
+            <Button
+              size="sm"
+              variant="outline"
+              onClick={() => onOpen(hardwareList)}
+              className="h-7 rounded-full text-xs font-medium cursor-pointer"
+            >
+              <Eye className="mr-1 size-3" />
+              {t(L.preview, locale)}
+            </Button>
+            <a
+              href={assetDownloadUrl(hardwareList.url, hardwareList.fileName)}
+              download={hardwareList.fileName}
+              className="inline-flex h-7 items-center gap-1 rounded-full bg-primary px-3 text-xs font-semibold text-primary-foreground shadow-2xs hover:bg-primary/90 transition-colors"
+            >
+              <Download className="size-3" />
+              <span>{t(L.download, locale)}</span>
+            </a>
+          </div>
+        </div>
+      )}
+
+      {/* Track Selector Tabs */}
+      {!isCollapsed && (
+        <div className="mt-4 flex flex-wrap items-center gap-2 border-b border-border/50 pb-3">
+          <span className="text-xs font-semibold text-muted-foreground mr-1">
+            {locale === "th" ? "เลือกพาร์ตการเรียน:" : "Select Track:"}
+          </span>
+          <button
+            type="button"
+            onClick={() => setActiveTrack("hardware")}
+            className={`inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-xs font-semibold transition-all cursor-pointer ${
+              activeTrack === "hardware"
+                ? "bg-primary text-primary-foreground shadow-xs"
+                : "border border-border/80 bg-background/80 text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            <Cpu className="size-3.5" />
+            <span>
+              {locale === "th"
+                ? "⚡ ฮาร์ดแวร์ & แล็บจริง 2569 (ดร.ศุภกฤษติ์ · W1–7)"
+                : "⚡ Hardware & Bench Labs 2569 (Dr. Supakit)"}
+            </span>
+          </button>
+          <button
+            type="button"
+            onClick={() => setActiveTrack("digital")}
+            className={`inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-xs font-semibold transition-all cursor-pointer ${
+              activeTrack === "digital"
+                ? "bg-primary text-primary-foreground shadow-xs"
+                : "border border-border/80 bg-background/80 text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            <Layers className="size-3.5" />
+            <span>
+              {locale === "th"
+                ? "📐 ตรรกศาสตร์ดิจิทัล & Logisim (อ.สุขสันต์ · W1–7)"
+                : "📐 Digital Logic & Logisim (Aj. Sooksan)"}
+            </span>
+          </button>
+        </div>
+      )}
+
+      {/* Weekly Table — grouped by week, same anatomy as the library table */}
+      {!isCollapsed && (
+        <div className="mt-4 overflow-hidden rounded-2xl border bg-card shadow-xs">
+          <div className="overflow-x-auto [scrollbar-width:thin]">
+            <table className="w-full min-w-[560px] border-collapse text-left text-sm">
+              <thead>
+                <tr className="border-b bg-muted/40 text-xs font-semibold text-muted-foreground select-none">
+                  <th scope="col" className="py-3 pl-4 pr-3">
+                    {t(L.colName, locale)}
+                  </th>
+                  <th scope="col" className="py-3 px-3 whitespace-nowrap">
+                    {t(L.colCategory, locale)}
+                  </th>
+                  <th scope="col" className="py-3 px-3 whitespace-nowrap">
+                    {t(L.colSize, locale)}
+                  </th>
+                  <th
+                    scope="col"
+                    className="sticky right-0 z-10 w-24 whitespace-nowrap bg-muted/95 backdrop-blur-xs py-3 pl-2 pr-4 text-right shadow-[-6px_0_10px_-4px_rgba(0,0,0,0.06)]"
+                  >
+                    {t(L.colActions, locale)}
+                  </th>
+                </tr>
+              </thead>
+              {weeklyPairs.map(({ week, topicTitle, slide, lab }) => (
+                <tbody
+                  key={week}
+                  className="divide-y divide-border/40 border-b border-border/60 last:border-b-0"
+                >
+                  {/* Week group header */}
+                  <tr className="bg-muted/25">
+                    <th scope="colgroup" colSpan={4} className="py-2 pl-4 pr-4 text-left">
+                      <div className="flex items-center gap-2">
+                        <span className="inline-flex shrink-0 items-center rounded-md border border-primary/30 bg-primary/10 px-2 py-0.5 text-[11px] font-bold text-primary tabular-nums">
+                          {locale === "th" ? `สัปดาห์ที่ ${week}` : `Week 0${week}`}
+                        </span>
+                        <span className="min-w-0 truncate text-xs font-bold text-foreground">
+                          {t(topicTitle, locale)}
+                        </span>
+                        <span className="ml-auto shrink-0 text-[10px] font-medium text-muted-foreground">
+                          {activeTrack === "hardware" ? "2569 Final" : "2569 Midterm"}
+                        </span>
+                      </div>
+                    </th>
+                  </tr>
+
+                  {slide ? (
+                    <PinnedWeekRow asset={slide} kind="lecture" onOpen={onOpen} />
+                  ) : (
+                    <PinnedWeekEmptyRow
+                      kind="lecture"
+                      label={locale === "th" ? "ไม่มีสไลด์บรรยาย" : "No lecture slide"}
+                    />
+                  )}
+
+                  {lab ? (
+                    <PinnedWeekRow asset={lab} kind="lab" onOpen={onOpen} />
+                  ) : (
+                    <PinnedWeekEmptyRow
+                      kind="lab"
+                      label={
+                        week === 7 && activeTrack === "hardware"
+                          ? locale === "th"
+                            ? "📝 สอบปฏิบัติการในห้องเรียน (Lab Exam)"
+                            : "📝 In-class Practical Lab Exam"
+                          : locale === "th"
+                            ? "ไม่มีใบงานแล็บสัปดาห์นี้"
+                            : "No lab worksheet this week"
+                      }
+                    />
+                  )}
+                </tbody>
+              ))}
+            </table>
+          </div>
+        </div>
+      )}
+    </section>
+  );
+}
+
 // ── Main component ───────────────────────────────────────────────────────────
 
 export function SubjectLibrary({
@@ -1418,6 +1900,7 @@ export function SubjectLibrary({
   const [sortDir, setSortDir] = useState<SortDirection>("asc");
   const [openStacks, setOpenStacks] = useState<ReadonlySet<string>>(new Set());
   const [preview, setPreview] = useState<Preview | null>(null);
+  const [hideDuplicates, setHideDuplicates] = useState(courseCode === "ICS");
 
   // Quick keyboard shortcut: press '/' to focus search
   useEffect(() => {
@@ -1434,12 +1917,22 @@ export function SubjectLibrary({
     return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
 
-  // Category is derived, so resolve it once per asset rather than on every
-  // keystroke through the filter.
-  const shelved = useMemo(
-    () => assets.map((asset) => ({ asset, category: resolveCategory(asset) })),
+  const duplicateCount = useMemo(
+    () => assets.filter((a) => a.isDuplicate).length,
     [assets],
   );
+
+  const hasCurrentYear = useMemo(
+    () => courseCode === "ICS" || assets.some((a) => a.isCurrentYear),
+    [courseCode, assets],
+  );
+
+  // Category is derived, so resolve it once per asset rather than on every
+  // keystroke through the filter. Filter out duplicates when hideDuplicates is active.
+  const shelved = useMemo(() => {
+    const list = hideDuplicates ? assets.filter((asset) => !asset.isDuplicate) : assets;
+    return list.map((asset) => ({ asset, category: resolveCategory(asset) }));
+  }, [assets, hideDuplicates]);
 
   const counts = useMemo(() => {
     const tally = {} as Record<AssetCategory, number>;
@@ -1592,6 +2085,7 @@ export function SubjectLibrary({
     setScope("all");
     setSortCol("default");
     setSortDir("asc");
+    setHideDuplicates(courseCode === "ICS");
   };
 
   const filtersActive =
@@ -1731,6 +2225,15 @@ export function SubjectLibrary({
           {t(subtitle, locale)} · {filtered.length}/{assets.length} {t(L.count, locale)}
         </p>
       </header>
+
+      {/* Pinned Current Year Shelf for ICS */}
+      {hasCurrentYear && (
+        <PinnedWeeklyShelf
+          assets={assets}
+          onOpen={openSingle}
+          courseCode={courseCode}
+        />
+      )}
 
       {/* Control Deck */}
       <div className="mb-8 rounded-2xl border bg-card/75 p-3.5 sm:p-5 shadow-xs backdrop-blur-md space-y-3.5">
@@ -1901,7 +2404,7 @@ export function SubjectLibrary({
                   : "bg-background/80 text-muted-foreground hover:border-primary/40 hover:text-foreground"
               }`}
             >
-              {t(L.filterAll, locale)} · {assets.length}
+              {t(L.filterAll, locale)} · {shelved.length}
             </button>
             {chips.map((category) => {
               const style = CATEGORY[category];
@@ -1924,6 +2427,35 @@ export function SubjectLibrary({
                 </button>
               );
             })}
+
+            {/* Duplicate Filter Toggle */}
+            {duplicateCount > 0 && (
+              <button
+                type="button"
+                onClick={() => setHideDuplicates(!hideDuplicates)}
+                className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium transition-colors cursor-pointer ${
+                  hideDuplicates
+                    ? "border-amber-500/35 bg-amber-500/10 text-amber-700 dark:text-amber-300 hover:bg-amber-500/20"
+                    : "border-border/80 bg-background/80 text-muted-foreground hover:text-foreground"
+                }`}
+                title={
+                  hideDuplicates
+                    ? "คลิกเพื่อแสดงเอกสารสำรอง/v2 ทั้งหมด"
+                    : "คลิกเพื่อซ่อนเอกสารสำรอง/v2"
+                }
+              >
+                <Copy className="size-3 shrink-0" />
+                <span>
+                  {hideDuplicates
+                    ? locale === "th"
+                      ? `ซ่อนฉบับสำรอง (${duplicateCount})`
+                      : `Hide duplicates (${duplicateCount})`
+                    : locale === "th"
+                      ? `แสดงฉบับสำรอง (${duplicateCount})`
+                      : `Showing duplicates (${duplicateCount})`}
+                </span>
+              </button>
+            )}
           </div>
         </div>
 
@@ -2135,6 +2667,21 @@ export function SubjectLibrary({
                     setSortDir("asc");
                   }}
                   className="rounded-full p-0.5 hover:bg-muted-foreground/20 cursor-pointer"
+                >
+                  <X className="size-2.5" />
+                </button>
+              </span>
+            )}
+            {hideDuplicates && duplicateCount > 0 && (
+              <span className="inline-flex items-center gap-1 rounded-full border border-amber-500/35 bg-amber-500/10 px-2 py-0.5 text-[11px] font-medium text-amber-700 dark:text-amber-300">
+                {locale === "th"
+                  ? `ซ่อนฉบับสำรอง: ${duplicateCount}`
+                  : `Hidden duplicates: ${duplicateCount}`}
+                <button
+                  type="button"
+                  onClick={() => setHideDuplicates(false)}
+                  className="rounded-full p-0.5 hover:bg-amber-500/20 cursor-pointer"
+                  title={locale === "th" ? "แสดงฉบับสำรอง" : "Show duplicates"}
                 >
                   <X className="size-2.5" />
                 </button>

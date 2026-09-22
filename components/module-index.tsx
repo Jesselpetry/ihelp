@@ -203,7 +203,88 @@ function ModuleTable({
 
   return (
     <div className="overflow-hidden rounded-2xl border bg-card shadow-xs">
-      <div className="overflow-x-auto [scrollbar-width:thin]">
+      {/* Mobile Card List (shown on < sm) */}
+      <div className="sm:hidden divide-y divide-border/40">
+        {rows.map(({ doc, index, facts: docFact }) => {
+          const { eyebrow, rest } = splitTitle(t(doc.title, locale));
+          const isOpened = opened.has(doc.slug);
+          const isNext = index === nextIndex;
+          const isLead = doc.scope === undefined && index === 0;
+
+          return (
+            <div
+              key={`mobile-${doc.slug}`}
+              onClick={() => onOpen(index)}
+              className={`p-3.5 transition-colors active:bg-muted/50 cursor-pointer relative ${
+                isNext ? "bg-primary/[0.03]" : ""
+              }`}
+            >
+              <div className="flex items-start justify-between gap-2">
+                <div className="flex items-center gap-1.5 flex-wrap">
+                  {eyebrow ? (
+                    <span className="rounded-md bg-muted px-2 py-0.5 text-[10px] font-semibold text-foreground/80">
+                      {eyebrow}
+                    </span>
+                  ) : isLead ? (
+                    <span className="rounded-md bg-primary/15 text-primary px-2 py-0.5 text-[10px] font-semibold">
+                      {t(L.overviewBadge, locale)}
+                    </span>
+                  ) : null}
+                  {doc.scope && <ScopeTag scope={doc.scope} />}
+                </div>
+
+                <div className="shrink-0">
+                  {isOpened ? (
+                    <span className="inline-flex items-center gap-1 text-[11px] font-medium text-emerald-600 dark:text-emerald-400">
+                      <Check className="size-3" />
+                      {t(L.opened, locale)}
+                    </span>
+                  ) : isNext ? (
+                    <span className="inline-flex items-center gap-1 rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-semibold text-primary">
+                      {t(L.resume, locale)}
+                    </span>
+                  ) : null}
+                </div>
+              </div>
+
+              <h4 className="mt-1.5 text-xs sm:text-sm font-semibold text-foreground">
+                {rest}
+              </h4>
+
+              {docFact.lead && (
+                <p className="mt-1 line-clamp-2 text-xs text-muted-foreground">
+                  {docFact.lead}
+                </p>
+              )}
+
+              <div className="mt-2.5 flex items-center justify-between gap-2 pt-2 border-t border-border/40">
+                <div className="flex items-center gap-2.5 text-xs text-muted-foreground">
+                  <Stat icon={Play} value={docFact.videos} label={L.videos} />
+                  <Stat icon={FileText} value={docFact.files} label={L.files} />
+                  <Stat icon={Target} value={docFact.objectives} label={L.objectives} />
+                </div>
+
+                <Button
+                  type="button"
+                  size="sm"
+                  variant={isNext ? "default" : "outline"}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onOpen(index);
+                  }}
+                  className="h-7 px-2.5 text-xs gap-1 rounded-full shadow-2xs"
+                >
+                  <span>{t(L.open, locale)}</span>
+                  <ArrowRight className="size-3" />
+                </Button>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Desktop Table (shown on >= sm) */}
+      <div className="hidden sm:block overflow-x-auto [scrollbar-width:thin]">
         <table className="w-full min-w-[620px] border-collapse text-left text-sm">
           <thead>
             <tr className="border-b bg-muted/40 text-xs font-semibold text-muted-foreground select-none">
