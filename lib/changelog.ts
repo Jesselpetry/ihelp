@@ -100,13 +100,6 @@ export const CHANGELOG: VersionEntry[] = [
       {
         kind: "security",
         text: {
-          th: "ข้อสอบเก่าย้ายไปที่เก็บแบบปิด เสิร์ฟผ่านลิงก์อายุ 10 นาที เฉพาะผู้มีสิทธิ์",
-          en: "Past exam papers moved to a private bucket, served to insiders through 10-minute signed URLs",
-        },
-      },
-      {
-        kind: "security",
-        text: {
           th: "ชื่อไฟล์และ metadata ของสื่อไม่หลุดไปกับ JS bundle อีกต่อไป",
           en: "Asset filenames and metadata no longer ship inside the browser bundle",
         },
@@ -258,13 +251,6 @@ export const CHANGELOG: VersionEntry[] = [
         text: {
           th: "แชร์เข้าคลัง /upload: อัปโหลดสไลด์ สรุป หรือโน้ต ระบุวิชา ประเภท และช่วงสอบ พร้อมให้เครดิตผู้แชร์",
           en: "Community uploads at /upload: share slides, summaries, or notes tagged by subject, type, and exam scope, credited to the uploader",
-        },
-      },
-      {
-        kind: "added",
-        text: {
-          th: "คลังข้อสอบเก่า /exams: จำกัดสิทธิ์เฉพาะบทบาท insider/admin ไฟล์อยู่ในที่เก็บแบบปิด เข้าถึงผ่านลิงก์ที่หมดอายุใน 10 นาที",
-          en: "Past-exam archive at /exams: insider/admin only, served from a private bucket through links that expire in 10 minutes",
         },
       },
       {
