@@ -10,10 +10,13 @@ term: 1
 termId: Y1-S1
 prerequisites: []
 language: th
-tool: Logisim
 sources:
   - kmitl-archive/archive/Y1-S1/Intro-to-Computer-Systems
   - kmitl-archive/archive/Y1-S1-2569/Intro-to-Computer-Systems
+  - RESOURCES_MANIFEST.md (ทะเบียนสื่อ 120 ไฟล์ ยืนยันด้วยการเรนเดอร์หน้าปกจริง)
+  - archive/course-materials-2569.md (ครึ่งหลัง 1/2569 + วิดีโอ 35 คลิป)
+  - ประมวลการสอน 1/2569 — ics-ref-syllabus-2569.pdf (ฉบับร่าง)
+  - supakit.net/learning/?file=ics
 ---
 
 # ICS — ระบบคอมพิวเตอร์เบื้องต้น
@@ -25,44 +28,100 @@ sources:
 | รหัสวิชา | `06016411` |
 | ชื่อไทย | ระบบคอมพิวเตอร์เบื้องต้น |
 | ชื่ออังกฤษ | INTRODUCTION TO COMPUTER SYSTEMS |
-| หน่วยกิต | 3 (2-2-5) |
+| หน่วยกิต | 3 (2-2-5) — บรรยาย 2 · ปฏิบัติ 2 · ศึกษาด้วยตนเอง 5 |
 | ชั้นปี/เทอม | ปี 1 เทอม 1 |
 | วิชาบังคับก่อน | ไม่มี |
-| เครื่องมือหลัก | **Logisim** (ไฟล์ `.circ`) — ใช้ทุกแล็บ |
-| ผู้สอน (ที่ปรากฏในคลัง) | Asst. Prof. Dr. Supakit Nootyaskool (สายฮาร์ดแวร์/อิเล็กทรอนิกส์) |
+| หลักสูตร | IT |
+| ระยะเวลา | 15 ครั้ง — **แบ่งผู้สอนคนละครึ่งเทอม** (ครั้งที่ 1–7 และ 8–15) |
+| ผู้สอน (1/2569) | ครึ่งแรก **ศ.ดร. สุขสันต์ พาณิชพาพิบูล** (Prof. Dr. Sooksan Panichpapiboon) — ดิจิทัลลอจิก · ครึ่งหลัง **ผศ.ดร. สุภกิจ นุตยะสกุล** (Asst. Prof. Dr. Supakit Nootyaskool) — ฮาร์ดแวร์คอมพิวเตอร์ |
+| ตำรา | ผศ.ดร. สุภกิจ นุตยะสกุล, *Introduction to Computer System* ฉบับ v0.5 — `ics-ref-textbook-v05.pdf` |
+| เครื่องมือหลัก | ครึ่งแรก **Logisim** (ส่งงานเป็นไฟล์ `.circ`) · ครึ่งหลัง มัลติมิเตอร์ · ออสซิลโลสโคป · โพรโทบอร์ด · Tinkercad · บอร์ด FPGA Basys2 |
+| สื่อในคลัง | 111 ไฟล์เผยแพร่ (คลังเดิม 120 · กักกัน PII 9) + วิดีโอ 35 คลิป — รายไฟล์อยู่ใน `RESOURCES_MANIFEST.md` |
 
 ### คำอธิบายโดยสังเขป
 
-วิชานี้สอน **ตรรกศาสตร์ดิจิทัล (digital logic)** ซึ่งเป็นชั้นล่างสุดของระบบคอมพิวเตอร์ —
-จากสัญญาณ analog/digital → logic gate → พีชคณิตบูลีน → รูปแบบบัญญัติ (SOP/POS) →
-การลดรูปด้วย K-map → ระบบเลขและ complement → วงจรรวม (MUX/DEMUX, adder, comparator)
-แล้วต่อยอดสู่วงจรลำดับ (flip-flop, counter), หน่วยความจำ และการแปลงสัญญาณ ADC/DAC
+วิชานี้ไล่ระบบคอมพิวเตอร์จากชั้นล่างสุดขึ้นไปจนถึงซีพียู และ **แบ่งเป็นสองครึ่งชัดเจน**
 
-> **หมายเหตุสำคัญ:** ในคลังมีสไลด์ **สองสาย** ที่ใช้ชื่อวิชาเดียวกัน
-> อ่านหัวข้อ 2 ก่อนเลือกไฟล์ให้ตรงกับที่เรียนจริง
+**ครึ่งแรก — ตรรกศาสตร์ดิจิทัล (digital logic)** สัญญาณ analog/digital → logic gate →
+พีชคณิตบูลีน → รูปแบบบัญญัติ (SOP/POS) → การลดรูปด้วย K-map → ไทม์ไดอะแกรม →
+ระบบเลขและ complement → MUX/DEMUX ทำแล็บทั้งหมดในโปรแกรม Logisim
 
-### สัดส่วนคะแนน (สายฮาร์ดแวร์, ตามสไลด์ Chapter 01)
+**ครึ่งหลัง — ฮาร์ดแวร์คอมพิวเตอร์** บัสที่อยู่/ข้อมูล · parity · decoder ·
+latch/buffer/tristate · flip-flop และตัวนับ · การแปลงสัญญาณ ADC/DAC · หน่วยความจำ
+ปิดท้ายด้วย ALU และการออกแบบซีพียู 4 บิต ทำแล็บบนโพรโทบอร์ดจริงและบอร์ด FPGA
 
-| รายการ | สัดส่วน |
-|---|---|
-| Quiz (7 ครั้ง) | 15% |
-| Lab Quiz (7 ครั้ง) | 15% |
-| Final Exam | 10% |
-| Lab Exam | 10% |
-| *(รวมส่วนที่ระบุในสไลด์ = 50%)* | |
+### โครงรายวิชา — ผู้สอนสองคน คนละครึ่งเทอม
+
+| ช่วง | ครั้งที่ | เนื้อหา | ผู้สอน | สอบ |
+|---|:---:|---|---|---|
+| ครึ่งแรก | 1–7 | เลขฐาน · บูลีน · SOP/POS · K-map · timing · MUX/DEMUX | ศ.ดร. สุขสันต์ พาณิชพาพิบูล | **กลางภาค 50%** |
+| ครึ่งหลัง | 8–15 | จากวงจรดิจิทัลถึงการออกแบบ CPU 4 บิต | ผศ.ดร. สุภกิจ นุตยะสกุล | **ปลายภาค 50%** |
+
+**ทั้งสองครึ่งอยู่ในขอบเขตสอบเท่า ๆ กัน** — สไลด์สองชุดในคลังไม่ใช่ "ฉบับปัจจุบัน" กับ
+"ฉบับปีก่อน" ที่เลือกอ่านชุดเดียวได้ ข้ามชุดใดชุดหนึ่งคือทิ้งคะแนนครึ่งหนึ่งของวิชา
+ข้อสอบปลายภาคออกเฉพาะเนื้อหาหลังกลางภาค (ตามสไลด์ตารางเรียนของ ผศ.ดร. สุภกิจ)
+
+### สัดส่วนคะแนน (1/2569)
+
+| ช่วง | รายการ | สัดส่วน |
+|---|---|---:|
+| ครึ่งแรก (ครั้งที่ 1–7) | สอบกลางภาค | 50% |
+| ครึ่งหลัง (ครั้งที่ 8–15) | Quiz ในคาบบรรยาย (ทุกสัปดาห์) | 15% |
+| | คะแนนงานแล็บ 1–5 | 10% |
+| | Lab Exam (9 และ 16 ต.ค.) | 15% |
+| | Final Exam | 10% |
+
+> **ที่มาและข้อควรระวัง** — การแบ่ง 50/50 มาจากประมวลการสอน 1/2569
+> (`ics-ref-syllabus-2569.pdf`) ส่วนการแบ่งย่อยของครึ่งหลังพิมพ์อยู่บนสไลด์
+> `ics-lec-chapter01-computer-system-2569.pdf` (หน้า 1–11 เป็นส่วนแนะนำรายวิชา)
+>
+> ประมวลการสอนฉบับนี้ยัง **เป็นฉบับร่าง** — หน้าสุดท้ายระบุ
+> `SUBMIT / WAITING_FOR_APPROVE` ลงวันที่ 1 ก.ค. 2569 ใช้ดูโครงเนื้อหาได้
+> แต่อย่าอ้างเป็นเกณฑ์วัดผลฉบับทางการ
+>
+> สไลด์รุ่นก่อนหน้าเคยระบุ Quiz 15% · **Lab Quiz 15%** · Final 10% · **Lab Exam 10%**
+> รวม 50% เท่ากันแต่สลับน้ำหนักระหว่างงานแล็บกับสอบแล็บ — **ให้ยึดประกาศในคาบเรียน**
+
+### ตำราและเอกสารอ้างอิง
+
+**ตำราหลัก** — ผศ.ดร. สุภกิจ นุตยะสกุล, *Introduction to Computer System* ฉบับ v0.5 (251 หน้า อยู่ในคลัง)
+
+- เป็น **ฉบับร่าง** ลงวันที่ 6 ก.ย. 2024 — ทุกหน้ามีลายน้ำ *"ฉบับร่าง ใช้เรียน ICS"*
+- ทั้งเล่มเป็นภาพ **ไม่มี text layer สักหน้า** ค้นข้อความไม่ได้ คัดลอกไม่ได้ และโปรแกรมอ่านหน้าจอใช้ไม่ได้
+- ประมวลการสอนเขียนว่า *Required textbooks/materials: None* และไม่ได้ระบุเล่มนี้ไว้ —
+  ถือเป็นเอกสารประกอบ ไม่ใช่ตำราบังคับ
+
+**อ้างอิงตามประมวลการสอน**
+
+1. R. H. Katz and G. Borriello, *Contemporary Logic Design*, 2nd ed., Pearson Education.
+2. C. Hamacher, Z. Varanasi, S. Zaky, and N. Majikian, *Computer Organization and Embedded System*, 6th ed., McGraw-Hill, 2011.
+3. P. Vincent, *Computer Systems Design and Architecture*, Pearson Education, 2004.
+
+**เอกสารประกอบอื่นในคลัง** — `ics-ref-hardware-component-list-2569.pdf` (รายการอุปกรณ์ที่ต้องเตรียมสำหรับแล็บ) ·
+`ics-ref-random-exam-number-tool.zip` (โปรแกรมสุ่มหมายเลขข้อสอบแล็บ 1–20)
 
 ---
 
-## 2. สองสายเนื้อหาในคลัง
+## 2. สไลด์สองชุดในคลัง — แยกให้ออกก่อนเลือกอ่าน
 
-| | **สาย A — Digital Logic (ปัจจุบัน, cohort 2569)** | **สาย B — Computer Hardware (คลังปีก่อน)** |
+ทั้งสองชุดคือครึ่งแรกกับครึ่งหลังของวิชาเดียวกัน ต้องอ่านทั้งคู่
+
+| | **สาย A — ครึ่งแรก (Digital Logic)** | **สาย B — ครึ่งหลัง (Computer Hardware)** |
 |---|---|---|
-| ชื่อไฟล์ | `ICS_Lec_Week01-07…`, `…_v2` | `ICS_Lec_Chapter01-06`, `ICS_Lec_Week0X` (ไม่มี `_v2`) |
-| ผู้สอน | ไม่ระบุในสไลด์ (เทมเพลต KMITL) | Asst. Prof. Dr. Supakit Nootyaskool |
-| เครื่องมือ | Logisim | Tinkercad, FPGA, ออสซิลโลสโคป |
-| แนวข้อสอบ | ออกแบบวงจร ลดรูปสมการ ไทม์ไดอะแกรม | ทฤษฎีอิเล็กทรอนิกส์ + วงจร + คำนวณสัญญาณ |
+| ครั้งที่ | 1–7 | 8–15 |
+| ชื่อไฟล์ | `ics-lec-weekNN-*.pdf` | `ics-lec-chapterNN-*.pdf` |
+| หน้าปก | เทมเพลตแถบน้ำเงิน KMITL เขียนว่า *"Lecture N"* ไม่มีชื่อผู้สอน | พื้นขาว เขียนว่า *"ChapterN:"* พร้อมชื่อ Asst.Prof.Dr.Supakit Nootyaskool |
+| ผู้สอน | ศ.ดร. สุขสันต์ พาณิชพาพิบูล | ผศ.ดร. สุภกิจ นุตยะสกุล |
+| เครื่องมือ | Logisim | ออสซิลโลสโคป · Tinkercad · FPGA |
+| ออกสอบ | กลางภาค | ปลายภาค |
+| แนวข้อสอบ | ออกแบบวงจร ลดรูปสมการ ไทม์ไดอะแกรม | ทฤษฎีวงจร/สัญญาณ + คำนวณ + โครงสร้างซีพียู |
 
-**ให้ยึดสาย A เป็นหลัก** สำหรับ cohort 2569 — สาย B ใช้เป็นเนื้อหาเสริม/อ้างอิงเชิงลึก
+**วิธีแยกเร็วที่สุด:** เปิดหน้าแรก — แถบสีน้ำเงินด้านบนคือสาย A
+พื้นขาวมีชื่อ ผศ.ดร. สุภกิจ คือสาย B
+
+> ⚠️ **อย่าเลือกไฟล์จากชื่ออย่างเดียว** — มีหกไฟล์ที่ชื่อขึ้นต้น `ics-lec-week01`
+> ถึง `ics-lec-week06` แต่เนื้อในเป็นสไลด์ Chapter 1–6 ของสาย B
+> ตารางเทียบชื่อไฟล์กับหน้าปกจริงอยู่ใน `RESOURCES_MANIFEST.md` หัวข้อ 3 และ 7
 
 ---
 
@@ -72,31 +131,34 @@ sources:
 
 | สัปดาห์ | หัวข้อ | ไฟล์สไลด์ |
 |---|---|---|
-| 01 | Introduction to Digital Systems | `ICS_Lec_Week01-Introduction.pdf` |
-| 02 | Boolean Algebra | `ICS_Lec_Week02-Boolean.pdf` |
-| 03 | Canonical Forms (SOP / POS) | `ICS_Lec_Week03-CanonicalForms.pdf` |
-| 04 | Boolean Minimization (Karnaugh Map) | `ICS_Lec_Week04-Kmap.pdf` |
-| 05 | Time Response / Time Diagram | `ICS_Lec_Week05-TimeResponse.pdf` |
-| 06 | Number Systems & Complement | `ICS_Lec_Week06-NumberSystems.pdf` |
-| 07 | Multiplexer & Demultiplexer | `ICS_Lec_Week07-MUX.pdf` |
+| 01 | Introduction to Digital Systems | `ics-lec-week01-v2.pdf` |
+| 02 | Boolean Algebra | `ics-lec-week02-v2.pdf` |
+| 03 | Canonical Forms (SOP / POS) | `ics-lec-week03-v2.pdf` |
+| 04 | Boolean Minimization (Karnaugh Map) | `ics-lec-week04-kmap.pdf` |
+| 05 | Time Response / Time Diagram | `ics-lec-week05-time-response.pdf` |
+| 06 | Number Systems & Complement | `ics-lec-week06-number-systems.pdf` |
+| 07 | Multiplexer & Demultiplexer | `ics-lec-week07-mux.pdf` |
 
-> ข้อสอบเก่าในคลังยืนยันขอบเขตนี้ — `ICS_Midterm_Week-1-7.pdf`
+> คอลัมน์ขวาคือฉบับที่ควรใช้อ่านสอบ — ในคลังมีฉบับซ้ำและฉบับขอบหน้าถูกตัดอีกหลายไฟล์
+> ข้อสอบเก่าในคลังยืนยันขอบเขตนี้ — `ics-midterm-week01-07.pdf`
 
 ### 3.2 ขอบเขตสอบปลายภาค
 
-คลังยังไม่มีสไลด์ Week 08–15 ของสาย A **หัวข้อด้านล่างมาจากแผนการสอนของสาย B**
-(สไลด์ `ICS_Lec_Chapter01.pdf` หน้า 6–8) และเป็นลำดับมาตรฐานของวิชาลักษณะนี้:
+ครึ่งหลังคือสาย B ทั้งหมด (ครั้งที่ 8–15) และตอนนี้ **สไลด์ฉบับ 2569 อยู่ในคลังครบทั้ง 7 บท**
+ลำดับด้านล่างคือแผนการสอนของ ผศ.ดร. สุภกิจ ตามที่ปรากฏบนสไลด์ `Chapter 1` หน้า 1–11:
 
 | ลำดับ | หัวข้อ | ไฟล์อ้างอิงในคลัง |
 |---|---|---|
-| 1 | Combinational vs Sequential logic · edge trigger | `ICS_Lec_Chapter04.pdf` |
-| 2 | Flip-flop: SR, JK, D, T | `ICS_Lec_Chapter04.pdf` |
-| 3 | Latch, Buffer, Tristate gate | `ICS_Lec_Chapter03.pdf` / `Slide03-1.pdf` |
-| 4 | Counter — asynchronous vs synchronous, frequency division, FIFO | `ICS_Lec_Chapter04.pdf` |
-| 5 | Analog vs digital signal · sampling · quantization · modulation | `ICS_Lec_Chapter04.pdf` |
-| 6 | DAC (R-2R, op-amp) และ ADC (Flash, SAR) | `ICS_Lec_Chapter05.pdf` |
-| 7 | Memory unit — SRAM, DRAM, ROM/PROM/EPROM/EEPROM | `ICS_Lec_Chapter06.pdf` |
-| 8 | ALU · Instruction set และ CPU | ยังไม่มีในคลัง |
+| 1 | ภาพรวมระบบคอมพิวเตอร์ · วิวัฒนาการฮาร์ดแวร์ | `ics-lec-chapter01-computer-system-2569.pdf` |
+| 2 | Memory & I/O addressing — address/data bus, parity, decoder, 7-segment | `ics-lec-chapter02-memory-io-addressing-2569.pdf` |
+| 3 | Latch, Buffer, Tristate gate · SR flip-flop | `ics-lec-chapter03-mux-latch-buffer-2569.pdf` |
+| 4 | Flip-flop SR/JK/D/T · Counter · frequency division · FIFO · ADC ตอนที่ 1 | `ics-lec-chapter04-counter-adc-2569.pdf` |
+| 5 | DAC (R-2R, op-amp) และ ADC (Flash, SAR) | `ics-lec-chapter05-dac-adc-part2-2569.pdf` |
+| 6 | Memory unit — SRAM, DRAM, ROM/PROM/EPROM/EEPROM | `ics-lec-chapter06-memory-circuit-2569.pdf` |
+| 7 | ALU · Instruction set · แผนผังซีพียู 4 บิต | `ics-lec-chapter07-alu-cpu-2569.pdf` |
+
+> วิดีโอบรรยายและสาธิตแล็บของครึ่งหลัง 35 คลิป พร้อมตารางเรียนรายสัปดาห์
+> อยู่ในโมดูล **คาบเรียนรายสัปดาห์ + วิดีโอ** (`archive/course-materials-2569.md`)
 
 ---
 
@@ -188,7 +250,7 @@ sources:
 - **DEMUX** — กระจาย 1 อินพุตไปยัง 1 ใน 2ⁿ เอาต์พุต; 1:2, 2:4, 3:8
 - DEMUX ที่ตรึงอินพุต = 1 ทำหน้าที่เหมือน **decoder**
 
-### หัวข้อหลังกลางภาค (สาย B / ต่อยอด)
+### หัวข้อหลังกลางภาค — สาย B (ครั้งที่ 8–15 · ออกปลายภาค)
 
 **Flip-flop**
 
@@ -223,16 +285,41 @@ sources:
 
 ---
 
-## 5. แล็บ (Logisim)
+## 5. แล็บ
 
-| Lab | เนื้อหา | ทักษะที่วัด |
-|---|---|---|
-| 01 | รู้จัก Logisim, สร้าง subcircuit, `myXNOR`, 4-bit comparator | ต่อวงจร ตั้งชื่อพิน อ่าน schematic |
-| 02 | ตารางความจริงของ AND/OR/NAND/NOR, `numDecoderV6` + 7-segment, 2-bit adder | ทดลองและบันทึกผล |
-| 03 | ลดรูปสมการด้วยพีชคณิตบูลีน (การทดลองย่อย 1.1–1.5) + ออกแบบตัวเปรียบเทียบ 2 บิต | พิสูจน์สมการ + ออกแบบ |
-| 04 | K-map 3 ตัวแปร, 4 ตัวแปร, 4 ตัวแปรที่มี don't care, 3-bit incrementer, 2-bit comparator | ลดรูปด้วย K-map และแปลงเป็นวงจร |
-| 05 | (ตามคลัง) วงจรลำดับ/ไทม์ไดอะแกรม | — |
-| 07 | (ฉบับร่างในคลัง) MUX/DEMUX | — |
+แล็บก็แยกสองสายเหมือนสไลด์ และ **หัวกระดาษใช้คำต่างกัน** ซึ่งเป็นวิธีแยกที่เร็วที่สุด —
+สาย A ขึ้นต้นว่า *การปฏิบัติการที่ N* ทำในโปรแกรมแล้วส่งไฟล์ `.circ`
+ส่วนสาย B ขึ้นต้นว่า *การทดลองที่ N* ทำบนโพรโทบอร์ดแล้วให้ TA เซ็นในคาบ
+
+### 5.1 สาย A — Logisim (ครึ่งแรก)
+
+| Lab | หัวข้อบนหัวกระดาษ | เนื้อหา | ไฟล์ |
+|---|---|---|---|
+| 01 | การใช้โปรแกรมจำลองการทำงานของระบบดิจิทัล (Logisim) | รู้จัก Logisim, สร้าง subcircuit, `myXNOR`, 4-bit comparator | `ics-lab-01.pdf` |
+| 02 | การทำงานของลอจิกเกท (Logic Gates) | ตารางความจริงของ AND/OR/NAND/NOR, `numDecoderV6` + 7-segment, 2-bit adder | `ics-lab-02.pdf` |
+| 03 | พีชคณิตบูลีน (Boolean Algebra) | ลดรูปสมการด้วยพีชคณิตบูลีน (การทดลองย่อย 1.1–1.5) + ออกแบบตัวเปรียบเทียบ 2 บิต | `ics-lab-03.pdf` |
+| 04 | วงจรเชิงผสมเบื้องต้น (Basic Combinational Circuits) | K-map 3 ตัวแปร, 4 ตัวแปร, 4 ตัวแปรที่มี don't care, 3-bit incrementer, 2-bit comparator | `ics-lab-04.pdf` |
+
+> ใบงานสาย A ในคลังมีฉบับเก่าและฉบับตัวแปรอีก 19 ไฟล์ (`-v2` `-v3` `-y1-s1` `-week0N`
+> `-draft`) เก็บไว้เทียบรุ่นเท่านั้น ถ้ามีฉบับหลักแล้วไม่ต้องอ่าน
+
+### 5.2 สาย B — ต่อวงจรจริง ฉบับ 2569 (ครึ่งหลัง)
+
+| Lab | หัวข้อ | เนื้อหา | ไฟล์ |
+|---|---|---|---|
+| 01 | มัลติมิเตอร์อนาล็อกและดิจิทัล | อ่านค่า ไล่สายเคเบิล ตัดและบัดกรีสาย | `ics-lab-01-multimeter-2569.pdf` |
+| 02 | ฟังก์ชันเจเนอเรเตอร์กับออสซิลโลสโคป | วัดสัญญาณ วงจร low-pass filter | `ics-lab-02-oscilloscope-2569.pdf` |
+| 03 | อุปกรณ์พื้นฐานบนโพรโทบอร์ด | รหัสสีตัวต้านทาน สวิตช์กด LED หน่วงเวลาด้วย RC | `ics-lab-03-breadboard-basics-2569.pdf` |
+| 04 | วงจรออสซิลเลเตอร์ (74LS04) | RC ring oscillator จากอินเวอร์เตอร์ | `ics-lab-04-inverter-oscillator-2569.pdf` |
+| 05 | สร้างมัลติเพล็กเซอร์ด้วย universal gate | ต่อเกท IC 7400 เป็นวงจรผสม | `ics-lab-05-logic-gates-2569.pdf` |
+| 06 | สร้างวงจรบนบอร์ด FPGA Basys2 | ลงวงจรดิจิทัลบนบอร์ด Digilent Basys2 | `ics-lab-06-fpga-basys2-2569.pdf` |
+
+> ⚠️ **ชื่อโฟลเดอร์ต้นทางตั้งตามสไลด์ ไม่ใช่ตามใบงาน** — เช่นใบงานสัปดาห์ 5 ที่อยู่ใน
+> โฟลเดอร์ "ADC-DAC-Part-II" ไม่มีเนื้อหา ADC/DAC เลย เป็นการต่อเกทลอจิก
+> ตารางข้างบนอ่านจากเนื้อในใบงานจริง
+>
+> อุปกรณ์ที่ต้องเตรียมเองอยู่ใน `ics-ref-hardware-component-list-2569.pdf`
+> และ Lab Exam ใช้โปรแกรมสุ่มหมายเลขข้อสอบ 1–20 (`ics-ref-random-exam-number-tool.zip`)
 
 ---
 
@@ -264,11 +351,25 @@ sources:
 
 ## 7. แหล่งข้อมูลในคลัง
 
-| ประเภท | จำนวน | หมายเหตุ |
-|---|---|---|
-| สไลด์บรรยาย | 25 ไฟล์ | มีทั้งสองสาย ระวังไฟล์ซ้ำ (`_v2`) |
-| แล็บ | 22 ไฟล์ | มีทั้งโจทย์และฉบับทำแล้ว (`-Completed`) |
-| ข้อสอบ/quiz | 25 ไฟล์ | รวมไฟล์ `.circ` ของโจทย์ Logisim |
-| แบบฝึกหัด | 2 ไฟล์ | |
-| ชีทสรุป | 4 ไฟล์ | `ICS_Sheet_Recap-Boolean.pdf` สรุปกฎบูลีนครบ |
-| _Archive | 27 หน้า สแกน Final Graded Quiz Review | ยังไม่ได้ถอดเป็นข้อความ (เป็นรูป) |
+นับจากไฟล์ที่อยู่บนชั้นวางจริง — คลังเดิม 120 ไฟล์ เผยแพร่ 111 ไฟล์
+กักกันไว้ 9 ไฟล์เพราะมีชื่อ-นามสกุลและรหัสนักศึกษาของผู้อื่นอยู่ข้างใน
+
+| หมวด | ไฟล์ | หมายเหตุ |
+|---|---:|---|
+| สไลด์บรรยาย | 39 | สาย A 17 · สาย B 21 · ตัดตอนจากตำรา 1 — ระวังฉบับซ้ำและชื่อไม่ตรงเนื้อหา |
+| แล็บ | 29 | ต้นฉบับเปล่า 10 · ฉบับเก่า/ตัวแปร 19 (กักกัน PII 6 ไฟล์) |
+| ข้อสอบ/quiz | 22 | รวมไฟล์ `.circ` ของโจทย์ Logisim 5 ไฟล์ (กักกัน PII 3 ไฟล์) |
+| ภาพสแกนข้อสอบ | 10 | ข้อสอบกลางภาค 1/2564 ทีละหน้า |
+| ชีทสรุป | 4 | `ics-sheet-recap-boolean.pdf` สรุปกฎบูลีนครบ |
+| เอกสารอ้างอิง | 3 | ประมวลการสอน · ตำรา v0.5 · รายการอุปกรณ์แล็บ |
+| แบบฝึกหัด | 2 | |
+| อื่น ๆ | 2 | โปรแกรมสุ่มข้อสอบแล็บ · ไฟล์ Logisim `.circ` |
+| **รวมเผยแพร่** | **111** | ทุกไฟล์มี metadata เขียนมือครบ ไม่มีรายการที่ตกไป fallback |
+
+**นอกคลังไฟล์** — วิดีโอบรรยายและสาธิตแล็บของครึ่งหลัง 35 คลิป
+บนช่อง [@SupakitNootyaskool](https://www.youtube.com/@SupakitNootyaskool)
+รวบรวมไว้แล้วใน `archive/course-materials-2569.md`
+
+**สิ่งที่ยังขาด** — ต้นทางตอบ 404 สำหรับ `chap02.pdf`–`chap07.pdf` (เอกสารฉบับเก่าคู่ขนานกับสไลด์
+เนื้อหาซ้ำกับสไลด์ที่ได้มาครบแล้ว) และไฟล์ VM `WINXP_XILINX_ICS_LAB.ova` สำหรับแล็บ FPGA
+ซึ่งต้องขอจากอาจารย์โดยตรง — รายละเอียดอยู่ใน `RESOURCES_MANIFEST.md`

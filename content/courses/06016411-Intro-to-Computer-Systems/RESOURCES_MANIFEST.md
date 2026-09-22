@@ -18,18 +18,17 @@
 |             | **สาย A — Digital Logic**                                      | **สาย B — Computer Hardware**                                                             |
 | ----------- | -------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
 | ครั้งที่    | 1–7                                                            | 8–15                                                                                      |
-| ผู้สอน      | อ. Sooksan Panichpapiboon                                      | ผศ.ดร.สุภกิจ นุตยะสกุล                                                                    |
+| ผู้สอน      | ศ.ดร. สุขสันต์ พาณิชพาพิบูล                                      | ผศ.ดร. สุภกิจ นุตยะสกุล                                                                    |
 | สอบ         | **กลางภาค 50%**                                                | **ปลายภาค 50%**                                                                           |
 | หน้าปกสไลด์ | เทมเพลตแถบน้ำเงิน KMITL เขียนว่า _"Lecture N"_ ไม่มีชื่อผู้สอน | พื้นขาว เขียนว่า _"ChapterN:"_ พร้อมชื่อ Asst.Prof.Dr.Supakit Nootyaskool และเลขไทยลายน้ำ |
 | เครื่องมือ  | Logisim                                                        | ออสซิลโลสโคป · Tinkercad · FPGA                                                           |
 | หัวข้อ      | บูลีน · canonical form · K-map · timing · เลขฐาน · MUX         | บัส/แอดเดรส · flip-flop · counter · ADC/DAC · หน่วยความจำ · ALU/CPU                       |
 
 **วิธีแยกเร็วที่สุด:** เปิดหน้าแรก ถ้ามีแถบสีน้ำเงินด้านบนคือสาย A
-ถ้าเป็นพื้นขาวมีชื่อ อ.สุภกิจ คือสาย B
+ถ้าเป็นพื้นขาวมีชื่อ ผศ.ดร. สุภกิจ คือสาย B
 
-> ⚠️ [`summary.md` หัวข้อ 2](summary.md) ยังเขียนว่าสองชุดนี้คือ "สาย A (ปัจจุบัน)"
-> กับ "สาย B (คลังปีก่อน)" แล้วแนะนำให้ยึดสาย A เป็นหลัก — **ขัดกับประมวลการสอน**
-> ทำตามคำแนะนำนั้นคือข้ามเนื้อหาครึ่งเทอม ยังไม่ได้แก้เพราะ `summary.md` ดูแลด้วยมือ
+> ✅ แก้แล้วใน [`summary.md`](summary.md) — หัวข้อ 1 และ 2 เขียนตามประมวลการสอนแล้วว่า
+> สองชุดนี้คือครึ่งแรกกับครึ่งหลังของวิชาเดียวกัน ไม่ใช่ "ฉบับปัจจุบัน" กับ "ฉบับปีก่อน"
 
 ---
 
@@ -91,15 +90,15 @@ public/assets/it-kmitl/ics/lectures/ics-lec-chapter04-counter-adc-2569.pdf
 | `ics-lec-chapter05-dac-adc-part2-2569.pdf`        |   32 |  858 KB | B   | หลัก    |   ✅    | _Chapter5: DAC and ADC Part-II_ ฉบับ 2569 — R-2R ladder, op-amp DAC, flash ADC, SAR (`scope: final`, `chapter: 5`)                                                             | `DAC` `ADC` `R-2R` `SAR`                           |
 | `ics-lec-chapter06-memory-circuit-2569.pdf`       |   26 |  663 KB | B   | หลัก    |   ✅    | _Chapter6: Memory unit_ ฉบับ 2569 — SRAM, DRAM, ROM/PROM/EPROM/EEPROM (`scope: final`, `chapter: 6`)                                                                           | `SRAM` `DRAM` `ROM`                                |
 | `ics-lec-chapter07-alu-cpu-2569.pdf`              |   40 |  610 KB | B   | หลัก    |   ✅    | _Chapter 7: ALU and CPU creation_ ฉบับ 2569 — ALU, รีจิสเตอร์, ชุดคำสั่ง, แผนผังซีพียู 4 บิต (`scope: final`, `chapter: 7`)                                                    | `ALU` `CPU` `Instruction Set`                      |
-| `ics-lec-chapter01.pdf`                           |   37 | 1308 KB | B   | เก่า    |   ✅    | หน้าปก _Introduction to Computer System_ โดย อ.สุภกิจ — ฉบับปีก่อนของ Chapter 1 (`scope: final`, `chapter: 1`)                                                                 | `Computer Evolution`                               |
+| `ics-lec-chapter01.pdf`                           |   37 | 1308 KB | B   | เก่า    |   ✅    | หน้าปก _Introduction to Computer System_ โดย ผศ.ดร. สุภกิจ — ฉบับปีก่อนของ Chapter 1 (`scope: final`, `chapter: 1`)                                                                 | `Computer Evolution`                               |
 | `ics-lec-chapter02-v2.pdf`                        |   48 | 2020 KB | B   | เก่า    |   ✅    | หน้าปก _Chapter2: Memory, I/O addressing_ — ฉบับปีก่อน (`scope: final`, `chapter: 2`)                                                                                          | `Address Bus` `Decoder`                            |
 | `ics-lec-chapter03.pdf`                           |   24 | 1170 KB | B   | เก่า    |   ✅    | หน้าปก _Chapter3: Multiplexer, Latch, Buffer_ ฉบับ 24 หน้า (`scope: final`, `chapter: 3`)                                                                                      | `MUX` `Latch`                                      |
 | `ics-lec-chapter04.pdf`                           |   47 | 1718 KB | B   | เก่า    |   ✅    | หน้าปก _Chapter4: Counter and DAC & ADC Part-I_ ฉบับ 47 หน้า (`scope: final`, `chapter: 4`)                                                                                    | `Flip-Flop` `Counter`                              |
 | `ics-lec-chapter04-v2.pdf`                        |   57 |  896 KB | B   | เก่า    |   ✅    | หน้าปก _Chapter4: Counter and DAC & ADC Part-I_ ฉบับ 57 หน้า (`scope: final`, `chapter: 4`)                                                                                    | `Flip-Flop` `Counter` `ADC`                        |
 | `ics-lec-chapter05.pdf`                           |   27 |  697 KB | B   | เก่า    |   ✅    | หน้าปก _Chapter5: DAC and ADC Part-II_ ฉบับ 27 หน้า (`scope: final`, `chapter: 5`)                                                                                             | `DAC` `ADC`                                        |
 | `ics-lec-slide03-1.pdf`                           |   39 |  908 KB | B   | ซ้ำ     |   ✅    | หน้าปก _Chapter3: Multiplexer, Latch, Buffer_ (`scope: final`, `chapter: 3`)                                                                                                   | `MUX` `Latch`                                      |
-| `ics-lec-basic-computer-knowledge-computer.pdf`   |   40 | 2311 KB | B   | เสริม   |   ✅    | _Basic computer knowledge and computer evolution_ โดย อ.สุภกิจ ลงวันที่ 10 ส.ค. 2022 — เอกสารเสริมนอกลำดับบท (`scope: final`)                                                  | `Computer Evolution`                               |
-| `ics-lec-week01.pdf`                              |   42 | 2289 KB | B   | ชื่อผิด |   ✅    | หน้าปกคือ **Chapter1: Computer System** ของ อ.สุภกิจ — แมปเป็น `scope: final`, `chapter: 1` ใน subject-library.ts                                                              | `Computer Evolution`                               |
+| `ics-lec-basic-computer-knowledge-computer.pdf`   |   40 | 2311 KB | B   | เสริม   |   ✅    | _Basic computer knowledge and computer evolution_ โดย ผศ.ดร. สุภกิจ ลงวันที่ 10 ส.ค. 2022 — เอกสารเสริมนอกลำดับบท (`scope: final`)                                                  | `Computer Evolution`                               |
+| `ics-lec-week01.pdf`                              |   42 | 2289 KB | B   | ชื่อผิด |   ✅    | หน้าปกคือ **Chapter1: Computer System** ของ ผศ.ดร. สุภกิจ — แมปเป็น `scope: final`, `chapter: 1` ใน subject-library.ts                                                              | `Computer Evolution`                               |
 | `ics-lec-week02.pdf`                              |   48 | 2025 KB | B   | ชื่อผิด |   ✅    | หน้าปกคือ **Chapter2: Memory, I/O addressing** — แมปเป็น `scope: final`, `chapter: 2` ใน subject-library.ts                                                                    | `Address Bus` `Decoder`                            |
 | `ics-lec-week03.pdf`                              |   39 |  892 KB | B   | ชื่อผิด |   ✅    | หน้าปกคือ **Chapter3: Multiplexer, Latch, Buffer** — แมปเป็น `scope: final`, `chapter: 3` ใน subject-library.ts                                                                | `MUX` `Latch`                                      |
 | `ics-lec-week04.pdf`                              |   58 | 1015 KB | B   | ชื่อผิด |   ✅    | หน้าปกคือ **Chapter4: Counter and DAC & ADC Part-I** — แมปเป็น `scope: final`, `chapter: 4` ใน subject-library.ts                                                              | `Flip-Flop` `Counter`                              |
@@ -202,7 +201,7 @@ SHA-256 ใช้ตัดสินไม่ได้ เพราะไฟล�
 
 ## 7. ไฟล์ที่ชื่อไม่ตรงเนื้อหา — ควรเปลี่ยนชื่อ
 
-**หกไฟล์นี้ชื่อขึ้นต้น `week` แต่เนื้อในเป็นสไลด์สาย B ของ อ.สุภกิจ**
+**หกไฟล์นี้ชื่อขึ้นต้น `week` แต่เนื้อในเป็นสไลด์สาย B ของ ผศ.ดร. สุภกิจ**
 ผลเสียไม่ใช่แค่ชื่อไม่สวย — ใครเปิดหา "สัปดาห์ 5 Time Diagram" เพื่ออ่านสอบกลางภาค
 จะได้สไลด์ DAC/ADC ของปลายภาคแทน และ `chapterFrom()` ยังอ่านเลขไปใส่ผิดช่องด้วย
 
