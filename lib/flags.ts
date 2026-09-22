@@ -6,15 +6,15 @@
  */
 
 /**
- * Hides the resource library behind a "coming soon" cover.
+ * Turns community uploads (/upload and the "แชร์" entry in the account menu)
+ * on.
  *
- * Defaults to ON, so a build with no configuration at all - production on
- * `main` included - keeps the library covered. Developers opt out by putting
- * `NEXT_PUBLIC_LIBRARY_COMING_SOON=0` in their `.env.local`, which is
- * gitignored, so `main` and `dev` share identical code and no future merge
- * conflicts on this file.
+ * Defaults to OFF, so a build with no configuration at all - production on
+ * `main` included - accepts no new files. Developers opt in by putting
+ * `NEXT_PUBLIC_UPLOADS_ENABLED=1` in their `.env.local`, which is gitignored,
+ * so `main` and `dev` share identical code.
  *
- * Opening the library to everyone is then a one-word change here.
+ * The flag hides the entry points; `createResource` refuses the write on its
+ * own, so a stale form or a hand-rolled POST gets nowhere either.
  */
-export const LIBRARY_COMING_SOON =
-  process.env.NEXT_PUBLIC_LIBRARY_COMING_SOON !== "0";
+export const UPLOADS_ENABLED = process.env.NEXT_PUBLIC_UPLOADS_ENABLED === "1";

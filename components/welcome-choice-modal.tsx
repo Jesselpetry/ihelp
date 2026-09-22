@@ -13,7 +13,6 @@ import {
 } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { LIBRARY_COMING_SOON } from "@/lib/flags";
 import { useLocale, t, type LText } from "@/lib/i18n";
 
 const ACK_KEY = "ihelp-destination-ack-v1";
@@ -41,7 +40,6 @@ const L: Record<string, LText> = {
     th: "สไลด์ ชีทสรุป และเอกสารประกอบการเรียนของทุกวิชาปี 1",
     en: "Slides, summary sheets, and course documents for every first-year subject.",
   },
-  libSoon: { th: "เร็วๆ นี้", en: "Coming soon" },
   later: { th: "ไว้ทีหลัง ขอดูเองก่อน", en: "Maybe later, let me browse" },
 };
 
@@ -169,7 +167,6 @@ export function WelcomeChoiceModal() {
             icon={Library}
             title={t(L.libTitle, locale)}
             description={t(L.libDesc, locale)}
-            badge={LIBRARY_COMING_SOON ? t(L.libSoon, locale) : undefined}
             onSelect={dismiss}
           />
         </div>

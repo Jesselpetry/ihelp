@@ -11,6 +11,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { GoogleMark } from "@/components/account/google-mark";
 import { createClient } from "@/lib/supabase/client";
 import { verifyKmitlIt } from "@/lib/auth/verify";
+import { UPLOADS_ENABLED } from "@/lib/flags";
 import type { MeResponse } from "@/app/api/me/route";
 
 
@@ -95,17 +96,19 @@ export function AccountMenu({ onNavigate }: { onNavigate?: () => void }) {
 
   return (
     <div className="flex items-center gap-1.5">
-      <Button asChild variant="ghost" size="sm">
-        <Link href="/upload" onClick={onNavigate}>
-          <UploadCloud />
-          {/*
-            Hidden only between md and lg, where the nav links, both toggles
-            and this cluster share one row. Below md this renders inside the
-            mobile panel, which has room for the label.
-          */}
-          <span className="md:max-lg:sr-only">แชร์</span>
-        </Link>
-      </Button>
+      {UPLOADS_ENABLED && (
+        <Button asChild variant="ghost" size="sm">
+          <Link href="/upload" onClick={onNavigate}>
+            <UploadCloud />
+            {/*
+              Hidden only between md and lg, where the nav links, both toggles
+              and this cluster share one row. Below md this renders inside the
+              mobile panel, which has room for the label.
+            */}
+            <span className="md:max-lg:sr-only">แชร์</span>
+          </Link>
+        </Button>
+      )}
 
       <Badge asChild variant="outline" className="h-8 min-w-0 gap-1.5 pl-1 pr-2.5">
         <Link href={href} onClick={onNavigate}>

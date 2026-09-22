@@ -6,6 +6,7 @@ import { z } from "zod";
 import { db, resources } from "@/db";
 import { COURSES } from "@/lib/catalog";
 import { requireUser } from "@/lib/auth/guards";
+import { UPLOADS_ENABLED } from "@/lib/flags";
 import type { UploadState } from "@/lib/resources";
 
 const SUBJECT_CODES = COURSES.map((c) => c.code) as [string, ...string[]];
@@ -38,6 +39,10 @@ export async function createResource(
   _prev: UploadState,
   formData: FormData,
 ): Promise<UploadState> {
+  if (!UPLOADS_ENABLED) {
+    return { error: "ระบบแชร์ไฟล์ปิดปรับปรุงชั่วคราว" };
+  }
+
   let user;
   try {
     user = await requireUser();

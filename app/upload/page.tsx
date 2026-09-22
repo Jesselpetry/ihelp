@@ -1,10 +1,11 @@
 import Link from "next/link";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import type { Metadata } from "next";
 
 import { Navbar } from "@/components/navbar";
 import { UploadForm } from "@/components/account/upload-form";
 import { currentStudentId, currentUser } from "@/lib/auth/guards";
+import { UPLOADS_ENABLED } from "@/lib/flags";
 
 export const metadata: Metadata = {
   title: "แชร์เข้าคลัง",
@@ -12,6 +13,8 @@ export const metadata: Metadata = {
 };
 
 export default async function UploadPage() {
+  if (!UPLOADS_ENABLED) notFound();
+
   const studentId = await currentStudentId();
   if (!studentId) redirect("/");
 
