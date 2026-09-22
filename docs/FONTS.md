@@ -113,18 +113,18 @@ THSarabunNew วาดตัวอักษรเล็กกว่าฟอน�
 
 | | ความสูง `ก` | x-height (ละติน) |
 | --- | --- | --- |
-| THSarabunNew | 0.400em | 0.340em |
+| THSarabunNew | 0.612em | 0.520em |
 | IBM Plex Sans Thai | 0.558em | 0.516em |
 
-ถ้าปล่อยไว้ดิบๆ `text-base` ของ Sarabun จะดูเล็กกว่าข้อความรอบๆ ราว 30%
-`app/layout.tsx` เลยใส่ `size-adjust: 140%` ลงใน `@font-face` (140% ≈ 0.558 / 0.400)
+ถ้าปล่อยไว้ดิบๆ `text-base` ของ Sarabun จะดูเล็กกว่าข้อความรอบๆ ราว 9%
+`app/layout.tsx` เลยใส่ `size-adjust: 91%` ลงใน `@font-face` (91% ≈ 0.558 / 0.612)
 
 **ผลคือใช้ `text-sm` / `text-base` / `text-lg` ตามปกติได้เลย ไม่ต้องบวกขนาดชดเชย**
 ขนาดที่เห็นจะเท่ากับ `font-sans` ที่ค่าเดียวกัน
 
 > **ถ้าวันหนึ่งต้องทำหน้าที่เลียนแบบเอกสารราชการ** (THSarabunNew 16pt ตามระเบียบงานสารบรรณ)
-> จำไว้ว่าขนาดถูกขยาย 1.4 เท่าไปแล้ว — ต้องหารกลับ
-> 16pt = 21.33px → ตั้ง `font-size: 15.24px` ถึงจะได้ 16pt จริง
+> จำไว้ว่าขนาดถูกปรับ 0.91 เท่าไปแล้ว — ต้องหารกลับ
+> 16pt = 21.33px → ตั้ง `font-size: 23.44px` ถึงจะได้ 16pt จริง
 
 ---
 
@@ -139,23 +139,23 @@ THSarabunNew ไม่มี GPOS mark positioning สำหรับภาษ�
 ปัญหาไม่ได้อยู่ที่การวางวรรณยุกต์ แต่อยู่ที่ **ความสูงรวมของกองสระ/วรรณยุกต์**
 หลังคูณ `size-adjust: 140%` แล้ว:
 
-| | THSarabunNew ×1.4 | IBM Plex Sans Thai |
+| | THSarabunNew ×0.91 | IBM Plex Sans Thai |
 | --- | --- | --- |
-| ยอดวรรณยุกต์สูงสุด | +1.170em | +0.889em |
-| หางสระ/พยัญชนะต่ำสุด | −0.343em | −0.350em |
-| **ช่วงหมึกรวม** | **1.513em** | **1.239em** |
-| เหลือระหว่างบรรทัดที่ `leading-relaxed` (1.625) | **0.112em** ⚠️ | 0.386em |
+| ยอดวรรณยุกต์สูงสุด | +1.164em | +0.889em |
+| หางสระ/พยัญชนะต่ำสุด | −0.341em | −0.350em |
+| **ช่วงหมึกรวม** | **1.505em** | **1.239em** |
+| เหลือระหว่างบรรทัดที่ `leading-relaxed` (1.625) | **0.120em** ⚠️ | 0.386em |
 
 เหลือ 0.112em แปลว่าวรรณยุกต์ของบรรทัดล่างเกือบชนหางของบรรทัดบน
 สายตาเลยจับคู่วรรณยุกต์ผิดบรรทัด — **นี่คืออาการ "สระลอย"** ไม่ใช่ฟอนต์วางสระผิด
 
 `1.9` คือค่าที่ทำให้ THSarabunNew ได้ที่ว่างระหว่างบรรทัดเท่ากับที่ `--font-sans` ได้ที่ 1.625
-(1.625 − 1.239 + 1.513 ≈ 1.9)
+(1.625 − 1.239 + 1.505 ≈ 1.9)
 
 **ถ้าจะแก้ leading ใน `MdView` ต้องแก้ 3 ที่พร้อมกัน** — root, `p` และ `li`
 เพราะ `p`/`li` ตั้ง leading ของตัวเองทับ root อยู่ ส่วน `pre` คง `leading-relaxed` ไว้
 เพราะเป็น Geist Mono ไม่มีกองวรรณยุกต์ และหัวข้อใช้ `leading-[1.6]`
-(เดิม `leading-snug` = 1.375 ซึ่งต่ำกว่าช่วงหมึก 1.513 หัวข้อไทยที่ตัดบรรทัดจะทับกัน)
+(เดิม `leading-snug` = 1.375 ซึ่งต่ำกว่าช่วงหมึก 1.505 หัวข้อไทยที่ตัดบรรทัดจะทับกัน)
 
 ### สีต้องเต็ม ไม่ใช่ `/90`
 
@@ -181,7 +181,7 @@ THSarabunNew ไม่มี GPOS mark positioning สำหรับภาษ�
 
 | option | ค่า | เหตุผล |
 | --- | --- | --- |
-| `preload` | `false` | 4 face รวม ~295 KB `variable` อยู่บน `<html>` ทุกหน้า ถ้าเปิด preload จะไปบล็อกหน้าที่ไม่มี Markdown เลยด้วย (หน้า login, โปรไฟล์, อัปโหลด) ปล่อยให้โหลดตอนเจอ `font-sarabun` จริงคุ้มกว่า |
+| `preload` | `false` | 4 face รวม ~163 KB `variable` อยู่บน `<html>` ทุกหน้า ถ้าเปิด preload จะไปบล็อกหน้าที่ไม่มี Markdown เลยด้วย (หน้า login, โปรไฟล์, อัปโหลด) ปล่อยให้โหลดตอนเจอ `font-sarabun` จริงคุ้มกว่า |
 | `display` | `"swap"` | ระหว่างโหลดให้เห็น fallback ไปก่อน ไม่ปล่อยข้อความว่าง |
 | `adjustFontFallback` | `false` | Next.js คำนวณ metrics ของ fallback จากไฟล์ดิบ **โดยไม่รู้เรื่อง `size-adjust: 140%`** ถ้าเปิดไว้ ตัวอักษรจะกระโดด 40% ตอน swap (CLS) |
 | `fallback` | `IBM Plex Sans Thai, Sarabun, Tahoma, sans-serif` | ถ้าโหลดไม่สำเร็จ ตกไปที่ฟอนต์ไทยที่มีอยู่แล้วในเว็บก่อน |
@@ -199,26 +199,50 @@ THSarabunNew ไม่มี GPOS mark positioning สำหรับภาษ�
 
 | ไฟล์ | ขนาด |
 | --- | --- |
-| `THSarabunNew-Regular.woff2` | 123 KB |
-| `THSarabunNew-Bold.woff2` | 99 KB |
-| `THSarabunNew-Italic.woff2` | 36 KB |
-| `THSarabunNew-BoldItalic.woff2` | 36 KB |
+| `THSarabunNew-Regular.woff2` | 39 KB |
+| `THSarabunNew-Bold.woff2` | 39 KB |
+| `THSarabunNew-Italic.woff2` | 43 KB |
+| `THSarabunNew-BoldItalic.woff2` | 42 KB |
 
-แปลงมาจาก TTF ต้นฉบับ (510 glyph, `unitsPerEm` 1000) ด้วย `fonttools`:
+ที่มา: [`Phonbopit/sarabun-webfont`](https://github.com/Phonbopit/sarabun-webfont)
+— TH Sarabun New **v1.3** ฉบับ webfont ที่ถอด hinting ออกแล้ว (529 glyph, `unitsPerEm` 2048)
+repo แจกเป็น EOT/TTF/WOFF ซึ่งไม่มี WOFF2 จึงแปลงเองด้วย `fonttools`:
 
 ```bash
 pip install 'fonttools[woff]'
+git clone --depth 1 https://github.com/Phonbopit/sarabun-webfont.git
+cd sarabun-webfont/fonts
 
-fonttools ttLib.woff2 compress -o app/fonts/THSarabunNew-Regular.woff2    'THSarabunNew.ttf'
-fonttools ttLib.woff2 compress -o app/fonts/THSarabunNew-Bold.woff2       'THSarabunNew Bold.ttf'
-fonttools ttLib.woff2 compress -o app/fonts/THSarabunNew-Italic.woff2     'THSarabunNew Italic.ttf'
-fonttools ttLib.woff2 compress -o app/fonts/THSarabunNew-BoldItalic.woff2 'THSarabunNew BoldItalic.ttf'
+C="fonttools ttLib.woff2 compress -o"
+$C ../../app/fonts/THSarabunNew-Regular.woff2    thsarabunnew-webfont.ttf
+$C ../../app/fonts/THSarabunNew-Bold.woff2       thsarabunnew_bold-webfont.ttf
+$C ../../app/fonts/THSarabunNew-Italic.woff2     thsarabunnew_italic-webfont.ttf
+$C ../../app/fonts/THSarabunNew-BoldItalic.woff2 thsarabunnew_bolditalic-webfont.ttf
 ```
 
-TTF ต้นฉบับไม่ได้อยู่ใน repo — WOFF2 ครอบคลุมทุกเบราว์เซอร์ที่เว็บนี้รองรับแล้ว
-ถ้าวันหลังต้อง gen PDF ฝั่ง server ค่อยเอา TTF กลับเข้ามา
+### ทำไมใช้ v1.3 ที่เก่ากว่า v1.35
 
-> **เรื่อง license:** THSarabunNew เป็นฟอนต์ในชุด "ฟอนต์แห่งชาติ" ที่ SIPA สนับสนุน
-> (ออกแบบโดย ศุภกิจ เฉลิมลาภ) เผยแพร่ให้ใช้ฟรี — แต่โฟลเดอร์ต้นฉบับที่รับมา
+เส้นตัวอักษรเหมือนกันเป๊ะ — วัดแล้วช่วงหมึกหลังปรับ `size-adjust` ได้ 1.505em เท่ากันทั้งคู่
+ต่างกันแค่ v1.3 ถอดตาราง hinting (`fpgm` `prep` `hdmx` `VDMX` `LTSH`) ออกไป
+ซึ่งเบราว์เซอร์ยุคนี้ไม่อ่านอยู่แล้ว ผลคือ **163 KB แทนที่จะเป็น 295 KB**
+
+ข้อแลกเปลี่ยนเดียว: v1.3 มี GSUB เฉพาะ script `latn` (v1.35 มี `DFLT` `latn` `thai` ด้วย)
+การจัดตำแหน่งวรรณยุกต์เลยไม่ได้มาจาก GSUB `ccmp` แต่ไปพึ่ง PUA fallback ของ shaper แทน
+(U+F700–U+F71D ซึ่งเป็นรหัส PUA ภาษาไทยของ Mac ดั้งเดิม — ฟอนต์นี้มีครบ 30 ตัว)
+ตรวจกับ HarfBuzz แล้วได้ผลเดียวกับ v1.35 ทุกคำ:
+
+| คำ | v1.3 (PUA) | v1.35 (GSUB thai) | ผล |
+| --- | --- | --- | --- |
+| `ก่` | `uniF70A` | `uni0E48.alt2` | วรรณยุกต์ต่ำ (ไม่มีสระบน) |
+| `ที่` | `uni0E48` | `uni0E48` | วรรณยุกต์สูง (มีสระอีใต้) |
+| `ปี` | `uniF702` | `uni0E35.alt1` | ยกหลบ ป |
+| `ปื้` | `uniF704 uniF714` | `uni0E37.alt1 uni0E49.alt3` | ยกหลบทั้งคู่ |
+
+> **เรื่อง license:** THSarabunNew ออกแบบโดย ศุภกิจ เฉลิมลาภ อยู่ในชุด "ฟอนต์แห่งชาติ"
+> ที่ SIPA สนับสนุน เผยแพร่ให้ใช้ฟรี — แต่ทั้ง repo ต้นทางและโฟลเดอร์ต้นฉบับที่รับมา
 > **ไม่มีไฟล์ license แนบมาด้วย** ถ้าจะแจกจ่ายต่อหรือใช้เชิงพาณิชย์ ควรไปดึงตัวฉบับ
 > พร้อม license จากแหล่งทางการ ([f0nt.com](https://www.f0nt.com/release/th-sarabun-new/)) มาเก็บไว้ก่อน
+>
+> ปัจจุบันฟอนต์ตระกูลนี้มีฉบับที่ Cadson Demak ออกแบบใหม่อยู่บน Google Fonts ชื่อ
+> [Sarabun](https://fonts.google.com/specimen/Sarabun) ซึ่งมี GPOS `mark`/`mkmk` ครบ
+> (แก้อาการสระลอยได้ที่ตัวฟอนต์เลย) และมี 8 น้ำหนักจริง แต่เป็นคนละดีไซน์กับ THSarabunNew

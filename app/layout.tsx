@@ -30,20 +30,27 @@ const mali = Mali({
 });
 
 /*
- * THSarabunNew ships only two weights (400/700) plus matching italics — it has
- * no 500/600, so `font-medium`/`font-semibold` would be synthesised into a
- * smeared fake bold. Use 400 or 700 only; see docs/FONTS.md.
+ * TH Sarabun New v1.3, the unhinted webfont build from
+ * github.com/Phonbopit/sarabun-webfont, re-compressed here to WOFF2. Same
+ * outlines as the hinted v1.35 release, but without fpgm/prep/hdmx/VDMX the
+ * four faces come to 163 KB instead of 295 KB, and nothing on the web reads
+ * TrueType hinting anyway.
  *
- * size-adjust is not cosmetic. The face draws at roughly 70% the height of the
- * other families (ก is 0.400em here vs 0.558em in IBM Plex Sans Thai), so at a
- * shared font-size it reads microscopic next to body copy. 140% = 0.558/0.400,
- * which lines its Thai body height up with --font-sans and lets the normal
- * text-* scale apply unchanged. Because that breaks the metrics Next.js would
- * derive for a fallback face, adjustFontFallback is off and the fallback list
- * is explicit.
+ * It ships only two weights (400/700) plus matching italics — no 500/600 — so
+ * `font-medium` resolves back down to 400 and renders as normal text. Use 400
+ * or 700 only; see docs/FONTS.md.
  *
- * preload is off: ~295 KB across four faces is too much to block every page
- * for an accent family. Pages that use it fetch on demand and swap in.
+ * size-adjust is not cosmetic. The face draws small: ก stands 0.612em against
+ * 0.558em in IBM Plex Sans Thai. 91% = 0.558/0.612, which lines its Thai body
+ * height up with --font-sans and lets the normal text-* scale apply unchanged.
+ * Because that invalidates the metrics Next.js would derive for a fallback
+ * face, adjustFontFallback is off and the fallback list is explicit.
+ *
+ * Even at 91% the mark stack spans 1.51em of ink, so anything rendering this
+ * family needs roughly 1.9 line-height. MdView sets it; see docs/FONTS.md.
+ *
+ * preload is off: the variable sits on <html> for every route, and these faces
+ * should not block pages that render no Markdown.
  */
 const thSarabun = localFont({
   variable: "--font-sarabun",
@@ -51,7 +58,7 @@ const thSarabun = localFont({
   preload: false,
   adjustFontFallback: false,
   fallback: ["IBM Plex Sans Thai", "Sarabun", "Tahoma", "sans-serif"],
-  declarations: [{ prop: "size-adjust", value: "140%" }],
+  declarations: [{ prop: "size-adjust", value: "91%" }],
   src: [
     {
       path: "./fonts/THSarabunNew-Regular.woff2",
