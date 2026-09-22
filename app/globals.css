@@ -342,6 +342,26 @@ html[data-theme-transition]::view-transition-new(root) {
 }
 
 /*
+ * The section rule under h2, in red.
+ *
+ * This is the one accent that lands in the first screen. Measured across the
+ * eight busiest summaries, an h2 sits inside the first 900px on all eight and
+ * is always the earliest inkable element — 96px on six of them, 365px and
+ * 383px on the other two, against 152-591px for the first table header. The
+ * accents were otherwise invisible until 773px down on the ComPro summary,
+ * which is what "ไม่เห็นหมึกแดงเลย" actually was.
+ *
+ * Written here rather than as an h2 renderer in notebookComponents so the
+ * heading keeps its single slug/id implementation. Unlayered CSS outranks
+ * Tailwind's @layer utilities, so this beats the border-b on the element
+ * without !important.
+ */
+.md-notebook-view h2 {
+  border-bottom-color: color-mix(in srgb, var(--ink-red) 45%, transparent);
+  border-bottom-width: 2px;
+}
+
+/*
  * Notebook variant only — a marked-up worksheet rather than a typeset one.
  * Scoped to .md-notebook-view so ordinary readers, quizzes and PSCP
  * statements keep KaTeX's own black rules.
