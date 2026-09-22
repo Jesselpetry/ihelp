@@ -139,6 +139,20 @@ export function TocSidePanel({
     }
   }, [activeId, isCollapsed]);
 
+  /*
+   * The sheet covers the page, so the page behind it must stop scrolling —
+   * otherwise a flick that misses the list drags the article underneath and
+   * the reader loses their place while choosing where to go.
+   */
+  useEffect(() => {
+    if (!isMobileOpen || typeof document === "undefined") return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previous;
+    };
+  }, [isMobileOpen]);
+
   const scrollToHeading = (id: string) => {
     setIsMobileOpen(false);
     const el = document.getElementById(id);
@@ -339,11 +353,14 @@ export function TocSidePanel({
       {/* ── Mobile Floating Trigger & Sheet ───────────────────────────────── */}
       <div className="lg:hidden">
         {/* Floating pill button */}
-        <div className="fixed bottom-5 left-4 z-40">
+        <div
+          className="fixed left-4 z-40"
+          style={{ bottom: "max(1.25rem, calc(env(safe-area-inset-bottom) + 0.75rem))" }}
+        >
           <Button
             onClick={() => setIsMobileOpen(true)}
             size="sm"
-            className="rounded-full shadow-lg gap-2 bg-card/90 text-foreground border backdrop-blur-md hover:bg-card px-3.5 py-2 h-auto text-xs"
+            className="rounded-full shadow-lg gap-2 bg-card/90 text-foreground border backdrop-blur-md hover:bg-card px-3.5 py-2.5 h-auto min-h-11 text-xs"
           >
             <ListTree className="size-3.5 text-primary" />
             <span className="font-medium max-w-[140px] truncate">
@@ -372,7 +389,7 @@ export function TocSidePanel({
             />
 
             {/* Panel */}
-            <div className="relative z-10 w-full max-h-[80vh] rounded-t-3xl border-t bg-card p-4 shadow-2xl flex flex-col animate-in slide-in-from-bottom duration-300">
+            <div className="relative z-10 flex w-full max-h-[85dvh] flex-col rounded-t-3xl border-t bg-card p-4 pb-[max(1rem,env(safe-area-inset-bottom))] shadow-2xl animate-in slide-in-from-bottom duration-300">
               {/* Drawer Handle */}
               <div className="w-12 h-1 bg-muted-foreground/20 rounded-full mx-auto mb-3 shrink-0" />
 

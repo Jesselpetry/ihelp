@@ -234,7 +234,41 @@ export function CourseSummaryPanel({
           </aside>
         )}
 
-        <div ref={bodyRef} className="min-w-0 flex-1 space-y-6">
+        <div ref={bodyRef} className="reader-has-rail min-w-0 flex-1 space-y-6">
+          {/*
+           * The outline aside is desktop-only, which left a phone reading a
+           * 20,000-character summary with no way to jump between its sections.
+           * Same headings, as a sticky rail that scrolls sideways under the
+           * thumb — the pattern the module reader already uses for documents.
+           */}
+          {tocItems.length > 0 && (
+            <nav
+              aria-label={t(L.outline, locale)}
+              className="sticky top-16 z-20 -mt-1 flex gap-1.5 overflow-x-auto overscroll-x-contain border-b border-border/40 bg-card/95 py-2 backdrop-blur-md [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:hidden"
+            >
+              {tocItems
+                .filter((item) => item.level <= 2)
+                .map((item) => {
+                  const isActive = activeId === item.id;
+                  return (
+                    <button
+                      key={item.id}
+                      type="button"
+                      onClick={() => scrollToHeading(item.id)}
+                      aria-current={isActive ? "true" : undefined}
+                      className={`shrink-0 rounded-lg px-2.5 py-1.5 text-xs font-medium transition-colors active:scale-95 ${
+                        isActive
+                          ? "bg-primary text-primary-foreground shadow-xs"
+                          : "bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground"
+                      }`}
+                    >
+                      {item.text}
+                    </button>
+                  );
+                })}
+            </nav>
+          )}
+
           <div className="min-w-0 overflow-hidden">
             <MdView markdown={markdown} />
           </div>

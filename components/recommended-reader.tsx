@@ -480,7 +480,7 @@ export function RecommendedReader({ problem }: { problem: RecommendedProblemDeta
             {/* Scrollable Problem Body */}
             <div className="flex-1 min-h-0 overflow-y-auto p-3 sm:p-5 lg:p-6 overscroll-contain">
               {activeTab === "md" ? (
-                <div className="prose prose-xs sm:prose-sm dark:prose-invert max-w-none">
+                <div className="min-w-0">
                   <MdView
                     markdown={
                       locale === "th" && problem.markdownTh

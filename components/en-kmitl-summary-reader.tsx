@@ -51,7 +51,7 @@ export function EnKmitlSummaryReader({ markdown }: { markdown: string }) {
         />
 
         <article className="min-w-0 overflow-hidden rounded-3xl border bg-card p-4 sm:p-7 xl:p-8 shadow-sm">
-          <div className="prose prose-xs sm:prose-sm dark:prose-invert max-w-none">
+          <div className="min-w-0">
             <MdView markdown={markdown} />
           </div>
         </article>

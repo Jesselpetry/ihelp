@@ -147,7 +147,7 @@ const mdComponents: Components = {
     return (
       <h1
         id={id || undefined}
-        className="tracking-tight text-3xl font-bold mt-2 mb-6 leading-snug scroll-mt-24"
+        className="tracking-tight text-2xl sm:text-3xl font-bold mt-1 sm:mt-2 mb-4 sm:mb-6 leading-snug scroll-mt-24 [overflow-wrap:anywhere]"
         {...p}
       >
         {children}
@@ -160,7 +160,7 @@ const mdComponents: Components = {
     return (
       <h2
         id={id || undefined}
-        className="tracking-tight text-xl font-bold mt-10 mb-3 pb-1.5 border-b leading-snug scroll-mt-24"
+        className="tracking-tight text-lg sm:text-xl font-bold mt-8 sm:mt-10 mb-2.5 sm:mb-3 pb-1.5 border-b leading-snug scroll-mt-24 [overflow-wrap:anywhere]"
         {...p}
       >
         {children}
@@ -173,7 +173,7 @@ const mdComponents: Components = {
     return (
       <h3
         id={id || undefined}
-        className="tracking-tight text-lg font-semibold mt-7 mb-2 scroll-mt-24"
+        className="tracking-tight text-base sm:text-lg font-semibold mt-6 sm:mt-7 mb-2 scroll-mt-24 [overflow-wrap:anywhere]"
         {...p}
       >
         {children}
@@ -181,21 +181,48 @@ const mdComponents: Components = {
     );
   },
 
+  h4: ({ node: _node, ref: _ref, children, ...p }) => {
+    const id = slugifyHeading(getNodeText(children));
+    return (
+      <h4
+        id={id || undefined}
+        className="text-sm sm:text-base font-semibold mt-5 sm:mt-6 mb-1.5 text-foreground/90 scroll-mt-24 [overflow-wrap:anywhere]"
+        {...p}
+      >
+        {children}
+      </h4>
+    );
+  },
+
   p: ({ node: _node, ref: _ref, ...p }) => (
-    <p className="my-3 leading-relaxed" {...p} />
+    <p className="my-3 leading-relaxed [overflow-wrap:anywhere]" {...p} />
   ),
   ul: ({ node: _node, ref: _ref, ...p }) => (
-    <ul className="my-3 space-y-1.5 list-disc pl-6 marker:text-primary/60" {...p} />
+    <ul className="my-3 space-y-1.5 list-disc pl-5 sm:pl-6 marker:text-primary/60" {...p} />
   ),
   ol: ({ node: _node, ref: _ref, ...p }) => (
-    <ol className="my-3 space-y-1.5 list-decimal pl-6 marker:text-primary/60" {...p} />
+    <ol className="my-3 space-y-1.5 list-decimal pl-5 sm:pl-6 marker:text-primary/60" {...p} />
+  ),
+
+  /*
+   * Markdown images carry no width of their own, so one screenshot wider than
+   * the phone used to push the whole article sideways.
+   */
+  img: ({ node: _node, ref: _ref, alt, ...p }) => (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      alt={alt ?? ""}
+      loading="lazy"
+      className="my-4 h-auto w-auto max-w-full rounded-xl border"
+      {...p}
+    />
   ),
   li: ({ node: _node, ref: _ref, ...p }) => (
     <li className="leading-relaxed" {...p} />
   ),
   blockquote: ({ node: _node, ref: _ref, ...p }) => (
     <blockquote
-      className="my-4 border-l-[3px] border-primary/40 bg-primary/[0.04] pl-4 py-2 rounded-r-lg italic"
+      className="my-3.5 sm:my-4 border-l-[3px] border-primary/40 bg-primary/[0.04] pl-3 sm:pl-4 py-1.5 sm:py-2 rounded-r-lg italic [overflow-wrap:anywhere]"
       {...p}
     />
   ),
@@ -217,7 +244,7 @@ const mdComponents: Components = {
 
     return (
       <a
-        className="text-primary underline underline-offset-4 hover:opacity-80"
+        className="text-primary underline underline-offset-4 hover:opacity-80 [overflow-wrap:anywhere]"
         href={targetHref}
         target={isExternal ? "_blank" : undefined}
         rel={isExternal ? "noreferrer" : undefined}
@@ -231,7 +258,7 @@ const mdComponents: Components = {
       <code className={className} {...p} />
     ) : (
       <code
-        className="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.85em]"
+        className="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.85em] [overflow-wrap:anywhere]"
         {...p}
       />
     ),
@@ -254,7 +281,7 @@ const mdComponents: Components = {
 
     return (
       <pre
-        className="my-4 overflow-x-auto rounded-lg border bg-background p-4 font-mono text-sm leading-relaxed"
+        className="my-4 overflow-x-auto overscroll-x-contain [scrollbar-width:thin] rounded-lg border bg-background p-3 sm:p-4 font-mono text-[13px] sm:text-sm leading-relaxed"
         {...p}
       >
         {children}
@@ -262,18 +289,18 @@ const mdComponents: Components = {
     );
   },
   table: ({ node: _node, ref: _ref, ...p }) => (
-    <div className="my-4 overflow-x-auto rounded-lg border">
-      <table className="w-full text-sm border-collapse" {...p} />
+    <div className="my-4 overflow-x-auto overscroll-x-contain [scrollbar-width:thin] rounded-lg border">
+      <table className="w-full text-[13px] sm:text-sm border-collapse" {...p} />
     </div>
   ),
   th: ({ node: _node, ref: _ref, ...p }) => (
     <th
-      className="border-b bg-muted/60 px-3 py-2 text-left font-semibold"
+      className="border-b bg-muted/60 px-2.5 py-2 sm:px-3 text-left font-semibold min-w-[6.5rem] sm:min-w-0"
       {...p}
     />
   ),
   td: ({ node: _node, ref: _ref, ...p }) => (
-    <td className="border-b px-3 py-2 align-top" {...p} />
+    <td className="border-b px-2.5 py-2 sm:px-3 align-top min-w-[6.5rem] sm:min-w-0 [overflow-wrap:anywhere]" {...p} />
   ),
 };
 
@@ -430,8 +457,8 @@ export function MdView({ markdown, assets, courseCode, onOpenPreview }: MdViewPr
           );
         }
         return (
-          <div className="my-4 overflow-x-auto rounded-lg border">
-            <table className="w-full text-sm border-collapse" {...p} />
+          <div className="my-4 overflow-x-auto overscroll-x-contain [scrollbar-width:thin] rounded-lg border">
+            <table className="w-full text-[13px] sm:text-sm border-collapse" {...p} />
           </div>
         );
       },
@@ -439,7 +466,7 @@ export function MdView({ markdown, assets, courseCode, onOpenPreview }: MdViewPr
   }, [assets, courseCode, onOpenPreview]);
 
   return (
-    <div className="text-[15px] text-foreground/90 overflow-hidden">
+    <div className="text-[15px] sm:text-base leading-relaxed text-foreground/90 overflow-hidden">
       <ReactMarkdown
         remarkPlugins={[
           remarkFrontmatter,
