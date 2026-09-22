@@ -147,7 +147,7 @@ const mdComponents: Components = {
     return (
       <h1
         id={id || undefined}
-        className="tracking-tight text-2xl sm:text-3xl font-bold mt-1 sm:mt-2 mb-4 sm:mb-6 leading-snug scroll-mt-24 [overflow-wrap:anywhere]"
+        className="tracking-tight text-2xl sm:text-3xl font-bold mt-1 sm:mt-2 mb-4 sm:mb-6 leading-[1.6] scroll-mt-24 [overflow-wrap:anywhere]"
         {...p}
       >
         {children}
@@ -160,7 +160,7 @@ const mdComponents: Components = {
     return (
       <h2
         id={id || undefined}
-        className="tracking-tight text-lg sm:text-xl font-bold mt-8 sm:mt-10 mb-2.5 sm:mb-3 pb-1.5 border-b leading-snug scroll-mt-24 [overflow-wrap:anywhere]"
+        className="tracking-tight text-lg sm:text-xl font-bold mt-8 sm:mt-10 mb-2.5 sm:mb-3 pb-1.5 border-b leading-[1.6] scroll-mt-24 [overflow-wrap:anywhere]"
         {...p}
       >
         {children}
@@ -186,7 +186,7 @@ const mdComponents: Components = {
     return (
       <h4
         id={id || undefined}
-        className="text-sm sm:text-base font-semibold mt-5 sm:mt-6 mb-1.5 text-foreground/90 scroll-mt-24 [overflow-wrap:anywhere]"
+        className="text-sm sm:text-base font-semibold mt-5 sm:mt-6 mb-1.5 text-foreground scroll-mt-24 [overflow-wrap:anywhere]"
         {...p}
       >
         {children}
@@ -195,7 +195,7 @@ const mdComponents: Components = {
   },
 
   p: ({ node: _node, ref: _ref, ...p }) => (
-    <p className="my-3 leading-relaxed [overflow-wrap:anywhere]" {...p} />
+    <p className="my-3 leading-[1.9] [overflow-wrap:anywhere]" {...p} />
   ),
   ul: ({ node: _node, ref: _ref, ...p }) => (
     <ul className="my-3 space-y-1.5 list-disc pl-5 sm:pl-6 marker:text-primary/60" {...p} />
@@ -218,7 +218,7 @@ const mdComponents: Components = {
     />
   ),
   li: ({ node: _node, ref: _ref, ...p }) => (
-    <li className="leading-relaxed" {...p} />
+    <li className="leading-[1.9]" {...p} />
   ),
   blockquote: ({ node: _node, ref: _ref, ...p }) => (
     <blockquote
@@ -474,9 +474,17 @@ export function MdView({ markdown, assets, courseCode, onOpenPreview }: MdViewPr
    *
    * The face only ships 400 and 700, so inside here font-medium silently
    * resolves to 400 and font-semibold to a full 700.
+   *
+   * leading-[1.9] is required, not taste. Scaled by size-adjust the ink spans
+   * 1.513em from the top of a tone mark to the tail of a descender, against
+   * 1.239em for --font-sans. At leading-relaxed that leaves 0.112em between
+   * lines, so the tone marks of one line crowd the descenders of the line
+   * above and read as detached from their own syllable. 1.9 restores the same
+   * gap --font-sans gets at 1.625. p and li repeat it because they set their
+   * own leading and would otherwise override this one.
    */
   return (
-    <div className="font-sarabun text-[15px] sm:text-base leading-relaxed text-foreground/90 overflow-hidden">
+    <div className="font-sarabun text-[15px] sm:text-base leading-[1.9] text-foreground overflow-hidden">
       <ReactMarkdown
         remarkPlugins={[
           remarkFrontmatter,
