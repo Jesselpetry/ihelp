@@ -465,8 +465,18 @@ export function MdView({ markdown, assets, courseCode, onOpenPreview }: MdViewPr
     };
   }, [assets, courseCode, onOpenPreview]);
 
+  /*
+   * font-sarabun: every Markdown body in the app renders in THSarabunNew. It
+   * is narrower than --font-sans, so a Thai line fits more before it wraps.
+   * Code and KaTeX keep their own families — `code`/`pre` carry font-mono in
+   * mdComponents, and globals.css pins .katex .text to --font-sans. Tables
+   * inherit it. See docs/FONTS.md.
+   *
+   * The face only ships 400 and 700, so inside here font-medium silently
+   * resolves to 400 and font-semibold to a full 700.
+   */
   return (
-    <div className="text-[15px] sm:text-base leading-relaxed text-foreground/90 overflow-hidden">
+    <div className="font-sarabun text-[15px] sm:text-base leading-relaxed text-foreground/90 overflow-hidden">
       <ReactMarkdown
         remarkPlugins={[
           remarkFrontmatter,
