@@ -105,13 +105,6 @@ export const CHANGELOG: VersionEntry[] = [
         },
       },
       {
-        kind: "security",
-        text: {
-          th: "ถอดรหัสผ่าน iJudge ที่เคยฝังอยู่ในสคริปต์ออกจาก repository",
-          en: "Removed the hardcoded iJudge credentials that had reached the repository",
-        },
-      },
-      {
         kind: "added",
         text: {
           th: "ติดตั้งเป็นแอปได้ (PWA) พร้อมหน้าออฟไลน์ภาษาไทยเมื่อเน็ตหลุด",

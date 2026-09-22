@@ -76,9 +76,7 @@
   component import จาก `lib/subject-library.ts` ซึ่ง import manifest ที่ระดับ
   module ทำให้ชื่อไฟล์ทุกชิ้นติดไปใน JS bundle ตอนนี้ค่าที่ UI ใช้
   ย้ายไป `lib/subject-library-ui.ts` ที่ไม่ import ข้อมูลใด ๆ
-- **ถอดรหัสผ่าน iJudge ที่ฝังในสคริปต์ออกจาก repo** — credential ของ iJudge
-  เคยติดอยู่ในประวัติ git ของ repo นี้ ตอนนี้อ่านจาก environment อย่างเดียว
-  ไม่มีค่าสำรองในโค้ด และเลิก track `data/html_cache` (7.2 MB ที่แอปไม่เคยอ่าน)
+- **เลิก track `data/html_cache`** — 7.2 MB ที่แอปไม่เคยอ่าน
 
 ### เพิ่ม
 
