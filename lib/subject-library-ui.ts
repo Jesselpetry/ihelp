@@ -110,6 +110,98 @@ export const ASSET_GROUPS: Record<string, LText> = {
     th: "ภาพสแกนข้อสอบกลางภาค 1/2564",
     en: "Scanned midterm paper, 1/2564",
   },
+  // ICS Labs (Track A)
+  "ics-lab-01": {
+    th: "ใบงานปฏิบัติการที่ 1 — การใช้โปรแกรม Logisim (รวมทุกฉบับ)",
+    en: "Lab 01 — Getting Started with Logisim (All Editions)",
+  },
+  "ics-lab-02": {
+    th: "ใบงานปฏิบัติการที่ 2 — การทำงานของลอจิกเกท (รวมทุกฉบับ)",
+    en: "Lab 02 — Logic Gates Characteristics (All Editions)",
+  },
+  "ics-lab-03": {
+    th: "ใบงานปฏิบัติการที่ 3 — พีชคณิตบูลีน (รวมทุกฉบับ)",
+    en: "Lab 03 — Boolean Algebra (All Editions)",
+  },
+  "ics-lab-04": {
+    th: "ใบงานปฏิบัติการที่ 4 — วงจรเชิงผสมและ K-map (รวมทุกฉบับ)",
+    en: "Lab 04 — Combinational Circuits & K-map (All Editions)",
+  },
+  "ics-lab-05": {
+    th: "ใบงานปฏิบัติการที่ 5 — วงจรมัลติเพล็กเซอร์และเกตสากล (รวมทุกฉบับ)",
+    en: "Lab 05 — Multiplexers & Universal Gates (All Editions)",
+  },
+  // ICS Lectures (Track A - Midterm)
+  "ics-lec-week01": {
+    th: "Week 01 — แนะนำระบบดิจิทัล (สไลด์บรรยายทุกฉบับ)",
+    en: "Week 01 — Introduction to Digital Systems (All Decks)",
+  },
+  "ics-lec-week02": {
+    th: "Week 02 — พีชคณิตบูลีน (สไลด์บรรยายทุกฉบับ)",
+    en: "Week 02 — Boolean Algebra (All Decks)",
+  },
+  "ics-lec-week03": {
+    th: "Week 03 — รูปแบบคาโนนิคอล (สไลด์บรรยายทุกฉบับ)",
+    en: "Week 03 — Canonical Forms (All Decks)",
+  },
+  "ics-lec-week04": {
+    th: "Week 04 — การลดรูปด้วย K-map (สไลด์บรรยายทุกฉบับ)",
+    en: "Week 04 — Boolean Minimization (All Decks)",
+  },
+  "ics-lec-week05": {
+    th: "Week 05 — ผลตอบสนองเชิงเวลาและ Timing (สไลด์บรรยายทุกฉบับ)",
+    en: "Week 05 — Time Response & Timing (All Decks)",
+  },
+  "ics-lec-week06": {
+    th: "Week 06 — ระบบเลขฐานและการคำนวณ (สไลด์บรรยายทุกฉบับ)",
+    en: "Week 06 — Number Systems & Arithmetic (All Decks)",
+  },
+  "ics-lec-week07": {
+    th: "Week 07 — มัลติเพล็กเซอร์และดีมัลติเพล็กเซอร์ (สไลด์บรรยายทุกฉบับ)",
+    en: "Week 07 — Multiplexer & Demultiplexer (All Decks)",
+  },
+  // ICS Lectures (Track B - Final)
+  "ics-lec-ch01": {
+    th: "Chapter 1: Computer System (สไลด์บรรยายทุกฉบับ)",
+    en: "Chapter 1: Computer System (All Decks)",
+  },
+  "ics-lec-ch02": {
+    th: "Chapter 2: Memory, I/O Addressing (สไลด์บรรยายทุกฉบับ)",
+    en: "Chapter 2: Memory, I/O Addressing (All Decks)",
+  },
+  "ics-lec-ch03": {
+    th: "Chapter 3: Multiplexer, Latch, Buffer (สไลด์บรรยายทุกฉบับ)",
+    en: "Chapter 3: Multiplexer, Latch, Buffer (All Decks)",
+  },
+  "ics-lec-ch04": {
+    th: "Chapter 4: Counter and DAC & ADC Part-I (สไลด์บรรยายทุกฉบับ)",
+    en: "Chapter 4: Counter and DAC & ADC Part-I (All Decks)",
+  },
+  "ics-lec-ch05": {
+    th: "Chapter 5: DAC and ADC Part-II (สไลด์บรรยายทุกฉบับ)",
+    en: "Chapter 5: DAC and ADC Part-II (All Decks)",
+  },
+  "ics-lec-ch06": {
+    th: "Chapter 6: Memory Unit (สไลด์บรรยายทุกฉบับ)",
+    en: "Chapter 6: Memory Unit (All Decks)",
+  },
+  // ICS Exams & Quizzes
+  "ics-quiz-c-group": {
+    th: "แบบทดสอบย่อย Quiz C (รวมใบโจทย์ทุกสำเนา)",
+    en: "Quiz C Question Sheets (All Copies)",
+  },
+  "ics-midterm-01-group": {
+    th: "ข้อสอบเก่ากลางภาค ชุดที่ 1 (รวมฉบับสำรอง)",
+    en: "Past Midterm Exam Paper — Set 1 (All Copies)",
+  },
+  "ics-midterm-02-group": {
+    th: "ข้อสอบเก่ากลางภาค ชุดที่ 2 (รวมฉบับสำรองและแนวคิด)",
+    en: "Past Midterm Exam Paper — Set 2 (All Copies)",
+  },
+  "ics-sheet-summary-group": {
+    th: "ชีทสรุปย่อวิชา ICS (รวมทุกฉบับ)",
+    en: "ICS Condensed Summary Cheatsheets (All Editions)",
+  },
 };
 
 // Tag vocabularies the library already uses, mapped onto gallery shelves. The
