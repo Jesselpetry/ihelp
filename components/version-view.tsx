@@ -27,12 +27,17 @@ const KIND_LABEL: Record<ChangeKind, { th: string; en: string }> = {
   added: { th: "เพิ่ม", en: "Added" },
   changed: { th: "ปรับปรุง", en: "Improved" },
   fixed: { th: "แก้ไข", en: "Fixed" },
+  security: { th: "ความปลอดภัย", en: "Security" },
 };
 
-const KIND_VARIANT: Record<ChangeKind, "default" | "secondary" | "outline"> = {
+const KIND_VARIANT: Record<
+  ChangeKind,
+  "default" | "secondary" | "outline" | "destructive"
+> = {
   added: "default",
   changed: "secondary",
   fixed: "outline",
+  security: "destructive",
 };
 
 function formatDate(iso: string, locale: "th" | "en"): string {

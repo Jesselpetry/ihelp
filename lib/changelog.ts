@@ -8,7 +8,7 @@ export interface Contributor {
   github: string; // handle, no @
 }
 
-export type ChangeKind = "added" | "changed" | "fixed";
+export type ChangeKind = "added" | "changed" | "fixed" | "security";
 
 export interface ChangeEntry {
   kind: ChangeKind;
@@ -35,92 +35,192 @@ export interface VersionEntry {
 // Mirrors CHANGELOG.md at the repo root — keep both in sync when releasing.
 export const CHANGELOG: VersionEntry[] = [
   {
-    version: "Unreleased",
-    date: null,
+    version: "0.8.0",
+    date: "2026-09-22",
+    commit: "adec45a",
     contributors: [{ name: "Chatan Petry", github: "Jesselpetry" }],
     changes: [
       {
-        kind: "changed",
+        kind: "added",
         text: {
-          th: "หน้ารายการโจทย์ PSCP เปิดมาเป็นมุมมองตารางเป็นค่าเริ่มต้น (เดิมเป็นการ์ด) และเอาคอลัมน์ \"แนวคิด\" ออกเพื่อให้แถวไม่ล้นจอ",
-          en: "The PSCP problem list opens in the table view by default (was cards), and the Concepts column was dropped so rows no longer overflow",
+          th: "ข้อมูลกำกับสื่อแต่ละชิ้น — รุ่นเอกสาร สัปดาห์ที่ใช้ สถานะ และไฟล์ที่ซ้ำกัน",
+          en: "Per-asset metadata — edition, week, status, and duplicate tracking",
         },
       },
       {
         kind: "changed",
         text: {
-          th: "เรียงโจทย์แบบ Learning Log ขึ้นก่อน แล้วตามด้วยสัปดาห์ล่าสุด",
-          en: "Problems now sort Learning Log first, then newest week",
+          th: "คลังทรัพยากรเปิดให้ใช้งานจริง — /library และเอกสารทุกหน้ากลับมาเปิดอ่านได้",
+          en: "The resource library is open — /library and every document page are live again",
         },
       },
       {
         kind: "changed",
         text: {
-          th: "ระดับความยากแสดงเป็นดาว 5 ดวงแทนแถบ ใช้ทั้งมุมมองการ์ดและตาราง",
-          en: "Difficulty renders as five stars instead of bars, in both the card and table views",
+          th: "ปิดการแชร์ไฟล์เข้าคลังของผู้ใช้ไว้ก่อน ผ่านธง UPLOADS_ENABLED",
+          en: "Community uploads are switched off behind the new UPLOADS_ENABLED flag",
         },
       },
       {
         kind: "changed",
         text: {
-          th: "แถบนำทางเป็นแบบลอยขอบมนทุกหน้า",
-          en: "The navbar is now a floating, fully-rounded pill on every page",
+          th: "รายการเอกสารแสดงเป็นการ์ดบนมือถือ และเป็นตารางบนจอใหญ่",
+          en: "Document lists render as cards on phones and as a table on wider screens",
         },
       },
       {
         kind: "changed",
         text: {
-          th: "ปุ่มลัดในแถวตารางโจทย์ (ทำเครื่องหมายผ่าน, ดูแบบเร็ว, เปิด iJudge) แสดงตลอด ไม่ต้องเอาเมาส์ไปชี้",
-          en: "The per-row shortcut buttons in the problem table (mark solved, quick view, open on iJudge) are always visible instead of appearing on hover",
+          th: "ชั้นวางปักหมุดของ ICS เป็นตารางจัดกลุ่มรายสัปดาห์ และเริ่มต้นแบบพับไว้",
+          en: "The ICS pinned shelf is now a week-grouped table that starts collapsed",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "หน้ารายวิชาเริ่มด้วยการ์ดภาพรวมแบบแท็บ แทนที่จะเป็นรายการงานที่ต้องทำ",
+          en: "Course pages now open with a tabbed overview card instead of a task list",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "โมดูลที่ยังไม่เปิดถูกพับเก็บท้ายหมวด และการ์ดโมดูลเรียงสองคอลัมน์",
+          en: "Locked modules fold to the end of each group, and module cards sit in two columns",
+        },
+      },
+    ],
+  },
+  {
+    version: "0.7.0",
+    date: "2026-09-22",
+    commit: "83ec90e",
+    contributors: [{ name: "Chatan Petry", github: "Jesselpetry" }],
+    changes: [
+      {
+        kind: "security",
+        text: {
+          th: "ข้อสอบเก่าย้ายไปที่เก็บแบบปิด เสิร์ฟผ่านลิงก์อายุ 10 นาที เฉพาะผู้มีสิทธิ์",
+          en: "Past exam papers moved to a private bucket, served to insiders through 10-minute signed URLs",
+        },
+      },
+      {
+        kind: "security",
+        text: {
+          th: "ชื่อไฟล์และ metadata ของสื่อไม่หลุดไปกับ JS bundle อีกต่อไป",
+          en: "Asset filenames and metadata no longer ship inside the browser bundle",
+        },
+      },
+      {
+        kind: "security",
+        text: {
+          th: "ถอดรหัสผ่าน iJudge ที่เคยฝังอยู่ในสคริปต์ออกจาก repository",
+          en: "Removed the hardcoded iJudge credentials that had reached the repository",
         },
       },
       {
         kind: "added",
         text: {
-          th: "ป้าย \"แนะนำ\" และ \"submission.md\" พร้อมปุ่มสร้าง submission.md ในแถวตารางของโจทย์ Learning Log",
-          en: "Recommended and submission.md badges, plus a submission.md maker button, on Learning Log rows in the table view",
+          th: "ติดตั้งเป็นแอปได้ (PWA) พร้อมหน้าออฟไลน์ภาษาไทยเมื่อเน็ตหลุด",
+          en: "Installable as an app (PWA), with a Thai offline page when the network drops",
         },
       },
       {
         kind: "added",
         text: {
-          th: "โจทย์สัปดาห์ 8–9 ทั้ง 27 ข้อ (id 3290–3301, 3349–3363) เข้าสู่ระบบการเรียนรู้ครบ — มีเฉลยอ้างอิงที่ตรวจแล้ว concept tag จริงจากโค้ด และ edge case สำหรับตัวตรวจในเบราว์เซอร์",
-          en: "All 27 new Week 8-9 problems (ids 3290-3301, 3349-3363) are wired into the learning flow — verified reference solutions, real code-derived concept tags, and differential edge cases for the in-browser grader",
+          th: "หน้ารวมเอกสารก่อนเข้าอ่าน ค้นหาได้ และนับวิดีโอ/ไฟล์/หัวข้อจากเนื้อหาจริง",
+          en: "A module index page with search and counts read from the actual content",
         },
       },
       {
         kind: "added",
         text: {
-          th: "โจทย์แนะนำเพิ่มเป็น 14 ข้อ — BigFrame, Left Arrow, กองชาม, Shorten เป็นโมดูลเต็มใน /recommended พร้อมคู่มือ 2 ภาษา แบบทดสอบ และเคสสำหรับ grader",
-          en: "The Recommended hub grows to 14 — BigFrame, Left Arrow, Bowl Stack, and Shorten are full /recommended modules with bilingual guides, quizzes, and grader test cases",
+          th: "จำได้ว่าคาบไหนเปิดอ่านไปแล้ว เก็บไว้ในเครื่อง ไม่ผูกกับบัญชี",
+          en: "Remembers which sessions you have opened, stored per device, not per account",
         },
       },
       {
         kind: "added",
         text: {
-          th: "คำใบ้เฉพาะโจทย์ในหน้าสร้าง submission.md สำหรับโจทย์ Learning Log หลังกลางภาค 6 ข้อ (แผงพับได้ที่ขั้นความเข้าใจโจทย์และแผนแรก)",
-          en: "Per-problem hints in the submission.md wizard for the 6 post-midterm Learning Log problems (a collapsible panel at the Understanding and First-Plan steps)",
+          th: "เปิดดู PDF และรูปภาพแบบ preview ได้ในหน้า ไม่ต้องออกไปหน้าคลัง",
+          en: "Preview PDFs and images in place without leaving for the library page",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "หน้าคาบเรียนรายสัปดาห์ของ ICS 8 เอกสาร พร้อมสื่อ 17 ไฟล์และวิดีโอ 35 คลิป",
+          en: "ICS weekly session pages — 8 documents, 17 assets, and 35 videos",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "Markdown รองรับบล็อก youtube สำหรับฝังวิดีโอในเอกสารรายวิชา",
+          en: "Markdown supports a youtube block for embedding videos in course documents",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "คลังเรียนรู้ของรายวิชาต้องเข้าสู่ระบบด้วยอีเมล @kmitl.ac.th ก่อน",
+          en: "The per-course library now requires signing in with a @kmitl.ac.th account",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "ตัวตรวจเฉลยอ้างอิง verify_solutions.py ที่ใช้ได้กับคลังโจทย์ทั้งหมด",
+          en: "verify_solutions.py — a reference-solution verifier that covers the whole problem set",
         },
       },
       {
         kind: "changed",
         text: {
-          th: "หน้าสรุปวิชา PSCP §3–§4 ปรับใหม่ตามคลังโจทย์ 135 ข้อ (สัปดาห์ 1–9) พร้อมชุดวันหมดเขตจริงของสัปดาห์ 8–9",
-          en: "The PSCP course summary §3-§4 is refreshed for the 135-problem bank (Weeks 1-9) with the real Week 8-9 deadline sets",
+          th: "สื่อการเรียน 670 ไฟล์ย้ายออกจาก repository ไปอยู่บน Supabase Storage",
+          en: "670 course files moved out of the repository onto Supabase Storage",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "ย้ายโดเมนไป ihelp.chatan.in.th โดเมนเดิม redirect ตามพาธเดิม",
+          en: "Moved to ihelp.chatan.in.th; the old domain redirects path-for-path",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "โจทย์สัปดาห์ 8–9 มีเฉลยอ้างอิงครบ concept tag จึงมาจากโค้ดจริง",
+          en: "Weeks 8–9 have verified reference solutions, so concept tags come from real code",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "โจทย์แนะนำเพิ่มเป็น 14 ข้อ และอัปเดตสถิติโจทย์ OJ รอบใหม่",
+          en: "The recommended set grew to 14 problems, and OJ statistics were refreshed",
         },
       },
       {
         kind: "fixed",
         text: {
-          th: "concept tag ของโจทย์สัปดาห์ 8–9 เดิมเพี้ยน (`strings`/`conditionals` เกือบทุกข้อ) เพราะไม่มีเฉลยให้ตัววิเคราะห์ AST อ่าน ตอนนี้มาจากเฉลยจริง; โจทย์ที่ยังเป็น stub ได้ธง tagsProvisional",
-          en: "Week 8-9 concept tags were noise (nearly every problem tagged strings/conditionals) because there was no solution for the AST tagger to read; they now come from real solutions, and any still-stubbed problem is flagged tagsProvisional",
+          th: "ชื่อใบงานแล็บสาย A ของ ICS เลื่อนไปหนึ่งช่อง แก้ให้ตรงกับหัวกระดาษจริง",
+          en: "ICS lab sheet titles were off by one; corrected against the real cover pages",
         },
       },
       {
         kind: "fixed",
         text: {
-          th: "สี pink ในตัวไฮไลต์โค้ด Python ใช้ PSCP Pink (--primary) ให้ตรงกันทั้งเว็บ",
-          en: "The pink in the Python code highlighter now uses PSCP Pink (--primary) so every pink in the app matches",
+          th: "หัวตารางหน้าโจทย์ PSCP ล้นจอบนมือถือ",
+          en: "The PSCP problems header overflowed its card on mobile",
+        },
+      },
+      {
+        kind: "fixed",
+        text: {
+          th: "build บน Vercel ล้มเพราะเนื้อที่หมด (ENOSPC)",
+          en: "Vercel builds failed with ENOSPC as the file tracer pulled in the whole project",
         },
       },
     ],
@@ -128,6 +228,7 @@ export const CHANGELOG: VersionEntry[] = [
   {
     version: "0.6.0",
     date: "2026-08-30",
+    commit: "0d1b4e2",
     contributors: [{ name: "Chatan Petry", github: "Jesselpetry" }],
     changes: [
       // ── Added: community learning hub ──────────────────────────────────
@@ -445,13 +546,30 @@ export const CHANGELOG: VersionEntry[] = [
           en: "Fixed a Turbopack workspace-root warning and dropped a stray lockfile that no longer matched the project's package manager",
         },
       },
+      {
+        kind: "changed",
+        text: {
+          th: "ซิงก์ข้อมูลโจทย์ OJ และ HTML cache รอบใหม่",
+          en: "Refreshed the OJ problem data and the cached HTML",
+        },
+      },
+      {
+        kind: "fixed",
+        text: {
+          th: "hydration error จากตำแหน่งแท็ก script และการซ้อนแถวตารางที่ไม่ถูกต้อง",
+          en: "Hydration errors from script placement and invalid table row nesting",
+        },
+      },
     ],
   },
   {
     version: "0.5.0",
     date: "2026-08-17",
     commit: "6cac82c",
-    contributors: [{ name: "Chatan Petry", github: "Jesselpetry" }],
+    contributors: [
+      { name: "Chatan Petry", github: "Jesselpetry" },
+      { name: "Akarapach Yootsukprasert", github: "PGTHEGOD" },
+    ],
     changes: [
       {
         kind: "added",
@@ -500,6 +618,62 @@ export const CHANGELOG: VersionEntry[] = [
         text: {
           th: "แก้ไขการ Hydrate ข้อมูลแบบ Primitive String ใน useDraft ป้องกันข้อผิดพลาด [object Object]",
           en: "Fixed primitive string hydration in useDraft preventing [object Object] errors",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "ฮับโจทย์แนะนำ /recommended — โจทย์คัดมา 10 ข้อ พร้อมปุ่มสลับสถานะของตัวเอง",
+          en: "The /recommended hub — 10 curated problems with per-problem status toggles",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "หน้าอ่านโค้ดเฉลย พร้อมไฮไลต์ไวยากรณ์ เลขบรรทัด และการ์ดสรุปจุดสำคัญ",
+          en: "Solution reader with syntax highlighting, line numbers, and a key-takeaways card",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "ดึงสถิติจริงจาก iJudge — อัตราผ่านและวันหมดเขตของแต่ละข้อ",
+          en: "Real iJudge statistics — pass rates and deadlines for every problem",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "URL สั้นระดับบนสุด /{slug} พร้อม redirect จากรูปแบบเดิม",
+          en: "Top-level /{slug} URLs, with redirects from the old shape",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "หน้า /pro พร้อม metadata สำหรับ SEO",
+          en: "A /pro landing page with its own SEO metadata",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "โจทย์ OJ สัปดาห์ 4 และ 5 (3101–3116) พร้อมสคริปต์ sync สถานะโจทย์",
+          en: "Week 4 and 5 OJ problems (3101–3116), plus a status sync script",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "ยกเครื่องการแสดงผลบนมือถือ — แท็บปรับตามจอ ปุ่มกดง่ายขึ้น แถบเครื่องมือกะทัดรัด",
+          en: "Mobile overhaul — adaptive tabs, larger touch targets, and a compact toolbar",
+        },
+      },
+      {
+        kind: "fixed",
+        text: {
+          th: "ป้ายเทคนิคชื่อยาวล้นออกนอกแถว และการ์ดสถิติ Learning Log แสดงซ้ำสองใบ",
+          en: "Long technique badges overflowed their row, and the Learning Log stat card was duplicated",
         },
       },
     ],
