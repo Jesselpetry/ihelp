@@ -246,3 +246,68 @@ $C ../../app/fonts/THSarabunNew-BoldItalic.woff2 thsarabunnew_bolditalic-webfont
 > ปัจจุบันฟอนต์ตระกูลนี้มีฉบับที่ Cadson Demak ออกแบบใหม่อยู่บน Google Fonts ชื่อ
 > [Sarabun](https://fonts.google.com/specimen/Sarabun) ซึ่งมี GPOS `mark`/`mkmk` ครบ
 > (แก้อาการสระลอยได้ที่ตัวฟอนต์เลย) และมี 8 น้ำหนักจริง แต่เป็นคนละดีไซน์กับ THSarabunNew
+
+---
+
+## 8. Notebook variant — สไตล์สมุดจดเลคเชอร์
+
+`MdView` มี variant ที่สอง เปิดด้วย prop:
+
+```tsx
+<MdView markdown={content} variant="notebook" />
+```
+
+ตอนนี้เปิดอยู่ที่ **module `summary` เท่านั้น** — เซตที่
+[`app/courses/[dir]/[module]/page.tsx`](../app/courses/[dir]/[module]/page.tsx)
+ส่งผ่าน `ModuleReader` ลงมา ดังนั้น mock exam, lab และ overview
+ยังเป็นเอกสารเรียบเหมือนเดิม (28 จาก 30 หน้า summary ได้ class นี้
+อีก 2 หน้าไม่มีเอกสารให้ render)
+
+> **หมายเหตุ:** proposal เดิมระบุให้ทดสอบที่ `en-kmitl-summary-reader.tsx`
+> แต่ component นั้น **ไม่มีใคร import** — เป็น dead code ไม่มี route ไหนเรียก
+> เนื้อหา `data/en-kmitl/สรุปคอมโปร-Midterm.md` ที่ตั้งใจจะทดสอบ
+> จริงๆ แล้ว render ผ่าน `ModuleReader` ที่ `/courses/<dir>/summary`
+
+### สิ่งที่เปลี่ยน / ไม่เปลี่ยน
+
+| เปลี่ยน | ไม่เปลี่ยน |
+| --- | --- |
+| bullet + เลขลำดับ (หมึกแดง) | เนื้อความ — ยังเป็น THSarabunNew `leading-[1.9]` |
+| blockquote (เส้นกั้นหน้าคู่) | หัวข้อ h1–h4 |
+| `<hr>` (เส้นประแดง คง `···` ไว้) | code / `<pre>` (Geist Mono) |
+| `*italic*` → หมึกแดง | ตาราง, รูป, ลิงก์ |
+| เส้นเศษส่วน + `\boxed{}` + `.mrel` ใน KaTeX | |
+
+### สีหมึก — ใช้ token ไม่ใช่ `red-500`
+
+นิยามที่ `:root` / `.dark` ใน [`globals.css`](../app/globals.css) แล้วลงทะเบียนใน
+`@theme inline` จึงใช้เป็น utility ได้ทุกแบบ (`text-ink-red`, `marker:text-ink-red`,
+`border-ink-red/70`, `decoration-ink-red`)
+
+| token | light | dark |
+| --- | --- | --- |
+| `--ink-red` | `#dc2626` | `#fb7185` (คอรัล — `#dc2626` บนพื้น `#171c23` ทั้งคอนทราสต์ต่ำและแสบตา) |
+| `--ink-blue` | `#2563eb` | `#7dd3fc` |
+| `--ink-highlight` | `#fde68a` | `#b45309` |
+
+### syntax ใหม่สำหรับไฮไลต์และขีดเส้นใต้
+
+```markdown
+{==ข้อความไฮไลต์==}      -> <mark>
+{++ข้อความขีดเส้นใต้++}   -> <u>  (เส้นหยักหมึกแดงใน notebook variant)
+```
+
+เขียน `<mark>` / `<u>` ตรงๆ **ไม่ได้** เพราะโปรเจกต์ไม่ได้ใช้ `rehype-raw`
+HTML ดิบในไฟล์ Markdown จะถูกทิ้งก่อนถึง renderer (เหตุผลเดียวกับที่มี ```` ```youtube ```` fence)
+
+ทำไมต้องมีวงเล็บปีกกา — ถ้าใช้ `==…==` / `++…++` เปล่าๆ จะชนกับเนื้อหาวิชาโปรแกรมมิ่ง
+สแกน `content/` `data/` `lib/` แล้วเจอ **919 จุดที่มี `==`** (เช่น `if __name__ == "__main__"`)
+และ **9 จุดที่มี `++`** — ในนั้นมี `C/C++` สองครั้งในตารางเดียวกันของ
+`สรุปคอมโปร-Midterm.md` ซึ่งจะทำให้ทุกอย่างระหว่างสองจุดนั้นถูกขีดเส้นใต้
+พอใส่ปีกกาแบบ CriticMarkup แล้วเหลือ **0 จุดชน**
+
+ตัวแปลงอยู่ที่ [`lib/docs/remark-notebook.ts`](../lib/docs/remark-notebook.ts)
+แตะเฉพาะ `text` node — code span, code fence และ math เก็บค่าไว้ใน `value` ไม่ใช่ `children`
+ตัว walker จึงไม่เดินเข้าไป `a == b` ในโค้ดเลยปลอดภัยโดยโครงสร้าง
+plugin ทำงานทั้งสอง variant เพื่อไม่ให้ `{==…==}` โผล่เป็นตัวอักษรดิบ
+ต่างกันแค่สไตล์ของ `mark`/`u` ที่ได้ออกมา

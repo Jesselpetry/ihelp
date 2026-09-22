@@ -52,7 +52,7 @@ export function EnKmitlSummaryReader({ markdown }: { markdown: string }) {
 
         <article className="min-w-0 overflow-hidden rounded-3xl border bg-card p-4 sm:p-7 xl:p-8 shadow-sm">
           <div className="min-w-0">
-            <MdView markdown={markdown} />
+            <MdView markdown={markdown} variant="notebook" />
           </div>
         </article>
       </div>

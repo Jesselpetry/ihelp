@@ -205,6 +205,7 @@ export default async function CourseModulePage({
             assets={assetsForCourse(course.code) ?? []}
             courseCode={course.code}
             moduleKey={`${course.code}/${spec.segment}`}
+            variant={spec.segment === "summary" ? "notebook" : "default"}
           />
         )}
       </>
@@ -232,6 +233,7 @@ export default async function CourseModulePage({
         title={mod.title}
         subtitle={mod.subtitle}
         moduleKey={`${course.code}/${spec.segment}`}
+        variant={spec.segment === "summary" ? "notebook" : "default"}
       />
     </>
   );
