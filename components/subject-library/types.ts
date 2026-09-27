@@ -15,14 +15,13 @@ import { t, type LText } from "@/lib/i18n";
 import {
   formatBytes,
   resolveCategory,
-  SCOPE_SHORT,
   type AssetCategory,
   type AssetFileType,
   type AssetScope,
   type SubjectAsset,
 } from "@/lib/library/subject-library-ui";
 
-export type LayoutMode = "gallery" | "table" | "list";
+export type LayoutMode = "weeks" | "gallery" | "table" | "list";
 export type Filter = AssetCategory | "all";
 
 /**
@@ -147,6 +146,16 @@ export const L = {
   gallery: { th: "มุมมองแกลเลอรี", en: "Gallery view" },
   table: { th: "มุมมองตาราง", en: "Table view" },
   list: { th: "มุมมองกระชับ", en: "Compact list" },
+  weeks: { th: "มุมมองรายสัปดาห์", en: "Week-by-week view" },
+  week: { th: "สัปดาห์", en: "Week" },
+  unweeked: { th: "ใช้ได้ทั้งเทอม", en: "Whole term" },
+  source: { th: "ต้นทาง", en: "Source" },
+  sourceHint: { th: "เปิดไฟล์ต้นทางใน OnLearn", en: "Open the original on OnLearn" },
+  showOlder: { th: "ฉบับเก่า", en: "Older editions" },
+  video: { th: "คลิปบรรยาย", en: "Lecture recording" },
+  videoKind: { th: "วิดีโอ", en: "Video" },
+  upcoming: { th: "ยังไม่เปิด", en: "Not released" },
+  noFiles: { th: "ยังไม่มีไฟล์ในคลัง", en: "No files yet" },
   colName: { th: "ชื่อเอกสาร", en: "Name" },
   colCategory: { th: "หมวดหมู่", en: "Category" },
   colScope: { th: "ช่วงสอบ", en: "Scope" },

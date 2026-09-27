@@ -1,14 +1,15 @@
 import { NextResponse, type NextRequest } from "next/server";
 
 import { currentStudentId } from "@/lib/auth/guards";
+import { scheduleForCourse } from "@/lib/library/course-weeks";
 import { libraryExamsForInsider } from "@/lib/library/library-exams";
 import { assetsForCourse } from "@/lib/library/subject-library";
-import type { SubjectAsset } from "@/lib/library/subject-library-ui";
+import type { CourseSchedule, SubjectAsset } from "@/lib/library/subject-library-ui";
 
 /** Reads the session cookie and may return signed URLs, so it must never be cached. */
 export const dynamic = "force-dynamic";
 
-export type LibraryAssetsResponse = { assets: SubjectAsset[] };
+export type LibraryAssetsResponse = { assets: SubjectAsset[]; schedule?: CourseSchedule };
 
 /**
  * A course's resource library, for signed-in KMITL IT students.
@@ -23,6 +24,10 @@ export type LibraryAssetsResponse = { assets: SubjectAsset[] };
  *
  * Past exams are a second tier on top: insiders additionally get them, with
  * short-lived signed URLs, from libraryExamsForInsider().
+ *
+ * A course with a week-by-week schedule gets it here too rather than in the
+ * client bundle — it links the lecture recordings, which belong behind the same
+ * sign-in as the slides.
  */
 export async function GET(request: NextRequest) {
   const code = request.nextUrl.searchParams.get("course");
@@ -42,7 +47,7 @@ export async function GET(request: NextRequest) {
     ...(studentId ? await libraryExamsForInsider(code) : []),
   ];
 
-  const body: LibraryAssetsResponse = { assets };
+  const body: LibraryAssetsResponse = { assets, schedule: scheduleForCourse(code) };
   return NextResponse.json(body, {
     headers: { "Cache-Control": "private, no-store" },
   });

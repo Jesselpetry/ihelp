@@ -35,6 +35,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { useLocale, t, type LText } from "@/lib/i18n";
 import { assetDownloadUrl } from "@/lib/library/asset-url";
+import { SourceLink } from "@/components/subject-library/card-actions";
 import {
   formatBytes,
   resolveCategory,
@@ -401,6 +402,8 @@ export function PreviewModal({
                 </button>
               </div>
             )}
+
+            <SourceLink asset={asset} withLabel className="border px-3 py-1.5" />
 
             {asset.fileType !== "md" && (
               <a

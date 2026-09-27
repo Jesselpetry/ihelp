@@ -5,4 +5,4 @@ export * from "./book-cover";
 export * from "./photo-stack";
 export * from "./compact-rows";
 export * from "./library-table";
-export * from "./pinned-weekly-shelf";
+export * from "./weekly-table";

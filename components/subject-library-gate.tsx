@@ -10,7 +10,7 @@ import { GoogleMark } from "@/components/account/google-mark";
 import { SubjectLibrary } from "@/components/subject-library";
 import { createClient } from "@/lib/supabase/client";
 import { useLocale, t, type LText } from "@/lib/i18n";
-import type { SubjectAsset } from "@/lib/library/subject-library-ui";
+import type { CourseSchedule, SubjectAsset } from "@/lib/library/subject-library-ui";
 
 const L: Record<string, LText> = {
   badge: { th: "เฉพาะนักศึกษา IT", en: "IT students only" },
@@ -31,7 +31,7 @@ const L: Record<string, LText> = {
 type State =
   | { status: "loading" }
   | { status: "locked" }
-  | { status: "ready"; assets: SubjectAsset[] };
+  | { status: "ready"; assets: SubjectAsset[]; schedule?: CourseSchedule };
 
 /**
  * Fetches a course's library and, without a session, shows the sign-in gate
@@ -68,8 +68,8 @@ export function SubjectLibraryGate({
       .then(async (res) => {
         if (res.status === 401) return setState({ status: "locked" });
         if (!res.ok) return setState({ status: "ready", assets: [] });
-        const body = (await res.json()) as { assets?: SubjectAsset[] };
-        setState({ status: "ready", assets: body.assets ?? [] });
+        const body = (await res.json()) as { assets?: SubjectAsset[]; schedule?: CourseSchedule };
+        setState({ status: "ready", assets: body.assets ?? [], schedule: body.schedule });
       })
       // An aborted fetch is the effect cleaning up, not a failure. Anything else
       // leaves the gate up rather than pretending the library is empty.
@@ -154,6 +154,7 @@ export function SubjectLibraryGate({
       backLabel={backLabel}
       title={title}
       subtitle={subtitle}
+      schedule={state.schedule}
     />
   );
 }

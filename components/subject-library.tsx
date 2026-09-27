@@ -12,6 +12,7 @@ import Link from "next/link";
 import {
   ArrowLeft,
   ArrowUpDown,
+  CalendarDays,
   Check,
   ChevronDown,
   Copy,
@@ -40,6 +41,7 @@ import {
   SCOPE_LABEL,
   resolveCategory,
   type AssetCategory,
+  type CourseSchedule,
   type SubjectAsset,
 } from "@/lib/library/subject-library-ui";
 
@@ -47,7 +49,7 @@ import { BookCover, ImageTile } from "./subject-library/book-cover";
 import { PhotoStack, StackSheet } from "./subject-library/photo-stack";
 import { CompactRow, CompactStackRow } from "./subject-library/compact-rows";
 import { SubjectLibraryTable } from "./subject-library/library-table";
-import { PinnedWeeklyShelf } from "./subject-library/pinned-weekly-shelf";
+import { WeeklyTable } from "./subject-library/weekly-table";
 import {
   CATEGORY,
   L,
@@ -74,6 +76,8 @@ export interface SubjectLibraryProps {
   subtitle: LText;
   /** Short course code stamped on each cover, e.g. "MFIT". */
   courseCode?: string;
+  /** When present, the shelf opens on a week-by-week view built from it. */
+  schedule?: CourseSchedule;
 }
 
 export function SubjectLibrary({
@@ -83,6 +87,7 @@ export function SubjectLibrary({
   title,
   subtitle,
   courseCode,
+  schedule,
 }: SubjectLibraryProps) {
   const { locale } = useLocale();
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -91,7 +96,8 @@ export function SubjectLibrary({
   const [scope, setScope] = useState<ScopeFilter>("all");
   const [activeTag, setActiveTag] = useState<string | null>(null);
   const [activeChapter, setActiveChapter] = useState<number | null>(null);
-  const [layout, setLayout] = useState<LayoutMode>("table");
+  const [layout, setLayout] = useState<LayoutMode>(schedule ? "weeks" : "table");
+  const byWeek = layout === "weeks" && schedule !== undefined;
   const [sortCol, setSortCol] = useState<SortColumn>("default");
   const [sortDir, setSortDir] = useState<SortDirection>("asc");
   const [openStacks, setOpenStacks] = useState<ReadonlySet<string>>(new Set());
@@ -121,16 +127,12 @@ export function SubjectLibrary({
     [assets],
   );
 
-  const hasCurrentYear = useMemo(
-    () => courseCode === "ICS" || assets.some((a) => a.isCurrentYear),
-    [courseCode, assets],
-  );
-
   // Category is derived, so resolve it once per asset rather than on every
   // keystroke through the filter. Filter out duplicates when hideDuplicates is active,
   // but keep grouped duplicates so they can coalesce into a single stack.
   const shelved = useMemo(() => {
-    const list = hideDuplicates
+    // The week view folds older copies itself, behind its own toggle.
+    const list = hideDuplicates && !byWeek
       ? assets.filter(
           (asset) =>
             !asset.isDuplicate ||
@@ -138,7 +140,7 @@ export function SubjectLibrary({
         )
       : assets;
     return list.map((asset) => ({ asset, category: resolveCategory(asset) }));
-  }, [assets, hideDuplicates]);
+  }, [assets, hideDuplicates, byWeek]);
 
   const counts = useMemo(() => {
     const tally = {} as Record<AssetCategory, number>;
@@ -432,15 +434,6 @@ export function SubjectLibrary({
         </p>
       </header>
 
-      {/* Pinned Current Year Shelf for ICS */}
-      {hasCurrentYear && (
-        <PinnedWeeklyShelf
-          assets={assets}
-          onOpen={openSingle}
-          courseCode={courseCode}
-        />
-      )}
-
       {/* Control Deck */}
       <div className="mb-8 rounded-2xl border bg-card/75 p-3.5 sm:p-5 shadow-xs backdrop-blur-md space-y-3.5">
         {/* Row 1: Command Toolbar (Search + Sort Dropdown + View Switcher) */}
@@ -485,7 +478,8 @@ export function SubjectLibrary({
           </div>
 
           <div className="flex items-center gap-2 self-stretch justify-between sm:self-auto sm:justify-start">
-            {/* Sort Dropdown */}
+            {/* Sort Dropdown — the week view has its own fixed order */}
+            {!byWeek && (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button
@@ -531,11 +525,13 @@ export function SubjectLibrary({
                 })}
               </DropdownMenuContent>
             </DropdownMenu>
+            )}
 
             {/* View Mode Switcher */}
-            <div className="flex shrink-0 items-center gap-0.5 rounded-full border bg-background/90 p-1 shadow-2xs">
+            <div className="ml-auto flex shrink-0 items-center gap-0.5 rounded-full border bg-background/90 p-1 shadow-2xs sm:ml-0">
               {(
                 [
+                  ...(schedule ? ([["weeks", CalendarDays, L.weeks]] as const) : []),
                   ["table", Table2, L.table],
                   ["gallery", LayoutGrid, L.gallery],
                   ["list", Rows3, L.list],
@@ -635,7 +631,7 @@ export function SubjectLibrary({
             })}
 
             {/* Duplicate Filter Toggle */}
-            {duplicateCount > 0 && (
+            {duplicateCount > 0 && !byWeek && (
               <button
                 type="button"
                 onClick={() => setHideDuplicates(!hideDuplicates)}
@@ -668,8 +664,8 @@ export function SubjectLibrary({
         {/* Row 3: Chapters & Topics / Tags */}
         {(allChapters.length > 1 || allTags.length > 0) && (
           <div className="space-y-2 border-t border-border/40 pt-3 text-xs">
-            {/* Chapter Row */}
-            {allChapters.length > 1 && (
+            {/* Chapter Row — the week strip replaces it in the week view */}
+            {allChapters.length > 1 && !byWeek && (
               <div className="flex items-center gap-1.5 overflow-x-auto pb-1 [scrollbar-width:none]">
                 <span className="shrink-0 text-xs font-medium text-muted-foreground mr-1">
                   {t(L.chapters, locale)}:
@@ -918,6 +914,14 @@ export function SubjectLibrary({
             </Button>
           )}
         </div>
+      ) : byWeek && schedule ? (
+        <WeeklyTable
+          schedule={schedule}
+          assets={filtered}
+          scope={scope}
+          narrowed={filtersNarrowed}
+          onOpen={openIn}
+        />
       ) : sections ? (
         <div className="space-y-9">
           {sections.map(({ bucket, entries: sectionEntries }) => {
