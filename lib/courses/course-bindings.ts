@@ -167,12 +167,70 @@ function icsSessionDocs(): ModuleDoc[] {
   });
 }
 
+/**
+ * ITF's fifteen weeks, one page each: the week's documents, an exam-reading
+ * summary, the traps, a self-check and what the lab sheet asks for.
+ *
+ * Same shape as icsSessionDocs(), but here `chapter` is set: ITF's week number,
+ * lecture number, asset `chapter` and drill-bank chapter are all the same
+ * number, so the tag makes a claim that holds. Weeks 13–15 are read ahead from
+ * the previous year's decks until OnLearn opens them.
+ */
+const ITF_WEEKS = [
+  { week: 1, scope: "midterm", title: "Introducing Today's Technology" },
+  { week: 2, scope: "midterm", title: "Computers" },
+  { week: 3, scope: "midterm", title: "Computing Components" },
+  { week: 4, scope: "midterm", title: "Input & Output" },
+  { week: 5, scope: "midterm", title: "Storage" },
+  { week: 6, scope: "midterm", title: "Operating System" },
+  { week: 7, scope: "midterm", title: "Programs and Apps" },
+  { week: 8, scope: "final", title: "Database" },
+  { week: 9, scope: "final", title: "Ethical, Social & Legal Aspects of IT" },
+  { week: 10, scope: "final", title: "Working in the Enterprise" },
+  { week: 11, scope: "final", title: "Internet & Computer Networks 1" },
+  { week: 12, scope: "final", title: "Computer Networks 2" },
+  { week: 13, scope: "final", title: "Wireless / Wi-Fi" },
+  { week: 14, scope: "final", title: "Information Systems & System Development" },
+  { week: 15, scope: "final", title: "Focus on Web Technology" },
+] as const;
+
+function itfWeekDocs(): ModuleDoc[] {
+  return ITF_WEEKS.map(({ week, scope, title }) => {
+    const padded = String(week).padStart(2, "0");
+    return {
+      slug: `week${padded}`,
+      title: { th: `สัปดาห์ที่ ${week} — ${title}`, en: `Week ${week} — ${title}` },
+      load: () => loadCourseDoc("06016402", `archive/week${padded}.md`),
+      chapter: week,
+      scope,
+    };
+  });
+}
+
 // ── Per-course bindings ──────────────────────────────────────────────────────
 
 export const COURSE_BINDINGS: Record<string, CourseBinding> = {
   // ── ปี 1 เทอม 1 ───────────────────────────────────────────────────────────
   ITF: {
     orientation: { docs: [overview("06016402-IT-Fundamentals")] },
+    syllabus_map: {
+      title: { th: "สัปดาห์เรียน + สรุปอ่านสอบ", en: "Weekly Sessions + Exam Notes" },
+      subtitle: {
+        th: "หนึ่งหน้าต่อหนึ่งสัปดาห์ — เอกสารประจำสัปดาห์ สรุปอ่านสอบ จุดที่มักพลาด คำถามทดสอบตัวเอง และสรุปว่าใบงานแล็บสั่งทำอะไร",
+        en: "One page per week — the week's documents, exam notes, common traps, a self-check, and what the lab sheet asks for",
+      },
+      docs: [
+        {
+          slug: "course-materials-2569",
+          title: {
+            th: "ภาพรวมและตารางเรียน ภาค 1/2569",
+            en: "Overview & Schedule, 1/2569",
+          },
+          load: () => loadCourseDoc("06016402", "archive/course-materials-2569.md"),
+        },
+        ...itfWeekDocs(),
+      ],
+    },
     deep_summary: {
       title: { th: "คู่มือทบทวน", en: "Study Guide" },
       subtitle: {
