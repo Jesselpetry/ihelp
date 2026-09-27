@@ -38,7 +38,7 @@ iHelp ไม่ได้ขาดเนื้อหา — มี 670 ไฟล�
 | # | ModuleId | URL segment | เฟส | คืออะไร |
 |---|---|---|---|---|
 | 1 | `orientation` | `overview` | A · เข้าใจ | ขอบเขตสอบ สัดส่วนคะแนน รูปแบบข้อสอบ เกณฑ์ได้ 0 และเสาหลักของวิชา |
-| 2 | `syllabus_map` | `map` | A | กริดสัปดาห์/บท ที่แต่ละช่องบอกว่ามีสรุปไหม มีโจทย์กี่ข้อ มีสไลด์กี่ไฟล์ |
+| 2 | `syllabus_map` | `map` | A | กริดสัปดาห์/บท ที่แต่ละช่องบอกว่ามีสรุปไหม มีโจทย์กี่ข้อ มีสไลด์กี่ไฟล์ — ICS และ ITF ใช้เป็นหน้ารายสัปดาห์ (`archive/weekNN.md`) |
 | 3 | `deep_summary` | `summary` | A | สรุปเนื้อหาแยกบท พร้อมสารบัญด้านข้าง |
 | 4 | `cram_sheet` | `cram` | B · ย่อ | สรุปเร่งด่วนที่อ่านจบใน 10 นาทีจริง |
 | 5 | `key_cards` | `cards` | B | บัตรคำ/บัตรสูตร + คิวทวนตามช่วงเวลา |
@@ -169,7 +169,7 @@ export interface ModuleBinding {
 ## 8. เพิ่มวิชาใหม่ให้ครบพิมพ์เขียว
 
 1. เพิ่ม record ใน [`../lib/courses/catalog.ts`](../lib/courses/catalog.ts) — **identity เท่านั้น** (code / officialCode / slug / group / credits / officialUrl)
-2. สร้าง `content/courses/<officialCode>-<Slug>/summary.md` ตามโครง 5 ส่วนใน [`../content/courses/README.md`](../content/courses/README.md)
+2. สร้าง `content/courses/<officialCode>-<Slug>/summary.md` ตาม [`COURSE_OVERVIEW_STANDARD.md`](./COURSE_OVERVIEW_STANDARD.md)
 3. เพิ่ม binding ใน [`../lib/courses/course-bindings.ts`](../lib/courses/course-bindings.ts) — เริ่มที่ `baseline(dir)` ก็ได้ (2–3/11)
 4. วางไฟล์สื่อตามกติกา 4 ระดับใน `FILE_STRUCTURE.md` §2 แล้วรัน `bun run library:build`
 5. รัน `bun run content:check` และ `bun run readiness`
