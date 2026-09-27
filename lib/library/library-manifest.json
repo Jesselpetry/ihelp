@@ -5867,6 +5867,258 @@
       "chapter": 1
     },
     {
+      "id": "gen-itf-labs-itf-lab-week02-linux-sheet-pdf",
+      "title": {
+        "th": "Lab · Week 02 Linux Sheet",
+        "en": "Lab · Week 02 Linux Sheet"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "labs"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/labs/itf-lab-week02-linux-sheet.pdf",
+      "fileName": "itf-lab-week02-linux-sheet.pdf",
+      "courseCode": "ITF",
+      "chapter": 2
+    },
+    {
+      "id": "gen-itf-labs-itf-lab-week02-linux-slide-pdf",
+      "title": {
+        "th": "Lab · Week 02 Linux Slide",
+        "en": "Lab · Week 02 Linux Slide"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "labs"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/labs/itf-lab-week02-linux-slide.pdf",
+      "fileName": "itf-lab-week02-linux-slide.pdf",
+      "courseCode": "ITF",
+      "chapter": 2
+    },
+    {
+      "id": "gen-itf-labs-itf-lab-week03-git-sheet-pdf",
+      "title": {
+        "th": "Lab · Week 03 Git Sheet",
+        "en": "Lab · Week 03 Git Sheet"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "labs"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/labs/itf-lab-week03-git-sheet.pdf",
+      "fileName": "itf-lab-week03-git-sheet.pdf",
+      "courseCode": "ITF",
+      "chapter": 3
+    },
+    {
+      "id": "gen-itf-labs-itf-lab-week03-git-slide-pdf",
+      "title": {
+        "th": "Lab · Week 03 Git Slide",
+        "en": "Lab · Week 03 Git Slide"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "labs"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/labs/itf-lab-week03-git-slide.pdf",
+      "fileName": "itf-lab-week03-git-slide.pdf",
+      "courseCode": "ITF",
+      "chapter": 3
+    },
+    {
+      "id": "gen-itf-labs-itf-lab-week04-word-slide-pdf",
+      "title": {
+        "th": "Lab · Week 04 Word Slide",
+        "en": "Lab · Week 04 Word Slide"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "labs"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/labs/itf-lab-week04-word-slide.pdf",
+      "fileName": "itf-lab-week04-word-slide.pdf",
+      "courseCode": "ITF",
+      "chapter": 4
+    },
+    {
+      "id": "gen-itf-labs-itf-lab-week05-latex-slide-pdf",
+      "title": {
+        "th": "Lab · Week 05 Latex Slide",
+        "en": "Lab · Week 05 Latex Slide"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "labs"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/labs/itf-lab-week05-latex-slide.pdf",
+      "fileName": "itf-lab-week05-latex-slide.pdf",
+      "courseCode": "ITF",
+      "chapter": 5
+    },
+    {
+      "id": "gen-itf-labs-itf-lab-week06-excel-1-pdf",
+      "title": {
+        "th": "Lab · Week 06 Excel 1",
+        "en": "Lab · Week 06 Excel 1"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "labs"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/labs/itf-lab-week06-excel-1.pdf",
+      "fileName": "itf-lab-week06-excel-1.pdf",
+      "courseCode": "ITF",
+      "chapter": 6
+    },
+    {
+      "id": "gen-itf-labs-itf-lab-week06-task-group-2-pdf",
+      "title": {
+        "th": "Lab · Week 06 Task Group 2",
+        "en": "Lab · Week 06 Task Group 2"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "labs"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/labs/itf-lab-week06-task-group-2.pdf",
+      "fileName": "itf-lab-week06-task-group-2.pdf",
+      "courseCode": "ITF",
+      "chapter": 6
+    },
+    {
+      "id": "gen-itf-labs-itf-lab-week06-task-group-3-pdf",
+      "title": {
+        "th": "Lab · Week 06 Task Group 3",
+        "en": "Lab · Week 06 Task Group 3"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "labs"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/labs/itf-lab-week06-task-group-3.pdf",
+      "fileName": "itf-lab-week06-task-group-3.pdf",
+      "courseCode": "ITF",
+      "chapter": 6
+    },
+    {
+      "id": "gen-itf-labs-itf-lab-week07-instruction-pdf",
+      "title": {
+        "th": "Lab · Week 07 Instruction",
+        "en": "Lab · Week 07 Instruction"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "labs"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/labs/itf-lab-week07-instruction.pdf",
+      "fileName": "itf-lab-week07-instruction.pdf",
+      "courseCode": "ITF",
+      "chapter": 7
+    },
+    {
+      "id": "gen-itf-labs-itf-lab-week08-access-pdf",
+      "title": {
+        "th": "Lab · Week 08 Access",
+        "en": "Lab · Week 08 Access"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "labs"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/labs/itf-lab-week08-access.pdf",
+      "fileName": "itf-lab-week08-access.pdf",
+      "courseCode": "ITF",
+      "chapter": 8
+    },
+    {
+      "id": "gen-itf-labs-itf-lab-week09-make-pdf",
+      "title": {
+        "th": "Lab · Week 09 Make",
+        "en": "Lab · Week 09 Make"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "labs"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/labs/itf-lab-week09-make.pdf",
+      "fileName": "itf-lab-week09-make.pdf",
+      "courseCode": "ITF",
+      "chapter": 9
+    },
+    {
       "id": "gen-itf-labs-itf-lab-week12-pdf",
       "title": {
         "th": "Lab · Week 12",
@@ -6315,6 +6567,27 @@
       "chapter": 5
     },
     {
+      "id": "gen-itf-lectures-itf-lec-week06-course-introduction-2569-pdf",
+      "title": {
+        "th": "Lecture · Week 06 Course Introduction 2569",
+        "en": "Lecture · Week 06 Course Introduction 2569"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "lectures"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/lectures/itf-lec-week06-course-introduction-2569.pdf",
+      "fileName": "itf-lec-week06-course-introduction-2569.pdf",
+      "courseCode": "ITF",
+      "chapter": 6
+    },
+    {
       "id": "gen-itf-lectures-itf-lec-week06-os-v2-pdf",
       "title": {
         "th": "Lecture · Week 06 OS V 2",
@@ -6420,6 +6693,27 @@
       "chapter": 7
     },
     {
+      "id": "gen-itf-lectures-itf-lec-week08-database-2569-pdf",
+      "title": {
+        "th": "Lecture · Week 08 Database 2569",
+        "en": "Lecture · Week 08 Database 2569"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "lectures"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/lectures/itf-lec-week08-database-2569.pdf",
+      "fileName": "itf-lec-week08-database-2569.pdf",
+      "courseCode": "ITF",
+      "chapter": 8
+    },
+    {
       "id": "gen-itf-lectures-itf-lec-week08-database-pdf",
       "title": {
         "th": "Lecture · Week 08 Database",
@@ -6462,6 +6756,27 @@
       "chapter": 8
     },
     {
+      "id": "gen-itf-lectures-itf-lec-week09-ethics-2569-pdf",
+      "title": {
+        "th": "Lecture · Week 09 Ethics 2569",
+        "en": "Lecture · Week 09 Ethics 2569"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "lectures"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/lectures/itf-lec-week09-ethics-2569.pdf",
+      "fileName": "itf-lec-week09-ethics-2569.pdf",
+      "courseCode": "ITF",
+      "chapter": 9
+    },
+    {
       "id": "gen-itf-lectures-itf-lec-week09-ethics-pdf",
       "title": {
         "th": "Lecture · Week 09 Ethics",
@@ -6481,6 +6796,27 @@
       "fileName": "itf-lec-week09-ethics.pdf",
       "courseCode": "ITF",
       "chapter": 9
+    },
+    {
+      "id": "gen-itf-lectures-itf-lec-week10-enterprise-2569-pdf",
+      "title": {
+        "th": "Lecture · Week 10 Enterprise 2569",
+        "en": "Lecture · Week 10 Enterprise 2569"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "lectures"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/lectures/itf-lec-week10-enterprise-2569.pdf",
+      "fileName": "itf-lec-week10-enterprise-2569.pdf",
+      "courseCode": "ITF",
+      "chapter": 10
     },
     {
       "id": "gen-itf-lectures-itf-lec-week10-v2-pdf",
@@ -7247,6 +7583,68 @@
       "url": "/assets/it-kmitl/itf/notes/itf-note-26.webp",
       "fileName": "itf-note-26.webp",
       "courseCode": "ITF"
+    },
+    {
+      "id": "gen-itf-references-itf-ref-week00-communication-channel-webp",
+      "title": {
+        "th": "Reference · Week 00 Communication Channel",
+        "en": "Reference · Week 00 Communication Channel"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "references"
+      ],
+      "category": "reference",
+      "fileType": "image",
+      "url": "/assets/it-kmitl/itf/references/itf-ref-week00-communication-channel.webp",
+      "fileName": "itf-ref-week00-communication-channel.webp",
+      "courseCode": "ITF"
+    },
+    {
+      "id": "gen-itf-references-itf-ref-week07-lab-data-xlsx",
+      "title": {
+        "th": "Reference · Week 07 Lab Data",
+        "en": "Reference · Week 07 Lab Data"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "references"
+      ],
+      "category": "reference",
+      "fileType": "file",
+      "url": "/assets/it-kmitl/itf/references/itf-ref-week07-lab-data.xlsx",
+      "fileName": "itf-ref-week07-lab-data.xlsx",
+      "courseCode": "ITF",
+      "chapter": 7
+    },
+    {
+      "id": "gen-itf-references-itf-ref-week08-employee-db-accdb",
+      "title": {
+        "th": "Reference · Week 08 Employee Db",
+        "en": "Reference · Week 08 Employee Db"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "references"
+      ],
+      "category": "reference",
+      "fileType": "file",
+      "url": "/assets/it-kmitl/itf/references/itf-ref-week08-employee-db.accdb",
+      "fileName": "itf-ref-week08-employee-db.accdb",
+      "courseCode": "ITF",
+      "chapter": 8
     },
     {
       "id": "gen-itf-sheets-itf-sheet-recap-topics-pdf",
