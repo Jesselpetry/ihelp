@@ -299,7 +299,7 @@ const mdComponents: Components = {
     );
   },
   table: ({ node: _node, ref: _ref, ...p }) => (
-    <div className="my-4 overflow-x-auto overscroll-x-contain [scrollbar-width:thin] rounded-lg border">
+    <div className="md-scroll-x my-4 overflow-x-auto overscroll-x-contain [scrollbar-width:thin] rounded-lg border">
       <table className="w-full text-[13px] sm:text-sm border-collapse" {...p} />
     </div>
   ),
@@ -544,7 +544,7 @@ export function MdView({
           );
         }
         return (
-          <div className="my-4 overflow-x-auto overscroll-x-contain [scrollbar-width:thin] rounded-lg border">
+          <div className="md-scroll-x my-4 overflow-x-auto overscroll-x-contain [scrollbar-width:thin] rounded-lg border">
             <table className="w-full text-[13px] sm:text-sm border-collapse" {...p} />
           </div>
         );

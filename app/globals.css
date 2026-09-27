@@ -342,6 +342,37 @@ html[data-theme-transition]::view-transition-new(root) {
 }
 
 /*
+ * Tells the reader a table can be swiped.
+ *
+ * A Thai five-column table does not fit a phone at any font size, so the
+ * markdown wrapper has always scrolled horizontally. Measured on the ICS
+ * overview, the widest table overruns its wrapper by 260px at 320px wide and
+ * still by 40px at 540px — and by 207px at 1024px, where the outline panel
+ * takes the width back. Nothing said so: mobile has no persistent scrollbar,
+ * so the table simply looked cut off at the card edge.
+ *
+ * The classic four-layer background trick. The two `local` gradients scroll
+ * with the content and cover the shadows when an edge is reached; the two
+ * `scroll` radials stay put and show through only while there is more table
+ * in that direction. No JavaScript and no scroll listener.
+ */
+.md-scroll-x {
+  background:
+    linear-gradient(to right, var(--card) 30%, transparent) 0 0 / 28px 100% no-repeat local,
+    linear-gradient(to left, var(--card) 30%, transparent) 100% 0 / 28px 100% no-repeat local,
+    radial-gradient(farthest-side at 0 50%, rgb(0 0 0 / 14%), transparent) 0 0 / 16px 100% no-repeat scroll,
+    radial-gradient(farthest-side at 100% 50%, rgb(0 0 0 / 14%), transparent) 100% 0 / 16px 100% no-repeat scroll;
+}
+
+.dark .md-scroll-x {
+  background:
+    linear-gradient(to right, var(--card) 30%, transparent) 0 0 / 28px 100% no-repeat local,
+    linear-gradient(to left, var(--card) 30%, transparent) 100% 0 / 28px 100% no-repeat local,
+    radial-gradient(farthest-side at 0 50%, rgb(0 0 0 / 45%), transparent) 0 0 / 16px 100% no-repeat scroll,
+    radial-gradient(farthest-side at 100% 50%, rgb(0 0 0 / 45%), transparent) 100% 0 / 16px 100% no-repeat scroll;
+}
+
+/*
  * The section rule under h2, in red.
  *
  * This is the one accent that lands in the first screen. Measured across the
