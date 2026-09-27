@@ -436,15 +436,9 @@ export const COURSE_BINDINGS: Record<string, CourseBinding> = {
 
   // ── EN-KMITL ──────────────────────────────────────────────────────────────
   COMPRO: {
-    orientation: {
-      docs: [
-        {
-          slug: "overview",
-          title: { th: "ภาพรวมรายวิชา", en: "Course Overview" },
-          load: () => loadEnKmitl().summaryMd,
-        },
-      ],
-    },
+    // The standard overview (docs/COURSE_OVERVIEW_STANDARD.md). The 1,500-line
+    // study notes it used to load here are the deep summary below.
+    orientation: { docs: [overview("01006012-Computer-Programming")] },
     deep_summary: {
       subtitle: {
         th: "สรุปครบทุกบท: พื้นฐานคอมพิวเตอร์ ตัวแปร/นิพจน์ เงื่อนไข while for และภาคผนวก",
@@ -493,15 +487,7 @@ export const COURSE_BINDINGS: Record<string, CourseBinding> = {
   },
 
   CHEM: {
-    orientation: {
-      docs: [
-        {
-          slug: "overview",
-          title: { th: "ภาพรวมรายวิชา", en: "Course Overview" },
-          load: () => loadChem().summaryMd,
-        },
-      ],
-    },
+    orientation: { docs: [overview("General-Chemistry")] },
     deep_summary: {
       subtitle: {
         th: "สรุปครบทุกบท: อะตอม ตารางธาตุ พันธะ สโตอิชิโอเมตรี และสารละลาย",

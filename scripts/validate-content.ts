@@ -17,6 +17,7 @@
  */
 import { COURSES, courseDir } from "../lib/courses/catalog";
 import { COURSE_BINDINGS } from "../lib/courses/course-bindings";
+import { loadCourseOverview } from "../lib/courses/course-content";
 import { resolveCourseSpine } from "../lib/courses/course-spine";
 import { MODULE_IDS, STANDARD_SPINE, type ModuleId } from "../lib/courses/spine";
 import { checkBank, isFakeBilingual, type Finding } from "../lib/schemas/content";
@@ -191,6 +192,65 @@ for (const [code, binding] of Object.entries(COURSE_BINDINGS)) {
   // The quizzes themselves, held to the spine-bank contract.
   for (const [id, bank] of Object.entries(QUIZ_BANK)) {
     findings.push(...checkBank(`recommended.quiz.${id}`, bank));
+  }
+}
+
+// ── overviews follow docs/COURSE_OVERVIEW_STANDARD.md ────────────────────────
+// Every course's summary.md is the same six sections, in the same order, so a
+// student who has read one course's overview can find things in any other.
+const OVERVIEW_SECTIONS = [
+  "## 1. ข้อมูลรายวิชา",
+  "## 2. ขอบเขตเนื้อหา",
+  "## 3. สรุปเนื้อหารายหัวข้อ",
+  "## 4. สิ่งที่ต้องจำ",
+  "## 5. การประเมินและเตรียมสอบ",
+  "## 6. แหล่งเรียนรู้",
+];
+const OVERVIEW_FRONTMATTER = [
+  "code", "slug", "shortCode", "nameTh", "nameEn", "credits", "year", "term",
+  "termId", "prerequisites", "language", "semester", "updated", "sources",
+];
+// Paths into the repo or the old archive are authoring notes, which belong in
+// blueprint.md — a student cannot open them.
+const INTERNAL_PATH = /`(?:public|data|content|lib|scripts)\/|kmitl-archive|ITF_bank/;
+
+for (const course of COURSES) {
+  const where = `${courseDir(course)}/summary.md`;
+  const md = loadCourseOverview(courseDir(course));
+  if (md === null) continue;
+
+  const fm = md.match(/^---\n([\s\S]*?)\n---\n/);
+  const keys = fm ? [...fm[1].matchAll(/^([A-Za-z]+):/gm)].map((m) => m[1]) : [];
+  if (keys.join(",") !== OVERVIEW_FRONTMATTER.join(",")) {
+    findings.push({
+      severity: "error",
+      rule: "overview-frontmatter",
+      where,
+      message: `frontmatter keys must be, in order: ${OVERVIEW_FRONTMATTER.join(", ")} — found ${keys.join(", ") || "none"}`,
+    });
+  }
+
+  const h1 = md.match(/^# (.+)$/m)?.[1] ?? "";
+  if (!h1.startsWith(`${course.code} — `)) {
+    findings.push({ severity: "error", rule: "overview-title", where, message: `H1 must start "${course.code} — ", found "${h1}"` });
+  }
+  if (!/\*\*อัปเดตล่าสุด\*\*/.test(md)) {
+    findings.push({ severity: "error", rule: "overview-updated", where, message: "missing the **อัปเดตล่าสุด** line under the title" });
+  }
+
+  const sections = [...md.matchAll(/^## .+$/gm)].map((m) => m[0].trim());
+  if (sections.join("\n") !== OVERVIEW_SECTIONS.join("\n")) {
+    findings.push({
+      severity: "error",
+      rule: "overview-sections",
+      where,
+      message: `## headings must be exactly: ${OVERVIEW_SECTIONS.join(" | ")} — found ${sections.join(" | ")}`,
+    });
+  }
+
+  const leak = md.split("\n").findIndex((line) => INTERNAL_PATH.test(line));
+  if (leak !== -1) {
+    findings.push({ severity: "error", rule: "overview-internal-path", where: `${where}:${leak + 1}`, message: "repo/archive path in a student-facing overview — move it to blueprint.md" });
   }
 }
 

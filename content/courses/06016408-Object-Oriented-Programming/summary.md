@@ -10,35 +10,43 @@ term: 2
 termId: Y1-S2
 prerequisites: ["06066303 PSCP"]
 language: th
-programmingLanguage: Java
+semester: "2 (ข้อมูลปีก่อน)"
+updated: "2026-09-26"
 sources:
-  - kmitl-archive/archive/Y1-S2/Object-Oriented-Programming
+  - สไลด์บรรยายบทที่ 0–14 (ภาษา Java)
+  - ตำราประกอบ Java · ชีทสรุป · ข้อสอบเก่า 2023
 ---
 
 # OOP — การสร้างโปรแกรมเชิงวัตถุ
 
-## 1. ภาพรวมรายวิชา
+> การโปรแกรมเชิงวัตถุด้วยภาษา Java — ครึ่งแรกไวยากรณ์และ 4 เสาของ OOP
+> ครึ่งหลัง GUI, event, collection, exception, file I/O และ thread
+>
+> **อัปเดตล่าสุด** 26 ก.ย. 2569 · ข้อมูลจากคลังปีก่อน (ภาคเรียนที่ 2/2569 ยังไม่เริ่ม)
+
+## 1. ข้อมูลรายวิชา
 
 | หัวข้อ | รายละเอียด |
 |---|---|
 | รหัสวิชา | `06016408` |
-| ชื่อไทย | การสร้างโปรแกรมเชิงวัตถุ |
-| ชื่ออังกฤษ | OBJECT-ORIENTED PROGRAMMING |
+| ชื่อวิชา | การสร้างโปรแกรมเชิงวัตถุ · Object-Oriented Programming |
 | หน่วยกิต | 3 (2-2-5) |
-| ชั้นปี/เทอม | ปี 1 เทอม 2 |
-| วิชาบังคับก่อน | ไม่มีระบุ — ในทางปฏิบัติต่อยอดจาก PSCP |
-| ภาษาโปรแกรม | **Java** |
-| ผู้สอน (ตามสไลด์) | **ผศ.ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์** (Asst. Prof. Dr. Taravichet Titijaroonroj) |
-| จำนวนบท | 15 บท (บทที่ 0–14) |
+| ชั้นปี / ภาคเรียน | ปี 1 ภาคเรียนที่ 2 |
+| วิชาบังคับก่อน | ไม่ระบุ — ในทางปฏิบัติต่อยอดจาก PSCP |
+| ผู้สอน | ผศ.ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์ (ตามสไลด์และเว็บคณะ) |
+| ตำรา / สื่อหลัก | สไลด์ 15 บท (บทที่ 0–14) · ตำรา Java ประกอบ · ภาษา **Java** |
+| ช่องทางเรียน | บรรยาย + แล็บรายสัปดาห์ |
 
-### คำอธิบายโดยสังเขป
+### คำอธิบายรายวิชา
 
 วิชาสอนแนวคิดการโปรแกรมเชิงวัตถุด้วยภาษา Java ตั้งแต่ไวยากรณ์พื้นฐาน
 ไปจนถึงหลักการ OOP ครบทั้ง 4 เสา (encapsulation, inheritance, polymorphism, abstraction)
 แล้วต่อยอดสู่ GUI, event handling, collection, exception, file I/O, thread
 และแนวคิดขั้นสูงอย่าง dependency injection
 
----
+### สัดส่วนคะแนน
+
+*ยังไม่ยืนยัน* — ยังไม่มีประกาศสัดส่วนคะแนนในคลัง
 
 ## 2. ขอบเขตเนื้อหา
 
@@ -68,9 +76,9 @@ sources:
 | 13 | 13 | เธรด (Thread) |
 | 14 | 14 | แนวคิดการเขียนโปรแกรมเชิงวัตถุขั้นสูง |
 
----
-
 ## 3. สรุปเนื้อหารายหัวข้อ
+
+**ครึ่งแรก — ภาษา Java และหลัก OOP (กลางภาค)**
 
 ### บทที่ 0 — แนะนำการโปรแกรมเชิงวัตถุ
 
@@ -223,6 +231,8 @@ sources:
 | การสืบทอด | `extends` ได้ 1 คลาส | `implements` ได้หลายตัว |
 | ใช้เมื่อ | คลาสลูกมีสภาพร่วมกันชัดเจน (is-a) | กำหนดสัญญา/ความสามารถร่วม (can-do) |
 
+**ครึ่งหลัง — GUI ไปจนถึง Thread (ปลายภาค)**
+
 ### บทที่ 8 — GUI
 
 - **Java Foundation Class (JFC)** ประกอบด้วย AWT, **Swing**, Java 2D, Accessibility
@@ -338,19 +348,42 @@ sources:
 - **Inner class** — คลาสในคลาส (member / static nested / local / anonymous)
   และคุณสมบัติในการเข้าถึงสมาชิกของคลาสภายนอก
 
----
+## 4. สิ่งที่ต้องจำ
 
-## 4. พิมพ์เขียวสำหรับสร้างสื่อต่อยอด
-
-### 4.1 คลังข้อสอบ
-
-| มิติ | ข้อกำหนด |
+| เรื่อง | ค่าที่ต้องจำ |
 |---|---|
-| กลางภาค | ไวยากรณ์ Java (บท 1–3) 25% · คลาส/อ็อบเจ็ค 20% · encapsulation/inheritance 20% · polymorphism 20% · constructor/abstract/interface 15% |
-| ปลายภาค | GUI 15% · Event 15% · Array/Collection/Generic 20% · Exception 20% · File I/O 15% · Thread 15% |
-| ชนิดข้อ | Trace output 30% · หาข้อผิดพลาดคอมไพล์/รันไทม์ 25% · เขียนคลาสตาม UML 25% · ปรนัยมโนทัศน์ 20% |
+| 4 เสาของ OOP | encapsulation · inheritance · polymorphism · abstraction |
+| Primitive 8 ชนิด | `byte` 1 · `short` 2 · `int` 4 · `long` 8 · `float` 4 · `double` 8 · `char` 2 bytes · `boolean` |
+| Access modifier | `private` คลาสเดียว · default แพ็กเกจ · `protected` + คลาสลูก · `public` ทุกที่ |
+| Overloading | ชื่อเดียวกัน ต่างที่จำนวน/ชนิด/ลำดับพารามิเตอร์ — ต่างแค่ชนิดคืนค่าไม่นับ |
+| Overriding | คลาสลูกเขียนเมธอดลายเซ็นเดียวกับแม่ทับ |
+| Binding | static (compile-time): overloading, `private`/`static`/`final` · dynamic (runtime): overriding |
+| Constructor | ไม่มีชนิดคืนค่า · `this()` / `super()` ต้องอยู่บรรทัดแรก · เขียนเองแล้ว default constructor หายไป |
+| Abstract vs Interface | abstract class สืบทอดได้คลาสเดียว มีสถานะได้ · interface implement ได้หลายตัว |
+| String | เทียบเนื้อหาด้วย `.equals()` ไม่ใช่ `==` |
+| Thread | เริ่มด้วย `start()` — เรียก `run()` ตรง ๆ ไม่ได้สร้างเธรดใหม่ |
 
-### 4.2 หลุมพรางที่ใช้ทำตัวลวงได้ดี ⭐
+## 5. การประเมินและเตรียมสอบ
+
+### 5.1 รูปแบบการประเมิน
+
+- **กลางภาค** — บทที่ 0–7 · **ปลายภาค** — บทที่ 8–14
+- แนวข้อสอบปีก่อน: trace output · หาข้อผิดพลาดคอมไพล์/รันไทม์ · เขียนคลาสตาม UML · อธิบายมโนทัศน์
+- แล็บรายสัปดาห์ — สัดส่วนคะแนน *ยังไม่ยืนยัน*
+
+### 5.2 หัวข้อที่ออกบ่อย
+
+1. Trace output ของโค้ดที่มี inheritance/polymorphism
+2. Static vs dynamic binding
+3. Overloading vs overriding
+4. Access modifier และ getter/setter
+5. Constructor chaining — `this()` / `super()`
+6. Abstract class vs interface
+7. Collection และ Generic
+8. ลำดับ `catch` และ `finally`
+9. Thread — `start()` และ `synchronized`
+
+### 5.3 จุดที่มักพลาด
 
 - `==` vs `.equals()` กับ `String`
 - overloading ที่ต่างแค่ชนิดคืนค่า (คอมไพล์ไม่ผ่าน)
@@ -364,35 +397,9 @@ sources:
 - casting แบบ narrowing ทำให้ข้อมูลหาย
 - `switch` ที่ลืม `break` แล้ว fall through
 
-### 4.3 แบบฝึกหัด/Lab
+## 6. แหล่งเรียนรู้
 
-| Lab | โจทย์ | สิ่งที่วัด |
-|---|---|---|
-| 01–03 | ไวยากรณ์พื้นฐาน, เงื่อนไข, ลูป | เขียนโปรแกรม console ได้ |
-| 04–05 | สร้างคลาส `BankAccount` / `Student` พร้อม getter-setter | encapsulation |
-| 06–07 | ลำดับชั้น `Shape` → `Circle`/`Rectangle` + abstract + interface | inheritance + polymorphism |
-| 08–09 | เครื่องคิดเลข GUI ด้วย Swing + event | GUI + event handling |
-| 10 | ระบบจัดการรายชื่อด้วย `ArrayList` / `HashMap` | Collection + Generic |
-| 11–12 | อ่าน/เขียนไฟล์ CSV พร้อมจัดการ exception | I/O + exception |
-| 13 | โปรแกรมนับเลขหลายเธรดพร้อม `synchronized` | thread |
-
-**การตรวจอัตโนมัติ** — คอมไพล์ด้วย `javac` แล้วรัน JUnit เทียบผลลัพธ์ของเมธอดสาธารณะ;
-โจทย์ console ตรวจด้วยการเทียบ stdout
-
-### 4.4 ข้อสอบจำลอง
-
-- **กลางภาค** — Trace output 6 ข้อ · หาบั๊ก 4 ข้อ · เขียนคลาสจาก UML 2 ข้อ · อธิบายมโนทัศน์ 2 ข้อ
-- **ปลายภาค** — เพิ่มโจทย์ GUI (เขียนโค้ดสร้างหน้าจอตามภาพ) · Collection · exception · thread
-- คลังมีข้อสอบจริง `OOP_Midterm_2023.pdf`, `OOP_Final_2023.pdf` และ `OOP_Midterm_MockExam.pdf`
-
----
-
-## 5. แหล่งข้อมูลในคลัง
-
-| ประเภท | จำนวน | หมายเหตุ |
-|---|---|---|
-| สไลด์บรรยาย | 32 ไฟล์ | มีทั้งชุด `Chapter00–13` และ `Week01–14` (เนื้อหาเดียวกัน คนละรอบปี) |
-| ตำราประกอบ | `OOP_Lec_Java-Book.pdf` | |
-| Lab | 21 ไฟล์ (Week01–12) | มีทั้งโจทย์และฉบับทำแล้ว |
-| ข้อสอบเก่า | 7 ไฟล์ | midterm/final ปี 2023 + mock exam |
-| ชีทสรุป | 5 ไฟล์ | `CheatSheet-2022`, `CheatSheet-2024`, `Summary-OOP-Midterm/Final` |
+| สื่อ | ที่อยู่ |
+|---|---|
+| สไลด์ ตำรา แล็บ ชีทสรุป และข้อสอบเก่า | [คลังเรียนรู้](/courses/06016408-Object-Oriented-Programming/library) |
+| สรุปเนื้อหา | [คู่มือทบทวน](/courses/06016408-Object-Oriented-Programming/summary) |
