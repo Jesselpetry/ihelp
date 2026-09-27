@@ -1134,6 +1134,54 @@
     "sizeBytes": 1447838,
     "pages": 19
   },
+  "/assets/it-kmitl/itf/labs/itf-lab-week02-linux-sheet.pdf": {
+    "sizeBytes": 208429,
+    "pages": 5
+  },
+  "/assets/it-kmitl/itf/labs/itf-lab-week02-linux-slide.pdf": {
+    "sizeBytes": 1732805,
+    "pages": 26
+  },
+  "/assets/it-kmitl/itf/labs/itf-lab-week03-git-sheet.pdf": {
+    "sizeBytes": 204123,
+    "pages": 6
+  },
+  "/assets/it-kmitl/itf/labs/itf-lab-week03-git-slide.pdf": {
+    "sizeBytes": 1571504,
+    "pages": 54
+  },
+  "/assets/it-kmitl/itf/labs/itf-lab-week04-word-slide.pdf": {
+    "sizeBytes": 1540395,
+    "pages": 24
+  },
+  "/assets/it-kmitl/itf/labs/itf-lab-week05-latex-slide.pdf": {
+    "sizeBytes": 716913,
+    "pages": 18
+  },
+  "/assets/it-kmitl/itf/labs/itf-lab-week06-excel-1.pdf": {
+    "sizeBytes": 1290455,
+    "pages": 23
+  },
+  "/assets/it-kmitl/itf/labs/itf-lab-week06-task-group-2.pdf": {
+    "sizeBytes": 29578,
+    "pages": 1
+  },
+  "/assets/it-kmitl/itf/labs/itf-lab-week06-task-group-3.pdf": {
+    "sizeBytes": 29539,
+    "pages": 1
+  },
+  "/assets/it-kmitl/itf/labs/itf-lab-week07-instruction.pdf": {
+    "sizeBytes": 71626,
+    "pages": 1
+  },
+  "/assets/it-kmitl/itf/labs/itf-lab-week08-access.pdf": {
+    "sizeBytes": 853924,
+    "pages": 12
+  },
+  "/assets/it-kmitl/itf/labs/itf-lab-week09-make.pdf": {
+    "sizeBytes": 968133,
+    "pages": 16
+  },
   "/assets/it-kmitl/itf/labs/itf-lab-week12.pdf": {
     "sizeBytes": 314174,
     "pages": 4
@@ -1222,6 +1270,10 @@
     "sizeBytes": 1022388,
     "pages": 22
   },
+  "/assets/it-kmitl/itf/lectures/itf-lec-week06-course-introduction-2569.pdf": {
+    "sizeBytes": 673697,
+    "pages": 7
+  },
   "/assets/it-kmitl/itf/lectures/itf-lec-week06-os-v2.pdf": {
     "sizeBytes": 675573,
     "pages": 2
@@ -1242,6 +1294,10 @@
     "sizeBytes": 5622250,
     "pages": 83
   },
+  "/assets/it-kmitl/itf/lectures/itf-lec-week08-database-2569.pdf": {
+    "sizeBytes": 2704072,
+    "pages": 26
+  },
   "/assets/it-kmitl/itf/lectures/itf-lec-week08-database.pdf": {
     "sizeBytes": 1835747,
     "pages": 26
@@ -1250,9 +1306,17 @@
     "sizeBytes": 3340741,
     "pages": 96
   },
+  "/assets/it-kmitl/itf/lectures/itf-lec-week09-ethics-2569.pdf": {
+    "sizeBytes": 2650243,
+    "pages": 57
+  },
   "/assets/it-kmitl/itf/lectures/itf-lec-week09-ethics.pdf": {
     "sizeBytes": 3201937,
     "pages": 58
+  },
+  "/assets/it-kmitl/itf/lectures/itf-lec-week10-enterprise-2569.pdf": {
+    "sizeBytes": 2592986,
+    "pages": 49
   },
   "/assets/it-kmitl/itf/lectures/itf-lec-week10-v2.pdf": {
     "sizeBytes": 3515537,
@@ -1375,6 +1439,15 @@
   },
   "/assets/it-kmitl/itf/notes/itf-note-26.webp": {
     "sizeBytes": 57674
+  },
+  "/assets/it-kmitl/itf/references/itf-ref-week00-communication-channel.webp": {
+    "sizeBytes": 64932
+  },
+  "/assets/it-kmitl/itf/references/itf-ref-week07-lab-data.xlsx": {
+    "sizeBytes": 19195
+  },
+  "/assets/it-kmitl/itf/references/itf-ref-week08-employee-db.accdb": {
+    "sizeBytes": 3457024
   },
   "/assets/it-kmitl/itf/sheets/itf-sheet-recap-topics.pdf": {
     "sizeBytes": 1213163,

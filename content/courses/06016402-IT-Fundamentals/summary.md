@@ -10,90 +10,91 @@ term: 1
 termId: Y1-S1
 prerequisites: []
 language: th
+semester: "1/2569"
+updated: "2026-09-27"
 sources:
-  - kmitl-archive/archive/Y1-S1/IT-Fundamentals
-  - kmitl-archive/archive/Y1-S1-2569/IT-Fundamentals
-  - ITF_bank (สไลด์ 1/2026 + คู่มือทบทวนกลางภาค)
-  - content/itf/ITF_Sheet_MidtermStudyGuide.md
+  - สไลด์ Lecture 00–11 และใบงานแล็บ 01–09 (OnLearn 1/2569)
+  - สไลด์แนะนำรายวิชาครึ่งหลัง ผศ.ดร. พรสุรีย์ แจ่มศรี (1/2569)
+  - สไลด์ Week 12–15 ฉบับปีก่อน
+  - คู่มือทบทวนกลางภาค Lecture 01–07
 ---
 
 # ITF — พื้นฐานทางด้านเทคโนโลยีสารสนเทศ
 
-## 1. ภาพรวมรายวิชา
+> ภาพรวมของเทคโนโลยีสารสนเทศทั้งระบบ ตั้งแต่ข้อมูลกับสารสนเทศ ฮาร์ดแวร์ ระบบปฏิบัติการ ซอฟต์แวร์
+> ฐานข้อมูล จริยธรรมและกฎหมาย ไปจนถึงเครือข่าย — คู่กับแล็บเครื่องมือที่ใช้จริงทุกสัปดาห์
+>
+> **อัปเดตล่าสุด** 27 ก.ย. 2569 · ข้อมูลภาคเรียน 1/2569 (OnLearn เปิดถึง Week 12)
+
+## 1. ข้อมูลรายวิชา
 
 | หัวข้อ | รายละเอียด |
 |---|---|
 | รหัสวิชา | `06016402` |
-| ชื่อไทย | พื้นฐานทางด้านเทคโนโลยีสารสนเทศ |
-| ชื่ออังกฤษ | INFORMATION TECHNOLOGY FUNDAMENTALS |
+| ชื่อวิชา | พื้นฐานทางด้านเทคโนโลยีสารสนเทศ · Information Technology Fundamentals |
 | หน่วยกิต | 3 (2-2-5) — บรรยาย 2 · ปฏิบัติ 2 · ศึกษาด้วยตนเอง 5 |
-| ชั้นปี/เทอม | ปี 1 เทอม 1 |
+| ชั้นปี / ภาคเรียน | ปี 1 ภาคเรียนที่ 1 |
 | วิชาบังคับก่อน | ไม่มี |
-| หลักสูตร | IT |
-| ผู้สอน (1/2026) | **ศ.ดร. กิติ์สุชาต พสุภา** (Prof. Dr. Kitsuchart Pasupa · KP) · **ผศ.ดร. พรสุรีย์ แจ่มศรี** (Asst. Prof. Dr. Pornsuree Jamsri · PJ) · **ผศ.ดร. สุวิทย์ ภูมิฤทธิกุล** (Asst. Prof. Dr. Suvit Poomrittigul) |
-| ตำรา | O'Leary, O'Leary & O'Leary (2026), *Computing Essentials 2026* |
-| ระบบเรียน | OnLearn (`onlearn.it.kmitl.ac.th`) — บรรยายวันอังคาร · แล็บวันศุกร์ |
+| ผู้สอน (1/2569) | ศ.ดร. กิติ์สุชาต พสุภา (Week 00–05) · ผศ.ดร. พรสุรีย์ แจ่มศรี (Week 06–10) · รศ.ดร. ปานวิทย์ ธุวะนุติ (Week 11) · ผศ.ดร. สุวิทย์ ภูมิฤทธิกุล |
+| ตำรา / สื่อหลัก | O'Leary, O'Leary & O'Leary (2026), *Computing Essentials 2026* · Kurose & Ross, *Computer Networking* 8th ed. (Week 11) |
+| ช่องทางเรียน | OnLearn · บรรยายวันอังคาร · แล็บวันศุกร์ ห้อง L434 (3 รอบ: 09:00 · 11:00 · 14:00) |
 
-### คำอธิบายโดยสังเขป
+### คำอธิบายรายวิชา
 
-วิชาปูพื้นภาพรวมของเทคโนโลยีสารสนเทศทั้งระบบ ตั้งแต่นิยาม **data vs information**,
-แบบจำลอง **Input–Process–Output**, ส่วนประกอบฮาร์ดแวร์ (CPU, memory, storage, I/O),
-ระบบปฏิบัติการ ซอฟต์แวร์ประยุกต์ ฐานข้อมูล จริยธรรม/กฎหมายไอที ไปจนถึงเครือข่าย
-อินเทอร์เน็ต และการทำงานในองค์กร ภาคปฏิบัติเน้นทักษะเครื่องมือสำนักงาน
-(Windows, Word, Excel, PowerPoint) ผ่าน Lab รายสัปดาห์
+ปูพื้นภาพรวมของเทคโนโลยีสารสนเทศ ตั้งแต่นิยาม **data vs information** และแบบจำลอง
+**Input → Process → Output** ส่วนประกอบฮาร์ดแวร์ (CPU, memory, storage, I/O) ระบบปฏิบัติการ
+ซอฟต์แวร์ประยุกต์ ฐานข้อมูล จริยธรรมและกฎหมายไอที การทำงานในองค์กร ไปจนถึงอินเทอร์เน็ตและเครือข่าย
+แล็บรายสัปดาห์ฝึกเครื่องมือที่ใช้จริง — Windows/CMD, Linux, Git, Word, LaTeX, Excel, Access และ Make.com
 
-### สัดส่วนคะแนน (ประกาศใน Lecture 00, 1/2026)
+### สัดส่วนคะแนน (Lecture 00, 1/2569)
 
 | รายการ | สัดส่วน |
 |---|---|
 | สอบกลางภาค | 30% |
 | สอบปลายภาค | 30% |
-| Laboratory + Homework | 30% |
-| Attendance | 10% |
+| แล็บ + การบ้าน | 30% |
+| เข้าเรียน | 10% |
 
----
+### วันสำคัญ
+
+| วัน | กิจกรรม |
+|---|---|
+| อ. 18 ส.ค. 2569 · 13:30–16:30 | สอบกลางภาค (Week 01–07) |
+| อ. 27 ต.ค. 2569 · 13:30–16:30 | สอบปลายภาค (Week 08–15) |
 
 ## 2. ขอบเขตเนื้อหา
 
 ### 2.1 ขอบเขตสอบกลางภาค (Week 01–07)
 
-| สัปดาห์ | หัวข้อ | ผู้สอน |
+| สัปดาห์ | หัวข้อ | แล็บ |
 |---|---|---|
-| 01 | Introducing Today Technology | KP |
-| 02 | Computers | KP |
-| 03 | Computing Components | KP |
-| 04 | Input & Output | KP |
-| 05 | Storage | KP |
-| 06 | Operating System | PJ |
-| 07 | Programs and Apps | PJ |
+| 01 | Introducing Today's Technology | ติดตั้ง Windows 11 บน VirtualBox · คำสั่ง Command Prompt |
+| 02 | Computers | ติดตั้ง Ubuntu บน VMware · คำสั่ง Linux |
+| 03 | Computing Components | Git และ GitHub |
+| 04 | Input & Output | Microsoft Word — สไตล์ คำอธิบายภาพ สารบัญ |
+| 05 | Storage | LaTeX บน Overleaf |
+| 06 | Operating System | Excel 1 — พื้นฐาน สูตร กราฟ (โจทย์แยกตามรอบแล็บ) |
+| 07 | Programs and Apps | Excel 2 — IF, VLOOKUP, รายงานค่าคอมมิชชัน |
 
-> ใน 1/2026 หัวข้อ Week 08–10 ยังไม่เปิดใน OnLearn ตอนสอบกลางภาค จึง **ไม่อยู่ในขอบเขตกลางภาค**
+### 2.2 ขอบเขตสอบปลายภาค (Week 08–15)
 
-### 2.2 ขอบเขตสอบปลายภาค (Week 08 เป็นต้นไป)
-
-| สัปดาห์ | หัวข้อ | สถานะในคลัง |
+| สัปดาห์ | หัวข้อ | แล็บ |
 |---|---|---|
-| 08 | Database | มีสไลด์ (คลังปีก่อน) |
-| 09 | Ethical, Social, and Legal Aspects of IT | มีสไลด์ |
-| 10 | Working in the Enterprise: Systems, Certifications, and Careers | มีสไลด์ |
-| 11 | The Internet | มีสไลด์ (คลังปีก่อน) |
-| 12 | Computer Networks | มีสไลด์ |
-| 13 | Wireless / Wi-Fi | มีสไลด์ |
-| 14 | Information Systems & System Development | มีสไลด์ |
-| 15 | Focus on Web Technology | มีสไลด์ |
-
-> Week 11–15 มาจากคลังปีการศึกษาก่อน — ใน 1/2026 หัวข้อ 11–15 ยังไม่ประกาศ
-> ให้ยึด OnLearn ของเทอมปัจจุบันเป็นหลัก
-
----
+| 08 | Database | Microsoft Access และ SQL เบื้องต้น |
+| 09 | Ethical, Social & Legal Aspects of IT | Make.com — AI workflow (Google Forms → Sheets → Gemini → Telegram) |
+| 10 | Working in the Enterprise | File Management |
+| 11 | Internet & Computer Networks 1 | Network 1 |
+| 12 | Computer Networks 2 | — |
+| 13 | Wireless / Wi-Fi (ยังไม่เปิด) | — |
+| 14 | Information Systems & System Development (ยังไม่เปิด) | — |
+| 15 | Focus on Web Technology (ยังไม่เปิด) | — |
 
 ## 3. สรุปเนื้อหารายหัวข้อ
 
-> เนื้อหา Week 01–07 มีฉบับละเอียด (พร้อมตัวอย่างจากสไลด์จริง) อยู่ที่
-> [`content/itf/ITF_Sheet_MidtermStudyGuide.md`](../../itf/ITF_Sheet_MidtermStudyGuide.md)
-> ส่วนด้านล่างคือโครงกระดูกที่ใช้อ้างอิงเวลาสร้างข้อสอบ/แบบฝึกหัด
+> สรุปอ่านสอบแยกรายสัปดาห์ พร้อมคำถามทดสอบตัวเองและสรุปใบงานแล็บ อยู่ใน [สัปดาห์เรียน + สรุปอ่านสอบ](/courses/06016402-IT-Fundamentals/map)
+> · Week 01–07 มีฉบับละเอียดพร้อมตัวอย่างจากสไลด์ใน [คู่มือทบทวน](/courses/06016402-IT-Fundamentals/summary)
 
-### Week 01 — Introducing Today Technology
+### Week 01 — Introducing Today's Technology
 
 - **Digital Literacy** = Access · Use · Understand · Create
 - **Computer** = hardware ที่ทำงานภายใต้ software ที่เก็บไว้ในหน่วยความจำของตัวเอง
@@ -125,7 +126,7 @@ sources:
 - **Register & System Clock** — clock speed (GHz), clock cycle
 - **Data Representation** ⭐⭐ — bit/byte, binary ↔ decimal, ASCII, Unicode
 - **Memory hierarchy** ⭐⭐ — register → cache (L1/L2/L3) → RAM (DRAM/SRAM) → virtual memory → storage; ROM/PROM/EPROM/EEPROM, flash memory, CMOS
-- **Buses** ⭐⭐ — data bus, address bus, control bus; bus width; expansion bus
+- **Buses** ⭐⭐ — data bus, address bus; bus width; system bus / backside bus / expansion bus
 - Adapters (การ์ดจอ/เสียง/เครือข่าย), cooling device (heat sink, fan, liquid cooling), power supply
 
 ### Week 04 — Input & Output
@@ -156,7 +157,7 @@ sources:
 
 - **นิยาม** ⭐⭐⭐ — ชุดโปรแกรมที่ประสานงานทุกกิจกรรมของฮาร์ดแวร์และซอฟต์แวร์
 - **12 หน้าที่ของ OS** (โครงหลักของบท):
-  1. Starting computers ⭐⭐⭐ — 5 ขั้นตอนการ boot (power → POST → BIOS/UEFI → โหลด kernel → โหลด configuration/registry); *booting* vs *warm boot*
+  1. Starting computers ⭐⭐⭐ — 5 ขั้นตอนการ boot (จ่ายไฟ → โปรเซสเซอร์ reset แล้วหา firmware (BIOS/UEFI) → POST → โหลด kernel เข้า RAM → โหลดค่าตั้งระบบและตรวจผู้ใช้); *cold boot* vs *warm boot*
   2. Shutting down — shut down / sleep / hibernate
   3. Providing a user interface — CLI, GUI, **NUI** (touch, voice, gesture)
   4. Managing programs — single tasking vs multitasking, foreground/background
@@ -213,20 +214,22 @@ sources:
 
 - The technology industry · information systems in the enterprise
 - **Technology careers** — สาย development, infrastructure, data, security, support
-- **Technology certifications** ⭐ — CompTIA A+, CCNA, CISSP, CEH, CDP
+- **Technology certifications** ⭐ — เช่น CISSP · กลุ่ม application, database, hardware, networking, OS, developer, security
 - Job searching, career planning, professional online presence
 
-### Week 11 — The Internet
+### Week 11 — Internet & Computer Networks 1
 
 - Internet แบบ "nuts and bolts" (host, link, router, protocol) vs แบบ "service view"
 - **Protocol** คืออะไร · **encapsulation** และการแบ่ง layer
-- Network edge / network core; **packet switching vs circuit switching**; routing vs forwarding
+- Network edge / network core; **packet switching**; routing vs forwarding
 - **Access network** — DSL, cable/HFC, FTTH, Ethernet, wireless, data center network
 - Physical media — twisted pair, coax, fiber, radio
 - Internet structure: network of networks, **Tier-1 ISP**, IXP
 - Network security เบื้องต้น — packet interception (sniffing), fake identity (spoofing), DoS
 
-### Week 12 — Computer Networks
+### Week 12 — Computer Networks 2
+
+> สรุปจากสไลด์ปีก่อน — สไลด์ 1/2569 อยู่ใน OnLearn แล้ว แต่ยังไม่อยู่ในคลัง
 
 - **Physical topology** — mesh, star, bus, ring, hybrid
 - **Logical topology / multiple access protocol** — CSMA, CSMA/CD, token passing
@@ -237,7 +240,9 @@ sources:
 - **Class A/B/C**, private IP address, **NAT**, address depletion
 - **ชนิดการสื่อสาร** — unicast, broadcast, multicast; network address, broadcast address
 
-### Week 13 — Wireless / Wi-Fi
+### Week 13 — Wireless / Wi-Fi (ยังไม่เปิด)
+
+> สรุปจากสไลด์ปีก่อน — รอสไลด์ 1/2569 ใน OnLearn
 
 - องค์ประกอบเครือข่ายไร้สาย — wireless host, base station/AP, wireless link, infrastructure mode
 - **คุณสมบัติของลิงก์ไร้สาย** — path loss/fading, multipath, interference, **hidden terminal problem**
@@ -246,25 +251,27 @@ sources:
 - **CSMA/CA** ⭐⭐ และ **RTS/CTS** สำหรับแก้ hidden terminal
 - 802.11 advanced capabilities (power management, rate adaptation); **802.15 PAN** (Bluetooth)
 
-### Week 14 — Information Systems & System Development
+### Week 14 — Information Systems & System Development (ยังไม่เปิด)
+
+> สรุปจากสไลด์ปีก่อน — รอสไลด์ 1/2569 ใน OnLearn
 
 - ความต้องการทักษะดิจิทัลในตลาดแรงงาน (salary guide, LinkedIn skill demand, developer roadmap)
 - **Information system** — คน กระบวนการ ข้อมูล ซอฟต์แวร์ ฮาร์ดแวร์
-- **System development life cycle** ⭐⭐ — Planning → Analysis → Design → Implementation → Support & Maintenance
+- **System development life cycle** ⭐⭐ — Planning → Analysis → Design → Implementation → Support & Security
 - เทคนิคเก็บความต้องการ: observe, survey, interview, **JAD**
 - **Functional vs non-functional requirement**
 - Design phase: UI/UX; ตัวอย่าง bad UX
 
-### Week 15 — Focus on Web Technology
+### Week 15 — Focus on Web Technology (ยังไม่เปิด)
+
+> สรุปจากสไลด์ปีก่อน — รอสไลด์ 1/2569 ใน OnLearn
 
 - เครื่องมือสร้างเว็บ — text editor, WYSIWYG, **CMS** (WordPress ฯลฯ)
 - Website technologies — HTML, CSS, JavaScript, server-side
 - **โครงสร้างหน้าเว็บ** — `<!DOCTYPE>`, `<html>`, `<head>`, `<title>`, `<body>`
 - การสร้างไฟล์ `index.html` และการใส่ title
 
----
-
-## 4. สูตร ตัวเลข และตารางที่ต้องจำ
+## 4. สิ่งที่ต้องจำ
 
 | เรื่อง | ค่าที่ต้องจำ |
 |---|---|
@@ -276,66 +283,47 @@ sources:
 | Moore's Law | ทรานซิสเตอร์เพิ่มเป็น 2 เท่า ทุก ~2 ปี |
 | RAID | 0 = striping (เร็ว ไม่ทน) · 1 = mirroring · 5 = striping + parity |
 | หน่วยเวลา | ms (10⁻³) · µs (10⁻⁶) · ns (10⁻⁹) |
+| ลำดับชั้นข้อมูล | character → field → record → file → database |
+| SQL พื้นฐาน | `SELECT … FROM … WHERE …` (+ `GROUP BY` · `ORDER BY`) |
+| IPv4 | 32 บิต · Class A/B/C · private IP · subnet mask แยก network ID กับ host ID |
 
----
+## 5. การประเมินและเตรียมสอบ
 
-## 5. พิมพ์เขียวสำหรับสร้างสื่อต่อยอด
+### 5.1 รูปแบบการประเมิน
 
-### 5.1 คลังข้อสอบ (Quiz Bank)
+- **สอบกลางภาค / ปลายภาค** — 3 ชั่วโมง (13:30–16:30) · สัดส่วนปรนัย/อัตนัยของปีนี้ *ยังไม่ยืนยัน*
+- **แล็บ** — ทำในห้อง L434 ทุกวันศุกร์ ยกมือให้พี่ TA ตรวจตามเช็กลิสต์ในใบงาน
+  บางสัปดาห์ (Excel 1–2, Make.com, File Management, Network 1) ส่งไฟล์ใน OnLearn แยกตามรอบแล็บ
+- **เข้าเรียน** 10%
 
-| มิติ | ข้อกำหนด |
-|---|---|
-| สัดส่วนตามบท (กลางภาค) | L01 15% · L02 15% · L03 20% · L04 15% · L05 15% · L06 10% · L07 10% |
-| สัดส่วนตามบท (ปลายภาค) | L08 15% · L09 15% · L10 10% · L11 15% · L12 20% · L13 15% · L14–15 10% |
-| ชนิดข้อ | `multiple_choice` 70% · `true_false` 10% · `short_answer` 20% |
-| ระดับ Bloom | จำ 40% · เข้าใจ 35% · ประยุกต์/วิเคราะห์ 25% |
-| ตัวลวงที่ดี | ใช้คู่คำที่สับสนกันจริง — RAM/ROM, NAS/SAN, HDD/SSD, hub/switch, virus/worm, shareware/freeware, Internet/Web |
-| ทุกข้อต้องมี | `explanation` + `sourceAssetId` อ้างสไลด์/หน้าที่มา |
-
-**คลังที่มีแล้ว:** `data/quiz/itf-midterm.json` (ปรนัย 10 + อัตนัย 5 พร้อมเฉลย)
-เป้าหมาย Phase 2 คือ ≥ 60 ข้อผ่านการตรวจเฉลย
-
-### 5.2 แบบฝึกหัด/Lab
-
-| Lab | ทักษะ | โจทย์ที่สร้างได้ |
-|---|---|---|
-| Week 01 | Windows พื้นฐาน, file management | จัดโครงโฟลเดอร์ตามโจทย์ · ตั้งชื่อไฟล์ตามข้อกำหนด |
-| Week 02–05 | Word / PowerPoint | จัดรูปแบบเอกสารตาม spec · ทำสไลด์นำเสนอ 5 หน้า |
-| Week 06–07 | Excel 1–2 | สูตร, `IF`, `VLOOKUP`, PivotTable, chart, งบการเงินอย่างง่าย |
-| ต่อยอด | Database | ออกแบบตาราง + เขียน `SELECT … WHERE` จากโจทย์เรื่องเล่า |
-| ต่อยอด | Network | คำนวณ network ID/broadcast จาก IP + subnet mask |
-
-### 5.3 ข้อสอบจำลอง (Mock Exam)
-
-- **กลางภาค** — 3 ชั่วโมง · ปรนัย 40 ข้อ (60%) + อัตนัย/สถานการณ์ 5 ข้อ (40%)
-- **ปลายภาค** — 3 ชั่วโมง · เน้น Week 08–15 · ต้องมีข้อคำนวณ IP addressing อย่างน้อย 1 ข้อ
-- ข้อบูรณาการที่ควรมีเสมอ: ไล่เส้นทาง `Input → Process → Output → Storage` ของสถานการณ์จริง 1 ข้อ
-
-### 5.4 หัวข้อที่ออกสอบบ่อยที่สุด
+### 5.2 หัวข้อที่ออกบ่อย
 
 1. Machine cycle 4 ขั้นตอน
-2. Virtual memory / memory hierarchy
-3. ตารางหน่วยความจุ + การแปลงหน่วย
+2. Virtual memory และ memory hierarchy
+3. ตารางหน่วยความจุและการแปลงหน่วย
 4. HDD vs SSD และ RAID
 5. 5 ขั้นตอนการ boot
-6. ตาราง 8 ประเภทการได้มาซึ่งซอฟต์แวร์
+6. 8 ช่องทางการได้มาซึ่งซอฟต์แวร์
 7. Moore's Law
 8. NAS vs SAN
-9. คำศัพท์ที่สับสนกัน (ดูภาคผนวก B5 ของคู่มือทบทวน)
-10. IPv4 class + subnet mask (ปลายภาค)
+9. ลำดับชั้นข้อมูลและ DBMS (ปลายภาค)
+10. IPv4 class และ subnet mask (ปลายภาค)
 
----
+### 5.3 จุดที่มักพลาด
 
-## 6. แหล่งข้อมูลในคลัง
+- คู่คำที่สับสน: RAM/ROM · NAS/SAN · HDD/SSD · hub/switch · virus/worm · shareware/freeware · Internet/Web
+- cold boot vs warm boot · sleep vs hibernate
+- **backward compatibility** คือเวอร์ชันใหม่รองรับของเก่า ไม่ใช่กลับกัน
+- data คือข้อเท็จจริงดิบ (input) — information คือผลที่ประมวลผลแล้ว (output)
 
-| ประเภท | จำนวน | ที่อยู่ |
-|---|---|---|
-| สไลด์บรรยาย 1/2026 (Week 00–07) | 8 ไฟล์ / 340 หน้า | `public/bank/itf/lectures/` |
-| รูปสมุดจดในชั้นเรียน | 26 หน้า (WebP) | `public/bank/itf/notes/` |
-| คู่มือทบทวนกลางภาค | 1 ไฟล์ | `content/itf/ITF_Sheet_MidtermStudyGuide.md` |
-| สไลด์คลังปีก่อน (Week 08–15) | 20+ ไฟล์ | `kmitl-archive/…/Y1-S1/IT-Fundamentals/Lectures/` |
-| ข้อสอบเก่า | 10 ไฟล์ | `…/IT-Fundamentals/Exams/` |
-| ชีทสรุปนักศึกษา | 6 ไฟล์ | `…/IT-Fundamentals/Sheets/` |
-| Lab | Week 01, 06, 07, 12 | `…/IT-Fundamentals/Labs/`, `Y1-S1-2569/IT-Fundamentals/` |
+## 6. แหล่งเรียนรู้
 
-> ⚠️ สไลด์บรรยายเป็นเอกสารของผู้สอน — ห้ามเผยแพร่สาธารณะจนกว่าจะได้รับอนุญาต
+| สื่อ | ที่อยู่ |
+|---|---|
+| สรุปอ่านสอบรายสัปดาห์ Week 1–15 | [สัปดาห์เรียน + สรุปอ่านสอบ](/courses/06016402-IT-Fundamentals/map) |
+| สไลด์ ใบงานแล็บ ไฟล์ข้อมูล และคลิปบรรยาย แยกรายสัปดาห์ | [คลังเรียนรู้](/courses/06016402-IT-Fundamentals/library) |
+| คู่มือทบทวนกลางภาค Lecture 01–07 | [คู่มือทบทวน](/courses/06016402-IT-Fundamentals/summary) |
+| แบบฝึกหัดรายบทพร้อมเฉลย | [คลังโจทย์รายบท](/courses/06016402-IT-Fundamentals/quiz) |
+| ต้นฉบับจากผู้สอน ประกาศ และที่ส่งงาน | [OnLearn](https://onlearn.it.kmitl.ac.th/course/view.php?id=1766) |
+
+> สไลด์บรรยายเป็นลิขสิทธิ์ของผู้สอน — ใช้เพื่อการเรียนเท่านั้น ห้ามเผยแพร่สาธารณะ

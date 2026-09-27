@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { IBM_Plex_Sans_Thai, Geist_Mono, Mali } from "next/font/google";
+import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { LocaleProvider } from "@/lib/i18n";
@@ -26,6 +27,60 @@ const mali = Mali({
   variable: "--font-mali",
   subsets: ["thai", "latin"],
   weight: ["400", "500", "600", "700"],
+});
+
+/*
+ * TH Sarabun New v1.3, the unhinted webfont build from
+ * github.com/Phonbopit/sarabun-webfont, re-compressed here to WOFF2. Same
+ * outlines as the hinted v1.35 release, but without fpgm/prep/hdmx/VDMX the
+ * four faces come to 163 KB instead of 295 KB, and nothing on the web reads
+ * TrueType hinting anyway.
+ *
+ * It ships only two weights (400/700) plus matching italics — no 500/600 — so
+ * `font-medium` resolves back down to 400 and renders as normal text. Use 400
+ * or 700 only; see docs/FONTS.md.
+ *
+ * size-adjust is not cosmetic. The face draws small: ก stands 0.612em against
+ * 0.558em in IBM Plex Sans Thai. 91% = 0.558/0.612, which lines its Thai body
+ * height up with --font-sans and lets the normal text-* scale apply unchanged.
+ * Because that invalidates the metrics Next.js would derive for a fallback
+ * face, adjustFontFallback is off and the fallback list is explicit.
+ *
+ * Even at 91% the mark stack spans 1.51em of ink, so anything rendering this
+ * family needs roughly 1.9 line-height. MdView sets it; see docs/FONTS.md.
+ *
+ * preload is off: the variable sits on <html> for every route, and these faces
+ * should not block pages that render no Markdown.
+ */
+const thSarabun = localFont({
+  variable: "--font-sarabun",
+  display: "swap",
+  preload: false,
+  adjustFontFallback: false,
+  fallback: ["IBM Plex Sans Thai", "Sarabun", "Tahoma", "sans-serif"],
+  declarations: [{ prop: "size-adjust", value: "91%" }],
+  src: [
+    {
+      path: "./fonts/THSarabunNew-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/THSarabunNew-Italic.woff2",
+      weight: "400",
+      style: "italic",
+    },
+    {
+      path: "./fonts/THSarabunNew-Bold.woff2",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "./fonts/THSarabunNew-BoldItalic.woff2",
+      weight: "700",
+      style: "italic",
+    },
+  ],
 });
 
 // Keep in sync with app/robots.ts and app/sitemap.ts.
@@ -123,7 +178,7 @@ export default function RootLayout({
     <html
       lang="th"
       suppressHydrationWarning
-      className={`${plexThai.variable} ${geistMono.variable} ${mali.variable} h-full antialiased`}
+      className={`${plexThai.variable} ${geistMono.variable} ${mali.variable} ${thSarabun.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         {/*

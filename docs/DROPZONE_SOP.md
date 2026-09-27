@@ -417,7 +417,7 @@ hand. What you must get right is the **classification**:
   so in the Phase 8 report. Over-restricting is recoverable; publishing someone's
   exam paper is not.
 
-> ⚠️ **`summary.md` is hand-maintained and follows a mandatory 6-section
+> ⚠️ **`summary.md` is hand-maintained and follows the 6-section standard in `docs/COURSE_OVERVIEW_STANDARD.md`,
 > structure.** Never overwrite it from the dropzone. If a dropped file looks
 > like a course overview, hold it (Phase 6) and let the human merge it.
 

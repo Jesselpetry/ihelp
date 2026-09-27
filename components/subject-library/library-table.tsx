@@ -18,6 +18,7 @@ import { assetDownloadUrl } from "@/lib/library/asset-url";
 import { useLocale, t } from "@/lib/i18n";
 import { formatBytes, resolveCategory, type SubjectAsset } from "@/lib/library/subject-library-ui";
 import { ScopeBadge, StatusBadges } from "./badges";
+import { SourceLink } from "./card-actions";
 import {
   CATEGORY,
   chapterTag,
@@ -516,6 +517,7 @@ export function SubjectLibraryTable({
                           <Download className="size-3.5" />
                         </a>
                       )}
+                      <SourceLink asset={asset} />
                       <button
                         type="button"
                         onClick={() => copyUrl(asset.id, asset.url)}

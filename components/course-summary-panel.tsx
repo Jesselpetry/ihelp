@@ -158,7 +158,13 @@ export function CourseSummaryPanel({
       ref={rootRef}
       className={`w-full scroll-mt-20 animate-in fade-in-50 duration-300 ${className}`}
     >
-      <div className="flex flex-col items-start gap-6 lg:flex-row">
+      {/*
+       * items-start only from lg, where the sticky outline needs it. In the
+       * phone column it shrink-wrapped the reading column to its min-content —
+       * the unwrapped chip rail and the widest table — so the whole document
+       * ran past the card's right edge instead of wrapping inside it.
+       */}
+      <div className="flex flex-col gap-6 lg:flex-row lg:items-start">
         {tocItems.length > 0 && (
           <aside className="sticky top-20 hidden w-64 shrink-0 flex-col gap-3 rounded-2xl border bg-background/60 p-4 lg:flex xl:w-72">
             <div className="flex shrink-0 items-center justify-between gap-2 border-b pb-3">
@@ -256,7 +262,8 @@ export function CourseSummaryPanel({
                       type="button"
                       onClick={() => scrollToHeading(item.id)}
                       aria-current={isActive ? "true" : undefined}
-                      className={`shrink-0 rounded-lg px-2.5 py-1.5 text-xs font-medium transition-colors active:scale-95 ${
+                      title={item.text}
+                      className={`max-w-[16rem] shrink-0 truncate rounded-lg px-2.5 py-1.5 text-xs font-medium transition-colors active:scale-95 ${
                         isActive
                           ? "bg-primary text-primary-foreground shadow-xs"
                           : "bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground"

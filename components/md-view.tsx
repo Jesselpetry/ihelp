@@ -11,6 +11,7 @@ import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import "katex/dist/katex.min.css";
 import { slugifyHeading } from "@/lib/docs/toc";
+import { remarkNotebook } from "@/lib/docs/remark-notebook";
 import { useLocale, t, type LText } from "@/lib/i18n";
 
 function getNodeText(node: React.ReactNode): string {
@@ -147,7 +148,7 @@ const mdComponents: Components = {
     return (
       <h1
         id={id || undefined}
-        className="tracking-tight text-2xl sm:text-3xl font-bold mt-1 sm:mt-2 mb-4 sm:mb-6 leading-snug scroll-mt-24 [overflow-wrap:anywhere]"
+        className="tracking-tight text-2xl sm:text-3xl font-bold mt-1 sm:mt-2 mb-4 sm:mb-6 leading-[1.6] scroll-mt-24 [overflow-wrap:anywhere]"
         {...p}
       >
         {children}
@@ -160,7 +161,7 @@ const mdComponents: Components = {
     return (
       <h2
         id={id || undefined}
-        className="tracking-tight text-lg sm:text-xl font-bold mt-8 sm:mt-10 mb-2.5 sm:mb-3 pb-1.5 border-b leading-snug scroll-mt-24 [overflow-wrap:anywhere]"
+        className="tracking-tight text-lg sm:text-xl font-bold mt-8 sm:mt-10 mb-2.5 sm:mb-3 pb-1.5 border-b leading-[1.6] scroll-mt-24 [overflow-wrap:anywhere]"
         {...p}
       >
         {children}
@@ -186,7 +187,7 @@ const mdComponents: Components = {
     return (
       <h4
         id={id || undefined}
-        className="text-sm sm:text-base font-semibold mt-5 sm:mt-6 mb-1.5 text-foreground/90 scroll-mt-24 [overflow-wrap:anywhere]"
+        className="text-sm sm:text-base font-semibold mt-5 sm:mt-6 mb-1.5 text-foreground scroll-mt-24 [overflow-wrap:anywhere]"
         {...p}
       >
         {children}
@@ -195,7 +196,7 @@ const mdComponents: Components = {
   },
 
   p: ({ node: _node, ref: _ref, ...p }) => (
-    <p className="my-3 leading-relaxed [overflow-wrap:anywhere]" {...p} />
+    <p className="my-3 leading-[1.9] [overflow-wrap:anywhere]" {...p} />
   ),
   ul: ({ node: _node, ref: _ref, ...p }) => (
     <ul className="my-3 space-y-1.5 list-disc pl-5 sm:pl-6 marker:text-primary/60" {...p} />
@@ -218,7 +219,7 @@ const mdComponents: Components = {
     />
   ),
   li: ({ node: _node, ref: _ref, ...p }) => (
-    <li className="leading-relaxed" {...p} />
+    <li className="leading-[1.9]" {...p} />
   ),
   blockquote: ({ node: _node, ref: _ref, ...p }) => (
     <blockquote
@@ -232,6 +233,15 @@ const mdComponents: Components = {
       <span className="text-xs tracking-[0.5em] text-muted-foreground/50">···</span>
       <span className="h-px flex-1 bg-border" />
     </div>
+  ),
+
+  // {==…==} and {++…++}, produced by remarkNotebook. Understated here; the
+  // notebook variant restyles both as pen strokes.
+  mark: ({ node: _node, ref: _ref, ...p }) => (
+    <mark className="rounded-sm bg-primary/15 px-0.5 text-foreground" {...p} />
+  ),
+  u: ({ node: _node, ref: _ref, ...p }) => (
+    <u className="underline decoration-1 underline-offset-4" {...p} />
   ),
   a: ({ node: _node, ref: _ref, href, ...p }) => {
     let targetHref = href;
@@ -289,7 +299,7 @@ const mdComponents: Components = {
     );
   },
   table: ({ node: _node, ref: _ref, ...p }) => (
-    <div className="my-4 overflow-x-auto overscroll-x-contain [scrollbar-width:thin] rounded-lg border">
+    <div className="md-scroll-x my-4 overflow-x-auto overscroll-x-contain [scrollbar-width:thin] rounded-lg border">
       <table className="w-full text-[13px] sm:text-sm border-collapse" {...p} />
     </div>
   ),
@@ -340,11 +350,80 @@ function normalizeDisplayMath(markdown: string): string {
   });
 }
 
+/*
+ * The notebook layer. Everything here is an accent on top of mdComponents —
+ * body copy, headings, code, tables and images are deliberately untouched, so
+ * a long Thai document still reads as THSarabunNew at leading-[1.9] and only
+ * the marks around it change.
+ *
+ * Colours come from --ink-* in globals.css, which carries a coral red in dark
+ * mode. Hardcoding red-500/red-600 would have skipped that and sidestepped the
+ * token system the rest of the app themes through.
+ */
+const notebookComponents: Components = {
+  ul: ({ node: _node, ref: _ref, ...p }) => (
+    <ul
+      className="my-3 space-y-1.5 list-disc pl-5 sm:pl-6 marker:text-ink-red marker:font-bold"
+      {...p}
+    />
+  ),
+  ol: ({ node: _node, ref: _ref, ...p }) => (
+    <ol
+      className="my-3 space-y-1.5 list-decimal pl-5 sm:pl-6 marker:text-ink-red marker:font-mono marker:font-semibold"
+      {...p}
+    />
+  ),
+
+  // A report pad's double margin rule, rather than the default single bar.
+  blockquote: ({ node: _node, ref: _ref, ...p }) => (
+    <blockquote
+      className="my-3.5 sm:my-4 border-l-4 border-double border-ink-red/70 bg-ink-red/[0.04] pl-3 sm:pl-4 py-1.5 sm:py-2 rounded-r-lg italic [overflow-wrap:anywhere]"
+      {...p}
+    />
+  ),
+
+  // The ··· divider is kept — it is the reader's own mark. Only the rules
+  // either side become dashed pen strokes.
+  hr: () => (
+    <div className="my-8 flex items-center justify-center gap-2 select-none">
+      <span className="h-0 flex-1 border-t border-dashed border-ink-red/40" />
+      <span className="text-xs tracking-[0.5em] text-ink-red/50">···</span>
+      <span className="h-0 flex-1 border-t border-dashed border-ink-red/40" />
+    </div>
+  ),
+
+  // *text* as a margin note in red, the way an annotation reads on paper.
+  em: ({ node: _node, ref: _ref, ...p }) => (
+    <em className="italic text-ink-red" {...p} />
+  ),
+
+  mark: ({ node: _node, ref: _ref, ...p }) => (
+    <mark
+      className="rounded-[2px] bg-ink-highlight/40 px-1 py-0.5 text-foreground [box-decoration-break:clone]"
+      {...p}
+    />
+  ),
+  u: ({ node: _node, ref: _ref, ...p }) => (
+    <u
+      className="underline decoration-ink-red/80 decoration-wavy decoration-1 underline-offset-4"
+      {...p}
+    />
+  ),
+};
+
+export type MdViewVariant = "default" | "notebook";
+
 export interface MdViewProps {
   markdown: string;
   assets?: SubjectAsset[];
   courseCode?: string;
   onOpenPreview?: (asset: SubjectAsset) => void;
+  /**
+   * "notebook" adds the lecture-pad accents — red pen markers, a double
+   * margin rule, wavy underlines, red fraction bars. Body text is unaffected.
+   * Default stays plain so exam papers and formal documents are not marked up.
+   */
+  variant?: MdViewVariant;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -441,10 +520,18 @@ function parseSessionDocTable(node: any, assets?: SubjectAsset[]): SessionDocume
   return items.length > 0 ? items : null;
 }
 
-export function MdView({ markdown, assets, courseCode, onOpenPreview }: MdViewProps) {
+export function MdView({
+  markdown,
+  assets,
+  courseCode,
+  onOpenPreview,
+  variant = "default",
+}: MdViewProps) {
+  const notebook = variant === "notebook";
   const components: Components = useMemo(() => {
     return {
       ...mdComponents,
+      ...(notebook ? notebookComponents : {}),
       table: ({ node, ...p }) => {
         const sessionDocs = parseSessionDocTable(node, assets);
         if (sessionDocs) {
@@ -457,21 +544,46 @@ export function MdView({ markdown, assets, courseCode, onOpenPreview }: MdViewPr
           );
         }
         return (
-          <div className="my-4 overflow-x-auto overscroll-x-contain [scrollbar-width:thin] rounded-lg border">
+          <div className="md-scroll-x my-4 overflow-x-auto overscroll-x-contain [scrollbar-width:thin] rounded-lg border">
             <table className="w-full text-[13px] sm:text-sm border-collapse" {...p} />
           </div>
         );
       },
     };
-  }, [assets, courseCode, onOpenPreview]);
+  }, [assets, courseCode, onOpenPreview, notebook]);
 
+  /*
+   * font-sarabun: every Markdown body in the app renders in THSarabunNew. It
+   * is narrower than --font-sans, so a Thai line fits more before it wraps.
+   * Code and KaTeX keep their own families — `code`/`pre` carry font-mono in
+   * mdComponents, and globals.css pins .katex .text to --font-sans. Tables
+   * inherit it. See docs/FONTS.md.
+   *
+   * The face only ships 400 and 700, so inside here font-medium silently
+   * resolves to 400 and font-semibold to a full 700.
+   *
+   * leading-[1.9] is required, not taste. Scaled by size-adjust the ink spans
+   * 1.513em from the top of a tone mark to the tail of a descender, against
+   * 1.239em for --font-sans. At leading-relaxed that leaves 0.112em between
+   * lines, so the tone marks of one line crowd the descenders of the line
+   * above and read as detached from their own syllable. 1.9 restores the same
+   * gap --font-sans gets at 1.625. p and li repeat it because they set their
+   * own leading and would otherwise override this one.
+   */
   return (
-    <div className="text-[15px] sm:text-base leading-relaxed text-foreground/90 overflow-hidden">
+    <div
+      className={`font-sarabun text-[15px] sm:text-base leading-[1.9] text-foreground overflow-hidden${
+        notebook ? " md-notebook-view" : ""
+      }`}
+    >
       <ReactMarkdown
         remarkPlugins={[
           remarkFrontmatter,
           remarkGfm,
           [remarkMath, { singleDollarTextMath: true }],
+          // Runs in both variants so {==…==} never leaks as literal braces;
+          // only the styling of the resulting mark/u differs.
+          remarkNotebook,
         ]}
         rehypePlugins={[
           [

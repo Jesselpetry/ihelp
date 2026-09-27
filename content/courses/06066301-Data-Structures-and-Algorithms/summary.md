@@ -10,35 +10,45 @@ term: 2
 termId: Y1-S2
 prerequisites: ["06066303 PSCP"]
 language: th
+semester: "2 (ข้อมูลปีก่อน)"
+updated: "2026-09-26"
 sources:
-  - kmitl-archive/archive/Y1-S2/Data-Structures-and-Algorithms
+  - สไลด์บรรยาย 14 บท
+  - แบบฝึกหัดพร้อมเฉลย · Posttest 8–14 · ข้อสอบเก่า
 ---
 
 # DSA — โครงสร้างข้อมูลและอัลกอริทึม
 
-## 1. ภาพรวมรายวิชา
+> วิชาแกนของสายโปรแกรม — ครึ่งแรกโครงสร้างข้อมูล (list, stack, queue, tree, graph)
+> ครึ่งหลังการวิเคราะห์และออกแบบอัลกอริทึม (Big-O, search, sort, greedy, recursion, D&C, DP)
+>
+> **อัปเดตล่าสุด** 26 ก.ย. 2569 · ข้อมูลจากคลังปีก่อน (ภาคเรียนที่ 2/2569 ยังไม่เริ่ม)
+
+## 1. ข้อมูลรายวิชา
 
 | หัวข้อ | รายละเอียด |
 |---|---|
 | รหัสวิชา | `06066301` |
-| ชื่อไทย | โครงสร้างข้อมูลและอัลกอริทึม |
-| ชื่ออังกฤษ | DATA STRUCTURES AND ALGORITHMS |
+| ชื่อวิชา | โครงสร้างข้อมูลและอัลกอริทึม · Data Structures and Algorithms |
 | หน่วยกิต | 3 (2-2-5) |
-| ชั้นปี/เทอม | ปี 1 เทอม 2 |
-| วิชาบังคับก่อน | ไม่มีระบุอย่างเป็นทางการ — **ในทางปฏิบัติต่อยอดจาก PSCP** (ต้องเขียนโปรแกรมได้) |
-| หลักสูตรที่ใช้ร่วม | IT, DSBA, AIT |
-| ภาษาที่ใช้ในสไลด์ | Python (มีหัวข้อ "LIST IN PYTHON") + pseudocode |
+| ชั้นปี / ภาคเรียน | ปี 1 ภาคเรียนที่ 2 (เรียนร่วม IT · DSBA · AIT) |
+| วิชาบังคับก่อน | ไม่ระบุอย่างเป็นทางการ — ในทางปฏิบัติต่อยอดจาก PSCP (ต้องเขียนโปรแกรมได้) |
+| ผู้สอน | ผศ.ดร. สุพัณณดา โชติพันธ์ · ดร. ภัทรภร วัฒนาชีพ (รายชื่อบนเว็บคณะ) |
+| ตำรา / สื่อหลัก | สไลด์บรรยายของรายวิชา · ภาษา Python + pseudocode |
+| ช่องทางเรียน | บรรยาย + แล็บ · Posttest หลังเรียนรายสัปดาห์ (บทที่ 8–14) |
 
-### คำอธิบายโดยสังเขป
+### คำอธิบายรายวิชา
 
 วิชาแกนที่สอนโครงสร้างข้อมูลพื้นฐานและอัลกอริทึมมาตรฐาน แบ่งชัดเป็นสองครึ่ง:
 **ครึ่งแรกเป็นโครงสร้างข้อมูล** (list, stack, queue, tree, graph)
 **ครึ่งหลังเป็นการวิเคราะห์และออกแบบอัลกอริทึม** (Big-O, searching, sorting, greedy,
 recursion, divide & conquer, dynamic programming)
 
----
+### สัดส่วนคะแนน
 
-## 2. ขอบเขตเนื้อหา — 14 บท
+*ยังไม่ยืนยัน* — ยังไม่มีประกาศสัดส่วนคะแนนในคลัง
+
+## 2. ขอบเขตเนื้อหา
 
 ### 2.1 ขอบเขตสอบกลางภาค (บทที่ 2–7)
 
@@ -66,9 +76,9 @@ recursion, divide & conquer, dynamic programming)
 | 14 | 13 | Divide and Conquer |
 | 15 | 14 | Dynamic Programming |
 
----
-
 ## 3. สรุปเนื้อหารายหัวข้อ
+
+**ครึ่งแรก — โครงสร้างข้อมูล (กลางภาค)**
 
 ### บทที่ 2 — Array & Linked List
 
@@ -199,6 +209,8 @@ recursion, divide & conquer, dynamic programming)
 - **Minimum Spanning Tree** — Prim / Kruskal
 - **Shortest path** — Dijkstra
 
+**ครึ่งหลัง — อัลกอริทึม (ปลายภาค)**
+
 ### บทที่ 8 — Algorithm Analysis
 
 - **อัลกอริทึม** — ขั้นตอนวิธีแก้ปัญหา จาก initial state ไป end state
@@ -308,50 +320,54 @@ recursion, divide & conquer, dynamic programming)
   - LCS: `dp[i][j] = dp[i−1][j−1] + 1` ถ้าตัวอักษรตรงกัน มิฉะนั้น `max(dp[i−1][j], dp[i][j−1])`
 - **DP vs Divide & Conquer** — D&C ปัญหาย่อยไม่ซ้อนทับ; DP ซ้อนทับจึงคุ้มที่จะจำ
 
----
+## 4. สิ่งที่ต้องจำ
 
-## 4. พิมพ์เขียวสำหรับสร้างสื่อต่อยอด
-
-### 4.1 คลังข้อสอบ
-
-| มิติ | ข้อกำหนด |
+| เรื่อง | ค่าที่ต้องจำ |
 |---|---|
-| กลางภาค | Linked list 15% · Stack/Queue 20% · Binary tree 15% · BST 15% · Heap/Huffman 15% · AVL 10% · Graph 10% |
-| ปลายภาค | Big-O 20% · Searching/Hashing 15% · Sorting 20% · Greedy 10% · Recursion 15% · D&C 10% · DP 10% |
-| ชนิดข้อ | วาด/ไล่ขั้นตอน 45% · คำนวณ Big-O 20% · เขียน pseudocode 20% · ปรนัยมโนทัศน์ 15% |
+| ลำดับความเร็ว | `O(1) < O(log n) < O(n) < O(n log n) < O(n²) < O(n³) < O(2ⁿ)` |
+| จำนวนรอบลูป | `i += 1` → n · `i *= 2` หรือ `i //= 2` → log₂ n · ลูปในขึ้นกับลูปนอก → n(n+1)/2 |
+| Big-O | ตัดค่าคงที่และพจน์อันดับต่ำ — `3n² + 2n + 3` → `O(n²)` |
+| Binary tree | ความสูงต่ำสุด `⌊log₂ n⌋` · node สูงสุดที่ level h = `2^h` |
+| Heap ใน array | ลูกซ้าย `2i+1` · ลูกขวา `2i+2` · พ่อ `(i−1)//2` |
+| BST / AVL | BST เฉลี่ย `O(log n)` แย่สุด `O(n)` · AVL รับประกัน `O(log n)` |
+| กราฟ | complete undirected `n(n−1)/2` เส้น · adjacency matrix `O(V²)` · list `O(V + E)` |
+| Search | sequential `O(n)` · binary `O(log n)` (ต้องเรียงก่อน) · hashing เฉลี่ย `O(1)` |
+| Sorting | insertion/selection/bubble `O(n²)` · merge `O(n log n)` ทุกกรณี · quick แย่สุด `O(n²)` |
+| Recursion | Towers of Hanoi `2ⁿ − 1` ครั้ง · Fibonacci แบบ recursion ธรรมดา `O(2ⁿ)` |
+| Karatsuba | `O(n^1.585)` เทียบ brute force `O(n²)` |
 
-### 4.2 รูปแบบโจทย์ที่ generate ได้อัตโนมัติ
+## 5. การประเมินและเตรียมสอบ
 
-| หัวข้อ | เทมเพลตโจทย์ | วิธีตรวจ |
-|---|---|---|
-| Linked list | สุ่มลำดับ insert/delete → ถามสถานะลิสต์สุดท้าย | simulate ด้วยโค้ด |
-| Infix → Postfix | สุ่มนิพจน์ 6–10 token | เทียบกับ shunting-yard |
-| Tree traversal | สุ่ม BST จากลำดับ insert → ถาม pre/in/post/level order | simulate |
-| BST deletion | สุ่มต้นไม้ + โหนดที่ลบ (บังคับให้เจอกรณี 2 ลูก) | simulate |
-| AVL | สุ่มลำดับ insert ที่ทำให้เกิดครบทั้ง 4 กรณีหมุน | simulate |
-| Heap | สุ่มอาเรย์ → build max-heap → ถามอาเรย์ผลลัพธ์ | simulate |
-| Huffman | สุ่มความถี่อักขระ → ถามความยาวรหัสรวม | simulate |
-| Big-O | สุ่มโครงลูปซ้อน → ถาม Big-O | สร้างจากเทมเพลตที่รู้คำตอบ |
-| Sorting | สุ่มอาเรย์ 8 ตัว → ถามสถานะหลัง pass ที่ k | simulate |
-| DP | สุ่มโจทย์ knapsack เล็ก (5 ของ, W ≤ 15) → ถามตาราง `dp` | simulate |
+### 5.1 รูปแบบการประเมิน
 
-### 4.3 ข้อสอบจำลอง
+- **กลางภาค** — โครงสร้างข้อมูล บทที่ 2–7 · **ปลายภาค** — อัลกอริทึม บทที่ 8–14
+- ข้อสอบปีก่อนเน้น**วาด/ไล่ขั้นตอน** (สถานะลิสต์ ต้นไม้ heap อาเรย์หลังแต่ละ pass) มากกว่าท่องนิยาม
+- Posttest หลังเรียนรายสัปดาห์ และการบ้าน — สัดส่วนคะแนน *ยังไม่ยืนยัน*
 
-- **กลางภาค** — 6 ข้อใหญ่: linked list 1 · stack (infix→postfix) 1 · tree traversal 1 ·
-  BST insert/delete 1 · heap หรือ Huffman 1 · graph (matrix/list + DFS/BFS) 1
-- **ปลายภาค** — 7 ข้อ: Big-O 1 · binary search trace 1 · hashing + collision 1 ·
-  sorting trace 2 · greedy 1 · DP (knapsack หรือ LCS) 1
-- ในคลังมีข้อสอบจริง `DSA_Midterm_2565-Term2.pdf` และ `DSA_Final_2023.pdf` ให้เทียบแนว
+### 5.2 หัวข้อที่ออกบ่อย
 
----
+1. แปลง infix → postfix ด้วย stack
+2. Tree traversal — pre / in / post / level order
+3. ลบโหนดใน BST (รวมกรณีมีลูกสองข้าง)
+4. AVL — 4 กรณีการหมุน
+5. Build heap และ Huffman code
+6. กราฟ — adjacency matrix/list และ DFS/BFS
+7. วิเคราะห์ Big-O จากโครงลูป
+8. Binary search และ hashing + collision
+9. ไล่สถานะอาเรย์ของ sorting ทีละ pass
+10. DP — knapsack หรือ LCS
 
-## 5. แหล่งข้อมูลในคลัง
+### 5.3 จุดที่มักพลาด
 
-| ประเภท | จำนวน | หมายเหตุ |
-|---|---|---|
-| สไลด์บรรยาย | 14 ไฟล์ (Week02–Week15) | ครบทุกบท มีลายมือจดในสไลด์หลายไฟล์ |
-| แบบฝึกหัด + เฉลย | 36 ไฟล์ | มี `DSA_Ex_Solution-*` แยกตามบท — ใช้เป็นต้นแบบเฉลยได้ทันที |
-| Posttest | Posttest 8–14 | แบบทดสอบหลังเรียนรายสัปดาห์ |
-| การบ้าน | HW 05, 06, 09, 10, 13, 14 | มีฉบับทำแล้ว |
-| ข้อสอบเก่า | 30 ไฟล์ | midterm/final แยกตามบทและตามปี |
-| ชีทสรุป | `DSA_Sheet_Recap-Final.pdf` | |
+- Insert หัวลิสต์ต้องต่อ `new.link = root` **ก่อน** `root = new` — สลับลำดับแล้วลิสต์ขาด
+- Inorder ของ BST ได้ลำดับเรียงจากน้อยไปมาก — ใช้ตรวจคำตอบได้
+- Binary search ใช้ได้เฉพาะข้อมูลที่เรียงแล้ว
+- Greedy ไม่รับประกันคำตอบดีที่สุดเสมอไป
+- Recursion ต้องมี base case และต้องเข้าใกล้ base case ทุกครั้งที่เรียก
+
+## 6. แหล่งเรียนรู้
+
+| สื่อ | ที่อยู่ |
+|---|---|
+| สไลด์ แบบฝึกหัดพร้อมเฉลย Posttest และข้อสอบเก่า | [คลังเรียนรู้](/courses/06066301-Data-Structures-and-Algorithms/library) |
+| สรุปเนื้อหา | [คู่มือทบทวน](/courses/06066301-Data-Structures-and-Algorithms/summary) |

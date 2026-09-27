@@ -45,6 +45,12 @@ export function cleanHeadingTitle(text: string): string {
   return text
     .replace(/\{#[^}]+\}/g, "")
     .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+    // Headings in the chemistry summary carry <sub>/<sup>. The body gets real
+    // elements from remarkNotebook, but an outline entry is a plain string in
+    // a sidebar, so the tags would show as literal angle brackets — unwrap
+    // them and keep the inner text.
+    .replace(/<\/?su[bp]>/g, "")
+    .replace(/\{(?:==|\+\+)([\s\S]+?)(?:==|\+\+)\}/g, "$1")
     .replace(/[*_`~]/g, "")
     .trim();
 }

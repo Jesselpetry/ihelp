@@ -11,6 +11,10 @@
   --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
   --font-mali: var(--font-mali);
+  --font-sarabun: var(--font-sarabun);
+  --color-ink-red: var(--ink-red);
+  --color-ink-blue: var(--ink-blue);
+  --color-ink-highlight: var(--ink-highlight);
   --font-heading: var(--font-sans);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -76,6 +80,12 @@
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
+  /* Notebook ink. Ballpoint and gel, not screen #f00 — a saturated red on a
+     white page is what makes a marked-up document tiring to read. Only the
+     notebook variant of MdView uses these; see docs/FONTS.md. */
+  --ink-red: #dc2626;
+  --ink-blue: #2563eb;
+  --ink-highlight: #fde68a;
   --radius: 0.625rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
@@ -106,6 +116,11 @@
   --accent: #232932;
   --accent-foreground: #e7eaef;
   --destructive: #ff6b6b;
+  /* Red ink goes coral on a dark canvas: #dc2626 against #171c23 is both
+     low-contrast and harsh at night, where rose reads cleanly. */
+  --ink-red: #fb7185;
+  --ink-blue: #7dd3fc;
+  --ink-highlight: #b45309;
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: #5c9bf5;
@@ -324,6 +339,84 @@ html[data-theme-transition]::view-transition-new(root) {
 
 .katex .text {
   font-family: var(--font-sans), system-ui, sans-serif !important;
+}
+
+/*
+ * Tells the reader a table can be swiped.
+ *
+ * A Thai five-column table does not fit a phone at any font size, so the
+ * markdown wrapper has always scrolled horizontally. Measured on the ICS
+ * overview, the widest table overruns its wrapper by 260px at 320px wide and
+ * still by 40px at 540px — and by 207px at 1024px, where the outline panel
+ * takes the width back. Nothing said so: mobile has no persistent scrollbar,
+ * so the table simply looked cut off at the card edge.
+ *
+ * The classic four-layer background trick. The two `local` gradients scroll
+ * with the content and cover the shadows when an edge is reached; the two
+ * `scroll` radials stay put and show through only while there is more table
+ * in that direction. No JavaScript and no scroll listener.
+ */
+.md-scroll-x {
+  background:
+    linear-gradient(to right, var(--card) 30%, transparent) 0 0 / 28px 100% no-repeat local,
+    linear-gradient(to left, var(--card) 30%, transparent) 100% 0 / 28px 100% no-repeat local,
+    radial-gradient(farthest-side at 0 50%, rgb(0 0 0 / 14%), transparent) 0 0 / 16px 100% no-repeat scroll,
+    radial-gradient(farthest-side at 100% 50%, rgb(0 0 0 / 14%), transparent) 100% 0 / 16px 100% no-repeat scroll;
+}
+
+.dark .md-scroll-x {
+  background:
+    linear-gradient(to right, var(--card) 30%, transparent) 0 0 / 28px 100% no-repeat local,
+    linear-gradient(to left, var(--card) 30%, transparent) 100% 0 / 28px 100% no-repeat local,
+    radial-gradient(farthest-side at 0 50%, rgb(0 0 0 / 45%), transparent) 0 0 / 16px 100% no-repeat scroll,
+    radial-gradient(farthest-side at 100% 50%, rgb(0 0 0 / 45%), transparent) 100% 0 / 16px 100% no-repeat scroll;
+}
+
+/*
+ * The section rule under h2, in red.
+ *
+ * This is the one accent that lands in the first screen. Measured across the
+ * eight busiest summaries, an h2 sits inside the first 900px on all eight and
+ * is always the earliest inkable element — 96px on six of them, 365px and
+ * 383px on the other two, against 152-591px for the first table header. The
+ * accents were otherwise invisible until 773px down on the ComPro summary,
+ * which is what "ไม่เห็นหมึกแดงเลย" actually was.
+ *
+ * Written here rather than as an h2 renderer in notebookComponents so the
+ * heading keeps its single slug/id implementation. Unlayered CSS outranks
+ * Tailwind's @layer utilities, so this beats the border-b on the element
+ * without !important.
+ */
+.md-notebook-view h2 {
+  border-bottom-color: color-mix(in srgb, var(--ink-red) 45%, transparent);
+  border-bottom-width: 2px;
+}
+
+/*
+ * Notebook variant only — a marked-up worksheet rather than a typeset one.
+ * Scoped to .md-notebook-view so ordinary readers, quizzes and PSCP
+ * statements keep KaTeX's own black rules.
+ */
+.md-notebook-view .katex .frac-line {
+  border-bottom-color: var(--ink-red);
+  border-bottom-width: 1.5px;
+}
+
+/* \boxed{} is the final answer, ringed like a marker would ring it. */
+.md-notebook-view .katex .fbox,
+.md-notebook-view .katex .boxpad {
+  border-color: var(--ink-red);
+  border-width: 1.5px;
+  border-radius: 2px;
+}
+
+/*
+ * Relations in red ink. This is the loudest rule in the set: .mrel is every
+ * =, <, >, \le, \to, \approx and \in, so a page of derivations turns
+ * substantially red. Delete this block first if the reader feels noisy.
+ */
+.md-notebook-view .katex .mrel {
+  color: var(--ink-red);
 }
 /*
  * Headings inside a reader that carries its own sticky outline rail need to

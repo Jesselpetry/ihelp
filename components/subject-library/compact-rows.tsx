@@ -6,6 +6,7 @@ import { assetDownloadUrl } from "@/lib/library/asset-url";
 import { useLocale, t, type LText } from "@/lib/i18n";
 import { formatBytes, resolveCategory, type SubjectAsset } from "@/lib/library/subject-library-ui";
 import { ScopeBadge, StatusBadges } from "./badges";
+import { SourceLink } from "./card-actions";
 import { CATEGORY, L, metaLine } from "./types";
 
 /** One row of the compact list — same actions, one line, scannable by name. */
@@ -76,6 +77,7 @@ export function CompactRow({
           <Download className="size-3.5" />
         </a>
       )}
+      <SourceLink asset={asset} className="shrink-0" />
     </div>
   );
 }

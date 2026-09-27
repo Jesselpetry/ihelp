@@ -22,7 +22,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { MdView } from "@/components/md-view";
+import { MdView, type MdViewVariant } from "@/components/md-view";
 import { ModuleIndex, ScopeTag } from "@/components/module-index";
 import { TocSidePanel } from "@/components/toc-side-panel";
 import { extractToc } from "@/lib/docs/toc";
@@ -64,6 +64,11 @@ interface ModuleReaderProps {
    * nothing is remembered, which is what a one-document module wants.
    */
   moduleKey?: string;
+  /**
+   * Passed through to MdView. Only the summary module asks for "notebook";
+   * mock exams and lab sheets stay plain.
+   */
+  variant?: MdViewVariant;
 }
 
 /**
@@ -126,6 +131,7 @@ export function ModuleReader({
   title,
   subtitle,
   moduleKey,
+  variant = "default",
 }: ModuleReaderProps) {
   const { locale } = useLocale();
   const [isTocCollapsed, setIsTocCollapsed] = useState(false);
@@ -403,6 +409,7 @@ export function ModuleReader({
               <article className="min-w-0 overflow-hidden rounded-3xl border bg-card p-4 sm:p-7 xl:p-8 shadow-sm">
                 <div className="min-w-0">
                   <MdView
+                    variant={variant}
                     markdown={active.markdown}
                     assets={assets}
                     courseCode={courseCode}

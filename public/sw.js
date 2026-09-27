@@ -7,11 +7,12 @@
  * job the old self-unregistering worker used to do.
  *
  * Caching is deliberately conservative:
- *   - build output and icons are cache-first (content-hashed or brand assets)
+ *   - build output and icons are cache-first (content-hashed or brand assets),
+ *     but only in production — see isDevHost() for why dev must not
  *   - navigations are network-first, so page content is never served stale
  *   - everything else (API routes, RSC payloads, Supabase) is not touched
  */
-const VERSION = "ihelp-v1";
+const VERSION = "ihelp-v2";
 const STATIC_CACHE = `${VERSION}-static`;
 const PAGE_CACHE = `${VERSION}-pages`;
 
@@ -49,8 +50,31 @@ self.addEventListener("activate", (event) => {
   );
 });
 
+/**
+ * `next dev` is exempt from the immutable cache.
+ *
+ * The cache-first branch below is only safe because a production build gives
+ * every file in /_next/static/ a content hash, so changed content always
+ * arrives under a new URL. Turbopack's dev server does not: it keeps serving
+ * /_next/static/chunks/[root-of-the-server]__<hash>._.css at the same URL and
+ * rewrites its contents in place. Cache-first therefore pins a dev browser to
+ * the first stylesheet it ever loaded, and no amount of reloading shifts it,
+ * because this worker answers before the network is consulted. Every CSS and
+ * JS edit silently does nothing until the worker is unregistered.
+ */
+function isDevHost() {
+  const { hostname } = self.location;
+  return (
+    hostname === "localhost" ||
+    hostname === "127.0.0.1" ||
+    hostname === "[::1]" ||
+    hostname.endsWith(".local")
+  );
+}
+
 /** Content-hashed build output and brand icons — safe to serve from cache. */
 function isStaticAsset(url) {
+  if (isDevHost()) return false;
   return (
     url.pathname.startsWith("/_next/static/") ||
     url.pathname.startsWith("/icons/") ||

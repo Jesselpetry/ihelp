@@ -285,8 +285,8 @@ export const STANDARD_SPINE: readonly ModuleSpec[] = [
     dod: [
       { th: "เป็นโหมด ไม่ใช่เอกสาร", en: "A mode, not a document" },
       {
-        th: "จำนวนข้อและน้ำหนักตรงกับ blueprint ใน summary.md ส่วนที่ 4",
-        en: "Item count and weights match the blueprint in summary.md §4",
+        th: "จำนวนข้อและน้ำหนักตรงกับ blueprint.md ของวิชา",
+        en: "Item count and weights match the course's blueprint.md",
       },
     ],
   },

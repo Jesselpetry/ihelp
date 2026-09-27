@@ -90,8 +90,46 @@ export interface SubjectAsset {
   edition?: string;
   /** Course syllabus week number (1..15 or session 1..7) */
   week?: number;
+  /**
+   * Where the file was originally posted — its OnLearn resource page. Shown as
+   * ต้นทาง so a student can check the lecturer's copy is still the current one.
+   * Only set on files that actually came from the course site.
+   */
+  sourceUrl?: string;
 }
 
+
+/**
+ * One teaching week, as the course's own schedule names it.
+ *
+ * Deliberately thin: the week view is a table of files, and everything a
+ * student needs to know about a file is on its row. The week only supplies the
+ * heading the files sit under — a number, a topic, and which half of the term.
+ */
+export interface CourseWeek {
+  /** Matched against SubjectAsset.week, falling back to SubjectAsset.chapter. */
+  week: number;
+  /** Which half this week belongs to. ICS numbers both halves 1–7, so the pair is the key. */
+  scope?: AssetScope;
+  title: LText;
+  /** The lecture recording, as posted on the course site. */
+  video?: string;
+  /** Not yet released on the course site; any files under it are earlier editions. */
+  upcoming?: boolean;
+}
+
+/** Heading for one half of the term — a track name, or the exam it leads to. */
+export interface CoursePart {
+  label: LText;
+  detail?: LText;
+}
+
+export interface CourseSchedule {
+  weeks: CourseWeek[];
+  parts?: Partial<Record<AssetScope, CoursePart>>;
+  /** The course page on OnLearn, linked as the shelf's ต้นทาง. */
+  source?: string;
+}
 
 /**
  * Display names for the image groups referenced by SubjectAsset.groupId.
