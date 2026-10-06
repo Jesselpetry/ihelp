@@ -4,18 +4,23 @@
 Merges four sources from the course archive into one committed JSON file
 (`data/pscp/problems.json`):
 
-  1. oj_problems.json          — the 108-problem index (id, week, difficulty,
-                                 deadline, learning-log / recommended flags).
-  2. all_problems_detail.json  — full statements + official sample cases for
-                                 the 67 problems iJudge exposed detail for.
-  3. oj<id>/main.py            — the reference implementation (all 108).
-  4. oj<id>/problem.md         — the authored write-up, when one exists.
+  1. data/oj_problems.json          — the problem index (id, week, difficulty,
+                                      deadline, learning-log / recommended flags).
+  2. data/all_problems_detail.json  — full statements + official sample cases
+                                      for the problems iJudge exposed detail for.
+  3. solutions/oj<id>/main.py       — the reference implementation; falls back
+                                      to the student's folder on main, then to
+                                      iJudge's beforeCode stub.
+  4. oj<id>/problem.md              — the authored write-up on main, when one exists.
+
+Sources 1-3 come from the archive repo's OP branch (worktree `.op`); the
+oj<id> folders come from its main branch (the repo root).
 
 Concept tags are derived by parsing each `main.py` with the `ast` module
 rather than by regex, so "nested loop" means an actual nested loop node and
 not the string "for" appearing twice.
 
-Run:  python3 scripts/build_pscp_registry.py [--archive PATH]
+Run:  python3 scripts/build_pscp_registry.py [--archive OP_PATH] [--out PATH]
 """
 
 from __future__ import annotations
@@ -32,19 +37,16 @@ HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parent
 OUT_FILE = PROJECT / "data" / "pscp" / "problems.json"
 
-_ARCHIVE_REPO = Path(
+# The archive repo's main branch (problem folders + the student's own code).
+ARCHIVE_REPO = Path(
     os.environ.get(
         "PSCP_ARCHIVE_REPO", PROJECT.parent / "Y1-S1" / "PSCP" / "pscp-69070027"
     )
 )
 
-# main keeps the week 8-9 problems as empty stubs for hand-solving; their
-# authored solutions live on the archive repo's solutions/* branch, checked
-# out as a worktree at .pscp-archive. Prefer that worktree when present so a
-# rebuild ships real reference code for all problems.
-# Recreate with:  git worktree add .pscp-archive solutions/2026-s1
-_ARCHIVE_WORKTREE = _ARCHIVE_REPO / ".pscp-archive"
-DEFAULT_ARCHIVE = _ARCHIVE_WORKTREE if _ARCHIVE_WORKTREE.is_dir() else _ARCHIVE_REPO
+# Data and finished reference solutions live on the archive repo's OP branch,
+# checked out as a worktree at .op (create with:  git worktree add .op OP).
+DEFAULT_OP = Path(os.environ.get("PSCP_OP_ROOT", ARCHIVE_REPO / ".op"))
 
 IJUDGE_URL = "https://ijudge.it.kmitl.ac.th/problems/{id}/description"
 
@@ -647,18 +649,36 @@ def index_local_dirs(archive: Path) -> tuple[dict[int, Path], dict[int, Path]]:
     return mains, mds
 
 
+def index_solutions(op: Path) -> dict[int, Path]:
+    """Maps problem id -> the OP branch's finished solutions/oj<id>/main.py."""
+    out: dict[int, Path] = {}
+    solutions = op / "solutions"
+    if not solutions.is_dir():
+        return out
+    for child in sorted(solutions.iterdir()):
+        m = re.fullmatch(r"oj(\d+)", child.name)
+        if m and (child / "main.py").is_file():
+            out[int(m.group(1))] = child / "main.py"
+    return out
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--archive", default=os.environ.get("PSCP_ARCHIVE", str(DEFAULT_ARCHIVE)))
+    ap.add_argument("--archive", default=os.environ.get("PSCP_ARCHIVE", str(DEFAULT_OP)),
+                    help="OP worktree root (default: $PSCP_OP_ROOT or <archive repo>/.op)")
+    ap.add_argument("--out", default=str(OUT_FILE),
+                    help="output JSON path (default: data/pscp/problems.json)")
     args = ap.parse_args()
 
-    archive = Path(args.archive).expanduser().resolve()
-    if not archive.is_dir():
-        print(f"error: archive not found: {archive}", file=sys.stderr)
+    op = Path(args.archive).expanduser().resolve()
+    if not op.is_dir():
+        print(f"error: OP worktree not found: {op}", file=sys.stderr)
         return 1
+    repo = ARCHIVE_REPO.expanduser().resolve()
+    out_file = Path(args.out).expanduser().resolve()
 
-    index_file = archive / "oj_problems.json"
-    detail_file = archive / "data" / "all_problems_detail.json"
+    index_file = op / "data" / "oj_problems.json"
+    detail_file = op / "data" / "all_problems_detail.json"
     if not index_file.is_file():
         print(f"error: missing {index_file}", file=sys.stderr)
         return 1
@@ -668,7 +688,13 @@ def main() -> int:
     if detail_file.is_file():
         details = {d["id"]: d for d in json.loads(detail_file.read_text(encoding="utf-8"))}
 
-    mains, mds = index_local_dirs(archive)
+    solutions = index_solutions(op)
+    if repo.is_dir():
+        mains, mds = index_local_dirs(repo)
+    else:
+        print(f"warn: archive repo not found: {repo} (no main.py fallback or problem.md)",
+              file=sys.stderr)
+        mains, mds = {}, {}
 
     problems = []
     unparsable: list[int] = []
@@ -680,8 +706,9 @@ def main() -> int:
         cname = clean_name(name)
 
         code = ""
-        if pid in mains:
-            code = mains[pid].read_text(encoding="utf-8").replace("\r\n", "\n").strip("\n")
+        source = solutions.get(pid) or mains.get(pid)
+        if source is not None:
+            code = source.read_text(encoding="utf-8").replace("\r\n", "\n").strip("\n")
         elif detail and detail.get("beforeCode"):
             code = detail["beforeCode"].replace("\r\n", "\n").strip("\n")
 
@@ -763,19 +790,20 @@ def main() -> int:
             "edgeCases": [],
         })
 
-    OUT_FILE.parent.mkdir(parents=True, exist_ok=True)
+    out_file.parent.mkdir(parents=True, exist_ok=True)
     payload = {
         "generatedAt": None,  # deliberately omitted: keeps the file diff-stable
         "source": "pscp-69070027 (oj_problems.json + all_problems_detail.json + oj*/main.py)",
         "problems": problems,
     }
-    OUT_FILE.write_text(json.dumps(payload, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    out_file.write_text(json.dumps(payload, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
 
     with_cases = sum(1 for p in problems if p["cases"])
     with_code = sum(1 for p in problems if p["referenceCode"])
     with_stmt = sum(1 for p in problems if p["statement"])
     weeks = sorted({p["week"] for p in problems if p["week"]})
-    print(f"wrote {OUT_FILE.relative_to(PROJECT)}")
+    shown = out_file.relative_to(PROJECT) if out_file.is_relative_to(PROJECT) else out_file
+    print(f"wrote {shown}")
     print(f"  problems       : {len(problems)}")
     print(f"  weeks covered  : {weeks}")
     print(f"  with statement : {with_stmt}")

@@ -24,14 +24,25 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parent
-ARCHIVE = Path(
+# The archive repo's main branch (problem folders + the student's own code).
+ARCHIVE_REPO = Path(
     os.environ.get(
-        "PSCP_ARCHIVE", PROJECT.parent / "Y1-S1" / "PSCP" / "pscp-69070027"
+        "PSCP_ARCHIVE_REPO", PROJECT.parent / "Y1-S1" / "PSCP" / "pscp-69070027"
     )
 )
+# Its OP branch (data + finished solutions), checked out as a worktree at .op.
+OP_ROOT = Path(
+    os.environ.get("PSCP_ARCHIVE")
+    or os.environ.get("PSCP_OP_ROOT")
+    or ARCHIVE_REPO / ".op"
+)
 
-DETAIL_JSON = PROJECT / "data" / "all_problems_detail.json"
-INDEX_JSON = ARCHIVE / "oj_problems.json"
+_OP_DETAIL_JSON = OP_ROOT / "data" / "all_problems_detail.json"
+DETAIL_JSON = (
+    _OP_DETAIL_JSON if _OP_DETAIL_JSON.is_file()
+    else PROJECT / "data" / "all_problems_detail.json"
+)
+INDEX_JSON = OP_ROOT / "data" / "oj_problems.json"
 
 RUN_TIMEOUT_SEC = 10
 STUB_MARKER = "# solution code here"
@@ -51,9 +62,14 @@ def normalise(s: str) -> str:
 
 
 def find_solution(pid: int) -> Path | None:
-    """Locate a problem's main.py. oj/<name>/ is canonical; root is for Learning Logs."""
+    """Locate a problem's main.py. OP's solutions/oj<id>/ wins; otherwise the
+    student's folder on main (oj/<name>/ is canonical; root is for Learning Logs)."""
+    finished = OP_ROOT / "solutions" / f"oj{pid}" / "main.py"
+    if finished.is_file():
+        return finished
+    base = glob.escape(str(ARCHIVE_REPO))
     for pattern in (f"oj/oj{pid}-*/main.py", f"oj{pid}/main.py"):
-        hits = sorted(glob.glob(str(ARCHIVE / pattern)))
+        hits = sorted(glob.glob(f"{base}/{pattern}"))
         if hits:
             return Path(hits[0])
     return None
@@ -123,7 +139,8 @@ def main() -> int:
 
         ok = True
         for i, case in enumerate(cases, 1):
-            stdin = case.get("testcase_input") or ""
+            # iJudge stores some samples with CRLF; programs read lines on LF.
+            stdin = normalise(case.get("testcase_input") or "") + "\n"
             expected = normalise(case.get("testcase_output") or "")
             try:
                 proc = subprocess.run(
