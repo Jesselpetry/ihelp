@@ -3,6 +3,9 @@
 เอกสารนี้ตอบสองคำถาม: **แต่ละ family มีน้ำหนักอะไรให้ใช้จริง** และ
 **ควรใช้อันไหนตอนไหน**
 
+ตรวจล่าสุด 15 ต.ค. 2569 — เทียบกับ `app/layout.tsx`, `app/globals.css`,
+`components/md-view.tsx` และ `lib/docs/remark-notebook.ts`
+
 ทุก family ลงทะเบียนที่เดียวคือ [`app/layout.tsx`](../app/layout.tsx) ผ่าน `next/font`
 ซึ่ง self-host ให้ทั้งหมด (ไม่มี request ออกไป Google ตอนผู้ใช้เปิดเว็บ)
 และ map เป็น theme token ใน [`app/globals.css`](../app/globals.css)
@@ -15,11 +18,12 @@
 | --- | --- | --- | --- |
 | IBM Plex Sans Thai | `font-sans` | `--font-sans` | **ค่าเริ่มต้นของทั้งเว็บ** (`html { @apply font-sans }`) — UI, ปุ่ม, nav, label, ตัวเลข |
 | Geist Mono | `font-mono` | `--font-geist-mono` | code, `<pre>`, output ของ iJudge |
-| Mali | `font-[family-name:var(--font-mali)]` | `--font-mali` | ข้อความ accent ลายมือ ใช้อยู่ที่เดียวใน [`recommended-hub.tsx`](../components/recommended-hub.tsx) |
+| Mali | `font-mali` | `--font-mali` | ข้อความ accent ลายมือ ใช้อยู่ที่เดียวใน [`recommended-hub.tsx`](../components/recommended-hub.tsx) (เขียนแบบ `font-[family-name:var(--font-mali)]` อยู่ — `font-mali` ใช้แทนได้) |
 | THSarabunNew | `font-sarabun` | `--font-sarabun` | **เนื้อความ Markdown ทุกที่** (ใส่ให้อัตโนมัติโดย `MdView`) — ดูข้อ 3 |
 
-> Mali ยังไม่มี theme token เลยต้องเขียนแบบ arbitrary `font-[family-name:…]`
-> ส่วน Sarabun มี token แล้ว ใช้ `font-sarabun` ได้ตรงๆ
+> ทั้ง Mali และ Sarabun มี theme token ใน `@theme inline` ของ `globals.css` แล้ว
+> (`--font-mali`, `--font-sarabun`) ใช้ `font-mali` / `font-sarabun` ได้ตรงๆ
+> ไม่ต้องเขียนแบบ arbitrary `font-[family-name:…]`
 
 ---
 
@@ -74,7 +78,7 @@
 | --- | --- |
 | [`library-reader.tsx`](../components/library-reader.tsx) | เอกสารเต็มฉบับในคลัง |
 | [`module-reader.tsx`](../components/module-reader.tsx) | เนื้อหารายสัปดาห์ |
-| [`en-kmitl-summary-reader.tsx`](../components/en-kmitl-summary-reader.tsx) | สรุปรายวิชา |
+| [`en-kmitl-summary-reader.tsx`](../components/en-kmitl-summary-reader.tsx) | สรุปรายวิชา (ไม่มีใคร import — dead code ดูข้อ 8) |
 | [`recommended-reader.tsx`](../components/recommended-reader.tsx) | โจทย์แนะนำฉบับเต็ม |
 | [`course-summary-panel.tsx`](../components/course-summary-panel.tsx) | พาเนลสรุปรายวิชา |
 | [`md-preview.tsx`](../components/md-preview.tsx) | แท็บ "แบบอ่านง่าย" ของ wizard |
@@ -107,7 +111,7 @@ THSarabunNew ตัวแคบกว่า IBM Plex Sans Thai (ความก�
 
 ---
 
-## 4. ทำไมไม่ต้องบวกขนาดเอง — `size-adjust: 140%`
+## 4. ทำไมไม่ต้องบวกขนาดเอง — `size-adjust: 91%`
 
 THSarabunNew วาดตัวอักษรเล็กกว่าฟอนต์อื่นในเว็บนี้มาก ที่ `font-size` เท่ากัน:
 
@@ -137,7 +141,7 @@ THSarabunNew ไม่มี GPOS mark positioning สำหรับภาษ�
 `ที่` ได้ `uni0E48` (ตัวสูง เพราะมีสระอีอยู่ใต้), `ปี` ได้ `uni0E35.alt1` (ยกหลบ ป)
 
 ปัญหาไม่ได้อยู่ที่การวางวรรณยุกต์ แต่อยู่ที่ **ความสูงรวมของกองสระ/วรรณยุกต์**
-หลังคูณ `size-adjust: 140%` แล้ว:
+หลังคูณ `size-adjust: 91%` แล้ว:
 
 | | THSarabunNew ×0.91 | IBM Plex Sans Thai |
 | --- | --- | --- |
@@ -146,7 +150,7 @@ THSarabunNew ไม่มี GPOS mark positioning สำหรับภาษ�
 | **ช่วงหมึกรวม** | **1.505em** | **1.239em** |
 | เหลือระหว่างบรรทัดที่ `leading-relaxed` (1.625) | **0.120em** ⚠️ | 0.386em |
 
-เหลือ 0.112em แปลว่าวรรณยุกต์ของบรรทัดล่างเกือบชนหางของบรรทัดบน
+เหลือ 0.120em แปลว่าวรรณยุกต์ของบรรทัดล่างเกือบชนหางของบรรทัดบน
 สายตาเลยจับคู่วรรณยุกต์ผิดบรรทัด — **นี่คืออาการ "สระลอย"** ไม่ใช่ฟอนต์วางสระผิด
 
 `1.9` คือค่าที่ทำให้ THSarabunNew ได้ที่ว่างระหว่างบรรทัดเท่ากับที่ `--font-sans` ได้ที่ 1.625
@@ -183,7 +187,7 @@ THSarabunNew ไม่มี GPOS mark positioning สำหรับภาษ�
 | --- | --- | --- |
 | `preload` | `false` | 4 face รวม ~163 KB `variable` อยู่บน `<html>` ทุกหน้า ถ้าเปิด preload จะไปบล็อกหน้าที่ไม่มี Markdown เลยด้วย (หน้า login, โปรไฟล์, อัปโหลด) ปล่อยให้โหลดตอนเจอ `font-sarabun` จริงคุ้มกว่า |
 | `display` | `"swap"` | ระหว่างโหลดให้เห็น fallback ไปก่อน ไม่ปล่อยข้อความว่าง |
-| `adjustFontFallback` | `false` | Next.js คำนวณ metrics ของ fallback จากไฟล์ดิบ **โดยไม่รู้เรื่อง `size-adjust: 140%`** ถ้าเปิดไว้ ตัวอักษรจะกระโดด 40% ตอน swap (CLS) |
+| `adjustFontFallback` | `false` | Next.js คำนวณ metrics ของ fallback จากไฟล์ดิบ **โดยไม่รู้เรื่อง `size-adjust: 91%`** ถ้าเปิดไว้ ขนาดตัวอักษรจะเปลี่ยนราว 9% ตอน swap (CLS) |
 | `fallback` | `IBM Plex Sans Thai, Sarabun, Tahoma, sans-serif` | ถ้าโหลดไม่สำเร็จ ตกไปที่ฟอนต์ไทยที่มีอยู่แล้วในเว็บก่อน |
 | `variable` | `--font-sarabun` | ประกาศตัวแปรบน `<html>` เฉยๆ — **ไม่ได้เปลี่ยนฟอนต์ของอะไรเลย** จนกว่าจะมีคนเขียน `font-sarabun` |
 
@@ -260,11 +264,12 @@ $C ../../app/fonts/THSarabunNew-BoldItalic.woff2 thsarabunnew_bolditalic-webfont
 เปิดที่ module ไหนบ้าง กำหนดด้วย `NOTEBOOK_SEGMENTS` ใน
 [`app/courses/[dir]/[module]/page.tsx`](../app/courses/[dir]/[module]/page.tsx)
 แล้วส่งผ่าน `ModuleReader` ลงมา ปัจจุบันคือ **`summary` กับ `overview`**
-รวม 58 หน้า (28 + 30)
+(ดูว่าเอกสารไหนอยู่ใต้สองโมดูลนี้: `bun run library:find -- --docs --course <CODE> --json` แล้วอ่าน `bindings[].module`)
 
 **`mock` จงใจไม่เปิด** — เป็นที่เก็บข้อสอบจำลอง (ICS วาง `midterm-exam.md`
 1224 บรรทัดไว้ตรงนั้น) ข้อสอบไม่ควรดูเหมือนถูกขีดเขียนมาก่อนที่นักศึกษาจะลงมือทำ
-ส่วน `map` / `library` / `quiz` ไม่มี markdown อยู่แล้ว
+ส่วน `library` / `quiz` ไม่มี markdown อยู่แล้ว ส่วน `map` ตอนนี้มี markdown (หน้ารายสัปดาห์ของ ITF
+และ ICS, แผนที่ปลายภาคของ MFIT) แต่ไม่อยู่ใน `NOTEBOOK_SEGMENTS` — โค้ดไม่ได้บันทึกเหตุผลไว้
 
 ตัวอย่าง ICS — 2 จาก 6 modules:
 
@@ -273,7 +278,8 @@ $C ../../app/fonts/THSarabunNew-BoldItalic.woff2 thsarabunnew_bolditalic-webfont
 | `summary` | `summarize.md` (566 บรรทัด) | ✅ |
 | `overview` | ภาพรวมรายวิชา + `analysis.md` (179 บรรทัด, 2 แท็บ) | ✅ |
 | `mock` | `midterm-exam.md` (1224 บรรทัด) | ❌ ข้อสอบ |
-| `map` / `library` / `quiz` | ไม่มี markdown | — |
+| `map` | `course-materials-2569.md` + `week01–07.md` (8 เอกสาร) | ❌ ไม่อยู่ใน `NOTEBOOK_SEGMENTS` |
+| `library` / `quiz` | ไม่มี markdown | — |
 
 > **หมายเหตุ:** proposal เดิมระบุให้ทดสอบที่ `en-kmitl-summary-reader.tsx`
 > แต่ component นั้น **ไม่มีใคร import** — เป็น dead code ไม่มี route ไหนเรียก
@@ -330,6 +336,10 @@ HTML ดิบในไฟล์ Markdown จะถูกทิ้งก่อ�
 `สรุปคอมโปร-Midterm.md` ซึ่งจะทำให้ทุกอย่างระหว่างสองจุดนั้นถูกขีดเส้นใต้
 พอใส่ปีกกาแบบ CriticMarkup แล้วเหลือ **0 จุดชน**
 
+> ตัวเลขข้างบนวัดเมื่อ 22 ก.ย. 2569 และเนื้อหาเปลี่ยนไปแล้ว วัดซ้ำ 15 ต.ค. 2569 (นับเป็น **บรรทัด**
+> ไม่ใช่จุด) ได้ 806 บรรทัดที่มี `==` และ 23 บรรทัดที่มี `++` ใน `content/` `data/` `lib/`
+> ข้อสรุปเหมือนเดิม และ **ยังไม่มีเอกสารใดใช้ `{==…==}` / `{++…++}`** — ไวยากรณ์พร้อมใช้แต่ยังไม่มีเนื้อหาใช้
+
 ตัวแปลงอยู่ที่ [`lib/docs/remark-notebook.ts`](../lib/docs/remark-notebook.ts)
 แตะเฉพาะ `text` node — code span, code fence และ math เก็บค่าไว้ใน `value` ไม่ใช่ `children`
 ตัว walker จึงไม่เดินเข้าไป `a == b` ในโค้ดเลยปลอดภัยโดยโครงสร้าง
@@ -338,10 +348,11 @@ plugin ทำงานทั้งสอง variant เพื่อไม่ใ�
 
 ### ตัวห้อย/ตัวยก — ใช้ `<sub>` `<sup>` ตรงๆ
 
-เนื้อหาเดิมเขียนแบบนี้อยู่แล้ว **88 จุด** ใน `content/` กับ `data/`
+เนื้อหาเดิมเขียนแบบนี้อยู่แล้ว **88 จุด** ใน `content/` กับ `data/` (นับ ณ 22 ก.ย. 2569
+ส่วนที่นับซ้ำ 15 ต.ค. 2569 พบแท็กเปิด `<sub>`/`<sup>` 45 แท็ก)
 (`Z<sub>eff</sub>`, `n<sub>f</sub>` ในสรุปเคมี) และ **พังมาตลอด** —
 แสดงเป็นตัวอักษร `Z<sub>eff</sub>` บนหน้าเว็บ ตอนนี้ plugin จับคู่แท็กให้แล้ว
-แก้ได้ทั้ง 88 จุดโดยไม่ต้องแก้ไฟล์เนื้อหาเลย (หน้าเคมี: `<sub>` จริง 43 ตัว, หลุด 0)
+แก้ได้ทั้งหมดโดยไม่ต้องแก้ไฟล์เนื้อหาเลย (หน้าเคมี: `<sub>` จริง 43 ตัว, หลุด 0 — วัด ณ 22 ก.ย. 2569)
 
 ทำไมไม่ใช้ syntax แบบ Pandoc — สแกนเนื้อหาจริงแล้วใช้ไม่ได้ทั้งคู่:
 

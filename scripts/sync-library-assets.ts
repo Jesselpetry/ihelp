@@ -25,39 +25,25 @@ import { fileURLToPath } from "node:url";
 import { storageKey } from "../lib/library/storage-key";
 import { coursesWithAssets, mergedAssets } from "../lib/library/subject-library";
 import { isRestrictedAsset } from "../lib/library/subject-library-ui";
+// The bucket names, the .env.local lookup and the bucket listing are shared with
+// scripts/library-audit.ts, which runs the same listing read-only (`--remote`).
+import { LIBRARY_BUCKET, RESTRICTED_BUCKET, listBucketKeys, storageConfig } from "./storage-keys";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const ASSETS_DIR = path.join(ROOT, "public", "assets");
-const BUCKET = "ihelp-library";
-/**
- * Past exams are insider-only, so they go to a private bucket instead. Keeping
- * the same object key in both means reclassifying a file is a move, not a
- * rename. See lib/library-exams.ts for the read side.
- */
-const RESTRICTED_BUCKET = "ihelp-library-exams";
 const CONCURRENCY = 8;
 // Assets are immutable in practice — a revised handout arrives under a new
 // name — so let the CDN hold them for a year instead of Storage's 1h default.
 const CACHE_CONTROL = "31536000";
 
-if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
-  const envFile = path.join(ROOT, ".env.local");
-  if (fs.existsSync(envFile)) {
-    for (const line of fs.readFileSync(envFile, "utf-8").split("\n")) {
-      const match = line.match(/^\s*([A-Z0-9_]+)\s*=\s*(.*?)\s*$/);
-      if (match && !process.env[match[1]]) {
-        process.env[match[1]] = match[2].replace(/^["']|["']$/g, "");
-      }
-    }
-  }
-}
-
-const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
-if (!SUPABASE_URL || !SERVICE_KEY) {
+const config = storageConfig(ROOT);
+if (!config) {
   console.error("NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY must be set");
   process.exit(1);
 }
+const STORAGE = config;
+const SUPABASE_URL = STORAGE.url;
+const SERVICE_KEY = STORAGE.serviceKey;
 
 const force = process.argv.includes("--force");
 
@@ -86,54 +72,13 @@ function walk(dir: string): string[] {
   return out;
 }
 
-/** Every object key already in the bucket, so a re-run only sends what is new. */
-async function existingKeys(bucket: string): Promise<Set<string>> {
-  const keys = new Set<string>();
-  const seen = new Set<string>();
-  const queue = [""];
-  while (queue.length) {
-    const prefix = queue.shift()!;
-    if (seen.has(prefix)) continue;
-    seen.add(prefix);
-    let offset = 0;
-    for (;;) {
-      const res = await fetch(`${SUPABASE_URL}/storage/v1/object/list/${bucket}`, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${SERVICE_KEY}`,
-          apikey: SERVICE_KEY!,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          prefix,
-          limit: 1000,
-          offset,
-          sortBy: { column: "name", order: "asc" },
-        }),
-      });
-      if (!res.ok) throw new Error(`list ${prefix}: ${res.status} ${await res.text()}`);
-      const rows = (await res.json()) as { name: string; id: string | null }[];
-      if (!rows.length) break;
-      for (const row of rows) {
-        const full = prefix ? `${prefix}/${row.name}` : row.name;
-        // Storage gives real objects an id; folders come back with id null.
-        if (row.id === null) queue.push(full);
-        else keys.add(full);
-      }
-      if (rows.length < 1000) break;
-      offset += rows.length;
-    }
-  }
-  return keys;
-}
-
 async function upload(file: string, key: string, bucket: string): Promise<number> {
   const body = fs.readFileSync(file);
   const res = await fetch(`${SUPABASE_URL}/storage/v1/object/${bucket}/${key}`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${SERVICE_KEY}`,
-      apikey: SERVICE_KEY!,
+      apikey: SERVICE_KEY,
       "Content-Type": MIME[path.extname(file).toLowerCase()] ?? "application/octet-stream",
       "Cache-Control": CACHE_CONTROL,
       "x-upsert": "true",
@@ -162,8 +107,8 @@ async function main() {
   const have = force
     ? new Set<string>()
     : new Set([
-        ...(await existingKeys(BUCKET)),
-        ...[...(await existingKeys(RESTRICTED_BUCKET))].map((k) => `${RESTRICTED_BUCKET}/${k}`),
+        ...(await listBucketKeys(LIBRARY_BUCKET, STORAGE)),
+        ...[...(await listBucketKeys(RESTRICTED_BUCKET, STORAGE))].map((k) => `${RESTRICTED_BUCKET}/${k}`),
       ]);
 
   const todo = files
@@ -172,7 +117,7 @@ async function main() {
       const key = storageKey(rel);
       const isRestricted =
         restricted.has(key) || isRestrictedAsset({ url: `/assets/${rel}` });
-      const bucket = isRestricted ? RESTRICTED_BUCKET : BUCKET;
+      const bucket = isRestricted ? RESTRICTED_BUCKET : LIBRARY_BUCKET;
       return { file, key, bucket, seen: isRestricted ? `${RESTRICTED_BUCKET}/${key}` : key };
     })
     .filter(({ seen }) => !have.has(seen));

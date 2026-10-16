@@ -7,8 +7,8 @@
 | มิติ | ข้อกำหนด |
 |---|---|
 | สัดส่วนตามบท | … |
-| ชนิดข้อ | … |
-| ทุกข้อต้องมี | `explanation` + `sourceAssetId` |
+| ชนิดข้อ | … (`mcq` · `true-false` · `short-answer` … ตาม `QuizKind` ใน `lib/quiz/quiz.ts`) |
+| ทุกข้อต้องมี | `sourceRef` (บังคับ) + `chapter` + `why` รายตัวเลือก หรือ `explanationMd` — ดู `lib/schemas/content.ts` |
 
 ## 2. แบบฝึกหัด
 

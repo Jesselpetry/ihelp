@@ -5,57 +5,114 @@
 | | |
 |---|---|
 | Repository | `ihelp` (open source, MIT; Next.js 16.2.10 / React 19.2.4, App Router) |
-| Version | `0.6.0` |
+| Version | `0.6.0` at the scan · `0.8.0` today (`package.json`) |
 | Branch scanned | `main` @ `137d3b7` |
-| Date of scan | 2026-08-26, media/storage sections revised 2026-08-31 |
+| Date of scan | 2026-08-26, media/storage sections revised 2026-08-31; file paths refreshed 2026-09-22 (`lib/` regroup, `366a9e7`) |
+| Last verified | **15 Oct 2026** against `main` @ `3ab42d3` plus the uncommitted working tree — see §0 |
 | Audience | Redesign of the instructional architecture — taxonomy, content schemas, learning modality coverage |
-| Scope of this document | Descriptive only. No source files were modified during this scan. |
+| Scope of this document | Descriptive only. No source files were modified during the scan or the re-verification. |
 
 > **Reading note.** This is an audit of *what exists*, not a proposal. Section 5 flags structural
-> problems for the incoming expert; it does not prescribe fixes. All counts are measured from the
-> tree at the commit above, not quoted from existing docs.
+> problems for the incoming expert; it does not prescribe fixes. Counts in §1–§4 were measured from the
+> tree at the commit above, not quoted from existing docs; where the system has since changed, the
+> original text is kept as history and a **Status 15 Oct 2026** line says what is true now. **§0
+> lists what changed.** Volatile numbers carry the command that re-measures them (most come from
+> `jq .totals lib/library/resource-index.json` after `bun run library:index`).
+
+---
+
+## 0. What changed since the scan
+
+*Added 15 Oct 2026 (verified against `main` @ `3ab42d3` plus the uncommitted working tree).
+Sections 1–5 keep their original text as history; wherever reality moved they carry a
+**Status 15 Oct 2026** line.*
+
+### 0.1 Architecture
+
+| Area | At the scan | Now | Where to look |
+|---|---|---|---|
+| Course page model | `TrackKind` (6) + `lib/course-tracks.ts` roadmap + a `switch` on course code in every route (§2.3, §4.2, §5.1, §5.2) | 11-module `STANDARD_SPINE`, one binding record per course, **one route for every module**. `lib/course-tracks.ts` no longer exists; `catalog.ts` is identity-only (no `tracks`) | `lib/courses/spine.ts` · `course-bindings.ts` · `course-spine.ts` · `app/courses/[dir]/[module]/page.tsx` · `docs/LEARNING_BLUEPRINT.md` |
+| Accounts and database | "no user account … and no database" (§1) | Google sign-in limited to KMITL IT student ids (`@kmitl.ac.th`, faculty code 07); roles `student` / `insider` / `admin`; Postgres schema `ihelp` (`users`, `resources`, `exams`, `site_visits`) through Drizzle, in a database shared with the itgg-2026 app; `proxy.ts` refreshes the Supabase session on every request. Quiz and lab **progress is still `localStorage` only** | `lib/auth/verify.ts` · `lib/auth/guards.ts` · `db/schema.ts` · `proxy.ts` |
+| Library access | files public; past papers insider-only (§3.1) | The library page is static and carries no card data; its list comes from `GET /api/library/assets`, which needs an IT KMITL sign-in. Files other than past papers still sit in the **public** bucket `ihelp-library` and their paths are in this public repo, so *behind login* is not *private* — and the module pages that render documents (e.g. the ITF/ICS weekly pages) are open and receive the course's non-exam cards as props to match their file tables (`proxy.ts` guards only `/onboarding`, `/upload`, `/exams`). Past papers: private bucket `ihelp-library-exams`, 10-minute signed URLs, insider/admin only | `app/api/library/assets/route.ts` · `lib/library/library-exams.ts` · `lib/library/asset-url.ts` |
+| Library data model | `SubjectAsset`: `scope`, `chapter`, `groupId`, `pages`, `sizeBytes` | + `week`, `edition`, `status`, `isCurrentYear`, `isDuplicate` / `duplicateOf`, `sourceUrl`; ITF and ICS open on a week-by-week view driven by `COURSE_SCHEDULES` | `lib/library/subject-library-ui.ts` · `lib/library/course-weeks.ts` |
+| Library tooling | `library:manifest`, `library:stats`, `assets:sync` | + `library:index` (one generated JSON joining courses, docs and cards), `library:audit` (consistency report; `--remote` compares with the buckets, read-only), `library:find` (search the index). `library:build` = manifest + stats + index | `package.json` · `scripts/library-*.ts` |
+| Contract checks | "No test suite" (§5.9) | `bun run content:check` (runs as `prebuild`; error and warn rules for banks, spine, bindings, recommended problems and the overview standard), `bun run readiness`, `bun run library:audit`. Still no unit-test runner | `scripts/validate-content.ts` · `scripts/readiness.ts` · `scripts/library-audit.ts` |
+| Course overviews | loose "five-part" convention (§4.6) | six fixed sections + 14-key frontmatter, machine-checked (`overview-*`); authoring notes moved to a non-rendered `blueprint.md` | `docs/COURSE_OVERVIEW_STANDARD.md` · `docs/templates/` |
+| Reader typography | not covered | every Markdown body renders in THSarabunNew via `MdView`; a "notebook" variant for the `overview` and `summary` modules; `{==…==}` / `{++…++}` marks | `docs/FONTS.md` · `components/md-view.tsx` · `lib/docs/remark-notebook.ts` |
+| PSCP data | 64 iJudge problems, 10 recommended | 222 in `data/oj_problems.json`, 235 in the registry `data/pscp/problems.json` (built from the archive repo's `OP` branch), 14 recommended; `/pscp/[slug]` is an in-browser workspace | `scripts/build_pscp_registry.py` · `lib/pscp/pscp.ts` |
+| Code layout | flat `lib/*.ts` (paths in §2–§4 as scanned) | grouped by domain: `lib/courses` · `library` · `quiz` · `pscp` · `submission` · `docs` · `github` · `profile` · `actions` · `auth` · `supabase` · `schemas` | `lib/README.md` |
+| Releases | 0.6.0 | 0.7.0 and 0.8.0 (both 22 Sep); the site moved to `ihelp.chatan.in.th` on 15 Sep | `CHANGELOG.md` |
+
+### 0.2 Status of the §5 inconsistencies
+
+| § | Inconsistency | Status 15 Oct 2026 |
+|---|---|---|
+| 5.1 | three content stores chosen by a `switch` in every route | **Partly resolved** — no route branches any more (the stores are reached only through `ModuleBinding.docs[].load`; MFIT's bank order is declared once). Adding a course still touches 5–6 registries (see `docs/LEARNING_BLUEPRINT.md` §8) and two hardcoded course checks remain |
+| 5.2 | two incompatible track vocabularies | **Resolved** — `ModuleId` (11) replaced `TrackKind` and the open `string` ids; no `extraHrefs` |
+| 5.3 | "mock exam" is three unrelated things | **Partly resolved** — COMPRO's 60-question paper is its own `mock_exam` module; ICS/MFIT mocks are still Markdown; there is still no timer |
+| 5.4 | 28 orphaned content files | **Mostly resolved** — 19 of the 28 are bound through `loadCourseDoc()`; 9 remain unread plus 2 files added since |
+| 5.5 | bilingual coverage and hollow explanations | **Partly resolved** — the live debt is the COMPRO mock paper and 6 CHEM items; ITF's placeholder strings are inert (every ITF question uses `explanationMd`) |
+| 5.6 | scope on ~20% of the library, flat shelves | **Partly resolved** — scope on 41% of cards, week/chapter on 40%, `chapter`/`week` fields exist, week view for ITF and ICS; the other shelves are still flat |
+| 5.7 | learner state is write-mostly and per-device | **Open** — `loadQuizProgress()` is still read by one component; `missed[]` is still unused; four independent progress stores; accounts exist but progress is not synced |
+| 5.8 | navigation bottlenecks | **Partly resolved** — readers point forward to the drill, every module is reachable from the hub grid; no chapter-scoped run, no content search, no resume surface |
+| 5.9 | delivery and build-shape constraints | **Partly resolved** — assets left git (0.6.0), `force-dynamic` is gone from the course routes, a contract check gates the build; banks are still TypeScript and still all imported by `course-bindings.ts` |
+| 5.10 | coverage is thin | **Open** — 9 of 15 courses are still `baseline()`-only; average readiness 3.9/11 |
 
 ---
 
 ## 1. Executive Summary
 
-iHelp is a **single-tenant, zero-backend study portal** for first-year Information Technology
+iHelp is a **single-tenant study portal** for first-year Information Technology
 students at KMITL (King Mongkut's Institute of Technology Ladkrabang). It is not an LMS: there is
-no user account, no enrolment, no gradebook, no instructor role, and no database. Every piece of
-content ships **inside the deployment artifact** — as Markdown files, as TypeScript modules, or as
-PDFs under `public/`. All learner state lives in the browser's `localStorage`.
+no enrolment, no gradebook and no instructor role. *(Scan text, kept as history: "no user account
+… and no database".)* Every piece of content ships **inside the deployment artifact** — as
+Markdown files and TypeScript modules — or sits in Supabase Storage as PDFs and images. Learner
+state (quiz scores, lab drafts, read marks) lives in the browser's `localStorage`.
+
+> **Status 15 Oct 2026.** The "zero-backend, no account, no database" description no longer
+> holds: sign-in with a KMITL IT student id, an `ihelp` Postgres schema (profiles, roles, past-exam
+> index, community uploads, visitor counter) and five Storage buckets (`ihelp-library`,
+> `ihelp-library-exams`, `ihelp-exams`, `ihelp-resources`, `ihelp-avatars`) now exist (§0.1). Learner
+> *progress* is the part that still has no server side.
 
 ### Scale
 
-| Dimension | Count | Where |
-|---|---:|---|
-| Courses in the catalogue | **15** | `lib/courses/catalog.ts` — 7× Y1-S1, 6× Y1-S2, 2× cross-faculty (EN-KMITL) |
-| Courses with a resource library | **14** | 13 auto-manifested + ComPro (in-app docs only). `SPORT` has zero assets |
-| Course overview documents | **13** | `content/courses/<dir>/summary.md`, 247 KB total |
-| Long-form study documents | **12** | `data/it-kmitl/`, `data/en-kmitl/`, 742 KB total |
-| Orphaned content files | **28** | `content/courses/*/archive/` — on disk, wired to no route (§5.4) |
-| Media assets | **670 files / 908 MB** | Supabase Storage, **not** the repo — 621 PDFs (**12,263 pages**), 26 webp, 10 jpg, 7 `.circ`, 4 xlsx, 1 docx, 1 txt. Split across `ihelp-library` (501 public) and `ihelp-library-exams` (169 insider-only) |
-| Curated asset records | **172** | Hand-written entries in `lib/library/subject-library.ts` (137 KB) |
-| Generated asset records | **670** | `lib/library/library-manifest.json` (335 KB), built from the file tree |
-| Quiz / exam questions | **368** | 6 subject banks + 10 per-problem banks, all typed `QuizQuestion` |
-| Executable coding problems | **35** | 10 OJ "recommended" problems (66 cases) + 25 ComPro labs (123 cases) |
-| Problem-set index | **64** | `data/oj_problems.json` — iJudge export incl. 14 learning logs |
-| Policy / how-to documents | **12** | `data/ai-guidelines/`, rendered as a paginated "book" at `/library` |
-| App routes | **25 pages / 13 API routes** | 13 of 13 API routes are GitHub OAuth + 2 document generators |
+Counts as of **15 Oct 2026** (the scan's figures are in the "At the scan" column). Library figures
+come from `bun run library:index` → `jq .totals lib/library/resource-index.json`; the others have
+their own command.
+
+| Dimension | At the scan | 15 Oct 2026 | Where / how to re-measure |
+|---|---:|---:|---|
+| Courses in the catalogue | 15 | **15** | `lib/courses/catalog.ts` — 7× Y1-S1, 6× Y1-S2, 2× cross-faculty (EN-KMITL) · `.totals.courses` |
+| Courses with a resource library | 14 | **14** | 13 auto-manifested + ComPro (in-app docs only). `SPORT` has zero assets · `.totals.coursesWithLibrary` |
+| Course overview documents | 13 | **15** (+15 `blueprint.md`, not rendered) | `content/courses/<dir>/summary.md`, 278 KB total · `bun run library:find -- --docs` |
+| Long-form study documents | 12 | **12** | `data/it-kmitl/`, `data/en-kmitl/` — 725 KB of Markdown |
+| Content files read by no module | 28 | **11** (+15 `blueprint.md`, unrendered by design) | §5.4 — 8 `archive/links.md`, MFIT `study-guide-curriculum.json`, PSCP `archive/readme.md`, ICS `RESOURCES_MANIFEST.md` · `bun run library:audit` flags 9 of them as `orphan-doc` (not the JSON, not the PSCP readme) |
+| Media assets | 670 files / 908 MB | **705 files / 949 MiB** | Supabase Storage, **not** the repo — 653 PDFs (**13,173 pages**), 27 webp, 10 jpg, 6 `.circ`, 5 xlsx, 1 each of docx, txt, zip, accdb. Split across `ihelp-library` (537 public, 613 MiB) and `ihelp-library-exams` (168 insider-only, 335 MiB) · `.totals.files` / `.sizeBytes` / `.pages` |
+| Library cards (merged) | — | **722** | 314 curated + 408 generated-only (a curated card hides the generated one for the same URL) · `.totals.assets` / `.curated` / `.generated` · `.insider` = 171 cards flagged as past papers |
+| Curated asset records | 172 | **314** | Hand-written entries in `lib/library/subject-library.ts` (5,227 lines / 276 KB; was 137 KB) |
+| Generated asset records | 670 | **705** | `lib/library/library-manifest.json` (353 KB), built from the file tree |
+| Quiz / exam questions | 368 | **390** | 308 in the six banks bound to courses (ITF 63, ICS 50, MFIT 65, COMPRO 10 + 60, CHEM 60) + 82 per-problem for 14 recommended problems; all typed `QuizQuestion` |
+| Executable coding problems | 35 | **39** | 14 OJ "recommended" problems (86 cases, 30 of them official) + 25 ComPro labs (123 cases) |
+| Problem-set index | 64 | **222** | `data/oj_problems.json` — weeks 1–14, 36 learning logs; the registry `data/pscp/problems.json` holds 235 |
+| Policy / how-to documents | 12 | **13** | `data/ai-guidelines/` (23 files, th/en pairs), rendered as a paginated "book" at `/library` |
+| App routes | 25 pages / 13 API routes | **24 pages / 17 route handlers** | `find app -name page.tsx`, `find app -name route.ts` — 16 handlers under `app/api/` (11 GitHub OAuth, 2 document generators, `library/assets`, `me`, `views`) + `auth/callback` |
 
 ### Question bank composition
 
 | Bank | Questions | Course | Notes |
 |---|---:|---|---|
-| `ITF_QUIZ` | 63 | ITF (06016402) | Thai-only; 12 self-assessed short-answer, 6 true/false |
+| `ITF_QUIZ` | 63 | ITF (06016402) | Thai-only; 12 self-assessed short-answer, 6 true/false; every question carries `explanationMd` |
 | `ICS_QUIZ` | 50 | ICS (06016411) | Bilingual; derived from the 1/2564 past paper |
 | `MFIT_QUIZ` + `MFIT_BLUEPRINT_QUIZ` | 45 + 20 | MFIT (06016401) | Blueprint set mirrors the instructor's 10-question exam plan |
-| `CHEM_QUIZ` | 60 | CHEM | 5-choice (ก–จ), unusual among the banks (all others are 4-choice) |
-| `EN_KMITL_CURATED_QUIZ` + `EN_KMITL_MOCK_EXAM` | 10 + 60 | COMPRO (01006012) | Mock exam is auto-generated from a Markdown paper |
-| `QUIZ_BANK` (per-OJ) | 60 | PSCP | 10 problems × 6 questions, keyed by iJudge problem id |
+| `CHEM_QUIZ` | 60 | CHEM | 5-choice (ก–จ), like the COMPRO mock paper; every other bank is 4-choice |
+| `EN_KMITL_CURATED_QUIZ` + `EN_KMITL_MOCK_EXAM` | 10 + 60 | COMPRO (01006012) | Mock exam is auto-generated from a Markdown paper. *Status 15 Oct 2026: now two modules — `drill` (10) and `mock_exam` (60, own progress key 900006)* |
+| `QUIZ_BANK` (per-OJ) | 82 | PSCP | 14 problems × 5–6 questions (60 in 10 problems at the scan), keyed by iJudge problem id |
 
-**Item-type distribution:** `mcq` 304 · `predict-output` 24 · `short-answer` 12 · `spot-the-bug` 12 ·
-`pep8` 10 · `true-false` 6. **83% of all assessment is four-option multiple choice.**
+**Item-type distribution** (15 Oct 2026, 390 questions): `mcq` 316 · `predict-output` 28 ·
+`spot-the-bug` 16 · `short-answer` 12 · `pep8` 12 · `true-false` 6. At the scan (368 questions) it was
+`mcq` 304 · `predict-output` 24 · `short-answer` 12 · `spot-the-bug` 12 · `pep8` 10 · `true-false` 6.
+**81% of all assessment is plain multiple choice** (83% at the scan).
 
 ### Primary user paths
 
@@ -64,14 +121,22 @@ There are three, and they barely intersect:
 1. **Course path** — `/` (directory of 15 course cards) → `/courses/<officialCode>-<Slug>` (subject
    hub with a track grid) → one of `summary` · `quiz` · `library` · `exam` · `mock` · `cram` ·
    `plan` · `analysis` · `labs`. This is the path 13 of 15 courses use.
+   *Status 15 Oct 2026: the hub shows the 11-module grid and the routes are `overview` · `map` ·
+   `summary` · `cram` · `cards` · `quiz` · `speed` · `labs` · `mock` · `weak-spots` · `library`
+   (`/exam`, `/plan`, `/analysis` redirect). All 15 courses use it; PSCP's `labs` slot links out to
+   `/pscp`.*
 2. **PSCP problem path** — `/pscp` (64 iJudge problems with deadlines) and `/recommended`
    (10 annotated problems) → `/recommended/<slug>` (reader) → `/recommended/<slug>/quiz` (technique
    self-test) or `/recommended/<slug>/grade` (in-browser Python grader).
+   *Status 15 Oct 2026: `/pscp` lists the 235-problem registry and each problem opens an in-browser
+   workspace at `/pscp/<slug>`; `/recommended` has 14 problems.*
 3. **Coursework-compliance path** — `/make/submission` and `/make/reflection` (form wizards that
    fill official Markdown templates) → `/history` → optional GitHub push (`/repo`, 13 API routes).
+   *Status 15 Oct 2026: 11 GitHub OAuth routes + 2 document generators.*
 
 Path 3 is an academic-integrity workflow, not learning content, but it occupies a third of the
-codebase's server surface.
+codebase's server surface. *(Status 15 Oct 2026: 13 of the 17 route handlers; the rest are the
+library list, the session probe, the visitor counter and the sign-in callback.)*
 
 ---
 
@@ -108,6 +173,9 @@ contract of the sibling `kmitl-archive` repository. Two courses lack an official
 (no published code, so `courseDir` degrades to the bare slug) and COMPRO (code `01006012` exists in
 the catalogue but the corresponding `content/courses/` directory does not — its content is loaded
 from `data/en-kmitl/` by a hardcoded Thai filename).
+*Status 15 Oct 2026: both now have a `content/courses/` directory (`01006012-Computer-Programming`,
+`General-Chemistry`) holding the standard `summary.md` + `blueprint.md`; the full study notes are
+still loaded from `data/en-kmitl/` by hardcoded Thai filenames (`lib/courses/en-kmitl.ts`).*
 
 ### 2.2 How time and scope are partitioned
 
@@ -120,11 +188,15 @@ export type TrackScope = "all" | "midterm" | "final";   // lib/course-tracks.ts
 ```
 Declared per track blueprint. In practice nearly every blueprint is hardcoded to `"midterm"`,
 reflecting that the portal was built during a midterm cram cycle.
+*Status 15 Oct 2026: `TrackScope` went away with `lib/course-tracks.ts`. Its successor is
+`ModuleScope = "all" | "midterm" | "final"` in `lib/courses/spine.ts`, declared once per module in
+`STANDARD_SPINE` (`cram_sheet`, `speed_quiz` and `mock_exam` default to `midterm`, the rest to
+`all`) and overridable per course in its binding.*
 
 **(b) Asset scope — `AssetScope`, on the media library card.**
 
 ```ts
-export type AssetScope = "midterm" | "final";           // lib/library/subject-library.ts (optional field)
+export type AssetScope = "midterm" | "final";           // lib/library/subject-library-ui.ts (optional field; re-exported by subject-library.ts)
 ```
 This is the project's most deliberate design decision, and it is documented in `FILE_STRUCTURE.md`
 §3: **exam scope is metadata, never a directory level**. Rationale recorded in-repo: (1) some
@@ -142,6 +214,10 @@ week number in a filename:
 | DSA · PSTAT | end of chapter 7 |
 | BFIT | end of week 8 |
 
+*Status 15 Oct 2026: OOP also splits at chapter 7 (0–7 / 8–14); PSCP's summary states the midterm as
+chapters 1–5 and the final as Week 08–14; FE and FE2 split by Unit (1–2 / 3–10, 3–5 / 8–10). The
+authoritative table, re-read from the 15 summaries, is in `docs/DROPZONE_SOP.md` §2.3.*
+
 **(c) Chapter / week partitioning — `SubjectChapter`.**
 Each quiz bank ships its own chapter list (`ITF_CHAPTERS`, `ICS_CHAPTERS`, `MFIT_CHAPTERS`,
 `EN_KMITL_CHAPTERS`, `CHEM_CHAPTERS`), and the label varies per subject: MFIT uses
@@ -150,10 +226,14 @@ no registered chapter list, `lib/courses/course-chapters.ts` **screen-scrapes se
 `summary.md`** with a regex over Markdown table rows, sniffing the header cell for
 `สัปดาห์` / `บท` / `Unit` to pick the label. This is the only place in the system where a syllabus
 is parsed rather than authored.
+*Status 15 Oct 2026: `COURSE_CHAPTERS_MAP` registers all 15 courses (the lists for ITF, ICS, MFIT,
+COMPRO and CHEM still come from `lib/quiz/*-quiz.ts`, the other ten are inline in
+`course-chapters.ts`), so the `summary.md` parser is now only a fallback for a course added but not
+yet registered, and runs for none today.*
 
 ### 2.3 How metadata links files to the UI
 
-Four registries, layered:
+Four registries, layered (as scanned — superseded, the current chain follows the diagram):
 
 ```
 lib/courses/catalog.ts          15 course records + a `tracks` map of TrackKind -> href
@@ -170,12 +250,37 @@ lib/library/subject-library.ts  mergedAssets(code) = curated entries ++ generate
                         page counts and byte sizes from lib/library/library-stats.json
 ```
 
-Two of these files are **build artifacts and must not be hand-edited**:
+*Status 15 Oct 2026 — the chain now:*
+
+```
+lib/courses/catalog.ts          15 course records, identity only (code, officialCode, slug, names,
+        │                       credits, group) — no `tracks`, no TrackKind
+        ▼
+lib/courses/spine.ts            STANDARD_SPINE: 11 modules, fixed order, URL segment, default scope, DoD
+lib/courses/course-bindings.ts  COURSE_BINDINGS: per course, which modules have docs / a bank / an href
+        │
+        ▼
+lib/courses/course-spine.ts     resolveCourseSpine(): status "available" when bound content exists,
+        │                       else "coming_soon"; readinessIndex() counts the available ones
+        ▼
+app/courses/[dir]/page.tsx             the hub: the 11-slot grid, question counts measured from the banks
+app/courses/[dir]/[module]/page.tsx    one route for every module (docs reader, quiz gate, library gate)
+        ▼
+lib/library/subject-library.ts  mergedAssets(code) = curated entries ++ generated manifest entries
+                                (curated wins on matching URL); withAssetStats() stamps pages and sizes
+```
+
+Three files are **build artifacts and must not be hand-edited**:
 
 | File | Generator | Contents |
 |---|---|---|
-| `lib/library/library-manifest.json` (335 KB) | `npm run library:manifest` | One card per file under `public/assets/`, title humanized from the filename. Server-only — a client import would ship every asset name to the browser, so display helpers live in `lib/library/subject-library-ui.ts` |
-| `lib/library/library-stats.json` (72 KB) | `npm run library:stats` | 670 entries of `{ sizeBytes, pages? }` — PDF page counts must be computed at build time |
+| `lib/library/library-manifest.json` (353 KB; 335 KB at the scan) | `bun run library:manifest` | One card per file under `public/assets/`, title humanized from the filename, `chapter` only when the filename states one. Server-only — a client import would ship every asset name to the browser, so display helpers live in `lib/library/subject-library-ui.ts` |
+| `lib/library/library-stats.json` (74 KB) | `bun run library:stats` | 705 entries of `{ sizeBytes, pages? }` (670 at the scan) — PDF page counts must be computed at build time |
+| `lib/library/resource-index.json` (~1.1 MB; schema `resource-index.schema.json`) | `bun run library:index` | *New.* One snapshot joining `courses` (modules and status, weeks, counts), `docs` (every Markdown under `content/courses`, `data/it-kmitl`, `data/en-kmitl`: role, which module renders it, week, the files its tables reference, unresolved references) and `assets` (every card: origin, category, week, scope, edition/status, path, bucket and key, access tier, pages, size, `onDisk`, `usedBy`). Never imported by app code — it lists past papers too. Search it with `bun run library:find` |
+
+`bun run library:build` runs all three in order. `bun run library:audit` reads the same sources and
+reports where they disagree (missing files, id collisions, dead file references in docs, a stale
+index, …); with `--remote` it also compares the files with the two buckets.
 
 The asset path contract is **exactly four segments**:
 
@@ -184,8 +289,9 @@ public/assets/<namespace>/<subject>/<category>/<filename>
               it-kmitl     mfit      lectures    mfit-lec-week03-vectors.pdf
 ```
 
-`scripts/build-library-manifest.mjs` skips anything shallower — a file written one level up lands
-on disk but never appears in the UI. Category folders map to gallery shelves:
+`scripts/build-library-manifest.mjs` skips anything shallower, and any `<subject>` folder missing
+from its `SUBJECT_CODE` table — a file written one level up lands on disk but never appears in the
+UI (`library:audit` reports it as `unmapped-file`). Category folders map to gallery shelves:
 `lectures|slides → lecture`, `sheets → cheatsheet`, `exams → exam`,
 `exercises|labs|activities|worksheets|cases → exercise`, `notes|pages → note`,
 `references|misc → reference`.
@@ -195,6 +301,13 @@ against `docs/DROPZONE_SOP.md`: scan → classify by *reading inside the file*, 
 rename to the sanitized convention → move to the four-segment path → regenerate both manifests →
 clear the dropzone. The SOP explicitly forbids guessing `scope` and requires low-confidence files
 to be held rather than filed.
+*Status 15 Oct 2026: the SOP now also compresses before filing, regenerates with `library:build`
+(manifest + stats + index), audits with `library:audit`, and uploads with `assets:sync` only after the
+owner agrees, followed by `library:audit -- --remote`. Course files come from the owner's
+`~/Downloads/_INBOX/<COURSE>/` (OnLearn needs a login). Privacy rule of 15 Oct 2026: official class
+handouts that show a TA's or sample student's name are filed normally; other students' own work and
+personal data not already given to the class are held; graded artefacts (`.pka`) and saved
+personal-account pages are skipped.*
 
 ---
 
@@ -204,16 +317,16 @@ to be held rather than filed.
 
 | Modality | Storage | Engine | Coverage |
 |---|---|---|---|
-| **Course overview / syllabus** | `content/courses/<dir>/summary.md` with YAML front matter | `course-overview.tsx` — tabbed overview card (curated summary / official info) with live outline panel and read-progress | 13 courses |
-| **Study notes (long form)** | `data/it-kmitl/<subj>/summarize.md`, `data/en-kmitl/…` | `subject-summary-reader.tsx` + `toc-side-panel.tsx` | ITF, ICS, MFIT, COMPRO, CHEM |
-| **Cram sheet** | `data/it-kmitl/mfit/cram.md` | same reader | MFIT only |
-| **Study plan / learning path** | `data/it-kmitl/mfit/learning-path.md` | same reader | MFIT only (a 6-block, day-before-the-exam sprint) |
-| **Exam analysis** | `data/it-kmitl/ics/analysis.md` | same reader | ICS only (mark distribution across topics) |
-| **Lecture slides** | Supabase `ihelp-library` (public bucket) | `subject-library.tsx` (1,642 lines) — gallery/list toggle, category shelves, midterm/final segmented control, tag chips, search, in-modal PDF preview with zoom/pan/fullscreen | 13 courses |
-| **Handwritten note scans** | 26 webp + 10 jpg | same, collapsed into stacks via `groupId` | 2 groups defined (`itf-class-notes`, `ics-midterm-2564-scan`) |
-| **Policy book** | `data/ai-guidelines/**` (12 docs, th/en pairs) | `library-reader.tsx` — prev/next pagination, "doc *n* of *N*" | Course-wide |
-
-| **Past papers** | Supabase `ihelp-library-exams` (**private bucket**) | Same gallery, but the entries are fetched after mount from `/api/library/exams` and only for insiders | 10 courses, 169 files |
+| **Course overview / syllabus** | `content/courses/<dir>/summary.md` with YAML front matter | `course-overview.tsx` — tabbed overview card (curated summary / official info) with live outline panel and read-progress | 15 courses *(13 at the scan)* |
+| **Study notes (long form)** | `data/it-kmitl/<subj>/summarize.md`, `data/en-kmitl/…` | `module-reader.tsx` + `toc-side-panel.tsx` *(`subject-summary-reader.tsx` at the scan)* — the `deep_summary` module | ITF, ICS, MFIT, COMPRO, CHEM |
+| **Cram sheet** | `data/it-kmitl/mfit/cram.md` | same reader — the `cram_sheet` module (`/cram`) | MFIT only |
+| **Study plan / learning path** | `data/it-kmitl/mfit/learning-path.md` | second document of the same `cram_sheet` module (`/plan` redirects to `/cram`) | MFIT only (a 6-block, day-before-the-exam sprint) |
+| **Exam analysis** | `data/it-kmitl/ics/analysis.md` | second document of the `orientation` module (`/analysis` redirects to `/overview`) | ICS only (mark distribution across topics) |
+| **Weekly session pages** | `content/courses/<dir>/archive/weekNN.md` | the `syllabus_map` module (`/map`): one page per week with its file table, exam notes and lab summary | ITF (15 weeks), ICS (7 sessions) — *new since the scan* |
+| **Lecture slides** | Supabase `ihelp-library` (public bucket) | `subject-library.tsx` (961 lines; 1,642 at the scan) + `components/subject-library/` (table, weekly table, book cover, photo stack) behind `subject-library-gate.tsx` — gallery/list toggle, category shelves, midterm/final segmented control, tag chips, search, in-modal PDF preview with zoom/pan/fullscreen; ITF and ICS open on the week view | 13 courses |
+| **Handwritten note scans** | 27 webp + 10 jpg *(26 + 10 at the scan)* | same, collapsed into stacks via `groupId` | 24 groups defined in `ASSET_GROUPS` *(2 at the scan)* — the note and exam-scan sets plus ICS lecture/lab editions and exam copies |
+| **Policy book** | `data/ai-guidelines/**` (13 docs, th/en pairs where both exist; 12 at the scan) | `library-reader.tsx` — prev/next pagination, "doc *n* of *N*" | Course-wide |
+| **Past papers** | Supabase `ihelp-library-exams` (**private bucket**) | Same gallery, but the entries come from `GET /api/library/assets` after mount, and only insiders receive them (signed) | 10 courses, 168 files *(169 at the scan)* |
 
 ### Media delivery
 
@@ -225,18 +338,27 @@ Supabase Storage:
 | | Public library | Past papers |
 |---|---|---|
 | Bucket | `ihelp-library` | `ihelp-library-exams` (private) |
-| Files | 501 | 169 |
+| Files | 501 *(537 files / 613 MiB on 15 Oct 2026)* | 169 *(168 files / 335 MiB)* |
 | Addressed by | `assetUrl()` → public URL | `libraryExamsForInsider()` → 10-minute signed URL |
-| Gate | none | `isInsider()`, before the service-role client is touched |
-| In prerendered HTML | yes | **no** — the page is static, and a signed URL cannot be baked into it |
+| Gate | none *(15 Oct 2026: object URLs are still public, but the **list** of them needs an IT KMITL sign-in — `GET /api/library/assets`)* | `isInsider()`, before the service-role client is touched |
+| In prerendered HTML | yes *(15 Oct 2026: not on the library page, which is static, carries no card data and fetches the list after mount — but the other module pages that render documents receive the course's non-exam cards as props)* | **no** — the page is static, and a signed URL cannot be baked into it |
 
 Classification is on `category === "exam"`, not on path: ten scanned exam pages live under
 `ics/pages/` rather than an `exams/` folder, and a path rule publishes them. `storageKey()` is
 shared by the uploader and the resolver so the two cannot disagree about where a file is.
+*Status 15 Oct 2026: `isRestrictedAsset()` (`lib/library/subject-library-ui.ts`) is `category ===
+"exam"` **or** a path containing `/exams/`; `scripts/sync-library-assets.ts` and `library:audit
+--remote` use the same rule. Because the non-exam bucket is public and its paths are in this public
+repo, "behind login" describes the list, not the files.*
 
 Markdown rendering is uniform: `react-markdown` + `remark-gfm` + `remark-math` + `rehype-katex`
 (LaTeX is used heavily by MFIT and PSTAT) with a shared heading-slug/TOC extractor (`lib/docs/toc.ts`)
 that preserves Thai characters in anchors.
+*Status 15 Oct 2026: `components/md-view.tsx` is still the only importer of `react-markdown`. It now
+sets every body in THSarabunNew, adds a "notebook" variant (used for the `overview` and `summary`
+modules) and a `remarkNotebook` plugin for `{==highlight==}` / `{++underline++}` / `<sub>` / `<sup>`,
+renders a ```` ```youtube ```` fence as a player, and turns a weekly page's file table into openable
+file cards by matching `fileName` against the library cards — see `docs/FONTS.md`.*
 
 ### 3.2 Active assessment
 
@@ -251,22 +373,29 @@ Supported kinds (`QuizKind` in `lib/quiz/quiz.ts`):
 
 | Kind | Grading | Count | Notes |
 |---|---|---:|---|
-| `mcq` | `selectedId === correctId` | 304 | 4 options everywhere except CHEM (5, ก–จ) |
-| `predict-output` | same | 24 | Shows only the I/O contract in prose plus a concrete `stdin` — deliberately *no* code, so the student reasons from spec |
-| `spot-the-bug` | same | 12 | ≤ 5 real lines from a reference solution with exactly one mutation |
-| `pep8` | same | 10 | Style/lint reasoning |
+| `mcq` | `selectedId === correctId` | 316 *(304)* | 4 options everywhere except CHEM and the COMPRO mock paper (5, ก–จ) |
+| `predict-output` | same | 28 *(24)* | Shows only the I/O contract in prose plus a concrete `stdin` — deliberately *no* code, so the student reasons from spec |
+| `spot-the-bug` | same | 16 *(12)* | ≤ 5 real lines from a reference solution with exactly one mutation |
+| `pep8` | same | 12 *(10)* | Style/lint reasoning |
 | `true-false` | same | 6 | 2 options |
 | `short-answer` | **self-assessed** — the learner reveals a model answer and marks `self:correct` / `self:wrong` | 12 | Open essays; no string matching is attempted |
+
+*(Counts are 15 Oct 2026; the scan's figure is in italics.)*
 
 **Mock exams** are not a distinct engine or schema. Two different things carry the name:
 - COMPRO's 60-question mock paper is `QuizQuestion[]` and is **concatenated into the practice quiz**
   (`[...EN_KMITL_QUIZ, ...EN_KMITL_MOCK_EXAM]`), so the "quiz" a COMPRO student takes is 70 items.
+  *Status 15 Oct 2026: split — the 10 practice items are the `drill` module and the 60-item paper is
+  its own `mock_exam` module with its own progress key (`900006`), so the two scores no longer mix.*
 - MFIT's mock exam is **Markdown** rendered by the reader at `/courses/…/mock`; ICS's and MFIT's
-  real past papers are Markdown at `/courses/…/exam`.
+  real past papers are Markdown at `/courses/…/exam`. *(Status 15 Oct 2026: `/exam` redirects to
+  `/mock`; ICS's practice paper and MFIT's midterm and final papers are Markdown documents of the
+  `mock_exam` module, and MFIT's timed drill is a Markdown document of `speed_quiz`.)*
 
 There is **no timer** anywhere in the codebase (`grep` for `setInterval`/countdown in the quiz
 engine returns nothing), despite the welcome modal advertising `พร้อมเฉลยละเอียดและจับเวลา`
-("with detailed solutions and timing").
+("with detailed solutions and timing"). *Status 15 Oct 2026: unchanged — the modal copy is still in
+`components/disclaimer-modal.tsx` and `technique-quiz.tsx` still has no clock.*
 
 ### 3.3 Applied practice
 
@@ -274,7 +403,8 @@ Two **independent** code-practice systems with different data models, different 
 persistence keys:
 
 **(a) PSCP recommended problems** — `/recommended/<slug>/grade`, `components/code-grader.tsx`
-(690 lines) over `lib/pscp/pyodide-client.ts`.
+(690 lines at the scan, 747 on 15 Oct 2026) over `lib/pscp/pyodide-client.ts`. The same grader also
+backs the `/pscp/<slug>` workspace (`components/pscp-workspace.tsx`).
 
 - Runs **CPython in the browser** via Pyodide in a dedicated Web Worker
   (`public/workers/python-runner.worker.js`), with the full runtime vendored into `public/pyodide/`.
@@ -288,7 +418,7 @@ persistence keys:
   `lib/pscp/pep8-rules.ts`, each able to carry a `sourceRef` back into the teaching material.
 - Coverage: **10 problems, 66 test cases** (`lib/pscp/testcases.ts`), split `official: true` (copied
   verbatim from the problem's §4) and `official: false` (extra cases from §6, each annotated with
-  what it tests, e.g. "boundary N=0").
+  what it tests, e.g. "boundary N=0"). *Status 15 Oct 2026: 14 problems, 86 cases (30 official).*
 
 **(b) ComPro labs** — `/courses/01006012-Computer-Programming/labs`,
 `components/compro-lab-hub.tsx` (819 lines).
@@ -305,6 +435,12 @@ persistence keys:
 **(c) Problem index** — `/pscp` renders all 64 iJudge problems from `data/oj_problems.json` with
 deadlines. Week numbers are **derived, not stored**: distinct expiry dates are sorted ascending and
 the ordinal becomes the week (`lib/pscp/master.ts`).
+*Status 15 Oct 2026: `/pscp` now renders the registry `data/pscp/problems.json` (235 problems),
+built by `scripts/build_pscp_registry.py` from the course archive repo — the problem index
+(`data/oj_problems.json`, 222 problems), `all_problems_detail.json` and the reference solutions come
+from its `OP` branch, the authored `problem.md` write-ups from its main branch. `oj_problems.json`
+carries a stored `week` (the derived ordinal in `master.ts` is only the fallback), and each registry
+problem opens an in-browser workspace at `/pscp/<slug>`.*
 
 ### 3.4 Coursework compliance (adjacent to learning)
 
@@ -312,7 +448,8 @@ the ordinal becomes the week (`lib/pscp/master.ts`).
 (`data/templates/*.md`) by replacing fenced ```` ```text ```` blocks positionally and filling
 labelled table rows — with a guard that **refuses to guess** if the template's block count has
 changed. Output goes to `localStorage` history (capped at 100 entries, halving on quota overflow)
-and can be pushed to GitHub through 13 OAuth-backed API routes.
+and can be pushed to GitHub through 13 OAuth-backed API routes (11 GitHub routes + the 2 document
+generators, `app/api/github/*` and `app/api/generate/*`).
 
 ---
 
@@ -341,7 +478,22 @@ export interface CatalogCourse {
 The `tracks` map is deliberately partial: an absent track still renders in the UI as a **locked
 slot**, so a student can distinguish "not built yet" from "does not exist."
 
-### 4.2 Track blueprint — `lib/course-tracks.ts`
+*Status 15 Oct 2026 — the interface above is the scan's. `TrackKind` and `tracks` are gone;
+`CatalogCourse` is identity only:*
+
+```ts
+export interface CatalogCourse {
+  code: string; officialCode?: string; slug: string;
+  nameTh: string; nameEn: string; credits?: string;
+  group: CourseGroup;        // "Y1-S1" | "Y1-S2" | "EN-KMITL"
+  portalHref?: string; officialUrl?: string;
+}
+```
+
+*What a course offers is declared in `COURSE_BINDINGS` against the eleven modules (§4.2). The
+"locked slot" behaviour survived: every unbound module of the spine still renders, as `coming_soon`.*
+
+### 4.2 Track blueprint — `lib/course-tracks.ts` (deleted; successor at the end of this section)
 
 ```ts
 export type TrackScope  = "all" | "midterm" | "final";
@@ -363,6 +515,43 @@ export interface CourseTrackItem {
 Badges are **measured, not typed in**: `buildCourseTracks(code, hrefs, metrics)` joins the static
 roadmap to live counts, a fix for a documented drift where the same bank was labelled "63 ข้อ" in
 one file and "65 ข้อ" in another.
+
+**Status 15 Oct 2026 — the successor.** `lib/course-tracks.ts`, `TrackScope`, `TrackStatus`,
+`CourseTrackItem` and `buildCourseTracks()` no longer exist. The same job is split three ways
+(`docs/LEARNING_BLUEPRINT.md` is the contract):
+
+```ts
+// lib/courses/spine.ts — pure data, importable by client components
+export type ModuleId =                       // eleven, in fixed order, replacing TrackKind AND the open string ids
+  | "orientation" | "syllabus_map" | "deep_summary"          // A · orient
+  | "cram_sheet" | "key_cards"                               // B · compress
+  | "drill" | "speed_quiz" | "applied"                       // C · retrieve
+  | "mock_exam" | "weak_spot" | "archive";                   // D · prove
+export type ModuleScope  = "all" | "midterm" | "final";      // was TrackScope
+export type ModuleStatus = "available" | "coming_soon" | "locked";
+export interface ModuleSpec { id; phase; order; segment; title; subtitle; scope; dod: LText[] }
+export const STANDARD_SPINE: readonly ModuleSpec[];          // the eleven, declared once
+
+// lib/courses/course-bindings.ts — the whole of a course's configuration
+export interface ModuleBinding {
+  docs?: ModuleDoc[];          // Markdown the module renders (loaders, so server-only)
+  bank?: () => QuizQuestion[]; // question bank; needs `quizId`, the progress key
+  quizId?: number;
+  filled?: () => boolean;      // for modules whose content lives in a registry
+  href?: string;               // route override (PSCP's problem hub)
+  title?: LText; subtitle?: LText; scope?: ModuleScope; note?: LText;
+}
+export const COURSE_BINDINGS: Record<string, Partial<Record<ModuleId, ModuleBinding>>>;
+
+// lib/courses/course-spine.ts — server-only join
+resolveCourseSpine(code, courseDir, metrics): ResolvedModule[]   // always 11, status from what is bound
+resolveModule() · moduleBinding() · readinessIndex()
+```
+
+`ResolvedModule` is plain data so it can cross into client components; the bindings hold loader
+functions and stay on the server. Badges are still measured: the hub counts each bound bank and the
+library cards and passes them in as `SpineMetrics`. `bun run readiness` prints how many of the eleven
+each course fills.
 
 ### 4.3 Question schema — `lib/quiz/quiz.ts` (the one schema every bank shares)
 
@@ -414,8 +603,13 @@ export type QuizProgress = Record<number, QuizProblemProgress>;  // keyed by OJ 
 
 Because the key is a number tied to iJudge, subject banks need synthetic ids to avoid collision with
 real 4-digit OJ ids: `EN_KMITL 900001`, `CHEM 900002`, `ICS 900003`, `MFIT 900004`, `ITF 900005`.
+*Status 15 Oct 2026: `COMPRO_MOCK_QUIZ_ID = 900006` (in `course-bindings.ts`) joins them, and
+`quiz-id-collision` in `content:check` now fails the build if two modules ever share a key.*
 
-### 4.4 Asset schema — `lib/library/subject-library.ts`
+### 4.4 Asset schema — `lib/library/subject-library-ui.ts` (types) · `subject-library.ts` (data)
+
+*(At the scan the types lived in `subject-library.ts`; they moved to the client-safe `-ui` file, which
+`subject-library.ts` re-exports. The interface below is the scan's — the fields added since follow it.)*
 
 ```ts
 export type AssetFileType = "pdf" | "image" | "md" | "file";
@@ -445,6 +639,24 @@ export interface SubjectAsset {
 }
 ```
 
+*Status 15 Oct 2026 — fields added to `SubjectAsset` since the scan:*
+
+```ts
+  chapter?: number;          // join key to syllabus weeks and quiz questions; the manifest fills it only when
+                             // the filename states one (week08, ch3, lec02, unit4), curated cards by hand
+  week?: number;             // week or session number; the week view matches it first, falls back to `chapter`
+  edition?: string;          // "2569" …
+  isCurrentYear?: boolean;   // belongs to the current academic year
+  status?: "primary" | "current_year" | "duplicate" | "compact" | "legacy";
+  isDuplicate?: boolean;     // a copy of a canonical card …
+  duplicateOf?: string;      // … named by card id or fileName
+  sourceUrl?: string;        // the file's OnLearn page, shown as "ต้นทาง"
+```
+
+*The week view itself is data: `CourseSchedule` / `CourseWeek` / `CoursePart` in the same `-ui` file, filled
+for ITF and ICS in `lib/library/course-weeks.ts` (`COURSE_SCHEDULES`) and served only through
+`/api/library/assets` because it links the OnLearn lecture recordings.*
+
 `category` and `fileType` are **orthogonal on purpose**: a cheatsheet and a lecture deck are both
 PDFs but never belong on the same shelf. When `category` is absent, `resolveCategory()` walks a
 bilingual tag vocabulary most-specific-first (`note` → `lecture` → `exercise` → `cheatsheet` →
@@ -462,6 +674,8 @@ without adaptation:
   "url": "/assets/en-kmitl/chem/lectures/ch1-atomic-structure.pdf",
   "fileName": "ch1-atomic-structure.pdf", "courseCode": "CHEM" }
 ```
+
+*(The current manifest also writes `"chapter": 1` here, because the filename says `ch1`.)*
 
 ### 4.5 Grader schemas — `lib/pscp/grader-types.ts` vs `lib/pscp/compro-labs.ts`
 
@@ -527,6 +741,12 @@ the runtime taxonomy does *not* model separately. `remark-frontmatter` is instal
 extractor strips the block with a regex; no loader parses it. Its real value is `sources:`, the
 only provenance trail from a rendered page back to the archive it was built from.
 
+*Status 15 Oct 2026: the sample above is the scan's. Front matter is now 14 fixed keys in a fixed
+order (`code, slug, shortCode, nameTh, nameEn, credits, year, term, termId, prerequisites,
+language, semester, updated, sources`); `sources:` lists official documents (slides, syllabus), not
+paths into the archive repo. `bun run content:check` enforces the key names and order
+(`overview-frontmatter`) but not the values, and the app still reads none of it.*
+
 Every `summary.md` follows a five-part convention (documented in `content/courses/README.md`):
 1. Course overview — code, names, credits, prerequisites, instructors, textbooks, grade weighting
 2. **Content scope** — a week-by-week table explicitly split into midterm scope and final scope
@@ -537,6 +757,14 @@ Every `summary.md` follows a five-part convention (documented in `content/course
 
 Part 4 is unusual and worth flagging to the incoming expert: **these documents were written to be
 machine-consumed** as generation specs for question banks, not only read by students.
+
+*Status 15 Oct 2026: replaced by a six-section student-facing standard
+(`docs/COURSE_OVERVIEW_STANDARD.md`: course info · scope · topic summaries · things to memorise ·
+assessment and exam prep · learning resources), checked by `overview-sections`. Parts 4–5 of the old
+convention (question-bank proportions, exercise templates, mock-exam structure, source inventory
+with file paths) moved to a separate `blueprint.md` per course — 15 of 15 exist, none is rendered,
+and `overview-internal-path` rejects local paths in `summary.md`. The "machine-consumed" material is
+now confined to those blueprint files.*
 
 The richest schema in the repository is not wired to anything —
 `content/courses/06016401-Math-for-IT/archive/study-guide-curriculum.json`:
@@ -557,6 +785,10 @@ The richest schema in the repository is not wired to anything —
 
 Learning pillars, an assessment model, zero-score conditions, and slide-level provenance — none of
 it reachable from the running app (§5.4).
+*Status 15 Oct 2026: still true for this file. `lib/courses/curriculum.ts` now exists with a typed
+loader (`loadCurriculum()`) and helpers that turn the spec into chapters, pillars and plain-language
+assessment rules, but nothing in `app/`, `components/`, `lib/` or `scripts/` calls it. The eight
+weeks of final-scope Markdown that sat beside it are bound (§5.4).*
 
 ---
 
@@ -594,6 +826,19 @@ builds MFIT's bank as `[...MFIT_QUIZ, ...MFIT_BLUEPRINT_QUIZ]` while
 disagree. The quiz route also types both arrays as `any[]`, disabling the type system exactly where
 the schemas would otherwise be enforced.
 
+*Status 15 Oct 2026 — **partly resolved.** The route-level branch is gone: the per-module pages
+(`summary/`, `exam/`, `quiz/`, …) were replaced by one `app/courses/[dir]/[module]/page.tsx` that
+asks `resolveCourseSpine()` and `moduleBinding()`, and there is no `switch (course.code)`. The three
+stores still exist (`content/courses/` now with 15 overviews, `data/it-kmitl/`, `data/en-kmitl/`,
+read by `loadItf()` / `loadIcs()` / `loadMfit()` / `loadEnKmitl()` / `loadChem()`), but each is
+reached only through a binding's `docs[].load`. MFIT's bank order is declared once
+(`bank: () => [...MFIT_QUIZ, ...MFIT_BLUEPRINT_QUIZ]` in `course-bindings.ts`), and the quiz page that
+cast it to `any[]` no longer exists. What is left: adding a course still touches 5–6 registries
+(`catalog.ts`, `summary.md` + `blueprint.md`, `course-bindings.ts`, `COURSE_CHAPTERS_MAP`,
+`SUBJECT_CODE` in the manifest script, optionally `SUBJECT_ASSETS`) — none of them a route — and two
+hardcoded course checks remain (the `applied` module renders COMPRO's lab hub only; the library UI
+hides duplicate files by default for ICS only).*
+
 ### 5.2 The track taxonomy has two incompatible vocabularies
 
 `TrackKind` (catalogue) is a closed union of six. `TrackBlueprint.id` (roadmap) is an open `string`
@@ -619,6 +864,15 @@ Track semantics are also overloaded per course. For PSCP the catalogue maps
 `summary → /recommended` and `problems → /pscp` — so a student clicking **"Study Notes"** on PSCP
 lands in a *problem hub*, in a different information architecture, with different navigation.
 
+*Status 15 Oct 2026 — **resolved.** `TrackKind`, `TrackBlueprint`, `TRACK_ORDER`, `TRACK_LABEL`,
+`TrackChip` and `extraHrefs` are gone (a grep for them in `app/`, `components/`, `lib/` and `scripts/`
+finds only a comment). One closed union, `ModuleId` (11), names every module; cram sheets, study
+plans and exam analyses are documents of `cram_sheet` / `orientation`, reachable from the same hub
+grid. PSCP's overloaded mapping is gone too: its `deep_summary` now opens the course overview and its
+`applied` module links to `/pscp`. One mismatch remains in the data rather than the taxonomy: MFIT's
+`speed_quiz` is bound to a Markdown document (the timed drill), while the spine defines that module
+as a timed mode.*
+
 ### 5.3 "Mock exam" is three unrelated things
 
 | Course | `/exam` | `/mock` | Practice quiz |
@@ -633,6 +887,14 @@ interactively at all — it is prose. The catalogue's `mock_exam` `TrackKind` is
 inconsistently across the three cases, and no schema distinguishes "formative practice item" from
 "summative exam item." Difficulty, mark value, and expected time-per-item are **absent from
 `QuizQuestion` entirely**, so no blueprint-weighted paper can be assembled from the bank.
+
+*Status 15 Oct 2026 — **partly resolved.** `mock_exam` is now defined once as "a mode, not a
+document" (`STANDARD_SPINE`), and COMPRO's 60-question paper is its own `mock_exam` module with its
+own score key (`quizId` 900006); the 10 practice items stay in `drill`, so the silent merge is gone.
+ICS (practice paper with key) and MFIT (midterm and final mock papers) are still Markdown documents
+of `mock_exam`, MFIT's timed drill is a Markdown document of `speed_quiz`, and there is still no
+timer, no start/stop and no separate summative score. `QuizQuestion` still has no difficulty, mark
+value or time per item.*
 
 ### 5.4 28 content files are orphaned — including the best-structured material in the repo
 
@@ -652,6 +914,20 @@ Separately, `data/templates/*.md` and `data/ai-guidelines/templates/*.md` are **
 duplicates** (verified by `diff`), with the wizards reading the former and the `/library` book
 rendering the latter.
 
+*Status 15 Oct 2026 — **mostly resolved.** `loadCourseDoc()` in `lib/courses/course-content.ts` was
+added for exactly this and now feeds `ModuleBinding.docs`: MFIT's eight weekly summaries and eight
+weekly quizzes (weeks 8–15), the syllabus study guide and the final mock paper are bound (18 files),
+and ITF's `midterm-study-guide.md` is the second `deep_summary` document — **19 of the 28 files are
+now reachable** (measured by running every binding's `load()` and recording which files were read).
+Still read by nothing: the eight `archive/links.md` provenance files and MFIT's
+`study-guide-curriculum.json` (the loader `loadCurriculum()` exists but has no caller, §4.6) — 9 — plus
+two files added since the scan, PSCP `archive/readme.md` and ICS `RESOURCES_MANIFEST.md`. The 15
+`blueprint.md` files are not rendered by design. ITF's `archive/week01–15.md` and
+`course-materials-2569.md` and ICS's `archive/week01–07.md` and `course-materials-2569.md` were added
+since the scan and are bound as the `syllabus_map` module. `bun run library:audit` reports the
+Markdown orphans as `orphan-doc` warnings (9). The `data/templates` ≡ `data/ai-guidelines/templates`
+duplication is unchanged: `diff -r` still reports the two folders identical.*
+
 ### 5.5 Bilingual support is structurally present but substantively absent in the largest banks
 
 `LText` makes `th` required and `en` optional, with an explicit rationale: content ported from
@@ -667,6 +943,15 @@ below"), and the mock exam repeats one identical paragraph across all four distr
 central pedagogical promise — *a wrong pick should still teach the misconception* — holds in
 `quiz-content.ts`, `ics-quiz.ts`, `mfit-quiz.ts`, and `chem-quiz.ts`, and is hollow in the 123
 items of ITF + COMPRO mock (**one third of all questions**).
+
+*Status 15 Oct 2026 — **partly resolved.** `content:check` now counts this debt instead of leaving
+it in prose (`lib/schemas/content.ts`; warnings, not errors): 157 `fake-bilingual` and 60
+`why-duplicate` findings sit in COMPRO's `mock_exam` paper, plus 6 `why-duplicate` in CHEM `drill`;
+nothing else is flagged. `why-placeholder` reports 0 only because a question carrying `explanationMd`
+is exempt: `itf-quiz.ts` still holds 141 placeholder `why` strings, but all 63 ITF questions use
+`explanationMd`, so the engine never shows them — the student reads the one Markdown explanation. The
+user-visible hollow feedback is therefore the COMPRO mock paper (60 items) and the 6 CHEM items,
+not "one third of all questions". The `LText` fallback rule is unchanged.*
 
 ### 5.6 Scope metadata covers 20% of the library; the shelves are flat
 
@@ -688,6 +973,16 @@ and only **two groups** are defined across the whole library. Crucially, `Subjec
 (`MFIT_CHAPTERS`) and knows the file `mfit-lec-week03-*.pdf` exists, **nothing links them**. Slides
 cannot be filtered by syllabus week, and a quiz question cannot deep-link to the deck it came from.
 
+*Status 15 Oct 2026 — **partly resolved.** Of 722 cards, 295 (41%) carry a `scope` — all curated;
+the 408 generated-only cards still carry none, by design — and 289 (40%) are filed under a week or
+chapter. `SubjectAsset` now has `chapter` (filled by the manifest when the filename says `week08` /
+`ch3` / `lec02` / `unit4`) and `week`; ITF and ICS open on a week-by-week view built from
+`COURSE_SCHEDULES`; `ASSET_GROUPS` has 24 groups (2 at the scan). The lopsidedness is unchanged — per
+course, cards / with scope / filed by week: MFIT 110 / 26 / 51, PSTAT 117 / 2 / 39, DSA 85 / 14 / 17,
+OOP 60 / 2 / 37, BFIT 45 / 0 / 8 — so those shelves are still mostly flat, auto-titled walls, and a
+quiz question still cannot deep-link to the deck it came from. Re-measure with `bun run library:audit`
+(a `coverage` line per course) or `jq '.courses[].counts' lib/library/resource-index.json`.*
+
 ### 5.7 Learner state is write-mostly, per-device, and never used to adapt
 
 Everything is `localStorage` under 14 keys — no accounts, no sync, no cross-device continuity, and
@@ -708,6 +1003,16 @@ loss on cache clear. Beyond that:
 - The three practice systems keep **three independent progress stores**
   (`ihelp-quiz-progress-v1`, `ihelp-recommended-status`, `ihelp-compro-labs-v1`) with no
   common learner model between them.
+
+*Status 15 Oct 2026 — **open.** Accounts now exist (§0.1) but quiz and lab progress is still not
+stored with them: it stays in `localStorage`, under about 15 `ihelp-*` keys (`grep -rn localStorage
+components lib` lists the users), and there are now **four** independent progress stores — the three
+above plus `ihelp-pscp-progress-v1` for the `/pscp` workspace. `loadQuizProgress()` is still read by
+exactly one component (`recommended-hub.tsx`); `missed[]` still drives nothing; the quiz gate still
+lists chapters with their counts behind a single Start button (a chapter-scoped run is the first item
+of the `drill` module's definition of done and is not built); the `weak_spot` module is unfilled in
+all 15 courses. The course banks hold 308 of the 390 questions (six banks, since COMPRO's mock paper
+is its own bank).*
 
 ### 5.8 Navigation bottlenecks on the syllabus → practice path
 
@@ -733,6 +1038,15 @@ Additional friction:
   Markdown documents, question banks, and problems are not searchable at all, jointly or severally.
 - **No global progress or "resume" surface.** `/history` lists generated compliance documents only.
 
+*Status 15 Oct 2026 — **partly resolved.** A reader's last button now goes forward:
+`forwardHref()` in `app/courses/[dir]/[module]/page.tsx` sends a finished document to the course's
+`drill` module and falls back to "take the quiz" only when there is none. `cram`, `plan`,
+`analysis`, `mock` and `labs` are no longer reachable from one hub card only: they are slots of the
+same 11-module grid (and `/plan`, `/analysis`, `/exam` redirect to their successors). Not done:
+jumping into a chapter, "retry the ones you missed", search across Markdown, banks and problems (the
+library has search within a course), a global progress or resume surface, and linking a question's
+`sourceRef` (still plain text in `technique-quiz.tsx`).*
+
 ### 5.9 Delivery and build-shape constraints
 
 | Constraint | Detail | Consequence for a redesign |
@@ -743,6 +1057,29 @@ Additional friction:
 | **`export const dynamic = "force-dynamic"`** | On the hub, summary, quiz, library, exam, mock, cram, plan, and analysis routes | `generateStaticParams()` is defined on these routes but cannot take effect; fully static Markdown is re-read from disk on every request |
 | **~16 MB Pyodide payload** | Vendored under `public/pyodide/` | Correctly gated behind an explicit user gesture, but it makes the code grader unusable on a slow connection and it is a per-session cost |
 | **No test suite** | No test runner in `package.json`; correctness is enforced by prose procedures in file headers and by the dropzone SOP's manual verification gates | The verification discipline is real and unusually rigorous, but it is unautomated and unenforceable at review time |
+
+*Status 15 Oct 2026, row by row — **partly resolved:***
+
+- **Assets in `public/`:** out of git since 0.6.0 (`public/assets/` is gitignored, 949 MiB served from
+  Supabase Storage). Access is not "public and unauthenticated" any more in one respect: the *list*
+  of files needs an IT KMITL sign-in. The files themselves, apart from past papers, are in a public
+  bucket and their paths are in this public repo. `ITF` and `FE` summaries still say their slides /
+  workbook must not be published openly; `content/courses/README.md` and `FILE_STRUCTURE.md` track
+  that decision. On personal data, the owner's rule of 15 Oct 2026 for new files is in
+  `docs/DROPZONE_SOP.md` Phase 6.
+- **Banks are TypeScript modules:** unchanged (`en-kmitl-mock-exam.ts` 265 KB, `quiz-content.ts`
+  175 KB, `itf-quiz.ts` 197 KB, `subject-library.ts` 276 KB). The validation gap is closed:
+  `lib/schemas/content.ts` applies Zod and the contract rules to every bank through `content:check`.
+- **Every bank imported by the hub:** now by `lib/courses/course-bindings.ts`, which the hub, the
+  module route, the sitemap and the readiness script all import, so all banks still load for every
+  course page.
+- **`force-dynamic`:** no course route declares it any more — the hub and `[module]` route define
+  `generateStaticParams()`. `force-dynamic` remains on `/recommended`, `/make/*`, `/repo`, `/exams`
+  and three API routes; `/pscp`, `/pscp/[slug]`, `/library` and `/version` are `force-static`.
+- **Pyodide:** unchanged in design; `public/pyodide/` measures 13 MB on disk (the ~16 MB download
+  figure was not re-measured).
+- **No test suite:** still no unit-test runner, but the build is now gated by
+  `bun run content:check` (`prebuild`), and `bun run readiness` and `bun run library:audit` exist.
 
 ### 5.10 Coverage is thin and unevenly distributed
 
@@ -760,45 +1097,83 @@ Additional friction:
 Six courses carry 100% of the assessment content. Every question in the system targets a **midterm**;
 the final-exam material that does exist (MFIT weeks 8–15) is the orphaned set from §5.4.
 
+*Status 15 Oct 2026 — **open.** Nine courses (CHARM, FE, SPORT, BFIT, DSA, OOP, PSTAT, FE2, DL) are
+still `baseline()`-only, now 3/11 modules each (SPORT 2/11); average readiness is 3.9/11 (36%)
+(`bun run readiness`). The same table today (cards = library cards, the merged curated + generated
+count):*
+
+| Course | Overview | Drill (questions) | Mock | Library cards | Code practice | Readiness |
+|---|:--:|:--:|:--:|---:|:--:|:--:|
+| ITF | ● + 15 weekly pages | 63 | — | 108 | — | 5/11 |
+| ICS | ● + 7 session pages | 50 | practice paper (md) | 114 | — | 6/11 |
+| MFIT | ● + weeks 8–15 (md) | 65 | midterm + final papers (md) | 110 | — | 8/11 |
+| PSCP | ● | — | — | 38 | `/pscp` registry (235) · 14 recommended | 4/11 |
+| COMPRO | ● | 10 | 60 (bank, own module) | 7 (in-app docs) | 25 labs | 6/11 |
+| CHEM | ● | 60 | — | 12 | — | 4/11 |
+| CHARM · FE · SPORT · BFIT · DSA · OOP · PSTAT · FE2 · DL | ● | — | — | 0–117 | — | 2–3/11 |
+
+*The interactive banks are still midterm-scoped (ITF, ICS, COMPRO and CHEM bind theirs with
+`scope: "midterm"`); MFIT's eight final-scope weekly quizzes are now reachable, but as Markdown
+documents below the drill, not as a question bank.*
+
 ---
 
 ## Appendix A — Route map
 
-| Route | Rendering | Engine |
+*Updated 15 Oct 2026 (the scan's version is in git at `137d3b7`). "Declared" is what the route file
+exports — `force-static`, `force-dynamic`, `generateStaticParams()` — read from the code; no build was
+run, so the effective rendering mode is not claimed.*
+
+| Route | Declared | Engine |
 |---|---|---|
-| `/` | dynamic | `course-directory.tsx` + `Course` JSON-LD for 15 courses |
-| `/courses/[dir]` | dynamic | `subject-hub.tsx` + `subject-track-grid.tsx` + `course-overview.tsx` |
-| `/courses/[dir]/summary` · `/exam` · `/mock` · `/cram` · `/plan` · `/analysis` | dynamic | `subject-summary-reader.tsx` (one shared Markdown reader, five entry points) |
-| `/courses/[dir]/quiz` | dynamic | `subject-quiz-gate.tsx` → `technique-quiz.tsx` |
-| `/courses/[dir]/library` | dynamic | `subject-library.tsx` |
-| `/courses/[dir]/labs` | dynamic | `compro-lab-hub.tsx` (COMPRO only; 404 for everything else) |
-| `/pscp` | static | `pscp-modules.tsx` + `problems-view.tsx` (64 iJudge problems) |
-| `/recommended` · `/recommended/[slug]` | dynamic | `recommended-hub.tsx` · `recommended-reader.tsx` |
-| `/recommended/[slug]/quiz` · `/grade` | dynamic | `technique-quiz.tsx` · `code-grader.tsx` |
-| `/library` · `/library/[slug]` | static | `library-toc.tsx` · `library-reader.tsx` |
-| `/make/submission` · `/make/reflection` · `/history` · `/repo` | mixed | wizards, history, GitHub editor |
-| `/[slug]` | dynamic | Redirect resolver: OJ id / `oj####` / problem slug / library slug |
-| `/pro` · `/version` · `/robots.txt` · `/sitemap.xml` | static | marketing, changelog, SEO |
+| `/` | — | `course-directory.tsx` + `Course` JSON-LD for 15 courses; per-course `readinessIndex()` |
+| `/courses/[dir]` | `generateStaticParams()` (dir, code and slug forms) | `subject-hub.tsx` + `subject-track-grid.tsx` + `course-overview.tsx` — the 11-module grid |
+| `/courses/[dir]/[module]` — `overview` · `map` · `summary` · `cram` · `cards` · `quiz` · `speed` · `labs` · `mock` · `weak-spots` · `library` | `generateStaticParams()` (every bound module without its own `href`) | **one route for all modules:** `module-reader.tsx` (docs; `MdView` notebook variant for `overview` and `summary`), `subject-quiz-gate.tsx` → `technique-quiz.tsx` (banks), `subject-library-gate.tsx` → `GET /api/library/assets` (`library`), `compro-lab-hub.tsx` (`labs`, COMPRO only; 404 for everything else) |
+| `/courses/[dir]/exam` · `/plan` · `/analysis` | redirects in `next.config.ts` | → `/mock` · `/cram` · `/overview` |
+| `/pscp` · `/pscp/[slug]` | `force-static` | `problems-view.tsx` (registry list) · `pscp-workspace.tsx` (statement + in-browser grader) |
+| `/recommended` | `force-dynamic` | `recommended-hub.tsx` |
+| `/recommended/[slug]` · `/quiz` · `/grade` | `generateStaticParams()` | `recommended-reader.tsx` · `technique-quiz.tsx` · `code-grader.tsx` |
+| `/library` · `/library/[slug]` | `force-static` · `generateStaticParams()` | `library-toc.tsx` · `library-reader.tsx` (the AI-Guidelines "book") |
+| `/make/submission` · `/make/reflection` | `force-dynamic` | form wizards |
+| `/history` · `/version` | `force-static` | history of generated documents · changelog |
+| `/repo` | `force-dynamic` | GitHub editor |
+| `/exams` | `force-dynamic` | insider-only past-exam archive (`ihelp.exams`, bucket `ihelp-exams`) |
+| `/upload` | — | community uploads; 404 unless `NEXT_PUBLIC_UPLOADS_ENABLED=1` |
+| `/onboarding` · `/profile/[student_id]` (+ `/edit`) · `/auth/callback` · `/auth/unauthorized` | — | accounts |
+| `/[slug]` | `generateStaticParams()` | Redirect resolver: OJ id / `oj####` / problem slug / library slug |
+| `/pro` · `/robots.txt` · `/sitemap.xml` | — | marketing, SEO (the sitemap is generated from the spine) |
 | `/api/github/*` (11) · `/api/generate/{submission,reflection}` | route handlers | OAuth + Markdown generation |
+| `/api/library/assets` · `/api/me` · `/api/views` | `force-dynamic` | the gated library list (+ week schedule) · session probe · visitor counter |
 
 ## Appendix B — Where each concern is implemented
 
+*Updated 15 Oct 2026 — paths follow the `lib/` regroup (`lib/README.md`); the scan listed
+`lib/course-tracks.ts` and flat `lib/*.ts` banks.*
+
 | Concern | File |
 |---|---|
-| Course registry / taxonomy | `lib/courses/catalog.ts` |
-| Track roadmap and badges | `lib/course-tracks.ts` |
+| Course registry / taxonomy (identity only) | `lib/courses/catalog.ts` |
+| The 11 modules, phases, definitions of done | `lib/courses/spine.ts` (`STANDARD_SPINE`) |
+| What each course fills (replaces the track roadmap and badges) | `lib/courses/course-bindings.ts` (`COURSE_BINDINGS`) · `lib/courses/course-spine.ts` (`resolveCourseSpine()`, `readinessIndex()`) · `scripts/readiness.ts` |
 | Chapter/week lists (+ summary.md fallback parser) | `lib/courses/course-chapters.ts` |
-| Course document loaders | `lib/courses/course-content.ts`, `lib/courses/it-kmitl.ts`, `lib/courses/en-kmitl.ts` |
+| Course document loaders | `lib/courses/course-content.ts` (`loadCourseOverview` / `loadCourseDoc` / `loadCourseJson`), `lib/courses/it-kmitl.ts`, `lib/courses/en-kmitl.ts`, `lib/courses/curriculum.ts` (no caller) |
+| Content contract (schemas, error/warn rules) | `lib/schemas/content.ts`, `scripts/validate-content.ts` (`bun run content:check`) |
 | Question schema, grading, progress | `lib/quiz/quiz.ts` |
-| Question banks | `lib/{quiz-content,itf-quiz,ics-quiz,mfit-quiz,chem-quiz,en-kmitl-quiz,en-kmitl-mock-exam}.ts` |
-| Asset registry (curated) | `lib/library/subject-library.ts` |
+| Question banks | `lib/quiz/{quiz-content,itf-quiz,ics-quiz,mfit-quiz,chem-quiz,en-kmitl-quiz,en-kmitl-mock-exam}.ts` |
+| Asset registry (curated) | `lib/library/subject-library.ts` (data) · `lib/library/subject-library-ui.ts` (types, client-safe) |
 | Asset registry (generated) | `lib/library/library-manifest.json` ← `scripts/build-library-manifest.mjs` |
 | Asset file stats | `lib/library/library-stats.json` ← `scripts/build-library-stats.mjs` |
+| Resource index, audit, search | `lib/library/resource-index.json` (+ `.schema.json`) ← `scripts/library-index.ts`; `scripts/library-audit.ts`; `scripts/library-find.ts`; shared code `scripts/library-shared.ts` |
+| Week-by-week schedules (ITF, ICS) | `lib/library/course-weeks.ts` |
+| Storage URLs, keys, upload, exam signing | `lib/library/asset-url.ts`, `lib/library/storage-key.ts`, `scripts/sync-library-assets.ts`, `lib/library/library-exams.ts` |
+| The gated library list | `app/api/library/assets/route.ts`, `components/subject-library-gate.tsx` |
+| Sign-in, roles, database | `lib/auth/verify.ts`, `lib/auth/guards.ts`, `lib/supabase/*`, `proxy.ts`, `db/schema.ts` |
 | Python execution | `lib/pscp/pyodide-client.ts`, `public/workers/python-runner.worker.js` |
 | Grading contracts | `lib/pscp/grader-types.ts`, `lib/pscp/testcases.ts`, `lib/pscp/pep8-rules.ts` |
 | ComPro labs | `lib/pscp/compro-labs.ts`, `lib/pscp/compro-lessons.ts`, `data/en-kmitl/compro/labs.json` |
-| Problem index | `lib/pscp/master.ts`, `data/oj_problems.json` |
-| Localization | `lib/i18n.tsx` (`LText`, `t()`) |
+| Problem index | `lib/pscp/master.ts`, `lib/pscp/pscp.ts`, `data/oj_problems.json`, `data/pscp/problems.json` |
+| Markdown reader and typography | `components/md-view.tsx`, `lib/docs/remark-notebook.ts`, `docs/FONTS.md` |
+| Localization | `lib/ltext.ts` (`LText`, `t()`, server-safe), `lib/i18n.tsx` (React context; re-exports them) |
 | Ingest procedure | `docs/DROPZONE_SOP.md`, `FILE_STRUCTURE.md` |
 
 ## Appendix C — Strengths worth preserving in any redesign
@@ -819,4 +1194,9 @@ the final-exam material that does exist (MFIT weeks 8–15) is the orphaned set 
    specific misconception that produces it.
 7. **Zero-install applied practice.** In-browser CPython with iJudge-compatible scoring and
    non-blocking style feedback that links back to the teaching material.
+8. **Contracts a machine checks** *(added 15 Oct 2026)*. `bun run content:check` gates every build
+   (banks, spine, bindings, recommended problems, the overview standard), `bun run readiness` turns
+   "is the platform getting better" into one number, and `bun run library:audit` says where the cards,
+   the files, the docs and the buckets disagree. (Item 5's "locked/coming-soon track slots" are now
+   the eleven module slots of the spine.)
 
