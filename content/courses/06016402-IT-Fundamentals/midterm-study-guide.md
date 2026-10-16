@@ -17,7 +17,7 @@
 | 06 | Operating System | PJ |
 | 07 | Programs and Apps | PJ |
 
-> ⚠️ Week 08 (Database), Week 09 (Ethics/Legal), Week 10 (Enterprise) **ยังไม่เปิดใน OnLearn** → ไม่อยู่ในขอบเขตสอบกลางภาค
+> ⚠️ Week 08 (Database), Week 09 (Ethics/Legal), Week 10 (Enterprise) อยู่ในขอบเขตสอบ**ปลายภาค** ไม่ใช่กลางภาค
 
 ---
 

@@ -50,9 +50,9 @@ const ITF_SCHEDULE: CourseSchedule = {
     en(10, "final", "Working in the Enterprise"),
     en(11, "final", "Internet & Computer Networks 1"),
     en(12, "final", "Computer Networks 2"),
-    en(13, "final", "Wireless / Wi-Fi", { upcoming: true }),
-    en(14, "final", "Information Systems & System Development", { upcoming: true }),
-    en(15, "final", "Focus on Web Technology", { upcoming: true }),
+    en(13, "final", "Wireless Networks"),
+    en(14, "final", "Web Technology"),
+    en(15, "final", "IT Skills and System", { upcoming: true }),
   ],
 };
 

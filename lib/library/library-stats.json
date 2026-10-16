@@ -1150,9 +1150,17 @@
     "sizeBytes": 1571504,
     "pages": 54
   },
+  "/assets/it-kmitl/itf/labs/itf-lab-week04-word-sheet.pdf": {
+    "sizeBytes": 294645,
+    "pages": 8
+  },
   "/assets/it-kmitl/itf/labs/itf-lab-week04-word-slide.pdf": {
     "sizeBytes": 1540395,
     "pages": 24
+  },
+  "/assets/it-kmitl/itf/labs/itf-lab-week05-latex-sheet.pdf": {
+    "sizeBytes": 282474,
+    "pages": 5
   },
   "/assets/it-kmitl/itf/labs/itf-lab-week05-latex-slide.pdf": {
     "sizeBytes": 716913,
@@ -1182,9 +1190,17 @@
     "sizeBytes": 968133,
     "pages": 16
   },
+  "/assets/it-kmitl/itf/labs/itf-lab-week12-packet-tracer-2-sheet.pdf": {
+    "sizeBytes": 1749625,
+    "pages": 20
+  },
   "/assets/it-kmitl/itf/labs/itf-lab-week12.pdf": {
     "sizeBytes": 314174,
     "pages": 4
+  },
+  "/assets/it-kmitl/itf/labs/itf-lab-week13-web-app-1-sheet.pdf": {
+    "sizeBytes": 893476,
+    "pages": 16
   },
   "/assets/it-kmitl/itf/lectures/itf-lec-final.pdf": {
     "sizeBytes": 1720628,
@@ -1597,17 +1613,9 @@
     "sizeBytes": 262186,
     "pages": 10
   },
-  "/assets/it-kmitl/mfit/exercises/mfit-ex-week01-activity-completed-v2.pdf": {
-    "sizeBytes": 400804,
-    "pages": 21
-  },
   "/assets/it-kmitl/mfit/exercises/mfit-ex-week01-activity-completed.pdf": {
     "sizeBytes": 817302,
     "pages": 9
-  },
-  "/assets/it-kmitl/mfit/exercises/mfit-ex-week01-activity-v2.pdf": {
-    "sizeBytes": 1106498,
-    "pages": 7
   },
   "/assets/it-kmitl/mfit/exercises/mfit-ex-week02-activity-v2.pdf": {
     "sizeBytes": 790066,
@@ -1665,41 +1673,33 @@
     "sizeBytes": 36912,
     "pages": 4
   },
-  "/assets/it-kmitl/mfit/exercises/mfit-hw-calculus-week08.pdf": {
-    "sizeBytes": 465619,
-    "pages": 3
-  },
-  "/assets/it-kmitl/mfit/exercises/mfit-hw-calculus-week09.pdf": {
-    "sizeBytes": 449902,
-    "pages": 3
-  },
-  "/assets/it-kmitl/mfit/exercises/mfit-hw-calculus-week10.pdf": {
-    "sizeBytes": 570514,
-    "pages": 4
-  },
-  "/assets/it-kmitl/mfit/exercises/mfit-hw-calculus-week12.pdf": {
-    "sizeBytes": 451656,
-    "pages": 4
-  },
-  "/assets/it-kmitl/mfit/exercises/mfit-hw-calculus-week13.pdf": {
-    "sizeBytes": 441624,
-    "pages": 5
-  },
-  "/assets/it-kmitl/mfit/exercises/mfit-hw-calculus-week14.pdf": {
-    "sizeBytes": 777575,
-    "pages": 5
+  "/assets/it-kmitl/mfit/exercises/mfit-hw-week08-function-limit-continuity-2569.pdf": {
+    "sizeBytes": 62189,
+    "pages": 1
   },
   "/assets/it-kmitl/mfit/exercises/mfit-hw-week08-function-limit-continuity.pdf": {
     "sizeBytes": 194142,
     "pages": 2
   },
+  "/assets/it-kmitl/mfit/exercises/mfit-hw-week09-derivative-i-2569.pdf": {
+    "sizeBytes": 61202,
+    "pages": 1
+  },
   "/assets/it-kmitl/mfit/exercises/mfit-hw-week09-derivative-i.pdf": {
     "sizeBytes": 240414,
     "pages": 2
   },
+  "/assets/it-kmitl/mfit/exercises/mfit-hw-week10-derivative-ii-2569.pdf": {
+    "sizeBytes": 61710,
+    "pages": 1
+  },
   "/assets/it-kmitl/mfit/exercises/mfit-hw-week10-derivative-ii.pdf": {
     "sizeBytes": 285778,
     "pages": 4
+  },
+  "/assets/it-kmitl/mfit/exercises/mfit-hw-week11-derivative-apps-2569.pdf": {
+    "sizeBytes": 51310,
+    "pages": 1
   },
   "/assets/it-kmitl/mfit/exercises/mfit-hw-week11-derivative-apps-v2.pdf": {
     "sizeBytes": 285184,
@@ -1709,13 +1709,25 @@
     "sizeBytes": 244657,
     "pages": 2
   },
+  "/assets/it-kmitl/mfit/exercises/mfit-hw-week12-integration-i-2569.pdf": {
+    "sizeBytes": 63260,
+    "pages": 1
+  },
   "/assets/it-kmitl/mfit/exercises/mfit-hw-week12-integration-i.pdf": {
     "sizeBytes": 146585,
+    "pages": 1
+  },
+  "/assets/it-kmitl/mfit/exercises/mfit-hw-week13-integration-ii-2569.pdf": {
+    "sizeBytes": 61684,
     "pages": 1
   },
   "/assets/it-kmitl/mfit/exercises/mfit-hw-week13-integration-ii.pdf": {
     "sizeBytes": 280379,
     "pages": 2
+  },
+  "/assets/it-kmitl/mfit/exercises/mfit-hw-week14-integration-apps-2569.pdf": {
+    "sizeBytes": 71672,
+    "pages": 1
   },
   "/assets/it-kmitl/mfit/exercises/mfit-hw-week14-integration-apps.pdf": {
     "sizeBytes": 314311,
@@ -1825,9 +1837,29 @@
     "sizeBytes": 2744923,
     "pages": 55
   },
+  "/assets/it-kmitl/mfit/lectures/mfit-lec-week09-derivative-i-2569.pdf": {
+    "sizeBytes": 1593691,
+    "pages": 14
+  },
+  "/assets/it-kmitl/mfit/lectures/mfit-lec-week10-derivative-ii-2569.pdf": {
+    "sizeBytes": 1371254,
+    "pages": 12
+  },
+  "/assets/it-kmitl/mfit/lectures/mfit-lec-week11-derivative-apps-2569.pdf": {
+    "sizeBytes": 1453281,
+    "pages": 9
+  },
+  "/assets/it-kmitl/mfit/lectures/mfit-lec-week12-integration-i-2569.pdf": {
+    "sizeBytes": 1180732,
+    "pages": 9
+  },
   "/assets/it-kmitl/mfit/lectures/mfit-note-week03.pdf": {
     "sizeBytes": 572141,
     "pages": 5
+  },
+  "/assets/it-kmitl/mfit/references/mfit-ref-calculus-useful-info-2569.pdf": {
+    "sizeBytes": 32839,
+    "pages": 1
   },
   "/assets/it-kmitl/mfit/sheets/mfit-sheet-cheat-sheet-2022.pdf": {
     "sizeBytes": 268971,

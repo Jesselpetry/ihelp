@@ -1,14 +1,15 @@
 # ITF · ภาพรวมและตารางเรียน ภาค 1/2569
 
-> **ที่มา:** [OnLearn ITF-1-26](https://onlearn.it.kmitl.ac.th/course/view.php?id=1766) · สไลด์ Lecture 00 และสไลด์แนะนำครึ่งหลังของวิชา · รวบรวม 27 ก.ย. 2569
+> **ที่มา:** [OnLearn ITF-1-26](https://onlearn.it.kmitl.ac.th/course/view.php?id=1766) · สไลด์ Lecture 00 และสไลด์แนะนำครึ่งหลังของวิชา ·
+> ใบงาน Lab 12–13 · รวบรวม 27 ก.ย. 2569 · อัปเดตตาม OnLearn 15 ต.ค. 2569
 >
-> OnLearn เปิดถึง Week 12 — Week 13–15 ใช้สไลด์ปีก่อนเตรียมอ่านล่วงหน้า
+> OnLearn เปิดครบ 15 หัวข้อ — สไลด์ Week 12–15 ของปีนี้ยังไม่อยู่ในคลัง หน้าเหล่านั้นจึงสรุปบรรยายจากสไลด์ปีก่อน
 
 ## หน้านี้ใช้อ่านสอบอย่างไร
 
 - หนึ่งหน้าต่อหนึ่งสัปดาห์ เรียงตามลำดับที่เรียน — กดปุ่มกรอง **กลางภาค / ปลายภาค** ด้านบนเพื่อดูเฉพาะขอบเขตสอบที่กำลังอ่าน
 - แต่ละสัปดาห์เริ่มด้วย **"อ่านจบแล้วต้องตอบได้"** — ถ้าตอบได้ครบแล้ว ข้ามไปทำ **"ทดสอบตัวเอง"** ท้ายหน้าได้เลย
-- **"สรุปอ่านสอบ"** ย่อจากสไลด์ของปีนี้ ⭐ = ออกสอบบ่อย ตามคู่มือทบทวนและข้อสอบเก่า
+- **"สรุปอ่านสอบ"** ย่อจากสไลด์ของปีนี้ ยกเว้นสัปดาห์ที่คอลัมน์ "สรุปจาก" ในตารางด้านล่างบอกว่าสไลด์ปีก่อน · ⭐ = ออกสอบบ่อย ตามคู่มือทบทวนและข้อสอบเก่า
 - **"จุดที่มักพลาด"** รวมคู่คำที่ข้อสอบชอบสลับกันเป็นตัวลวง
 - หัวข้อ **"แล็บ"** ย่อจากใบงานจริง ให้เตรียมตัวก่อนเข้าห้อง L434 — ขั้นตอนเต็มให้ยึดไฟล์ PDF
 
@@ -29,11 +30,11 @@
 | 8 | Database | ผศ.ดร. พรสุรีย์ | Microsoft Access และ SQL | สไลด์ 2569 |
 | 9 | Ethical, Social & Legal Aspects of IT | ผศ.ดร. พรสุรีย์ | Make.com — AI Workflow | สไลด์ 2569 |
 | 10 | Working in the Enterprise | ผศ.ดร. พรสุรีย์ | File Management | สไลด์ 2569 |
-| 11 | Internet & Computer Networks 1 | รศ.ดร. ปานวิทย์ | Network 1 | สไลด์ 2569 |
-| 12 | Computer Networks 2 | รศ.ดร. ปานวิทย์ | — | สไลด์ในคลัง (ฉบับ 22 ก.ย. 69 อยู่ใน OnLearn) |
-| 13 | Wireless / Wi-Fi | *ยังไม่ประกาศ* | — | สไลด์ปีก่อน |
-| 14 | Information Systems & System Development | *ยังไม่ประกาศ* | — | สไลด์ปีก่อน |
-| 15 | Focus on Web Technology | *ยังไม่ประกาศ* | — | สไลด์ปีก่อน |
+| 11 | Internet & Computer Networks 1 | รศ.ดร. ปานวิทย์ | Network 1 — Cisco Packet Tracer (1) · Layer 2 | สไลด์ 2569 |
+| 12 | Computer Networks 2 | รศ.ดร. ปานวิทย์ | Network 2 — Cisco Packet Tracer (2) · router และ static route · ออนไลน์ พฤ. 1 ต.ค. | สไลด์ในคลัง (ฉบับ 22 ก.ย. 69 อยู่ใน OnLearn) · ใบงานแล็บ 2569 |
+| 13 | Wireless Networks · บรรยายออนไลน์ อ. 29 ก.ย. | *ยังไม่ยืนยัน* | Web App 1 · ออนไลน์ ศ. 9 ต.ค. | สไลด์ปีก่อนชื่อเดียวกัน |
+| 14 | Web Technology · บรรยายออนไลน์ อ. 6 ต.ค. | *ยังไม่ยืนยัน* | ไม่มีแล็บใน OnLearn | สไลด์ปีก่อน |
+| 15 | IT Skills and System · OnLearn ระบุเรียน 27 ต.ค. (ชนกับวันสอบปลายภาค — *ยังไม่ยืนยัน*) | *ยังไม่ยืนยัน* | — | สไลด์ปีก่อน *Information System* |
 | — | **สอบปลายภาค** อ. 27 ต.ค. 2569 · 13:30–16:30 | | | |
 
 > ผศ.ดร. สุวิทย์ ภูมิฤทธิกุล อยู่ในรายชื่อผู้สอนของ Lecture 00 แต่ยังไม่มีสไลด์ที่ระบุชื่อท่าน —
@@ -57,9 +58,12 @@
 
 ## 3. เวลาเรียนและช่องทาง
 
-- **บรรยาย** วันอังคาร — Section 1 และ 3 ที่ห้อง Auditorium · Section 2 ที่ห้อง PJB4
+- **บรรยาย** วันอังคาร — Section 1 และ 3 ช่วง 14:00–16:00 ที่ห้อง Auditorium · Section 2 ช่วง 16:00–18:00 ที่ห้อง PJB4
+  Week 13–14 เรียนออนไลน์ผ่าน Zoom (Sec 1, 3 เวลา 13:45–15:45) — ลิงก์และคลิปบันทึกอยู่ใน OnLearn
 - **แล็บ** วันศุกร์ ห้อง L434 — แยก 3 รอบตาม Section · งานส่วนใหญ่ยกมือให้พี่ TA ตรวจในคาบ
-  บางสัปดาห์ (Excel 1–2, Make.com, File Management, Network 1) ส่งไฟล์ใน OnLearn แยกตามรอบ
+  บางสัปดาห์ (Excel 1–2, Make.com, File Management, Network 1–2, Web App 1) ส่งงานใน OnLearn แยกตามรอบ
+- **แล็บออนไลน์** — Lab 12 (พฤ. 1 ต.ค. ผ่าน Google Meet) และ Lab 13 (ศ. 9 ต.ค. ผ่าน Zoom) เรียนรอบเดียว 09:00–11:00 ทุกกลุ่ม
+- **SecSpace** (`ctf.it.kmitl.ac.th`) — ระบบโจทย์ Cisco Packet Tracer ของ Lab 11–12 ล็อกอินด้วยบัญชี IT ทำโจทย์แล้วส่ง flag
 - **ตำราหลัก** O'Leary, O'Leary & O'Leary (2026), *Computing Essentials 2026*
 - **ประกาศและที่ส่งงาน** [OnLearn](https://onlearn.it.kmitl.ac.th/course/view.php?id=1766) — กลุ่ม Facebook และ Discord ของวิชาอยู่ในไฟล์ช่องทางติดต่อด้านล่าง
 
@@ -81,7 +85,9 @@ Moore's Law · NAS vs SAN · 8 input / 6 output methods · malware แต่ล�
 
 **ปลายภาค — เรื่องที่ควรเริ่มก่อน:** ลำดับชั้นข้อมูลและ data validation (Week 8) ·
 กฎหมายไอทีของไทยและ PDPA (Week 9) · TPS / MIS / DSS / expert system (Week 10) ·
-packet switching และ access network (Week 11) · IPv4 class, subnet mask และการหา network ID (Week 12)
+packet switching และ access network (Week 11) · IPv4 class, subnet mask และการหา network ID (Week 12) ·
+static route และ next hop จากแล็บ (Week 12) · CSMA/CA และ hidden terminal (Week 13) · HTML และ CSS selector (Week 14)
+— สองเรื่องหลังสรุปจากสไลด์ปีก่อน
 
 | ใช้ทำอะไร | ไปที่ |
 |---|---|
@@ -96,7 +102,8 @@ packet switching และ access network (Week 11) · IPv4 class, subnet mask �
 
 | รายการ | สถานะ |
 |---|---|
-| สไลด์ Lecture 12 ฉบับ 22 ก.ย. 2569 | อยู่ใน OnLearn · หน้า Week 12 สรุปจากสไลด์ของ รศ.ดร. ปานวิทย์ ที่มีในคลัง |
-| ใบงาน Lab 04 (Word) และ Lab 05 (LaTeX) | อยู่ใน OnLearn · หน้า Week 4–5 สรุปรายการตรวจจากสไลด์แล็บแทน |
+| สไลด์ Lecture 12–15 ฉบับ 2569 (22 ก.ย. · 29 ก.ย. · 6 ต.ค. · 27 ต.ค.) | อยู่ใน OnLearn · หน้า Week 12–15 สรุปจากสไลด์ปีก่อนที่มีในคลัง |
+| สไลด์ Lecture 11–12 ที่ผู้สอนจดโน้ตทับ (แยกตามรอบบรรยาย) | อยู่ใน OnLearn |
+| คลิปบันทึกการสอน Week 13–14 และคลิปชี้แจง Lab 12–13 | อยู่ใน OnLearn |
 | ใบงาน Lab 10 File Management และ Lab 11 Network 1 | อยู่ใน OnLearn · ยังไม่ได้ดึงเข้าคลัง |
-| สไลด์และแล็บ Week 13–15 ของปีนี้ | OnLearn ยังไม่เปิด · หน้าเหล่านี้จะอัปเดตเมื่อมีสไลด์ใหม่ |
+| สไลด์ Lab 13 Web App 1 | อยู่ใน OnLearn · ใบงานอยู่ในคลังแล้ว |

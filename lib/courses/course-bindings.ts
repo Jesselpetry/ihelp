@@ -173,10 +173,10 @@ function icsSessionDocs(): ModuleDoc[] {
  *
  * Same shape as icsSessionDocs(), but here `chapter` is set: ITF's week number,
  * lecture number, asset `chapter` and drill-bank chapter are all the same
- * number, so the tag makes a claim that holds. Weeks 13–15 are read ahead from
- * the previous year's decks until OnLearn opens them.
+ * number, so the tag makes a claim that holds. Weeks 12–15 summarise the
+ * previous year's decks until this year's reach the library.
  */
-const ITF_WEEKS = [
+const ITF_WEEKS: ReadonlyArray<{ week: number; scope: "midterm" | "final"; title: string | LText }> = [
   { week: 1, scope: "midterm", title: "Introducing Today's Technology" },
   { week: 2, scope: "midterm", title: "Computers" },
   { week: 3, scope: "midterm", title: "Computing Components" },
@@ -189,17 +189,18 @@ const ITF_WEEKS = [
   { week: 10, scope: "final", title: "Working in the Enterprise" },
   { week: 11, scope: "final", title: "Internet & Computer Networks 1" },
   { week: 12, scope: "final", title: "Computer Networks 2" },
-  { week: 13, scope: "final", title: "Wireless / Wi-Fi" },
-  { week: 14, scope: "final", title: "Information Systems & System Development" },
-  { week: 15, scope: "final", title: "Focus on Web Technology" },
-] as const;
+  { week: 13, scope: "final", title: "Wireless Networks" },
+  { week: 14, scope: "final", title: "Web Technology" },
+  { week: 15, scope: "final", title: "IT Skills and System" },
+];
 
 function itfWeekDocs(): ModuleDoc[] {
   return ITF_WEEKS.map(({ week, scope, title }) => {
     const padded = String(week).padStart(2, "0");
+    const topic = typeof title === "string" ? { th: title, en: title } : title;
     return {
       slug: `week${padded}`,
-      title: { th: `สัปดาห์ที่ ${week} — ${title}`, en: `Week ${week} — ${title}` },
+      title: { th: `สัปดาห์ที่ ${week} — ${topic.th}`, en: `Week ${week} — ${topic.en}` },
       load: () => loadCourseDoc("06016402", `archive/week${padded}.md`),
       chapter: week,
       scope,

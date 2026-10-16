@@ -1,6 +1,6 @@
 # สัปดาห์ที่ 11 · Internet & Computer Networks 1
 
-> รศ.ดร. ปานวิทย์ ธุวะนุติ · สไลด์ Internet (69 หน้า) อิง Kurose & Ross *Computer Networking* 8th ed. บทที่ 1 · แล็บ Network 1
+> รศ.ดร. ปานวิทย์ ธุวะนุติ · สไลด์ Internet (69 หน้า) อิง Kurose & Ross *Computer Networking* 8th ed. บทที่ 1 · แล็บ Network 1 — Cisco Packet Tracer (1)
 >
 > คำศัพท์ภาษาอังกฤษล้วน — ข้อสอบมักถามว่า "ข้อใดไม่ใช่" end system หรือ communication link
 
@@ -21,6 +21,8 @@
 | สไลด์บรรยาย — Internet | 69 | `itf-lec-week11-internet.pdf` |
 | บทนำเครือข่าย — สไลด์ Kurose ฉบับแปลไทย | 81 | `itf-lec-internet-thai.pdf` |
 | สรุปลายมือ — Network 1 | 6 | `itf-lec-network-1.pdf` |
+
+> **มีใน OnLearn แต่ยังไม่อยู่ในคลัง** — สไลด์ Lecture 11 ที่ผู้สอนจดโน้ตทับ แยกตามรอบบรรยาย (14:00–16:00 และ 16:00–18:00) · ใบงาน Lab 11
 
 ---
 
@@ -117,6 +119,14 @@
 
 ---
 
-## แล็บ — Network 1
+## แล็บ — Network 1 · Cisco Packet Tracer (1)
 
-> ใบงาน Lab 11 ยังไม่อยู่ในคลัง — เปิดจาก [OnLearn](https://onlearn.it.kmitl.ac.th/course/view.php?id=1766) · งานสัปดาห์นี้ส่งไฟล์แยกตามรอบแล็บ
+> ใบงาน Lab 11 ยังไม่อยู่ในคลัง — เปิดจาก [OnLearn](https://onlearn.it.kmitl.ac.th/course/view.php?id=1766) · ส่งงานใน OnLearn แยกตามรอบแล็บ
+>
+> สรุปจากใบงาน Lab 12 ที่ทวนแล็บสัปดาห์นี้ไว้ ขั้นตอนเต็มให้ยึดใบงาน Lab 11
+
+- **เป้าหมาย** — ให้อุปกรณ์ที่อยู่**วงเครือข่ายเดียวกัน**คุยกันผ่าน switch เป็นงานระดับ **Layer 2 (link layer)** ยังไม่มี router
+- ทำโจทย์ใน **Cisco Packet Tracer** ผ่านระบบ **SecSpace** (`ctf.it.kmitl.ac.th`) คอร์ส *Cisco Packet Tracer | ITF 2026* —
+  ดาวน์โหลดไฟล์ `.pka` ทำจน PC ส่งข้อมูลถึง server ได้ แล้วนำ flag ที่ได้ไปส่งในหน้าโจทย์
+- โจทย์ Layer 2 ในคอร์สคือ `[CONFIG]-VLAN-1` และ `[CONFIG]-VLAN-2` — ถ้า PC ไปไม่ถึง server ให้ตรวจ VLAN ก่อน
+- วิธีเข้า SecSpace และคำสั่ง Cisco IOS อยู่ในหัวข้อแล็บของ [Week 12](/courses/06016402-IT-Fundamentals/map?doc=week12)

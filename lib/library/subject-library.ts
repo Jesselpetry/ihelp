@@ -307,7 +307,7 @@ export const CHEM_ASSETS: SubjectAsset[] = [
     scope: "midterm",
     fileType: "pdf",
     url: "/assets/en-kmitl/chem/sheets/ch04-stiochiometry-2569-key.pdf",
-    fileName: "Ch4 Stiochiometry 2569_key.pdf",
+    fileName: "ch04-stiochiometry-2569-key.pdf",
   },
   {
     id: "chem-ch4-selfstudy",
@@ -3439,6 +3439,23 @@ export const ITF_ASSETS: SubjectAsset[] = [
     sourceUrl: itfOnLearn(26855),
   },
   {
+    id: "itf-lab-week04-word-sheet",
+    title: { th: "Lab 04 — ใบงาน Microsoft Word", en: "Lab 04 — Microsoft Word Worksheet" },
+    description: {
+      th: "สร้างเอกสาร A4 พร้อมเลขหน้า, caption ของรูปและตาราง, สารบัญจาก heading · ตัวอย่างใช้ TH Sarabun New ขอบ 0.7 นิ้ว · ยกมือให้ TA ตรวจในคาบ",
+      en: "Build an A4 document with page numbers, figure and table captions, and a heading-based table of contents · the sample uses TH Sarabun New with 0.7-inch margins · a TA checks it in class",
+    },
+    tags: ["Week 04", "Lab", "Word"],
+    category: "exercise",
+    scope: "midterm",
+    chapter: 4,
+    isCurrentYear: true,
+    edition: "2569",
+    fileType: "pdf",
+    url: "/assets/it-kmitl/itf/labs/itf-lab-week04-word-sheet.pdf",
+    fileName: "itf-lab-week04-word-sheet.pdf",
+  },
+  {
     id: "itf-lec-week04-y1-s1",
     title: { th: "Lecture 04 — Input & Output (ฉบับพิมพ์ 2 สไลด์/หน้า)", en: "Lecture 04 — Input & Output (2-up handout)" },
     description: {
@@ -3494,6 +3511,23 @@ export const ITF_ASSETS: SubjectAsset[] = [
     url: "/assets/it-kmitl/itf/labs/itf-lab-week05-latex-slide.pdf",
     fileName: "itf-lab-week05-latex-slide.pdf",
     sourceUrl: itfOnLearn(26892),
+  },
+  {
+    id: "itf-lab-week05-latex-sheet",
+    title: { th: "Lab 05 — ใบงาน LaTeX บน Overleaf", en: "Lab 05 — LaTeX on Overleaf Worksheet" },
+    description: {
+      th: "สร้าง project บน Overleaf ของคณะ เปลี่ยน compiler เป็น XeLaTeX แล้วทำเอกสารตามงานมอบหมาย · ตารางคำสั่ง LaTeX พื้นฐานพร้อมตัวอย่าง และเครื่องมือช่วยทำตาราง subfigure และสมการ",
+      en: "Create a project on the faculty Overleaf, switch the compiler to XeLaTeX and build the assigned document · a table of basic LaTeX commands with examples, plus helpers for tables, subfigures and equations",
+    },
+    tags: ["Week 05", "Lab", "LaTeX", "Overleaf"],
+    category: "exercise",
+    scope: "midterm",
+    chapter: 5,
+    isCurrentYear: true,
+    edition: "2569",
+    fileType: "pdf",
+    url: "/assets/it-kmitl/itf/labs/itf-lab-week05-latex-sheet.pdf",
+    fileName: "itf-lab-week05-latex-sheet.pdf",
   },
   {
     id: "itf-lec-week05-y1-s1",
@@ -4135,6 +4169,23 @@ export const ITF_ASSETS: SubjectAsset[] = [
     fileName: "itf-lab-week12.pdf",
   },
   {
+    id: "itf-lab-week12-packet-tracer-2-sheet",
+    title: { th: "Lab 12 — ใบงาน Network 2 · Cisco Packet Tracer (2)", en: "Lab 12 — Network 2 · Cisco Packet Tracer (2) Worksheet" },
+    description: {
+      th: "ทบทวน Layer 2 จาก Lab 11 แล้วต่อ Layer 3: ตั้ง IP ให้พอร์ต router, no shutdown, static route ด้วย ip route และหา next hop · โจทย์ Config Routing 1–2 บน SecSpace ส่ง flag",
+      en: "Reviews Layer 2 from Lab 11, then Layer 3: router port IPs, no shutdown, static routes with ip route and finding the next hop · Config Routing 1–2 tasks on SecSpace, submitted as flags",
+    },
+    tags: ["Week 12", "Lab", "Packet Tracer", "Routing"],
+    category: "exercise",
+    scope: "final",
+    chapter: 12,
+    isCurrentYear: true,
+    edition: "2569",
+    fileType: "pdf",
+    url: "/assets/it-kmitl/itf/labs/itf-lab-week12-packet-tracer-2-sheet.pdf",
+    fileName: "itf-lab-week12-packet-tracer-2-sheet.pdf",
+  },
+  {
     id: "itf-lec-network-2",
     title: { th: "สรุปลายมือ — Network 2", en: "Handwritten Summary — Network 2" },
     description: {
@@ -4150,13 +4201,14 @@ export const ITF_ASSETS: SubjectAsset[] = [
     fileName: "itf-lec-network-2.pdf",
   },
 
-  // ── Weeks 13–15 · not yet released for 1/2569 ──────────────────────────────
+  // ── Week 13 · Wireless Networks ────────────────────────────────────────────
+  // This year's deck (29 Sep 2026) is on OnLearn but not in the library yet.
   {
     id: "itf-lec-week13-wi-fi",
     title: { th: "Introduction to Wireless Network", en: "Introduction to Wireless Network" },
     description: {
-      th: "ฉบับปีก่อน: องค์ประกอบเครือข่ายไร้สาย, path loss และ hidden terminal, CDMA, IEEE 802.11, CSMA/CA และ RTS/CTS, Bluetooth",
-      en: "An earlier edition: wireless network elements, path loss and hidden terminals, CDMA, IEEE 802.11, CSMA/CA and RTS/CTS, Bluetooth",
+      th: "ฉบับปีก่อน ชื่อเดียวกับ Lecture 13 ของปีนี้ (ฉบับ 29 ก.ย. 69 อยู่ใน OnLearn): องค์ประกอบเครือข่ายไร้สาย, path loss และ hidden terminal, CDMA, IEEE 802.11, CSMA/CA และ RTS/CTS, Bluetooth",
+      en: "An earlier edition with the same title as this year's Lecture 13 (the 29 Sep 2026 deck is on OnLearn): wireless network elements, path loss and hidden terminals, CDMA, IEEE 802.11, CSMA/CA and RTS/CTS, Bluetooth",
     },
     tags: ["Week 13", "Wireless", "Wi-Fi"],
     category: "lecture",
@@ -4168,32 +4220,36 @@ export const ITF_ASSETS: SubjectAsset[] = [
     fileName: "itf-lec-week13-wi-fi.pdf",
   },
   {
-    id: "itf-lec-week14-it-system",
-    title: { th: "Information System", en: "Information System" },
+    id: "itf-lab-week13-web-app-1-sheet",
+    title: { th: "Lab 13 — ใบงาน Web App 1 · HTML และ CSS", en: "Lab 13 — Web App 1 · HTML and CSS Worksheet" },
     description: {
-      th: "ฉบับปีก่อน: ความต้องการทักษะดิจิทัล, องค์ประกอบระบบสารสนเทศ, SDLC 5 ขั้น, เทคนิคเก็บความต้องการ และ functional vs non-functional requirement",
-      en: "An earlier edition: demand for digital skills, the parts of an information system, the five SDLC phases, requirement-gathering techniques, and functional vs non-functional requirements",
+      th: "Live Server ใน VS Code, tag และ attribute พื้นฐาน, CSS selector และ Flexbox · ทำ Profile Card + To-do List (id todo-input, add-btn, todo-list) ด้วยมือ แล้วทำซ้ำด้วย AI CLI agent (OpenCode) · ส่ง lab13-รหัสนักศึกษา.zip",
+      en: "Live Server in VS Code, basic tags and attributes, CSS selectors and Flexbox · build a Profile Card + To-do List (ids todo-input, add-btn, todo-list) by hand, then again with an AI CLI agent (OpenCode) · submit lab13-<student id>.zip",
     },
-    tags: ["Week 14", "SDLC", "Information System"],
-    category: "lecture",
+    tags: ["Week 13", "Lab", "HTML", "CSS"],
+    category: "exercise",
     scope: "final",
-    chapter: 14,
-    status: "legacy",
+    chapter: 13,
+    isCurrentYear: true,
+    edition: "2569",
     fileType: "pdf",
-    url: "/assets/it-kmitl/itf/lectures/itf-lec-week14-it-system.pdf",
-    fileName: "itf-lec-week14-it-system.pdf",
+    url: "/assets/it-kmitl/itf/labs/itf-lab-week13-web-app-1-sheet.pdf",
+    fileName: "itf-lab-week13-web-app-1-sheet.pdf",
   },
+
+  // ── Week 14 · Web Technology ───────────────────────────────────────────────
+  // This year's deck (6 Oct 2026) is on OnLearn but not in the library yet.
   {
     id: "itf-lec-week15-web",
     title: { th: "Focus on Web Technology", en: "Focus on Web Technology" },
     description: {
-      th: "ฉบับปีก่อน: เครื่องมือสร้างเว็บ (text editor, WYSIWYG, CMS), HTML / CSS / JavaScript และโครงสร้างหน้า HTML",
-      en: "An earlier edition: website tools (text editors, WYSIWYG, CMSs), HTML, CSS and JavaScript, and the structure of an HTML page",
+      th: "ฉบับปีก่อนของบรรยาย Week 14 (ปีนี้ชื่อ Introduction to Web Technology ฉบับ 6 ต.ค. 69 อยู่ใน OnLearn): เครื่องมือสร้างเว็บ (text editor, WYSIWYG, CMS), HTML / CSS / JavaScript และโครงสร้างหน้า HTML",
+      en: "An earlier edition of the week 14 lecture (this year titled Introduction to Web Technology; the 6 Oct 2026 deck is on OnLearn): website tools (text editors, WYSIWYG, CMSs), HTML, CSS and JavaScript, and the structure of an HTML page",
     },
-    tags: ["Week 15", "Web", "HTML"],
+    tags: ["Week 14", "Web", "HTML"],
     category: "lecture",
     scope: "final",
-    chapter: 15,
+    chapter: 14,
     status: "legacy",
     fileType: "pdf",
     url: "/assets/it-kmitl/itf/lectures/itf-lec-week15-web.pdf",
@@ -4206,10 +4262,10 @@ export const ITF_ASSETS: SubjectAsset[] = [
       th: "สไลด์ Focus On Web Development ฉบับปีก่อน อิงตำรา Discovering Computers ©2017",
       en: "An earlier Focus On Web Development deck, based on Discovering Computers ©2017",
     },
-    tags: ["Week 15", "Web", "Earlier edition"],
+    tags: ["Week 14", "Web", "Earlier edition"],
     category: "lecture",
     scope: "final",
-    chapter: 15,
+    chapter: 14,
     status: "legacy",
     edition: "©2017",
     fileType: "pdf",
@@ -4223,13 +4279,31 @@ export const ITF_ASSETS: SubjectAsset[] = [
       th: "ชีททบทวนบท Web Technology: เครื่องมือสร้างเว็บ, text editor และเทคโนโลยีฝั่งเว็บ",
       en: "A review sheet for the web technology chapter: website tools, text editors and web technologies",
     },
-    tags: ["Week 15", "Web", "Review"],
+    tags: ["Week 14", "Web", "Review"],
     category: "cheatsheet",
     scope: "final",
-    chapter: 15,
+    chapter: 14,
     fileType: "pdf",
     url: "/assets/it-kmitl/itf/sheets/itf-sheet-reviews-web-app.pdf",
     fileName: "itf-sheet-reviews-web-app.pdf",
+  },
+
+  // ── Week 15 · no topic on OnLearn yet ──────────────────────────────────────
+  {
+    id: "itf-lec-week14-it-system",
+    title: { th: "Information System", en: "Information System" },
+    description: {
+      th: "ฉบับปีก่อน เป็นเรื่องที่ปีนี้ยังไม่มีสัปดาห์ไหนสอน จึงวางไว้ใต้ Week 15 ที่ยังไม่ประกาศหัวข้อ: ความต้องการทักษะดิจิทัล, องค์ประกอบระบบสารสนเทศ, SDLC 5 ขั้น, เทคนิคเก็บความต้องการ และ functional vs non-functional requirement",
+      en: "An earlier edition of a topic no week has taught this year, parked under the still-unannounced week 15: demand for digital skills, the parts of an information system, the five SDLC phases, requirement-gathering techniques, and functional vs non-functional requirements",
+    },
+    tags: ["Week 15", "SDLC", "Information System"],
+    category: "lecture",
+    scope: "final",
+    chapter: 15,
+    status: "legacy",
+    fileType: "pdf",
+    url: "/assets/it-kmitl/itf/lectures/itf-lec-week14-it-system.pdf",
+    fileName: "itf-lec-week14-it-system.pdf",
   },
 
   // ── Whole-half review (no single week) ─────────────────────────────────────

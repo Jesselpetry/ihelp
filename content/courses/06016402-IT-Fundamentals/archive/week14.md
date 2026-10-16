@@ -1,16 +1,17 @@
-# สัปดาห์ที่ 14 · Information Systems & System Development
+# สัปดาห์ที่ 14 · Web Technology
 
-> ยังไม่เปิดใน OnLearn · สรุปล่วงหน้าจากสไลด์ปีก่อนของ รศ.ดร. ปานวิทย์ ธุวะนุติ (66 หน้า)
+> บรรยายออนไลน์ผ่าน Zoom อ. 6 ต.ค. 2569 (Sec 1, 3 เวลา 13:45–15:45 · Sec 2 เวลา 16:00–18:00) · ยังไม่มีแล็บของสัปดาห์นี้ใน OnLearn
 >
-> หน้านี้จะอัปเดตเมื่อสไลด์ 1/2569 ออก — ใช้อ่านนำก่อนเข้าเรียน ไม่ใช่ขอบเขตสอบที่ยืนยันแล้ว
+> สไลด์ Lecture 14 *Introduction to Web Technology* ฉบับ 1/2569 และคลิปบันทึกการสอนอยู่ใน OnLearn แต่ยังไม่อยู่ในคลัง —
+> สรุปด้านล่างมาจากสไลด์ปีก่อน *Focus on Web Technology* ของ รศ.ดร. ปานวิทย์ ธุวะนุติ (74 หน้า) ถ้าเนื้อหาต่างกันให้ยึดฉบับใน OnLearn
 
 ## อ่านจบแล้วต้องตอบได้
 
-- บอกองค์ประกอบของ information system (ต่อจาก Week 10)
-- เรียงเฟสของ **SDLC** และบอกงานหลักของแต่ละเฟส
-- แยก feasibility 4 ด้าน และ **functional กับ non-functional requirement**
-- บอกเทคนิคเก็บข้อมูลความต้องการ รวมถึง JAD
-- แยก Gantt chart กับ PERT chart
+- แยกเครื่องมือสร้างเว็บ: text editor · code editor · CMS
+- บอกหน้าที่ของ **HTML · CSS · JavaScript**
+- เขียนโครงหน้าเว็บพื้นฐานและใช้แท็ก heading · paragraph · image · link · list
+- แยกการใส่ CSS 3 แบบ และ selector แต่ละชนิด
+- อธิบายการทำงานของ web client-server และ browser (DOM · CSSOM · JS runtime)
 
 ---
 
@@ -18,94 +19,95 @@
 
 | เอกสาร | หน้า | ไฟล์ในคลัง |
 |---|:---:|---|
-| สไลด์ปีก่อน — Information System | 66 | `itf-lec-week14-it-system.pdf` |
+| สไลด์ปีก่อน — Focus on Web Technology | 74 | `itf-lec-week15-web.pdf` |
+| สไลด์ Focus on Web Development (Discovering Computers ©2017) | 95 | `itf-lec-focuson-web.pdf` |
+| ชีททบทวน Web Technology | 54 | `itf-sheet-reviews-web-app.pdf` |
+
+> **มีใน OnLearn แต่ยังไม่อยู่ในคลัง** — สไลด์ Lecture 14 ฉบับ 6 ต.ค. 69 · คลิปบันทึกการสอน
 
 ---
 
-## สรุปอ่านล่วงหน้า
+## สรุปอ่านสอบ (จากสไลด์ปีก่อน)
 
-### 1. ทักษะดิจิทัลและ Information System
+### 1. เครื่องมือและเทคโนโลยีของเว็บ
 
-- สไลด์เปิดด้วยความต้องการทักษะดิจิทัล — salary guide, ทักษะที่ LinkedIn ต้องการ, roadmap.sh
-- **Information system** = hardware (และเครือข่าย) · software · data · people · procedures ทำงานร่วมกันเพื่อผลิตสารสนเทศ
-- ตัวอย่าง: จองตั๋วรถที่ช่องขาย → จองออนไลน์ · ตลาดสด → ตลาดออนไลน์ · กระดาษ → ดิจิทัล
-- บทบาท: system analyst · system developer · system tester
+- **Text editor** คล้าย word processor แต่ไม่มีการจัดรูปแบบ · **code editor** เพิ่มฟีเจอร์ช่วยเขียนโค้ด
+- **CMS** = ระบบจัดการเผยแพร่และแก้ไขเนื้อหา · นักพัฒนาทำ theme แล้วผู้ดูแลใส่เนื้อหาเอง เช่น WordPress
+- **HTML** ใช้ **tag** บอกโครงสร้างหน้า · **CSS** กำหนดฟอนต์ สี เลย์เอาต์ · **JavaScript** เป็นภาษาโปรแกรมที่ browser รันได้
+- **Responsive** = ปรับขนาดเนื้อหาตามจอของอุปกรณ์
+- **W3C** ดูแลมาตรฐาน HTML และมี validator ตรวจ HTML5
 
-### 2. System Development และ SDLC
+### 2. โครงหน้าเว็บ
 
-- **System development** = ชุดกิจกรรมสร้าง information system · จัดเป็นเฟสเรียกว่า **SDLC**
-- เป้าหมาย: ระบบที่เชื่อถือได้ มีประสิทธิภาพ ดูแลรักษาได้ ส่งมอบตรงเวลาในงบประมาณ
-- แนวทาง 3 ข้อ: จัดงานเป็นเฟส · ให้ผู้ใช้มีส่วนร่วม · กำหนดมาตรฐาน
-- **Systems analyst** = ผู้ออกแบบพัฒนาระบบ และเป็นผู้ติดต่อหลักของผู้ใช้
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Website Title</title>
+</head>
+<body>
+  <h1>Hello World</h1>
+  <p>ย่อหน้าแรก</p>
+  <img src="img/dog.jpg" alt="dog" width="384">
+  <a href="https://www.kmitl.ac.th">KMITL</a>
+</body>
+</html>
+```
 
-`Planning → Analysis → Design → Implementation → Support & Security`
+- heading มี 6 ระดับ `<h1>`–`<h6>` · `<p>` แบ่งย่อหน้า — browser ไม่สนการขึ้นบรรทัดในไฟล์
+- `<img src>` อ้างไฟล์ภาพแยกต่างหาก · ไฟล์อยู่โฟลเดอร์เดียวกันใช้ `cat.jpg` · อยู่ในโฟลเดอร์ย่อยใช้ `img/dog.jpg`
+- **Link (hyperlink)** เป็นได้ทั้งข้อความและภาพ · รายการใช้ `<ul>` (ไม่มีลำดับ) และ `<ol>` (มีลำดับ)
 
-| เฟส | งานหลัก |
+### 3. CSS
+
+| วิธีใส่ | ที่อยู่ |
 |---|---|
-| **Planning** | steering committee รับคำขอ → ทบทวนและอนุมัติ · จัดลำดับความสำคัญ · จัดสรรทรัพยากร · ตั้งทีม |
-| **Analysis** | preliminary investigation (feasibility study) → detailed analysis (logical design) → **system proposal** เสนอทางเลือก |
-| **Design** | จัดหา hardware/software (RFQ · RFP · RFI) → ออกแบบละเอียด: database · input/output (mock-up, layout chart) · program |
-| **Implementation** | เขียนโปรแกรม → ติดตั้งและทดสอบ → อบรมผู้ใช้ → เปลี่ยนไปใช้ระบบใหม่ |
-| **Support & security** | บำรุงรักษา · เฝ้าดูประสิทธิภาพ · ประเมินความปลอดภัย |
+| **Inline** | attribute `style` ในแท็ก |
+| **Internal** | แท็ก `<style>` ในส่วน `<head>` — มีผลทั้งหน้า |
+| **External** | ไฟล์ `.css` แยก |
 
-- ทางเลือกใน system proposal: แก้ระบบเดิม · ซื้อ retail software · ใช้ web app · สร้าง custom software · outsource
+- Rule = **selector** + declaration block `{ property: value; }`
 
-| เอกสารขอราคา | ใช้เมื่อ |
+| Selector | ตัวอย่าง |
 |---|---|
-| **RFQ** — request for quotation | รู้แล้วว่าต้องการสินค้าอะไร ให้ผู้ขายเสนอราคา |
-| **RFP** — request for proposal | ให้ผู้ขายเลือกสินค้าที่ตรงความต้องการเองแล้วเสนอราคา |
-| **RFI** — request for information | ขอข้อมูลสินค้าแบบไม่เป็นทางการ |
+| Element | `p { … }` |
+| **Id** | `#para1 { … }` — ใช้ได้กับ element เดียวในหน้า |
+| **Class** | `.center { … }` — ใช้ได้หลาย element |
+| Universal | `* { … }` |
+| Group | `h1, h2, p { … }` |
 
-- **VAR** (value-added reseller) ซื้อจากผู้ผลิตมาขายต่อพร้อมบริการเสริม
-- **Prototype (POC)** = ต้นแบบที่ทำงานได้เฉพาะส่วนสำคัญ · เอกสารมักไม่ครบ และผู้ใช้มักอยากใช้ต้นแบบเป็นระบบจริง
-- **UX** = ความรู้สึกของผู้ใช้ต่อระบบ — "อย่าทำให้ฉันคิดเยอะ"
+- `<div>` แบ่งส่วนของหน้าเพื่อจัดรูปแบบ อ้างด้วย id หรือ class
 
-| การทดสอบ | ตรวจอะไร |
-|---|---|
-| Unit test | แต่ละโปรแกรมทำงานถูกต้องเดี่ยว ๆ |
-| Systems test | ทุกโปรแกรมในแอปทำงานร่วมกันได้ |
-| Integration test | แอปทำงานร่วมกับแอปอื่นได้ |
-| Acceptance test | ผู้ใช้ตรวจว่าระบบทำงานกับข้อมูลจริงได้ |
+### 4. Web Client–Server และ Browser
 
-- การเปลี่ยนระบบ 4 แบบ: **direct** (เปลี่ยนทันที) · **parallel** (ใช้คู่กัน) · **phased** (ทีละส่วน) · **pilot** (ทดลองที่เดียวก่อน)
-
-### 3. เครื่องมือบริหารโครงการ
-
-- **Project management** = วางแผน จัดตาราง ควบคุมกิจกรรม — ระบุ scope · เวลา · ต้นทุน · ลำดับงาน
-- **Gantt chart** ง่าย · **PERT chart** (network diagram) ซับซ้อนกว่า เหมาะกับโครงการใหญ่
-
-| Feasibility | ถามว่า |
-|---|---|
-| **Operational** | ผู้ใช้จะชอบและใช้ไหม ตรงความต้องการไหม |
-| **Schedule** | deadline สมเหตุสมผลไหม |
-| **Technical** | มีทรัพยากร ซอฟต์แวร์ และคนพอไหม |
-| **Economic** (cost/benefit) | ประโยชน์ตลอดอายุมากกว่าต้นทุนไหม · ROI · payback |
-
-- เก็บข้อมูลด้วย: review documentation · observe · survey · interview · **JAD session** (Joint Application Design) · research
-
-| Requirement | ความหมาย |
-|---|---|
-| **Functional** | สิ่งที่ระบบต้องทำ — input · behavior · output |
-| **Non-functional** | คุณสมบัติอื่น — UI, reliability, performance, security, ข้อจำกัด |
+- Browser ขอไฟล์ → **web server** หาไฟล์ อ่าน แล้วตอบกลับ · web server software เช่น Apache · Nginx · Caddy · Microsoft IIS
+- ใน browser: **HTML parser** สร้าง **DOM** · **CSS parser** สร้าง **CSSOM** · **JS runtime** รัน JavaScript ที่แก้ HTML และ CSS ได้
+- **Node.js** = JavaScript runtime สร้างบน Chrome V8 ทำให้ JavaScript รันนอก browser ได้ (backend)
+- ท้ายสไลด์: single page application และแนวคิด **API** (เปรียบกับปลั๊กไฟที่ให้ใช้ไฟจากโรงไฟฟ้า)
 
 ---
 
 ## จุดที่มักพลาด
 
-- Preliminary investigation เรียกอีกชื่อว่า **feasibility study** · detailed analysis เรียกว่า **logical design**
-- "ระบบต้องตอบภายใน 2 วินาที" เป็น **non-functional** ไม่ใช่ functional
-- Economic feasibility = cost/benefit — ไม่ใช่เรื่องเวลา
-- **RFQ** รู้สินค้าแล้วขอแค่ราคา · **RFP** ให้ผู้ขายเลือกสินค้าเอง
-- **Systems test** = โปรแกรมในแอปเดียวกันทำงานร่วมกัน · **integration test** = ทำงานร่วมกับแอปอื่น
+- **Id ใช้ `#` · class ใช้ `.`** — id ใช้ได้ element เดียว class ใช้ได้หลายตัว
+- Internal CSS อยู่ใน `<head>` ไม่ใช่ `<body>`
+- HTML เป็น markup language ไม่ใช่ภาษาโปรแกรม · JavaScript เป็นภาษาโปรแกรม
 
 ---
 
 ## ทดสอบตัวเอง
 
-1. เฟสแรกของ SDLC คืออะไร
-2. "ผู้ใช้ต้องค้นหาสินค้าตามชื่อได้" เป็น requirement ชนิดใด
-3. Feasibility ด้านใดถามว่าองค์กรมีคนและเทคโนโลยีพอหรือไม่
-4. แผนภูมิใดเหมาะกับโครงการใหญ่ที่ซับซ้อน
-5. การเปิดใช้ระบบใหม่คู่กับระบบเดิมช่วงหนึ่งเรียกว่า conversion แบบใด
+1. แท็กใดกำหนดข้อความบนแท็บของ browser
+2. CSS แบบใดเขียนไว้ในไฟล์ `.css` แยก
+3. selector `.center` เป็นชนิดใด
+4. องค์กรใดดูแลมาตรฐาน HTML
+5. ส่วนใดของ browser สร้าง DOM
 
-**เฉลย** — 1. planning · 2. functional requirement · 3. technical feasibility · 4. PERT chart · 5. parallel conversion
+**เฉลย** — 1. `<title>` · 2. external · 3. class selector · 4. W3C · 5. HTML parser
+
+---
+
+## แล็บ
+
+ยังไม่มีใบงานแล็บของสัปดาห์นี้ใน OnLearn · แล็บเรื่องเว็บ (Web App 1 · ศ. 9 ต.ค.) อยู่ในหัวข้อแล็บของ
+[Week 13](/courses/06016402-IT-Fundamentals/map?doc=week13)

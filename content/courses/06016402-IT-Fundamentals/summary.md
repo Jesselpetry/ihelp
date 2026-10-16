@@ -11,9 +11,10 @@ termId: Y1-S1
 prerequisites: []
 language: th
 semester: "1/2569"
-updated: "2026-09-27"
+updated: "2026-10-15"
 sources:
-  - สไลด์ Lecture 00–11 และใบงานแล็บ 01–09 (OnLearn 1/2569)
+  - สไลด์ Lecture 00–11 และใบงานแล็บ 01–09, 12–13 (OnLearn 1/2569)
+  - หัวข้อรายสัปดาห์ Week 11–15 ใน OnLearn (ณ 15 ต.ค. 2569)
   - สไลด์แนะนำรายวิชาครึ่งหลัง ผศ.ดร. พรสุรีย์ แจ่มศรี (1/2569)
   - สไลด์ Week 12–15 ฉบับปีก่อน
   - คู่มือทบทวนกลางภาค Lecture 01–07
@@ -24,7 +25,7 @@ sources:
 > ภาพรวมของเทคโนโลยีสารสนเทศทั้งระบบ ตั้งแต่ข้อมูลกับสารสนเทศ ฮาร์ดแวร์ ระบบปฏิบัติการ ซอฟต์แวร์
 > ฐานข้อมูล จริยธรรมและกฎหมาย ไปจนถึงเครือข่าย — คู่กับแล็บเครื่องมือที่ใช้จริงทุกสัปดาห์
 >
-> **อัปเดตล่าสุด** 27 ก.ย. 2569 · ข้อมูลภาคเรียน 1/2569 (OnLearn เปิดถึง Week 12)
+> **อัปเดตล่าสุด** 15 ต.ค. 2569 · ข้อมูลภาคเรียน 1/2569 (OnLearn เปิดครบ 15 หัวข้อ)
 
 ## 1. ข้อมูลรายวิชา
 
@@ -37,7 +38,7 @@ sources:
 | วิชาบังคับก่อน | ไม่มี |
 | ผู้สอน (1/2569) | ศ.ดร. กิติ์สุชาต พสุภา (Week 00–05) · ผศ.ดร. พรสุรีย์ แจ่มศรี (Week 06–10) · รศ.ดร. ปานวิทย์ ธุวะนุติ (Week 11) · ผศ.ดร. สุวิทย์ ภูมิฤทธิกุล |
 | ตำรา / สื่อหลัก | O'Leary, O'Leary & O'Leary (2026), *Computing Essentials 2026* · Kurose & Ross, *Computer Networking* 8th ed. (Week 11) |
-| ช่องทางเรียน | OnLearn · บรรยายวันอังคาร · แล็บวันศุกร์ ห้อง L434 (3 รอบ: 09:00 · 11:00 · 14:00) |
+| ช่องทางเรียน | OnLearn · บรรยายวันอังคาร · แล็บวันศุกร์ ห้อง L434 (3 รอบ: 09:00 · 11:00 · 14:00) · บรรยาย Week 13–14 และแล็บ 12–13 เรียนออนไลน์ |
 
 ### คำอธิบายรายวิชา
 
@@ -83,11 +84,11 @@ sources:
 | 08 | Database | Microsoft Access และ SQL เบื้องต้น |
 | 09 | Ethical, Social & Legal Aspects of IT | Make.com — AI workflow (Google Forms → Sheets → Gemini → Telegram) |
 | 10 | Working in the Enterprise | File Management |
-| 11 | Internet & Computer Networks 1 | Network 1 |
-| 12 | Computer Networks 2 | — |
-| 13 | Wireless / Wi-Fi (ยังไม่เปิด) | — |
-| 14 | Information Systems & System Development (ยังไม่เปิด) | — |
-| 15 | Focus on Web Technology (ยังไม่เปิด) | — |
+| 11 | Internet & Computer Networks 1 | Network 1 — Cisco Packet Tracer (1) · Layer 2 |
+| 12 | Computer Networks 2 | Network 2 — Cisco Packet Tracer (2) · router และ static route |
+| 13 | Wireless Networks | Web App 1 — HTML และ CSS · Profile Card + To-do List · AI CLI agent |
+| 14 | Web Technology | ไม่มีแล็บใน OnLearn |
+| 15 | IT Skills and System | — |
 
 ## 3. สรุปเนื้อหารายหัวข้อ
 
@@ -239,10 +240,12 @@ sources:
 - **IPv4 addressing** ⭐⭐ — network ID / host ID, subnet mask, การหา network ID
 - **Class A/B/C**, private IP address, **NAT**, address depletion
 - **ชนิดการสื่อสาร** — unicast, broadcast, multicast; network address, broadcast address
+- **แล็บ 12 (ใบงาน 1/2569)** — ตั้ง IP ให้พอร์ต router (`no shutdown`), default gateway, static route `ip route <วง> <mask> <next hop>`,
+  วง /30 สำหรับลิงก์ router–router และทดสอบด้วย `ping` บน Cisco Packet Tracer
 
-### Week 13 — Wireless / Wi-Fi (ยังไม่เปิด)
+### Week 13 — Wireless Networks
 
-> สรุปจากสไลด์ปีก่อน — รอสไลด์ 1/2569 ใน OnLearn
+> สรุปจากสไลด์ปีก่อนชื่อเดียวกัน — บรรยาย 29 ก.ย. 2569 แล้ว แต่สไลด์ 1/2569 ยังไม่อยู่ในคลัง
 
 - องค์ประกอบเครือข่ายไร้สาย — wireless host, base station/AP, wireless link, infrastructure mode
 - **คุณสมบัติของลิงก์ไร้สาย** — path loss/fading, multipath, interference, **hidden terminal problem**
@@ -251,9 +254,19 @@ sources:
 - **CSMA/CA** ⭐⭐ และ **RTS/CTS** สำหรับแก้ hidden terminal
 - 802.11 advanced capabilities (power management, rate adaptation); **802.15 PAN** (Bluetooth)
 
-### Week 14 — Information Systems & System Development (ยังไม่เปิด)
+### Week 14 — Web Technology
 
-> สรุปจากสไลด์ปีก่อน — รอสไลด์ 1/2569 ใน OnLearn
+> สรุปจากสไลด์ปีก่อน *Focus on Web Technology* — บรรยาย *Introduction to Web Technology* 6 ต.ค. 2569 แล้ว
+> แต่สไลด์ 1/2569 ยังไม่อยู่ในคลัง
+
+- เครื่องมือสร้างเว็บ — text editor, WYSIWYG, **CMS** (WordPress ฯลฯ)
+- Website technologies — HTML, CSS, JavaScript, server-side
+- **โครงสร้างหน้าเว็บ** — `<!DOCTYPE>`, `<html>`, `<head>`, `<title>`, `<body>`
+- การสร้างไฟล์ `index.html` และการใส่ title
+
+### Week 15 — IT Skills and System
+
+> สรุปจากสไลด์ปีก่อน *Information System* ที่หัวข้อตรงกัน — สไลด์ 1/2569 (เรียน 27 ต.ค. 69 ตาม OnLearn) ยังไม่อยู่ในคลัง
 
 - ความต้องการทักษะดิจิทัลในตลาดแรงงาน (salary guide, LinkedIn skill demand, developer roadmap)
 - **Information system** — คน กระบวนการ ข้อมูล ซอฟต์แวร์ ฮาร์ดแวร์
@@ -261,15 +274,6 @@ sources:
 - เทคนิคเก็บความต้องการ: observe, survey, interview, **JAD**
 - **Functional vs non-functional requirement**
 - Design phase: UI/UX; ตัวอย่าง bad UX
-
-### Week 15 — Focus on Web Technology (ยังไม่เปิด)
-
-> สรุปจากสไลด์ปีก่อน — รอสไลด์ 1/2569 ใน OnLearn
-
-- เครื่องมือสร้างเว็บ — text editor, WYSIWYG, **CMS** (WordPress ฯลฯ)
-- Website technologies — HTML, CSS, JavaScript, server-side
-- **โครงสร้างหน้าเว็บ** — `<!DOCTYPE>`, `<html>`, `<head>`, `<title>`, `<body>`
-- การสร้างไฟล์ `index.html` และการใส่ title
 
 ## 4. สิ่งที่ต้องจำ
 
@@ -286,6 +290,8 @@ sources:
 | ลำดับชั้นข้อมูล | character → field → record → file → database |
 | SQL พื้นฐาน | `SELECT … FROM … WHERE …` (+ `GROUP BY` · `ORDER BY`) |
 | IPv4 | 32 บิต · Class A/B/C · private IP · subnet mask แยก network ID กับ host ID |
+| Subnet /30 | 4 address = ชื่อวง + ใช้ได้ 2 + broadcast — ใช้กับสายที่ต่อ router 2 ตัว |
+| Static route | `ip route <วงปลายทาง> <mask> <next hop>` — next hop อยู่วงเดียวกับพอร์ตของเรา |
 
 ## 5. การประเมินและเตรียมสอบ
 
@@ -293,7 +299,8 @@ sources:
 
 - **สอบกลางภาค / ปลายภาค** — 3 ชั่วโมง (13:30–16:30) · สัดส่วนปรนัย/อัตนัยของปีนี้ *ยังไม่ยืนยัน*
 - **แล็บ** — ทำในห้อง L434 ทุกวันศุกร์ ยกมือให้พี่ TA ตรวจตามเช็กลิสต์ในใบงาน
-  บางสัปดาห์ (Excel 1–2, Make.com, File Management, Network 1) ส่งไฟล์ใน OnLearn แยกตามรอบแล็บ
+  บางสัปดาห์ (Excel 1–2, Make.com, File Management, Network 1–2, Web App 1) ส่งงานใน OnLearn แยกตามรอบแล็บ ·
+  Lab 11–12 ทำโจทย์ Cisco Packet Tracer บนระบบ SecSpace แล้วส่ง flag · Lab 12–13 เรียนออนไลน์รอบเดียว 09:00–11:00
 - **เข้าเรียน** 10%
 
 ### 5.2 หัวข้อที่ออกบ่อย

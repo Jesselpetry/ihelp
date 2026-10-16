@@ -20,6 +20,7 @@
 |---|:---:|---|
 | สไลด์บรรยาย — Lecture 05 Storage | 22 | `itf-lec-week05.pdf` |
 | สไลด์แล็บ — LaTeX และ Overleaf | 18 | `itf-lab-week05-latex-slide.pdf` |
+| ใบงานแล็บ — LaTeX บน Overleaf | 5 | `itf-lab-week05-latex-sheet.pdf` |
 
 ---
 
@@ -123,7 +124,8 @@
 
 ## แล็บ — LaTeX บน Overleaf
 
-> ใบงาน Lab 05 ยังไม่อยู่ในคลัง รายการตรวจด้านล่างมาจากสไลด์แล็บ — ยึดใบงานใน OnLearn เป็นหลัก
+> รายการตรวจด้านล่างมาจากสไลด์แล็บ — ใบงานฉบับเต็ม (`itf-lab-week05-latex-sheet.pdf`) ให้ตั้งชื่อ project เป็น `รหัสนักศึกษา-ITF`
+> และเปลี่ยน compiler เป็น **XeLaTeX** ที่ File → Settings ก่อนเริ่ม พร้อมตารางคำสั่ง LaTeX พื้นฐาน
 
 **สิ่งที่สไลด์สอน** — โครงสร้างไฟล์ `.tex` (เนื้อหา) · `.bib` (แหล่งอ้างอิง) · `.cls` / `.bst` (รูปแบบ) ·
 compiler pdfLaTeX (เร็วสุด รองรับแค่ Latin) · XeLaTeX และ LuaLaTeX (รองรับ Unicode ใช้ภาษาไทยได้) ·

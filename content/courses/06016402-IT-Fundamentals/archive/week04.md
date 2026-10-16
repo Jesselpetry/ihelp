@@ -20,6 +20,7 @@
 |---|:---:|---|
 | สไลด์บรรยาย — Lecture 04 Input & Output | 33 | `itf-lec-week04.pdf` |
 | สไลด์แล็บ — Microsoft Word | 24 | `itf-lab-week04-word-slide.pdf` |
+| ใบงานแล็บ — Microsoft Word | 8 | `itf-lab-week04-word-sheet.pdf` |
 
 ---
 
@@ -103,7 +104,8 @@
 
 ## แล็บ — Microsoft Word
 
-> ใบงาน Lab 04 ยังไม่อยู่ในคลัง รายการตรวจด้านล่างมาจากสไลด์แล็บ — ยึดใบงานใน OnLearn เป็นหลัก
+> รายการตรวจด้านล่างมาจากสไลด์แล็บ — ใบงานฉบับเต็ม (`itf-lab-week04-word-sheet.pdf`) มีตัวอย่างเอกสารที่ใช้ TH Sarabun New ขนาดหัวเรื่อง 20/16 หนา
+> เนื้อหา 16 caption 14 เอียง กระดาษ A4 ขอบ 0.7 นิ้วทุกด้าน — ฟอนต์และสีเปลี่ยนได้ แต่ต้องครบตามงานมอบหมาย
 
 **สิ่งที่สไลด์สอน** — ส่วนประกอบหน้าต่าง (title bar · quick access toolbar · ribbon · view bar · status bar) ·
 แก้ไข style · insert caption · cross-reference · table of contents · แบ่ง section ให้แต่ละช่วงมีเลขหน้าคนละแบบ

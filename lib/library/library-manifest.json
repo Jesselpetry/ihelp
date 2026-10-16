@@ -5951,6 +5951,27 @@
       "chapter": 3
     },
     {
+      "id": "gen-itf-labs-itf-lab-week04-word-sheet-pdf",
+      "title": {
+        "th": "Lab · Week 04 Word Sheet",
+        "en": "Lab · Week 04 Word Sheet"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "labs"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/labs/itf-lab-week04-word-sheet.pdf",
+      "fileName": "itf-lab-week04-word-sheet.pdf",
+      "courseCode": "ITF",
+      "chapter": 4
+    },
+    {
       "id": "gen-itf-labs-itf-lab-week04-word-slide-pdf",
       "title": {
         "th": "Lab · Week 04 Word Slide",
@@ -5970,6 +5991,27 @@
       "fileName": "itf-lab-week04-word-slide.pdf",
       "courseCode": "ITF",
       "chapter": 4
+    },
+    {
+      "id": "gen-itf-labs-itf-lab-week05-latex-sheet-pdf",
+      "title": {
+        "th": "Lab · Week 05 Latex Sheet",
+        "en": "Lab · Week 05 Latex Sheet"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "labs"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/labs/itf-lab-week05-latex-sheet.pdf",
+      "fileName": "itf-lab-week05-latex-sheet.pdf",
+      "courseCode": "ITF",
+      "chapter": 5
     },
     {
       "id": "gen-itf-labs-itf-lab-week05-latex-slide-pdf",
@@ -6119,6 +6161,27 @@
       "chapter": 9
     },
     {
+      "id": "gen-itf-labs-itf-lab-week12-packet-tracer-2-sheet-pdf",
+      "title": {
+        "th": "Lab · Week 12 Packet Tracer 2 Sheet",
+        "en": "Lab · Week 12 Packet Tracer 2 Sheet"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "labs"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/labs/itf-lab-week12-packet-tracer-2-sheet.pdf",
+      "fileName": "itf-lab-week12-packet-tracer-2-sheet.pdf",
+      "courseCode": "ITF",
+      "chapter": 12
+    },
+    {
       "id": "gen-itf-labs-itf-lab-week12-pdf",
       "title": {
         "th": "Lab · Week 12",
@@ -6138,6 +6201,27 @@
       "fileName": "itf-lab-week12.pdf",
       "courseCode": "ITF",
       "chapter": 12
+    },
+    {
+      "id": "gen-itf-labs-itf-lab-week13-web-app-1-sheet-pdf",
+      "title": {
+        "th": "Lab · Week 13 Web App 1 Sheet",
+        "en": "Lab · Week 13 Web App 1 Sheet"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "labs"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/labs/itf-lab-week13-web-app-1-sheet.pdf",
+      "fileName": "itf-lab-week13-web-app-1-sheet.pdf",
+      "courseCode": "ITF",
+      "chapter": 13
     },
     {
       "id": "gen-itf-lectures-itf-lec-final-pdf",
@@ -8401,27 +8485,6 @@
       "courseCode": "MFIT"
     },
     {
-      "id": "gen-mfit-exercises-mfit-ex-week01-activity-completed-v2-pdf",
-      "title": {
-        "th": "Exercise · Week 01 Activity Completed V 2",
-        "en": "Exercise · Week 01 Activity Completed V 2"
-      },
-      "description": {
-        "th": "",
-        "en": ""
-      },
-      "tags": [
-        "MFIT",
-        "exercises"
-      ],
-      "category": "exercise",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/exercises/mfit-ex-week01-activity-completed-v2.pdf",
-      "fileName": "mfit-ex-week01-activity-completed-v2.pdf",
-      "courseCode": "MFIT",
-      "chapter": 1
-    },
-    {
       "id": "gen-mfit-exercises-mfit-ex-week01-activity-completed-pdf",
       "title": {
         "th": "Exercise · Week 01 Activity Completed",
@@ -8439,27 +8502,6 @@
       "fileType": "pdf",
       "url": "/assets/it-kmitl/mfit/exercises/mfit-ex-week01-activity-completed.pdf",
       "fileName": "mfit-ex-week01-activity-completed.pdf",
-      "courseCode": "MFIT",
-      "chapter": 1
-    },
-    {
-      "id": "gen-mfit-exercises-mfit-ex-week01-activity-v2-pdf",
-      "title": {
-        "th": "Exercise · Week 01 Activity V 2",
-        "en": "Exercise · Week 01 Activity V 2"
-      },
-      "description": {
-        "th": "",
-        "en": ""
-      },
-      "tags": [
-        "MFIT",
-        "exercises"
-      ],
-      "category": "exercise",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/exercises/mfit-ex-week01-activity-v2.pdf",
-      "fileName": "mfit-ex-week01-activity-v2.pdf",
       "courseCode": "MFIT",
       "chapter": 1
     },
@@ -8758,10 +8800,10 @@
       "chapter": 7
     },
     {
-      "id": "gen-mfit-exercises-mfit-hw-calculus-week08-pdf",
+      "id": "gen-mfit-exercises-mfit-hw-week08-function-limit-continuity-2569-pdf",
       "title": {
-        "th": "Homework · Calculus Week 08",
-        "en": "Homework · Calculus Week 08"
+        "th": "Homework · Week 08 Function Limit Continuity 2569",
+        "en": "Homework · Week 08 Function Limit Continuity 2569"
       },
       "description": {
         "th": "",
@@ -8773,115 +8815,10 @@
       ],
       "category": "exercise",
       "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-calculus-week08.pdf",
-      "fileName": "mfit-hw-calculus-week08.pdf",
+      "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-week08-function-limit-continuity-2569.pdf",
+      "fileName": "mfit-hw-week08-function-limit-continuity-2569.pdf",
       "courseCode": "MFIT",
       "chapter": 8
-    },
-    {
-      "id": "gen-mfit-exercises-mfit-hw-calculus-week09-pdf",
-      "title": {
-        "th": "Homework · Calculus Week 09",
-        "en": "Homework · Calculus Week 09"
-      },
-      "description": {
-        "th": "",
-        "en": ""
-      },
-      "tags": [
-        "MFIT",
-        "exercises"
-      ],
-      "category": "exercise",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-calculus-week09.pdf",
-      "fileName": "mfit-hw-calculus-week09.pdf",
-      "courseCode": "MFIT",
-      "chapter": 9
-    },
-    {
-      "id": "gen-mfit-exercises-mfit-hw-calculus-week10-pdf",
-      "title": {
-        "th": "Homework · Calculus Week 10",
-        "en": "Homework · Calculus Week 10"
-      },
-      "description": {
-        "th": "",
-        "en": ""
-      },
-      "tags": [
-        "MFIT",
-        "exercises"
-      ],
-      "category": "exercise",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-calculus-week10.pdf",
-      "fileName": "mfit-hw-calculus-week10.pdf",
-      "courseCode": "MFIT",
-      "chapter": 10
-    },
-    {
-      "id": "gen-mfit-exercises-mfit-hw-calculus-week12-pdf",
-      "title": {
-        "th": "Homework · Calculus Week 12",
-        "en": "Homework · Calculus Week 12"
-      },
-      "description": {
-        "th": "",
-        "en": ""
-      },
-      "tags": [
-        "MFIT",
-        "exercises"
-      ],
-      "category": "exercise",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-calculus-week12.pdf",
-      "fileName": "mfit-hw-calculus-week12.pdf",
-      "courseCode": "MFIT",
-      "chapter": 12
-    },
-    {
-      "id": "gen-mfit-exercises-mfit-hw-calculus-week13-pdf",
-      "title": {
-        "th": "Homework · Calculus Week 13",
-        "en": "Homework · Calculus Week 13"
-      },
-      "description": {
-        "th": "",
-        "en": ""
-      },
-      "tags": [
-        "MFIT",
-        "exercises"
-      ],
-      "category": "exercise",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-calculus-week13.pdf",
-      "fileName": "mfit-hw-calculus-week13.pdf",
-      "courseCode": "MFIT",
-      "chapter": 13
-    },
-    {
-      "id": "gen-mfit-exercises-mfit-hw-calculus-week14-pdf",
-      "title": {
-        "th": "Homework · Calculus Week 14",
-        "en": "Homework · Calculus Week 14"
-      },
-      "description": {
-        "th": "",
-        "en": ""
-      },
-      "tags": [
-        "MFIT",
-        "exercises"
-      ],
-      "category": "exercise",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-calculus-week14.pdf",
-      "fileName": "mfit-hw-calculus-week14.pdf",
-      "courseCode": "MFIT",
-      "chapter": 14
     },
     {
       "id": "gen-mfit-exercises-mfit-hw-week08-function-limit-continuity-pdf",
@@ -8905,6 +8842,27 @@
       "chapter": 8
     },
     {
+      "id": "gen-mfit-exercises-mfit-hw-week09-derivative-i-2569-pdf",
+      "title": {
+        "th": "Homework · Week 09 Derivative I 2569",
+        "en": "Homework · Week 09 Derivative I 2569"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "MFIT",
+        "exercises"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-week09-derivative-i-2569.pdf",
+      "fileName": "mfit-hw-week09-derivative-i-2569.pdf",
+      "courseCode": "MFIT",
+      "chapter": 9
+    },
+    {
       "id": "gen-mfit-exercises-mfit-hw-week09-derivative-i-pdf",
       "title": {
         "th": "Homework · Week 09 Derivative I",
@@ -8926,6 +8884,27 @@
       "chapter": 9
     },
     {
+      "id": "gen-mfit-exercises-mfit-hw-week10-derivative-ii-2569-pdf",
+      "title": {
+        "th": "Homework · Week 10 Derivative II 2569",
+        "en": "Homework · Week 10 Derivative II 2569"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "MFIT",
+        "exercises"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-week10-derivative-ii-2569.pdf",
+      "fileName": "mfit-hw-week10-derivative-ii-2569.pdf",
+      "courseCode": "MFIT",
+      "chapter": 10
+    },
+    {
       "id": "gen-mfit-exercises-mfit-hw-week10-derivative-ii-pdf",
       "title": {
         "th": "Homework · Week 10 Derivative II",
@@ -8945,6 +8924,27 @@
       "fileName": "mfit-hw-week10-derivative-ii.pdf",
       "courseCode": "MFIT",
       "chapter": 10
+    },
+    {
+      "id": "gen-mfit-exercises-mfit-hw-week11-derivative-apps-2569-pdf",
+      "title": {
+        "th": "Homework · Week 11 Derivative Apps 2569",
+        "en": "Homework · Week 11 Derivative Apps 2569"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "MFIT",
+        "exercises"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-week11-derivative-apps-2569.pdf",
+      "fileName": "mfit-hw-week11-derivative-apps-2569.pdf",
+      "courseCode": "MFIT",
+      "chapter": 11
     },
     {
       "id": "gen-mfit-exercises-mfit-hw-week11-derivative-apps-v2-pdf",
@@ -8989,6 +8989,27 @@
       "chapter": 11
     },
     {
+      "id": "gen-mfit-exercises-mfit-hw-week12-integration-i-2569-pdf",
+      "title": {
+        "th": "Homework · Week 12 Integration I 2569",
+        "en": "Homework · Week 12 Integration I 2569"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "MFIT",
+        "exercises"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-week12-integration-i-2569.pdf",
+      "fileName": "mfit-hw-week12-integration-i-2569.pdf",
+      "courseCode": "MFIT",
+      "chapter": 12
+    },
+    {
       "id": "gen-mfit-exercises-mfit-hw-week12-integration-i-pdf",
       "title": {
         "th": "Homework · Week 12 Integration I",
@@ -9010,6 +9031,27 @@
       "chapter": 12
     },
     {
+      "id": "gen-mfit-exercises-mfit-hw-week13-integration-ii-2569-pdf",
+      "title": {
+        "th": "Homework · Week 13 Integration II 2569",
+        "en": "Homework · Week 13 Integration II 2569"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "MFIT",
+        "exercises"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-week13-integration-ii-2569.pdf",
+      "fileName": "mfit-hw-week13-integration-ii-2569.pdf",
+      "courseCode": "MFIT",
+      "chapter": 13
+    },
+    {
       "id": "gen-mfit-exercises-mfit-hw-week13-integration-ii-pdf",
       "title": {
         "th": "Homework · Week 13 Integration II",
@@ -9029,6 +9071,27 @@
       "fileName": "mfit-hw-week13-integration-ii.pdf",
       "courseCode": "MFIT",
       "chapter": 13
+    },
+    {
+      "id": "gen-mfit-exercises-mfit-hw-week14-integration-apps-2569-pdf",
+      "title": {
+        "th": "Homework · Week 14 Integration Apps 2569",
+        "en": "Homework · Week 14 Integration Apps 2569"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "MFIT",
+        "exercises"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-week14-integration-apps-2569.pdf",
+      "fileName": "mfit-hw-week14-integration-apps-2569.pdf",
+      "courseCode": "MFIT",
+      "chapter": 14
     },
     {
       "id": "gen-mfit-exercises-mfit-hw-week14-integration-apps-pdf",
@@ -9581,6 +9644,90 @@
       "chapter": 7
     },
     {
+      "id": "gen-mfit-lectures-mfit-lec-week09-derivative-i-2569-pdf",
+      "title": {
+        "th": "Lecture · Week 09 Derivative I 2569",
+        "en": "Lecture · Week 09 Derivative I 2569"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "MFIT",
+        "lectures"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-week09-derivative-i-2569.pdf",
+      "fileName": "mfit-lec-week09-derivative-i-2569.pdf",
+      "courseCode": "MFIT",
+      "chapter": 9
+    },
+    {
+      "id": "gen-mfit-lectures-mfit-lec-week10-derivative-ii-2569-pdf",
+      "title": {
+        "th": "Lecture · Week 10 Derivative II 2569",
+        "en": "Lecture · Week 10 Derivative II 2569"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "MFIT",
+        "lectures"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-week10-derivative-ii-2569.pdf",
+      "fileName": "mfit-lec-week10-derivative-ii-2569.pdf",
+      "courseCode": "MFIT",
+      "chapter": 10
+    },
+    {
+      "id": "gen-mfit-lectures-mfit-lec-week11-derivative-apps-2569-pdf",
+      "title": {
+        "th": "Lecture · Week 11 Derivative Apps 2569",
+        "en": "Lecture · Week 11 Derivative Apps 2569"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "MFIT",
+        "lectures"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-week11-derivative-apps-2569.pdf",
+      "fileName": "mfit-lec-week11-derivative-apps-2569.pdf",
+      "courseCode": "MFIT",
+      "chapter": 11
+    },
+    {
+      "id": "gen-mfit-lectures-mfit-lec-week12-integration-i-2569-pdf",
+      "title": {
+        "th": "Lecture · Week 12 Integration I 2569",
+        "en": "Lecture · Week 12 Integration I 2569"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "MFIT",
+        "lectures"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-week12-integration-i-2569.pdf",
+      "fileName": "mfit-lec-week12-integration-i-2569.pdf",
+      "courseCode": "MFIT",
+      "chapter": 12
+    },
+    {
       "id": "gen-mfit-lectures-mfit-note-week03-pdf",
       "title": {
         "th": "Note · Week 03",
@@ -9600,6 +9747,26 @@
       "fileName": "mfit-note-week03.pdf",
       "courseCode": "MFIT",
       "chapter": 3
+    },
+    {
+      "id": "gen-mfit-references-mfit-ref-calculus-useful-info-2569-pdf",
+      "title": {
+        "th": "Reference · Calculus Useful Info 2569",
+        "en": "Reference · Calculus Useful Info 2569"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "MFIT",
+        "references"
+      ],
+      "category": "reference",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/references/mfit-ref-calculus-useful-info-2569.pdf",
+      "fileName": "mfit-ref-calculus-useful-info-2569.pdf",
+      "courseCode": "MFIT"
     },
     {
       "id": "gen-mfit-sheets-mfit-sheet-cheat-sheet-2022-pdf",
