@@ -63,17 +63,17 @@ export function CourseBanner({
           showSwitch ? "pt-14 sm:pt-7 sm:pr-48" : ""
         }`}
       >
-        {/* Quiet circles on the right: texture, not content. */}
-        <svg
+        {/*
+         * The course code as a watermark, bleeding off the bottom-right corner:
+         * each banner gets its own texture without per-course artwork. The chip
+         * below still carries the code for screen readers.
+         */}
+        <span
           aria-hidden="true"
-          viewBox="0 0 240 180"
-          className="pointer-events-none absolute -right-8 -top-6 -z-10 h-full w-auto max-w-none text-primary-foreground opacity-10"
-          fill="currentColor"
+          className="pointer-events-none absolute -bottom-3 -right-2 -z-10 select-none whitespace-nowrap text-[5.5rem] font-black leading-none tracking-tighter opacity-10 sm:-bottom-5 sm:text-[9rem]"
         >
-          <circle cx="170" cy="60" r="90" />
-          <circle cx="60" cy="150" r="48" opacity="0.6" />
-          <circle cx="225" cy="165" r="30" opacity="0.8" />
-        </svg>
+          {code}
+        </span>
 
         {showSwitch && (
           <div
