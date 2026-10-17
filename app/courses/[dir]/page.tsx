@@ -8,7 +8,7 @@ import { moduleBinding, resolveCourseSpine } from "@/lib/courses/course-spine";
 import type { SpineMetrics } from "@/lib/courses/spine";
 import { getCourseScrapedInfo } from "@/lib/courses/course-content";
 import { assetsForCourse } from "@/lib/library/subject-library";
-import type { LText } from "@/lib/i18n";
+import { splitSummaryLead } from "@/lib/docs/summary-lead";
 
 const L = {
   backLabel: { th: "← รายวิชาทั้งหมด", en: "← All courses" },
@@ -83,8 +83,10 @@ export default async function CoursePage({
   // module. This replaces a six-branch switch that picked between three
   // different loaders by course code.
   const orientation = moduleBinding(course.code, "orientation");
-  const summaryMarkdown =
+  const overviewMarkdown =
     orientation?.docs?.map((doc) => doc.load()).find((md) => md !== null) ?? null;
+  // The overview's H1 and lead blockquote move up into the banner.
+  const lead = overviewMarkdown ? splitSummaryLead(overviewMarkdown) : null;
 
   // Caveats a course attached to individual modules — that a bank is derived
   // from a review guide rather than the real paper, where the marks actually
@@ -99,12 +101,11 @@ export default async function CoursePage({
       <SubjectHub
         backHref="/"
         backLabel={L.backLabel}
-        title={{
-          th: `${course.code} — ${course.nameTh}`,
-          en: `${course.code} — ${course.nameEn}`,
-        }}
-        subtitle={hubSubtitle(course.officialCode, course.nameEn, course.credits)}
-        summaryMarkdown={summaryMarkdown}
+        code={course.code}
+        name={{ th: course.nameTh, en: course.nameEn }}
+        meta={[course.officialCode, course.credits].filter(Boolean).join(" · ")}
+        tagline={lead?.tagline ? { th: lead.tagline, en: lead.tagline } : null}
+        summaryMarkdown={lead?.body ?? null}
         officialUrl={course.officialUrl}
         officialInfo={getCourseScrapedInfo(course.code)}
         modules={modules}
@@ -112,13 +113,4 @@ export default async function CoursePage({
       />
     </>
   );
-}
-
-function hubSubtitle(
-  officialCode: string | undefined,
-  nameEn: string,
-  credits: string | undefined,
-): LText {
-  const line = [officialCode, nameEn, credits].filter(Boolean).join(" · ");
-  return { th: line, en: line };
 }

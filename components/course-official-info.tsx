@@ -8,7 +8,7 @@ import type { ScrapedCourseInfo } from "@/lib/courses/course-content";
  * What the faculty publishes about the course, as a panel rather than a card.
  *
  * Its own header, badge row and border moved up to CourseOverview, which shows
- * this behind the "ข้อมูลทางการจากคณะ" tab — see the note in
+ * this behind the banner's "ทางการ" switch — see the note in
  * components/course-summary-panel.tsx for why the two stopped being cards.
  */
 interface CourseOfficialInfoProps {
@@ -40,7 +40,7 @@ export function CourseOfficialInfo({ info, className = "" }: CourseOfficialInfoP
           </h4>
 
           {info.descTh && (
-            <div className="rounded-2xl border border-border/60 bg-muted/40 p-4 text-xs leading-relaxed text-foreground sm:text-sm">
+            <div className="text-xs leading-relaxed text-foreground sm:text-sm">
               <span className="mb-1 inline-block rounded-sm bg-primary/10 px-1.5 py-0.5 text-[10px] font-semibold text-primary">
                 {t(L.thaiDesc, locale)}
               </span>
@@ -49,7 +49,7 @@ export function CourseOfficialInfo({ info, className = "" }: CourseOfficialInfoP
           )}
 
           {info.descEn && (
-            <div className="rounded-2xl border border-border/40 bg-muted/20 p-4 text-xs italic leading-relaxed text-muted-foreground sm:text-sm">
+            <div className="text-xs italic leading-relaxed text-muted-foreground sm:text-sm">
               <span className="mb-1 inline-block rounded-sm bg-muted px-1.5 py-0.5 text-[10px] font-semibold not-italic text-foreground">
                 {t(L.engDesc, locale)}
               </span>
@@ -81,7 +81,7 @@ export function CourseOfficialInfo({ info, className = "" }: CourseOfficialInfoP
               {info.instructors.map((inst, idx) => (
                 <span
                   key={idx}
-                  className="inline-flex items-center gap-1 rounded-full border bg-muted/60 px-2.5 py-0.5 text-xs text-foreground"
+                  className="inline-flex items-center gap-1 rounded-full bg-muted px-2.5 py-0.5 text-xs text-foreground"
                 >
                   <span>{inst.name}</span>
                   {inst.role && (

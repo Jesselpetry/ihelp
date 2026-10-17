@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo, useEffect, useRef } from "react";
-import { ArrowUp, ChevronDown, ChevronUp, Compass, Eye, ListTree } from "lucide-react";
+import { ArrowUp, ChevronDown, ChevronUp, ListTree } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { MdView } from "@/components/md-view";
@@ -16,11 +16,13 @@ import { useLocale, t, type LText } from "@/lib/i18n";
  * named "ภาพรวมและโครงสร้างรายวิชา" and "ภาพรวมรายวิชาอย่างเป็นทางการ" stacked
  * on one page is one idea wearing two hats and two screens of vertical space.
  * The chrome now belongs to CourseOverview, which shows exactly one of the two
- * panels at a time behind a tab; this file renders the body only.
+ * readings at a time (the banner's switch picks which); this file renders the
+ * body only. Collapsed it is a fade-out preview with the stream's single
+ * expand button; expanded it is the whole document beside a sticky outline.
  */
 interface CourseSummaryPanelProps {
   markdown: string;
-  /** Whether the full document is shown. Owned by CourseOverview. */
+  /** Whether the full document is shown. Owned by the hub, via CourseOverview. */
   expanded: boolean;
   onExpandedChange: (expanded: boolean) => void;
   className?: string;
@@ -28,7 +30,7 @@ interface CourseSummaryPanelProps {
 
 const L = {
   viewFullContent: { th: "ดูเนื้อหาฉบับเต็ม", en: "View full content" },
-  collapseContent: { th: "ย่อเนื้อหา", en: "Collapse content" },
+  collapseContent: { th: "ย่อเนื้อหา", en: "Collapse" },
   outline: { th: "สารบัญเนื้อหา", en: "Outline" },
   backToTop: { th: "ขึ้นบนสุด", en: "Top" },
   progress: { th: "อ่านแล้ว", en: "Read" },
@@ -134,14 +136,14 @@ export function CourseSummaryPanel({
           <MdView markdown={markdown} />
 
           {collapsible && (
-            <div className="absolute inset-x-0 bottom-0 flex h-36 items-end justify-center bg-gradient-to-t from-card via-card/90 to-transparent pb-2">
+            // The card behind it is bg-card, so the fade must end on from-card.
+            <div className="absolute inset-x-0 bottom-0 flex h-36 items-end justify-center bg-gradient-to-t from-card via-card/90 to-transparent pb-1">
               <Button
                 variant="default"
                 size="sm"
                 onClick={() => onExpandedChange(true)}
-                className="h-9 cursor-pointer gap-2 rounded-full bg-primary px-5 text-xs font-semibold text-primary-foreground shadow-lg transition-transform hover:bg-primary/90 active:scale-95"
+                className="h-9 cursor-pointer gap-1.5 rounded-full bg-primary px-5 text-xs font-medium text-primary-foreground shadow-sm hover:bg-primary/90 active:scale-95"
               >
-                <Eye className="size-4" />
                 <span>{t(L.viewFullContent, locale)}</span>
                 <ChevronDown className="size-4" />
               </Button>
@@ -166,7 +168,7 @@ export function CourseSummaryPanel({
        */}
       <div className="flex flex-col gap-6 lg:flex-row lg:items-start">
         {tocItems.length > 0 && (
-          <aside className="sticky top-20 hidden w-64 shrink-0 flex-col gap-3 rounded-2xl border bg-background/60 p-4 lg:flex xl:w-72">
+          <aside className="sticky top-20 hidden w-64 shrink-0 flex-col gap-3 rounded-xl bg-muted/40 p-4 lg:flex xl:w-72">
             <div className="flex shrink-0 items-center justify-between gap-2 border-b pb-3">
               <div className="flex items-center gap-2">
                 <div className="flex size-7 items-center justify-center rounded-lg bg-primary/10 text-primary">
@@ -217,7 +219,6 @@ export function CourseSummaryPanel({
                         : "text-muted-foreground hover:bg-muted/60 hover:text-foreground"
                     }`}
                   >
-                    {isActive && <Compass className="size-3 shrink-0 animate-pulse text-primary" />}
                     <span className="truncate">{item.text}</span>
                   </button>
                 );
