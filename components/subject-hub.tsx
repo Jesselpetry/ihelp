@@ -122,6 +122,8 @@ export function SubjectHub({
             tab={overviewTab}
             expanded={isSummaryExpanded}
             onExpandedChange={setIsSummaryExpanded}
+            scope={scope}
+            onShowAll={() => setScope("all")}
           />
 
           {/* The filter is hidden while reading, so it must not keep filtering. */}

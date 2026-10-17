@@ -122,6 +122,18 @@ export interface CourseWeek {
 export interface CoursePart {
   label: LText;
   detail?: LText;
+  /**
+   * One- or two-letter tag for the half ("A" / "B"). Courses whose halves each
+   * number their weeks from 1 need it so the two "week 01"s stay apart: it
+   * prefixes the week badges and marks the part header and the week strip.
+   */
+  short?: string;
+  /**
+   * Replaces the generic midterm / final name on the library's scope tabs, for
+   * courses whose halves are really separate tracks rather than "the exam
+   * you are revising for".
+   */
+  tab?: LText;
 }
 
 export interface CourseSchedule {

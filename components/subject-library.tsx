@@ -568,8 +568,11 @@ export function SubjectLibrary({
               {(["all", "midterm", "final"] as const).map((option) => {
                 const active = scope === option;
                 const Icon = option === "all" ? null : SCOPE_ICON[option];
+                // A course whose halves are separate tracks names its tabs after them.
                 const label =
-                  option === "all" ? t(L.scopeAll, locale) : t(SCOPE_LABEL[option], locale);
+                  option === "all"
+                    ? t(L.scopeAll, locale)
+                    : t(schedule?.parts?.[option]?.tab ?? SCOPE_LABEL[option], locale);
                 const total =
                   option === "all"
                     ? assets.length

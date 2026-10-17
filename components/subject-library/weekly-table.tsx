@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useState } from "react";
+import { Fragment, useState, type ReactNode } from "react";
 import Link from "next/link";
 import {
   CalendarRange,
@@ -20,6 +20,7 @@ import {
   resolveCategory,
   type AssetCategory,
   type AssetScope,
+  type CoursePart,
   type CourseSchedule,
   type CourseWeek,
   type SubjectAsset,
@@ -31,9 +32,11 @@ import { CATEGORY, L, metaLine } from "./types";
 /**
  * The week view every course with a schedule opens on — ITF and ICS alike.
  *
- * One table, the same four columns as the library table (name · category ·
- * size · actions), grouped under a heading row per week. Nothing else: the
- * week says what was taught, the row says what the file is. Earlier-year decks,
+ * The same four columns as the library table (name · category · size ·
+ * actions), grouped under a heading row per week. Each half of the term (ICS's
+ * two tracks, ITF's midterm and final parts) gets a card of its own with a
+ * proper header, so two courses' "week 01" can never read as one list. The week
+ * says what was taught, the row says what the file is. Earlier-year decks,
  * print handouts and annotated copies stay out of the way until asked for.
  */
 
@@ -136,168 +139,311 @@ export function WeeklyTable({
     .map((week) => ({ week, rows: rowsFor(week) }))
     .filter(({ rows }) => !narrowed || rows.length > 0);
 
-  const jump = (week: CourseWeek) =>
-    document.getElementById(anchor(week))?.scrollIntoView({ behavior: "smooth", block: "start" });
+  // Consecutive weeks of one half form a section; weeks with no half (ITF's
+  // orientation week 0) form a neutral one, wherever they fall in the order.
+  const sections: Section[] = [];
+  for (const entry of weeks) {
+    const scope = entry.week.scope;
+    const last = sections[sections.length - 1];
+    if (last && last.scope === scope) last.weeks.push(entry);
+    else sections.push({ scope, weeks: [entry] });
+  }
+  // Whole-term files close the page: inside a trailing neutral section if
+  // there is one, otherwise in a card of their own.
+  const tail = sections[sections.length - 1];
+  const termInTail = termRows.length > 0 && tail !== undefined && tail.scope === undefined;
+  const termAlone = termRows.length > 0 && !termInTail;
+  const termOpenable = termRows.flatMap((r) => (r.kind === "asset" ? [r.asset] : []));
+  const claimed = new Set<AssetScope>();
+
+  const jump = (id: string) =>
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+
+  const termBody = (
+    <tbody className="divide-y divide-border/40">
+      <tr className="bg-muted/25">
+        <th scope="colgroup" colSpan={4} className="py-2 pl-4 pr-4 text-left">
+          <div className="flex items-center gap-2">
+            <CalendarRange className="size-3.5 shrink-0 text-primary" />
+            <span className="text-xs font-bold text-foreground">{t(L.unweeked, locale)}</span>
+          </div>
+        </th>
+      </tr>
+      {termRows.map((row) => (
+        <WeekRow
+          key={row.kind === "asset" ? row.asset.id : row.kind === "stack" ? row.title.th : row.href}
+          row={row}
+          onOpenAsset={(asset) => onOpen(termOpenable, Math.max(0, termOpenable.indexOf(asset)))}
+          onOpenStack={(items) => onOpen(items, 0)}
+        />
+      ))}
+    </tbody>
+  );
 
   return (
     <div className="space-y-3">
-      {/* Week strip — one line of numbers, a mark where each half begins */}
+      {/* Week strip — per half: a chip that jumps to its card, then its week numbers */}
       {weeks.length > 1 && (
         <nav
           aria-label={t(L.weeks, locale)}
           className="sticky top-[5.5rem] z-20 flex items-center gap-1 overflow-x-auto rounded-full border bg-background/90 p-1 shadow-2xs backdrop-blur-md [scrollbar-width:none]"
         >
-          {weeks.map(({ week }, i) => {
-            const newPart = week.scope && week.scope !== weeks[i - 1]?.week.scope;
-            const PartIcon = week.scope ? PART_ICON[week.scope] : null;
+          {sections.map((section, i) => {
+            const part = section.scope ? schedule.parts?.[section.scope] : undefined;
+            const PartIcon = section.scope ? PART_ICON[section.scope] : null;
             return (
-              <Fragment key={anchor(week)}>
-                {newPart && PartIcon && (
-                  <PartIcon aria-hidden className="mx-1 size-3.5 shrink-0 text-muted-foreground" />
+              <Fragment key={section.scope ?? `loose-${i}`}>
+                {i > 0 && <span aria-hidden className="mx-1 h-4 w-px shrink-0 bg-border" />}
+                {section.scope && PartIcon && (
+                  <button
+                    type="button"
+                    onClick={() => jump(partId(section.scope!))}
+                    title={part ? t(part.label, locale) : undefined}
+                    className="inline-flex shrink-0 items-center gap-1.5 rounded-full px-1.5 py-0.5 text-xs font-bold text-muted-foreground transition-colors hover:text-foreground cursor-pointer"
+                  >
+                    {part?.short ? (
+                      <PartBadge scope={section.scope} short={part.short} size="sm" />
+                    ) : (
+                      <PartIcon aria-hidden className="size-3.5" />
+                    )}
+                    {part?.tab && <span className="whitespace-nowrap">{t(part.tab, locale)}</span>}
+                  </button>
                 )}
-                <button
-                  type="button"
-                  onClick={() => jump(week)}
-                  title={t(week.title, locale)}
-                  className={`shrink-0 rounded-full px-2.5 py-1 text-xs font-semibold tabular-nums transition-colors hover:bg-primary hover:text-primary-foreground cursor-pointer ${
-                    week.upcoming ? "text-muted-foreground/60" : "text-foreground"
-                  }`}
-                >
-                  {pad(week.week)}
-                </button>
+                {section.weeks.map(({ week }) => (
+                  <button
+                    key={anchor(week)}
+                    type="button"
+                    onClick={() => jump(anchor(week))}
+                    title={[part?.short, t(week.title, locale)].filter(Boolean).join(" · ")}
+                    className={`shrink-0 rounded-full px-2.5 py-1 text-xs font-semibold tabular-nums transition-colors hover:bg-primary hover:text-primary-foreground cursor-pointer ${
+                      week.upcoming ? "text-muted-foreground/60" : "text-foreground"
+                    }`}
+                  >
+                    {pad(week.week)}
+                  </button>
+                ))}
               </Fragment>
             );
           })}
         </nav>
       )}
 
-      <div className="overflow-hidden rounded-2xl border bg-card shadow-xs">
-        {(schedule.source || olderCount > 0) && (
-          <div className="flex items-center justify-between gap-2 border-b px-4 py-2 text-xs">
-            {schedule.source ? (
-              <a
-                href={schedule.source}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 font-medium text-muted-foreground transition-colors hover:text-primary"
-              >
-                <ExternalLink className="size-3.5" />
-                {t(L.source, locale)}: OnLearn
-              </a>
-            ) : (
-              <span />
-            )}
-            {olderCount > 0 && (
-              <button
-                type="button"
-                onClick={() => setShowOlder(!showOlder)}
-                aria-pressed={showOlder}
-                className={`rounded-full border px-2.5 py-0.5 font-medium transition-colors cursor-pointer ${
-                  showOlder
-                    ? "border-primary bg-primary/10 text-primary"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                {t(L.showOlder, locale)} · {olderCount}
-              </button>
-            )}
-          </div>
-        )}
+      {/* Once above every card, not repeated inside each */}
+      {(schedule.source || olderCount > 0) && (
+        <div className="flex items-center justify-between gap-2 px-1 text-xs">
+          {schedule.source ? (
+            <a
+              href={schedule.source}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 font-medium text-muted-foreground transition-colors hover:text-primary"
+            >
+              <ExternalLink className="size-3.5" />
+              {t(L.source, locale)}: OnLearn
+            </a>
+          ) : (
+            <span />
+          )}
+          {olderCount > 0 && (
+            <button
+              type="button"
+              onClick={() => setShowOlder(!showOlder)}
+              aria-pressed={showOlder}
+              className={`rounded-full border px-2.5 py-0.5 font-medium transition-colors cursor-pointer ${
+                showOlder
+                  ? "border-primary bg-primary/10 text-primary"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              {t(L.showOlder, locale)} · {olderCount}
+            </button>
+          )}
+        </div>
+      )}
 
-        <div className="overflow-x-auto [scrollbar-width:thin]">
-          <table className="w-full min-w-[560px] border-collapse text-left text-sm">
-            <thead>
-              <tr className="border-b bg-muted/40 text-xs font-semibold text-muted-foreground">
-                <th scope="col" className="py-2.5 pl-4 pr-3">{t(L.colName, locale)}</th>
-                <th scope="col" className="py-2.5 px-3 whitespace-nowrap">{t(L.colCategory, locale)}</th>
-                <th scope="col" className="py-2.5 px-3 whitespace-nowrap">{t(L.colSize, locale)}</th>
-                <th scope="col" className={`${ACTIONS_CELL} bg-muted/95 md:bg-transparent py-2.5`}>{t(L.colActions, locale)}</th>
-              </tr>
-            </thead>
-
-            {weeks.map(({ week, rows }, i) => {
-              const part = week.scope && week.scope !== weeks[i - 1]?.week.scope
-                ? schedule.parts?.[week.scope]
-                : undefined;
-              const PartIcon = week.scope ? PART_ICON[week.scope] : null;
-              const openable = rows.flatMap((r) => (r.kind === "asset" ? [r.asset] : []));
-              return (
-                <tbody key={anchor(week)} className="divide-y divide-border/40 border-b border-border/60">
-                  {part && PartIcon && (
-                    <tr className="bg-primary/5">
+      <div className="space-y-6">
+        {sections.map((section, i) => {
+          const scope = section.scope;
+          const part = scope ? schedule.parts?.[scope] : undefined;
+          // A half split into two runs keeps its id on the first card only.
+          const id = scope && !claimed.has(scope) ? partId(scope) : undefined;
+          if (scope) claimed.add(scope);
+          const fileCount = section.weeks.reduce(
+            (sum, { rows }) => sum + rows.filter((r) => r.kind === "asset").length,
+            0,
+          );
+          return (
+            <WeekCard
+              key={scope ?? `loose-${i}`}
+              id={id}
+              header={
+                scope && part ? (
+                  <PartHeader
+                    scope={scope}
+                    part={part}
+                    weeksRange={weekRange(schedule.weeks, scope)}
+                    fileCount={fileCount}
+                  />
+                ) : undefined
+              }
+            >
+              {section.weeks.map(({ week, rows }) => {
+                const openable = rows.flatMap((r) => (r.kind === "asset" ? [r.asset] : []));
+                return (
+                  <tbody key={anchor(week)} className="divide-y divide-border/40 border-b border-border/60 last:border-b-0">
+                    <tr id={anchor(week)} className="scroll-mt-36 bg-muted/25">
                       <th scope="colgroup" colSpan={4} className="py-2 pl-4 pr-4 text-left">
-                        <div className="flex items-center gap-2 text-xs">
-                          <PartIcon className="size-3.5 shrink-0 text-primary" />
-                          <span className="font-bold text-primary">{t(part.label, locale)}</span>
-                          {part.detail && (
-                            <span className="ml-auto shrink-0 font-medium text-muted-foreground">
-                              {t(part.detail, locale)}
+                        <div className="flex items-center gap-2">
+                          <span className="inline-flex shrink-0 items-center rounded-md border border-primary/30 bg-primary/10 px-2 py-0.5 text-[11px] font-bold tabular-nums text-primary">
+                            {part?.short ? `${part.short} · ` : ""}
+                            {t(L.week, locale)} {pad(week.week)}
+                          </span>
+                          <span className="min-w-0 truncate text-xs font-bold text-foreground">
+                            {t(week.title, locale)}
+                          </span>
+                          {week.upcoming && (
+                            <span className="ml-auto shrink-0 text-[10px] font-medium text-muted-foreground">
+                              {t(L.upcoming, locale)}
                             </span>
                           )}
                         </div>
                       </th>
                     </tr>
-                  )}
-                  <tr id={anchor(week)} className="scroll-mt-36 bg-muted/25">
-                    <th scope="colgroup" colSpan={4} className="py-2 pl-4 pr-4 text-left">
-                      <div className="flex items-center gap-2">
-                        <span className="inline-flex shrink-0 items-center rounded-md border border-primary/30 bg-primary/10 px-2 py-0.5 text-[11px] font-bold tabular-nums text-primary">
-                          {t(L.week, locale)} {pad(week.week)}
-                        </span>
-                        <span className="min-w-0 truncate text-xs font-bold text-foreground">
-                          {t(week.title, locale)}
-                        </span>
-                        {week.upcoming && (
-                          <span className="ml-auto shrink-0 text-[10px] font-medium text-muted-foreground">
-                            {t(L.upcoming, locale)}
-                          </span>
-                        )}
-                      </div>
-                    </th>
-                  </tr>
-                  {rows.length === 0 ? (
-                    <EmptyRow />
-                  ) : (
-                    rows.map((row) => (
-                      <WeekRow
-                        key={row.kind === "asset" ? row.asset.id : row.kind === "video" ? row.href : row.title.th}
-                        row={row}
-                        onOpenAsset={(asset) => onOpen(openable, Math.max(0, openable.indexOf(asset)))}
-                        onOpenStack={(items) => onOpen(items, 0)}
-                      />
-                    ))
-                  )}
-                </tbody>
-              );
-            })}
-
-            {termRows.length > 0 && (
-              <tbody className="divide-y divide-border/40">
-                <tr className="bg-muted/25">
-                  <th scope="colgroup" colSpan={4} className="py-2 pl-4 pr-4 text-left">
-                    <div className="flex items-center gap-2">
-                      <CalendarRange className="size-3.5 shrink-0 text-primary" />
-                      <span className="text-xs font-bold text-foreground">{t(L.unweeked, locale)}</span>
-                    </div>
-                  </th>
-                </tr>
-                {termRows.map((row) => {
-                  const openable = termRows.flatMap((r) => (r.kind === "asset" ? [r.asset] : []));
-                  return (
-                    <WeekRow
-                      key={row.kind === "asset" ? row.asset.id : row.kind === "stack" ? row.title.th : row.href}
-                      row={row}
-                      onOpenAsset={(asset) => onOpen(openable, Math.max(0, openable.indexOf(asset)))}
-                      onOpenStack={(items) => onOpen(items, 0)}
-                    />
-                  );
-                })}
-              </tbody>
-            )}
-          </table>
-        </div>
+                    {rows.length === 0 ? (
+                      <EmptyRow />
+                    ) : (
+                      rows.map((row) => (
+                        <WeekRow
+                          key={row.kind === "asset" ? row.asset.id : row.kind === "video" ? row.href : row.title.th}
+                          row={row}
+                          onOpenAsset={(asset) => onOpen(openable, Math.max(0, openable.indexOf(asset)))}
+                          onOpenStack={(items) => onOpen(items, 0)}
+                        />
+                      ))
+                    )}
+                  </tbody>
+                );
+              })}
+              {termInTail && section === tail && termBody}
+            </WeekCard>
+          );
+        })}
+        {termAlone && <WeekCard>{termBody}</WeekCard>}
       </div>
     </div>
+  );
+}
+
+type Section = {
+  /** Undefined for weeks that belong to neither half. */
+  scope: AssetScope | undefined;
+  weeks: { week: CourseWeek; rows: Row[] }[];
+};
+
+const partId = (scope: AssetScope) => `part-${scope}`;
+
+/** "1–7" over every scheduled week of one half, whatever the filters hide. */
+function weekRange(weeks: CourseWeek[], scope: AssetScope): string {
+  const nums = weeks.filter((w) => w.scope === scope).map((w) => w.week);
+  if (nums.length === 0) return "";
+  const lo = Math.min(...nums);
+  const hi = Math.max(...nums);
+  return lo === hi ? String(lo) : `${lo}–${hi}`;
+}
+
+/**
+ * The letter that tells the two halves apart. Same two-volume rule as
+ * SCOPE_BADGE: the midterm half is solid, the final half tinted.
+ */
+function PartBadge({
+  scope,
+  short,
+  size,
+}: {
+  scope: AssetScope;
+  short: string;
+  size: "sm" | "md";
+}) {
+  const tone =
+    scope === "midterm"
+      ? "bg-primary text-primary-foreground"
+      : "bg-primary/10 text-primary ring-1 ring-primary/30";
+  const dims = size === "md" ? "size-7 text-sm" : "size-5 text-[10px]";
+  return (
+    <span
+      aria-hidden
+      className={`inline-flex shrink-0 items-center justify-center rounded-full font-bold ${dims} ${tone}`}
+    >
+      {short}
+    </span>
+  );
+}
+
+/** A half's title block — a real heading above its table, not a divider row. */
+function PartHeader({
+  scope,
+  part,
+  weeksRange,
+  fileCount,
+}: {
+  scope: AssetScope;
+  part: CoursePart;
+  weeksRange: string;
+  fileCount: number;
+}) {
+  const { locale } = useLocale();
+  const PartIcon = PART_ICON[scope];
+  const meta = [
+    part.detail ? t(part.detail, locale) : "",
+    weeksRange ? `${t(L.week, locale)} ${weeksRange}` : "",
+  ].filter(Boolean);
+  return (
+    <div className="flex items-center gap-3 border-b bg-muted/30 px-4 py-3">
+      {part.short && <PartBadge scope={scope} short={part.short} size="md" />}
+      <div className="min-w-0 flex-1">
+        <h3 className="flex items-center gap-2 text-sm font-bold text-foreground sm:text-base">
+          <PartIcon aria-hidden className="size-4 shrink-0 text-primary" />
+          <span className="min-w-0">{t(part.label, locale)}</span>
+        </h3>
+        {meta.length > 0 && (
+          <p className="mt-0.5 text-xs text-muted-foreground">{meta.join(" · ")}</p>
+        )}
+      </div>
+      <span className="shrink-0 rounded-full border bg-background px-2.5 py-0.5 text-xs font-medium tabular-nums text-muted-foreground">
+        {fileCount} {t(L.filesCount, locale)}
+      </span>
+    </div>
+  );
+}
+
+/** One bordered card with its own column heads, so each half reads on its own. */
+function WeekCard({
+  id,
+  header,
+  children,
+}: {
+  id?: string;
+  header?: ReactNode;
+  children: ReactNode;
+}) {
+  const { locale } = useLocale();
+  return (
+    <section id={id} className="scroll-mt-36 overflow-hidden rounded-2xl border bg-card shadow-xs">
+      {header}
+      <div className="overflow-x-auto [scrollbar-width:thin]">
+        <table className="w-full min-w-[560px] border-collapse text-left text-sm">
+          <thead>
+            <tr className="border-b bg-muted/40 text-xs font-semibold text-muted-foreground">
+              <th scope="col" className="py-2.5 pl-4 pr-3">{t(L.colName, locale)}</th>
+              <th scope="col" className="py-2.5 px-3 whitespace-nowrap">{t(L.colCategory, locale)}</th>
+              <th scope="col" className="py-2.5 px-3 whitespace-nowrap">{t(L.colSize, locale)}</th>
+              <th scope="col" className={`${ACTIONS_CELL} bg-muted/95 md:bg-transparent py-2.5`}>{t(L.colActions, locale)}</th>
+            </tr>
+          </thead>
+          {children}
+        </table>
+      </div>
+    </section>
   );
 }
 

@@ -64,12 +64,22 @@ const ITF_SCHEDULE: CourseSchedule = {
 const ICS_SCHEDULE: CourseSchedule = {
   parts: {
     midterm: {
-      label: { th: "Track A · ตรรกศาสตร์ดิจิทัล & Logisim", en: "Track A · Digital Logic & Logisim" },
-      detail: { th: "ศ.ดร. สุขสันต์", en: "Prof. Sooksan" },
+      label: {
+        th: "ครึ่งแรก · Track A — ตรรกศาสตร์ดิจิทัล & Logisim",
+        en: "First half · Track A — Digital Logic & Logisim",
+      },
+      detail: { th: "ศ.ดร. สุขสันต์ · สอบกลางภาค", en: "Prof. Sooksan · Midterm" },
+      short: "A",
+      tab: { th: "ครึ่งแรก · ลอจิก", en: "1st half · Logic" },
     },
     final: {
-      label: { th: "Track B · ฮาร์ดแวร์ & แล็บจริง", en: "Track B · Hardware & Bench Labs" },
-      detail: { th: "ผศ.ดร. สุภกิจ", en: "Asst. Prof. Supakit" },
+      label: {
+        th: "ครึ่งหลัง · Track B — ฮาร์ดแวร์ & แล็บจริง",
+        en: "Second half · Track B — Hardware & Bench Labs",
+      },
+      detail: { th: "ผศ.ดร. สุภกิจ · สอบปลายภาค", en: "Asst. Prof. Supakit · Final" },
+      short: "B",
+      tab: { th: "ครึ่งหลัง · ฮาร์ดแวร์", en: "2nd half · Hardware" },
     },
   },
   weeks: [

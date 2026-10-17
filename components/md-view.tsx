@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { useMemo, useState } from "react";
+import { Flag, Milestone } from "lucide-react";
 import ReactMarkdown, { type Components } from "react-markdown";
 import { SessionMaterialsDeck, type SessionDocumentItem } from "@/components/session-materials";
 import type { SubjectAsset } from "@/lib/library/subject-library-ui";
@@ -12,6 +13,7 @@ import rehypeKatex from "rehype-katex";
 import "katex/dist/katex.min.css";
 import { slugifyHeading } from "@/lib/docs/toc";
 import { remarkNotebook } from "@/lib/docs/remark-notebook";
+import { hasParts, splitParts, type DocChunk, type PartScope } from "@/lib/docs/parts";
 import { useLocale, t, type LText } from "@/lib/i18n";
 
 function getNodeText(node: React.ReactNode): string {
@@ -520,6 +522,115 @@ function parseSessionDocTable(node: any, assets?: SubjectAsset[]): SessionDocume
   return items.length > 0 ? items : null;
 }
 
+// Matches a whole marker line (see lib/docs/parts.ts).
+const PART_MARKER_LINE = /^[ \t]*<!--\s*(?:\/part|part:.*?)\s*-->[ \t]*$/gm;
+
+/**
+ * One Markdown string through the shared plugin chain.
+ *
+ * Pulled out of MdView so a document split into parts (see PartPanel) renders
+ * every chunk with exactly the plugins, components and display-math pre-pass
+ * the unsplit document gets. remarkFrontmatter runs on every chunk: the first
+ * one carries the `---` block, and a chunk without one is unaffected.
+ *
+ * Splitting is safe for anchors because heading ids are stateless —
+ * slugifyHeading(text) per heading, no counter shared across the document.
+ *
+ * react-markdown without rehype-raw does not drop raw HTML — it prints it as
+ * literal text — so part markers that splitParts did not consume (an orphan
+ * `<!-- /part -->`, an unknown scope) are stripped here rather than shown.
+ */
+function MdChunk({ markdown, components }: { markdown: string; components: Components }) {
+  return (
+    <ReactMarkdown
+      remarkPlugins={[
+        remarkFrontmatter,
+        remarkGfm,
+        [remarkMath, { singleDollarTextMath: true }],
+        // Runs in both variants so {==…==} never leaks as literal braces;
+        // only the styling of the resulting mark/u differs.
+        remarkNotebook,
+      ]}
+      rehypePlugins={[
+        [
+          rehypeKatex,
+          {
+            output: "htmlAndMathml",
+            strict: false,
+            throwOnError: false,
+            trust: true,
+          },
+        ],
+      ]}
+      components={components}
+    >
+      {normalizeDisplayMath(markdown.replace(PART_MARKER_LINE, ""))}
+    </ReactMarkdown>
+  );
+}
+
+/**
+ * A marked half of the term (<!-- part: midterm | … -->) as its own panel.
+ *
+ * Why a panel and not a heading: a course glued from two halves reads as one
+ * long list otherwise, and it is easy to revise the wrong half. The left rail
+ * follows the app's two-volume rule — full primary for midterm, softened for
+ * final — and the Milestone / Flag icons match the exam badges elsewhere. The
+ * band text is a div, never a heading: extractToc() works on the Markdown text
+ * and must not see it. The markers are parsed by lib/docs/parts.ts.
+ */
+const PART_FALLBACK = {
+  midterm: { th: "ครึ่งแรก · สอบกลางภาค", en: "First half · Midterm" },
+  final: { th: "ครึ่งหลัง · สอบปลายภาค", en: "Second half · Final" },
+} satisfies Record<PartScope, LText>;
+
+function PartPanel({
+  part,
+  label,
+  markdown,
+  components,
+}: {
+  part: PartScope;
+  label?: string;
+  markdown: string;
+  components: Components;
+}) {
+  const { locale } = useLocale();
+  const text = label || t(PART_FALLBACK[part], locale);
+  const Icon = part === "midterm" ? Milestone : Flag;
+  return (
+    <section
+      data-part={part}
+      aria-label={text}
+      className={`my-8 rounded-2xl border border-l-4 bg-primary/[0.03] ${
+        part === "midterm" ? "border-l-primary" : "border-l-primary/40"
+      }`}
+    >
+      <div className="flex items-center gap-2 border-b px-4 sm:px-5 py-2.5 font-bold text-primary">
+        <Icon className="size-4 shrink-0" aria-hidden />
+        <span className="[overflow-wrap:anywhere]">{text}</span>
+      </div>
+      <div className="px-4 sm:px-5 py-2">
+        <MdChunk markdown={markdown} components={components} />
+      </div>
+    </section>
+  );
+}
+
+function renderChunk(chunk: DocChunk, key: number, components: Components) {
+  return chunk.part ? (
+    <PartPanel
+      key={key}
+      part={chunk.part}
+      label={chunk.label}
+      markdown={chunk.markdown}
+      components={components}
+    />
+  ) : (
+    <MdChunk key={key} markdown={chunk.markdown} components={components} />
+  );
+}
+
 export function MdView({
   markdown,
   assets,
@@ -576,30 +687,11 @@ export function MdView({
         notebook ? " md-notebook-view" : ""
       }`}
     >
-      <ReactMarkdown
-        remarkPlugins={[
-          remarkFrontmatter,
-          remarkGfm,
-          [remarkMath, { singleDollarTextMath: true }],
-          // Runs in both variants so {==…==} never leaks as literal braces;
-          // only the styling of the resulting mark/u differs.
-          remarkNotebook,
-        ]}
-        rehypePlugins={[
-          [
-            rehypeKatex,
-            {
-              output: "htmlAndMathml",
-              strict: false,
-              throwOnError: false,
-              trust: true,
-            },
-          ],
-        ]}
-        components={components}
-      >
-        {normalizeDisplayMath(markdown)}
-      </ReactMarkdown>
+      {hasParts(markdown) ? (
+        splitParts(markdown).map((chunk, i) => renderChunk(chunk, i, components))
+      ) : (
+        <MdChunk markdown={markdown} components={components} />
+      )}
     </div>
   );
 }

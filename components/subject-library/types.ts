@@ -149,6 +149,7 @@ export const L = {
   weeks: { th: "มุมมองรายสัปดาห์", en: "Week-by-week view" },
   week: { th: "สัปดาห์", en: "Week" },
   unweeked: { th: "ใช้ได้ทั้งเทอม", en: "Whole term" },
+  filesCount: { th: "ไฟล์", en: "files" },
   source: { th: "ต้นทาง", en: "Source" },
   sourceHint: { th: "เปิดไฟล์ต้นทางใน OnLearn", en: "Open the original on OnLearn" },
   showOlder: { th: "ฉบับเก่า", en: "Older editions" },
