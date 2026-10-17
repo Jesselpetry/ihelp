@@ -11,10 +11,11 @@ termId: Y1-S1
 prerequisites: []
 language: th
 semester: "1/2569"
-updated: "2026-10-15"
+updated: "2026-10-17"
 sources:
   - สไลด์ Lecture 00–11 และใบงานแล็บ 01–09, 12–13 (OnLearn 1/2569)
   - หัวข้อรายสัปดาห์ Week 11–15 ใน OnLearn (ณ 15 ต.ค. 2569)
+  - คลิปย้อนหลัง Lab 13–14 ที่ TA โพสต์ให้ชั้นเรียน (9 และ 16 ต.ค. 2569)
   - สไลด์แนะนำรายวิชาครึ่งหลัง ผศ.ดร. พรสุรีย์ แจ่มศรี (1/2569)
   - สไลด์ Week 12–15 ฉบับปีก่อน
   - คู่มือทบทวนกลางภาค Lecture 01–07
@@ -25,7 +26,7 @@ sources:
 > ภาพรวมของเทคโนโลยีสารสนเทศทั้งระบบ ตั้งแต่ข้อมูลกับสารสนเทศ ฮาร์ดแวร์ ระบบปฏิบัติการ ซอฟต์แวร์
 > ฐานข้อมูล จริยธรรมและกฎหมาย ไปจนถึงเครือข่าย — คู่กับแล็บเครื่องมือที่ใช้จริงทุกสัปดาห์
 >
-> **อัปเดตล่าสุด** 15 ต.ค. 2569 · ข้อมูลภาคเรียน 1/2569 (OnLearn เปิดครบ 15 หัวข้อ)
+> **อัปเดตล่าสุด** 17 ต.ค. 2569 · ข้อมูลภาคเรียน 1/2569 (OnLearn เปิดครบ 15 หัวข้อ)
 
 ## 1. ข้อมูลรายวิชา
 
@@ -87,7 +88,7 @@ sources:
 | 11 | Internet & Computer Networks 1 | Network 1 — Cisco Packet Tracer (1) · Layer 2 |
 | 12 | Computer Networks 2 | Network 2 — Cisco Packet Tracer (2) · router และ static route |
 | 13 | Wireless Networks | Web App 1 — HTML และ CSS · Profile Card + To-do List · AI CLI agent |
-| 14 | Web Technology | ไม่มีแล็บใน OnLearn |
+| 14 | Web Technology | Lab 14 (ศ. 16 ต.ค.) — หัวข้อ *ยังไม่ยืนยัน* · มีคลิปย้อนหลัง |
 | 15 | IT Skills and System | — |
 
 ## 3. สรุปเนื้อหารายหัวข้อ
