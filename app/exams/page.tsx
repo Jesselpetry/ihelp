@@ -1,9 +1,10 @@
 import { redirect } from "next/navigation";
 import type { Metadata } from "next";
-import { FileLock2, Lock } from "lucide-react";
+import { Lock, CalendarDays } from "lucide-react";
+import Link from "next/link";
 
+import { FileLinkCard } from "@/components/media/file-link-card";
 import { Navbar } from "@/components/navbar";
-import { Badge } from "@/components/ui/badge";
 import { findCourseByCode } from "@/lib/courses/catalog";
 import { listExamsForInsider } from "@/lib/library/exams";
 import { ForbiddenError, UnauthorizedError } from "@/lib/auth/guards";
@@ -37,6 +38,13 @@ export default async function ExamsPage() {
               ข้อสอบเก่าเป็นเนื้อหาที่จำกัดการเข้าถึง
               หากคุณควรมีสิทธิ์เข้าถึง กรุณาติดต่อผู้ดูแลระบบ
             </p>
+            <Link
+              href="/exam-schedule"
+              className="mt-2 inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-xs font-semibold text-primary hover:bg-primary/20 transition-colors"
+            >
+              <CalendarDays className="size-4" />
+              <span>ค้นหาตารางสอบ & ผังที่นั่งสอบรายบุคคล</span>
+            </Link>
           </main>
         </>
       );
@@ -65,34 +73,14 @@ export default async function ExamsPage() {
               const course = findCourseByCode(item.subjectCode);
               return (
                 <li key={item.id}>
-                  <a
-                    href={item.signedUrl ?? undefined}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-disabled={!item.signedUrl}
-                    className={
-                      "flex h-full flex-col gap-2 rounded-lg border bg-card p-4 transition-colors " +
-                      (item.signedUrl
-                        ? "hover:border-primary/40 hover:bg-muted/40"
-                        : "pointer-events-none opacity-50")
-                    }
-                  >
-                    <FileLock2 className="size-4 text-muted-foreground" />
-                    <p className="font-medium leading-snug text-pretty">
-                      {item.title}
-                    </p>
-                    <div className="mt-auto flex flex-wrap items-center gap-1.5 pt-1">
-                      <Badge variant="outline">
-                        {course?.code ?? item.subjectCode}
-                      </Badge>
-                      <Badge variant="secondary">
-                        {SCOPE_LABELS[item.scope]}
-                      </Badge>
-                      <span className="ml-auto text-xs text-muted-foreground">
-                        {item.examYear}
-                      </span>
-                    </div>
-                  </a>
+                  <FileLinkCard
+                    kind="restricted"
+                    href={item.signedUrl}
+                    title={item.title}
+                    code={course?.code ?? item.subjectCode}
+                    labels={[SCOPE_LABELS[item.scope]]}
+                    note={item.examYear}
+                  />
                 </li>
               );
             })}

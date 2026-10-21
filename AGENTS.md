@@ -80,6 +80,7 @@ Node — use `bun run dev`, never `bun --bun next`.
 | Library week view (ITF, ICS) | `lib/library/course-weeks.ts` | `library:index` |
 | Library files | `public/assets/<ns>/<subject>/<category>/<kebab-name>` (gitignored) | `library:build` → `library:audit` → `assets:sync` |
 | Quiz banks | `lib/quiz/*.ts`, notes in `data/it-kmitl/<subject>/` | `content:check` |
+| Study space (`/profile/<id>/study`, owner only) — a student's day plan; course weeks, links, exam dates | personal plans: `lib/study-space/plans/` (`server-only`; `plans/index.ts` maps student ID → plan, and the page renders only when the session's verified ID matches the URL and has a plan) · shared: `lib/study-space/units.ts`, `links.ts`, `subjects.ts` ([docs/STUDY_SPACE.md](./docs/STUDY_SPACE.md)) | `tsc`, then open every changed link |
 | PSCP problems | the archive repo's `OP` branch | `pscp:build` |
 | UI | `app/`, `components/` (`components/ui/` = shadcn primitives) | `lint` |
 
@@ -160,5 +161,6 @@ Known baseline (16 Oct 2026): `bun run lint` already exits 1 — 13 errors in th
 | [docs/LEARNING_BLUEPRINT.md](./docs/LEARNING_BLUEPRINT.md) | the 11-module spine, bindings, readiness |
 | [docs/Current_Architecture_Report.md](./docs/Current_Architecture_Report.md) | architecture review and known inconsistencies |
 | [docs/FONTS.md](./docs/FONTS.md) | typography rules for the reader |
+| [docs/STUDY_SPACE.md](./docs/STUDY_SPACE.md) | personal study space, timer preset and 22-day exam quota tracker |
 | [lib/README.md](./lib/README.md) | the `lib/` folder and its import boundaries |
 | [content/courses/README.md](./content/courses/README.md) | course content status and gaps |

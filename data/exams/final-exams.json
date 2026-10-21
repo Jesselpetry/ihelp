@@ -1,0 +1,175 @@
+{
+  "student_id": "69070027",
+  "faculty": "Information Technology",
+  "program": "Information Technology (IT1)",
+  "cohort_order": "1-70 (ลำดับที่ 27)",
+  "semester": "1/2569 (1/2026)",
+  "central_final_exams": [
+    {
+      "course_code": "06016402",
+      "course_name": "IT Fundamentals",
+      "course_name_th": "พื้นฐานทางด้านเทคโนโลยีสารสนเทศ",
+      "short_name": "ITF",
+      "credits": "3(2-2-5)",
+      "sections": {
+        "theory": {
+          "section": 1,
+          "day": "อังคาร (Tue)",
+          "time": "14:00 - 16:00",
+          "room": "Audi IT",
+          "instructors": [
+            "ศ. ดร. กิติ์สุชาต พสุภา",
+            "ผศ. ดร. พรสุรีย์ แจ่มศรี",
+            "ผศ. ดร. สุวิทย์ ภูมิฤทธิกุล"
+          ]
+        },
+        "practice": {
+          "section": 4,
+          "day": "ศุกร์ (Fri)",
+          "time": "09:00 - 11:00",
+          "room": "Lab 434 IT",
+          "instructors": [
+            "ศ. ดร. กิติ์สุชาต พสุภา",
+            "ผศ. ดร. พรสุรีย์ แจ่มศรี",
+            "ผศ. ดร. สุวิทย์ ภูมิฤทธิกุล"
+          ]
+        }
+      },
+      "final_exam": {
+        "date_th": "อังคาร 3 พฤศจิกายน 2569",
+        "date_en": "Tuesday, 3 November 2026",
+        "date_iso": "2026-11-03",
+        "time": "13:30 - 16:30",
+        "duration_hours": 3,
+        "type": "ตารางสอบส่วนกลาง (Central Final Exam)"
+      }
+    },
+    {
+      "course_code": "06016411",
+      "course_name": "Intro to Computer Systems",
+      "course_name_th": "ระบบคอมพิวเตอร์เบื้องต้น",
+      "short_name": "ICS",
+      "credits": "3(2-2-5)",
+      "sections": {
+        "theory": {
+          "section": 1,
+          "day": "จันทร์ (Mon)",
+          "time": "09:00 - 11:00",
+          "room": "Project Base3 ชั้น 3 IT",
+          "instructors": [
+            "ผศ. ดร. สุภกิจ นุตยะสกุล",
+            "ศ. ดร. สุขสันต์ พาณิชพาพิบูล"
+          ]
+        },
+        "practice": {
+          "section": 4,
+          "day": "ศุกร์ (Fri)",
+          "time": "11:00 - 13:00",
+          "room": "L207 IT",
+          "instructors": [
+            "ผศ. ดร. สุภกิจ นุตยะสกุล",
+            "ศ. ดร. สุขสันต์ พาณิชพาพิบูล"
+          ]
+        }
+      },
+      "final_exam": {
+        "date_th": "ศุกร์ 6 พฤศจิกายน 2569",
+        "date_en": "Friday, 6 November 2026",
+        "date_iso": "2026-11-06",
+        "time": "09:30 - 12:30",
+        "duration_hours": 3,
+        "type": "ตารางสอบส่วนกลาง (Central Final Exam)"
+      }
+    },
+    {
+      "course_code": "06066303",
+      "course_name": "Problem Solving and Computer Programming",
+      "course_name_th": "การแก้ปัญหาและการโปรแกรมคอมพิวเตอร์",
+      "short_name": "PSCP",
+      "credits": "3(2-2-5)",
+      "sections": {
+        "theory": {
+          "section": 1,
+          "day": "จันทร์ (Mon)",
+          "time": "11:00 - 13:00",
+          "room": "slope IT",
+          "instructors": [
+            "รศ. ดร. โชติพัชร์ ภรณวลัย"
+          ]
+        },
+        "practice": {
+          "section": 5,
+          "day": "ศุกร์ (Fri)",
+          "time": "14:00 - 16:00",
+          "room": "L203 IT",
+          "instructors": [
+            "รศ. ดร. โชติพัชร์ ภรณวลัย"
+          ]
+        }
+      },
+      "final_exam": {
+        "date_th": "จันทร์ 9 พฤศจิกายน 2569",
+        "date_en": "Monday, 9 November 2026",
+        "date_iso": "2026-11-09",
+        "time": "13:30 - 16:30",
+        "duration_hours": 3,
+        "type": "ตารางสอบส่วนกลาง (Central Final Exam)"
+      }
+    },
+    {
+      "course_code": "06016401",
+      "course_name": "Mathematics for Information Technology",
+      "course_name_th": "คณิตศาสตร์สำหรับเทคโนโลยีสารสนเทศ",
+      "short_name": "MFIT",
+      "credits": "3(3-0-6)",
+      "sections": {
+        "theory": {
+          "section": 1,
+          "day": "อังคาร (Tue)",
+          "time": "09:00 - 12:00",
+          "room": "M 22 IT",
+          "instructors": [
+            "ผศ. ดร. สมเกียรติ วังศิริพิทักษ์",
+            "ผศ. ดร. ประพันธ์ ปวรางกูร"
+          ]
+        }
+      },
+      "final_exam": {
+        "date_th": "พุธ 11 พฤศจิกายน 2569",
+        "date_en": "Wednesday, 11 November 2026",
+        "date_iso": "2026-11-11",
+        "time": "13:30 - 16:30",
+        "duration_hours": 3,
+        "type": "ตารางสอบส่วนกลาง (Central Final Exam)"
+      }
+    }
+  ],
+  "in_class_or_arranged_exams": [
+    {
+      "course_code": "90641001",
+      "course_name": "Charm School",
+      "course_name_th": "โรงเรียนสร้างเสน่ห์",
+      "short_name": "CHARM",
+      "credits": "2(1-2-3)",
+      "class_time": "พุธ 13:00 - 16:00",
+      "sections_available": "959 - 964",
+      "final_exam": {
+        "status": "จัดสอบเอง",
+        "note": "ผู้สอนนัดหมายการสอบหรือประเมินผลในชั้นเรียน"
+      }
+    },
+    {
+      "course_code": "90644007",
+      "course_name": "Foundation English",
+      "course_name_th": "ภาษาอังกฤษพื้นฐาน 1",
+      "short_name": "FE",
+      "credits": "3(3-0-6)",
+      "class_time": "พฤหัสบดี 13:00 - 16:00",
+      "sections_available": "951 - 954 (สำหรับไอที)",
+      "final_exam": {
+        "status": "จัดสอบเอง",
+        "note": "ผู้สอนนัดหมายการสอบหรือประเมินผลในชั้นเรียน"
+      }
+    }
+  ]
+}
