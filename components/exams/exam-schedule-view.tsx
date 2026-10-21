@@ -26,6 +26,7 @@ import {
   ExternalLink,
   Printer,
   Plane,
+  Volume2,
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -54,6 +55,7 @@ import type {
 } from "@/lib/exams/types";
 import { RoomSeatingChart } from "./room-seating-chart";
 import { PromoBanner } from "./promo-banner";
+import { RESIGN_SOUND } from "@/lib/exams/resign-sound";
 
 const L: Record<string, LText> = {
   title: { th: "ตารางสอบ & ผังที่นั่งสอบ", en: "Exam Schedule & Seating" },
@@ -129,7 +131,9 @@ export function ExamScheduleView({
     trip: false,
   });
   const [showResignModal, setShowResignModal] = useState(false);
+  const [showSoundConfirm, setShowSoundConfirm] = useState(false);
   const lobotomyAudioRef = useRef<HTMLAudioElement | null>(null);
+  const fadeTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   // Check each banner's 24-hour dismissal status or hard reload reset
   useEffect(() => {
@@ -195,28 +199,65 @@ export function ExamScheduleView({
     return () => clearInterval(timer);
   }, [activeBannerIds.length, bannerPaused]);
 
-  const triggerEmergencyResign = () => {
+  const stopFade = () => {
+    if (fadeTimerRef.current) clearInterval(fadeTimerRef.current);
+    fadeTimerRef.current = null;
+  };
+
+  /** Open the form and play the sound, ramping up to `volume` (0-1). */
+  const startResign = (volume: number) => {
     setShowResignModal(true);
     try {
       if (!lobotomyAudioRef.current) {
         lobotomyAudioRef.current = new Audio("/audio/lobotomy.mp3");
       }
-      lobotomyAudioRef.current.currentTime = 0;
-      lobotomyAudioRef.current.volume = 0.85;
-      lobotomyAudioRef.current.play().catch((e) => {
+      const audio = lobotomyAudioRef.current;
+      stopFade();
+      audio.currentTime = 0;
+      audio.volume = 0;
+      audio.play().catch((e) => {
         console.warn("SFX autoplay blocked:", e);
       });
+
+      const steps = Math.max(1, Math.round(RESIGN_SOUND.fadeInMs / 50));
+      let step = 0;
+      fadeTimerRef.current = setInterval(() => {
+        step += 1;
+        audio.volume = Math.min(volume, (step / steps) * volume);
+        if (step >= steps) stopFade();
+      }, 50);
     } catch (e) {
       console.warn("Failed to play audio:", e);
     }
   };
 
+  // "กดเลย": in loud mode ask first, otherwise play at the normal volume.
+  const triggerEmergencyResign = () => {
+    if (RESIGN_SOUND.loud) setShowSoundConfirm(true);
+    else startResign(RESIGN_SOUND.normalVolume);
+  };
+
+  const confirmLoudResign = () => {
+    setShowSoundConfirm(false);
+    startResign(1);
+  };
+
   const closeResignModal = () => {
+    stopFade();
     if (lobotomyAudioRef.current) {
       lobotomyAudioRef.current.pause();
     }
     setShowResignModal(false);
   };
+
+  useEffect(() => {
+    if (!showSoundConfirm) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setShowSoundConfirm(false);
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [showSoundConfirm]);
 
   useEffect(() => {
     if (!showResignModal) return;
@@ -1384,6 +1425,53 @@ export function ExamScheduleView({
             </div>
           </div>
         </>
+      )}
+
+      {/* Loud-mode confirm: shown before the sound plays at full volume */}
+      {showSoundConfirm && (
+        <div
+          role="alertdialog"
+          aria-modal="true"
+          aria-labelledby="sound-confirm-title"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setShowSoundConfirm(false);
+          }}
+          className="fixed inset-0 z-[110] flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm animate-in fade-in duration-200"
+        >
+          <div className="w-full max-w-sm rounded-3xl border bg-card p-5 shadow-xl sm:p-6">
+            <div className="mx-auto mb-3 flex size-12 items-center justify-center rounded-full bg-red-500/10 text-red-600 dark:text-red-400">
+              <Volume2 className="size-6" />
+            </div>
+            <h3
+              id="sound-confirm-title"
+              className="text-center text-base font-bold text-foreground sm:text-lg"
+            >
+              เสียงจะดังที่สุด
+            </h3>
+            <p className="mt-2 text-center text-sm text-muted-foreground">
+              เสียงจะเล่นที่ระดับสูงสุดที่เบราว์เซอร์อนุญาต
+              ถอดหูฟังและลดระดับเสียงของอุปกรณ์ก่อน
+              หากอยู่ในที่ที่เสียงดังไม่เหมาะสม ให้กดยกเลิก
+            </p>
+            <div className="mt-5 flex flex-col-reverse gap-2 sm:flex-row sm:justify-center">
+              <button
+                type="button"
+                autoFocus
+                onClick={() => setShowSoundConfirm(false)}
+                className="h-9 rounded-full border px-5 text-sm font-semibold text-foreground transition-colors hover:bg-muted cursor-pointer"
+              >
+                ยกเลิก
+              </button>
+              <button
+                type="button"
+                onClick={confirmLoudResign}
+                className="h-9 rounded-full bg-red-600 px-5 text-sm font-semibold text-white transition-colors hover:bg-red-700 cursor-pointer"
+              >
+                เล่นเสียงดังสุด
+              </button>
+            </div>
+          </div>
+        </div>
       )}
 
       {/* 🚨 Minimal Dark Resignation Document Modal */}
