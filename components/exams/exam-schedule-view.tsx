@@ -896,7 +896,7 @@ export function ExamScheduleView({
                           onClick={() =>
                             toggleCourseSeating(upcomingExam.course_code)
                           }
-                          className="rounded-xl text-xs gap-1.5 h-8.5 px-4 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-xs transition-all"
+                          className="rounded-full text-xs gap-1.5 h-8.5 px-4 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-xs transition-all"
                         >
                           <Armchair className="size-3.5" />
                           <span>
@@ -1095,12 +1095,12 @@ export function ExamScheduleView({
 
                                 {seatingSession && (
                                   <Button
-                                    variant="secondary"
+                                    variant="default"
                                     size="sm"
                                     onClick={() =>
                                       toggleCourseSeating(exam.course_code)
                                     }
-                                    className="rounded-xl text-xs gap-1.5 h-8.5 px-3.5 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 font-semibold transition-all"
+                                    className="rounded-full text-xs gap-1.5 h-8.5 px-4 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-xs transition-all"
                                   >
                                     <Armchair className="size-3.5" />
                                     <span>
