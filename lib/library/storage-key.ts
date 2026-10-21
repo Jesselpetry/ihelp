@@ -1,6 +1,7 @@
 /**
- * Maps a library asset's public path to its object key in the `ihelp-library`
- * Supabase Storage bucket.
+ * Maps a library asset's public path to its object key in the library's
+ * Supabase Storage buckets: `ihelp-library`, and `ihelp-library-exams` for past
+ * exams, which uses the same key.
  *
  * Supabase rejects non-ASCII object keys outright (400 InvalidKey), and one
  * file in the library is named in Thai — with more likely to follow, since the
@@ -9,9 +10,10 @@
  * deriving a Thai title and download filename from the real name, and only the
  * key — which nobody reads — is transliterated.
  *
- * Both the uploader (scripts/sync-library-assets.ts) and the URL resolver
- * (lib/asset-url.ts) call this, so the two can never disagree about where a
- * file lives.
+ * The uploader (scripts/sync-library-assets.ts), the public URL resolver
+ * (lib/library/asset-url.ts) and the signer for past exams
+ * (lib/library/library-exams.ts) all call this, so they can never disagree
+ * about where a file lives.
  */
 
 /**

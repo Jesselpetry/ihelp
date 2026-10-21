@@ -195,13 +195,21 @@ export const L = {
   },
 } satisfies Record<string, LText>;
 
-/** "12 หน้า · 3.4 MB", dropping whichever half is unknown. */
-export function metaLine(asset: SubjectAsset, locale: "th" | "en"): string {
+/** "12 หน้า · 3.4 MB", dropping whichever half is unknown — empty when neither is. */
+export function fileFacts(asset: SubjectAsset, locale: "th" | "en"): string {
   const parts: string[] = [];
   if (asset.pages) parts.push(`${asset.pages} ${t(L.pages, locale)}`);
   if (asset.sizeBytes) parts.push(formatBytes(asset.sizeBytes));
-  if (parts.length === 0) return asset.fileName;
   return parts.join(" · ");
+}
+
+/**
+ * The same facts, falling back to the file name so a card never prints a blank
+ * line. Where a name beside it would only repeat itself — the modal header —
+ * use `fileFacts` and let the line be empty.
+ */
+export function metaLine(asset: SubjectAsset, locale: "th" | "en"): string {
+  return fileFacts(asset, locale) || asset.fileName;
 }
 
 const CHAPTER_TAG = /^(ch\.|บทที่|week|unit|lecture\s|สัปดาห์)/i;

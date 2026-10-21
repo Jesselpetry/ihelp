@@ -4,8 +4,9 @@
  * scripts/sync-library-assets.ts (uploads) and scripts/library-audit.ts
  * (`--remote`, read-only) both have to answer "what is already in the bucket?",
  * and they must answer it the same way: the audit calls a file uploaded exactly
- * when the uploader would skip it. So the bucket names, the credentials lookup
- * and the listing live here once.
+ * when the uploader would skip it. So the credentials lookup and the listing
+ * live here once, and the two library bucket names are the app's own, from
+ * lib/storage/buckets.ts, under the names these scripts have always used.
  *
  * Nothing in this file writes. The one request is Storage's list endpoint — a
  * POST, but a read — and the service key goes into a request header only: it is
@@ -14,15 +15,17 @@
 import fs from "node:fs";
 import path from "node:path";
 
+import { BUCKETS } from "../lib/storage/buckets";
+
 /** Public bucket: every library file except past exams. */
-export const LIBRARY_BUCKET = "ihelp-library";
+export const LIBRARY_BUCKET = BUCKETS.library;
 
 /**
  * Past exams are insider-only, so they go to a private bucket instead. Keeping
  * the same object key in both means reclassifying a file is a move, not a
- * rename. See lib/library-exams.ts for the read side.
+ * rename. See lib/library/library-exams.ts for the read side.
  */
-export const RESTRICTED_BUCKET = "ihelp-library-exams";
+export const RESTRICTED_BUCKET = BUCKETS.libraryExams;
 
 export interface StorageConfig {
   url: string;

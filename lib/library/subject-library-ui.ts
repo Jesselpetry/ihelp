@@ -3,7 +3,7 @@ import type { LText } from "@/lib/i18n";
 /**
  * The half of the subject library that a Client Component may import.
  *
- * lib/subject-library.ts imports library-manifest.json and library-stats.json
+ * lib/library/subject-library.ts imports library-manifest.json and library-stats.json
  * at module scope, so anything a client component pulls from it drags both
  * files — every asset's title, filename and size, past exams included — into
  * the browser bundle. Splitting the presentation constants out keeps that
@@ -317,8 +317,8 @@ export function formatBytes(bytes: number): string {
  * path rule alone silently publishes them. The path check is kept as a second
  * net for anything dropped into an `exams/` folder before it is categorised.
  *
- * Keep this in step with scripts/sync-library-assets.ts, which decides from the
- * same rule which bucket a file is uploaded to.
+ * bucketForAsset() in lib/storage/buckets.ts turns this answer into a bucket for
+ * the uploader, the audit and the index builder, so the rule lives only here.
  */
 export function isRestrictedAsset(asset: {
   url: string;

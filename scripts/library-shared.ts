@@ -27,6 +27,8 @@ import { COURSES, courseDir } from "../lib/courses/catalog";
 import { COURSE_BINDINGS } from "../lib/courses/course-bindings";
 import { resolveCourseSpine } from "../lib/courses/course-spine";
 import { STANDARD_SPINE } from "../lib/courses/spine";
+import { readDocTable, textTableFromHast, type HastNode } from "../lib/docs/doc-table";
+import { REMARK_MATH_OPTIONS, normalizeDisplayMath } from "../lib/docs/markdown";
 import { remarkNotebook } from "../lib/docs/remark-notebook";
 import { scheduleForCourse } from "../lib/library/course-weeks";
 import LIBRARY_MANIFEST from "../lib/library/library-manifest.json";
@@ -35,7 +37,7 @@ import { t } from "../lib/ltext";
 import { storageKey } from "../lib/library/storage-key";
 import { SUBJECT_ASSETS, mergedAssets } from "../lib/library/subject-library";
 import { isRestrictedAsset, type SubjectAsset } from "../lib/library/subject-library-ui";
-import { LIBRARY_BUCKET, RESTRICTED_BUCKET } from "./storage-keys";
+import { BUCKETS, bucketForAsset } from "../lib/storage/buckets";
 
 export { ROOT };
 
@@ -54,7 +56,7 @@ export type DocRole =
   | "data"
   | "readme"
   | "virtual";
-export type BucketName = typeof LIBRARY_BUCKET | typeof RESTRICTED_BUCKET;
+export type BucketName = (typeof BUCKETS)["library" | "libraryExams"];
 
 export interface TextPair {
   th: string;
@@ -241,13 +243,9 @@ export function bareUrl(url: string): string {
 
 // ── Markdown: what a doc's file tables resolve to ───────────────────────────
 
-/** The few fields of a hast node the table walk reads. */
-export interface HastNode {
-  type: string;
-  tagName?: string;
-  value?: string;
-  children?: HastNode[];
-}
+// The shape react-markdown's `table` component hands over: createTableReader
+// collects these and tableFileRefs reads them.
+export type { HastNode };
 
 /** One cell in a doc's file column, and the card (if any) it lands on. */
 export interface FileRef {
@@ -255,103 +253,21 @@ export interface FileRef {
   matched: SubjectAsset | undefined;
 }
 
-function hastText(node: HastNode | undefined): string {
-  if (!node) return "";
-  if (node.type === "text") return node.value ?? "";
-  return (node.children ?? []).map((child) => hastText(child)).join("");
-}
-
-function childElements(parent: HastNode | undefined, tagName: string): HastNode[] {
-  return (parent?.children ?? []).filter((c) => c.type === "element" && c.tagName === tagName);
-}
-
 /**
- * The file cards a doc's table turns into — the rules of `parseSessionDocTable`
- * in components/md-view.tsx, copied rule for rule. That function is not
- * exported (the file is a Client Component full of CSS imports), so the audit
- * cannot call it; keep the two in step. What is deliberately left out is the
- * title and pages columns: they decide what a card says, never whether a row
- * becomes a card or which asset it lands on.
+ * The file cards a doc's table turns into. The rules — what makes a table a
+ * document table, which column holds the files, how a name finds its card —
+ * are lib/docs/doc-table.ts's, the same ones the reader applies
+ * (components/md-view.tsx), so the audit judges the page readers actually get.
+ * What is left here is what the index needs: the file name each row names and
+ * the card it lands on. The title and pages columns are dropped: they decide
+ * what a card says, never whether a row becomes a card or which asset it lands on.
  *
  * Returns null when the table is not a document table.
  */
 export function tableFileRefs(node: HastNode | undefined, assets: SubjectAsset[]): FileRef[] | null {
-  if (!node || node.tagName !== "table") return null;
-
-  const thead = childElements(node, "thead")[0];
-  const tbody = childElements(node, "tbody")[0];
-  if (!thead || !tbody) return null;
-
-  const headerRow = childElements(thead, "tr")[0];
-  if (!headerRow) return null;
-
-  const headers = childElements(headerRow, "th").map((cell) => hastText(cell).trim().toLowerCase());
-
-  // A status table that happens to mention a file is a status table.
-  const isStatusTable = headers.some(
-    (h) => h.includes("สถานะ") || h.includes("status") || h.includes("ผลกระทบ"),
-  );
-  if (isStatusTable) return null;
-
-  const isDocTable =
-    headers.some((h) => h.includes("ไฟล์ในคลัง") || h.includes("คลัง")) ||
-    (headers.some(
-      (h) => h.includes("เอกสาร") || h.includes("document") || h.includes("title") || h.includes("ชื่อ"),
-    ) &&
-      headers.some((h) => h.includes("ไฟล์") || h.includes("file")));
-  if (!isDocTable) return null;
-
-  let fileColIdx = headers.findIndex((h) => h.includes("ไฟล์") || h.includes("file"));
-
-  const rows = childElements(tbody, "tr");
-  if (rows.length === 0) return null;
-
-  // No file column in the header: fall back to the first row's first cell that
-  // reads like a filename.
-  if (fileColIdx === -1) {
-    const firstRowTexts = childElements(rows[0], "td").map((cell) => hastText(cell));
-    const candidate = firstRowTexts.findIndex((text) =>
-      /\.(pdf|png|jpg|docx|pptx)$/i.test(text.replace(/[`'"]/g, "").trim()),
-    );
-    if (candidate !== -1) fileColIdx = candidate;
-  }
-  if (fileColIdx === -1) return null;
-
-  const refs: FileRef[] = [];
-  for (const row of rows) {
-    const cells = childElements(row, "td");
-    if (!cells[fileColIdx]) continue;
-
-    const rawFileName = hastText(cells[fileColIdx]).replace(/[`'"]/g, "").trim();
-    if (!rawFileName) continue;
-
-    const cleanName = rawFileName.toLowerCase();
-    const baseName = cleanName.replace(/\.[^/.]+$/, "");
-    const matched = assets.find((a) => {
-      const aFile = a.fileName.toLowerCase();
-      return (
-        aFile === cleanName ||
-        aFile === `${cleanName}.pdf` ||
-        aFile.replace(/\.[^/.]+$/, "") === baseName
-      );
-    });
-    refs.push({ fileName: rawFileName, matched });
-  }
-
-  return refs.length > 0 ? refs : null;
-}
-
-/**
- * MdView feeds react-markdown a document with display math rewritten onto its
- * own lines first (see normalizeDisplayMath in components/md-view.tsx). A `$$`
- * pair inside a table row would break the table, so the same rewrite has to
- * happen before parsing here or the two would disagree about where tables are.
- */
-function normalizeDisplayMath(markdown: string): string {
-  return markdown.replace(/\$\$([\s\S]*?)\$\$/g, (_match, body: string) => {
-    const trimmed = body.trim();
-    return trimmed ? `\n\n$$\n${trimmed}\n$$\n\n` : "$$$$";
-  });
+  const table = textTableFromHast(node);
+  const rows = table ? readDocTable(table, assets) : null;
+  return rows ? rows.map((row) => ({ fileName: row.fileName, matched: row.matchedAsset })) : null;
 }
 
 /**
@@ -361,8 +277,10 @@ function normalizeDisplayMath(markdown: string): string {
  * It runs react-markdown itself rather than a look-alike: raw HTML in a cell
  * (`<br>`) becomes literal text there, which changes what a filename cell
  * reads as, and only the real pipeline does exactly that. The plugin list is
- * MdView's, minus rehype-katex — a math cell is never a filename. The packages
- * are ESM-only, hence the dynamic imports (this file runs as CJS under tsx).
+ * MdView's, minus rehype-katex — a math cell is never a filename — and its
+ * options, like the display-math rewrite that runs before parsing, come from
+ * lib/docs/markdown.ts so the two cannot drift. The packages are ESM-only,
+ * hence the dynamic imports (this file runs as CJS under tsx).
  */
 export async function createTableReader(): Promise<(markdown: string) => HastNode[]> {
   const [{ default: ReactMarkdown }, { default: remarkGfm }, { default: remarkFrontmatter }, { default: remarkMath }] =
@@ -376,7 +294,7 @@ export async function createTableReader(): Promise<(markdown: string) => HastNod
   const remarkPlugins: ComponentProps<typeof ReactMarkdown>["remarkPlugins"] = [
     remarkFrontmatter,
     remarkGfm,
-    [remarkMath, { singleDollarTextMath: true }],
+    [remarkMath, REMARK_MATH_OPTIONS],
     remarkNotebook,
   ];
 
@@ -581,7 +499,7 @@ export async function buildResourceIndex(): Promise<BuildResult> {
         path: isFile ? `public${bare}` : null,
         fileName: asset.fileName,
         storage: isFile
-          ? { bucket: restricted ? RESTRICTED_BUCKET : LIBRARY_BUCKET, key: storageKey(bare) }
+          ? { bucket: BUCKETS[bucketForAsset(asset)], key: storageKey(bare) }
           : null,
         access: restricted ? "insider" : "member",
         week: asset.week ?? asset.chapter ?? null,

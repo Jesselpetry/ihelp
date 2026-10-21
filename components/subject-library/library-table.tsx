@@ -6,19 +6,14 @@ import {
   ArrowDown,
   ArrowUp,
   ArrowUpDown,
-  Check,
   ChevronRight,
-  Copy,
-  Download,
-  Eye,
   Images,
   Layers,
 } from "lucide-react";
-import { assetDownloadUrl } from "@/lib/library/asset-url";
+import { FileActions } from "@/components/media/file-actions";
 import { useLocale, t } from "@/lib/i18n";
 import { formatBytes, resolveCategory, type SubjectAsset } from "@/lib/library/subject-library-ui";
 import { ScopeBadge, StatusBadges } from "./badges";
-import { SourceLink } from "./card-actions";
 import {
   CATEGORY,
   chapterTag,
@@ -282,33 +277,14 @@ export function SubjectLibraryTable({
                           .join(" · ")}
                       </td>
                       <td className="sticky right-0 z-10 w-28 whitespace-nowrap bg-card/95 backdrop-blur-xs py-2.5 pl-2 pr-4 text-right shadow-[-6px_0_10px_-4px_rgba(0,0,0,0.06)]">
-                        <div className="flex items-center justify-end gap-1">
-                          <button
-                            type="button"
-                            onClick={() => onOpenStack(entry.assets, 0)}
-                            aria-label={t(L.preview, locale)}
-                            className="rounded-full p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-primary"
-                          >
-                            <Eye className="size-3.5" />
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => copyUrl(entry.key, firstAsset.url)}
-                            aria-label={t(L.copyLink, locale)}
-                            title={
-                              isCopied
-                                ? t(L.linkCopied, locale)
-                                : t(L.copyLink, locale)
-                            }
-                            className="rounded-full p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-primary"
-                          >
-                            {isCopied ? (
-                              <Check className="size-3.5 text-emerald-600" />
-                            ) : (
-                              <Copy className="size-3.5" />
-                            )}
-                          </button>
-                        </div>
+                        <FileActions
+                          variant="table"
+                          onPreview={() => onOpenStack(entry.assets, 0)}
+                          copy={{
+                            copied: isCopied,
+                            onCopy: () => copyUrl(entry.key, firstAsset.url),
+                          }}
+                        />
                       </td>
                     </tr>
                     {isExpanded &&
@@ -356,41 +332,15 @@ export function SubjectLibraryTable({
                                 : "—"}
                             </td>
                             <td className="sticky right-0 z-10 w-28 whitespace-nowrap bg-muted/20 backdrop-blur-xs py-2 pl-2 pr-4 text-right shadow-[-6px_0_10px_-4px_rgba(0,0,0,0.06)]">
-                              <div className="flex items-center justify-end gap-1">
-                                <button
-                                  type="button"
-                                  onClick={() =>
-                                    onOpenStack(entry.assets, pageIdx)
-                                  }
-                                  aria-label={t(L.preview, locale)}
-                                  className="rounded-full p-1 text-muted-foreground transition-colors hover:bg-muted hover:text-primary"
-                                >
-                                  <Eye className="size-3" />
-                                </button>
-                                <a
-                                  href={assetDownloadUrl(
-                                    asset.url,
-                                    asset.fileName,
-                                  )}
-                                  download={asset.fileName}
-                                  aria-label={`${t(L.download, locale)}: ${asset.fileName}`}
-                                  className="rounded-full p-1 text-muted-foreground transition-colors hover:bg-muted hover:text-primary"
-                                >
-                                  <Download className="size-3" />
-                                </a>
-                                <button
-                                  type="button"
-                                  onClick={() => copyUrl(asset.id, asset.url)}
-                                  aria-label={t(L.copyLink, locale)}
-                                  className="rounded-full p-1 text-muted-foreground transition-colors hover:bg-muted hover:text-primary"
-                                >
-                                  {pageCopied ? (
-                                    <Check className="size-3 text-emerald-600" />
-                                  ) : (
-                                    <Copy className="size-3" />
-                                  )}
-                                </button>
-                              </div>
+                              <FileActions
+                                file={asset}
+                                variant="subrow"
+                                onPreview={() => onOpenStack(entry.assets, pageIdx)}
+                                copy={{
+                                  copied: pageCopied,
+                                  onCopy: () => copyUrl(asset.id, asset.url),
+                                }}
+                              />
                             </td>
                           </tr>
                         );
@@ -488,54 +438,15 @@ export function SubjectLibraryTable({
                     {meta || "—"}
                   </td>
                   <td className="sticky right-0 z-10 w-28 whitespace-nowrap bg-card/95 backdrop-blur-xs py-2.5 pl-2 pr-4 text-right shadow-[-6px_0_10px_-4px_rgba(0,0,0,0.06)]">
-                    <div className="flex items-center justify-end gap-1">
-                      {asset.fileType === "md" ? (
-                        <Link
-                          href={asset.url}
-                          aria-label={t(L.viewContent, locale)}
-                          className="rounded-full p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-primary"
-                        >
-                          <Eye className="size-3.5" />
-                        </Link>
-                      ) : (
-                        <button
-                          type="button"
-                          onClick={() => onOpenSingle(asset)}
-                          aria-label={t(L.preview, locale)}
-                          className="rounded-full p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-primary"
-                        >
-                          <Eye className="size-3.5" />
-                        </button>
-                      )}
-                      {asset.fileType !== "md" && (
-                        <a
-                          href={assetDownloadUrl(asset.url, asset.fileName)}
-                          download={asset.fileName}
-                          aria-label={`${t(L.download, locale)}: ${asset.fileName}`}
-                          className="rounded-full p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-primary"
-                        >
-                          <Download className="size-3.5" />
-                        </a>
-                      )}
-                      <SourceLink asset={asset} />
-                      <button
-                        type="button"
-                        onClick={() => copyUrl(asset.id, asset.url)}
-                        aria-label={t(L.copyLink, locale)}
-                        title={
-                          isCopied
-                            ? t(L.linkCopied, locale)
-                            : t(L.copyLink, locale)
-                        }
-                        className="rounded-full p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-primary"
-                      >
-                        {isCopied ? (
-                          <Check className="size-3.5 text-emerald-600" />
-                        ) : (
-                          <Copy className="size-3.5" />
-                        )}
-                      </button>
-                    </div>
+                    <FileActions
+                      file={asset}
+                      variant="table"
+                      onPreview={() => onOpenSingle(asset)}
+                      copy={{
+                        copied: isCopied,
+                        onCopy: () => copyUrl(asset.id, asset.url),
+                      }}
+                    />
                   </td>
                 </tr>
               );

@@ -1,180 +1,36 @@
 "use client";
 
-import {
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-  type PointerEvent as ReactPointerEvent,
-} from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import {
-  CalendarRange,
   ChevronLeft,
   ChevronRight,
-  Download,
   Eye,
   FileDown,
-  FileText,
-  FlaskConical,
-  Flag,
   Library,
   Maximize,
   Maximize2,
   Minimize,
-  Minus,
-  Milestone,
-  NotebookPen,
-  Plus,
-  RotateCcw,
-  ScrollText,
-  Sigma,
-  Table2,
   X,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useLocale, t, type LText } from "@/lib/i18n";
-import { assetDownloadUrl } from "@/lib/library/asset-url";
-import { SourceLink } from "@/components/subject-library/card-actions";
+import { FileActions } from "@/components/media/file-actions";
+import { PdfFrame } from "@/components/media/pdf-frame";
 import {
-  formatBytes,
-  resolveCategory,
-  SCOPE_SHORT,
-  type AssetCategory,
-  type AssetScope,
-  type SubjectAsset,
-} from "@/lib/library/subject-library-ui";
+  useZoomPan,
+  ZoomableImage,
+  ZoomControls,
+  ZoomStage,
+} from "@/components/media/zoomable-image";
+import { ScopeBadge } from "@/components/subject-library/badges";
+import { CATEGORY, L, chapterTag, fileFacts } from "@/components/subject-library/types";
+import { useLocale, t } from "@/lib/i18n";
+import { resolveCategory, type SubjectAsset } from "@/lib/library/subject-library-ui";
 
 export interface Preview {
   items: SubjectAsset[];
   index: number;
 }
-
-export interface CategoryStyle {
-  label: LText;
-  icon: typeof FileText;
-  shelf: string;
-}
-
-export const CATEGORY: Record<AssetCategory, CategoryStyle> = {
-  lecture: {
-    label: { th: "สไลด์บรรยาย", en: "Lecture PDFs" },
-    icon: ScrollText,
-    shelf: "shelf-1",
-  },
-  cheatsheet: {
-    label: { th: "ชีทสรุป", en: "Cheatsheets" },
-    icon: Sigma,
-    shelf: "shelf-2",
-  },
-  exam: {
-    label: { th: "ข้อสอบเก่า", en: "Past Papers" },
-    icon: FileText,
-    shelf: "shelf-3",
-  },
-  exercise: {
-    label: { th: "แบบฝึกหัด", en: "Exercises" },
-    icon: FlaskConical,
-    shelf: "shelf-4",
-  },
-  note: {
-    label: { th: "ภาพสมุดจด", en: "Image Notes" },
-    icon: NotebookPen,
-    shelf: "shelf-5",
-  },
-  reference: {
-    label: { th: "อ้างอิง", en: "References" },
-    icon: Table2,
-    shelf: "shelf-6",
-  },
-};
-
-export const SCOPE_ICON: Record<AssetScope | "term", typeof Milestone> = {
-  midterm: Milestone,
-  final: Flag,
-  term: CalendarRange,
-};
-
-export const SCOPE_BADGE: Record<AssetScope, string> = {
-  midterm: "border-transparent bg-primary text-primary-foreground shadow-xs",
-  final: "border-primary/30 bg-primary/10 text-primary",
-};
-
-export const SCOPE_BADGE_ON_MEDIA: Record<AssetScope, string> = {
-  midterm: "border-transparent bg-primary text-primary-foreground shadow-sm",
-  final: "border-primary/60 bg-primary/25 text-white backdrop-blur-md",
-};
-
-export function ScopeBadge({
-  scope,
-  onMedia = false,
-  className = "",
-}: {
-  scope: AssetScope;
-  onMedia?: boolean;
-  className?: string;
-}) {
-  const { locale } = useLocale();
-  const Icon = SCOPE_ICON[scope];
-  const tone = (onMedia ? SCOPE_BADGE_ON_MEDIA : SCOPE_BADGE)[scope];
-  return (
-    <span
-      className={`inline-flex items-center gap-0.5 rounded-full border px-1.5 py-0.5 text-[9px] font-semibold ${tone} ${className}`}
-    >
-      <Icon className="size-2.5" />
-      {t(SCOPE_SHORT[scope], locale)}
-    </span>
-  );
-}
-
-const CHAPTER_TAG = /^(ch\.|บทที่|week|unit|lecture\s|สัปดาห์)/i;
-
-export function chapterTag(asset: SubjectAsset): string | undefined {
-  return asset.tags.find((tag) => CHAPTER_TAG.test(tag)) ?? asset.tags[0];
-}
-
-const L = {
-  noPreview: {
-    th: "ไฟล์นี้เปิดดูในเบราว์เซอร์ไม่ได้ — ดาวน์โหลดเพื่อเปิด",
-    en: "This file type can't be previewed in the browser — download to open it.",
-  },
-  download: { th: "ดาวน์โหลด", en: "Download" },
-  viewContent: { th: "ดูเนื้อหา", en: "View Content" },
-  closePreview: { th: "ปิดหน้าต่างตัวอย่าง", en: "Close preview" },
-  openInTab: { th: "เปิดในแท็บใหม่", en: "Open in new tab" },
-  pages: { th: "หน้า", en: "pages" },
-  zoomIn: { th: "ขยาย", en: "Zoom in" },
-  zoomOut: { th: "ย่อ", en: "Zoom out" },
-  resetZoom: { th: "รีเซ็ตการซูม", en: "Reset zoom" },
-  fullscreen: { th: "เต็มจอ", en: "Fullscreen" },
-  exitFullscreen: { th: "ออกจากเต็มจอ", en: "Exit fullscreen" },
-  prev: { th: "ก่อนหน้า", en: "Previous" },
-  next: { th: "ถัดไป", en: "Next" },
-  panHint: { th: "ลากเพื่อเลื่อน · เลื่อนล้อเพื่อซูม", en: "Drag to pan · scroll to zoom" },
-  mdHint: {
-    th: "เอกสารนี้อ่านในเว็บ กด “ดูเนื้อหา” เพื่อเปิดหน้าอ่านพร้อมสารบัญ",
-    en: "This one reads in-app — open it for the full text with a side outline.",
-  },
-} satisfies Record<string, LText>;
-
-export function metaLine(asset: SubjectAsset, locale: "th" | "en"): string {
-  const parts: string[] = [];
-  if (asset.pages) parts.push(`${asset.pages} ${t(L.pages, locale)}`);
-  if (asset.sizeBytes) parts.push(formatBytes(asset.sizeBytes));
-  return parts.join(" · ");
-}
-
-interface Transform {
-  scale: number;
-  x: number;
-  y: number;
-}
-
-const IDENTITY: Transform = { scale: 1, x: 0, y: 0 };
-const MIN_SCALE = 1;
-const MAX_SCALE = 6;
-
-const clampScale = (scale: number) => Math.min(MAX_SCALE, Math.max(MIN_SCALE, scale));
 
 type FullscreenCapable = HTMLElement & { webkitRequestFullscreen?: () => Promise<void> };
 type FullscreenDocument = Document & {
@@ -207,16 +63,13 @@ export function PreviewModal({
   const Icon = style.icon;
 
   const rootRef = useRef<HTMLDivElement>(null);
-  const stageRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
-  const [transform, setTransform] = useState<Transform>(IDENTITY);
-  const dragOrigin = useRef<{ x: number; y: number } | null>(null);
-  const [dragging, setDragging] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
-  const zoomable = asset.fileType === "image";
+  const zoom = useZoomPan(asset.fileType === "image", index);
   const paged = items.length > 1;
-  const meta = metaLine(asset, locale);
+  // Not metaLine(): its file-name fallback would repeat what the footer shows.
+  const meta = fileFacts(asset, locale);
   const chapter = chapterTag(asset);
 
   const step = useCallback(
@@ -226,12 +79,6 @@ export function PreviewModal({
     },
     [paged, index, items.length, onIndexChange],
   );
-
-  const [shownIndex, setShownIndex] = useState(index);
-  if (shownIndex !== index) {
-    setShownIndex(index);
-    setTransform(IDENTITY);
-  }
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
@@ -272,51 +119,6 @@ export function PreviewModal({
       void (root?.requestFullscreen?.() ?? root?.webkitRequestFullscreen?.());
     }
   };
-
-  useEffect(() => {
-    const stage = stageRef.current;
-    if (!stage || !zoomable) return;
-
-    const onWheel = (event: WheelEvent) => {
-      event.preventDefault();
-      setTransform((current) => {
-        const next = clampScale(current.scale * (event.deltaY < 0 ? 1.12 : 1 / 1.12));
-        if (next === MIN_SCALE) return IDENTITY;
-        return { ...current, scale: next };
-      });
-    };
-
-    stage.addEventListener("wheel", onWheel, { passive: false });
-    return () => stage.removeEventListener("wheel", onWheel);
-  }, [zoomable]);
-
-  const onPointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
-    if (!zoomable || transform.scale === MIN_SCALE) return;
-    event.currentTarget.setPointerCapture(event.pointerId);
-    dragOrigin.current = { x: event.clientX - transform.x, y: event.clientY - transform.y };
-    setDragging(true);
-  };
-
-  const onPointerMove = (event: ReactPointerEvent<HTMLDivElement>) => {
-    const origin = dragOrigin.current;
-    if (!origin) return;
-    setTransform((current) => ({
-      ...current,
-      x: event.clientX - origin.x,
-      y: event.clientY - origin.y,
-    }));
-  };
-
-  const endDrag = () => {
-    dragOrigin.current = null;
-    setDragging(false);
-  };
-
-  const zoomBy = (factor: number) =>
-    setTransform((current) => {
-      const next = clampScale(current.scale * factor);
-      return next === MIN_SCALE ? IDENTITY : { ...current, scale: next };
-    });
 
   const arrowClass =
     "absolute top-1/2 z-10 -translate-y-1/2 rounded-full border bg-card/90 p-2 text-foreground shadow-lg backdrop-blur transition-colors hover:bg-card disabled:opacity-40";
@@ -371,51 +173,9 @@ export function PreviewModal({
           </div>
 
           <div className="flex shrink-0 items-center gap-1.5">
-            {zoomable && (
-              <div className="hidden items-center gap-1 rounded-full border bg-card p-1 sm:flex">
-                <button
-                  type="button"
-                  onClick={() => zoomBy(1 / 1.4)}
-                  aria-label={t(L.zoomOut, locale)}
-                  className="rounded-full p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-                >
-                  <Minus className="size-3.5" />
-                </button>
-                <span className="min-w-10 text-center text-[11px] font-medium tabular-nums text-muted-foreground">
-                  {Math.round(transform.scale * 100)}%
-                </span>
-                <button
-                  type="button"
-                  onClick={() => zoomBy(1.4)}
-                  aria-label={t(L.zoomIn, locale)}
-                  className="rounded-full p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-                >
-                  <Plus className="size-3.5" />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setTransform(IDENTITY)}
-                  aria-label={t(L.resetZoom, locale)}
-                  className="rounded-full p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-                >
-                  <RotateCcw className="size-3.5" />
-                </button>
-              </div>
-            )}
+            <ZoomControls zoom={zoom} />
 
-            <SourceLink asset={asset} withLabel className="border px-3 py-1.5" />
-
-            {asset.fileType !== "md" && (
-              <a
-                href={assetDownloadUrl(asset.url, asset.fileName)}
-                download={asset.fileName}
-                aria-label={`${t(L.download, locale)}: ${asset.fileName}`}
-                className="inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-1.5 text-xs font-semibold text-primary-foreground transition-opacity hover:opacity-90"
-              >
-                <Download className="size-3.5" />
-                <span className="hidden sm:inline">{t(L.download, locale)}</span>
-              </a>
-            )}
+            <FileActions file={asset} variant="header" />
 
             <button
               type="button"
@@ -440,31 +200,9 @@ export function PreviewModal({
         </header>
 
         {/* Stage */}
-        <div
-          ref={stageRef}
-          className="relative min-h-0 flex-1 overflow-hidden bg-muted/40"
-          onPointerDown={onPointerDown}
-          onPointerMove={onPointerMove}
-          onPointerUp={endDrag}
-          onPointerCancel={endDrag}
-          onDoubleClick={() => zoomable && setTransform(IDENTITY)}
-          style={{
-            cursor: zoomable
-              ? transform.scale > MIN_SCALE
-                ? dragging
-                  ? "grabbing"
-                  : "grab"
-                : "zoom-in"
-              : undefined,
-          }}
-        >
+        <ZoomStage zoom={zoom} className="relative min-h-0 flex-1 overflow-hidden bg-muted/40">
           {asset.fileType === "pdf" && (
-            <iframe
-              key={asset.url}
-              src={asset.url}
-              title={t(asset.title, locale)}
-              className="h-full min-h-[60vh] w-full border-0 bg-white"
-            />
+            <PdfFrame src={asset.url} title={t(asset.title, locale)} />
           )}
 
           {asset.fileType === "file" && (
@@ -478,19 +216,7 @@ export function PreviewModal({
           )}
 
           {asset.fileType === "image" && (
-            <div className="flex size-full items-center justify-center overflow-hidden">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={asset.url}
-                alt={t(asset.title, locale)}
-                draggable={false}
-                className="max-h-full max-w-full select-none object-contain"
-                style={{
-                  transform: `translate(${transform.x}px, ${transform.y}px) scale(${transform.scale})`,
-                  transition: dragging ? "none" : "transform 120ms ease-out",
-                }}
-              />
-            </div>
+            <ZoomableImage zoom={zoom} src={asset.url} alt={t(asset.title, locale)} />
           )}
 
           {asset.fileType === "md" && (
@@ -522,13 +248,7 @@ export function PreviewModal({
               </button>
             </>
           )}
-
-          {zoomable && (
-            <p className="pointer-events-none absolute inset-x-0 bottom-3 text-center text-[11px] text-muted-foreground">
-              {t(L.panHint, locale)}
-            </p>
-          )}
-        </div>
+        </ZoomStage>
 
         {/* Footer */}
         <footer className="shrink-0 border-t bg-card/80 px-4 py-2 sm:px-6">

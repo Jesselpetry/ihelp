@@ -5143,8 +5143,9 @@ export const DL_ASSETS: SubjectAsset[] = [
 // ── Registry ─────────────────────────────────────────────────────────────────
 /**
  * Every course that has a resource library, keyed by the short code in
- * lib/catalog.ts. A course listed here must also declare a `library` track in
- * its catalogue entry, or the shelf exists but nothing links to it.
+ * lib/courses/catalog.ts. Nothing else has to be declared for the shelf to
+ * appear: the `archive` module counts as filled for any course that
+ * coursesWithAssets() returns (lib/courses/course-spine.ts).
  */
 export const SUBJECT_ASSETS: Record<string, SubjectAsset[]> = {
   ITF: ITF_ASSETS,
@@ -5219,7 +5220,7 @@ export function assetsForCourse(code: string): SubjectAsset[] | undefined {
  * A course's past exams, still carrying their original "/assets/…" path.
  *
  * Deliberately returns no usable URL: the caller has to mint a signed one after
- * authorizing the reader (see lib/library-exams.ts). Exported for that module
+ * authorizing the reader (see lib/library/library-exams.ts). Exported for that module
  * and for the counts on the course hub, not for rendering.
  */
 export function restrictedAssetsForCourse(code: string): SubjectAsset[] {

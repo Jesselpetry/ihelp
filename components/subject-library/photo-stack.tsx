@@ -1,7 +1,7 @@
 "use client";
 
-import { Download, Eye, Images, Layers } from "lucide-react";
-import { assetDownloadUrl } from "@/lib/library/asset-url";
+import { Images, Layers } from "lucide-react";
+import { FileActions } from "@/components/media/file-actions";
 import { useLocale, t, type LText } from "@/lib/i18n";
 import { formatBytes, resolveCategory, type SubjectAsset } from "@/lib/library/subject-library-ui";
 import { ScopeBadge, StatusBadges } from "./badges";
@@ -245,24 +245,7 @@ export function StackSheet({
                   {t(asset.title, locale)}
                 </button>
               </div>
-              <div className="flex items-center gap-1 shrink-0">
-                <button
-                  type="button"
-                  onClick={() => onOpen(index)}
-                  aria-label={`${t(L.preview, locale)}: ${t(asset.title, locale)}`}
-                  className="rounded-full border bg-muted/40 p-1.5 text-muted-foreground hover:border-primary/40 hover:text-primary transition-colors"
-                >
-                  <Eye className="size-3.5" />
-                </button>
-                <a
-                  href={assetDownloadUrl(asset.url, asset.fileName)}
-                  download={asset.fileName}
-                  aria-label={`${t(L.download, locale)}: ${asset.fileName}`}
-                  className="rounded-full border bg-muted/40 p-1.5 text-muted-foreground hover:border-primary/40 hover:text-primary transition-colors"
-                >
-                  <Download className="size-3.5" />
-                </a>
-              </div>
+              <FileActions file={asset} variant="edition" onPreview={() => onOpen(index)} />
             </div>
           ))}
         </div>

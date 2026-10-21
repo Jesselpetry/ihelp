@@ -6,7 +6,10 @@
  * export in the module.
  */
 
-export const RESOURCE_BUCKET = "ihelp-resources";
+import { BUCKETS } from "@/lib/storage/buckets";
+import { publicObjectUrl } from "@/lib/storage/public-url";
+
+export const RESOURCE_BUCKET = BUCKETS.resources;
 
 export const MAX_UPLOAD_BYTES = 25 * 1024 * 1024;
 
@@ -24,7 +27,10 @@ export type UploadState = {
   fieldErrors?: Record<string, string>;
 };
 
-/** Public bucket, so an object path resolves to a stable public URL. */
+/**
+ * Public bucket, so an object path resolves to a stable public URL. Without a
+ * configured Supabase URL there is no file to link to, so the link is "#".
+ */
 export function resourcePublicUrl(objectPath: string): string {
-  return `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/${RESOURCE_BUCKET}/${objectPath}`;
+  return publicObjectUrl("resources", objectPath) ?? "#";
 }

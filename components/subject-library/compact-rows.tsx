@@ -1,12 +1,10 @@
 "use client";
 
-import Link from "next/link";
-import { Download, Eye, Images, Layers } from "lucide-react";
-import { assetDownloadUrl } from "@/lib/library/asset-url";
+import { Images, Layers } from "lucide-react";
+import { FileActions } from "@/components/media/file-actions";
 import { useLocale, t, type LText } from "@/lib/i18n";
 import { formatBytes, resolveCategory, type SubjectAsset } from "@/lib/library/subject-library-ui";
 import { ScopeBadge, StatusBadges } from "./badges";
-import { SourceLink } from "./card-actions";
 import { CATEGORY, L, metaLine } from "./types";
 
 /** One row of the compact list — same actions, one line, scannable by name. */
@@ -59,25 +57,7 @@ export function CompactRow({
         ))}
       </div>
 
-      {asset.fileType === "md" ? (
-        <Link
-          href={asset.url}
-          aria-label={t(L.viewContent, locale)}
-          className="shrink-0 rounded-full p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-primary"
-        >
-          <Eye className="size-3.5" />
-        </Link>
-      ) : (
-        <a
-          href={assetDownloadUrl(asset.url, asset.fileName)}
-          download={asset.fileName}
-          aria-label={`${t(L.download, locale)}: ${asset.fileName}`}
-          className="shrink-0 rounded-full p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-primary"
-        >
-          <Download className="size-3.5" />
-        </a>
-      )}
-      <SourceLink asset={asset} className="shrink-0" />
+      <FileActions file={asset} variant="compact" />
     </div>
   );
 }

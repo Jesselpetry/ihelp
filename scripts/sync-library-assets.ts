@@ -5,7 +5,8 @@
  * Why: the ~670 files under public/assets are ~908 MB of PDFs. Shipping them in
  * the repo pushed the git pack to 881 MB and the Vercel build output past 1 GB,
  * which ran the build container out of disk (ENOSPC). Storage serves them
- * instead; lib/asset-url.ts rewrites "/assets/…" to the bucket's public URL.
+ * instead; lib/library/asset-url.ts rewrites "/assets/…" to the bucket's public
+ * URL.
  *
  * The files stay on disk locally (gitignored) so build-library-manifest.mjs and
  * build-library-stats.mjs can still scan them — their committed JSON output is
@@ -25,6 +26,7 @@ import { fileURLToPath } from "node:url";
 import { storageKey } from "../lib/library/storage-key";
 import { coursesWithAssets, mergedAssets } from "../lib/library/subject-library";
 import { isRestrictedAsset } from "../lib/library/subject-library-ui";
+import { BUCKETS, bucketForAsset } from "../lib/storage/buckets";
 // The bucket names, the .env.local lookup and the bucket listing are shared with
 // scripts/library-audit.ts, which runs the same listing read-only (`--remote`).
 import { LIBRARY_BUCKET, RESTRICTED_BUCKET, listBucketKeys, storageConfig } from "./storage-keys";
@@ -95,7 +97,7 @@ async function main() {
   // Which keys are past exams, decided by the library data rather than by path:
   // ten scanned exam pages live outside any exams/ folder, and uploading those
   // to the public bucket would publish them. Files on disk that the manifest
-  // does not know about fall back to isRestrictedAsset's path check.
+  // does not know about fall back to the path check inside bucketForAsset().
   const restricted = new Set<string>();
   for (const code of coursesWithAssets()) {
     for (const asset of mergedAssets(code)) {
@@ -115,10 +117,15 @@ async function main() {
     .map((file) => {
       const rel = path.relative(ASSETS_DIR, file).split(path.sep).join("/");
       const key = storageKey(rel);
-      const isRestricted =
-        restricted.has(key) || isRestrictedAsset({ url: `/assets/${rel}` });
-      const bucket = isRestricted ? RESTRICTED_BUCKET : LIBRARY_BUCKET;
-      return { file, key, bucket, seen: isRestricted ? `${RESTRICTED_BUCKET}/${key}` : key };
+      // A file has no category of its own, so a card that is a past exam hands
+      // its "exam" down to the file; bucketForAsset() does the routing, path
+      // check included, so this and the audit never keep a copy of the rule.
+      const bucketId = bucketForAsset({
+        url: `/assets/${rel}`,
+        category: restricted.has(key) ? "exam" : undefined,
+      });
+      const bucket = BUCKETS[bucketId];
+      return { file, key, bucket, seen: bucket === RESTRICTED_BUCKET ? `${RESTRICTED_BUCKET}/${key}` : key };
     })
     .filter(({ seen }) => !have.has(seen));
 

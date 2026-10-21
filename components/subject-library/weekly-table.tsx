@@ -4,7 +4,6 @@ import { Fragment, useState, type ReactNode } from "react";
 import Link from "next/link";
 import {
   CalendarRange,
-  Download,
   ExternalLink,
   Eye,
   Flag,
@@ -12,7 +11,7 @@ import {
   Milestone,
   PlayCircle,
 } from "lucide-react";
-import { assetDownloadUrl } from "@/lib/library/asset-url";
+import { FileActions, WEEK_ICON_BUTTON } from "@/components/media/file-actions";
 import { useLocale, t, type LText } from "@/lib/i18n";
 import {
   ASSET_GROUPS,
@@ -25,9 +24,9 @@ import {
   type CourseWeek,
   type SubjectAsset,
 } from "@/lib/library/subject-library-ui";
+import { VIDEO_PROVIDERS, providerForUrl } from "@/lib/media/providers";
 import { StatusBadges } from "./badges";
-import { SourceLink } from "./card-actions";
-import { CATEGORY, L, metaLine } from "./types";
+import { CATEGORY, L, fileFacts } from "./types";
 
 /**
  * The week view every course with a schedule opens on — ITF and ICS alike.
@@ -44,8 +43,6 @@ import { CATEGORY, L, metaLine } from "./types";
 // screens); on desktop it would just draw a seam down the week headings.
 const ACTIONS_CELL =
   "sticky right-0 z-10 w-28 whitespace-nowrap bg-card/95 backdrop-blur-xs pl-2 pr-4 text-right shadow-[-6px_0_10px_-4px_rgba(0,0,0,0.06)] md:static md:bg-transparent md:shadow-none md:backdrop-blur-none";
-const ICON_BTN =
-  "inline-flex rounded-full p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-primary";
 
 /** The order a student works through a week: lecture, lab, then the rest. */
 const ORDER: AssetCategory[] = ["lecture", "exercise", "reference", "cheatsheet", "note", "exam"];
@@ -91,6 +88,9 @@ export function WeeklyTable({
 }) {
   const { locale } = useLocale();
   const [showOlder, setShowOlder] = useState(false);
+  // A schedule's source is its course page, which today is always OnLearn; the
+  // URL names the provider, and anything unrecognised keeps that default.
+  const sourceLabel = (providerForUrl(schedule.source) ?? VIDEO_PROVIDERS.onlearn).label;
 
   const placed = new Map<CourseWeek, SubjectAsset[]>();
   const unplaced: SubjectAsset[] = [];
@@ -239,7 +239,8 @@ export function WeeklyTable({
               className="inline-flex items-center gap-1 font-medium text-muted-foreground transition-colors hover:text-primary"
             >
               <ExternalLink className="size-3.5" />
-              {t(L.source, locale)}: OnLearn
+              {t(L.source, locale)}
+              {`: ${sourceLabel}`}
             </a>
           ) : (
             <span />
@@ -492,14 +493,16 @@ function WeekRow({
             {t(L.videoKind, locale)}
           </span>
         </td>
-        <td className="py-2.5 px-3 text-xs text-muted-foreground whitespace-nowrap">OnLearn</td>
+        <td className="py-2.5 px-3 text-xs text-muted-foreground whitespace-nowrap">
+          {VIDEO_PROVIDERS.onlearn.label}
+        </td>
         <td className={`${ACTIONS_CELL} py-2.5`}>
           <a
             href={row.href}
             target="_blank"
             rel="noopener noreferrer"
             aria-label={t(L.video, locale)}
-            className={ICON_BTN}
+            className={WEEK_ICON_BUTTON}
           >
             <ExternalLink className="size-3.5" />
           </a>
@@ -538,7 +541,7 @@ function WeekRow({
           {[`${row.assets.length} ${t(L.images, locale)}`, bytes ? formatBytes(bytes) : ""].filter(Boolean).join(" · ")}
         </td>
         <td className={`${ACTIONS_CELL} py-2.5`}>
-          <button type="button" onClick={() => onOpenStack(row.assets)} aria-label={t(L.preview, locale)} className={ICON_BTN}>
+          <button type="button" onClick={() => onOpenStack(row.assets)} aria-label={t(L.preview, locale)} className={WEEK_ICON_BUTTON}>
             <Eye className="size-3.5" />
           </button>
         </td>
@@ -588,31 +591,10 @@ function WeekRow({
         </span>
       </td>
       <td className="py-2.5 px-3 tabular-nums text-xs text-muted-foreground whitespace-nowrap">
-        {asset.pages || asset.sizeBytes ? metaLine(asset, locale) : "—"}
+        {fileFacts(asset, locale) || "—"}
       </td>
       <td className={`${ACTIONS_CELL} py-2.5`}>
-        <div className="flex items-center justify-end gap-0.5">
-          {asset.fileType === "md" ? (
-            <Link href={asset.url} aria-label={t(L.viewContent, locale)} className={ICON_BTN}>
-              <Eye className="size-3.5" />
-            </Link>
-          ) : (
-            <>
-              <button type="button" onClick={() => onOpenAsset(asset)} aria-label={t(L.preview, locale)} className={ICON_BTN}>
-                <Eye className="size-3.5" />
-              </button>
-              <a
-                href={assetDownloadUrl(asset.url, asset.fileName)}
-                download={asset.fileName}
-                aria-label={`${t(L.download, locale)}: ${asset.fileName}`}
-                className={ICON_BTN}
-              >
-                <Download className="size-3.5" />
-              </a>
-            </>
-          )}
-          <SourceLink asset={asset} />
-        </div>
+        <FileActions file={asset} variant="week" onPreview={() => onOpenAsset(asset)} />
       </td>
     </tr>
   );

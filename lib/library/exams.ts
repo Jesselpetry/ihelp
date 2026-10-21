@@ -3,13 +3,11 @@ import "server-only";
 import { desc } from "drizzle-orm";
 
 import { db, exams, type Exam } from "@/db";
-import { createAdminClient } from "@/lib/supabase/admin";
 import { requireInsider } from "@/lib/auth/guards";
+import { BUCKETS } from "@/lib/storage/buckets";
+import { signObjectUrls } from "@/lib/storage/signed-url";
 
-export const EXAM_BUCKET = "ihelp-exams";
-
-/** Long enough to open the file, short enough not to be worth passing around. */
-const SIGNED_URL_TTL_SECONDS = 60 * 10;
+export const EXAM_BUCKET = BUCKETS.exams;
 
 export type ExamWithUrl = Exam & { signedUrl: string | null };
 
@@ -18,7 +16,7 @@ export type ExamWithUrl = Exam & { signedUrl: string | null };
  *
  * requireInsider() is the actual access control: Drizzle connects as the
  * `postgres` role and bypasses the RLS policy on ihelp.exams, and the service
- * role client used for signing bypasses the storage policy too. Both are
+ * role client behind signObjectUrls() bypasses the storage policy too. Both are
  * reached only after the role check throws for everyone else.
  */
 export async function listExamsForInsider(): Promise<ExamWithUrl[]> {
@@ -31,15 +29,7 @@ export async function listExamsForInsider(): Promise<ExamWithUrl[]> {
 
   if (rows.length === 0) return [];
 
-  const storage = createAdminClient().storage.from(EXAM_BUCKET);
-  const { data } = await storage.createSignedUrls(
-    rows.map((r) => r.fileUrl),
-    SIGNED_URL_TTL_SECONDS,
-  );
-
-  const byPath = new Map(
-    (data ?? []).map((d) => [d.path, d.signedUrl] as const),
-  );
+  const byPath = await signObjectUrls("exams", rows.map((r) => r.fileUrl));
 
   return rows.map((row) => ({
     ...row,

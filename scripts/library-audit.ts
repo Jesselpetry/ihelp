@@ -43,7 +43,7 @@ import {
 import { COURSES } from "../lib/courses/catalog";
 import { scheduleForCourse } from "../lib/library/course-weeks";
 import { storageKey } from "../lib/library/storage-key";
-import { isRestrictedAsset } from "../lib/library/subject-library-ui";
+import { BUCKETS, bucketForAsset } from "../lib/storage/buckets";
 import { LIBRARY_BUCKET, RESTRICTED_BUCKET, listBucketKeys, storageConfig } from "./storage-keys";
 
 type Severity = "error" | "warn" | "info";
@@ -601,9 +601,14 @@ async function main() {
       );
       const fromDisk: Expected[] = (disk?.files ?? []).map((rel) => {
         const key = storageKey(rel);
-        const restricted = restrictedKeys.has(key) || isRestrictedAsset({ url: `/assets/${rel}` });
+        // Same hand-down as the uploader: a file takes the "exam" of any card
+        // that uses it, and bucketForAsset() adds the path check.
+        const bucketId = bucketForAsset({
+          url: `/assets/${rel}`,
+          category: restrictedKeys.has(key) ? "exam" : undefined,
+        });
         return {
-          bucket: restricted ? RESTRICTED_BUCKET : LIBRARY_BUCKET,
+          bucket: BUCKETS[bucketId],
           key,
           where: `public/assets/${rel}`,
           course: courseOfRel(rel),
