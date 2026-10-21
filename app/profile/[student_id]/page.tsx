@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { desc, eq } from "drizzle-orm";
-import { ExternalLink, FileText, Pencil } from "lucide-react";
+import { Pencil } from "lucide-react";
 
 import {
   FacebookIcon,
@@ -10,6 +10,7 @@ import {
 } from "@/components/social-icons";
 
 import { db, resources, users, type Resource } from "@/db";
+import { FileLinkCard } from "@/components/media/file-link-card";
 import { Navbar } from "@/components/navbar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -24,6 +25,9 @@ import { avatarInitial, resolveAvatarUrl } from "@/lib/profile/avatar";
 import { resourcePublicUrl } from "@/lib/library/resources";
 import { findCourseByCode } from "@/lib/courses/catalog";
 import { majorLabel } from "@/lib/courses/majors";
+import { StudySpaceCard } from "@/components/study-space/profile-card";
+import { studyPlanFor } from "@/lib/study-space/plans";
+import { planSummary } from "@/lib/study-space/plan";
 
 const TYPE_LABELS: Record<Resource["type"], string> = {
   slide: "สไลด์",
@@ -77,6 +81,9 @@ export default async function ProfilePage({
   if (!profile) notFound();
 
   const isOwner = (await currentStudentId()) === profile.studentId;
+  // A study plan is personal: looked up only for the owner, so nobody else's
+  // payload carries even today's summary of it.
+  const studyPlan = isOwner ? studyPlanFor(profile.studentId) : null;
 
   const fullName =
     [profile.firstName, profile.lastName].filter(Boolean).join(" ") || null;
@@ -153,6 +160,15 @@ export default async function ProfilePage({
           </div>
         </header>
 
+        {studyPlan ? (
+          <section className="mt-8">
+            <StudySpaceCard
+              href={`/profile/${profile.studentId}/study`}
+              summary={planSummary(studyPlan)}
+            />
+          </section>
+        ) : null}
+
         <section className="mt-10">
           <h2 className="mb-4 text-sm font-medium text-muted-foreground">
             แชร์เข้าคลังแล้ว {profile.resources.length} รายการ
@@ -168,38 +184,17 @@ export default async function ProfilePage({
                 const course = findCourseByCode(item.subjectCode);
                 return (
                   <li key={item.id}>
-                    <a
+                    <FileLinkCard
+                      kind="shared"
                       href={resourcePublicUrl(item.fileUrl)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group flex h-full flex-col gap-2 rounded-lg border bg-card p-4 transition-colors hover:border-primary/40 hover:bg-muted/40"
-                    >
-                      <div className="flex items-start justify-between gap-2">
-                        <FileText className="mt-0.5 size-4 shrink-0 text-muted-foreground" />
-                        <ExternalLink className="size-3.5 shrink-0 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100" />
-                      </div>
-
-                      <p className="font-medium leading-snug text-pretty">
-                        {item.title}
-                      </p>
-
-                      <div className="mt-auto flex flex-wrap items-center gap-1.5 pt-1">
-                        <Badge variant="outline">
-                          {course?.code ?? item.subjectCode}
-                        </Badge>
-                        <Badge variant="secondary">
-                          {TYPE_LABELS[item.type]}
-                        </Badge>
-                        {item.scope ? (
-                          <Badge variant="secondary">
-                            {SCOPE_LABELS[item.scope]}
-                          </Badge>
-                        ) : null}
-                        <span className="ml-auto text-xs text-muted-foreground">
-                          {dateFormatter.format(item.createdAt)}
-                        </span>
-                      </div>
-                    </a>
+                      title={item.title}
+                      code={course?.code ?? item.subjectCode}
+                      labels={[
+                        TYPE_LABELS[item.type],
+                        item.scope ? SCOPE_LABELS[item.scope] : null,
+                      ]}
+                      note={dateFormatter.format(item.createdAt)}
+                    />
                   </li>
                 );
               })}
