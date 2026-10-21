@@ -14,7 +14,7 @@ import { ROOT } from "@/lib/paths";
  */
 
 // EN-KMITL Computer Programming (01006012) midterm study material.
-// Same bundled-then-sibling fallback as lib/recommended.ts's getRecommendedDir.
+// Same bundled-then-sibling fallback as lib/pscp/recommended.ts's getRecommendedDir.
 export function getEnKmitlDir(): string {
   // Dev-only override — see the note at the top of this file.
   if (process.env.NODE_ENV !== "production") {

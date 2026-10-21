@@ -5,7 +5,7 @@ export const ROOT = process.cwd();
 const DATA_DIR = path.join(ROOT, "data");
 
 // Master problem list exported from iJudge. OJ_PROBLEMS_PATH overrides it in
-// development only — see lib/it-kmitl.ts for why the gate exists.
+// development only — see lib/courses/it-kmitl.ts for why the gate exists.
 export const OJ_PROBLEMS_FILE =
   process.env.NODE_ENV !== "production" && process.env.OJ_PROBLEMS_PATH
     ? process.env.OJ_PROBLEMS_PATH

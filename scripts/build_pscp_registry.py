@@ -107,7 +107,7 @@ _EXPIRE_RE = re.compile(r"^(\d{1,2})\s+([A-Za-z]+)\s+(\d{4}),?\s*(\d{2}):(\d{2})
 
 
 def parse_expire(expire: str | None) -> str | None:
-    """"31 July 2026, 00:00" -> "2026-07-31T00:00". Mirrors lib/master.ts."""
+    """"31 July 2026, 00:00" -> "2026-07-31T00:00". Mirrors lib/pscp/master.ts."""
     if not expire:
         return None
     m = _EXPIRE_RE.match(expire.strip())

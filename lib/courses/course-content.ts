@@ -33,7 +33,7 @@ export function getCourseScrapedInfo(codeOrDir: string): ScrapedCourseInfo | nul
 
 // Course-overview documents ported from iLearn's content/summaries tree.
 // COURSE_CONTENT_PATH overrides the folder in development only — see
-// lib/it-kmitl.ts for why the gate exists.
+// lib/courses/it-kmitl.ts for why the gate exists.
 const COURSES_DIR =
   process.env.NODE_ENV !== "production" && process.env.COURSE_CONTENT_PATH
     ? process.env.COURSE_CONTENT_PATH

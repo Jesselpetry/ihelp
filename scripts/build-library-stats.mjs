@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Builds lib/library-stats.json — byte size and (for PDFs) page count for every
+ * Builds lib/library/library-stats.json — byte size and (for PDFs) page count for every
  * file under public/assets/, keyed by the public URL the library cards use.
  *
  * The Subject Library gallery prints "12 pages · 3.4 MB" on each book cover, and

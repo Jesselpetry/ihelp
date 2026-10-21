@@ -100,8 +100,8 @@ URLs until they are removed:
   it-kmitl/ics/lectures/ics-lec-week06.pdf
   it-kmitl/ics/lectures/ics-lec-chapter02.pdf
 
-None of the seven has a curated entry in lib/subject-library.ts, so no `url:`
+None of the seven has a curated entry in lib/library/subject-library.ts, so no `url:`
 field needs editing — verified before this script was written. Re-check with:
 
-  grep -n 'ics-lec-week0[1-6]\.pdf\|ics-lec-chapter02\.pdf' lib/subject-library.ts
+  grep -n 'ics-lec-week0[1-6]\.pdf\|ics-lec-chapter02\.pdf' lib/library/subject-library.ts
 NEXT

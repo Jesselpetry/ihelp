@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * Builds lib/library-manifest.json — one card entry for every file under
- * public/assets/ that lib/subject-library.ts does not already describe by hand.
+ * Builds lib/library/library-manifest.json — one card entry for every file under
+ * public/assets/ that lib/library/subject-library.ts does not already describe by hand.
  *
  * The curated arrays in subject-library.ts carry bilingual titles and exam
  * scopes that no filename can supply, so they always win. This manifest is the

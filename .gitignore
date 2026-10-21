@@ -37,8 +37,10 @@ yarn-error.log*
 .env*
 !.env.example
 
-# iJudge session material written by scripts/sync_oj_problems.py.
-# Short-lived bearer tokens — never commit.
+# iJudge session material (cookies, bearer tokens). The scraper that produced
+# these lives in the archive repo now — scripts/sync_oj_problems.py was folded
+# into it and is gone from here — so nothing in this repo writes them; the
+# entries stay as a guard against a stray copy. Short-lived tokens, never commit.
 submit_config.json
 .ijudge_cookie
 *.cookie
@@ -61,8 +63,8 @@ next-env.d.ts
 
 # Library assets — ~908 MB of course PDFs. They live in the public
 # `ihelp-library` Supabase Storage bucket and are served from there via
-# lib/asset-url.ts. Committing them pushed the git pack to 881 MB and the
-# Vercel build output past 1 GB, which ran the build container out of disk.
+# lib/library/asset-url.ts. Committing them pushed the git pack to 881 MB and
+# the Vercel build output past 1 GB, which ran the build container out of disk.
 # Keep them here locally so scripts/build-library-{manifest,stats} can scan
 # them, and run `bun run assets:sync` after adding any.
 /public/assets/

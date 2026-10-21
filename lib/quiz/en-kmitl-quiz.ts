@@ -4,7 +4,7 @@ import { EN_KMITL_MOCK_EXAM } from "@/lib/quiz/en-kmitl-mock-exam";
 
 // EN-KMITL 01006012 midterm self-test bank.
 // Not an OJ problem — uses a fixed pseudo problem-id so progress tracking
-// (keyed by number in lib/quiz.ts) doesn't collide with real OJ ids (all 4-digit).
+// (keyed by number in lib/quiz/quiz.ts) doesn't collide with real OJ ids (all 4-digit).
 export const EN_KMITL_QUIZ_ID = 900001;
 
 export interface EnKmitlChapter {

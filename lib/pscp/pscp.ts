@@ -7,7 +7,7 @@ import type { TestCase } from "@/lib/pscp/grader-types";
 // Registry built by `scripts/build_pscp_registry.py` from the course archive
 // (oj_problems.json + all_problems_detail.json + oj*/main.py). Override the
 // location with PSCP_REGISTRY_PATH when running against a different export.
-// Development only — see lib/it-kmitl.ts for why the gate exists.
+// Development only — see lib/courses/it-kmitl.ts for why the gate exists.
 const REGISTRY_FILE =
   process.env.NODE_ENV !== "production" && process.env.PSCP_REGISTRY_PATH
     ? process.env.PSCP_REGISTRY_PATH

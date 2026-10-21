@@ -14,7 +14,7 @@ import { ROOT } from "@/lib/paths";
  */
 
 // IT-KMITL study material. Subjects: ICS / Digital Logic, MFIT (linear algebra).
-// Same bundled-then-override pattern as lib/en-kmitl.ts.
+// Same bundled-then-override pattern as lib/courses/en-kmitl.ts.
 export function getIcsDir(): string {
   // Dev-only override — see the note at the top of this file.
   if (process.env.NODE_ENV !== "production") {
