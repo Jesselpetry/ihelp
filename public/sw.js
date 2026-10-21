@@ -9,10 +9,16 @@
  * Caching is deliberately conservative:
  *   - build output and icons are cache-first (content-hashed or brand assets),
  *     but only in production — see isDevHost() for why dev must not
- *   - navigations are network-first, so page content is never served stale
+ *   - navigations are network-first, so page content is never served stale,
+ *     and a page the server marks private or no-store is never kept: Next
+ *     sends that header on every dynamically rendered page, and those are
+ *     the signed-in ones (a profile's owner view, /profile/<id>/study). A
+ *     cached copy would outlive sign-out and open offline for whoever uses
+ *     the browser next.
  *   - everything else (API routes, RSC payloads, Supabase) is not touched
  */
-const VERSION = "ihelp-v2";
+// v3: v2 cached private pages; the version bump makes activate delete them.
+const VERSION = "ihelp-v3";
 const STATIC_CACHE = `${VERSION}-static`;
 const PAGE_CACHE = `${VERSION}-pages`;
 
@@ -83,6 +89,12 @@ function isStaticAsset(url) {
   );
 }
 
+/** False for responses the server says must not be stored (signed-in pages). */
+function isShareable(response) {
+  const cacheControl = response.headers.get("Cache-Control") ?? "";
+  return !/\b(no-store|private)\b/i.test(cacheControl);
+}
+
 self.addEventListener("fetch", (event) => {
   const { request } = event;
   if (request.method !== "GET") return;
@@ -113,7 +125,7 @@ self.addEventListener("fetch", (event) => {
       (async () => {
         try {
           const response = await fetch(request);
-          if (response.ok) {
+          if (response.ok && isShareable(response)) {
             const cache = await caches.open(PAGE_CACHE);
             cache.put(request, response.clone());
           }

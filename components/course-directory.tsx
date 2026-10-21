@@ -5,10 +5,12 @@ import { GraduationCap, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useLocale, t, type LText } from "@/lib/i18n";
 import { COURSES, GROUPS } from "@/lib/courses/catalog";
+import { SITE } from "@/lib/site";
 import { CourseBookCard } from "@/components/course-book-card";
 
 const L: Record<string, LText> = {
-  title: { th: "คลังเรียนรู้ IT KMITL", en: "IT KMITL Learning Hub" },
+  // The home page's headline is the site's tagline.
+  title: SITE.tagline,
   subtitle: {
     th: "สรุปเนื้อหา แบบทดสอบ คลังโจทย์ และสไลด์เลกเชอร์ ของรายวิชาชั้นปีที่ 1 รวมไว้ที่เดียว",
     en: "Summaries, quizzes, problem banks, and lecture slides for every first-year course, in one place",

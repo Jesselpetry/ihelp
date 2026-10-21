@@ -3,16 +3,17 @@ import { Navbar } from "@/components/navbar";
 import { CourseDirectory } from "@/components/course-directory";
 import { COURSES, courseDir, courseHref } from "@/lib/courses/catalog";
 import { readinessIndex } from "@/lib/courses/course-spine";
+import { SITE } from "@/lib/site";
 
 // No `description` here on purpose: the home page is the site, so it inherits
 // DESCRIPTION from app/layout.tsx. Overriding it locally is how og:description
 // and <meta name="description"> drifted apart.
 export const metadata: Metadata = {
-  // The root layout's `%s · <i>Help` template does NOT apply here — a template
-  // only reaches CHILD segments, and app/page.tsx is the same segment as
-  // app/layout.tsx. So the brand suffix has to be written out by hand to
+  // The root layout's `%s · ${SITE.name}` template does NOT apply here — a
+  // template only reaches CHILD segments, and app/page.tsx is the same segment
+  // as app/layout.tsx. So the brand suffix has to be written out by hand to
   // match what every other page renders.
-  title: "คลังเรียนรู้ IT KMITL — สรุป แบบทดสอบ และข้อสอบเก่า · <i>Help",
+  title: `คลังเรียนรู้ IT KMITL — สรุป แบบทดสอบ และข้อสอบเก่า · ${SITE.name}`,
   alternates: { canonical: "/" },
 };
 
@@ -30,12 +31,12 @@ const COURSE_LIST_JSONLD = {
       name: `${course.code} — ${course.nameTh}`,
       alternateName: course.nameEn,
       ...(course.officialCode ? { courseCode: course.officialCode } : {}),
-      inLanguage: "th",
+      inLanguage: SITE.locale,
       provider: {
         "@type": "CollegeOrUniversity",
-        name: "คณะเทคโนโลยีสารสนเทศ สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง",
-        alternateName: "School of Information Technology, KMITL",
-        url: "https://www.it.kmitl.ac.th",
+        name: SITE.org.name.th,
+        alternateName: SITE.org.name.en,
+        url: SITE.org.url,
       },
       ...(courseHref(course) ? { url: courseHref(course) } : {}),
     },

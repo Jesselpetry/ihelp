@@ -4,14 +4,15 @@ import Link from "next/link";
 import { ArrowLeft, GitCommitHorizontal } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarBadge, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { CHANGELOG, GITHUB_REPO, type ChangeKind, type VersionEntry } from "@/lib/docs/changelog";
+import { CHANGELOG, type ChangeKind, type VersionEntry } from "@/lib/docs/changelog";
 import { useLocale, t } from "@/lib/i18n";
+import { SITE } from "@/lib/site";
 
 const L = {
   title: { th: "เวอร์ชันและ Changelog", en: "Version & Changelog" },
   subtitle: {
-    th: "ประวัติการอัปเดตของ ihelp แต่ละเวอร์ชัน พร้อมชื่อผู้ร่วมพัฒนา",
-    en: "Update history of ihelp, version by version, with contributor credits.",
+    th: `ประวัติการอัปเดตของ ${SITE.plainName} แต่ละเวอร์ชัน พร้อมชื่อผู้ร่วมพัฒนา`,
+    en: `Update history of ${SITE.plainName}, version by version, with contributor credits.`,
   },
   backToList: { th: "กลับหน้ารายการโจทย์", en: "Back to problems" },
   contributors: { th: "ผู้ร่วมพัฒนา", en: "Contributors" },
@@ -51,14 +52,15 @@ function formatDate(iso: string, locale: "th" | "en"): string {
  *
  * A released entry links straight to the commit that marks it. "Unreleased"
  * has no commit of its own yet, so it links to a compare view from the last
- * release's commit to `main` instead — "everything since v0.5.0", which is
- * what a reader actually wants from an in-progress entry.
+ * release's commit to the repo's main branch (SITE.repo.branch) instead —
+ * "everything since v0.5.0", which is what a reader actually wants from an
+ * in-progress entry.
  */
 function githubHref(entry: VersionEntry): string | null {
   if (!entry.commit) return null;
   return entry.date
-    ? `https://github.com/${GITHUB_REPO}/commit/${entry.commit}`
-    : `https://github.com/${GITHUB_REPO}/compare/${entry.commit}...main`;
+    ? `${SITE.repo.url}/commit/${entry.commit}`
+    : `${SITE.repo.url}/compare/${entry.commit}...${SITE.repo.branch}`;
 }
 
 export function VersionView() {
@@ -76,7 +78,7 @@ export function VersionView() {
         <h1 className="text-2xl font-bold mt-2">{t(L.title, locale)}</h1>
         <p className="text-sm text-muted-foreground mt-1">{t(L.subtitle, locale)}</p>
         <a
-          href="https://github.com/Jesselpetry/ihelp/blob/main/CHANGELOG.md"
+          href={`${SITE.repo.url}/blob/${SITE.repo.branch}/CHANGELOG.md`}
           target="_blank"
           rel="noreferrer"
           className="inline-block text-xs text-muted-foreground hover:text-primary mt-1"

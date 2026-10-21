@@ -1,25 +1,26 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import { SITE, absoluteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: {
-    template: "%s · PSCP iHelp",
+    template: `%s · PSCP ${SITE.shortName}`,
     default: "PSCP · การแก้ปัญหาและการโปรแกรมคอมพิวเตอร์",
   },
   description:
     "คลังโจทย์ PSCP 06066303 IT KMITL — รายการโจทย์ iJudge พร้อมกำหนดส่ง โจทย์แนะนำพร้อมเฉลย ตัวช่วยสร้าง submission.md และ ai_reflection.md",
   openGraph: {
     type: "website",
-    url: "https://ihelp.chatan.in.th/pscp",
+    url: absoluteUrl("/pscp"),
     title: "PSCP · การแก้ปัญหาและการโปรแกรมคอมพิวเตอร์",
     description:
       "คลังโจทย์ PSCP 06066303 IT KMITL — รายการโจทย์ iJudge พร้อมกำหนดส่ง โจทย์แนะนำพร้อมเฉลย ตัวช่วยสร้าง submission.md และ ai_reflection.md",
     images: [
       {
-        url: "/og-image-pscp.png",
-        width: 1200,
-        height: 630,
-        alt: "PSCP iHelp",
+        url: SITE.og.pscp,
+        width: SITE.og.width,
+        height: SITE.og.height,
+        alt: `PSCP ${SITE.shortName}`,
       },
     ],
   },
@@ -28,7 +29,7 @@ export const metadata: Metadata = {
     title: "PSCP · การแก้ปัญหาและการโปรแกรมคอมพิวเตอร์",
     description:
       "คลังโจทย์ PSCP 06066303 IT KMITL — รายการโจทย์ iJudge พร้อมกำหนดส่ง โจทย์แนะนำพร้อมเฉลย ตัวช่วยสร้าง submission.md และ ai_reflection.md",
-    images: ["/og-image-pscp.png"],
+    images: [SITE.og.pscp],
   },
 };
 

@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { SITE } from "@/lib/site";
 
 /**
  * Served at /manifest.webmanifest. Next 16 emits the <link rel="manifest">
@@ -7,24 +8,25 @@ import type { MetadataRoute } from "next";
  * NOTE: proxy.ts must keep excluding manifest.webmanifest from the Supabase
  * session matcher, otherwise every install check pays a session refresh.
  *
- * Colors track app/globals.css: --background (light) and --primary.
+ * Colors come from SITE.themeColor, which tracks app/globals.css:
+ * --background (light) and --primary.
  * See node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/01-metadata/manifest.md
  */
 export default function manifest(): MetadataRoute.Manifest {
   return {
     id: "/",
-    name: "iHelp IT KMITL",
-    short_name: "iHelp",
+    name: `${SITE.shortName} ${SITE.org.short}`,
+    short_name: SITE.shortName,
     description:
       "คลังเรียนรู้สำหรับนักศึกษาปี 1 คณะ IT สจล. — สรุปเนื้อหา แบบทดสอบ ข้อสอบเก่า และคลังสไลด์",
-    lang: "th",
+    lang: SITE.locale,
     dir: "ltr",
     start_url: "/",
     scope: "/",
     display: "standalone",
     orientation: "portrait-primary",
-    background_color: "#f4f6f8",
-    theme_color: "#2357A5",
+    background_color: SITE.themeColor.light,
+    theme_color: SITE.themeColor.primary,
     categories: ["education", "books", "productivity"],
     icons: [
       {

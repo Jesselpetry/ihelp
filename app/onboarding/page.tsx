@@ -4,6 +4,7 @@ import { eq } from "drizzle-orm";
 
 import { db, itggStudents } from "@/db";
 import { Navbar } from "@/components/navbar";
+import { Wordmark } from "@/components/brand/wordmark";
 import { OnboardingForm } from "@/components/account/onboarding-form";
 import { currentStudentId, currentUser } from "@/lib/auth/guards";
 
@@ -33,7 +34,9 @@ export default async function OnboardingPage() {
       <main className="mx-auto w-full max-w-lg flex-1 px-4 py-10 sm:px-6 sm:py-14">
         <header className="mb-8 space-y-2">
           <p className="font-mono text-xs text-muted-foreground">{studentId}</p>
-          <h1 className="text-2xl font-semibold">ยินดีต้อนรับสู่ &lt;i&gt;help</h1>
+          <h1 className="text-2xl font-semibold">
+            ยินดีต้อนรับสู่ <Wordmark plain />
+          </h1>
           <p className="text-sm leading-relaxed text-muted-foreground text-pretty">
             กรอกข้อมูลอีกเล็กน้อยเพื่อสร้างโปรไฟล์ของคุณ
             เพื่อนๆ จะเห็นข้อมูลนี้เมื่อคุณแชร์สรุปหรือสไลด์เข้าคลัง

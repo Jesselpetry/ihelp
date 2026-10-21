@@ -6,6 +6,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { LocaleProvider } from "@/lib/i18n";
 import { ThemeProvider, THEME_SCRIPT } from "@/lib/theme";
+import { SITE } from "@/lib/site";
 import { Footer } from "@/components/footer";
 import { DisclaimerModal } from "@/components/disclaimer-modal";
 import { WelcomeChoiceModal } from "@/components/welcome-choice-modal";
@@ -83,27 +84,25 @@ const thSarabun = localFont({
   ],
 });
 
-// Keep in sync with app/robots.ts and app/sitemap.ts.
-// NOTE: domain is chatan.in.th (one "n") — a typo here silently breaks
-// og:image fetches for social crawlers.
-const SITE_URL = "https://ihelp.chatan.in.th";
-const TITLE = "<i>Help";
-const DESCRIPTION =
-  "<i>help — คลังเรียนรู้สำหรับนักศึกษาปี 1 คณะ IT สจล. สรุปเนื้อหา แบบทดสอบ ข้อสอบเก่า และคลังสไลด์ ครบทุกวิชา PSCP ITF ICS MFIT";
+// The name, address, author and images all come from lib/site.ts. What stays
+// here is the page copy, which takes the brand tokens from SITE but is a
+// sentence about this site, not part of its identity.
+const TITLE = SITE.name;
+const DESCRIPTION = `${SITE.wordmark.plain} — คลังเรียนรู้สำหรับนักศึกษาปี 1 คณะ IT สจล. สรุปเนื้อหา แบบทดสอบ ข้อสอบเก่า และคลังสไลด์ ครบทุกวิชา PSCP ITF ICS MFIT`;
 
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
+  metadataBase: new URL(SITE.url),
   title: {
     default: TITLE,
-    template: "%s · <i>Help",
+    template: `%s · ${SITE.name}`,
   },
   description: DESCRIPTION,
-  applicationName: "<i>Help",
+  applicationName: SITE.name,
   keywords: [
-    "ihelp",
-    "<i>help",
-    "ihelp kmitl",
-    "IT KMITL",
+    SITE.plainName,
+    SITE.wordmark.plain,
+    `${SITE.plainName} kmitl`,
+    SITE.org.short,
     "สจล",
     "เทคโนโลยีสารสนเทศ",
     "สรุป",
@@ -119,8 +118,8 @@ export const metadata: Metadata = {
     "ai_reflection.md",
     "iJudge",
   ],
-  authors: [{ name: "Chatan Petry", url: "https://github.com/Jesselpetry" }],
-  creator: "Chatan Petry",
+  authors: [{ name: SITE.author.name, url: SITE.author.url }],
+  creator: SITE.author.name,
   category: "education",
   alternates: { canonical: "/" },
   robots: {
@@ -138,21 +137,28 @@ export const metadata: Metadata = {
   // override them, so don't re-add it.
   appleWebApp: {
     capable: true,
-    title: "iHelp",
+    title: SITE.shortName,
     statusBarStyle: "black-translucent",
   },
   openGraph: {
     type: "website",
-    url: SITE_URL,
+    url: SITE.url,
     title: TITLE,
-    siteName: "<i>help — คลังเรียนรู้ IT KMITL",
+    siteName: `${SITE.wordmark.plain} — ${SITE.tagline.th}`,
     description: DESCRIPTION,
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: TITLE }],
+    images: [
+      {
+        url: SITE.og.default,
+        width: SITE.og.width,
+        height: SITE.og.height,
+        alt: TITLE,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     description: DESCRIPTION,
-    images: ["/og-image.png"],
+    images: [SITE.og.default],
   },
 };
 
@@ -163,8 +169,8 @@ export const metadata: Metadata = {
  */
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f4f6f8" },
-    { media: "(prefers-color-scheme: dark)", color: "#0f1318" },
+    { media: "(prefers-color-scheme: light)", color: SITE.themeColor.light },
+    { media: "(prefers-color-scheme: dark)", color: SITE.themeColor.dark },
   ],
   colorScheme: "light dark",
 };
@@ -176,7 +182,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="th"
+      lang={SITE.locale}
       suppressHydrationWarning
       className={`${plexThai.variable} ${geistMono.variable} ${mali.variable} ${thSarabun.variable} h-full antialiased`}
     >

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import {
+  CalendarDays,
   Code2,
   Library,
   Menu,
@@ -13,6 +14,7 @@ import {
 import { useLocale, t, type LText } from "@/lib/i18n";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { AccountMenu } from "@/components/account/account-menu";
+import { Wordmark } from "@/components/brand/wordmark";
 
 const NAV_LINKS: { href: string; label: LText; icon: typeof Library }[] = [
   {
@@ -24,6 +26,11 @@ const NAV_LINKS: { href: string; label: LText; icon: typeof Library }[] = [
     href: "/pscp",
     label: { th: "PSCP", en: "PSCP" },
     icon: Code2,
+  },
+  {
+    href: "/exam-schedule",
+    label: { th: "ตารางสอบ", en: "Exams" },
+    icon: CalendarDays,
   },
   { href: "/version", label: { th: "เวอร์ชัน", en: "Version" }, icon: Tag },
 ];
@@ -48,8 +55,7 @@ export function Navbar() {
             onClick={() => setIsOpen(false)}
             className="font-mono text-xl font-bold flex items-center shrink-0"
           >
-            <span className="text-primary">&lt;i</span>help
-            <span className="text-primary">&gt;</span>
+            <Wordmark />
           </Link>
           <div className="hidden md:flex items-center gap-1">
             {NAV_LINKS.map(({ href, label, icon: Icon }) => {

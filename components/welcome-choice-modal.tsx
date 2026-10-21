@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Wordmark } from "@/components/brand/wordmark";
 import { useLocale, t, type LText } from "@/lib/i18n";
 
 const ACK_KEY = "ihelp-destination-ack-v1";
@@ -25,7 +26,6 @@ const DISCLAIMER_ACK_KEY = "ihelp-welcome-ack-v2";
 
 const L: Record<string, LText> = {
   badge: { th: "อัปเดตใหม่", en: "What's new" },
-  title: { th: "<i>help โฉมใหม่", en: "The new <i>help" },
   intro: {
     th: "เราจัดหน้าเว็บใหม่ทั้งหมด แล้ววันนี้อยากเริ่มจากตรงไหนดี?",
     en: "The site has been rebuilt. Where would you like to start?",
@@ -144,8 +144,7 @@ export function WelcomeChoiceModal() {
           </Badge>
 
           <DialogTitle className="font-mono text-lg font-bold sm:text-xl">
-            <span className="text-primary">&lt;i</span>help
-            <span className="text-primary">&gt;</span>{" "}
+            <Wordmark />{" "}
             {locale === "th" ? "โฉมใหม่" : "reimagined"}
           </DialogTitle>
 

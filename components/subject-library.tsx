@@ -66,8 +66,6 @@ import {
   type SortDirection,
 } from "./subject-library/types";
 
-export * from "./subject-library";
-
 export interface SubjectLibraryProps {
   assets: SubjectAsset[];
   backHref: string;

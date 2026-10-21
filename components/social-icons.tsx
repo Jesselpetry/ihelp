@@ -1,7 +1,10 @@
 import { cn } from "@/lib/utils";
+import { SITE } from "@/lib/site";
 
-export const GITHUB_URL = "https://github.com/Jesselpetry/ihelp";
-export const INSTAGRAM_URL = "https://instagram.com/chatann_";
+// The footer and the disclaimer link here; the addresses themselves live in
+// lib/site.ts, so re-branding does not touch an icon file.
+export const GITHUB_URL = SITE.social.github.url;
+export const INSTAGRAM_URL = SITE.social.instagram.url;
 
 export function GithubIcon({ className }: { className?: string }) {
   return (

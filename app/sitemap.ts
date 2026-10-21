@@ -4,9 +4,7 @@ import { loadLibrary } from "@/lib/library/library";
 import { COURSES, courseDir } from "@/lib/courses/catalog";
 import { resolveCourseSpine } from "@/lib/courses/course-spine";
 import type { ModuleId } from "@/lib/courses/spine";
-
-// Keep this in sync with SITE_URL in app/layout.tsx.
-const SITE_URL = "https://ihelp.chatan.in.th";
+import { absoluteUrl } from "@/lib/site";
 
 type Entry = MetadataRoute.Sitemap[number];
 
@@ -46,7 +44,7 @@ const MODULE_PRIORITY: Record<ModuleId, number> = {
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
   const entries: MetadataRoute.Sitemap = STATIC_ROUTES.map((r) => ({
-    url: `${SITE_URL}${r.path}`,
+    url: absoluteUrl(r.path),
     lastModified: now,
     changeFrequency: r.changeFrequency,
     priority: r.priority,
@@ -55,7 +53,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const course of COURSES) {
     const dir = courseDir(course);
     entries.push({
-      url: `${SITE_URL}/courses/${dir}`,
+      url: absoluteUrl(`/courses/${dir}`),
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.8,
@@ -67,7 +65,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       if (mod.status !== "available" || !mod.href) continue;
       if (!mod.href.startsWith(`/courses/${dir}/`)) continue;
       entries.push({
-        url: `${SITE_URL}${mod.href}`,
+        url: absoluteUrl(mod.href),
         lastModified: now,
         changeFrequency: "monthly",
         priority: MODULE_PRIORITY[mod.id],
@@ -77,7 +75,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   for (const problem of loadRecommendedProblems()) {
     entries.push({
-      url: `${SITE_URL}/recommended/${problem.slug}`,
+      url: absoluteUrl(`/recommended/${problem.slug}`),
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.7,
@@ -86,7 +84,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   for (const doc of loadLibrary()) {
     entries.push({
-      url: `${SITE_URL}/library/${doc.slug}`,
+      url: absoluteUrl(`/library/${doc.slug}`),
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.5,

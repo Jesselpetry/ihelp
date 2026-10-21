@@ -32,6 +32,14 @@ export function ProblemsView({ data }: { data: PscpHubData }) {
   const [openId, setOpenId] = useState<number | null>(null);
   const [progress, setProgress] = useState<PscpProgress>({});
 
+  // `?week=12` preselects a week — /study-space links each final-scope week here.
+  // Read after mount: the page is static, so the server never sees the query.
+  useEffect(() => {
+    const week = Number(new URLSearchParams(window.location.search).get("week"));
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time read of the URL after mount (SSR-safe)
+    if (data.weeks.includes(week)) setWeekFilter(week);
+  }, [data.weeks]);
+
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time hydration from localStorage after mount (SSR-safe)
     setProgress(loadPscpProgress());

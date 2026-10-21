@@ -18,9 +18,6 @@ import {
 import { useLocale, t, type LText } from "@/lib/i18n";
 import { PHASE_CATEGORY, type ModuleScope, type ResolvedModule } from "@/lib/courses/spine";
 
-// Kept so the name still resolves from here; the map itself lives in the shared file.
-export { MODULE_ICONS } from "@/components/course-hub-shared";
-
 const L = {
   empty: {
     th: "ยังไม่มีเนื้อหาสำหรับช่วงสอบนี้",

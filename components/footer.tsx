@@ -9,17 +9,18 @@ import {
   INSTAGRAM_URL,
 } from "@/components/social-icons";
 import { SiteStats } from "@/components/site-stats";
+import { SITE } from "@/lib/site";
 
 const SOCIALS = [
   {
     label: "GitHub",
-    handle: "/Jesselpetry",
+    handle: SITE.social.github.handle,
     href: GITHUB_URL,
     icon: <GithubIcon />,
   },
   {
     label: "Instagram",
-    handle: "@chatann_",
+    handle: SITE.social.instagram.handle,
     href: INSTAGRAM_URL,
     icon: <InstagramIcon />,
   },
@@ -40,8 +41,8 @@ export function Footer() {
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 py-6 sm:flex-row">
         <p className="text-xs text-muted-foreground">
           Built for{" "}
-          <span className="font-medium text-foreground">IT KMITL</span> ·
-          © {new Date().getFullYear()} Chatan Petry
+          <span className="font-medium text-foreground">{SITE.org.short}</span> ·
+          © {new Date().getFullYear()} {SITE.author.name}
         </p>
         <div className="flex items-center gap-2">
           {SOCIALS.map((s) => (

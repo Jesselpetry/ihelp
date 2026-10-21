@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import { SITE, absoluteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: {
@@ -10,15 +11,15 @@ export const metadata: Metadata = {
     "Explore the 10 PSCP Recommended Problems with complete problem explanations, Python techniques, test cases, and solution code.",
   openGraph: {
     type: "website",
-    url: "https://ihelp.chatan.in.th/recommended",
+    url: absoluteUrl("/recommended"),
     title: "Recommended Problems · PSCP",
     description:
       "Explore the 10 PSCP Recommended Problems with complete problem explanations, Python techniques, test cases, and solution code.",
     images: [
       {
-        url: "/og-image-pscp.png",
-        width: 1200,
-        height: 630,
+        url: SITE.og.pscp,
+        width: SITE.og.width,
+        height: SITE.og.height,
         alt: "PSCP Recommended Problems",
       },
     ],
@@ -28,7 +29,7 @@ export const metadata: Metadata = {
     title: "Recommended Problems · PSCP",
     description:
       "Explore the 10 PSCP Recommended Problems with complete problem explanations, Python techniques, test cases, and solution code.",
-    images: ["/og-image-pscp.png"],
+    images: [SITE.og.pscp],
   },
 };
 

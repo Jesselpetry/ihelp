@@ -21,19 +21,27 @@ import {
   GITHUB_URL,
   INSTAGRAM_URL,
 } from "@/components/social-icons";
+import { Wordmark } from "@/components/brand/wordmark";
 import { useLocale, t, type LText } from "@/lib/i18n";
+import { SITE } from "@/lib/site";
 import { DISCLAIMER_ACCEPTED_EVENT } from "@/components/welcome-choice-modal";
 
 const ACK_KEY = "ihelp-welcome-ack-v2";
 
 const L: Record<string, LText> = {
-  title: { th: "ยินดีต้อนรับสู่ ihelp", en: "Welcome to ihelp" },
+  title: {
+    th: `ยินดีต้อนรับสู่ ${SITE.plainName}`,
+    en: `Welcome to ${SITE.plainName}`,
+  },
   subtitleBadge: { th: "IT KMITL Open Learning Hub", en: "IT KMITL Open Learning Hub" },
   intro: {
     th: "ศูนย์รวมคลังสื่อการเรียนรู้ สรุปเนื้อหารายวิชา คลังข้อสอบจำลอง และเครื่องมือช่วยเตรียมตัวสอบสำหรับนักศึกษา IT KMITL",
     en: "An open learning hub featuring course summaries, resource libraries, mock exams, and prep tools for IT KMITL students.",
   },
-  featuresTitle: { th: "สิ่งที่คุณสามารถใช้งานได้ใน ihelp", en: "What you can explore" },
+  featuresTitle: {
+    th: `สิ่งที่คุณสามารถใช้งานได้ใน ${SITE.plainName}`,
+    en: "What you can explore",
+  },
   feat1Title: { th: "คลังสื่อการเรียนและชีทสรุป", en: "Resource Library & Summaries" },
   feat1Desc: {
     th: "สไลด์ เอกสารประกอบการสอน สรุปเนื้อหารายสัปดาห์ และสูตรสำคัญของทุกวิชา",
@@ -64,7 +72,7 @@ const L: Record<string, LText> = {
   },
   accept: { th: "เข้าใจแล้ว เริ่มใช้งาน", en: "Get Started" },
   dontShow: { th: "ไม่ต้องแสดงอีก", en: "Don't show this again" },
-  by: { th: "By เจส IT24", en: "Made by Jes · IT24" },
+  by: SITE.author.credit,
 };
 
 export function DisclaimerModal() {
@@ -105,8 +113,7 @@ export function DisclaimerModal() {
         <DialogHeader className="space-y-2 text-center sm:text-left">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <p className="font-mono text-2xl font-bold tracking-tight">
-              <span className="text-primary">&lt;i</span>help
-              <span className="text-primary">&gt;</span>
+              <Wordmark />
             </p>
             <Badge variant="outline" className="rounded-full text-[11px] font-medium border-primary/30 text-primary bg-primary/5">
               <Sparkles className="size-3 mr-1 text-primary" />

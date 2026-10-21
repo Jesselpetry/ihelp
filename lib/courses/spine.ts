@@ -22,7 +22,7 @@ import type { LText } from "@/lib/i18n";
  *
  * This file is pure data: types, the eleven specs, and the phase labels. It is
  * imported by client components, so it must not reach a loader or `fs` — the
- * joining of a course to its bindings lives in lib/course-spine.ts, which is
+ * joining of a course to its bindings lives in lib/courses/course-spine.ts, which is
  * server-only.
  *
  * Ordered A -> D by what the brain actually does: take in, compress, retrieve,
@@ -372,7 +372,7 @@ export interface SpineMetrics {
  * Plain data, deliberately. This crosses into client components, and a binding
  * holds loader *functions* — passing one through would fail serialization at
  * build time. Server code that needs the docs or the bank asks
- * moduleBinding() in lib/course-spine.ts instead.
+ * moduleBinding() in lib/courses/course-spine.ts instead.
  */
 export interface ResolvedModule {
   id: ModuleId;
