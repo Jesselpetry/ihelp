@@ -716,7 +716,7 @@ export function ExamScheduleView({ isHardReload = false }: { isHardReload?: bool
                     </Badge>
                   </div>
 
-                  <div className="flex items-center gap-1.5 font-mono text-xs font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full">
+                  <div className="flex items-center gap-1.5 font-mono text-xs font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/20">
                     <Clock className="size-3.5 text-primary" />
                     <span>{upcomingDays === 0 ? "สอบวันนี้!" : `อีก ${upcomingDays} วัน`}</span>
                   </div>
@@ -735,7 +735,7 @@ export function ExamScheduleView({ isHardReload = false }: { isHardReload?: bool
                             {upcomingExam.short_name}
                           </h3>
                           <span className="text-sm sm:text-base font-normal text-muted-foreground group-hover/link:text-foreground transition-colors">
-                            {upcomingExam.course_name}
+                            — {upcomingExam.course_name}
                           </span>
                         </>
                       ) : (
@@ -752,7 +752,7 @@ export function ExamScheduleView({ isHardReload = false }: { isHardReload?: bool
                             {upcomingExam.short_name}
                           </h3>
                           <span className="text-sm sm:text-base font-normal text-muted-foreground">
-                            {upcomingExam.course_name}
+                            — {upcomingExam.course_name}
                           </span>
                         </>
                       ) : (
@@ -773,26 +773,28 @@ export function ExamScheduleView({ isHardReload = false }: { isHardReload?: bool
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-4 border-t border-border/60 text-xs">
                   {/* Logistics: Date, Time, Room & Seat */}
                   <div className="flex flex-wrap items-center gap-2">
-                    <div className="inline-flex items-center gap-1.5 font-medium text-foreground bg-muted/60 px-2.5 py-1.5 rounded-xl">
+                    <div className="inline-flex items-center gap-1.5 font-medium text-foreground bg-muted/60 px-2.5 py-1.5 rounded-xl border border-border/40">
                       <Calendar className="size-3.5 text-primary shrink-0" />
                       <span>วัน{upcomingExam.final_exam.date_th}</span>
                     </div>
 
-                    <div className="inline-flex items-center gap-1.5 font-semibold text-foreground bg-muted/60 px-2.5 py-1.5 rounded-xl">
+                    <div className="inline-flex items-center gap-1.5 font-semibold text-foreground bg-muted/60 px-2.5 py-1.5 rounded-xl border border-border/40">
                       <Clock className="size-3.5 text-primary shrink-0" />
                       <span>{upcomingExam.final_exam.time} น.</span>
                     </div>
 
                     {upcomingSeat ? (
-                      <div className="inline-flex items-center gap-1.5 text-muted-foreground bg-muted/60 px-2.5 py-1.5 rounded-xl font-medium">
+                      <div className="inline-flex items-center gap-1.5 text-foreground bg-muted/60 px-2.5 py-1.5 rounded-xl border border-border/40 font-medium">
                         <MapPin className="size-3.5 text-primary shrink-0" />
-                        <span className="text-foreground">อาคาร {upcomingSeat.building} ห้อง {upcomingSeat.room}</span>
-                        <span>•</span>
-                        <span>ที่นั่ง</span>
-                        <span className="font-bold text-orange-600 dark:text-orange-400">{upcomingSeat.seat}</span>
+                        <span>อาคาร {upcomingSeat.building} ห้อง {upcomingSeat.room}</span>
+                        <span className="text-muted-foreground/60">•</span>
+                        <span className="text-muted-foreground">ที่นั่ง</span>
+                        <span className="font-bold text-xs bg-orange-500/10 text-orange-600 dark:text-orange-400 border border-orange-500/30 px-2.5 py-0.5 rounded-md shadow-2xs">
+                          {upcomingSeat.seat}
+                        </span>
                       </div>
                     ) : (
-                      <div className="inline-flex items-center gap-1.5 text-muted-foreground bg-muted/40 px-2.5 py-1.5 rounded-xl">
+                      <div className="inline-flex items-center gap-1.5 text-muted-foreground bg-muted/40 px-2.5 py-1.5 rounded-xl border border-border/30">
                         <MapPin className="size-3.5 shrink-0" />
                         <span>ห้องสอบ: รอประกาศผังทางการ</span>
                       </div>
@@ -804,7 +806,7 @@ export function ExamScheduleView({ isHardReload = false }: { isHardReload?: bool
                     {portalHref && (
                       <Link
                         href={portalHref}
-                        className="inline-flex items-center gap-1.5 rounded-xl text-xs px-3 py-1.5 border hover:bg-muted text-muted-foreground hover:text-foreground font-medium transition-colors h-8.5"
+                        className="inline-flex items-center gap-1.5 rounded-xl text-xs px-3 py-1.5 border border-border/70 hover:bg-muted text-muted-foreground hover:text-foreground font-medium transition-colors h-8.5"
                       >
                         <BookOpen className="size-3.5 text-primary" />
                         <span>หน้ารายวิชา</span>
@@ -892,8 +894,9 @@ export function ExamScheduleView({ isHardReload = false }: { isHardReload?: bool
                             key={exam.course_code}
                             className="group rounded-2xl border bg-card p-4 sm:p-5 transition-all duration-200 hover:border-primary/40 hover:shadow-xs"
                           >
-                            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3 sm:gap-4">
-                              {/* Left: Course Info (Short name prominent, clean subtitle without pill clutter) */}
+                            {/* ── Top Row: Course Identity (Left) & Exam Time (Right) ── */}
+                            <div className="flex items-start justify-between gap-3 mb-3">
+                              {/* Left: Course Name (Full width available, never crushed) */}
                               <div className="min-w-0 flex-1">
                                 {portalHref ? (
                                   <Link
@@ -905,12 +908,12 @@ export function ExamScheduleView({ isHardReload = false }: { isHardReload?: bool
                                         <span className="text-base sm:text-lg font-bold text-foreground tracking-tight group-hover/link:text-primary transition-colors">
                                           {exam.short_name}
                                         </span>
-                                        <span className="text-xs sm:text-sm font-normal text-muted-foreground group-hover/link:text-foreground transition-colors">
-                                          {exam.course_name}
+                                        <span className="text-sm sm:text-base font-medium text-muted-foreground group-hover/link:text-foreground transition-colors">
+                                          — {exam.course_name}
                                         </span>
                                       </>
                                     ) : (
-                                      <span className="text-base font-bold text-foreground group-hover/link:text-primary transition-colors">
+                                      <span className="text-base sm:text-lg font-bold text-foreground group-hover/link:text-primary transition-colors">
                                         {exam.course_name}
                                       </span>
                                     )}
@@ -922,76 +925,86 @@ export function ExamScheduleView({ isHardReload = false }: { isHardReload?: bool
                                         <span className="text-base sm:text-lg font-bold text-foreground tracking-tight">
                                           {exam.short_name}
                                         </span>
-                                        <span className="text-xs sm:text-sm font-normal text-muted-foreground">
-                                          {exam.course_name}
+                                        <span className="text-sm sm:text-base font-medium text-muted-foreground">
+                                          — {exam.course_name}
                                         </span>
                                       </>
                                     ) : (
-                                      <span className="text-base font-bold text-foreground">
+                                      <span className="text-base sm:text-lg font-bold text-foreground">
                                         {exam.course_name}
                                       </span>
                                     )}
                                   </div>
                                 )}
 
+                                {/* Subtitle: Course Code & Thai Name */}
                                 <p className="text-xs text-muted-foreground mt-0.5">
                                   <span className="font-mono font-medium">{exam.course_code}</span>
                                   {exam.course_name_th && <span> • {exam.course_name_th}</span>}
                                 </p>
                               </div>
 
-                              {/* Right: Logistics (Time, Room, Seat) & Actions */}
-                              <div className="flex flex-wrap sm:flex-nowrap items-center justify-between lg:justify-end gap-2.5 sm:gap-3 shrink-0 pt-2 lg:pt-0 border-t lg:border-t-0 border-border/50">
-                                {/* Logistics Pill Group: Visual Grouping for Time, Room, and Seat */}
-                                <div className="flex flex-wrap items-center gap-2 text-xs">
-                                  <div className="inline-flex items-center gap-1.5 font-semibold text-foreground bg-muted/60 px-2.5 py-1 rounded-lg">
-                                    <Clock className="size-3.5 text-primary shrink-0" />
-                                    <span>{exam.final_exam.time} น.</span>
-                                  </div>
+                              {/* Right: Time Badge (Clean & Prominent) */}
+                              <div className="shrink-0">
+                                <div className="inline-flex items-center gap-1.5 font-semibold text-xs sm:text-sm text-foreground bg-muted/60 px-3 py-1.5 rounded-xl border border-border/40">
+                                  <Clock className="size-3.5 text-primary shrink-0" />
+                                  <span>{exam.final_exam.time} น.</span>
+                                </div>
+                              </div>
+                            </div>
 
-                                  {seatInfo ? (
-                                    <div className="inline-flex items-center gap-1.5 text-muted-foreground bg-muted/60 px-2.5 py-1 rounded-lg font-medium">
+                            {/* ── Bottom Row: Room & Seat (Left) & Action Buttons (Right) ── */}
+                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-3 border-t border-border/50 text-xs">
+                              {/* Left: Venue & Seat Info */}
+                              <div className="flex items-center gap-2">
+                                {seatInfo ? (
+                                  <div className="flex flex-wrap items-center gap-2 text-foreground font-medium">
+                                    <span className="inline-flex items-center gap-1.5 text-muted-foreground">
                                       <MapPin className="size-3.5 text-primary shrink-0" />
                                       <span className="text-foreground">อาคาร {seatInfo.building} ห้อง {seatInfo.room}</span>
-                                      <span>•</span>
-                                      <span>ที่นั่ง</span>
-                                      <span className="font-bold text-orange-600 dark:text-orange-400">{seatInfo.seat}</span>
-                                    </div>
-                                  ) : (
-                                    <div className="inline-flex items-center gap-1.5 text-muted-foreground bg-muted/40 px-2.5 py-1 rounded-lg">
-                                      <MapPin className="size-3.5 shrink-0" />
-                                      <span>รอประกาศผัง</span>
-                                    </div>
-                                  )}
-                                </div>
+                                    </span>
+                                    <span className="text-muted-foreground/60">•</span>
+                                    <span className="inline-flex items-center gap-1.5">
+                                      <span className="text-muted-foreground">ที่นั่ง</span>
+                                      <span className="font-bold text-xs bg-orange-500/10 text-orange-600 dark:text-orange-400 border border-orange-500/30 px-2.5 py-0.5 rounded-md shadow-2xs">
+                                        {seatInfo.seat}
+                                      </span>
+                                    </span>
+                                  </div>
+                                ) : (
+                                  <div className="inline-flex items-center gap-1.5 text-muted-foreground">
+                                    <MapPin className="size-3.5 shrink-0" />
+                                    <span>ห้องสอบ: รอประกาศผังทางการ</span>
+                                  </div>
+                                )}
+                              </div>
 
-                                {/* Actions: Soft Button + Subtle Link */}
-                                <div className="flex items-center gap-1.5 shrink-0 ml-auto lg:ml-0">
-                                  {portalHref && (
-                                    <Link
-                                      href={portalHref}
-                                      className="inline-flex items-center gap-1 rounded-xl text-xs px-2.5 py-1 text-muted-foreground hover:text-foreground hover:bg-muted font-medium transition-colors h-8"
-                                      title="เปิดหน้ารายวิชา"
-                                    >
-                                      <BookOpen className="size-3.5 text-primary" />
-                                      <span className="hidden sm:inline">วิชา</span>
-                                      <ExternalLink className="size-3 text-muted-foreground" />
-                                    </Link>
-                                  )}
+                              {/* Right: Action Buttons (Spacious & Clean) */}
+                              <div className="flex items-center justify-end gap-2 shrink-0">
+                                {portalHref && (
+                                  <Link
+                                    href={portalHref}
+                                    className="inline-flex items-center gap-1.5 rounded-xl text-xs px-3 py-1.5 border border-border/70 hover:bg-muted text-muted-foreground hover:text-foreground font-medium transition-colors h-8.5"
+                                    title="เปิดหน้ารายวิชา"
+                                  >
+                                    <BookOpen className="size-3.5 text-primary" />
+                                    <span>หน้ารายวิชา</span>
+                                    <ExternalLink className="size-3 text-muted-foreground" />
+                                  </Link>
+                                )}
 
-                                  {seatingSession && (
-                                    <Button
-                                      variant="secondary"
-                                      size="sm"
-                                      onClick={() => toggleCourseSeating(exam.course_code)}
-                                      className="rounded-xl text-xs gap-1.5 h-8 px-3 bg-primary/10 hover:bg-primary/20 text-primary border-0 font-medium transition-all"
-                                    >
-                                      <Armchair className="size-3.5" />
-                                      <span>{isChartOpen ? "ซ่อนผัง" : "ดูผังที่นั่ง"}</span>
-                                      {isChartOpen ? <ChevronUp className="size-3" /> : <ChevronDown className="size-3" />}
-                                    </Button>
-                                  )}
-                                </div>
+                                {seatingSession && (
+                                  <Button
+                                    variant="secondary"
+                                    size="sm"
+                                    onClick={() => toggleCourseSeating(exam.course_code)}
+                                    className="rounded-xl text-xs gap-1.5 h-8.5 px-3.5 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 font-semibold transition-all"
+                                  >
+                                    <Armchair className="size-3.5" />
+                                    <span>{isChartOpen ? "ซ่อนผังที่นั่ง" : "ดูผังที่นั่ง"}</span>
+                                    {isChartOpen ? <ChevronUp className="size-3" /> : <ChevronDown className="size-3" />}
+                                  </Button>
+                                )}
                               </div>
                             </div>
 
@@ -1044,20 +1057,20 @@ export function ExamScheduleView({ isHardReload = false }: { isHardReload?: bool
                       key={`midterm-${seat.course_code}-${seat.room}`}
                       className="group rounded-2xl border bg-card p-4 sm:p-5 transition-all duration-200 hover:border-primary/40 hover:shadow-xs"
                     >
-                      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3 sm:gap-4">
-                        {/* Left: Course Info */}
+                      {/* ── Top Row: Course Info (Left) & Exam Time (Right) ── */}
+                      <div className="flex items-start justify-between gap-3 mb-3">
                         <div className="min-w-0 flex-1">
                           {portalHref ? (
                             <Link
                               href={portalHref}
                               className="group/link inline-flex items-baseline gap-2 flex-wrap"
                             >
-                              <h5 className="font-semibold text-base text-foreground group-hover/link:text-primary transition-colors">
+                              <h5 className="font-semibold text-base sm:text-lg text-foreground group-hover/link:text-primary transition-colors">
                                 {seat.short_name ? `${seat.short_name} — ` : ""}{seat.course_name}
                               </h5>
                             </Link>
                           ) : (
-                            <h5 className="font-semibold text-base text-foreground">
+                            <h5 className="font-semibold text-base sm:text-lg text-foreground">
                               {seat.short_name ? `${seat.short_name} — ` : ""}{seat.course_name}
                             </h5>
                           )}
@@ -1070,53 +1083,62 @@ export function ExamScheduleView({ isHardReload = false }: { isHardReload?: bool
                           </p>
                         </div>
 
-                        {/* Right: Logistics (Time, Room, Seat) & Actions */}
-                        <div className="flex flex-wrap sm:flex-nowrap items-center justify-between lg:justify-end gap-2.5 sm:gap-3 shrink-0 pt-2 lg:pt-0 border-t lg:border-t-0 border-border/50">
-                          {/* Logistics Pill Group */}
-                          <div className="flex flex-wrap items-center gap-2 text-xs">
-                            <div className="inline-flex items-center gap-1.5 font-semibold text-foreground bg-muted/60 px-2.5 py-1 rounded-lg">
-                              <Clock className="size-3.5 text-primary shrink-0" />
-                              <span>{seat.time} น.</span>
-                            </div>
+                        {/* Right: Time Badge */}
+                        <div className="shrink-0">
+                          <div className="inline-flex items-center gap-1.5 font-semibold text-xs sm:text-sm text-foreground bg-muted/60 px-3 py-1.5 rounded-xl border border-border/40">
+                            <Clock className="size-3.5 text-primary shrink-0" />
+                            <span>{seat.time} น.</span>
+                          </div>
+                        </div>
+                      </div>
 
-                            <div className="inline-flex items-center gap-1.5 text-muted-foreground bg-muted/60 px-2.5 py-1 rounded-lg font-medium">
+                      {/* ── Bottom Row: Venue & Seat (Left) & Action Buttons (Right) ── */}
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-3 border-t border-border/50 text-xs">
+                        {/* Left: Venue & Seat Info */}
+                        <div className="flex items-center gap-2">
+                          <div className="flex flex-wrap items-center gap-2 text-foreground font-medium">
+                            <span className="inline-flex items-center gap-1.5 text-muted-foreground">
                               <MapPin className="size-3.5 text-primary shrink-0" />
                               <span className="text-foreground">อาคาร {seat.building} ห้อง {seat.room}</span>
-                              <span>•</span>
-                              <span>ที่นั่ง</span>
-                              <span className="font-bold text-orange-600 dark:text-orange-400">{seat.seat}</span>
-                            </div>
+                            </span>
+                            <span className="text-muted-foreground/60">•</span>
+                            <span className="inline-flex items-center gap-1.5">
+                              <span className="text-muted-foreground">ที่นั่ง</span>
+                              <span className="font-bold text-xs bg-orange-500/10 text-orange-600 dark:text-orange-400 border border-orange-500/30 px-2.5 py-0.5 rounded-md shadow-2xs">
+                                {seat.seat}
+                              </span>
+                            </span>
                           </div>
+                        </div>
 
-                          {/* Actions: Soft Button + Subtle Link */}
-                          <div className="flex items-center gap-1.5 shrink-0 ml-auto lg:ml-0">
-                            {portalHref && (
-                              <Link
-                                href={portalHref}
-                                className="inline-flex items-center gap-1 rounded-xl text-xs px-2.5 py-1 text-muted-foreground hover:text-foreground hover:bg-muted font-medium transition-colors h-8"
-                                title="เปิดหน้ารายวิชา"
-                              >
-                                <BookOpen className="size-3.5 text-primary" />
-                                <span className="hidden sm:inline">วิชา</span>
-                                <ExternalLink className="size-3 text-muted-foreground" />
-                              </Link>
-                            )}
+                        {/* Right: Action Buttons (Spacious & Clean) */}
+                        <div className="flex items-center justify-end gap-2 shrink-0">
+                          {portalHref && (
+                            <Link
+                              href={portalHref}
+                              className="inline-flex items-center gap-1.5 rounded-xl text-xs px-3 py-1.5 border border-border/70 hover:bg-muted text-muted-foreground hover:text-foreground font-medium transition-colors h-8.5"
+                              title="เปิดหน้ารายวิชา"
+                            >
+                              <BookOpen className="size-3.5 text-primary" />
+                              <span>หน้ารายวิชา</span>
+                              <ExternalLink className="size-3 text-muted-foreground" />
+                            </Link>
+                          )}
 
-                            {seatingSession && (
-                              <Button
-                                variant="secondary"
-                                size="sm"
-                                onClick={() =>
-                                  toggleCourseSeating(`midterm-${seat.course_code}-${seat.room}`)
-                                }
-                                className="rounded-xl text-xs gap-1.5 h-8 px-3 bg-primary/10 hover:bg-primary/20 text-primary border-0 font-medium transition-all"
-                              >
-                                <Armchair className="size-3.5" />
-                                <span>{isChartOpen ? "ซ่อนผัง" : "ดูผังที่นั่ง"}</span>
-                                {isChartOpen ? <ChevronUp className="size-3" /> : <ChevronDown className="size-3" />}
-                              </Button>
-                            )}
-                          </div>
+                          {seatingSession && (
+                            <Button
+                              variant="secondary"
+                              size="sm"
+                              onClick={() =>
+                                toggleCourseSeating(`midterm-${seat.course_code}-${seat.room}`)
+                              }
+                              className="rounded-xl text-xs gap-1.5 h-8.5 px-3.5 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 font-semibold transition-all"
+                            >
+                              <Armchair className="size-3.5" />
+                              <span>{isChartOpen ? "ซ่อนผังที่นั่ง" : "ดูผังที่นั่ง"}</span>
+                              {isChartOpen ? <ChevronUp className="size-3" /> : <ChevronDown className="size-3" />}
+                            </Button>
+                          )}
                         </div>
                       </div>
 
