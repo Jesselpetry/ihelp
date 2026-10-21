@@ -107,7 +107,6 @@ export function ExamScheduleView({ isHardReload = false }: { isHardReload?: bool
   const [studentIdInput, setStudentIdInput] = useState(urlId || "");
   const [activeStudentId, setActiveStudentId] = useState(urlId || "");
   const [activeMainTab, setActiveMainTab] = useState<"my_schedule" | "all">("my_schedule");
-  const [scheduleFilter, setScheduleFilter] = useState<"all" | "final" | "midterm">("all");
   const [copied, setCopied] = useState(false);
   const [showEmergencyModal, setShowEmergencyModal] = useState(false);
   const [showResignModal, setShowResignModal] = useState(false);
@@ -406,7 +405,7 @@ export function ExamScheduleView({ isHardReload = false }: { isHardReload?: bool
       text += `\n`;
     }
 
-    if (profile.midterm_exams.length > 0) {
+    if (profile.midterm_exams.length > 0 && profile.final_exams.length === 0) {
       text += `📌 ผังที่นั่งสอบ & ห้องสอบ:\n`;
       profile.midterm_exams.forEach((item) => {
         text += `• ${item.course_code} ${item.short_name ? `${item.short_name} — ` : ""}${item.course_name}\n`;
@@ -656,42 +655,8 @@ export function ExamScheduleView({ isHardReload = false }: { isHardReload?: bool
       {/* ── UNIFIED MY SCHEDULE VIEW ── */}
       {activeMainTab === "my_schedule" && profile && (
         <div className="space-y-6 animate-in fade-in-0 duration-300">
-          {/* Filter Pills for Schedule */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-1">
-            <button
-              onClick={() => setScheduleFilter("all")}
-              className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition-all ${
-                scheduleFilter === "all"
-                  ? "bg-primary text-primary-foreground shadow-xs font-semibold"
-                  : "bg-muted/60 text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {t(L.filterAll, locale)} ({profile.final_exams.length + profile.midterm_exams.length})
-            </button>
-            <button
-              onClick={() => setScheduleFilter("final")}
-              className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition-all ${
-                scheduleFilter === "final"
-                  ? "bg-primary text-primary-foreground shadow-xs font-semibold"
-                  : "bg-muted/60 text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {t(L.filterFinal, locale)} ({profile.final_exams.length})
-            </button>
-            <button
-              onClick={() => setScheduleFilter("midterm")}
-              className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition-all ${
-                scheduleFilter === "midterm"
-                  ? "bg-primary text-primary-foreground shadow-xs font-semibold"
-                  : "bg-muted/60 text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {t(L.filterMidterm, locale)} ({profile.midterm_exams.length})
-            </button>
-          </div>
-
           {/* 🌟 1. Upcoming Hero Exam Card */}
-          {upcomingExam && (scheduleFilter === "all" || scheduleFilter === "final") && (() => {
+          {upcomingExam && (() => {
             const upcomingDays = getDaysRemaining(upcomingExam.final_exam.date_iso);
             const upcomingSeat =
               seatingByCourseCode.get(upcomingExam.course_code) ||
@@ -845,7 +810,7 @@ export function ExamScheduleView({ isHardReload = false }: { isHardReload?: bool
           })()}
 
           {/* 🗓️ 2. Final Exam Timeline Cards */}
-          {(scheduleFilter === "all" || scheduleFilter === "final") && (
+          {profile.final_exams.length > 0 && (
             <div className="space-y-6">
               <div className="border-b pb-2 flex items-center justify-between">
                 <h4 className="text-sm font-semibold text-foreground flex items-center gap-2">
@@ -1029,140 +994,7 @@ export function ExamScheduleView({ isHardReload = false }: { isHardReload?: bool
             </div>
           )}
 
-          {/* 📋 3. Midterm Seating List (When filter includes Midterm) */}
-          {(scheduleFilter === "all" || scheduleFilter === "midterm") && profile.midterm_exams.length > 0 && (
-            <div className="space-y-4 pt-6">
-              <div className="border-b pb-2 flex items-center justify-between">
-                <h4 className="text-sm font-semibold text-foreground flex items-center gap-2">
-                  <Armchair className="size-4 text-orange-500" />
-                  <span>ผังที่นั่งและห้องสอบกลางภาค (Midterm Seating & Venue)</span>
-                </h4>
-                <Badge variant="outline" className="text-xs">
-                  {profile.midterm_exams.length} วิชา
-                </Badge>
-              </div>
-
-              <div className="space-y-3">
-                {profile.midterm_exams.map((seat) => {
-                  const portalHref = getCoursePortalHref(seat.course_code);
-                  const isChartOpen = expandedCourseCode === `midterm-${seat.course_code}-${seat.room}`;
-                  const seatingSession = getRoomSeatingSession(
-                    seat.course_code,
-                    seat.room,
-                    seat.exam_date,
-                  );
-
-                  return (
-                    <div
-                      key={`midterm-${seat.course_code}-${seat.room}`}
-                      className="group rounded-2xl border bg-card p-4 sm:p-5 transition-all duration-200 hover:border-primary/40 hover:shadow-xs"
-                    >
-                      {/* ── Top Row: Course Info (Left) & Exam Time (Right) ── */}
-                      <div className="flex items-start justify-between gap-3 mb-3">
-                        <div className="min-w-0 flex-1">
-                          {portalHref ? (
-                            <Link
-                              href={portalHref}
-                              className="group/link inline-flex items-baseline gap-2 flex-wrap"
-                            >
-                              <h5 className="font-semibold text-base sm:text-lg text-foreground group-hover/link:text-primary transition-colors">
-                                {seat.short_name ? `${seat.short_name} — ` : ""}{seat.course_name}
-                              </h5>
-                            </Link>
-                          ) : (
-                            <h5 className="font-semibold text-base sm:text-lg text-foreground">
-                              {seat.short_name ? `${seat.short_name} — ` : ""}{seat.course_name}
-                            </h5>
-                          )}
-
-                          <p className="text-xs text-muted-foreground mt-0.5">
-                            {seat.course_name_th && <span>{seat.course_name_th} • </span>}
-                            <span className="font-mono font-medium">{seat.course_code}</span>
-                            <span> • Sec {seat.section}</span>
-                            <span> • วันที่ {seat.exam_date}</span>
-                          </p>
-                        </div>
-
-                        {/* Right: Time Badge */}
-                        <div className="shrink-0">
-                          <div className="inline-flex items-center gap-1.5 font-semibold text-xs sm:text-sm text-foreground bg-muted/60 px-3 py-1.5 rounded-xl border border-border/40">
-                            <Clock className="size-3.5 text-primary shrink-0" />
-                            <span>{seat.time} น.</span>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* ── Bottom Row: Venue & Seat (Left) & Action Buttons (Right) ── */}
-                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-3 border-t border-border/50 text-xs">
-                        {/* Left: Venue & Seat Info */}
-                        <div className="flex items-center gap-2">
-                          <div className="flex flex-wrap items-center gap-2 text-foreground font-medium">
-                            <span className="inline-flex items-center gap-1.5 text-muted-foreground">
-                              <MapPin className="size-3.5 text-primary shrink-0" />
-                              <span className="text-foreground">อาคาร {seat.building} ห้อง {seat.room}</span>
-                            </span>
-                            <span className="text-muted-foreground/60">•</span>
-                            <span className="inline-flex items-center gap-1.5">
-                              <span className="text-muted-foreground">ที่นั่ง</span>
-                              <span className="font-bold text-xs bg-orange-500/10 text-orange-600 dark:text-orange-400 border border-orange-500/30 px-2.5 py-0.5 rounded-md shadow-2xs">
-                                {seat.seat}
-                              </span>
-                            </span>
-                          </div>
-                        </div>
-
-                        {/* Right: Action Buttons (Spacious & Clean) */}
-                        <div className="flex items-center justify-end gap-2 shrink-0">
-                          {portalHref && (
-                            <Link
-                              href={portalHref}
-                              className="inline-flex items-center gap-1.5 rounded-xl text-xs px-3 py-1.5 border border-border/70 hover:bg-muted text-muted-foreground hover:text-foreground font-medium transition-colors h-8.5"
-                              title="เปิดหน้ารายวิชา"
-                            >
-                              <BookOpen className="size-3.5 text-primary" />
-                              <span>หน้ารายวิชา</span>
-                              <ExternalLink className="size-3 text-muted-foreground" />
-                            </Link>
-                          )}
-
-                          {seatingSession && (
-                            <Button
-                              variant="secondary"
-                              size="sm"
-                              onClick={() =>
-                                toggleCourseSeating(`midterm-${seat.course_code}-${seat.room}`)
-                              }
-                              className="rounded-xl text-xs gap-1.5 h-8.5 px-3.5 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 font-semibold transition-all"
-                            >
-                              <Armchair className="size-3.5" />
-                              <span>{isChartOpen ? "ซ่อนผังที่นั่ง" : "ดูผังที่นั่ง"}</span>
-                              {isChartOpen ? <ChevronUp className="size-3" /> : <ChevronDown className="size-3" />}
-                            </Button>
-                          )}
-                        </div>
-                      </div>
-
-                      {/* Inline Expandable Seating Chart */}
-                      {isChartOpen && seatingSession && (
-                        <div className="mt-4 pt-4 border-t animate-in fade-in-0 duration-300">
-                          <RoomSeatingChart
-                            session={seatingSession}
-                            mySeat={seat.seat}
-                            myStudentId={profile.student_id}
-                            onClose={() => setExpandedCourseCode(null)}
-                          />
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          )}
-
-
-
-          {/* ── 4. Compact GenEd Section ── */}
+          {/* ── 3. Compact GenEd Section ── */}
           {profile.in_class_exams.length > 0 && (
             <div className="mt-8 rounded-2xl border bg-card/60 p-4 shadow-xs">
               <div className="flex items-center justify-between pb-3 border-b">
