@@ -1,7 +1,12 @@
 import type { LText } from "@/lib/i18n";
+import { SITE } from "@/lib/site";
 
-/** owner/repo on GitHub — used to build commit and compare links below. */
-export const GITHUB_REPO = "Jesselpetry/ihelp";
+/**
+ * owner/repo on GitHub. Derived from SITE.repo so the repository is named in
+ * one place; the contributors listed per release below stay literal, because
+ * they record who did the work and must not follow the site's owner.
+ */
+export const GITHUB_REPO = `${SITE.repo.owner}/${SITE.repo.name}`;
 
 export interface Contributor {
   name: string;

@@ -432,3 +432,24 @@ html[data-theme-transition]::view-transition-new(root) {
     scroll-margin-top: 6rem;
   }
 }
+
+@keyframes emergency-shimmer {
+  0% {
+    transform: translateX(-150%);
+  }
+  60%, 100% {
+    transform: translateX(150%);
+  }
+}
+
+@keyframes emergency-shake {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  10%, 30%, 50%, 70%, 90% { transform: translate(-3px, -2px) rotate(-0.5deg); }
+  20%, 40%, 60%, 80% { transform: translate(3px, 2px) rotate(0.5deg); }
+}
+
+@keyframes emergency-alarm {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.45; }
+}
+

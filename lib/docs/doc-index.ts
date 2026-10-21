@@ -17,10 +17,12 @@
  * Pure string work, no `fs` — this is imported by a client component.
  */
 
+import { parseYouTubeFence } from "@/lib/docs/fences";
+
 export interface DocFacts {
   /** The document's own lead line, plain text, or null when it has no lead. */
   lead: string | null;
-  /** Clips listed inside ```youtube fences. */
+  /** Clips a reader can play from ```youtube fences — the player's count, not the lines written. */
   videos: number;
   /** Distinct document files named anywhere in the body. */
   files: number;
@@ -96,7 +98,10 @@ function firstListLength(body: string): number {
 export function docFacts(markdown: string): DocFacts {
   let videos = 0;
   for (const [, block] of markdown.matchAll(YOUTUBE_FENCE)) {
-    videos += block.split("\n").filter((line) => line.trim() !== "").length;
+    // Counted by the parser the player uses, not by lines: a `#` comment, a
+    // blank line or a mistyped id is not a clip, and a card that promised it
+    // would promise more than the page delivers.
+    videos += parseYouTubeFence(block).length;
   }
 
   // Fences are stripped before the prose scans so a code sample can never be

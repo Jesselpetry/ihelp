@@ -249,7 +249,14 @@ export function getCourseChapters(codeOrDir: string): CourseChapterConfig {
 }
 
 function parseChaptersFromMarkdown(content: string): CourseChapterConfig {
-  const sec2Match = content.match(/## 2\.[^\n]*\n([\s\S]*?)(?=\n## [345]|\Z)/);
+  // Section 2 ends at the next of §3–§5, or at the end of the document.
+  // "(?![\s\S])" is JavaScript's spelling of "end of input". The Python-style
+  // "\Z" this used to end with is not an anchor here — without the `u` flag it is
+  // just a literal "Z" — so the table was cut short at the first capital Z in it,
+  // and a summary with nothing after §2 did not match at all. Not "$": that only
+  // means end of input while the regex has no `m` flag, and this spelling stays
+  // right if one is ever added.
+  const sec2Match = content.match(/## 2\.[^\n]*\n([\s\S]*?)(?=\n## [345]|(?![\s\S]))/);
   if (!sec2Match) return { chapters: [] };
 
   const tableLines = sec2Match[1]

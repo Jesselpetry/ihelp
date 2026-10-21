@@ -1,19 +1,27 @@
 "use client";
-/* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { Flag, Milestone } from "lucide-react";
 import ReactMarkdown, { type Components } from "react-markdown";
+import { fenceFor } from "@/components/md-fences";
 import { SessionMaterialsDeck, type SessionDocumentItem } from "@/components/session-materials";
 import type { SubjectAsset } from "@/lib/library/subject-library-ui";
 import remarkGfm from "remark-gfm";
 import remarkFrontmatter from "remark-frontmatter";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
-import "katex/dist/katex.min.css";
+// No katex.min.css import here: app/globals.css loads it, ahead of the .katex
+// overrides that depend on that order.
 import { slugifyHeading } from "@/lib/docs/toc";
 import { remarkNotebook } from "@/lib/docs/remark-notebook";
 import { hasParts, splitParts, type DocChunk, type PartScope } from "@/lib/docs/parts";
+import { readDocTable, textTableFromHast, type HastNode } from "@/lib/docs/doc-table";
+import {
+  KATEX_OPTIONS,
+  PART_MARKER_LINE,
+  REMARK_MATH_OPTIONS,
+  normalizeDisplayMath,
+} from "@/lib/docs/markdown";
 import { useLocale, t, type LText } from "@/lib/i18n";
 
 function getNodeText(node: React.ReactNode): string {
@@ -27,117 +35,14 @@ function getNodeText(node: React.ReactNode): string {
   return "";
 }
 
-/**
- * A ```youtube fence renders as a player instead of a code box.
- *
- * There is no other way for a course document to ask for an embed here. This
- * project renders content with react-markdown and no `rehype-raw`, so raw HTML
- * in a Markdown file is dropped, and there is no MDX pipeline to fall back on.
- * A fence keeps the door shut on arbitrary HTML in content while still letting
- * a week page carry its lecture and lab videos: the only thing a document can
- * express is "play these ids", and every id is validated before it reaches an
- * iframe src.
- *
- * Syntax — one video per line, `videoId | label`:
- *
- *     ```youtube
- *     3NvqarEC1fg | บรรยาย — Computer System
- *     putCB8g1e0U | Lab 1.1 — ตัดและบัดกรีสาย
- *     ```
- *
- * extractToc() already skips fenced blocks, so these never reach the outline.
+/*
+ * Every renderer in the next two maps pulls `node` (react-markdown's hast node)
+ * and `ref` out of its props so that neither is spread onto the DOM element.
+ * The rule reports those two names as unused, which is the point of pulling
+ * them out; it is switched off for these maps only and stays on for the rest
+ * of the file.
  */
-interface Video {
-  id: string;
-  label: string;
-}
-
-const L_VIDEO = {
-  pick: { th: "เลือกวิดีโอ", en: "Choose a video" },
-  openOn: { th: "เปิดใน YouTube", en: "Watch on YouTube" },
-} satisfies Record<string, LText>;
-
-function parseVideos(source: string): Video[] {
-  const videos: Video[] = [];
-  for (const line of source.split("\n")) {
-    const trimmed = line.trim();
-    if (!trimmed || trimmed.startsWith("#")) continue;
-    const [rawId, ...rest] = trimmed.split("|");
-    const id = rawId.trim();
-    // A YouTube id is exactly 11 characters of [A-Za-z0-9_-]. Anything else is
-    // skipped rather than interpolated: content here is authored, not user
-    // input, but an id is the one part of it that ends up inside a URL.
-    if (!/^[A-Za-z0-9_-]{11}$/.test(id)) continue;
-    videos.push({ id, label: rest.join("|").trim() || id });
-  }
-  return videos;
-}
-
-function YouTubeBlock({ videos }: { videos: Video[] }) {
-  const { locale } = useLocale();
-  const [index, setIndex] = useState(0);
-  const active = videos[Math.min(index, videos.length - 1)];
-
-  return (
-    <figure className="my-5">
-      {videos.length > 1 && (
-        <nav
-          aria-label={t(L_VIDEO.pick, locale)}
-          className="mb-2 flex flex-wrap gap-1.5"
-        >
-          {videos.map((video, i) => (
-            <button
-              key={video.id}
-              type="button"
-              onClick={() => setIndex(i)}
-              aria-current={i === index ? "true" : undefined}
-              className={
-                i === index
-                  ? "rounded-full border border-primary bg-primary/10 px-3 py-1 text-xs font-medium text-primary"
-                  : "rounded-full border px-3 py-1 text-xs text-muted-foreground hover:bg-muted"
-              }
-            >
-              {video.label}
-            </button>
-          ))}
-        </nav>
-      )}
-
-      {/*
-       * The wrapper owns the 16:9 box and the iframe fills it absolutely, so
-       * the player keeps its shape from a 400px phone up to the reader's full
-       * width without the iframe's own default 300x150 showing through.
-       */}
-      <div className="relative w-full overflow-hidden rounded-xl border bg-muted">
-        <div style={{ paddingTop: "56.25%" }} />
-        <iframe
-          key={active.id}
-          src={`https://www.youtube-nocookie.com/embed/${active.id}`}
-          title={active.label}
-          aria-label={active.label}
-          loading="lazy"
-          referrerPolicy="strict-origin-when-cross-origin"
-          allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-          className="absolute inset-0 h-full w-full border-0"
-        />
-      </div>
-
-      <figcaption className="mt-2 text-sm text-muted-foreground">
-        {active.label}
-        {" · "}
-        <a
-          className="text-primary underline underline-offset-4 hover:opacity-80"
-          href={`https://www.youtube.com/watch?v=${active.id}`}
-          target="_blank"
-          rel="noreferrer"
-        >
-          {t(L_VIDEO.openOn, locale)}
-        </a>
-      </figcaption>
-    </figure>
-  );
-}
+/* eslint-disable @typescript-eslint/no-unused-vars */
 
 // Shared clean markdown renderer (library reader + wizard preview).
 // Roomy leading, clean tables — all inline component styling since the
@@ -278,18 +183,17 @@ const mdComponents: Components = {
     // Caught here rather than in `code` because `code` renders *inside* this
     // <pre>; intercepting there would leave the player boxed in a code frame.
     const child = Array.isArray(children) ? children[0] : children;
-    const language =
+    const codeClass =
       child && typeof child === "object" && "props" in child
         ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
           ((child as any).props?.className as string | undefined)
         : undefined;
 
-    if (language?.includes("language-youtube")) {
-      const videos = parseVideos(getNodeText(children));
-      // An empty or malformed fence falls through to the code box rather than
-      // rendering an empty player — a content bug should be visible, not silent.
-      if (videos.length > 0) return <YouTubeBlock videos={videos} />;
-    }
+    // A fence with a renderer in components/md-fences.tsx is drawn by it. One
+    // that finds nothing renderable returns null and falls through to the code
+    // box below — a content bug should be visible, not silent.
+    const embed = fenceFor(codeClass)?.(getNodeText(children));
+    if (embed !== null && embed !== undefined) return embed;
 
     return (
       <pre
@@ -315,42 +219,6 @@ const mdComponents: Components = {
     <td className="border-b px-2.5 py-2 sm:px-3 align-top min-w-[6.5rem] sm:min-w-0 [overflow-wrap:anywhere]" {...p} />
   ),
 };
-
-/**
- * `$$...$$` -> a valid remark-math fence, one block at a time.
- *
- * remark-math's `$$` is a fence construct, not a pair of inline delimiters:
- * per its grammar, `math_flow ::= fence_open *( eol *line ) [ eol fence_close ]`,
- * where `fence_close` only matches a line that is *nothing but* `$$`. Every
- * study-guide file in this repo writes display math the LaTeX way instead —
- * `$$formula$$`, opening and closing flush against the content, sometimes on
- * one line and sometimes spanning a few. Two failure modes follow from that
- * mismatch:
- *
- *   1. A same-line block (`$$x^2$$`) never closes at all, because
- *      `fence_close` requires a line break before it. It falls through as
- *      literal text — ugly, but contained to that one line.
- *   2. A multi-line block whose opening line carries no second `$` opens a
- *      genuine fence, and then the closing `$$` on a LATER line — which also
- *      has content before it — still doesn't satisfy `fence_close`. The
- *      parser keeps scanning for a bare `$$` line and, finding none, consumes
- *      every line to the end of the file into one giant unrendered math node.
- *      Every heading, list, and paragraph after that point stops being parsed
- *      as markdown at all.
- *
- * Rewriting each pair onto its own lines before the file reaches remark
- * satisfies the fence grammar exactly as the author intended it — display
- * math, on its own block — without touching any of the LaTeX inside `$$...$$`
- * or the inline `$...$` math these same files also use correctly. Verified
- * against content/courses/06016401-Math-for-IT/archive/study-guide-week08-quiz.md,
- * where this was silently eating W08-Q5 through the end of the document.
- */
-function normalizeDisplayMath(markdown: string): string {
-  return markdown.replace(/\$\$([\s\S]*?)\$\$/g, (_match, body: string) => {
-    const trimmed = body.trim();
-    return trimmed ? `\n\n$$\n${trimmed}\n$$\n\n` : "$$$$";
-  });
-}
 
 /*
  * The notebook layer. Everything here is an accent on top of mdComponents —
@@ -412,6 +280,7 @@ const notebookComponents: Components = {
     />
   ),
 };
+/* eslint-enable @typescript-eslint/no-unused-vars */
 
 export type MdViewVariant = "default" | "notebook";
 
@@ -428,102 +297,20 @@ export interface MdViewProps {
   variant?: MdViewVariant;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function getHastText(node: any): string {
-  if (!node) return "";
-  if (typeof node === "string") return node;
-  if (node.type === "text") return node.value || "";
-  if (Array.isArray(node.children)) {
-    return node.children.map(getHastText).join("");
-  }
-  return "";
+/**
+ * A table that lists library files becomes a deck of file cards. Which tables
+ * those are, and which card each row lands on, is decided in
+ * lib/docs/doc-table.ts — the same rules the resource index applies
+ * (scripts/library-shared.ts), so the audit judges the page readers get. This
+ * adapter only reads the table out of react-markdown's hast node.
+ */
+function parseSessionDocTable(
+  node: HastNode | undefined,
+  assets?: SubjectAsset[],
+): SessionDocumentItem[] | null {
+  const table = textTableFromHast(node);
+  return table ? readDocTable(table, assets) : null;
 }
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function parseSessionDocTable(node: any, assets?: SubjectAsset[]): SessionDocumentItem[] | null {
-  if (!node || node.tagName !== "table") return null;
-
-  // Search for thead and tbody
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const thead = node.children?.find((c: any) => c.type === "element" && c.tagName === "thead");
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const tbody = node.children?.find((c: any) => c.type === "element" && c.tagName === "tbody");
-  if (!thead || !tbody) return null;
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const headerRow = thead.children?.find((c: any) => c.type === "element" && c.tagName === "tr");
-  if (!headerRow) return null;
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const thCells = (headerRow.children ?? []).filter((c: any) => c.type === "element" && c.tagName === "th");
-  const headers = thCells.map(getHastText).map((s: string) => s.trim().toLowerCase());
-
-  const isStatusTable = headers.some(
-    (h: string) => h.includes("สถานะ") || h.includes("status") || h.includes("ผลกระทบ"),
-  );
-  if (isStatusTable) return null;
-
-  const isDocTable =
-    headers.some((h: string) => h.includes("ไฟล์ในคลัง") || h.includes("คลัง")) ||
-    (headers.some((h: string) => h.includes("เอกสาร") || h.includes("document") || h.includes("title") || h.includes("ชื่อ")) &&
-      headers.some((h: string) => h.includes("ไฟล์") || h.includes("file")));
-
-  if (!isDocTable) return null;
-
-  let fileColIdx = headers.findIndex((h: string) => h.includes("ไฟล์") || h.includes("file"));
-  let titleColIdx = headers.findIndex((h: string) => h.includes("เอกสาร") || h.includes("document") || h.includes("title") || h.includes("ชื่อ"));
-  const pagesColIdx = headers.findIndex((h: string) => h.includes("หน้า") || h.includes("page"));
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const rows = (tbody.children ?? []).filter((c: any) => c.type === "element" && c.tagName === "tr");
-  if (rows.length === 0) return null;
-
-  // If fileColIdx not detected from header, check if cells look like filenames (.pdf, .png, etc.)
-  if (fileColIdx === -1) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const firstRowCells = (rows[0].children ?? []).filter((c: any) => c.type === "element" && c.tagName === "td");
-    const cellTexts = firstRowCells.map(getHastText);
-    const candidateIdx = cellTexts.findIndex((t: string) => /\.(pdf|png|jpg|docx|pptx)$/i.test(t.replace(/[`'"]/g, "").trim()));
-    if (candidateIdx !== -1) {
-      fileColIdx = candidateIdx;
-    }
-  }
-
-  if (fileColIdx === -1) return null;
-  if (titleColIdx === -1) titleColIdx = 0 === fileColIdx ? 1 : 0;
-
-  const items: SessionDocumentItem[] = [];
-  for (const row of rows) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const cells = (row.children ?? []).filter((c: any) => c.type === "element" && c.tagName === "td");
-    if (!cells[fileColIdx]) continue;
-
-    const rawFileName = getHastText(cells[fileColIdx]).replace(/[`'"]/g, "").trim();
-    if (!rawFileName) continue;
-
-    const title = cells[titleColIdx] ? getHastText(cells[titleColIdx]).trim() : rawFileName;
-    const pages = pagesColIdx >= 0 && cells[pagesColIdx] ? getHastText(cells[pagesColIdx]).trim() : undefined;
-
-    const cleanName = rawFileName.toLowerCase();
-    const baseName = cleanName.replace(/\.[^/.]+$/, "");
-    const matchedAsset = assets?.find((a) => {
-      const aFile = a.fileName.toLowerCase();
-      return aFile === cleanName || aFile === `${cleanName}.pdf` || aFile.replace(/\.[^/.]+$/, "") === baseName;
-    });
-
-    items.push({
-      title,
-      pages,
-      fileName: rawFileName,
-      matchedAsset,
-    });
-  }
-
-  return items.length > 0 ? items : null;
-}
-
-// Matches a whole marker line (see lib/docs/parts.ts).
-const PART_MARKER_LINE = /^[ \t]*<!--\s*(?:\/part|part:.*?)\s*-->[ \t]*$/gm;
 
 /**
  * One Markdown string through the shared plugin chain.
@@ -546,22 +333,12 @@ function MdChunk({ markdown, components }: { markdown: string; components: Compo
       remarkPlugins={[
         remarkFrontmatter,
         remarkGfm,
-        [remarkMath, { singleDollarTextMath: true }],
+        [remarkMath, REMARK_MATH_OPTIONS],
         // Runs in both variants so {==…==} never leaks as literal braces;
         // only the styling of the resulting mark/u differs.
         remarkNotebook,
       ]}
-      rehypePlugins={[
-        [
-          rehypeKatex,
-          {
-            output: "htmlAndMathml",
-            strict: false,
-            throwOnError: false,
-            trust: true,
-          },
-        ],
-      ]}
+      rehypePlugins={[[rehypeKatex, KATEX_OPTIONS]]}
       components={components}
     >
       {normalizeDisplayMath(markdown.replace(PART_MARKER_LINE, ""))}
