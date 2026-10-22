@@ -3,13 +3,36 @@ import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { Navbar } from "@/components/navbar";
 import { ExamScheduleView } from "@/components/exams/exam-schedule-view";
-import { SITE } from "@/lib/site";
+import { SITE, absoluteUrl } from "@/lib/site";
+
+const TITLE = `ตารางสอบ & ผังที่นั่งสอบ IT KMITL · ${SITE.name}`;
+const DESCRIPTION =
+  "ตรวจสอบตารางสอบปลายภาคและผังที่นั่งสอบรายบุคคล คณะเทคโนโลยีสารสนเทศ สจล. ด้วยรหัสนักศึกษา พร้อมแจ้งเตือนผ่านปฏิทิน";
 
 export const metadata: Metadata = {
-  title: `ตารางสอบ & ผังที่นั่งสอบ IT KMITL · ${SITE.name}`,
-  description:
-    "ตรวจสอบตารางสอบปลายภาคและผังที่นั่งสอบรายบุคคล คณะเทคโนโลยีสารสนเทศ สจล. ด้วยรหัสนักศึกษา พร้อมแจ้งเตือนผ่านปฏิทิน",
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: { canonical: "/exam-schedule" },
+  openGraph: {
+    type: "website",
+    url: absoluteUrl("/exam-schedule"),
+    title: TITLE,
+    description: DESCRIPTION,
+    images: [
+      {
+        url: SITE.og.examSchedule,
+        width: SITE.og.width,
+        height: SITE.og.height,
+        alt: TITLE,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
+    images: [SITE.og.examSchedule],
+  },
 };
 
 export default async function ExamSchedulePage() {

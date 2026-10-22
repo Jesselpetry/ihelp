@@ -19,6 +19,7 @@ import { getCourseChapters } from "@/lib/courses/course-chapters";
 import { assetsForCourse, mergedAssets } from "@/lib/library/subject-library";
 import { SubjectLibraryGate } from "@/components/subject-library-gate";
 import { t, type LText } from "@/lib/ltext";
+import { SITE, absoluteUrl } from "@/lib/site";
 
 /**
  * Every module of every course, on one route.
@@ -116,10 +117,71 @@ export async function generateMetadata({
   if (!found) return { title: "ไม่พบเนื้อหา" };
   const { course, spec, mod, cDir } = found;
   const title = t(mod.title, "th");
+  const pageTitle = `${title} ${course.code} — ${course.nameTh}`;
+
+  let description = `${title} รายวิชา ${course.code} ${course.nameTh} (${course.nameEn}) IT KMITL — ${t(mod.subtitle, "th")}`;
+  if (spec.id === "syllabus_map") {
+    description = `แผนที่เนื้อหาและโครงสร้างรายสัปดาห์ รายวิชา ${course.code} ${course.nameTh} (${course.nameEn}) IT KMITL — ตรวจสอบสถานะสรุป สไลด์ และจำนวนข้อสอบในแต่ละบท`;
+  } else if (spec.id === "archive") {
+    description = `คลังสื่อการเรียนรู้ สไลด์ OnLearn เลกเชอร์ และเอกสารประกอบการสอน รายวิชา ${course.code} ${course.nameTh} (${course.nameEn}) IT KMITL`;
+  } else if (spec.id === "deep_summary") {
+    description = `สรุปเนื้อหาและชีทติวเข้มข้น รายวิชา ${course.code} ${course.nameTh} (${course.nameEn}) IT KMITL — ${t(mod.subtitle, "th")}`;
+  } else if (spec.id === "cram_sheet") {
+    description = `สรุปย่อความจำ คัดเฉพาะสูตร กฎ และนิยามสำคัญก่อนเข้าห้องสอบ รายวิชา ${course.code} ${course.nameTh} (${course.nameEn}) IT KMITL`;
+  } else if (spec.id === "drill" || spec.id === "speed_quiz") {
+    description = `คลังแบบฝึกหัด ตะลุยโจทย์ และแบบทดสอบความเข้าใจ รายวิชา ${course.code} ${course.nameTh} (${course.nameEn}) IT KMITL — ${t(mod.subtitle, "th")}`;
+  } else if (spec.id === "mock_exam" || spec.id === "weak_spot") {
+    description = `แบบจำลองข้อสอบเสมือนจริง จับเวลาและวิเคราะห์จุดอ่อน รายวิชา ${course.code} ${course.nameTh} (${course.nameEn}) IT KMITL — ${t(mod.subtitle, "th")}`;
+  }
+
+  const canonical = `/courses/${cDir}/${segment}`;
+
+  const MODULE_OG_MAP: Record<string, string> = {
+    syllabus_map: SITE.og.map,
+    map: SITE.og.map,
+    archive: SITE.og.library,
+    deep_summary: SITE.og.summary,
+    summary: SITE.og.summary,
+    cram_sheet: SITE.og.cram,
+    cram: SITE.og.cram,
+    drill: SITE.og.drill,
+    speed_quiz: SITE.og.drill,
+    mock_exam: SITE.og.mock,
+    mock: SITE.og.mock,
+    weak_spot: SITE.og.mock,
+  };
+
+  const knownCourseOg = ["itf", "ics", "mfit", "pscp", "charm", "fe", "sport", "compro"];
+  const courseOg = knownCourseOg.includes(course.code.toLowerCase())
+    ? `/og/${course.code.toLowerCase()}.png`
+    : SITE.og.courses;
+
+  const ogImage = MODULE_OG_MAP[spec.id] ?? MODULE_OG_MAP[spec.segment] ?? courseOg;
+
   return {
-    title: `${title} ${course.code} — ${course.nameTh}`,
-    description: `${title} รายวิชา ${course.code} ${course.nameTh} (${course.nameEn}) IT KMITL — ${t(mod.subtitle, "th")}`,
-    alternates: { canonical: `/courses/${cDir}/${segment}` },
+    title: pageTitle,
+    description,
+    alternates: { canonical },
+    openGraph: {
+      type: "website",
+      url: absoluteUrl(canonical),
+      title: `${pageTitle} · ${SITE.shortName}`,
+      description,
+      images: [
+        {
+          url: ogImage,
+          width: SITE.og.width,
+          height: SITE.og.height,
+          alt: pageTitle,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${pageTitle} · ${SITE.shortName}`,
+      description,
+      images: [ogImage],
+    },
     // The library is behind a sign-in, so the page holds nothing a crawler
     // could index — and listing it would only advertise material the courses
     // asked not to have published.

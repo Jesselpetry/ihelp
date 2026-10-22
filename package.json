@@ -22,6 +22,7 @@
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
     "assets:sync": "tsx scripts/sync-library-assets.ts",
+    "og:build": "python3 scripts/generate_og_images.py",
     "pscp:registry": "python3 scripts/build_pscp_registry.py",
     "pscp:edges": "python3 scripts/build_pscp_edge_cases.py",
     "pscp:build": "bun run pscp:registry && bun run pscp:edges && bun run pscp:verify",

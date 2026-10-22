@@ -9,6 +9,7 @@ import type { SpineMetrics } from "@/lib/courses/spine";
 import { getCourseScrapedInfo } from "@/lib/courses/course-content";
 import { assetsForCourse } from "@/lib/library/subject-library";
 import { splitSummaryLead } from "@/lib/docs/summary-lead";
+import { SITE, absoluteUrl } from "@/lib/site";
 
 const L = {
   backLabel: { th: "← รายวิชาทั้งหมด", en: "← All courses" },
@@ -57,10 +58,39 @@ export async function generateMetadata({
   const course = resolveCourse(dir);
   if (!course) return { title: "ไม่พบรายวิชา" };
   const code = course.officialCode ? `${course.officialCode} ` : "";
+  const title = `${course.code} — ${course.nameTh}`;
+  const description = `ภาพรวมรายวิชา ${code}${course.nameTh} (${course.nameEn}) IT KMITL — ขอบเขตเนื้อหารายสัปดาห์ สรุปหัวข้อ แบบทดสอบ และคลังสื่อการเรียน`;
+  const canonical = `/courses/${courseDir(course)}`;
+
+  const knownCourseOg = ["itf", "ics", "mfit", "pscp", "charm", "fe", "sport", "compro"];
+  const ogImage = knownCourseOg.includes(course.code.toLowerCase())
+    ? `/og/${course.code.toLowerCase()}.png`
+    : SITE.og.courses;
+
   return {
-    title: `${course.code} — ${course.nameTh}`,
-    description: `ภาพรวมรายวิชา ${code}${course.nameTh} (${course.nameEn}) IT KMITL — ขอบเขตเนื้อหารายสัปดาห์ สรุปหัวข้อ แบบทดสอบ และคลังสื่อการเรียน`,
-    alternates: { canonical: `/courses/${courseDir(course)}` },
+    title,
+    description,
+    alternates: { canonical },
+    openGraph: {
+      type: "website",
+      url: absoluteUrl(canonical),
+      title: `${title} · ${SITE.shortName}`,
+      description,
+      images: [
+        {
+          url: ogImage,
+          width: SITE.og.width,
+          height: SITE.og.height,
+          alt: title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${title} · ${SITE.shortName}`,
+      description,
+      images: [ogImage],
+    },
   };
 }
 

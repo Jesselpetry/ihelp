@@ -121,10 +121,19 @@ export const SITE = {
     instagram: { url: "https://instagram.com/chatann_", handle: "@chatann_" },
   },
 
-  /** Share-card images under public/. `pscp` is used by /pscp and /recommended. */
+  /** Share-card images under public/. */
   og: {
     default: "/og-image.png",
     pscp: "/og-image-pscp.png",
+    courses: "/og/courses.png",
+    map: "/og/map.png",
+    week: "/og/week.png",
+    library: "/og/library.png",
+    summary: "/og/summary.png",
+    cram: "/og/cram.png",
+    drill: "/og/drill.png",
+    mock: "/og/mock.png",
+    examSchedule: "/og/exam-schedule.png",
     width: 1200,
     height: 630,
   },
