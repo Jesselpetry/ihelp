@@ -46,6 +46,7 @@ const DAYS: DailyPlan[] = [
         "ผังตัดสินใจ 3 ชั้นสำหรับรูปแบบ 0/0 — แทนค่า → แยกตัวประกอบ/สังยุค → ทฤษฎีบทบีบ",
         "ความต่อเนื่อง 3 เงื่อนไข: f(c) มีค่า · lim f(x) มีค่า · ทั้งสองเท่ากัน",
       ],
+      extras: [res.khanDiff("dc-limits", { th: "Khan: ลิมิตและความต่อเนื่อง (Unit 1)", en: "Khan: Limits & continuity (Unit 1)" })],
     },
     {
       subject: "ICS",
@@ -71,6 +72,7 @@ const DAYS: DailyPlan[] = [
         "differentiable ⇒ continuous แต่กลับกันไม่จริง",
         "กฎพื้นฐาน · product rule · quotient rule · อัตราการเปลี่ยนแปลงและการเคลื่อนที่",
       ],
+      extras: [res.khanDiff("dc-derivatives", { th: "Khan: นิยามและกฎอนุพันธ์ (Unit 2)", en: "Khan: Derivatives: definition & rules (Unit 2)" })],
     },
     {
       subject: "ITF",
@@ -121,6 +123,10 @@ const DAYS: DailyPlan[] = [
         "chain rule หลายชั้น — กฎที่ใช้บ่อยที่สุดในวิชา",
         "implicit differentiation และ related rates",
       ],
+      extras: [
+        res.khanDiff("dc-chain-rule", { th: "Khan: Chain rule & อนุพันธ์ขั้นสูง (Unit 3)", en: "Khan: Chain rule & advanced topics (Unit 3)" }),
+        res.khanDiff("dc-apps-of-derivatives", { th: "Khan: Related rates & การประยุกต์ (Unit 4)", en: "Khan: Applications of derivatives (Unit 4)" }),
+      ],
     },
     {
       subject: "ICS",
@@ -157,6 +163,7 @@ const DAYS: DailyPlan[] = [
         "first / second derivative test · ความเว้าและจุดเปลี่ยนเว้า · checklist วาดกราฟ 7 ข้อ",
         "optimization — หัวใจของ HW11",
       ],
+      extras: [res.khanDiff("dc-analyzing-functions", { th: "Khan: วิเคราะห์ฟังก์ชัน & Optimization (Unit 5)", en: "Khan: Analyzing functions & optimization (Unit 5)" })],
     },
     {
       subject: "ITF",
@@ -207,6 +214,7 @@ const DAYS: DailyPlan[] = [
         "สมการเชิงอนุพันธ์เบื้องต้นกับเงื่อนไขเริ่มต้น",
         "Riemann sum · ปริพันธ์จำกัดเขต · ทฤษฎีบทหลักมูลของแคลคูลัส",
       ],
+      extras: [res.khanIntegral("ic-integration-intro", { th: "Khan: ปริพันธ์ & FTC (Integral Calculus)", en: "Khan: Integration & FTC (Integral Calculus)" })],
     },
     {
       subject: "ITF",
@@ -257,6 +265,7 @@ const DAYS: DailyPlan[] = [
         "ปริพันธ์ของค่าสัมบูรณ์ · ฟังก์ชันคู่/คี่บนช่วงสมมาตร",
         "การกระจัดเทียบระยะทางรวม",
       ],
+      extras: [res.khanIntegral("ic-integration-techniques", { th: "Khan: เทคนิค u-sub & By parts (Integral Calculus)", en: "Khan: Integration techniques (Integral Calculus)" })],
     },
     {
       subject: "ITF",
@@ -318,6 +327,7 @@ const DAYS: DailyPlan[] = [
         "พื้นที่ระหว่างเส้นโค้ง",
         "ปริมาตรทรงตันจากการหมุน",
       ],
+      extras: [res.khanIntegral("ic-applications-of-integration", { th: "Khan: พื้นที่ & ปริมาตรรูปทรงหมุน (Integral Calculus)", en: "Khan: Applications of integration (Integral Calculus)" })],
     },
   ]),
 
@@ -449,6 +459,7 @@ const DAYS: DailyPlan[] = [
         "ฟังก์ชันหลายตัวแปร z = f(x, y)",
         "อนุพันธ์ย่อยและอันดับสูง · หาค่าที่จุดที่กำหนด",
       ],
+      extras: [res.khanMulti("multivariable-derivatives/partial-derivatives", { th: "Khan: อนุพันธ์ย่อย (Multivariable Calculus)", en: "Khan: Partial derivatives (Multivariable Calculus)" })],
     },
   ]),
 
@@ -478,9 +489,12 @@ const DAYS: DailyPlan[] = [
         keyPoints: [
           "หลังสอบ PSCP พักก่อน แล้วเปิดวิชาสุดท้าย",
           "ทวนตารางสูตรและ pitfall ของสัปดาห์ 8–11",
-          "ทำแบบฝึกรายสัปดาห์ข้อที่เคยผิด",
+          "ทำแบบฝึกรายสัปดาห์และ Quiz/Course Challenge ใน Khan Academy",
         ],
-        extras: [res.mfitSyllabus()],
+        extras: [
+          res.mfitSyllabus(),
+          res.khanDiff("", { th: "Khan: Differential Calculus (แบบฝึกรวม)", en: "Khan: Differential Calculus (Course Review)" }),
+        ],
       },
     ],
     "PSCP",
@@ -497,7 +511,10 @@ const DAYS: DailyPlan[] = [
         "ช่วงบ่าย (2.5 ชม.): อนุพันธ์ย่อย แล้วทำข้อสอบจำลองปลายภาคแบบจับเวลา",
         "ช่วงค่ำ (1.5 ชม.): ตรวจเฉลย ซ่อมจุดผิด จดสูตรที่ต้องใช้พรุ่งนี้",
       ],
-      extras: [res.mfitMock()],
+      extras: [
+        res.mfitMock(),
+        res.khanIntegral("", { th: "Khan: Integral Calculus (แบบฝึกรวม)", en: "Khan: Integral Calculus (Course Review)" }),
+      ],
     },
   ]),
 

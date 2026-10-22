@@ -9,6 +9,7 @@ import {
   Code2,
   FileText,
   FolderOpen,
+  GraduationCap,
   type LucideIcon,
   Map,
   NotebookPen,
@@ -138,6 +139,7 @@ const RESOURCE_ICON: Record<ResourceKind, LucideIcon> = {
   library: FolderOpen,
   overview: Map,
   exam: CalendarDays,
+  external: GraduationCap,
 };
 
 /**

@@ -28,6 +28,18 @@ export const href = {
   pscpProblem: (slug: string) => `/pscp/${slug}`,
   pscpHub: () => "/pscp",
   examSchedule: () => "/exam-schedule",
+  khanDiff: (slug?: string) =>
+    slug
+      ? `https://www.khanacademy.org/math/differential-calculus/${slug}`
+      : "https://www.khanacademy.org/math/differential-calculus",
+  khanIntegral: (slug?: string) =>
+    slug
+      ? `https://www.khanacademy.org/math/integral-calculus/${slug}`
+      : "https://www.khanacademy.org/math/integral-calculus",
+  khanMulti: (path?: string) =>
+    path
+      ? `https://www.khanacademy.org/math/multivariable-calculus/${path}`
+      : "https://www.khanacademy.org/math/multivariable-calculus",
 };
 
 /** Ready-made resources the plan reuses. */
@@ -61,5 +73,20 @@ export const res = {
     kind: "problems",
     label: { th: "คลังโจทย์ iJudge ทั้งหมด", en: "All iJudge problems" },
     href: href.pscpHub(),
+  }),
+  khanDiff: (slug: string, label: { th: string; en: string }): StudyResource => ({
+    kind: "external",
+    label,
+    href: href.khanDiff(slug),
+  }),
+  khanIntegral: (slug: string, label: { th: string; en: string }): StudyResource => ({
+    kind: "external",
+    label,
+    href: href.khanIntegral(slug),
+  }),
+  khanMulti: (path: string, label: { th: string; en: string }): StudyResource => ({
+    kind: "external",
+    label,
+    href: href.khanMulti(path),
   }),
 };

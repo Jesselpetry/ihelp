@@ -46,7 +46,8 @@ export type ResourceKind =
   | "problems" // the PSCP iJudge bank, or one problem
   | "library" // the course's file library (sign-in)
   | "overview" // course overview and exam scope
-  | "exam"; // the exam schedule page
+  | "exam" // the exam schedule page
+  | "external"; // external learning resources (Khan Academy, etc.)
 
 export interface StudyResource {
   kind: ResourceKind;
