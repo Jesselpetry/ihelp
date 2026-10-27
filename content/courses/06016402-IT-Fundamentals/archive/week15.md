@@ -1,13 +1,14 @@
 # สัปดาห์ที่ 15 · IT Skills and System
 
-> OnLearn เปิด Topic 15 แล้ว (ตรวจ 15 ต.ค. 2569) — สไลด์ *ITF-15 Lecture Slides – IT Skills and System* ระบุวันเรียน 27 ต.ค. 69
-> ซึ่งตรงกับวันสอบปลายภาคที่ประกาศใน Lecture 00 — *ยังไม่ยืนยัน* ว่าตารางเปลี่ยนหรือไม่ ให้ดูประกาศใน OnLearn
+> บรรยาย onsite ที่คณะ อ. 27 ต.ค. 2569 โดย ผศ.ดร. สุวิทย์ ภูมิฤทธิกุล (สไลด์ 72 หน้า) · แล็บออนไลน์ผ่าน Zoom ศ. 23 ต.ค. 2569 เวลา 09:00–11:00 (Web Deployment)
 >
-> สไลด์ฉบับ 1/2569 ยังไม่อยู่ในคลัง — สรุปด้านล่างมาจากสไลด์ปีก่อน **Information System** ของ รศ.ดร. ปานวิทย์ ธุวะนุติ (66 หน้า)
-> ที่เปิดด้วยเรื่องทักษะไอทีแล้วต่อด้วย information system ตรงกับชื่อหัวข้อปีนี้ ถ้าเนื้อหาต่างกันให้ยึดฉบับใน OnLearn
+> สไลด์บรรยายฉบับ 1/2569 และใบงานแล็บของปีนี้อยู่ในคลังเรียบร้อยแล้ว · สรุปเนื้อหาด้านล่างครอบคลุมทั้ง Digital Skills, Web Server / Deployment และทฤษฎี Information System & SDLC
 
 ## อ่านจบแล้วต้องตอบได้
 
+- อธิบายความสำคัญของ **Digital Skills** ต่อตลาดแรงงาน (Thailand Salary Guide)
+- บอกขั้นตอนการทำงานของ **Web Server (Ubuntu + Nginx)** และการรีโมตด้วย **SSH**
+- บอกขั้นตอนการ **Deploy เว็บไซต์ขึ้น Vercel** และเชื่อมต่อกับ GitHub
 - บอกองค์ประกอบของ information system (ต่อจาก Week 10)
 - เรียงเฟสของ **SDLC** และบอกงานหลักของแต่ละเฟส
 - แยก feasibility 4 ด้าน และ **functional กับ non-functional requirement**
@@ -20,9 +21,10 @@
 
 | เอกสาร | หน้า | ไฟล์ในคลัง |
 |---|:---:|---|
-| สไลด์ปีก่อน — Information System | 66 | `itf-lec-week14-it-system.pdf` |
-
-> **มีใน OnLearn แต่ยังไม่อยู่ในคลัง** — สไลด์ ITF-15 IT Skills and System ฉบับ 1/2569
+| สไลด์บรรยาย — IT Skills and System (ฉบับ 2569) | 72 | `itf-lec-week15-it-skills-system-2569.pdf` |
+| สไลด์ประกอบแล็บ — Web Deployment | 17 | `itf-lab-week15-web-deployment-slide.pdf` |
+| ใบงานแล็บ — Web Deployment | 8 | `itf-lab-week15-web-deployment-sheet.pdf` |
+| สไลด์ฉบับปีก่อน — Information System | 66 | `itf-lec-week14-it-system.pdf` |
 
 ---
 
@@ -113,3 +115,25 @@
 5. การเปิดใช้ระบบใหม่คู่กับระบบเดิมช่วงหนึ่งเรียกว่า conversion แบบใด
 
 **เฉลย** — 1. planning · 2. functional requirement · 3. technical feasibility · 4. PERT chart · 5. parallel conversion
+
+---
+
+## แล็บ — Web Deployment (ศ. 23 ต.ค. 2569)
+
+> นำเว็บไซต์ To-do List ที่พัฒนาขึ้นใน Lab 13–14 ขึ้นสู่ระบบออนไลน์จริง (Deploy) ผ่าน Vercel โดยเชื่อมต่อกับ GitHub Repository เพื่อให้เข้าถึงผ่าน URL สาธารณะได้ตลอดเวลา
+
+### ขั้นตอนปฏิบัติการ
+
+1. **เตรียม Repository บน GitHub**
+   - นำไฟล์เว็บไซต์ (`index.html`, `script.js`, รูปภาพ/สไตล์) Push ขึ้นสู่ GitHub Repository ใหม่
+2. **Deploy ผ่าน Vercel**
+   - เข้า Vercel ล็อกอินผ่าน GitHub
+   - กด **Add New... > Project** แล้วเลือก Import Repository ของตนเอง
+   - ตั้งชื่อ **Project Name:** `itf-itxxxxxxxx` (แทน x ด้วยรหัสนักศึกษา)
+   - เลือก **Framework Preset:** `Other` แล้วกดปุ่ม **Deploy**
+   - ทดสอบเข้าชมผ่าน URL: `itf-itxxxxxxxx.vercel.app`
+3. **AI CLI Agent (OpenCode MCP)**
+   - ทดลองสั่ง AI CLI Agent ให้ช่วยจัดการการ Deploy ผ่าน Model Context Protocol (MCP)
+4. **การส่งงานและการประเมิน**
+   - ส่งผลงานผ่าน OnLearn ในช่องทางส่งงานของ Section ตนเอง
+   - ทำแบบประเมินผู้สอนและพี่ TA ภายในวันศุกร์ที่ 30 ต.ค. 2569 เวลา 12:00 น. ผ่าน [กระทู้ OnLearn](https://onlearn.it.kmitl.ac.th/mod/forum/discuss.php?d=877)

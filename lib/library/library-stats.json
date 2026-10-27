@@ -1190,6 +1190,14 @@
     "sizeBytes": 968133,
     "pages": 16
   },
+  "/assets/it-kmitl/itf/labs/itf-lab-week10-file-management-sheet.pdf": {
+    "sizeBytes": 660389,
+    "pages": 10
+  },
+  "/assets/it-kmitl/itf/labs/itf-lab-week11-network-1-sheet.pdf": {
+    "sizeBytes": 3044540,
+    "pages": 18
+  },
   "/assets/it-kmitl/itf/labs/itf-lab-week12-packet-tracer-2-sheet.pdf": {
     "sizeBytes": 1749625,
     "pages": 20
@@ -1201,6 +1209,26 @@
   "/assets/it-kmitl/itf/labs/itf-lab-week13-web-app-1-sheet.pdf": {
     "sizeBytes": 893476,
     "pages": 16
+  },
+  "/assets/it-kmitl/itf/labs/itf-lab-week13-web-app-1-slide.pdf": {
+    "sizeBytes": 2260049,
+    "pages": 18
+  },
+  "/assets/it-kmitl/itf/labs/itf-lab-week14-web-app-2-sheet.pdf": {
+    "sizeBytes": 844583,
+    "pages": 13
+  },
+  "/assets/it-kmitl/itf/labs/itf-lab-week14-web-app-2-slide.pdf": {
+    "sizeBytes": 2422061,
+    "pages": 27
+  },
+  "/assets/it-kmitl/itf/labs/itf-lab-week15-web-deployment-sheet.pdf": {
+    "sizeBytes": 596186,
+    "pages": 8
+  },
+  "/assets/it-kmitl/itf/labs/itf-lab-week15-web-deployment-slide.pdf": {
+    "sizeBytes": 1269399,
+    "pages": 17
   },
   "/assets/it-kmitl/itf/lectures/itf-lec-final.pdf": {
     "sizeBytes": 1720628,
@@ -1342,6 +1370,10 @@
     "sizeBytes": 4906087,
     "pages": 69
   },
+  "/assets/it-kmitl/itf/lectures/itf-lec-week12-computer-networks-2569.pdf": {
+    "sizeBytes": 13694791,
+    "pages": 92
+  },
   "/assets/it-kmitl/itf/lectures/itf-lec-week12-computer-networks.pdf": {
     "sizeBytes": 3860529,
     "pages": 92
@@ -1350,9 +1382,21 @@
     "sizeBytes": 1105425,
     "pages": 41
   },
+  "/assets/it-kmitl/itf/lectures/itf-lec-week13-wireless-network-2569.pdf": {
+    "sizeBytes": 9024568,
+    "pages": 41
+  },
   "/assets/it-kmitl/itf/lectures/itf-lec-week14-it-system.pdf": {
     "sizeBytes": 4923677,
     "pages": 66
+  },
+  "/assets/it-kmitl/itf/lectures/itf-lec-week14-web-technology-2569.pdf": {
+    "sizeBytes": 9977661,
+    "pages": 96
+  },
+  "/assets/it-kmitl/itf/lectures/itf-lec-week15-it-skills-system-2569.pdf": {
+    "sizeBytes": 10416013,
+    "pages": 72
   },
   "/assets/it-kmitl/itf/lectures/itf-lec-week15-web.pdf": {
     "sizeBytes": 5136105,

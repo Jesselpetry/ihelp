@@ -20,13 +20,13 @@
 
 | เอกสาร | หน้า | ไฟล์ในคลัง |
 |---|:---:|---|
-| สไลด์บรรยาย — Introduction to Computer Network | 92 | `itf-lec-week12-computer-networks.pdf` |
-| สรุปลายมือ — Network 2 | 2 | `itf-lec-network-2.pdf` |
+| สไลด์บรรยาย — Introduction to Computer Network (ฉบับ 2569) | 92 | `itf-lec-week12-computer-networks-2569.pdf` |
+| สไลด์บรรยายฉบับปีก่อน | 92 | `itf-lec-week12-computer-networks.pdf` |
 | ใบงานแล็บ Network 2 — Cisco Packet Tracer (2) ฉบับ 1/2569 | 20 | `itf-lab-week12-packet-tracer-2-sheet.pdf` |
+| สรุปลายมือ — Network 2 | 2 | `itf-lec-network-2.pdf` |
 | ใบงานแล็บ Cisco Packet Tracer #2 (ฉบับ 1/2566 ใช้ฝึกเพิ่ม) | 4 | `itf-lab-week12.pdf` |
 
-> **มีใน OnLearn แต่ยังไม่อยู่ในคลัง** — สไลด์ Lecture 12 ฉบับ 22 ก.ย. 69 และฉบับที่ผู้สอนจดโน้ตทับ (รอบ 14:00–16:00 และ 16:00–18:00) ·
-> คลิปบันทึกการชี้แจงแล็บ
+> **มีใน OnLearn แต่ยังไม่อยู่ในคลัง** — สไลด์ Lecture 12 ฉบับที่ผู้สอนจดโน้ตทับ (รอบ 14:00–16:00 และ 16:00–18:00) · คลิปบันทึกการชี้แจงแล็บ (id 27575)
 
 ---
 

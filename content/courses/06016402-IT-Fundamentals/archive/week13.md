@@ -19,11 +19,12 @@
 
 | เอกสาร | หน้า | ไฟล์ในคลัง |
 |---|:---:|---|
-| สไลด์ปีก่อน — Introduction to Wireless Network | 41 | `itf-lec-week13-wi-fi.pdf` |
+| สไลด์บรรยาย — Introduction to Wireless Network (ฉบับ 2569) | 41 | `itf-lec-week13-wireless-network-2569.pdf` |
+| สไลด์ประกอบแล็บ — Web App 1 | 18 | `itf-lab-week13-web-app-1-slide.pdf` |
 | ใบงานแล็บ — Web App 1 · HTML และ CSS | 16 | `itf-lab-week13-web-app-1-sheet.pdf` |
+| สไลด์ฉบับปีก่อน | 41 | `itf-lec-week13-wi-fi.pdf` |
 
-> **มีใน OnLearn แต่ยังไม่อยู่ในคลัง** — สไลด์ Lecture 13 ฉบับ 29 ก.ย. 69 · คลิปบันทึกการสอนแยกตามรอบ (Sec 1, 3 และ Sec 2) ·
-> สไลด์ Lab 13 Web App 1
+> **มีใน OnLearn แต่ยังไม่อยู่ในคลัง** — คลิปบันทึกการสอนแยกตามรอบ (Sec 1, 3 และ Sec 2, id 27560, 27561) · คลิป brief แล็บ (id 27663)
 
 ---
 

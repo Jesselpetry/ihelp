@@ -7,13 +7,13 @@
     "coursesWithLibrary": 14,
     "docs": 96,
     "renderedDocs": 69,
-    "assets": 722,
-    "curated": 314,
+    "assets": 733,
+    "curated": 325,
     "generated": 408,
     "insider": 171,
-    "files": 705,
-    "sizeBytes": 994614269,
-    "pages": 13173
+    "files": 716,
+    "sizeBytes": 1048824509,
+    "pages": 13585
   },
   "courses": {
     "ITF": {
@@ -325,7 +325,7 @@
             "en": "Ethical, Social & Legal Aspects of IT"
           },
           "upcoming": false,
-          "video": null,
+          "video": "https://onlearn.it.kmitl.ac.th/mod/url/view.php?id=27738",
           "docs": [
             "content/courses/06016402-IT-Fundamentals/archive/week09.md"
           ],
@@ -343,13 +343,14 @@
             "en": "Working in the Enterprise"
           },
           "upcoming": false,
-          "video": null,
+          "video": "https://onlearn.it.kmitl.ac.th/mod/url/view.php?id=27739",
           "docs": [
             "content/courses/06016402-IT-Fundamentals/archive/week10.md"
           ],
           "assets": [
             "itf-lec-week10-enterprise-2569",
-            "itf-lec-week10-v2"
+            "itf-lec-week10-v2",
+            "itf-lab-week10-file-management-sheet"
           ]
         },
         {
@@ -367,7 +368,8 @@
           "assets": [
             "itf-lec-week11-internet",
             "itf-lec-internet-thai",
-            "itf-lec-network-1"
+            "itf-lec-network-1",
+            "itf-lab-week11-network-1-sheet"
           ]
         },
         {
@@ -378,11 +380,12 @@
             "en": "Computer Networks 2"
           },
           "upcoming": false,
-          "video": null,
+          "video": "https://onlearn.it.kmitl.ac.th/mod/url/view.php?id=27575",
           "docs": [
             "content/courses/06016402-IT-Fundamentals/archive/week12.md"
           ],
           "assets": [
+            "itf-lec-week12-computer-networks-2569",
             "itf-lec-week12-computer-networks",
             "itf-lec-week08",
             "itf-lab-week12",
@@ -398,12 +401,14 @@
             "en": "Wireless Networks"
           },
           "upcoming": false,
-          "video": null,
+          "video": "https://onlearn.it.kmitl.ac.th/mod/url/view.php?id=27560",
           "docs": [
             "content/courses/06016402-IT-Fundamentals/archive/week13.md"
           ],
           "assets": [
+            "itf-lec-week13-wireless-network-2569",
             "itf-lec-week13-wi-fi",
+            "itf-lab-week13-web-app-1-slide",
             "itf-lab-week13-web-app-1-sheet"
           ]
         },
@@ -415,14 +420,17 @@
             "en": "Web Technology"
           },
           "upcoming": false,
-          "video": null,
+          "video": "https://onlearn.it.kmitl.ac.th/mod/url/view.php?id=27632",
           "docs": [
             "content/courses/06016402-IT-Fundamentals/archive/week14.md"
           ],
           "assets": [
+            "itf-lec-week14-web-technology-2569",
             "itf-lec-week15-web",
             "itf-lec-focuson-web",
-            "itf-sheet-reviews-web-app"
+            "itf-sheet-reviews-web-app",
+            "itf-lab-week14-web-app-2-slide",
+            "itf-lab-week14-web-app-2-sheet"
           ]
         },
         {
@@ -432,13 +440,16 @@
             "th": "IT Skills and System",
             "en": "IT Skills and System"
           },
-          "upcoming": true,
+          "upcoming": false,
           "video": null,
           "docs": [
             "content/courses/06016402-IT-Fundamentals/archive/week15.md"
           ],
           "assets": [
-            "itf-lec-week14-it-system"
+            "itf-lec-week15-it-skills-system-2569",
+            "itf-lec-week14-it-system",
+            "itf-lab-week15-web-deployment-slide",
+            "itf-lab-week15-web-deployment-sheet"
           ]
         }
       ],
@@ -539,20 +550,31 @@
         "itf-lec-week09-ethics",
         "itf-lec-week10-enterprise-2569",
         "itf-lec-week10-v2",
+        "itf-lab-week10-file-management-sheet",
         "itf-lec-week11-internet",
         "itf-lec-internet-thai",
         "itf-lec-network-1",
+        "itf-lab-week11-network-1-sheet",
+        "itf-lec-week12-computer-networks-2569",
         "itf-lec-week12-computer-networks",
         "itf-lec-week08",
         "itf-lab-week12",
         "itf-lab-week12-packet-tracer-2-sheet",
         "itf-lec-network-2",
+        "itf-lec-week13-wireless-network-2569",
         "itf-lec-week13-wi-fi",
+        "itf-lab-week13-web-app-1-slide",
         "itf-lab-week13-web-app-1-sheet",
+        "itf-lec-week14-web-technology-2569",
         "itf-lec-week15-web",
         "itf-lec-focuson-web",
         "itf-sheet-reviews-web-app",
+        "itf-lab-week14-web-app-2-slide",
+        "itf-lab-week14-web-app-2-sheet",
+        "itf-lec-week15-it-skills-system-2569",
         "itf-lec-week14-it-system",
+        "itf-lab-week15-web-deployment-slide",
+        "itf-lab-week15-web-deployment-sheet",
         "itf-sheet-midterm-study-guide",
         "itf-itf-sheet-studyguide",
         "itf-itf-sheet-recaptopics",
@@ -620,18 +642,18 @@
         "data/it-kmitl/itf/summarize.md"
       ],
       "counts": {
-        "assets": 108,
-        "curated": 103,
+        "assets": 119,
+        "curated": 114,
         "generated": 5,
         "insider": 8,
-        "legacy": 18,
-        "withScope": 98,
-        "withWeek": 66,
+        "legacy": 19,
+        "withScope": 109,
+        "withWeek": 77,
         "byCategory": {
           "cheatsheet": 6,
           "exam": 8,
-          "exercise": 24,
-          "lecture": 32,
+          "exercise": 31,
+          "lecture": 36,
           "note": 31,
           "reference": 7
         }
@@ -5415,7 +5437,8 @@
       "week": 10,
       "updated": null,
       "assetRefs": [
-        "itf-lec-week10-enterprise-2569"
+        "itf-lec-week10-enterprise-2569",
+        "itf-lab-week10-file-management-sheet"
       ],
       "unresolvedRefs": []
     },
@@ -5440,6 +5463,7 @@
       "updated": null,
       "assetRefs": [
         "itf-lec-week11-internet",
+        "itf-lab-week11-network-1-sheet",
         "itf-lec-internet-thai",
         "itf-lec-network-1"
       ],
@@ -5465,9 +5489,10 @@
       "week": 12,
       "updated": null,
       "assetRefs": [
+        "itf-lec-week12-computer-networks-2569",
         "itf-lec-week12-computer-networks",
-        "itf-lec-network-2",
         "itf-lab-week12-packet-tracer-2-sheet",
+        "itf-lec-network-2",
         "itf-lab-week12"
       ],
       "unresolvedRefs": []
@@ -5492,8 +5517,10 @@
       "week": 13,
       "updated": null,
       "assetRefs": [
-        "itf-lec-week13-wi-fi",
-        "itf-lab-week13-web-app-1-sheet"
+        "itf-lec-week13-wireless-network-2569",
+        "itf-lab-week13-web-app-1-slide",
+        "itf-lab-week13-web-app-1-sheet",
+        "itf-lec-week13-wi-fi"
       ],
       "unresolvedRefs": []
     },
@@ -5517,6 +5544,9 @@
       "week": 14,
       "updated": null,
       "assetRefs": [
+        "itf-lec-week14-web-technology-2569",
+        "itf-lab-week14-web-app-2-slide",
+        "itf-lab-week14-web-app-2-sheet",
         "itf-lec-week15-web",
         "itf-lec-focuson-web",
         "itf-sheet-reviews-web-app"
@@ -5543,6 +5573,9 @@
       "week": 15,
       "updated": null,
       "assetRefs": [
+        "itf-lec-week15-it-skills-system-2569",
+        "itf-lab-week15-web-deployment-slide",
+        "itf-lab-week15-web-deployment-sheet",
         "itf-lec-week14-it-system"
       ],
       "unresolvedRefs": []
@@ -5600,7 +5633,7 @@
         }
       ],
       "week": null,
-      "updated": "2026-10-17",
+      "updated": "2026-10-27",
       "assetRefs": [],
       "unresolvedRefs": []
     },
@@ -8858,6 +8891,48 @@
       "onDisk": true,
       "usedBy": []
     },
+    "itf-lab-week10-file-management-sheet": {
+      "id": "itf-lab-week10-file-management-sheet",
+      "course": "ITF",
+      "origin": "curated",
+      "title": {
+        "th": "Lab 10 — ใบงาน File Management",
+        "en": "Lab 10 — File Management Worksheet"
+      },
+      "description": {
+        "th": "ใบงานการจัดการไฟล์บนคอมพิวเตอร์เบื้องต้น ห้อง L434: โครงสร้างโฟลเดอร์ นามสกุลไฟล์ และการสำรองข้อมูล",
+        "en": "Basic computer file management worksheet in room L434: folder structures, file extensions and backups"
+      },
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/labs/itf-lab-week10-file-management-sheet.pdf",
+      "path": "public/assets/it-kmitl/itf/labs/itf-lab-week10-file-management-sheet.pdf",
+      "fileName": "itf-lab-week10-file-management-sheet.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/itf/labs/itf-lab-week10-file-management-sheet.pdf"
+      },
+      "access": "member",
+      "week": 10,
+      "scope": "final",
+      "edition": "2569",
+      "status": null,
+      "isCurrentYear": true,
+      "duplicateOf": null,
+      "sourceUrl": "https://onlearn.it.kmitl.ac.th/mod/resource/view.php?id=27333",
+      "groupId": null,
+      "tags": [
+        "Week 10",
+        "Lab",
+        "File Management"
+      ],
+      "sizeBytes": 660389,
+      "pages": 10,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016402-IT-Fundamentals/archive/week10.md"
+      ]
+    },
     "itf-lec-week11-internet": {
       "id": "itf-lec-week11-internet",
       "course": "ITF",
@@ -8985,16 +9060,102 @@
         "content/courses/06016402-IT-Fundamentals/archive/week11.md"
       ]
     },
+    "itf-lab-week11-network-1-sheet": {
+      "id": "itf-lab-week11-network-1-sheet",
+      "course": "ITF",
+      "origin": "curated",
+      "title": {
+        "th": "Lab 11 — ใบงาน Network 1 · Cisco Packet Tracer (1)",
+        "en": "Lab 11 — Network 1 · Cisco Packet Tracer (1) Worksheet"
+      },
+      "description": {
+        "th": "ใบงานปฏิบัติการเครือข่ายคอมพิวเตอร์ 1: การจำลองเครือข่ายด้วย Cisco Packet Tracer, การเชื่อมต่ออุปกรณ์ Layer 2 และการส่งธงบน SecSpace",
+        "en": "Computer networking lab 1: network simulation with Cisco Packet Tracer, Layer 2 connectivity, and SecSpace challenges"
+      },
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/labs/itf-lab-week11-network-1-sheet.pdf",
+      "path": "public/assets/it-kmitl/itf/labs/itf-lab-week11-network-1-sheet.pdf",
+      "fileName": "itf-lab-week11-network-1-sheet.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/itf/labs/itf-lab-week11-network-1-sheet.pdf"
+      },
+      "access": "member",
+      "week": 11,
+      "scope": "final",
+      "edition": "2569",
+      "status": null,
+      "isCurrentYear": true,
+      "duplicateOf": null,
+      "sourceUrl": "https://onlearn.it.kmitl.ac.th/mod/resource/view.php?id=27433",
+      "groupId": null,
+      "tags": [
+        "Week 11",
+        "Lab",
+        "Network",
+        "Packet Tracer"
+      ],
+      "sizeBytes": 3044540,
+      "pages": 18,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016402-IT-Fundamentals/archive/week11.md"
+      ]
+    },
+    "itf-lec-week12-computer-networks-2569": {
+      "id": "itf-lec-week12-computer-networks-2569",
+      "course": "ITF",
+      "origin": "curated",
+      "title": {
+        "th": "Lecture 12 — Introduction to Computer Network (ฉบับ 2569)",
+        "en": "Lecture 12 — Introduction to Computer Network (2569 Edition)"
+      },
+      "description": {
+        "th": "สไลด์บรรยายเครือข่ายคอมพิวเตอร์ 2 ฉบับภาคเรียน 1/2569 (22 ก.ย. 69) โดย รศ.ดร. ปานวิทย์ ธุวะนุติ (92 หน้า): Network Topologies, Ethernet, Interconnection Devices, IPv4 Addressing & Subnetting",
+        "en": "Lecture deck on computer networks part 2 (22 Sep 2026) by Assoc. Prof. Dr. Panwit Tuwanut: topologies, Ethernet, Layer 1-3 devices, IPv4 addressing and subnetting"
+      },
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/lectures/itf-lec-week12-computer-networks-2569.pdf",
+      "path": "public/assets/it-kmitl/itf/lectures/itf-lec-week12-computer-networks-2569.pdf",
+      "fileName": "itf-lec-week12-computer-networks-2569.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/itf/lectures/itf-lec-week12-computer-networks-2569.pdf"
+      },
+      "access": "member",
+      "week": 12,
+      "scope": "final",
+      "edition": "2569",
+      "status": null,
+      "isCurrentYear": true,
+      "duplicateOf": null,
+      "sourceUrl": "https://onlearn.it.kmitl.ac.th/mod/resource/view.php?id=27432",
+      "groupId": null,
+      "tags": [
+        "Week 12",
+        "Network",
+        "IPv4",
+        "Subnet"
+      ],
+      "sizeBytes": 13694791,
+      "pages": 92,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016402-IT-Fundamentals/archive/week12.md"
+      ]
+    },
     "itf-lec-week12-computer-networks": {
       "id": "itf-lec-week12-computer-networks",
       "course": "ITF",
       "origin": "curated",
       "title": {
-        "th": "Introduction to Computer Network — รศ. ปานวิทย์",
-        "en": "Introduction to Computer Network — Assoc. Prof. Panwit"
+        "th": "Introduction to Computer Network (ฉบับปีก่อน)",
+        "en": "Introduction to Computer Network (Earlier Edition)"
       },
       "description": {
-        "th": "Topology, Ethernet, hub/bridge/switch, การเชื่อม LAN, IPv4 addressing, subnet mask, Class A/B/C, private IP และ NAT",
+        "th": "สไลด์ปีก่อน: Topology, Ethernet, hub/bridge/switch, การเชื่อม LAN, IPv4 addressing, subnet mask, Class A/B/C, private IP และ NAT",
         "en": "Topologies, Ethernet, hubs, bridges and switches, connecting LANs, IPv4 addressing, subnet masks, classes A/B/C, private IPs and NAT"
       },
       "category": "lecture",
@@ -9010,7 +9171,7 @@
       "week": 12,
       "scope": "final",
       "edition": null,
-      "status": null,
+      "status": "legacy",
       "isCurrentYear": false,
       "duplicateOf": null,
       "sourceUrl": null,
@@ -9195,17 +9356,59 @@
         "content/courses/06016402-IT-Fundamentals/archive/week12.md"
       ]
     },
+    "itf-lec-week13-wireless-network-2569": {
+      "id": "itf-lec-week13-wireless-network-2569",
+      "course": "ITF",
+      "origin": "curated",
+      "title": {
+        "th": "Lecture 13 — Introduction to Wireless Network (ฉบับ 2569)",
+        "en": "Lecture 13 — Introduction to Wireless Network (2569 Edition)"
+      },
+      "description": {
+        "th": "สไลด์บรรยายเครือข่ายไร้สาย ฉบับบรรยายออนไลน์ 29 ก.ย. 69 โดย รศ.ดร. ปานวิทย์ ธุวะนุติ (41 หน้า): Wireless Link, CDMA, IEEE 802.11 Wi-Fi, CSMA/CA, RTS/CTS",
+        "en": "Lecture deck on wireless networks (29 Sep 2026) by Assoc. Prof. Dr. Panwit Tuwanut: wireless links, CDMA, IEEE 802.11, CSMA/CA, RTS/CTS"
+      },
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/lectures/itf-lec-week13-wireless-network-2569.pdf",
+      "path": "public/assets/it-kmitl/itf/lectures/itf-lec-week13-wireless-network-2569.pdf",
+      "fileName": "itf-lec-week13-wireless-network-2569.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/itf/lectures/itf-lec-week13-wireless-network-2569.pdf"
+      },
+      "access": "member",
+      "week": 13,
+      "scope": "final",
+      "edition": "2569",
+      "status": null,
+      "isCurrentYear": true,
+      "duplicateOf": null,
+      "sourceUrl": "https://onlearn.it.kmitl.ac.th/mod/resource/view.php?id=27543",
+      "groupId": null,
+      "tags": [
+        "Week 13",
+        "Wireless",
+        "Wi-Fi"
+      ],
+      "sizeBytes": 9024568,
+      "pages": 41,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016402-IT-Fundamentals/archive/week13.md"
+      ]
+    },
     "itf-lec-week13-wi-fi": {
       "id": "itf-lec-week13-wi-fi",
       "course": "ITF",
       "origin": "curated",
       "title": {
-        "th": "Introduction to Wireless Network",
-        "en": "Introduction to Wireless Network"
+        "th": "Introduction to Wireless Network (ฉบับปีก่อน)",
+        "en": "Introduction to Wireless Network (Earlier Edition)"
       },
       "description": {
-        "th": "ฉบับปีก่อน ชื่อเดียวกับ Lecture 13 ของปีนี้ (ฉบับ 29 ก.ย. 69 อยู่ใน OnLearn): องค์ประกอบเครือข่ายไร้สาย, path loss และ hidden terminal, CDMA, IEEE 802.11, CSMA/CA และ RTS/CTS, Bluetooth",
-        "en": "An earlier edition with the same title as this year's Lecture 13 (the 29 Sep 2026 deck is on OnLearn): wireless network elements, path loss and hidden terminals, CDMA, IEEE 802.11, CSMA/CA and RTS/CTS, Bluetooth"
+        "th": "ฉบับปีก่อน: องค์ประกอบเครือข่ายไร้สาย, path loss และ hidden terminal, CDMA, IEEE 802.11, CSMA/CA และ RTS/CTS, Bluetooth",
+        "en": "An earlier edition: wireless network elements, path loss and hidden terminals, CDMA, IEEE 802.11, CSMA/CA and RTS/CTS, Bluetooth"
       },
       "category": "lecture",
       "fileType": "pdf",
@@ -9232,6 +9435,50 @@
       ],
       "sizeBytes": 1105425,
       "pages": 41,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016402-IT-Fundamentals/archive/week13.md"
+      ]
+    },
+    "itf-lab-week13-web-app-1-slide": {
+      "id": "itf-lab-week13-web-app-1-slide",
+      "course": "ITF",
+      "origin": "curated",
+      "title": {
+        "th": "Lab 13 — สไลด์ประกอบแล็บ Web App 1",
+        "en": "Lab 13 — Web App 1 Lab Slides"
+      },
+      "description": {
+        "th": "สไลด์ประกอบการสอนแล็บ Web App 1 (9 ต.ค. 69): แนะนำ HTML, CSS, โครงสร้างแท็ก และการเขียน Profile Card + To-do List",
+        "en": "Presentation slides for Lab 13 Web App 1 (9 Oct 2026): intro to HTML, CSS, tag structure, and styling"
+      },
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/labs/itf-lab-week13-web-app-1-slide.pdf",
+      "path": "public/assets/it-kmitl/itf/labs/itf-lab-week13-web-app-1-slide.pdf",
+      "fileName": "itf-lab-week13-web-app-1-slide.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/itf/labs/itf-lab-week13-web-app-1-slide.pdf"
+      },
+      "access": "member",
+      "week": 13,
+      "scope": "final",
+      "edition": "2569",
+      "status": null,
+      "isCurrentYear": true,
+      "duplicateOf": null,
+      "sourceUrl": "https://onlearn.it.kmitl.ac.th/mod/resource/view.php?id=27605",
+      "groupId": null,
+      "tags": [
+        "Week 13",
+        "Lab",
+        "HTML",
+        "CSS",
+        "Slides"
+      ],
+      "sizeBytes": 2260049,
+      "pages": 18,
       "onDisk": true,
       "usedBy": [
         "content/courses/06016402-IT-Fundamentals/archive/week13.md"
@@ -9265,7 +9512,7 @@
       "status": null,
       "isCurrentYear": true,
       "duplicateOf": null,
-      "sourceUrl": null,
+      "sourceUrl": "https://onlearn.it.kmitl.ac.th/mod/resource/view.php?id=27606",
       "groupId": null,
       "tags": [
         "Week 13",
@@ -9280,17 +9527,61 @@
         "content/courses/06016402-IT-Fundamentals/archive/week13.md"
       ]
     },
+    "itf-lec-week14-web-technology-2569": {
+      "id": "itf-lec-week14-web-technology-2569",
+      "course": "ITF",
+      "origin": "curated",
+      "title": {
+        "th": "Lecture 14 — Introduction to Web Technology (ฉบับ 2569)",
+        "en": "Lecture 14 — Introduction to Web Technology (2569 Edition)"
+      },
+      "description": {
+        "th": "สไลด์บรรยายเทคโนโลยีเว็บ ฉบับบรรยายออนไลน์ 6 ต.ค. 69 โดย รศ.ดร. ปานวิทย์ ธุวะนุติ (96 หน้า): เครื่องมือสร้างเว็บ, HTML5, CSS3, JavaScript, DOM/CSSOM, Client-Server",
+        "en": "Lecture deck on web technology (6 Oct 2026) by Assoc. Prof. Dr. Panwit Tuwanut: web creation tools, HTML5, CSS3, JavaScript, DOM/CSSOM, Client-Server"
+      },
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/lectures/itf-lec-week14-web-technology-2569.pdf",
+      "path": "public/assets/it-kmitl/itf/lectures/itf-lec-week14-web-technology-2569.pdf",
+      "fileName": "itf-lec-week14-web-technology-2569.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/itf/lectures/itf-lec-week14-web-technology-2569.pdf"
+      },
+      "access": "member",
+      "week": 14,
+      "scope": "final",
+      "edition": "2569",
+      "status": null,
+      "isCurrentYear": true,
+      "duplicateOf": null,
+      "sourceUrl": "https://onlearn.it.kmitl.ac.th/mod/resource/view.php?id=27607",
+      "groupId": null,
+      "tags": [
+        "Week 14",
+        "Web",
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "sizeBytes": 9977661,
+      "pages": 96,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016402-IT-Fundamentals/archive/week14.md"
+      ]
+    },
     "itf-lec-week15-web": {
       "id": "itf-lec-week15-web",
       "course": "ITF",
       "origin": "curated",
       "title": {
-        "th": "Focus on Web Technology",
-        "en": "Focus on Web Technology"
+        "th": "Focus on Web Technology (ฉบับปีก่อน)",
+        "en": "Focus on Web Technology (Earlier Edition)"
       },
       "description": {
-        "th": "ฉบับปีก่อนของบรรยาย Week 14 (ปีนี้ชื่อ Introduction to Web Technology ฉบับ 6 ต.ค. 69 อยู่ใน OnLearn): เครื่องมือสร้างเว็บ (text editor, WYSIWYG, CMS), HTML / CSS / JavaScript และโครงสร้างหน้า HTML",
-        "en": "An earlier edition of the week 14 lecture (this year titled Introduction to Web Technology; the 6 Oct 2026 deck is on OnLearn): website tools (text editors, WYSIWYG, CMSs), HTML, CSS and JavaScript, and the structure of an HTML page"
+        "th": "ฉบับปีก่อนของบรรยาย Week 14: เครื่องมือสร้างเว็บ (text editor, WYSIWYG, CMS), HTML / CSS / JavaScript และโครงสร้างหน้า HTML",
+        "en": "An earlier edition of the week 14 lecture: website tools (text editors, WYSIWYG, CMSs), HTML, CSS and JavaScript, and the structure of an HTML page"
       },
       "category": "lecture",
       "fileType": "pdf",
@@ -9406,17 +9697,149 @@
         "content/courses/06016402-IT-Fundamentals/archive/week14.md"
       ]
     },
+    "itf-lab-week14-web-app-2-slide": {
+      "id": "itf-lab-week14-web-app-2-slide",
+      "course": "ITF",
+      "origin": "curated",
+      "title": {
+        "th": "Lab 14 — สไลด์ประกอบแล็บ Web App 2 (JavaScript)",
+        "en": "Lab 14 — Web App 2 (JavaScript) Lab Slides"
+      },
+      "description": {
+        "th": "สไลด์ประกอบการสอนแล็บ Web App 2 (16 ต.ค. 69): การเชื่อมไฟล์ JavaScript, DOM Methods, Event Listener และ Local Storage",
+        "en": "Presentation slides for Lab 14 Web App 2 (16 Oct 2026): JavaScript linking, DOM methods, event listeners, and Local Storage"
+      },
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/labs/itf-lab-week14-web-app-2-slide.pdf",
+      "path": "public/assets/it-kmitl/itf/labs/itf-lab-week14-web-app-2-slide.pdf",
+      "fileName": "itf-lab-week14-web-app-2-slide.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/itf/labs/itf-lab-week14-web-app-2-slide.pdf"
+      },
+      "access": "member",
+      "week": 14,
+      "scope": "final",
+      "edition": "2569",
+      "status": null,
+      "isCurrentYear": true,
+      "duplicateOf": null,
+      "sourceUrl": "https://onlearn.it.kmitl.ac.th/mod/resource/view.php?id=27704",
+      "groupId": null,
+      "tags": [
+        "Week 14",
+        "Lab",
+        "JavaScript",
+        "DOM",
+        "Slides"
+      ],
+      "sizeBytes": 2422061,
+      "pages": 27,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016402-IT-Fundamentals/archive/week14.md"
+      ]
+    },
+    "itf-lab-week14-web-app-2-sheet": {
+      "id": "itf-lab-week14-web-app-2-sheet",
+      "course": "ITF",
+      "origin": "curated",
+      "title": {
+        "th": "Lab 14 — ใบงาน Web App 2 · JavaScript & DOM",
+        "en": "Lab 14 — Web App 2 · JavaScript & DOM Worksheet"
+      },
+      "description": {
+        "th": "การเชื่อมต่อ JavaScript กับ HTML, DOM Manipulation, Local Storage (setItem/getItem) · ทำ To-do List (เพิ่ม/ลบรายการและบันทึกข้อมูล) ด้วยตนเอง และทำซ้ำด้วย AI CLI agent (OpenCode) · ส่ง lab14-รหัสนักศึกษา.zip",
+        "en": "Connecting JavaScript to HTML, DOM manipulation, Local Storage (setItem/getItem) · building an interactive To-do List by hand and replicating it with an AI CLI agent (OpenCode) · submit lab14-<student id>.zip"
+      },
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/labs/itf-lab-week14-web-app-2-sheet.pdf",
+      "path": "public/assets/it-kmitl/itf/labs/itf-lab-week14-web-app-2-sheet.pdf",
+      "fileName": "itf-lab-week14-web-app-2-sheet.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/itf/labs/itf-lab-week14-web-app-2-sheet.pdf"
+      },
+      "access": "member",
+      "week": 14,
+      "scope": "final",
+      "edition": "2569",
+      "status": null,
+      "isCurrentYear": true,
+      "duplicateOf": null,
+      "sourceUrl": "https://onlearn.it.kmitl.ac.th/mod/resource/view.php?id=27705",
+      "groupId": null,
+      "tags": [
+        "Week 14",
+        "Lab",
+        "JavaScript",
+        "DOM",
+        "LocalStorage"
+      ],
+      "sizeBytes": 844583,
+      "pages": 13,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016402-IT-Fundamentals/archive/week14.md"
+      ]
+    },
+    "itf-lec-week15-it-skills-system-2569": {
+      "id": "itf-lec-week15-it-skills-system-2569",
+      "course": "ITF",
+      "origin": "curated",
+      "title": {
+        "th": "Lecture 15 — IT Skills and System (ฉบับ 2569)",
+        "en": "Lecture 15 — IT Skills and System (2569 Edition)"
+      },
+      "description": {
+        "th": "สไลด์บรรยายโดย ผศ.ดร. สุวิทย์ ภูมิฤทธิกุล (เรียน onsite 27 ต.ค. 69, 72 หน้า): Digital Skills vs Information System, Salary Guide 2023, Web Server (Ubuntu, Nginx), Web Deployment using SSH / Git",
+        "en": "Lecture deck by Asst. Prof. Dr. Suvit Poomrittigul (onsite class 27 Oct 2026, 72 pages): digital skills vs information systems, salary guide, web server (Ubuntu, Nginx), web deployment with SSH/Git"
+      },
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/lectures/itf-lec-week15-it-skills-system-2569.pdf",
+      "path": "public/assets/it-kmitl/itf/lectures/itf-lec-week15-it-skills-system-2569.pdf",
+      "fileName": "itf-lec-week15-it-skills-system-2569.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/itf/lectures/itf-lec-week15-it-skills-system-2569.pdf"
+      },
+      "access": "member",
+      "week": 15,
+      "scope": "final",
+      "edition": "2569",
+      "status": null,
+      "isCurrentYear": true,
+      "duplicateOf": null,
+      "sourceUrl": "https://onlearn.it.kmitl.ac.th/mod/resource/view.php?id=27684",
+      "groupId": null,
+      "tags": [
+        "Week 15",
+        "Digital Skills",
+        "Information System",
+        "Web Server",
+        "Deployment"
+      ],
+      "sizeBytes": 10416013,
+      "pages": 72,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016402-IT-Fundamentals/archive/week15.md"
+      ]
+    },
     "itf-lec-week14-it-system": {
       "id": "itf-lec-week14-it-system",
       "course": "ITF",
       "origin": "curated",
       "title": {
-        "th": "Information System",
-        "en": "Information System"
+        "th": "Information System (ฉบับปีก่อน)",
+        "en": "Information System (Earlier Edition)"
       },
       "description": {
-        "th": "ฉบับปีก่อน เป็นเรื่องที่ปีนี้ยังไม่มีสัปดาห์ไหนสอน จึงวางไว้ใต้ Week 15 ที่ยังไม่ประกาศหัวข้อ: ความต้องการทักษะดิจิทัล, องค์ประกอบระบบสารสนเทศ, SDLC 5 ขั้น, เทคนิคเก็บความต้องการ และ functional vs non-functional requirement",
-        "en": "An earlier edition of a topic no week has taught this year, parked under the still-unannounced week 15: demand for digital skills, the parts of an information system, the five SDLC phases, requirement-gathering techniques, and functional vs non-functional requirements"
+        "th": "ฉบับปีก่อนของบรรยาย Week 15: ความต้องการทักษะดิจิทัล, องค์ประกอบระบบสารสนเทศ, SDLC 5 ขั้น, เทคนิคเก็บความต้องการ และ functional vs non-functional requirement",
+        "en": "An earlier edition of the week 15 lecture: demand for digital skills, the parts of an information system, the five SDLC phases, requirement-gathering techniques, and functional vs non-functional requirements"
       },
       "category": "lecture",
       "fileType": "pdf",
@@ -9443,6 +9866,93 @@
       ],
       "sizeBytes": 4923677,
       "pages": 66,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016402-IT-Fundamentals/archive/week15.md"
+      ]
+    },
+    "itf-lab-week15-web-deployment-slide": {
+      "id": "itf-lab-week15-web-deployment-slide",
+      "course": "ITF",
+      "origin": "curated",
+      "title": {
+        "th": "Lab 15 — สไลด์ประกอบแล็บ Web Deployment",
+        "en": "Lab 15 — Web Deployment Lab Slides"
+      },
+      "description": {
+        "th": "สไลด์ประกอบการสอนแล็บ Web Deployment (23 ต.ค. 69): การนำเว็บไซต์ขึ้นระบบออนไลน์ผ่าน Vercel และ GitHub",
+        "en": "Presentation slides for Lab 15 Web Deployment (23 Oct 2026): deploying websites online with Vercel and GitHub"
+      },
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/labs/itf-lab-week15-web-deployment-slide.pdf",
+      "path": "public/assets/it-kmitl/itf/labs/itf-lab-week15-web-deployment-slide.pdf",
+      "fileName": "itf-lab-week15-web-deployment-slide.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/itf/labs/itf-lab-week15-web-deployment-slide.pdf"
+      },
+      "access": "member",
+      "week": 15,
+      "scope": "final",
+      "edition": "2569",
+      "status": null,
+      "isCurrentYear": true,
+      "duplicateOf": null,
+      "sourceUrl": "https://onlearn.it.kmitl.ac.th/mod/resource/view.php?id=27756",
+      "groupId": null,
+      "tags": [
+        "Week 15",
+        "Lab",
+        "Deployment",
+        "Vercel",
+        "Slides"
+      ],
+      "sizeBytes": 1269399,
+      "pages": 17,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016402-IT-Fundamentals/archive/week15.md"
+      ]
+    },
+    "itf-lab-week15-web-deployment-sheet": {
+      "id": "itf-lab-week15-web-deployment-sheet",
+      "course": "ITF",
+      "origin": "curated",
+      "title": {
+        "th": "Lab 15 — ใบงาน Web Deployment",
+        "en": "Lab 15 — Web Deployment Worksheet"
+      },
+      "description": {
+        "th": "ใบงานการ Deploy เว็บไซต์บน Vercel (23 ต.ค. 69): การสร้าง GitHub repo, การ Import เข้า Vercel, การตั้งค่า Framework Preset และการทดลองใช้ AI CLI Agent (OpenCode MCP)",
+        "en": "Web Deployment lab worksheet on Vercel (23 Oct 2026): GitHub repo creation, Vercel import, framework presets, and AI CLI Agent (OpenCode MCP)"
+      },
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/labs/itf-lab-week15-web-deployment-sheet.pdf",
+      "path": "public/assets/it-kmitl/itf/labs/itf-lab-week15-web-deployment-sheet.pdf",
+      "fileName": "itf-lab-week15-web-deployment-sheet.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/itf/labs/itf-lab-week15-web-deployment-sheet.pdf"
+      },
+      "access": "member",
+      "week": 15,
+      "scope": "final",
+      "edition": "2569",
+      "status": null,
+      "isCurrentYear": true,
+      "duplicateOf": null,
+      "sourceUrl": "https://onlearn.it.kmitl.ac.th/mod/resource/view.php?id=27757",
+      "groupId": null,
+      "tags": [
+        "Week 15",
+        "Lab",
+        "Deployment",
+        "Vercel"
+      ],
+      "sizeBytes": 596186,
+      "pages": 8,
       "onDisk": true,
       "usedBy": [
         "content/courses/06016402-IT-Fundamentals/archive/week15.md"

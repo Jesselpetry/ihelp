@@ -19,6 +19,7 @@
 | เอกสาร | หน้า | ไฟล์ในคลัง |
 |---|:---:|---|
 | สไลด์บรรยาย — Lecture 10 Working in the Enterprise | 49 | `itf-lec-week10-enterprise-2569.pdf` |
+| ใบงานแล็บ — File Management | 10 | `itf-lab-week10-file-management-sheet.pdf` |
 
 ---
 

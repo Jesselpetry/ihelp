@@ -6161,6 +6161,48 @@
       "chapter": 9
     },
     {
+      "id": "gen-itf-labs-itf-lab-week10-file-management-sheet-pdf",
+      "title": {
+        "th": "Lab · Week 10 File Management Sheet",
+        "en": "Lab · Week 10 File Management Sheet"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "labs"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/labs/itf-lab-week10-file-management-sheet.pdf",
+      "fileName": "itf-lab-week10-file-management-sheet.pdf",
+      "courseCode": "ITF",
+      "chapter": 10
+    },
+    {
+      "id": "gen-itf-labs-itf-lab-week11-network-1-sheet-pdf",
+      "title": {
+        "th": "Lab · Week 11 Network 1 Sheet",
+        "en": "Lab · Week 11 Network 1 Sheet"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "labs"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/labs/itf-lab-week11-network-1-sheet.pdf",
+      "fileName": "itf-lab-week11-network-1-sheet.pdf",
+      "courseCode": "ITF",
+      "chapter": 11
+    },
+    {
       "id": "gen-itf-labs-itf-lab-week12-packet-tracer-2-sheet-pdf",
       "title": {
         "th": "Lab · Week 12 Packet Tracer 2 Sheet",
@@ -6222,6 +6264,111 @@
       "fileName": "itf-lab-week13-web-app-1-sheet.pdf",
       "courseCode": "ITF",
       "chapter": 13
+    },
+    {
+      "id": "gen-itf-labs-itf-lab-week13-web-app-1-slide-pdf",
+      "title": {
+        "th": "Lab · Week 13 Web App 1 Slide",
+        "en": "Lab · Week 13 Web App 1 Slide"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "labs"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/labs/itf-lab-week13-web-app-1-slide.pdf",
+      "fileName": "itf-lab-week13-web-app-1-slide.pdf",
+      "courseCode": "ITF",
+      "chapter": 13
+    },
+    {
+      "id": "gen-itf-labs-itf-lab-week14-web-app-2-sheet-pdf",
+      "title": {
+        "th": "Lab · Week 14 Web App 2 Sheet",
+        "en": "Lab · Week 14 Web App 2 Sheet"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "labs"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/labs/itf-lab-week14-web-app-2-sheet.pdf",
+      "fileName": "itf-lab-week14-web-app-2-sheet.pdf",
+      "courseCode": "ITF",
+      "chapter": 14
+    },
+    {
+      "id": "gen-itf-labs-itf-lab-week14-web-app-2-slide-pdf",
+      "title": {
+        "th": "Lab · Week 14 Web App 2 Slide",
+        "en": "Lab · Week 14 Web App 2 Slide"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "labs"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/labs/itf-lab-week14-web-app-2-slide.pdf",
+      "fileName": "itf-lab-week14-web-app-2-slide.pdf",
+      "courseCode": "ITF",
+      "chapter": 14
+    },
+    {
+      "id": "gen-itf-labs-itf-lab-week15-web-deployment-sheet-pdf",
+      "title": {
+        "th": "Lab · Week 15 Web Deployment Sheet",
+        "en": "Lab · Week 15 Web Deployment Sheet"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "labs"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/labs/itf-lab-week15-web-deployment-sheet.pdf",
+      "fileName": "itf-lab-week15-web-deployment-sheet.pdf",
+      "courseCode": "ITF",
+      "chapter": 15
+    },
+    {
+      "id": "gen-itf-labs-itf-lab-week15-web-deployment-slide-pdf",
+      "title": {
+        "th": "Lab · Week 15 Web Deployment Slide",
+        "en": "Lab · Week 15 Web Deployment Slide"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "labs"
+      ],
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/labs/itf-lab-week15-web-deployment-slide.pdf",
+      "fileName": "itf-lab-week15-web-deployment-slide.pdf",
+      "courseCode": "ITF",
+      "chapter": 15
     },
     {
       "id": "gen-itf-lectures-itf-lec-final-pdf",
@@ -6945,6 +7092,27 @@
       "chapter": 11
     },
     {
+      "id": "gen-itf-lectures-itf-lec-week12-computer-networks-2569-pdf",
+      "title": {
+        "th": "Lecture · Week 12 Computer Networks 2569",
+        "en": "Lecture · Week 12 Computer Networks 2569"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "lectures"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/lectures/itf-lec-week12-computer-networks-2569.pdf",
+      "fileName": "itf-lec-week12-computer-networks-2569.pdf",
+      "courseCode": "ITF",
+      "chapter": 12
+    },
+    {
       "id": "gen-itf-lectures-itf-lec-week12-computer-networks-pdf",
       "title": {
         "th": "Lecture · Week 12 Computer Networks",
@@ -6987,6 +7155,27 @@
       "chapter": 13
     },
     {
+      "id": "gen-itf-lectures-itf-lec-week13-wireless-network-2569-pdf",
+      "title": {
+        "th": "Lecture · Week 13 Wireless Network 2569",
+        "en": "Lecture · Week 13 Wireless Network 2569"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "lectures"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/lectures/itf-lec-week13-wireless-network-2569.pdf",
+      "fileName": "itf-lec-week13-wireless-network-2569.pdf",
+      "courseCode": "ITF",
+      "chapter": 13
+    },
+    {
       "id": "gen-itf-lectures-itf-lec-week14-it-system-pdf",
       "title": {
         "th": "Lecture · Week 14 IT System",
@@ -7006,6 +7195,48 @@
       "fileName": "itf-lec-week14-it-system.pdf",
       "courseCode": "ITF",
       "chapter": 14
+    },
+    {
+      "id": "gen-itf-lectures-itf-lec-week14-web-technology-2569-pdf",
+      "title": {
+        "th": "Lecture · Week 14 Web Technology 2569",
+        "en": "Lecture · Week 14 Web Technology 2569"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "lectures"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/lectures/itf-lec-week14-web-technology-2569.pdf",
+      "fileName": "itf-lec-week14-web-technology-2569.pdf",
+      "courseCode": "ITF",
+      "chapter": 14
+    },
+    {
+      "id": "gen-itf-lectures-itf-lec-week15-it-skills-system-2569-pdf",
+      "title": {
+        "th": "Lecture · Week 15 IT Skills System 2569",
+        "en": "Lecture · Week 15 IT Skills System 2569"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "lectures"
+      ],
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/lectures/itf-lec-week15-it-skills-system-2569.pdf",
+      "fileName": "itf-lec-week15-it-skills-system-2569.pdf",
+      "courseCode": "ITF",
+      "chapter": 15
     },
     {
       "id": "gen-itf-lectures-itf-lec-week15-web-pdf",

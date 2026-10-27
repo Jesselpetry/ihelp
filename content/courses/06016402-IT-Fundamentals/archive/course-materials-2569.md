@@ -1,9 +1,9 @@
 # ITF · ภาพรวมและตารางเรียน ภาค 1/2569
 
-> **ที่มา:** [OnLearn ITF-1-26](https://onlearn.it.kmitl.ac.th/course/view.php?id=1766) · สไลด์ Lecture 00 และสไลด์แนะนำครึ่งหลังของวิชา ·
-> ใบงาน Lab 12–13 · คลิปย้อนหลัง Lab 13–14 ที่ TA โพสต์ · รวบรวม 27 ก.ย. 2569 · อัปเดตตาม OnLearn 15 ต.ค. 2569 และคลิปแล็บ 17 ต.ค. 2569
+> **ที่มา:** [OnLearn ITF-1-26](https://onlearn.it.kmitl.ac.th/course/view.php?id=1766) · สไลด์ Lecture 00–15 และใบงานแล็บครบทุกสัปดาห์ ·
+> รวบรวม 27 ก.ย. 2569 · อัปเดตตาม OnLearn 27 ต.ค. 2569 (ครบทั้ง 15 สัปดาห์)
 >
-> OnLearn เปิดครบ 15 หัวข้อ — สไลด์ Week 12–15 ของปีนี้ยังไม่อยู่ในคลัง หน้าเหล่านั้นจึงสรุปบรรยายจากสไลด์ปีก่อน
+> OnLearn เปิดครบ 15 หัวข้อ — สไลด์และใบงานแล็บของปี 2569 เข้าสู่คลังเรียนรู้ครบถ้วนแล้ว
 
 ## หน้านี้ใช้อ่านสอบอย่างไร
 
@@ -31,14 +31,13 @@
 | 9 | Ethical, Social & Legal Aspects of IT | ผศ.ดร. พรสุรีย์ | Make.com — AI Workflow | สไลด์ 2569 |
 | 10 | Working in the Enterprise | ผศ.ดร. พรสุรีย์ | File Management | สไลด์ 2569 |
 | 11 | Internet & Computer Networks 1 | รศ.ดร. ปานวิทย์ | Network 1 — Cisco Packet Tracer (1) · Layer 2 | สไลด์ 2569 |
-| 12 | Computer Networks 2 | รศ.ดร. ปานวิทย์ | Network 2 — Cisco Packet Tracer (2) · router และ static route · ออนไลน์ พฤ. 1 ต.ค. | สไลด์ในคลัง (ฉบับ 22 ก.ย. 69 อยู่ใน OnLearn) · ใบงานแล็บ 2569 |
-| 13 | Wireless Networks · บรรยายออนไลน์ อ. 29 ก.ย. | *ยังไม่ยืนยัน* | Web App 1 · ออนไลน์ ศ. 9 ต.ค. | สไลด์ปีก่อนชื่อเดียวกัน |
-| 14 | Web Technology · บรรยายออนไลน์ อ. 6 ต.ค. | *ยังไม่ยืนยัน* | Lab 14 · ศ. 16 ต.ค. — หัวข้อ *ยังไม่ยืนยัน* (น่าจะต่อจาก Web App 1 ด้วย JavaScript) | สไลด์ปีก่อน |
-| 15 | IT Skills and System · OnLearn ระบุเรียน 27 ต.ค. (ชนกับวันสอบปลายภาค — *ยังไม่ยืนยัน*) | *ยังไม่ยืนยัน* | — | สไลด์ปีก่อน *Information System* |
+| 12 | Computer Networks 2 | รศ.ดร. ปานวิทย์ | Network 2 — Cisco Packet Tracer (2) · router และ static route · ออนไลน์ พฤ. 1 ต.ค. | สไลด์ 2569 · ใบงานแล็บ 2569 |
+| 13 | Wireless Networks · บรรยายออนไลน์ อ. 29 ก.ย. | รศ.ดร. ปานวิทย์ | Web App 1 (HTML & CSS) · ออนไลน์ ศ. 9 ต.ค. | สไลด์ 2569 · ใบงานแล็บ 2569 |
+| 14 | Web Technology · บรรยายออนไลน์ อ. 6 ต.ค. | รศ.ดร. ปานวิทย์ | Web App 2 (JavaScript & DOM) · ออนไลน์ ศ. 16 ต.ค. | สไลด์ 2569 · ใบงานแล็บ 2569 |
+| 15 | IT Skills and System · บรรยายที่คณะ อ. 27 ต.ค. | ผศ.ดร. สุวิทย์ | Web Deployment (Vercel) · ออนไลน์ ศ. 23 ต.ค. | สไลด์ 2569 · ใบงานแล็บ 2569 |
 | — | **สอบปลายภาค** อ. 27 ต.ค. 2569 · 13:30–16:30 | | | |
 
-> ผศ.ดร. สุวิทย์ ภูมิฤทธิกุล อยู่ในรายชื่อผู้สอนของ Lecture 00 แต่ยังไม่มีสไลด์ที่ระบุชื่อท่าน —
-> สัปดาห์ที่ท่านสอนจริง *ยังไม่ยืนยัน*
+> ผศ.ดร. สุวิทย์ ภูมิฤทธิกุล สอนใน Week 15 หัวข้อ Digital Skills vs Information System และ Web Deployment
 
 ---
 
@@ -62,8 +61,8 @@
   Week 13–14 เรียนออนไลน์ผ่าน Zoom (Sec 1, 3 เวลา 13:45–15:45) — ลิงก์และคลิปบันทึกอยู่ใน OnLearn
 - **แล็บ** วันศุกร์ ห้อง L434 — แยก 3 รอบตาม Section · งานส่วนใหญ่ยกมือให้พี่ TA ตรวจในคาบ
   บางสัปดาห์ (Excel 1–2, Make.com, File Management, Network 1–2, Web App 1) ส่งงานใน OnLearn แยกตามรอบ
-- **แล็บออนไลน์** — Lab 12 (พฤ. 1 ต.ค. ผ่าน Google Meet) และ Lab 13 (ศ. 9 ต.ค. ผ่าน Zoom) เรียนรอบเดียว 09:00–11:00 ทุกกลุ่ม
-  คลิปย้อนหลังของ Lab 13 และ Lab 14 (ศ. 16 ต.ค.) ดูได้ในหน้า Week 13 และ Week 14
+- **แล็บออนไลน์** — Lab 12 (พฤ. 1 ต.ค. ผ่าน Google Meet), Lab 13 (ศ. 9 ต.ค. ผ่าน Zoom), Lab 14 (ศ. 16 ต.ค. ผ่าน Zoom) และ Lab 15 (ศ. 23 ต.ค. ผ่าน Zoom) เรียนรอบเดียว 09:00–11:00 ทุกกลุ่ม
+  คลิปย้อนหลังของ Lab 13 และ Lab 14 ดูได้ในหน้า Week 13 และ Week 14
 - **SecSpace** (`ctf.it.kmitl.ac.th`) — ระบบโจทย์ Cisco Packet Tracer ของ Lab 11–12 ล็อกอินด้วยบัญชี IT ทำโจทย์แล้วส่ง flag
 - **ตำราหลัก** O'Leary, O'Leary & O'Leary (2026), *Computing Essentials 2026*
 - **ประกาศและที่ส่งงาน** [OnLearn](https://onlearn.it.kmitl.ac.th/course/view.php?id=1766) — กลุ่ม Facebook และ Discord ของวิชาอยู่ในไฟล์ช่องทางติดต่อด้านล่าง

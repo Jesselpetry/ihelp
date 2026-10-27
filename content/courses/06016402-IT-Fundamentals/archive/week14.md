@@ -19,11 +19,14 @@
 
 | เอกสาร | หน้า | ไฟล์ในคลัง |
 |---|:---:|---|
-| สไลด์ปีก่อน — Focus on Web Technology | 74 | `itf-lec-week15-web.pdf` |
+| สไลด์บรรยาย — Introduction to Web Technology (ฉบับ 2569) | 96 | `itf-lec-week14-web-technology-2569.pdf` |
+| สไลด์ประกอบแล็บ — Web App 2 (JavaScript) | 27 | `itf-lab-week14-web-app-2-slide.pdf` |
+| ใบงานแล็บ — Web App 2 · JavaScript & DOM | 13 | `itf-lab-week14-web-app-2-sheet.pdf` |
+| สไลด์ฉบับปีก่อน — Focus on Web Technology | 74 | `itf-lec-week15-web.pdf` |
 | สไลด์ Focus on Web Development (Discovering Computers ©2017) | 95 | `itf-lec-focuson-web.pdf` |
 | ชีททบทวน Web Technology | 54 | `itf-sheet-reviews-web-app.pdf` |
 
-> **มีใน OnLearn แต่ยังไม่อยู่ในคลัง** — สไลด์ Lecture 14 ฉบับ 6 ต.ค. 69 · คลิปบันทึกการสอน
+> **มีใน OnLearn แต่ยังไม่อยู่ในคลัง** — คลิปบันทึกการสอน (OnLearn id 27632, 27716)
 
 ---
 
@@ -107,16 +110,34 @@
 
 ---
 
-## แล็บ — Lab 14 (ศ. 16 ต.ค. 2569)
+## แล็บ — Web App 2 · JavaScript & DOM (ศ. 16 ต.ค. 2569)
 
-> ใบงาน Lab 14 ยังไม่อยู่ในคลัง และยังไม่รู้หัวข้อแน่ชัด — ที่มาคือคลิปย้อนหลังที่ TA โพสต์ให้ชั้นเรียน ใบงาน Lab 13 บอกว่า
-> คาบถัดไปจะใช้ JavaScript ทำให้ปุ่มของ Profile Card + To-do List ทำงาน จึงน่าจะต่อจาก Lab 13 *ยังไม่ยืนยัน*
+> ต่อยอดจาก Lab 13 นำ To-do List มาเขียน JavaScript จัดการ DOM และบันทึกข้อมูลลง Local Storage เพื่อไม่ให้ข้อมูลหายเมื่อรีเฟรชหน้าเว็บ โดยแบ่งการทำเป็น 2 ส่วน: เขียนโค้ดด้วยตนเอง (`week14`) และใช้ AI CLI Agent (`week14-ai`)
 
 ```youtube
 uGbbBMKC10Q | คลิปย้อนหลัง Lab 14 (ศ. 16 ต.ค. 69)
 ```
 
-- ก่อนดูคลิป เปิดไฟล์ `week13/index.html` ของตัวเองไว้ — ใบงาน Lab 13 ให้ตั้ง id `todo-input` · `add-btn` · `todo-list`
-  ไว้ให้ JavaScript ใช้หาช่องพิมพ์ ปุ่ม และรายการ
-- แล็บเว็บครั้งแรก (Web App 1 · HTML และ CSS · ศ. 9 ต.ค.) สรุปอยู่ในหัวข้อแล็บของ
-  [Week 13](/courses/06016402-IT-Fundamentals/map?doc=week13)
+### สรุปเนื้อหาและคำสั่งสำคัญจากใบงาน
+
+1. **การเชื่อมโยงไฟล์ JavaScript**
+   - ใส่ `<script src="script.js"></script>` ไว้**ท้ายสุดของ `<body>`** ก่อนปิดแท็ก เพื่อรอให้เบราว์เซอร์สร้าง DOM elements ให้เสร็จสมบูรณ์ก่อนสคริปต์เริ่มทำงาน (หากใส่ใน `<head>` สคริปต์จะหาปุ่มหรือ element ไม่เจอ)
+
+2. **DOM (Document Object Model) & คำสั่งที่ใช้**
+   - แปลงเอกสาร HTML เป็นโครงสร้างต้นไม้ (Window → Document → HTML → Head / Body)
+   - `const input = document.getElementById("id")` — เชื่อมตัวแปรไปยัง Element
+   - `document.createElement("li")` — สร้างแท็ก HTML ใหม่
+   - `element.textContent = "..."` — ใส่ข้อความในแท็ก
+   - `container.appendChild(newElement)` — นำ Element ที่สร้างไปต่อท้ายใน Container
+   - `button.addEventListener("click", () => { ... })` — ดักจับ Event คลิกปุ่ม
+   - `input.value` — อ่านหรือล้างข้อความในช่องกรอก (`input.value = ""`)
+
+3. **Local Storage**
+   - เก็บข้อมูลฝั่ง Client ข้อมูลไม่หายเมื่อรีเฟรชหรือปิดเบราว์เซอร์
+   - `localStorage.setItem("todos", JSON.stringify(items))` — บันทึก Array เป็น JSON string
+   - `JSON.parse(localStorage.getItem("todos")) || []` — ดึง JSON string แปลงกลับเป็น Array
+
+4. **การต่อยอด To-do List และ AI CLI Agent**
+   - **โฟลเดอร์ `week14` (ทำเอง):** ผูกปุ่มเพิ่มรายการสร้าง `<li>` พร้อมปุ่มลบ, กดปุ่มลบแล้วลบ `<li>` ออกจากหน้า, บันทึกสถานะลง Local Storage ทุกครั้งที่มีการเปลี่ยนแปลง
+   - **โฟลเดอร์ `week14-ai` (ใช้ AI):** ก๊อปปี้ไฟล์จาก `week13-ai` สั่งงานผ่าน CLI Agent (OpenCode) ด้วย Prompt ระบุ **เป้าหมาย · ข้อจำกัด · โครงสร้าง id · การทำงาน** พร้อมแคปภาพหน้าจอคำสั่ง Prompt
+   - **ส่งงาน:** ZIP `lab14-รหัสนักศึกษา.zip` (ประกอบด้วยโฟลเดอร์ `week14`, `week14-ai` และภาพ prompt)
