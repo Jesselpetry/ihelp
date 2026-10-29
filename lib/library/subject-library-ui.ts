@@ -156,10 +156,6 @@ export const ASSET_GROUPS: Record<string, LText> = {
     th: "สมุดจดในชั้นเรียน (Lecture 01–07)",
     en: "Class notebook (Lectures 01–07)",
   },
-  "ics-midterm-2564-scan": {
-    th: "ภาพสแกนข้อสอบกลางภาค 1/2564",
-    en: "Scanned midterm paper, 1/2564",
-  },
   // ICS Labs (Track A)
   "ics-lab-01": {
     th: "ใบงานปฏิบัติการที่ 1 — การใช้โปรแกรม Logisim (รวมทุกฉบับ)",
@@ -236,18 +232,9 @@ export const ASSET_GROUPS: Record<string, LText> = {
     en: "Chapter 6: Memory Unit (All Decks)",
   },
   // ICS Exams & Quizzes
-  "ics-quiz-c-group": {
-    th: "แบบทดสอบย่อย Quiz C (รวมใบโจทย์ทุกสำเนา)",
-    en: "Quiz C Question Sheets (All Copies)",
-  },
-  "ics-midterm-01-group": {
-    th: "ข้อสอบเก่ากลางภาค ชุดที่ 1 (รวมฉบับสำรอง)",
-    en: "Past Midterm Exam Paper — Set 1 (All Copies)",
-  },
-  "ics-midterm-02-group": {
-    th: "ข้อสอบเก่ากลางภาค ชุดที่ 2 (รวมฉบับสำรองและแนวคิด)",
-    en: "Past Midterm Exam Paper — Set 2 (All Copies)",
-  },
+  // Past-exam group labels (ics-midterm-2564-scan, ics-quiz-c-group,
+  // ics-midterm-01/02-group) are quarantined locally in _quarantine/: this map
+  // ships in the client bundle, so exam titles must not live here.
   "ics-sheet-summary-group": {
     th: "ชีทสรุปย่อวิชา ICS (รวมทุกฉบับ)",
     en: "ICS Condensed Summary Cheatsheets (All Editions)",

@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { GoogleMark } from "@/components/account/google-mark";
 import { createClient } from "@/lib/supabase/client";
+import { supabaseConfigured } from "@/lib/supabase/env";
 import { verifyKmitlIt } from "@/lib/auth/verify";
 import { UPLOADS_ENABLED } from "@/lib/flags";
 import type { MeResponse } from "@/app/api/me/route";
@@ -28,7 +29,6 @@ export function AccountMenu({ onNavigate }: { onNavigate?: () => void }) {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    const supabase = createClient();
     let cancelled = false;
 
     async function apply(email: string | null | undefined) {
@@ -48,6 +48,14 @@ export function AccountMenu({ onNavigate }: { onNavigate?: () => void }) {
       setMe(res.ok ? await res.json() : null);
     }
 
+    if (!supabaseConfigured) {
+      apply(null);
+      return () => {
+        cancelled = true;
+      };
+    }
+
+    const supabase = createClient();
     supabase.auth.getUser().then(({ data }) => apply(data.user?.email));
 
     const { data: sub } = supabase.auth.onAuthStateChange((_event, session) =>

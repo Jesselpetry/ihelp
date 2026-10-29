@@ -1,6 +1,7 @@
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import { cache } from "react";
+import { supabaseConfigured } from "@/lib/supabase/env";
 
 type CookieToSet = { name: string; value: string; options: CookieOptions };
 
@@ -37,6 +38,7 @@ export async function createClient() {
  * `cache()` so the layout, page and any actions share one round-trip.
  */
 export const getSessionUser = cache(async () => {
+  if (!supabaseConfigured) return null;
   const supabase = await createClient();
   const {
     data: { user },
