@@ -35,6 +35,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import type { MeResponse } from "@/app/api/me/route";
 import { GoogleMark } from "@/components/account/google-mark";
 import { createClient } from "@/lib/supabase/client";
+import { supabaseConfigured } from "@/lib/supabase/env";
 import { verifyKmitlIt } from "@/lib/auth/verify";
 import { useLocale, t, type LText } from "@/lib/i18n";
 import {
@@ -288,7 +289,6 @@ export function ExamScheduleView({
 
   // Sync with Supabase Auth session & auto-search logged-in student's schedule
   useEffect(() => {
-    const supabase = createClient();
     let cancelled = false;
 
     async function applySession(email: string | null | undefined) {
@@ -338,6 +338,14 @@ export function ExamScheduleView({
       }
     }
 
+    if (!supabaseConfigured) {
+      applySession(null);
+      return () => {
+        cancelled = true;
+      };
+    }
+
+    const supabase = createClient();
     supabase.auth.getUser().then(({ data }) => {
       applySession(data.user?.email);
     });

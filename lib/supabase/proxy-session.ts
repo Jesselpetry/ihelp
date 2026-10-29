@@ -1,5 +1,6 @@
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
+import { supabaseConfigured } from "@/lib/supabase/env";
 
 type CookieToSet = { name: string; value: string; options: CookieOptions };
 
@@ -16,6 +17,8 @@ const PROTECTED_PREFIXES = ["/onboarding", "/upload", "/exams"];
  */
 export async function updateSession(request: NextRequest) {
   let response = NextResponse.next({ request });
+
+  if (!supabaseConfigured) return guard(request, null, response);
 
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -47,6 +50,10 @@ export async function updateSession(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
+  return guard(request, user, response);
+}
+
+function guard(request: NextRequest, user: unknown, response: NextResponse) {
   const { pathname } = request.nextUrl;
   const isProtected = PROTECTED_PREFIXES.some((p) => pathname.startsWith(p));
 

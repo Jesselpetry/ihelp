@@ -11,6 +11,7 @@ import { Footer } from "@/components/footer";
 import { DisclaimerModal } from "@/components/disclaimer-modal";
 import { WelcomeChoiceModal } from "@/components/welcome-choice-modal";
 import { Splash } from "@/components/splash";
+import { ChatWidget } from "@/components/chat-widget";
 import "./globals.css";
 
 const plexThai = IBM_Plex_Sans_Thai({
@@ -217,6 +218,7 @@ export default function RootLayout({
             <WelcomeChoiceModal />
             {children}
             <Footer />
+            <ChatWidget />
           </LocaleProvider>
         </ThemeProvider>
         <Analytics />

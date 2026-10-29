@@ -102,6 +102,16 @@ export function SubjectLibrary({
   const [preview, setPreview] = useState<Preview | null>(null);
   const [hideDuplicates, setHideDuplicates] = useState(courseCode === "ICS");
 
+  // `?open=<asset id>` opens that file's preview on arrival — the help chat's
+  // "open file" buttons link here. Read from window rather than
+  // useSearchParams so the statically prerendered page needs no Suspense.
+  useEffect(() => {
+    const id = new URLSearchParams(window.location.search).get("open");
+    const asset = id ? assets.find((a) => a.id === id) : undefined;
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time open from the URL after the gated asset list arrives
+    if (asset) setPreview({ items: [asset], index: 0 });
+  }, [assets]);
+
   // Quick keyboard shortcut: press '/' to focus search
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
