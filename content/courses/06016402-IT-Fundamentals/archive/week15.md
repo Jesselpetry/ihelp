@@ -22,6 +22,7 @@
 | เอกสาร | หน้า | ไฟล์ในคลัง |
 |---|:---:|---|
 | สไลด์บรรยาย — IT Skills and System (ฉบับ 2569) | 72 | `itf-lec-week15-it-skills-system-2569.pdf` |
+| สรุปฉบับแปลไทย — Week 15 ทักษะดิจิทัลและระบบสารสนเทศ | 1 | `itf-sheet-week15-digital-skills-th.pdf` |
 | สไลด์ประกอบแล็บ — Web Deployment | 17 | `itf-lab-week15-web-deployment-slide.pdf` |
 | ใบงานแล็บ — Web Deployment | 8 | `itf-lab-week15-web-deployment-sheet.pdf` |
 | สไลด์ฉบับปีก่อน — Information System | 66 | `itf-lec-week14-it-system.pdf` |

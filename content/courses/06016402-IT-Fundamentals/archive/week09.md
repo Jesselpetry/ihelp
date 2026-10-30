@@ -19,6 +19,7 @@
 | เอกสาร | หน้า | ไฟล์ในคลัง |
 |---|:---:|---|
 | สไลด์บรรยาย — Lecture 09 Ethical, Social & Legal Aspects of IT | 57 | `itf-lec-week09-ethics-2569.pdf` |
+| สรุปฉบับแปลไทย — Week 09 จริยธรรม สังคม และกฎหมายไอที | 1 | `itf-sheet-week09-ethics-legal-th.pdf` |
 | ใบงานแล็บ 09 — Make.com AI Workflow | 16 | `itf-lab-week09-make.pdf` |
 
 ---

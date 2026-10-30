@@ -21,6 +21,7 @@
 | เอกสาร | หน้า | ไฟล์ในคลัง |
 |---|:---:|---|
 | สไลด์บรรยาย — Introduction to Computer Network (ฉบับ 2569) | 92 | `itf-lec-week12-computer-networks-2569.pdf` |
+| สรุปฉบับแปลไทย — Week 12 เครือข่ายคอมพิวเตอร์ | 1 | `itf-sheet-week12-computer-networks-th.pdf` |
 | สไลด์บรรยายฉบับปีก่อน | 92 | `itf-lec-week12-computer-networks.pdf` |
 | ใบงานแล็บ Network 2 — Cisco Packet Tracer (2) ฉบับ 1/2569 | 20 | `itf-lab-week12-packet-tracer-2-sheet.pdf` |
 | สรุปลายมือ — Network 2 | 2 | `itf-lec-network-2.pdf` |
