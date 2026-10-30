@@ -20,6 +20,7 @@
 | เอกสาร | หน้า | ไฟล์ในคลัง |
 |---|:---:|---|
 | สไลด์บรรยาย — Introduction to Wireless Network (ฉบับ 2569) | 41 | `itf-lec-week13-wireless-network-2569.pdf` |
+| สรุปฉบับแปลไทย — Week 13 เครือข่ายไร้สาย | 1 | `itf-sheet-week13-wireless-network-th.pdf` |
 | สไลด์ประกอบแล็บ — Web App 1 | 18 | `itf-lab-week13-web-app-1-slide.pdf` |
 | ใบงานแล็บ — Web App 1 · HTML และ CSS | 16 | `itf-lab-week13-web-app-1-sheet.pdf` |
 | สไลด์ฉบับปีก่อน | 41 | `itf-lec-week13-wi-fi.pdf` |

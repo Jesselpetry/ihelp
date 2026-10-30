@@ -19,6 +19,7 @@
 | เอกสาร | หน้า | ไฟล์ในคลัง |
 |---|:---:|---|
 | สไลด์บรรยาย — Lecture 08 Database | 26 | `itf-lec-week08-database-2569.pdf` |
+| สรุปฉบับแปลไทย — Week 08 ฐานข้อมูล | 1 | `itf-sheet-week08-database-th.pdf` |
 | คู่มือแล็บ — Microsoft Access | 12 | `itf-lab-week08-access.pdf` |
 | ฐานข้อมูลตัวอย่าง EmployeeDB | — | `itf-ref-week08-employee-db.accdb` |
 

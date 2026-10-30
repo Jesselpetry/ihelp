@@ -19,6 +19,7 @@
 | เอกสาร | หน้า | ไฟล์ในคลัง |
 |---|:---:|---|
 | สไลด์บรรยาย — Internet | 69 | `itf-lec-week11-internet.pdf` |
+| สรุปฉบับแปลไทย — Week 11 อินเทอร์เน็ต | 1 | `itf-sheet-week11-internet-th.pdf` |
 | ใบงานแล็บ — Network 1 · Cisco Packet Tracer (1) | 18 | `itf-lab-week11-network-1-sheet.pdf` |
 | บทนำเครือข่าย — สไลด์ Kurose ฉบับแปลไทย | 81 | `itf-lec-internet-thai.pdf` |
 | สรุปลายมือ — Network 1 | 6 | `itf-lec-network-1.pdf` |
