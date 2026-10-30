@@ -4676,6 +4676,164 @@ export const ITF_ASSETS: SubjectAsset[] = [
     url: "/assets/it-kmitl/itf/exams/itf-midterm-2022.pdf",
     fileName: "itf-midterm-2022.pdf",
   },
+
+  // ── สรุปฉบับแปลไทย สัปดาห์ 8–15 (ครึ่งหลัง) ──────────────────────────────
+  // One page per week: the lecture deck rewritten in Thai and condensed, made
+  // in Figma by students. Filed under `sheets/` (shelf `cheatsheet`) because
+  // they are a study summary, not the lecturer's own deck — the deck itself
+  // stays in `lectures/` as `itf-lec-week<NN>-*`.
+  {
+    id: "itf-sheet-week08-database-th",
+    title: {
+      th: "Week 08 — ฐานข้อมูล (สรุปฉบับแปลไทย)",
+      en: "Week 08 — Database (Thai translation & summary)",
+    },
+    description: {
+      th: "สไลด์ Lecture 08 แปลเป็นไทยและย่อให้จบในหน้าเดียว — ฐานข้อมูลคืออะไร ตาราง/เรคคอร์ด/ฟิลด์ คีย์ ความสัมพันธ์ และระบบจัดการฐานข้อมูล (DBMS)",
+      en: "Lecture 08 rewritten in Thai and condensed onto one page — what a database is, tables/records/fields, keys, relationships, and the DBMS",
+    },
+    tags: ["Week 8", "Database", "ฉบับแปล", "แปลไทย", "สรุป", "ภาษาไทย"],
+    category: "cheatsheet",
+    scope: "final",
+    week: 8,
+    chapter: 8,
+    fileType: "pdf",
+    url: "/assets/it-kmitl/itf/sheets/itf-sheet-week08-database-th.pdf",
+    fileName: "itf-sheet-week08-database-th.pdf",
+  },
+  {
+    id: "itf-sheet-week09-ethics-legal-th",
+    title: {
+      th: "Week 09 — จริยธรรม สังคม และกฎหมายไอที (สรุปฉบับแปลไทย)",
+      en: "Week 09 — Ethical, Social & Legal Aspects of IT (Thai translation & summary)",
+    },
+    description: {
+      th: "สไลด์ Lecture 09 แปลเป็นไทยและย่อให้จบในหน้าเดียว — จริยธรรมการใช้ไอที ผลกระทบต่อสังคม ความเป็นส่วนตัว ลิขสิทธิ์ และกฎหมายที่เกี่ยวข้อง",
+      en: "Lecture 09 rewritten in Thai and condensed onto one page — IT ethics, social impact, privacy, copyright and the relevant law",
+    },
+    tags: ["Week 9", "Ethics", "Privacy", "ฉบับแปล", "แปลไทย", "สรุป", "ภาษาไทย"],
+    category: "cheatsheet",
+    scope: "final",
+    week: 9,
+    chapter: 9,
+    fileType: "pdf",
+    url: "/assets/it-kmitl/itf/sheets/itf-sheet-week09-ethics-legal-th.pdf",
+    fileName: "itf-sheet-week09-ethics-legal-th.pdf",
+  },
+  {
+    id: "itf-sheet-week10-enterprise-th",
+    title: {
+      th: "Week 10 — การทำงานในองค์กร (สรุปฉบับแปลไทย)",
+      en: "Week 10 — Working in the Enterprise (Thai translation & summary)",
+    },
+    description: {
+      th: "สไลด์ Lecture 10 แปลเป็นไทยและย่อให้จบในหน้าเดียว — ระบบสารสนเทศในองค์กร ใบรับรองวิชาชีพ และเส้นทางอาชีพสายไอที",
+      en: "Lecture 10 rewritten in Thai and condensed onto one page — enterprise information systems, professional certifications and IT career paths",
+    },
+    tags: ["Week 10", "Enterprise", "Careers", "ฉบับแปล", "แปลไทย", "สรุป", "ภาษาไทย"],
+    category: "cheatsheet",
+    scope: "final",
+    week: 10,
+    chapter: 10,
+    fileType: "pdf",
+    url: "/assets/it-kmitl/itf/sheets/itf-sheet-week10-enterprise-th.pdf",
+    fileName: "itf-sheet-week10-enterprise-th.pdf",
+  },
+  {
+    id: "itf-sheet-week11-internet-th",
+    title: {
+      th: "Week 11 — อินเทอร์เน็ต (สรุปฉบับแปลไทย)",
+      en: "Week 11 — Internet (Thai translation & summary)",
+    },
+    description: {
+      th: "สไลด์ Lecture 11 แปลเป็นไทยและย่อให้จบในหน้าเดียว — อินเทอร์เน็ตทำงานอย่างไร IP/DNS บริการบนอินเทอร์เน็ต และการเชื่อมต่อ",
+      en: "Lecture 11 rewritten in Thai and condensed onto one page — how the internet works, IP/DNS, internet services and connectivity",
+    },
+    tags: ["Week 11", "Internet", "DNS", "ฉบับแปล", "แปลไทย", "สรุป", "ภาษาไทย"],
+    category: "cheatsheet",
+    scope: "final",
+    week: 11,
+    chapter: 11,
+    fileType: "pdf",
+    url: "/assets/it-kmitl/itf/sheets/itf-sheet-week11-internet-th.pdf",
+    fileName: "itf-sheet-week11-internet-th.pdf",
+  },
+  {
+    id: "itf-sheet-week12-computer-networks-th",
+    title: {
+      th: "Week 12 — เครือข่ายคอมพิวเตอร์ (สรุปฉบับแปลไทย)",
+      en: "Week 12 — Introduction to Computer Networks (Thai translation & summary)",
+    },
+    description: {
+      th: "สไลด์ Lecture 12 แปลเป็นไทยและย่อให้จบในหน้าเดียว — ประเภทเครือข่าย โทโพโลยี อุปกรณ์เครือข่าย และโพรโทคอลพื้นฐาน",
+      en: "Lecture 12 rewritten in Thai and condensed onto one page — network types, topologies, networking hardware and the basic protocols",
+    },
+    tags: ["Week 12", "Networks", "Protocol", "ฉบับแปล", "แปลไทย", "สรุป", "ภาษาไทย"],
+    category: "cheatsheet",
+    scope: "final",
+    week: 12,
+    chapter: 12,
+    fileType: "pdf",
+    url: "/assets/it-kmitl/itf/sheets/itf-sheet-week12-computer-networks-th.pdf",
+    fileName: "itf-sheet-week12-computer-networks-th.pdf",
+  },
+  {
+    id: "itf-sheet-week13-wireless-network-th",
+    title: {
+      th: "Week 13 — เครือข่ายไร้สาย (สรุปฉบับแปลไทย)",
+      en: "Week 13 — Introduction to Wireless Network (Thai translation & summary)",
+    },
+    description: {
+      th: "สไลด์ Lecture 13 แปลเป็นไทยและย่อให้จบในหน้าเดียว — Wi-Fi มาตรฐาน IEEE 802.11 คลื่นความถี่ การสื่อสารไร้สาย และความปลอดภัย",
+      en: "Lecture 13 rewritten in Thai and condensed onto one page — Wi-Fi, the IEEE 802.11 standards, frequency bands, wireless communication and security",
+    },
+    tags: ["Week 13", "Wireless", "Wi-Fi", "ฉบับแปล", "แปลไทย", "สรุป", "ภาษาไทย"],
+    category: "cheatsheet",
+    scope: "final",
+    week: 13,
+    chapter: 13,
+    fileType: "pdf",
+    url: "/assets/it-kmitl/itf/sheets/itf-sheet-week13-wireless-network-th.pdf",
+    fileName: "itf-sheet-week13-wireless-network-th.pdf",
+  },
+  {
+    id: "itf-sheet-week14-web-technology-th",
+    title: {
+      th: "Week 14 — เทคโนโลยีเว็บ (สรุปฉบับแปลไทย)",
+      en: "Week 14 — Introduction to Web Technology (Thai translation & summary)",
+    },
+    description: {
+      th: "สไลด์ Lecture 14 แปลเป็นไทยและย่อให้จบในหน้าเดียว — เว็บทำงานอย่างไร HTTP, HTML/CSS, ฝั่งไคลเอนต์กับเซิร์ฟเวอร์ และเว็บแอปพลิเคชัน",
+      en: "Lecture 14 rewritten in Thai and condensed onto one page — how the web works, HTTP, HTML/CSS, client vs server, and web applications",
+    },
+    tags: ["Week 14", "Web", "HTTP", "ฉบับแปล", "แปลไทย", "สรุป", "ภาษาไทย"],
+    category: "cheatsheet",
+    scope: "final",
+    week: 14,
+    chapter: 14,
+    fileType: "pdf",
+    url: "/assets/it-kmitl/itf/sheets/itf-sheet-week14-web-technology-th.pdf",
+    fileName: "itf-sheet-week14-web-technology-th.pdf",
+  },
+  {
+    id: "itf-sheet-week15-digital-skills-th",
+    title: {
+      th: "Week 15 — ทักษะดิจิทัลและระบบสารสนเทศ (สรุปฉบับแปลไทย)",
+      en: "Week 15 — Digital Skills vs Information System (Thai translation & summary)",
+    },
+    description: {
+      th: "สไลด์ Lecture 15 แปลเป็นไทยและย่อให้จบในหน้าเดียว — ทักษะดิจิทัลที่จำเป็น เปรียบเทียบกับระบบสารสนเทศ และการประยุกต์ใช้ในการทำงาน",
+      en: "Lecture 15 rewritten in Thai and condensed onto one page — the digital skills you need, how they compare with information systems, and how both are applied at work",
+    },
+    tags: ["Week 15", "Digital Skills", "Information System", "ฉบับแปล", "แปลไทย", "สรุป", "ภาษาไทย"],
+    category: "cheatsheet",
+    scope: "final",
+    week: 15,
+    chapter: 15,
+    fileType: "pdf",
+    url: "/assets/it-kmitl/itf/sheets/itf-sheet-week15-digital-skills-th.pdf",
+    fileName: "itf-sheet-week15-digital-skills-th.pdf",
+  },
 ];
 
 // ── PSCP Assets (IT-KMITL · 06066303) ────────────────────────────────────────
