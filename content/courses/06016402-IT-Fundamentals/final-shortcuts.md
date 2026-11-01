@@ -19,14 +19,14 @@
 
 | Week | หัวข้อ | ความเน้น | สรุปรายสัปดาห์ | สไลด์ฉบับแปลไทย |
 |:---:|---|:---:|---|---|
-| 08 | Database | ⭐ จำคีย์เวิร์ด | [เปิด](/courses/06016402-IT-Fundamentals/map?doc=week08) | `itf-lec-week08-database-2569-thai.pdf` |
-| 09 | Ethical, Social & Legal Aspects of IT | ⭐ จำคีย์เวิร์ด | [เปิด](/courses/06016402-IT-Fundamentals/map?doc=week09) | `itf-lec-week09-ethics-2569-thai.pdf` |
-| 10 | Working in the Enterprise | ⭐ จำคีย์เวิร์ด | [เปิด](/courses/06016402-IT-Fundamentals/map?doc=week10) | `itf-lec-week10-enterprise-2569-thai.pdf` |
-| 11 | Internet & Computer Networks 1 | ⭐⭐⭐ เข้าใจ + จำ | [เปิด](/courses/06016402-IT-Fundamentals/map?doc=week11) | `itf-lec-week11-internet-2569-thai.pdf` |
-| 12 | Computer Networks 2 · IPv4 & Subnet | ⭐⭐⭐ เข้าใจ + จำ + คำนวณ | [เปิด](/courses/06016402-IT-Fundamentals/map?doc=week12) | `itf-lec-week12-computer-networks-2569-thai.pdf` |
-| 13 | Wireless Networks | ⭐⭐⭐ เข้าใจ + จำ | [เปิด](/courses/06016402-IT-Fundamentals/map?doc=week13) | `itf-lec-week13-wireless-network-2569-thai.pdf` |
-| 14 | Web Technology | ⭐⭐ ปานกลาง | [เปิด](/courses/06016402-IT-Fundamentals/map?doc=week14) | `itf-lec-week14-web-technology-2569-thai.pdf` |
-| 15 | IT Skills and System · SDLC | ⭐ จำคีย์เวิร์ด | [เปิด](/courses/06016402-IT-Fundamentals/map?doc=week15) | `itf-lec-week15-it-skills-system-2569-thai.pdf` |
+| 08 | Database | ⭐ จำคีย์เวิร์ด | [เปิด](/courses/06016402-IT-Fundamentals/map?doc=week08) | `itf-sheet-week08-database-th.pdf` |
+| 09 | Ethical, Social & Legal Aspects of IT | ⭐ จำคีย์เวิร์ด | [เปิด](/courses/06016402-IT-Fundamentals/map?doc=week09) | `itf-sheet-week09-ethics-legal-th.pdf` |
+| 10 | Working in the Enterprise | ⭐ จำคีย์เวิร์ด | [เปิด](/courses/06016402-IT-Fundamentals/map?doc=week10) | `itf-sheet-week10-enterprise-th.pdf` |
+| 11 | Internet & Computer Networks 1 | ⭐⭐⭐ เข้าใจ + จำ | [เปิด](/courses/06016402-IT-Fundamentals/map?doc=week11) | `itf-sheet-week11-internet-th.pdf` |
+| 12 | Computer Networks 2 · IPv4 & Subnet | ⭐⭐⭐ เข้าใจ + จำ + คำนวณ | [เปิด](/courses/06016402-IT-Fundamentals/map?doc=week12) | `itf-sheet-week12-computer-networks-th.pdf` |
+| 13 | Wireless Networks | ⭐⭐⭐ เข้าใจ + จำ | [เปิด](/courses/06016402-IT-Fundamentals/map?doc=week13) | `itf-sheet-week13-wireless-network-th.pdf` |
+| 14 | Web Technology | ⭐⭐ ปานกลาง | [เปิด](/courses/06016402-IT-Fundamentals/map?doc=week14) | `itf-sheet-week14-web-technology-th.pdf` |
+| 15 | IT Skills and System · SDLC | ⭐ จำคีย์เวิร์ด | [เปิด](/courses/06016402-IT-Fundamentals/map?doc=week15) | `itf-sheet-week15-digital-skills-th.pdf` |
 
 สไลด์ฉบับแปลไทยเป็น PDF หน้าเดียวยาว ๆ — สรุปเป็นภาษาไทยทีละหัวข้อ วางคู่กับภาพสไลด์จริง ถ้าความหมายต่างจากสไลด์ต้นฉบับให้ยึดต้นฉบับ ·
 ค้นชื่อไฟล์ได้ใน [คลังเอกสาร ITF](/courses/06016402-IT-Fundamentals/library) หรือเปิดจากตาราง "เอกสารประจำสัปดาห์" ของแต่ละสัปดาห์

@@ -4,7 +4,7 @@
 >
 > สไลด์บรรยายฉบับ 1/2569 และใบงานแล็บของปีนี้อยู่ในคลังเรียบร้อยแล้ว · สรุปเนื้อหาด้านล่างครอบคลุมทั้ง Digital Skills, Web Server / Deployment และทฤษฎี Information System & SDLC
 
-> **ระดับความเน้นสอบปลายภาค ⭐ อ่านผ่าน จำคีย์เวิร์ด** — มาจากสรุปของเพื่อนร่วมรุ่น ไม่ใช่ประกาศของผู้สอน · สไลด์ฉบับแปลไทยทีละหัวข้อ: `itf-lec-week15-it-skills-system-2569-thai.pdf` · [โน้ต Notion](https://app.notion.com/p/ITF-407363d85cea806abdc6c9ec2254f668)
+> **ระดับความเน้นสอบปลายภาค ⭐ อ่านผ่าน จำคีย์เวิร์ด** — มาจากสรุปของเพื่อนร่วมรุ่น ไม่ใช่ประกาศของผู้สอน · สไลด์ฉบับแปลไทยทีละหัวข้อ: `itf-sheet-week15-digital-skills-th.pdf` · [โน้ต Notion](https://app.notion.com/p/ITF-407363d85cea806abdc6c9ec2254f668)
 
 ## อ่านจบแล้วต้องตอบได้
 
@@ -24,7 +24,7 @@
 | เอกสาร | หน้า | ไฟล์ในคลัง |
 |---|:---:|---|
 | สไลด์บรรยาย — IT Skills and System (ฉบับ 2569) | 72 | `itf-lec-week15-it-skills-system-2569.pdf` |
-| สไลด์บรรยายฉบับแปลไทย — สรุปทีละหัวข้อคู่ภาพสไลด์ (ฉบับ 2569) | 1 หน้ายาว | `itf-lec-week15-it-skills-system-2569-thai.pdf` |
+| สรุปฉบับแปลไทย — Week 15 ทักษะดิจิทัลและระบบสารสนเทศ | 1 | `itf-sheet-week15-digital-skills-th.pdf` |
 | สไลด์ประกอบแล็บ — Web Deployment | 17 | `itf-lab-week15-web-deployment-slide.pdf` |
 | ใบงานแล็บ — Web Deployment | 8 | `itf-lab-week15-web-deployment-sheet.pdf` |
 | สไลด์ฉบับปีก่อน — Information System | 66 | `itf-lec-week14-it-system.pdf` |

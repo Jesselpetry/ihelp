@@ -8,7 +8,7 @@
 > **ระดับความเน้นสอบปลายภาค ⭐⭐⭐ เน้นมาก** — สัปดาห์ 12 เป็นสัปดาห์ที่ถูกเน้นที่สุด: เข้าใจ concept + จำ **keyword** (topology · CSMA/CD ·
 > collision vs broadcast domain · class/private IP · NAT) และต้อง**คำนวณ IP address · Network ID · Host ID · Subnet mask** ได้ — ฝึกจากหัวข้อ
 > "วิธีคำนวณ IP ทีละขั้น" (§6) ข้างล่าง · ข้อมูลนี้มาจาก**สรุปของเพื่อนร่วมรุ่น ไม่ใช่ประกาศของผู้สอน** — ขอบเขตจริงให้ยึดประกาศใน OnLearn ·
-> อ่านทบทวนจากสไลด์สรุปแปลไทยทีละหัวข้อ `itf-lec-week12-computer-networks-2569-thai.pdf` และ
+> อ่านทบทวนจากสไลด์สรุปแปลไทยทีละหัวข้อ `itf-sheet-week12-computer-networks-th.pdf` และ
 > [โน้ต Notion ของเพื่อน](https://app.notion.com/p/ITF-407363d85cea806abdc6c9ec2254f668)
 
 ## อ่านจบแล้วต้องตอบได้
@@ -27,7 +27,7 @@
 | เอกสาร | หน้า | ไฟล์ในคลัง |
 |---|:---:|---|
 | สไลด์บรรยาย — Introduction to Computer Network (ฉบับ 2569) | 92 | `itf-lec-week12-computer-networks-2569.pdf` |
-| สไลด์บรรยายฉบับแปลไทย — สรุปทีละหัวข้อคู่ภาพสไลด์ (ฉบับ 2569) | 1 หน้ายาว | `itf-lec-week12-computer-networks-2569-thai.pdf` |
+| สรุปฉบับแปลไทย — Week 12 เครือข่ายคอมพิวเตอร์ | 1 | `itf-sheet-week12-computer-networks-th.pdf` |
 | สไลด์บรรยายฉบับปีก่อน | 92 | `itf-lec-week12-computer-networks.pdf` |
 | ใบงานแล็บ Network 2 — Cisco Packet Tracer (2) ฉบับ 1/2569 | 20 | `itf-lab-week12-packet-tracer-2-sheet.pdf` |
 | สรุปลายมือ — Network 2 | 2 | `itf-lec-network-2.pdf` |

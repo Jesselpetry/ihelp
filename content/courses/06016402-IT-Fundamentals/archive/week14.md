@@ -5,7 +5,7 @@
 > สไลด์ Lecture 14 *Introduction to Web Technology* ฉบับ 1/2569 อยู่ในคลังแล้ว (ตารางด้านล่าง) ส่วนคลิปบันทึกการสอนอยู่ใน OnLearn แต่ยังไม่อยู่ในคลัง —
 > สรุปหัวข้อ 1–4 มาจากสไลด์ปีก่อน *Focus on Web Technology* ของ รศ.ดร. ปานวิทย์ ธุวะนุติ (74 หน้า) ส่วนหัวข้อ 5 เสริมจากสไลด์ 2569 · ถ้าเนื้อหาต่างกันให้ยึดฉบับใน OnLearn
 
-> **ระดับความเน้นสอบปลายภาค ⭐⭐ เน้นปานกลาง** — มาจากสรุปของเพื่อนร่วมรุ่น ไม่ใช่ประกาศของผู้สอน · สไลด์ฉบับแปลไทยทีละหัวข้อ: `itf-lec-week14-web-technology-2569-thai.pdf` · [โน้ต Notion](https://app.notion.com/p/ITF-407363d85cea806abdc6c9ec2254f668)
+> **ระดับความเน้นสอบปลายภาค ⭐⭐ เน้นปานกลาง** — มาจากสรุปของเพื่อนร่วมรุ่น ไม่ใช่ประกาศของผู้สอน · สไลด์ฉบับแปลไทยทีละหัวข้อ: `itf-sheet-week14-web-technology-th.pdf` · [โน้ต Notion](https://app.notion.com/p/ITF-407363d85cea806abdc6c9ec2254f668)
 
 ## อ่านจบแล้วต้องตอบได้
 
@@ -22,7 +22,7 @@
 | เอกสาร | หน้า | ไฟล์ในคลัง |
 |---|:---:|---|
 | สไลด์บรรยาย — Introduction to Web Technology (ฉบับ 2569) | 96 | `itf-lec-week14-web-technology-2569.pdf` |
-| สไลด์บรรยายฉบับแปลไทย — สรุปทีละหัวข้อคู่ภาพสไลด์ (ฉบับ 2569) | 1 หน้ายาว | `itf-lec-week14-web-technology-2569-thai.pdf` |
+| สรุปฉบับแปลไทย — Week 14 เทคโนโลยีเว็บ | 1 | `itf-sheet-week14-web-technology-th.pdf` |
 | สไลด์ประกอบแล็บ — Web App 2 (JavaScript) | 27 | `itf-lab-week14-web-app-2-slide.pdf` |
 | ใบงานแล็บ — Web App 2 · JavaScript & DOM | 13 | `itf-lab-week14-web-app-2-sheet.pdf` |
 | สไลด์ฉบับปีก่อน — Focus on Web Technology | 74 | `itf-lec-week15-web.pdf` |

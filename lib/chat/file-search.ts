@@ -39,7 +39,7 @@ const CATEGORY_TH: Record<AssetCategory, string> = {
 // Words a student types for each kind of file, Thai and English.
 const CATEGORY_WORDS: Record<AssetCategory, string[]> = {
   lecture: ["สไลด์", "slide", "lecture", "เลคเชอร์", "ชีท"],
-  cheatsheet: ["สรุป", "summary", "cheatsheet", "ชีทสรุป", "ย่อ"],
+  cheatsheet: ["สรุป", "summary", "cheatsheet", "ชีทสรุป", "ย่อ", "ฉบับแปล", "แปลไทย", "แปลเป็นไทย", "ภาษาไทย", "translation", "translated"],
   exam: ["ข้อสอบ", "exam", "แนวข้อสอบ", "mock", "quiz", "ควิซ", "มิดเทอม", "ไฟนอล", "midterm", "final"],
   exercise: ["แบบฝึก", "exercise", "lab", "แล็บ", "worksheet", "การบ้าน", "homework"],
   note: ["โน้ต", "note", "จด", "กระดาน"],

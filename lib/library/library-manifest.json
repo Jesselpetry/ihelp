@@ -6924,27 +6924,6 @@
       "chapter": 7
     },
     {
-      "id": "gen-itf-lectures-itf-lec-week08-database-2569-thai-pdf",
-      "title": {
-        "th": "Lecture · Week 08 Database 2569 Thai",
-        "en": "Lecture · Week 08 Database 2569 Thai"
-      },
-      "description": {
-        "th": "",
-        "en": ""
-      },
-      "tags": [
-        "ITF",
-        "lectures"
-      ],
-      "category": "lecture",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/itf/lectures/itf-lec-week08-database-2569-thai.pdf",
-      "fileName": "itf-lec-week08-database-2569-thai.pdf",
-      "courseCode": "ITF",
-      "chapter": 8
-    },
-    {
       "id": "gen-itf-lectures-itf-lec-week08-database-2569-pdf",
       "title": {
         "th": "Lecture · Week 08 Database 2569",
@@ -7008,27 +6987,6 @@
       "chapter": 8
     },
     {
-      "id": "gen-itf-lectures-itf-lec-week09-ethics-2569-thai-pdf",
-      "title": {
-        "th": "Lecture · Week 09 Ethics 2569 Thai",
-        "en": "Lecture · Week 09 Ethics 2569 Thai"
-      },
-      "description": {
-        "th": "",
-        "en": ""
-      },
-      "tags": [
-        "ITF",
-        "lectures"
-      ],
-      "category": "lecture",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/itf/lectures/itf-lec-week09-ethics-2569-thai.pdf",
-      "fileName": "itf-lec-week09-ethics-2569-thai.pdf",
-      "courseCode": "ITF",
-      "chapter": 9
-    },
-    {
       "id": "gen-itf-lectures-itf-lec-week09-ethics-2569-pdf",
       "title": {
         "th": "Lecture · Week 09 Ethics 2569",
@@ -7069,27 +7027,6 @@
       "fileName": "itf-lec-week09-ethics.pdf",
       "courseCode": "ITF",
       "chapter": 9
-    },
-    {
-      "id": "gen-itf-lectures-itf-lec-week10-enterprise-2569-thai-pdf",
-      "title": {
-        "th": "Lecture · Week 10 Enterprise 2569 Thai",
-        "en": "Lecture · Week 10 Enterprise 2569 Thai"
-      },
-      "description": {
-        "th": "",
-        "en": ""
-      },
-      "tags": [
-        "ITF",
-        "lectures"
-      ],
-      "category": "lecture",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/itf/lectures/itf-lec-week10-enterprise-2569-thai.pdf",
-      "fileName": "itf-lec-week10-enterprise-2569-thai.pdf",
-      "courseCode": "ITF",
-      "chapter": 10
     },
     {
       "id": "gen-itf-lectures-itf-lec-week10-enterprise-2569-pdf",
@@ -7134,27 +7071,6 @@
       "chapter": 10
     },
     {
-      "id": "gen-itf-lectures-itf-lec-week11-internet-2569-thai-pdf",
-      "title": {
-        "th": "Lecture · Week 11 Internet 2569 Thai",
-        "en": "Lecture · Week 11 Internet 2569 Thai"
-      },
-      "description": {
-        "th": "",
-        "en": ""
-      },
-      "tags": [
-        "ITF",
-        "lectures"
-      ],
-      "category": "lecture",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/itf/lectures/itf-lec-week11-internet-2569-thai.pdf",
-      "fileName": "itf-lec-week11-internet-2569-thai.pdf",
-      "courseCode": "ITF",
-      "chapter": 11
-    },
-    {
       "id": "gen-itf-lectures-itf-lec-week11-internet-pdf",
       "title": {
         "th": "Lecture · Week 11 Internet",
@@ -7174,27 +7090,6 @@
       "fileName": "itf-lec-week11-internet.pdf",
       "courseCode": "ITF",
       "chapter": 11
-    },
-    {
-      "id": "gen-itf-lectures-itf-lec-week12-computer-networks-2569-thai-pdf",
-      "title": {
-        "th": "Lecture · Week 12 Computer Networks 2569 Thai",
-        "en": "Lecture · Week 12 Computer Networks 2569 Thai"
-      },
-      "description": {
-        "th": "",
-        "en": ""
-      },
-      "tags": [
-        "ITF",
-        "lectures"
-      ],
-      "category": "lecture",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/itf/lectures/itf-lec-week12-computer-networks-2569-thai.pdf",
-      "fileName": "itf-lec-week12-computer-networks-2569-thai.pdf",
-      "courseCode": "ITF",
-      "chapter": 12
     },
     {
       "id": "gen-itf-lectures-itf-lec-week12-computer-networks-2569-pdf",
@@ -7260,27 +7155,6 @@
       "chapter": 13
     },
     {
-      "id": "gen-itf-lectures-itf-lec-week13-wireless-network-2569-thai-pdf",
-      "title": {
-        "th": "Lecture · Week 13 Wireless Network 2569 Thai",
-        "en": "Lecture · Week 13 Wireless Network 2569 Thai"
-      },
-      "description": {
-        "th": "",
-        "en": ""
-      },
-      "tags": [
-        "ITF",
-        "lectures"
-      ],
-      "category": "lecture",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/itf/lectures/itf-lec-week13-wireless-network-2569-thai.pdf",
-      "fileName": "itf-lec-week13-wireless-network-2569-thai.pdf",
-      "courseCode": "ITF",
-      "chapter": 13
-    },
-    {
       "id": "gen-itf-lectures-itf-lec-week13-wireless-network-2569-pdf",
       "title": {
         "th": "Lecture · Week 13 Wireless Network 2569",
@@ -7323,27 +7197,6 @@
       "chapter": 14
     },
     {
-      "id": "gen-itf-lectures-itf-lec-week14-web-technology-2569-thai-pdf",
-      "title": {
-        "th": "Lecture · Week 14 Web Technology 2569 Thai",
-        "en": "Lecture · Week 14 Web Technology 2569 Thai"
-      },
-      "description": {
-        "th": "",
-        "en": ""
-      },
-      "tags": [
-        "ITF",
-        "lectures"
-      ],
-      "category": "lecture",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/itf/lectures/itf-lec-week14-web-technology-2569-thai.pdf",
-      "fileName": "itf-lec-week14-web-technology-2569-thai.pdf",
-      "courseCode": "ITF",
-      "chapter": 14
-    },
-    {
       "id": "gen-itf-lectures-itf-lec-week14-web-technology-2569-pdf",
       "title": {
         "th": "Lecture · Week 14 Web Technology 2569",
@@ -7363,27 +7216,6 @@
       "fileName": "itf-lec-week14-web-technology-2569.pdf",
       "courseCode": "ITF",
       "chapter": 14
-    },
-    {
-      "id": "gen-itf-lectures-itf-lec-week15-it-skills-system-2569-thai-pdf",
-      "title": {
-        "th": "Lecture · Week 15 IT Skills System 2569 Thai",
-        "en": "Lecture · Week 15 IT Skills System 2569 Thai"
-      },
-      "description": {
-        "th": "",
-        "en": ""
-      },
-      "tags": [
-        "ITF",
-        "lectures"
-      ],
-      "category": "lecture",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/itf/lectures/itf-lec-week15-it-skills-system-2569-thai.pdf",
-      "fileName": "itf-lec-week15-it-skills-system-2569-thai.pdf",
-      "courseCode": "ITF",
-      "chapter": 15
     },
     {
       "id": "gen-itf-lectures-itf-lec-week15-it-skills-system-2569-pdf",
@@ -8248,6 +8080,174 @@
       "url": "/assets/it-kmitl/itf/sheets/itf-sheet-summary.pdf",
       "fileName": "itf-sheet-summary.pdf",
       "courseCode": "ITF"
+    },
+    {
+      "id": "gen-itf-sheets-itf-sheet-week08-database-th-pdf",
+      "title": {
+        "th": "Sheet · Week 08 Database Th",
+        "en": "Sheet · Week 08 Database Th"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "sheets"
+      ],
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/sheets/itf-sheet-week08-database-th.pdf",
+      "fileName": "itf-sheet-week08-database-th.pdf",
+      "courseCode": "ITF",
+      "chapter": 8
+    },
+    {
+      "id": "gen-itf-sheets-itf-sheet-week09-ethics-legal-th-pdf",
+      "title": {
+        "th": "Sheet · Week 09 Ethics Legal Th",
+        "en": "Sheet · Week 09 Ethics Legal Th"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "sheets"
+      ],
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/sheets/itf-sheet-week09-ethics-legal-th.pdf",
+      "fileName": "itf-sheet-week09-ethics-legal-th.pdf",
+      "courseCode": "ITF",
+      "chapter": 9
+    },
+    {
+      "id": "gen-itf-sheets-itf-sheet-week10-enterprise-th-pdf",
+      "title": {
+        "th": "Sheet · Week 10 Enterprise Th",
+        "en": "Sheet · Week 10 Enterprise Th"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "sheets"
+      ],
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/sheets/itf-sheet-week10-enterprise-th.pdf",
+      "fileName": "itf-sheet-week10-enterprise-th.pdf",
+      "courseCode": "ITF",
+      "chapter": 10
+    },
+    {
+      "id": "gen-itf-sheets-itf-sheet-week11-internet-th-pdf",
+      "title": {
+        "th": "Sheet · Week 11 Internet Th",
+        "en": "Sheet · Week 11 Internet Th"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "sheets"
+      ],
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/sheets/itf-sheet-week11-internet-th.pdf",
+      "fileName": "itf-sheet-week11-internet-th.pdf",
+      "courseCode": "ITF",
+      "chapter": 11
+    },
+    {
+      "id": "gen-itf-sheets-itf-sheet-week12-computer-networks-th-pdf",
+      "title": {
+        "th": "Sheet · Week 12 Computer Networks Th",
+        "en": "Sheet · Week 12 Computer Networks Th"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "sheets"
+      ],
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/sheets/itf-sheet-week12-computer-networks-th.pdf",
+      "fileName": "itf-sheet-week12-computer-networks-th.pdf",
+      "courseCode": "ITF",
+      "chapter": 12
+    },
+    {
+      "id": "gen-itf-sheets-itf-sheet-week13-wireless-network-th-pdf",
+      "title": {
+        "th": "Sheet · Week 13 Wireless Network Th",
+        "en": "Sheet · Week 13 Wireless Network Th"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "sheets"
+      ],
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/sheets/itf-sheet-week13-wireless-network-th.pdf",
+      "fileName": "itf-sheet-week13-wireless-network-th.pdf",
+      "courseCode": "ITF",
+      "chapter": 13
+    },
+    {
+      "id": "gen-itf-sheets-itf-sheet-week14-web-technology-th-pdf",
+      "title": {
+        "th": "Sheet · Week 14 Web Technology Th",
+        "en": "Sheet · Week 14 Web Technology Th"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "sheets"
+      ],
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/sheets/itf-sheet-week14-web-technology-th.pdf",
+      "fileName": "itf-sheet-week14-web-technology-th.pdf",
+      "courseCode": "ITF",
+      "chapter": 14
+    },
+    {
+      "id": "gen-itf-sheets-itf-sheet-week15-digital-skills-th-pdf",
+      "title": {
+        "th": "Sheet · Week 15 Digital Skills Th",
+        "en": "Sheet · Week 15 Digital Skills Th"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ITF",
+        "sheets"
+      ],
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/sheets/itf-sheet-week15-digital-skills-th.pdf",
+      "fileName": "itf-sheet-week15-digital-skills-th.pdf",
+      "courseCode": "ITF",
+      "chapter": 15
     }
   ],
   "MFIT": [

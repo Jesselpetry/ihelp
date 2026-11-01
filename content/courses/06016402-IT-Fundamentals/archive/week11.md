@@ -7,7 +7,7 @@
 > **ระดับความเน้นสอบปลายภาค ⭐⭐⭐ เน้นมาก** — สัปดาห์ 11–13 (Internet · Computer Networks · Wireless) ถูกระบุว่าออกสอบหนัก: ให้เข้าใจ concept
 > และจำ **keyword** ให้ได้ (encapsulation · packet switching · routing vs forwarding · tier-1 ISP / IXP · packet sniffing / IP spoofing / DoS) ·
 > ข้อมูลนี้มาจาก**สรุปของเพื่อนร่วมรุ่น ไม่ใช่ประกาศของผู้สอน** — ขอบเขตจริงให้ยึดประกาศใน OnLearn ·
-> อ่านทบทวนจากสไลด์สรุปแปลไทยทีละหัวข้อ `itf-lec-week11-internet-2569-thai.pdf` และ
+> อ่านทบทวนจากสไลด์สรุปแปลไทยทีละหัวข้อ `itf-sheet-week11-internet-th.pdf` และ
 > [โน้ต Notion ของเพื่อน](https://app.notion.com/p/ITF-407363d85cea806abdc6c9ec2254f668)
 
 ## อ่านจบแล้วต้องตอบได้
@@ -25,7 +25,7 @@
 | เอกสาร | หน้า | ไฟล์ในคลัง |
 |---|:---:|---|
 | สไลด์บรรยาย — Internet | 69 | `itf-lec-week11-internet.pdf` |
-| สไลด์บรรยายฉบับแปลไทย — สรุปทีละหัวข้อคู่ภาพสไลด์ (ฉบับ 2569) | 1 หน้ายาว | `itf-lec-week11-internet-2569-thai.pdf` |
+| สรุปฉบับแปลไทย — Week 11 อินเทอร์เน็ต | 1 | `itf-sheet-week11-internet-th.pdf` |
 | ใบงานแล็บ — Network 1 · Cisco Packet Tracer (1) | 18 | `itf-lab-week11-network-1-sheet.pdf` |
 | บทนำเครือข่าย — สไลด์ Kurose ฉบับแปลไทย | 81 | `itf-lec-internet-thai.pdf` |
 | สรุปลายมือ — Network 1 | 6 | `itf-lec-network-1.pdf` |

@@ -4,7 +4,7 @@
 >
 > บทแรกของปลายภาค — ต่อยอดจากคำว่า record และ field ใน Week 7
 
-> **ระดับความเน้นสอบปลายภาค ⭐ อ่านผ่าน จำคีย์เวิร์ด** — มาจากสรุปของเพื่อนร่วมรุ่น ไม่ใช่ประกาศของผู้สอน · สไลด์ฉบับแปลไทยทีละหัวข้อ: `itf-lec-week08-database-2569-thai.pdf` · [โน้ต Notion](https://app.notion.com/p/ITF-407363d85cea806abdc6c9ec2254f668)
+> **ระดับความเน้นสอบปลายภาค ⭐ อ่านผ่าน จำคีย์เวิร์ด** — มาจากสรุปของเพื่อนร่วมรุ่น ไม่ใช่ประกาศของผู้สอน · สไลด์ฉบับแปลไทยทีละหัวข้อ: `itf-sheet-week08-database-th.pdf` · [โน้ต Notion](https://app.notion.com/p/ITF-407363d85cea806abdc6c9ec2254f668)
 
 ## อ่านจบแล้วต้องตอบได้
 
@@ -21,7 +21,7 @@
 | เอกสาร | หน้า | ไฟล์ในคลัง |
 |---|:---:|---|
 | สไลด์บรรยาย — Lecture 08 Database | 26 | `itf-lec-week08-database-2569.pdf` |
-| สไลด์บรรยายฉบับแปลไทย — สรุปทีละหัวข้อคู่ภาพสไลด์ (ฉบับ 2569) | 1 หน้ายาว | `itf-lec-week08-database-2569-thai.pdf` |
+| สรุปฉบับแปลไทย — Week 08 ฐานข้อมูล | 1 | `itf-sheet-week08-database-th.pdf` |
 | คู่มือแล็บ — Microsoft Access | 12 | `itf-lab-week08-access.pdf` |
 | ฐานข้อมูลตัวอย่าง EmployeeDB | — | `itf-ref-week08-employee-db.accdb` |
 

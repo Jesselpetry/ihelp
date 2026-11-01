@@ -8,7 +8,7 @@
 
 > **ระดับความเน้นสอบปลายภาค ⭐⭐⭐ เน้นมาก** — สัปดาห์ 11–13 ถูกระบุว่าออกสอบหนัก: เข้าใจ concept + จำ **keyword** ของเครือข่ายไร้สาย
 > (infrastructure vs ad hoc · SNR / BER · CDMA · BSS / AP / SSID · CSMA/CA · RTS/CTS) · ข้อมูลนี้มาจาก**สรุปของเพื่อนร่วมรุ่น ไม่ใช่ประกาศของผู้สอน** —
-> ขอบเขตจริงให้ยึดประกาศใน OnLearn · อ่านทบทวนจากสไลด์สรุปแปลไทยทีละหัวข้อ `itf-lec-week13-wireless-network-2569-thai.pdf` และ
+> ขอบเขตจริงให้ยึดประกาศใน OnLearn · อ่านทบทวนจากสไลด์สรุปแปลไทยทีละหัวข้อ `itf-sheet-week13-wireless-network-th.pdf` และ
 > [โน้ต Notion ของเพื่อน](https://app.notion.com/p/ITF-407363d85cea806abdc6c9ec2254f668)
 
 ## อ่านจบแล้วต้องตอบได้
@@ -26,7 +26,7 @@
 | เอกสาร | หน้า | ไฟล์ในคลัง |
 |---|:---:|---|
 | สไลด์บรรยาย — Introduction to Wireless Network (ฉบับ 2569) | 41 | `itf-lec-week13-wireless-network-2569.pdf` |
-| สไลด์บรรยายฉบับแปลไทย — สรุปทีละหัวข้อคู่ภาพสไลด์ (ฉบับ 2569) | 1 หน้ายาว | `itf-lec-week13-wireless-network-2569-thai.pdf` |
+| สรุปฉบับแปลไทย — Week 13 เครือข่ายไร้สาย | 1 | `itf-sheet-week13-wireless-network-th.pdf` |
 | สไลด์ประกอบแล็บ — Web App 1 | 18 | `itf-lab-week13-web-app-1-slide.pdf` |
 | ใบงานแล็บ — Web App 1 · HTML และ CSS | 16 | `itf-lab-week13-web-app-1-sheet.pdf` |
 | สไลด์ฉบับปีก่อน | 41 | `itf-lec-week13-wi-fi.pdf` |
