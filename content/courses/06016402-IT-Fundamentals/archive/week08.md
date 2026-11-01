@@ -4,6 +4,8 @@
 >
 > บทแรกของปลายภาค — ต่อยอดจากคำว่า record และ field ใน Week 7
 
+> **ระดับความเน้นสอบปลายภาค ⭐ อ่านผ่าน จำคีย์เวิร์ด** — มาจากสรุปของเพื่อนร่วมรุ่น ไม่ใช่ประกาศของผู้สอน · สไลด์ฉบับแปลไทยทีละหัวข้อ: `itf-lec-week08-database-2569-thai.pdf` · [โน้ต Notion](https://app.notion.com/p/ITF-407363d85cea806abdc6c9ec2254f668)
+
 ## อ่านจบแล้วต้องตอบได้
 
 - เรียง **ลำดับชั้นข้อมูล** จาก character ถึง database และบอกว่า primary key คืออะไร
@@ -19,6 +21,7 @@
 | เอกสาร | หน้า | ไฟล์ในคลัง |
 |---|:---:|---|
 | สไลด์บรรยาย — Lecture 08 Database | 26 | `itf-lec-week08-database-2569.pdf` |
+| สไลด์บรรยายฉบับแปลไทย — สรุปทีละหัวข้อคู่ภาพสไลด์ (ฉบับ 2569) | 1 หน้ายาว | `itf-lec-week08-database-2569-thai.pdf` |
 | คู่มือแล็บ — Microsoft Access | 12 | `itf-lab-week08-access.pdf` |
 | ฐานข้อมูลตัวอย่าง EmployeeDB | — | `itf-ref-week08-employee-db.accdb` |
 
@@ -32,17 +35,19 @@
 
 | ระดับ | ความหมาย |
 |---|---|
+| **Bit** | หน่วยข้อมูลเล็กที่สุดที่คอมพิวเตอร์ประมวลผลได้ (0 หรือ 1) · 8 bits = 1 byte |
 | Character | 1 byte = 8 bits แทนตัวอักษร ตัวเลข หรือสัญลักษณ์หนึ่งตัว (ASCII) |
 | **Field** | กลุ่ม character ที่เกี่ยวข้องกัน · **หน่วยเล็กที่สุดที่ผู้ใช้เข้าถึง** · กำหนด field name, field size, data type |
 | **Record** | กลุ่ม field ที่เกี่ยวข้องกัน · **primary key** = field ที่ไม่ซ้ำกันในแต่ละ record |
 | Data file | กลุ่ม record ที่เกี่ยวข้องกัน |
 | Database | กลุ่ม data file ที่เกี่ยวข้องกัน |
 
+- **Data** = ข้อความ ตัวเลข ภาพ เสียง วิดีโอที่ยังไม่ประมวลผล · **Information** = data ที่ประมวลผลแล้ว มีลักษณะ **organized · meaningful · useful** · **Database** = ข้อมูลที่จัดระเบียบไว้ให้เข้าถึงและนำไปใช้ต่อได้
 - ชนิดข้อมูล: text · number · **AutoNumber** (DBMS ใส่เลขไม่ซ้ำให้เอง) · currency · date · memo (long text) · hyperlink
 
 ### 2. File Maintenance และ Validation
 
-- **File maintenance** = เพิ่ม · แก้ไข · ลบ record ให้ข้อมูลเป็นปัจจุบัน · ลบแล้วบาง DBMS ลบทันที บางตัวแค่ติด flag ไว้
+- **File maintenance** = เพิ่ม · แก้ไข · ลบ record ให้ข้อมูลเป็นปัจจุบัน · ลบแล้วบาง DBMS ลบทันที บางตัวแค่ติด flag ไว้ (**flagged / marked record** = ทำเครื่องหมายว่าถูกลบ ไม่ให้นำไปประมวลผลอีก)
 - **Validation** = เทียบข้อมูลกับกฎที่ตั้งไว้
 
 | Check | ตรวจอะไร |
@@ -72,16 +77,34 @@
 | **Object-oriented** | object | สื่อ ภาพ เสียง วิดีโอ |
 | **Multidimensional** | มากกว่า 2 มิติ | **data warehouse** วิเคราะห์ธุรกรรมย้อนหลัง |
 
-- **DBMS** = ซอฟต์แวร์สร้าง เข้าถึง และจัดการฐานข้อมูล · **DBA** = ผู้ดูแลกิจกรรมฐานข้อมูลทั้งหมด
+- **DBMS** = ซอฟต์แวร์สร้าง เข้าถึง และจัดการฐานข้อมูล (เพิ่ม แก้ไข ลบ ค้นหา ทำฟอร์ม/รายงาน โดยผู้ใช้ไม่แตะไฟล์ข้อมูลตรง ๆ) · **DBA** = ผู้ดูแลกิจกรรมฐานข้อมูลทั้งหมด
 - **Data dictionary** (repository) เก็บข้อมูลเกี่ยวกับทุกไฟล์และทุก field
 - เครื่องมือดึงข้อมูล 4 แบบ: **query language** (เช่น SQL) · **query by example** (QBE, หน้าจอ GUI) · **form** · **report writer**
+- **SQL** ใช้ทำ **CRUD**: Create/`INSERT` · Read/`SELECT` · `UPDATE` · `DELETE`
 - ความปลอดภัย: access privileges · **principle of least privilege** — ให้สิทธิ์เท่าที่หน้าที่ต้องใช้
 - Backup & recovery: backup · log · recovery utility · continuous backup
 - **Big data** — เป้าหมายคือหารูปแบบที่มีประโยชน์ในข้อมูล · ตัวอย่างในสไลด์: Netflix แนะนำหนังจากประวัติการดู
+- **5Vs** ของ big data: **Volume** (ปริมาณ) · **Velocity** (ความเร็ว/real-time) · **Variety** (ความหลากหลาย) · **Value** (คุณค่า/นำไปตัดสินใจได้) · **Veracity** (ความน่าเชื่อถือ)
 
 ```sql
 SELECT * FROM Fruits WHERE Fruit_Color = 'Red';
 ```
+
+### คีย์เวิร์ดต้องจำ
+
+- **Bit** = 0/1 เล็กสุด · 8 bits = **byte** = 1 character
+- **Field** = หน่วยเล็กสุดที่ผู้ใช้เข้าถึง · **record** = กลุ่ม field · **primary key** = field ไม่ซ้ำ
+- **Data** (ดิบ) → **information** (organized · meaningful · useful)
+- **Redundant data** (ซ้ำ) + **isolated data** (แยกโดด) = จุดอ่อน file processing
+- **Integrity** · **shared data** = ข้อดี database approach · ข้อเสีย: ซับซ้อน ใช้ทรัพยากรมาก เสี่ยงกว่า
+- **Validation 5 แบบ**: alphabetic/numeric · range · consistency · completeness · check digit
+- **Flagged / marked record** = ติดเครื่องหมายว่าลบ ไม่ลบทิ้งทันที
+- **Relational** (table: row/tuple × column/attribute) · **OODB** (object, สื่อ) · **multidimensional** (data warehouse)
+- **DBMS** ซอฟต์แวร์จัดการ · **DBA** ผู้ดูแล · **data dictionary** = metadata ของทุกไฟล์และ field
+- เครื่องมือ query: **SQL** · **QBE** · **form** · **report writer**
+- **CRUD** = Create/Insert · Read/Select · Update · Delete
+- **Principle of least privilege** · backup · log · recovery · continuous backup
+- **Big data 5Vs**: Volume · Velocity · Variety · Value · Veracity
 
 ---
 
@@ -101,9 +124,12 @@ SELECT * FROM Fruits WHERE Fruit_Color = 'Red';
 3. จุดอ่อน 2 ข้อของ file processing system คืออะไร
 4. ฐานข้อมูลชนิดใดเหมาะกับ data warehouse
 5. หลักการให้สิทธิ์ผู้ใช้เท่าที่จำเป็นต่อหน้าที่เรียกว่าอะไร
+6. Information ต่างจาก data อย่างไร
+7. 5Vs ของ big data คืออะไรบ้าง
 
 **เฉลย** — 1. character → field → record → file → database · 2. range check ·
-3. redundant data และ isolated data · 4. multidimensional · 5. principle of least privilege
+3. redundant data และ isolated data · 4. multidimensional · 5. principle of least privilege · 6. information คือ data ที่ผ่านการประมวลผลแล้ว (organized, meaningful, useful) ·
+7. Volume, Velocity, Variety, Value, Veracity
 
 ---
 

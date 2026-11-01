@@ -14,16 +14,28 @@ export const ITF_QUIZ_ID = 900005;
 export interface ItfChapter {
   chapter: number;
   title: LText;
+  /** Which exam the week is studied for — lets a scoped bank show only its weeks. */
+  scope?: "midterm" | "final";
 }
 
+// Weeks 8–15 carry no items in this midterm bank; they are listed for the
+// final practice bank (lib/quiz/itf-final-mock-exam.ts), which shares this list.
 export const ITF_CHAPTERS: ItfChapter[] = [
-  { chapter: 1, title: { th: "Introducing Today's Technologies" } },
-  { chapter: 2, title: { th: "Computers" } },
-  { chapter: 3, title: { th: "Hardware & Machine Cycle" } },
-  { chapter: 4, title: { th: "Input and Output" } },
-  { chapter: 5, title: { th: "Storage & Digital Data" } },
-  { chapter: 6, title: { th: "Operating Systems" } },
-  { chapter: 7, title: { th: "Programs and Apps" } },
+  { chapter: 1, title: { th: "Introducing Today's Technologies" }, scope: "midterm" },
+  { chapter: 2, title: { th: "Computers" }, scope: "midterm" },
+  { chapter: 3, title: { th: "Hardware & Machine Cycle" }, scope: "midterm" },
+  { chapter: 4, title: { th: "Input and Output" }, scope: "midterm" },
+  { chapter: 5, title: { th: "Storage & Digital Data" }, scope: "midterm" },
+  { chapter: 6, title: { th: "Operating Systems" }, scope: "midterm" },
+  { chapter: 7, title: { th: "Programs and Apps" }, scope: "midterm" },
+  { chapter: 8, title: { th: "Database" }, scope: "final" },
+  { chapter: 9, title: { th: "Ethical, Social & Legal Aspects of IT" }, scope: "final" },
+  { chapter: 10, title: { th: "Working in the Enterprise" }, scope: "final" },
+  { chapter: 11, title: { th: "Internet & Computer Networks 1" }, scope: "final" },
+  { chapter: 12, title: { th: "Computer Networks 2 · IPv4 & Subnet" }, scope: "final" },
+  { chapter: 13, title: { th: "Wireless Networks" }, scope: "final" },
+  { chapter: 14, title: { th: "Web Technology" }, scope: "final" },
+  { chapter: 15, title: { th: "IT Skills and System · SDLC" }, scope: "final" },
 ];
 
 export const ITF_QUIZ: QuizQuestion[] = [

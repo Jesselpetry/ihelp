@@ -1338,6 +1338,10 @@
     "sizeBytes": 5622250,
     "pages": 83
   },
+  "/assets/it-kmitl/itf/lectures/itf-lec-week08-database-2569-thai.pdf": {
+    "sizeBytes": 4747334,
+    "pages": 1
+  },
   "/assets/it-kmitl/itf/lectures/itf-lec-week08-database-2569.pdf": {
     "sizeBytes": 2704072,
     "pages": 26
@@ -1350,6 +1354,10 @@
     "sizeBytes": 3340741,
     "pages": 96
   },
+  "/assets/it-kmitl/itf/lectures/itf-lec-week09-ethics-2569-thai.pdf": {
+    "sizeBytes": 5694572,
+    "pages": 1
+  },
   "/assets/it-kmitl/itf/lectures/itf-lec-week09-ethics-2569.pdf": {
     "sizeBytes": 2650243,
     "pages": 57
@@ -1357,6 +1365,10 @@
   "/assets/it-kmitl/itf/lectures/itf-lec-week09-ethics.pdf": {
     "sizeBytes": 3201937,
     "pages": 58
+  },
+  "/assets/it-kmitl/itf/lectures/itf-lec-week10-enterprise-2569-thai.pdf": {
+    "sizeBytes": 5285666,
+    "pages": 1
   },
   "/assets/it-kmitl/itf/lectures/itf-lec-week10-enterprise-2569.pdf": {
     "sizeBytes": 2592986,
@@ -1366,9 +1378,17 @@
     "sizeBytes": 3515537,
     "pages": 49
   },
+  "/assets/it-kmitl/itf/lectures/itf-lec-week11-internet-2569-thai.pdf": {
+    "sizeBytes": 6225275,
+    "pages": 1
+  },
   "/assets/it-kmitl/itf/lectures/itf-lec-week11-internet.pdf": {
     "sizeBytes": 4906087,
     "pages": 69
+  },
+  "/assets/it-kmitl/itf/lectures/itf-lec-week12-computer-networks-2569-thai.pdf": {
+    "sizeBytes": 5843450,
+    "pages": 1
   },
   "/assets/it-kmitl/itf/lectures/itf-lec-week12-computer-networks-2569.pdf": {
     "sizeBytes": 13694791,
@@ -1382,6 +1402,10 @@
     "sizeBytes": 1105425,
     "pages": 41
   },
+  "/assets/it-kmitl/itf/lectures/itf-lec-week13-wireless-network-2569-thai.pdf": {
+    "sizeBytes": 5162303,
+    "pages": 1
+  },
   "/assets/it-kmitl/itf/lectures/itf-lec-week13-wireless-network-2569.pdf": {
     "sizeBytes": 9024568,
     "pages": 41
@@ -1390,9 +1414,17 @@
     "sizeBytes": 4923677,
     "pages": 66
   },
+  "/assets/it-kmitl/itf/lectures/itf-lec-week14-web-technology-2569-thai.pdf": {
+    "sizeBytes": 6911666,
+    "pages": 1
+  },
   "/assets/it-kmitl/itf/lectures/itf-lec-week14-web-technology-2569.pdf": {
     "sizeBytes": 9977661,
     "pages": 96
+  },
+  "/assets/it-kmitl/itf/lectures/itf-lec-week15-it-skills-system-2569-thai.pdf": {
+    "sizeBytes": 6688546,
+    "pages": 1
   },
   "/assets/it-kmitl/itf/lectures/itf-lec-week15-it-skills-system-2569.pdf": {
     "sizeBytes": 10416013,

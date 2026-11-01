@@ -12,6 +12,18 @@ export interface Shortcut {
 export const SHORTCUTS: Shortcut[] = [
   {
     title: {
+      th: "ITF — ทางลัดเตรียมสอบปลายภาค",
+      en: "ITF — Final exam shortcuts",
+    },
+    description: {
+      th: "คู่มือทบทวนปลายภาค แนวข้อสอบ 60 ข้อ สรุปรายสัปดาห์ Week 08–15 และสไลด์ฉบับแปลไทย รวมไว้ในหน้าเดียว · สอบ อ. 3 พ.ย. 2569 13:30–16:30",
+      en: "The final study guide, a 60-item practice exam, weekly notes for weeks 08–15 and the Thai lecture summaries in one page · exam Tue 3 Nov 2026, 13:30–16:30",
+    },
+    href: "/courses/06016402-IT-Fundamentals/overview?doc=final-shortcuts",
+    date: "03/11/2026",
+  },
+  {
+    title: {
       th: "รายชื่อคู่ Pair — Week 7 (สัปดาห์สุดท้าย)",
       en: "Pair list — Week 7 (Final Week)",
     },

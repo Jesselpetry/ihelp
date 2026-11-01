@@ -2,8 +2,10 @@
 
 > บรรยายออนไลน์ผ่าน Zoom อ. 6 ต.ค. 2569 (Sec 1, 3 เวลา 13:45–15:45 · Sec 2 เวลา 16:00–18:00) · แล็บ 14 ศ. 16 ต.ค. 2569 (มีคลิปย้อนหลังในหัวข้อแล็บ)
 >
-> สไลด์ Lecture 14 *Introduction to Web Technology* ฉบับ 1/2569 และคลิปบันทึกการสอนอยู่ใน OnLearn แต่ยังไม่อยู่ในคลัง —
-> สรุปด้านล่างมาจากสไลด์ปีก่อน *Focus on Web Technology* ของ รศ.ดร. ปานวิทย์ ธุวะนุติ (74 หน้า) ถ้าเนื้อหาต่างกันให้ยึดฉบับใน OnLearn
+> สไลด์ Lecture 14 *Introduction to Web Technology* ฉบับ 1/2569 อยู่ในคลังแล้ว (ตารางด้านล่าง) ส่วนคลิปบันทึกการสอนอยู่ใน OnLearn แต่ยังไม่อยู่ในคลัง —
+> สรุปหัวข้อ 1–4 มาจากสไลด์ปีก่อน *Focus on Web Technology* ของ รศ.ดร. ปานวิทย์ ธุวะนุติ (74 หน้า) ส่วนหัวข้อ 5 เสริมจากสไลด์ 2569 · ถ้าเนื้อหาต่างกันให้ยึดฉบับใน OnLearn
+
+> **ระดับความเน้นสอบปลายภาค ⭐⭐ เน้นปานกลาง** — มาจากสรุปของเพื่อนร่วมรุ่น ไม่ใช่ประกาศของผู้สอน · สไลด์ฉบับแปลไทยทีละหัวข้อ: `itf-lec-week14-web-technology-2569-thai.pdf` · [โน้ต Notion](https://app.notion.com/p/ITF-407363d85cea806abdc6c9ec2254f668)
 
 ## อ่านจบแล้วต้องตอบได้
 
@@ -20,6 +22,7 @@
 | เอกสาร | หน้า | ไฟล์ในคลัง |
 |---|:---:|---|
 | สไลด์บรรยาย — Introduction to Web Technology (ฉบับ 2569) | 96 | `itf-lec-week14-web-technology-2569.pdf` |
+| สไลด์บรรยายฉบับแปลไทย — สรุปทีละหัวข้อคู่ภาพสไลด์ (ฉบับ 2569) | 1 หน้ายาว | `itf-lec-week14-web-technology-2569-thai.pdf` |
 | สไลด์ประกอบแล็บ — Web App 2 (JavaScript) | 27 | `itf-lab-week14-web-app-2-slide.pdf` |
 | ใบงานแล็บ — Web App 2 · JavaScript & DOM | 13 | `itf-lab-week14-web-app-2-sheet.pdf` |
 | สไลด์ฉบับปีก่อน — Focus on Web Technology | 74 | `itf-lec-week15-web.pdf` |
@@ -88,6 +91,40 @@
 - **Node.js** = JavaScript runtime สร้างบน Chrome V8 ทำให้ JavaScript รันนอก browser ได้ (backend)
 - ท้ายสไลด์: single page application และแนวคิด **API** (เปรียบกับปลั๊กไฟที่ให้ใช้ไฟจากโรงไฟฟ้า)
 
+### 5. เพิ่มเติมจากสไลด์ 2569
+
+| เรื่อง | จำให้ได้ |
+|---|---|
+| **Static web** | แสดงข้อมูลคงที่ ทุกคนเห็นเหมือนกัน ไม่มี backend · เรียกว่า *website* |
+| **Dynamic web** | สร้างเนื้อหา real-time ตามผู้ใช้ เชื่อมฐานข้อมูล · เรียกว่า *web app* |
+| **Traditional / SSR** | server ตอบเป็น HTML ทั้งหน้า (SSR = server ดึง DB/API แล้วประกอบ HTML ให้) · เปลี่ยนหน้าต้อง **reload ทั้งหน้า** |
+| **SPA** (single page application) | โหลดโครงหน้าและ JS ครั้งเดียว แล้วขอเฉพาะข้อมูลด้วย **AJAX** → server ตอบ **JSON** → อัปเดตเฉพาะจุด **ไม่ reload** (ตัวอย่าง: Gmail · Netflix · Airbnb) |
+| **REST API** | ใช้ HTTP method (GET · POST · PUT · DELETE) ตอบกลับ JSON หรือ XML |
+| **GraphQL** | query language สำหรับ API ขอได้เฉพาะ field ที่ต้องการ — แก้ปัญหา REST ที่บางครั้งดึงเกินจำเป็นหรือต้องเรียกหลายครั้ง |
+
+**Web deployment** — 3 แบบในสไลด์
+
+| วิธี | ใจความ |
+|---|---|
+| **FTP** | โอนไฟล์ client ↔ FTP server · ปัจจุบันเข้ารหัสด้วย **TLS** (สไลด์เขียน SFTP/SSL) |
+| **SCP** (secure copy) | คัดลอกไฟล์ต่างเครื่องผ่านท่อ **SSH** |
+| **SSH / Git** | ใช้ version control (git) ส่งโค้ดขึ้นเซิร์ฟเวอร์ผ่านโปรโตคอล SSH |
+
+### คีย์เวิร์ดต้องจำ
+
+- **Web server** รับ request ผ่าน **HTTP** แล้วส่ง response กลับ
+- **Static** (ไม่มี backend) vs **dynamic** (DB, real-time)
+- **HTML** โครงสร้าง · **CSS** หน้าตา · **JavaScript** พฤติกรรม
+- **CSS 3 แบบ**: inline · internal (`<style>` ใน `<head>`) · external (`.css`)
+- **Selector**: element · `#id` (ตัวเดียว) · `.class` (หลายตัว) · `*` · group
+- **W3C** = องค์กรกำหนดมาตรฐานเว็บ · มี HTML5 validator
+- **HTML parser → DOM tree** · **CSS parser → CSSOM** · **JS runtime**
+- **Node.js** = JavaScript runtime (บน Chrome V8) รันนอก browser → ทำ backend ได้
+- **Traditional / SSR** reload ทั้งหน้า · **SPA** AJAX + JSON ไม่ reload
+- **Deploy**: FTP (+TLS) · SCP over SSH · SSH/Git
+- **REST** (HTTP methods, JSON/XML) vs **GraphQL** (ขอเฉพาะ field)
+- **Local Storage** เก็บข้อมูลฝั่ง client ไม่หายเมื่อรีเฟรช (แล็บ)
+
 ---
 
 ## จุดที่มักพลาด
@@ -105,8 +142,11 @@
 3. selector `.center` เป็นชนิดใด
 4. องค์กรใดดูแลมาตรฐาน HTML
 5. ส่วนใดของ browser สร้าง DOM
+6. SPA อัปเดตหน้าโดยไม่ reload ได้เพราะ server ส่งอะไรกลับมา
+7. GraphQL เกิดขึ้นเพื่อแก้ปัญหาอะไรของ REST API
 
-**เฉลย** — 1. `<title>` · 2. external · 3. class selector · 4. W3C · 5. HTML parser
+**เฉลย** — 1. `<title>` · 2. external · 3. class selector · 4. W3C · 5. HTML parser · 6. ข้อมูลดิบแบบ JSON (ขอผ่าน AJAX) ·
+7. REST บางครั้งดึงข้อมูลเกินจำเป็นหรือต้องเรียกหลายครั้ง
 
 ---
 

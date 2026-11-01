@@ -246,7 +246,14 @@ export default async function CourseModulePage({
   const binding = moduleBinding(course.code, spec.id);
   const bank = binding?.bank?.() ?? [];
   if (bank.length > 0) {
-    const { chapters, chapterLabel } = getCourseChapters(course.code);
+    const { chapters: allChapters, chapterLabel } = getCourseChapters(course.code);
+    // A bank bound to one exam lists only that exam's chapters, so ITF's final
+    // mock does not show weeks 1–7 as "not covered" (and the drill weeks 8–15).
+    const bankScope = binding?.scope;
+    const chapters =
+      bankScope === "midterm" || bankScope === "final"
+        ? allChapters.filter((c) => c.scope === undefined || c.scope === bankScope)
+        : allChapters;
     const docs = readerDocs(course.code, spec.id);
     return (
       <>

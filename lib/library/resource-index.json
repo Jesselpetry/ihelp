@@ -5,15 +5,15 @@
   "totals": {
     "courses": 15,
     "coursesWithLibrary": 14,
-    "docs": 96,
-    "renderedDocs": 69,
-    "assets": 733,
-    "curated": 325,
+    "docs": 98,
+    "renderedDocs": 71,
+    "assets": 741,
+    "curated": 333,
     "generated": 408,
     "insider": 171,
-    "files": 716,
-    "sizeBytes": 1048824509,
-    "pages": 13585
+    "files": 724,
+    "sizeBytes": 1095383321,
+    "pages": 13593
   },
   "courses": {
     "ITF": {
@@ -38,7 +38,8 @@
           "status": "available",
           "href": "/courses/06016402-IT-Fundamentals/overview",
           "docs": [
-            "content/courses/06016402-IT-Fundamentals/summary.md"
+            "content/courses/06016402-IT-Fundamentals/summary.md",
+            "content/courses/06016402-IT-Fundamentals/final-shortcuts.md"
           ]
         },
         {
@@ -71,6 +72,7 @@
           "status": "available",
           "href": "/courses/06016402-IT-Fundamentals/summary",
           "docs": [
+            "content/courses/06016402-IT-Fundamentals/final-study-guide.md",
             "data/it-kmitl/itf/summarize.md",
             "content/courses/06016402-IT-Fundamentals/midterm-study-guide.md"
           ]
@@ -113,8 +115,8 @@
         {
           "id": "mock_exam",
           "segment": "mock",
-          "status": "coming_soon",
-          "href": null,
+          "status": "available",
+          "href": "/courses/06016402-IT-Fundamentals/mock",
           "docs": []
         },
         {
@@ -133,7 +135,7 @@
         }
       ],
       "readiness": {
-        "available": 5,
+        "available": 6,
         "total": 11
       },
       "weeks": [
@@ -311,6 +313,7 @@
           ],
           "assets": [
             "itf-lec-week08-database-2569",
+            "itf-lec-week08-database-2569-thai",
             "itf-lab-week08-access",
             "itf-ref-week08-employee-db",
             "itf-lec-week08-database",
@@ -331,6 +334,7 @@
           ],
           "assets": [
             "itf-lec-week09-ethics-2569",
+            "itf-lec-week09-ethics-2569-thai",
             "itf-lab-week09-make",
             "itf-lec-week09-ethics"
           ]
@@ -349,6 +353,7 @@
           ],
           "assets": [
             "itf-lec-week10-enterprise-2569",
+            "itf-lec-week10-enterprise-2569-thai",
             "itf-lec-week10-v2",
             "itf-lab-week10-file-management-sheet"
           ]
@@ -367,6 +372,7 @@
           ],
           "assets": [
             "itf-lec-week11-internet",
+            "itf-lec-week11-internet-2569-thai",
             "itf-lec-internet-thai",
             "itf-lec-network-1",
             "itf-lab-week11-network-1-sheet"
@@ -386,6 +392,7 @@
           ],
           "assets": [
             "itf-lec-week12-computer-networks-2569",
+            "itf-lec-week12-computer-networks-2569-thai",
             "itf-lec-week12-computer-networks",
             "itf-lec-week08",
             "itf-lab-week12",
@@ -407,6 +414,7 @@
           ],
           "assets": [
             "itf-lec-week13-wireless-network-2569",
+            "itf-lec-week13-wireless-network-2569-thai",
             "itf-lec-week13-wi-fi",
             "itf-lab-week13-web-app-1-slide",
             "itf-lab-week13-web-app-1-sheet"
@@ -426,6 +434,7 @@
           ],
           "assets": [
             "itf-lec-week14-web-technology-2569",
+            "itf-lec-week14-web-technology-2569-thai",
             "itf-lec-week15-web",
             "itf-lec-focuson-web",
             "itf-sheet-reviews-web-app",
@@ -447,6 +456,7 @@
           ],
           "assets": [
             "itf-lec-week15-it-skills-system-2569",
+            "itf-lec-week15-it-skills-system-2569-thai",
             "itf-lec-week14-it-system",
             "itf-lab-week15-web-deployment-slide",
             "itf-lab-week15-web-deployment-sheet"
@@ -541,37 +551,45 @@
         "itf-lec-week07-programming-apps",
         "itf-lec-itf65-program",
         "itf-lec-week08-database-2569",
+        "itf-lec-week08-database-2569-thai",
         "itf-lab-week08-access",
         "itf-ref-week08-employee-db",
         "itf-lec-week08-database",
         "itf-lec-itf65-database",
         "itf-lec-week09-ethics-2569",
+        "itf-lec-week09-ethics-2569-thai",
         "itf-lab-week09-make",
         "itf-lec-week09-ethics",
         "itf-lec-week10-enterprise-2569",
+        "itf-lec-week10-enterprise-2569-thai",
         "itf-lec-week10-v2",
         "itf-lab-week10-file-management-sheet",
         "itf-lec-week11-internet",
+        "itf-lec-week11-internet-2569-thai",
         "itf-lec-internet-thai",
         "itf-lec-network-1",
         "itf-lab-week11-network-1-sheet",
         "itf-lec-week12-computer-networks-2569",
+        "itf-lec-week12-computer-networks-2569-thai",
         "itf-lec-week12-computer-networks",
         "itf-lec-week08",
         "itf-lab-week12",
         "itf-lab-week12-packet-tracer-2-sheet",
         "itf-lec-network-2",
         "itf-lec-week13-wireless-network-2569",
+        "itf-lec-week13-wireless-network-2569-thai",
         "itf-lec-week13-wi-fi",
         "itf-lab-week13-web-app-1-slide",
         "itf-lab-week13-web-app-1-sheet",
         "itf-lec-week14-web-technology-2569",
+        "itf-lec-week14-web-technology-2569-thai",
         "itf-lec-week15-web",
         "itf-lec-focuson-web",
         "itf-sheet-reviews-web-app",
         "itf-lab-week14-web-app-2-slide",
         "itf-lab-week14-web-app-2-sheet",
         "itf-lec-week15-it-skills-system-2569",
+        "itf-lec-week15-it-skills-system-2569-thai",
         "itf-lec-week14-it-system",
         "itf-lab-week15-web-deployment-slide",
         "itf-lab-week15-web-deployment-sheet",
@@ -637,23 +655,25 @@
         "content/courses/06016402-IT-Fundamentals/archive/week14.md",
         "content/courses/06016402-IT-Fundamentals/archive/week15.md",
         "content/courses/06016402-IT-Fundamentals/blueprint.md",
+        "content/courses/06016402-IT-Fundamentals/final-shortcuts.md",
+        "content/courses/06016402-IT-Fundamentals/final-study-guide.md",
         "content/courses/06016402-IT-Fundamentals/midterm-study-guide.md",
         "content/courses/06016402-IT-Fundamentals/summary.md",
         "data/it-kmitl/itf/summarize.md"
       ],
       "counts": {
-        "assets": 119,
-        "curated": 114,
+        "assets": 127,
+        "curated": 122,
         "generated": 5,
         "insider": 8,
         "legacy": 19,
-        "withScope": 109,
-        "withWeek": 77,
+        "withScope": 117,
+        "withWeek": 85,
         "byCategory": {
           "cheatsheet": 6,
           "exam": 8,
           "exercise": 31,
-          "lecture": 36,
+          "lecture": 44,
           "note": 31,
           "reference": 7
         }
@@ -5387,6 +5407,7 @@
       "updated": null,
       "assetRefs": [
         "itf-lec-week08-database-2569",
+        "itf-lec-week08-database-2569-thai",
         "itf-lab-week08-access",
         "itf-ref-week08-employee-db"
       ],
@@ -5413,6 +5434,7 @@
       "updated": null,
       "assetRefs": [
         "itf-lec-week09-ethics-2569",
+        "itf-lec-week09-ethics-2569-thai",
         "itf-lab-week09-make"
       ],
       "unresolvedRefs": []
@@ -5438,6 +5460,7 @@
       "updated": null,
       "assetRefs": [
         "itf-lec-week10-enterprise-2569",
+        "itf-lec-week10-enterprise-2569-thai",
         "itf-lab-week10-file-management-sheet"
       ],
       "unresolvedRefs": []
@@ -5463,6 +5486,7 @@
       "updated": null,
       "assetRefs": [
         "itf-lec-week11-internet",
+        "itf-lec-week11-internet-2569-thai",
         "itf-lab-week11-network-1-sheet",
         "itf-lec-internet-thai",
         "itf-lec-network-1"
@@ -5490,6 +5514,7 @@
       "updated": null,
       "assetRefs": [
         "itf-lec-week12-computer-networks-2569",
+        "itf-lec-week12-computer-networks-2569-thai",
         "itf-lec-week12-computer-networks",
         "itf-lab-week12-packet-tracer-2-sheet",
         "itf-lec-network-2",
@@ -5518,6 +5543,7 @@
       "updated": null,
       "assetRefs": [
         "itf-lec-week13-wireless-network-2569",
+        "itf-lec-week13-wireless-network-2569-thai",
         "itf-lab-week13-web-app-1-slide",
         "itf-lab-week13-web-app-1-sheet",
         "itf-lec-week13-wi-fi"
@@ -5545,6 +5571,7 @@
       "updated": null,
       "assetRefs": [
         "itf-lec-week14-web-technology-2569",
+        "itf-lec-week14-web-technology-2569-thai",
         "itf-lab-week14-web-app-2-slide",
         "itf-lab-week14-web-app-2-sheet",
         "itf-lec-week15-web",
@@ -5574,6 +5601,7 @@
       "updated": null,
       "assetRefs": [
         "itf-lec-week15-it-skills-system-2569",
+        "itf-lec-week15-it-skills-system-2569-thai",
         "itf-lab-week15-web-deployment-slide",
         "itf-lab-week15-web-deployment-sheet",
         "itf-lec-week14-it-system"
@@ -5588,6 +5616,50 @@
       "title": "ITF — พิมพ์เขียวสำหรับสร้างสื่อ",
       "rendered": false,
       "bindings": [],
+      "week": null,
+      "updated": null,
+      "assetRefs": [],
+      "unresolvedRefs": []
+    },
+    "content/courses/06016402-IT-Fundamentals/final-shortcuts.md": {
+      "id": "content/courses/06016402-IT-Fundamentals/final-shortcuts.md",
+      "path": "content/courses/06016402-IT-Fundamentals/final-shortcuts.md",
+      "course": "ITF",
+      "role": "doc",
+      "title": "ทางลัดเตรียมสอบปลายภาค · ITF",
+      "rendered": true,
+      "bindings": [
+        {
+          "module": "orientation",
+          "segment": "overview",
+          "slug": "final-shortcuts",
+          "href": "/courses/06016402-IT-Fundamentals/overview?doc=final-shortcuts",
+          "chapter": null,
+          "scope": "final"
+        }
+      ],
+      "week": null,
+      "updated": null,
+      "assetRefs": [],
+      "unresolvedRefs": []
+    },
+    "content/courses/06016402-IT-Fundamentals/final-study-guide.md": {
+      "id": "content/courses/06016402-IT-Fundamentals/final-study-guide.md",
+      "path": "content/courses/06016402-IT-Fundamentals/final-study-guide.md",
+      "course": "ITF",
+      "role": "study-guide",
+      "title": "📘 คู่มือทบทวนสอบปลายภาค",
+      "rendered": true,
+      "bindings": [
+        {
+          "module": "deep_summary",
+          "segment": "summary",
+          "slug": "final-study-guide",
+          "href": "/courses/06016402-IT-Fundamentals/summary?doc=final-study-guide",
+          "chapter": null,
+          "scope": "final"
+        }
+      ],
       "week": null,
       "updated": null,
       "assetRefs": [],
@@ -5627,13 +5699,13 @@
           "module": "orientation",
           "segment": "overview",
           "slug": "overview",
-          "href": "/courses/06016402-IT-Fundamentals/overview",
+          "href": "/courses/06016402-IT-Fundamentals/overview?doc=overview",
           "chapter": null,
           "scope": null
         }
       ],
       "week": null,
-      "updated": "2026-10-27",
+      "updated": "2026-11-01",
       "assetRefs": [],
       "unresolvedRefs": []
     },
@@ -8518,6 +8590,49 @@
         "content/courses/06016402-IT-Fundamentals/archive/week08.md"
       ]
     },
+    "itf-lec-week08-database-2569-thai": {
+      "id": "itf-lec-week08-database-2569-thai",
+      "course": "ITF",
+      "origin": "curated",
+      "title": {
+        "th": "Lecture 08 — Database (สรุปแปลไทย)",
+        "en": "Lecture 08 — Database (Thai Summary)"
+      },
+      "description": {
+        "th": "สรุปสไลด์ฉบับ 2569 เป็นภาษาไทย วางคู่กับภาพสไลด์จริงทีละหัวข้อ: ฐานข้อมูล ลำดับชั้นข้อมูล validation, file processing vs database approach, ประเภทฐานข้อมูล, DBMS และ Big Data — ถ้าความหมายต่างจากสไลด์ต้นฉบับ ให้ยึดต้นฉบับ",
+        "en": "The 2026 deck summarised in Thai beside the original slide images, topic by topic: databases, the data hierarchy, validation, file processing vs the database approach, database types, DBMS and Big Data. Where it differs from the original deck, the original wins"
+      },
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/lectures/itf-lec-week08-database-2569-thai.pdf",
+      "path": "public/assets/it-kmitl/itf/lectures/itf-lec-week08-database-2569-thai.pdf",
+      "fileName": "itf-lec-week08-database-2569-thai.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/itf/lectures/itf-lec-week08-database-2569-thai.pdf"
+      },
+      "access": "member",
+      "week": 8,
+      "scope": "final",
+      "edition": "2569",
+      "status": null,
+      "isCurrentYear": true,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Week 08",
+        "Database",
+        "DBMS",
+        "Thai"
+      ],
+      "sizeBytes": 4747334,
+      "pages": 1,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016402-IT-Fundamentals/archive/week08.md"
+      ]
+    },
     "itf-lab-week08-access": {
       "id": "itf-lab-week08-access",
       "course": "ITF",
@@ -8727,6 +8842,49 @@
         "content/courses/06016402-IT-Fundamentals/archive/week09.md"
       ]
     },
+    "itf-lec-week09-ethics-2569-thai": {
+      "id": "itf-lec-week09-ethics-2569-thai",
+      "course": "ITF",
+      "origin": "curated",
+      "title": {
+        "th": "Lecture 09 — Ethics, Social & Legal Aspects of IT (สรุปแปลไทย)",
+        "en": "Lecture 09 — Ethics, Social & Legal Aspects of IT (Thai Summary)"
+      },
+      "description": {
+        "th": "สรุปสไลด์ฉบับ 2569 เป็นภาษาไทย วางคู่กับภาพสไลด์จริงทีละหัวข้อ: การขโมยซอฟต์แวร์และข้อมูล, ethics, information privacy, หลักจริยธรรม 4 ข้อ และกฎหมายไอทีของไทย — ถ้าความหมายต่างจากสไลด์ต้นฉบับ ให้ยึดต้นฉบับ",
+        "en": "The 2026 deck summarised in Thai beside the original slide images, topic by topic: software and information theft, ethics, information privacy, the four ethics principles, and Thai IT law. Where it differs from the original deck, the original wins"
+      },
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/lectures/itf-lec-week09-ethics-2569-thai.pdf",
+      "path": "public/assets/it-kmitl/itf/lectures/itf-lec-week09-ethics-2569-thai.pdf",
+      "fileName": "itf-lec-week09-ethics-2569-thai.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/itf/lectures/itf-lec-week09-ethics-2569-thai.pdf"
+      },
+      "access": "member",
+      "week": 9,
+      "scope": "final",
+      "edition": "2569",
+      "status": null,
+      "isCurrentYear": true,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Week 09",
+        "Ethics",
+        "Privacy",
+        "Thai"
+      ],
+      "sizeBytes": 5694572,
+      "pages": 1,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016402-IT-Fundamentals/archive/week09.md"
+      ]
+    },
     "itf-lab-week09-make": {
       "id": "itf-lab-week09-make",
       "course": "ITF",
@@ -8852,6 +9010,49 @@
         "content/courses/06016402-IT-Fundamentals/archive/week10.md"
       ]
     },
+    "itf-lec-week10-enterprise-2569-thai": {
+      "id": "itf-lec-week10-enterprise-2569-thai",
+      "course": "ITF",
+      "origin": "curated",
+      "title": {
+        "th": "Lecture 10 — Working in the Enterprise (สรุปแปลไทย)",
+        "en": "Lecture 10 — Working in the Enterprise (Thai Summary)"
+      },
+      "description": {
+        "th": "สรุปสไลด์ฉบับ 2569 เป็นภาษาไทย วางคู่กับภาพสไลด์จริงทีละหัวข้อ: ระบบสารสนเทศในองค์กร (ERP · DMS/CMS · TPS · MIS · DSS · expert system), อาชีพไอที และ certification — ถ้าความหมายต่างจากสไลด์ต้นฉบับ ให้ยึดต้นฉบับ",
+        "en": "The 2026 deck summarised in Thai beside the original slide images, topic by topic: enterprise information systems (ERP, DMS/CMS, TPS, MIS, DSS, expert systems), IT careers and certifications. Where it differs from the original deck, the original wins"
+      },
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/lectures/itf-lec-week10-enterprise-2569-thai.pdf",
+      "path": "public/assets/it-kmitl/itf/lectures/itf-lec-week10-enterprise-2569-thai.pdf",
+      "fileName": "itf-lec-week10-enterprise-2569-thai.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/itf/lectures/itf-lec-week10-enterprise-2569-thai.pdf"
+      },
+      "access": "member",
+      "week": 10,
+      "scope": "final",
+      "edition": "2569",
+      "status": null,
+      "isCurrentYear": true,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Week 10",
+        "Enterprise",
+        "Information System",
+        "Thai"
+      ],
+      "sizeBytes": 5285666,
+      "pages": 1,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016402-IT-Fundamentals/archive/week10.md"
+      ]
+    },
     "itf-lec-week10-v2": {
       "id": "itf-lec-week10-v2",
       "course": "ITF",
@@ -8971,6 +9172,49 @@
       ],
       "sizeBytes": 4906087,
       "pages": 69,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016402-IT-Fundamentals/archive/week11.md"
+      ]
+    },
+    "itf-lec-week11-internet-2569-thai": {
+      "id": "itf-lec-week11-internet-2569-thai",
+      "course": "ITF",
+      "origin": "curated",
+      "title": {
+        "th": "Lecture 11 — Internet (สรุปแปลไทย)",
+        "en": "Lecture 11 — Internet (Thai Summary)"
+      },
+      "description": {
+        "th": "สรุปสไลด์ฉบับ 2569 เป็นภาษาไทย วางคู่กับภาพสไลด์จริงทีละหัวข้อ: nuts-and-bolts และ service view, protocol, encapsulation, network edge, access network, physical media, network core และ network security — ถ้าความหมายต่างจากสไลด์ต้นฉบับ ให้ยึดต้นฉบับ",
+        "en": "The 2026 deck summarised in Thai beside the original slide images, topic by topic: nuts-and-bolts and service views, protocols, encapsulation, network edge, access networks, physical media, network core and security. Where it differs from the original deck, the original wins"
+      },
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/lectures/itf-lec-week11-internet-2569-thai.pdf",
+      "path": "public/assets/it-kmitl/itf/lectures/itf-lec-week11-internet-2569-thai.pdf",
+      "fileName": "itf-lec-week11-internet-2569-thai.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/itf/lectures/itf-lec-week11-internet-2569-thai.pdf"
+      },
+      "access": "member",
+      "week": 11,
+      "scope": "final",
+      "edition": "2569",
+      "status": null,
+      "isCurrentYear": true,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Week 11",
+        "Internet",
+        "Network",
+        "Thai"
+      ],
+      "sizeBytes": 6225275,
+      "pages": 1,
       "onDisk": true,
       "usedBy": [
         "content/courses/06016402-IT-Fundamentals/archive/week11.md"
@@ -9141,6 +9385,50 @@
       ],
       "sizeBytes": 13694791,
       "pages": 92,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016402-IT-Fundamentals/archive/week12.md"
+      ]
+    },
+    "itf-lec-week12-computer-networks-2569-thai": {
+      "id": "itf-lec-week12-computer-networks-2569-thai",
+      "course": "ITF",
+      "origin": "curated",
+      "title": {
+        "th": "Lecture 12 — Introduction to Computer Networks (สรุปแปลไทย)",
+        "en": "Lecture 12 — Introduction to Computer Networks (Thai Summary)"
+      },
+      "description": {
+        "th": "สรุปสไลด์ฉบับ 2569 เป็นภาษาไทย วางคู่กับภาพสไลด์จริงทีละหัวข้อ: topology, CSMA/CD, Ethernet, อุปกรณ์เชื่อมต่อ LAN, IPv4 · network ID · subnet mask, class ของ IP, private address และ NAT — ถ้าความหมายต่างจากสไลด์ต้นฉบับ ให้ยึดต้นฉบับ",
+        "en": "The 2026 deck summarised in Thai beside the original slide images, topic by topic: topologies, CSMA/CD, Ethernet, LAN connecting devices, IPv4, network ID and subnet mask, IP classes, private addresses and NAT. Where it differs from the original deck, the original wins"
+      },
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/lectures/itf-lec-week12-computer-networks-2569-thai.pdf",
+      "path": "public/assets/it-kmitl/itf/lectures/itf-lec-week12-computer-networks-2569-thai.pdf",
+      "fileName": "itf-lec-week12-computer-networks-2569-thai.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/itf/lectures/itf-lec-week12-computer-networks-2569-thai.pdf"
+      },
+      "access": "member",
+      "week": 12,
+      "scope": "final",
+      "edition": "2569",
+      "status": null,
+      "isCurrentYear": true,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Week 12",
+        "Network",
+        "IPv4",
+        "Subnet",
+        "Thai"
+      ],
+      "sizeBytes": 5843450,
+      "pages": 1,
       "onDisk": true,
       "usedBy": [
         "content/courses/06016402-IT-Fundamentals/archive/week12.md"
@@ -9398,6 +9686,49 @@
         "content/courses/06016402-IT-Fundamentals/archive/week13.md"
       ]
     },
+    "itf-lec-week13-wireless-network-2569-thai": {
+      "id": "itf-lec-week13-wireless-network-2569-thai",
+      "course": "ITF",
+      "origin": "curated",
+      "title": {
+        "th": "Lecture 13 — Introduction to Wireless Network (สรุปแปลไทย)",
+        "en": "Lecture 13 — Introduction to Wireless Network (Thai Summary)"
+      },
+      "description": {
+        "th": "สรุปสไลด์ฉบับ 2569 เป็นภาษาไทย วางคู่กับภาพสไลด์จริงทีละหัวข้อ: องค์ประกอบเครือข่ายไร้สาย, ลักษณะลิงก์ไร้สาย (SNR/BER · hidden terminal), CDMA, IEEE 802.11 (CSMA/CA · RTS/CTS) และ 802.15 — ถ้าความหมายต่างจากสไลด์ต้นฉบับ ให้ยึดต้นฉบับ",
+        "en": "The 2026 deck summarised in Thai beside the original slide images, topic by topic: wireless network elements, link characteristics (SNR/BER, hidden terminal), CDMA, IEEE 802.11 (CSMA/CA, RTS/CTS) and 802.15. Where it differs from the original deck, the original wins"
+      },
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/lectures/itf-lec-week13-wireless-network-2569-thai.pdf",
+      "path": "public/assets/it-kmitl/itf/lectures/itf-lec-week13-wireless-network-2569-thai.pdf",
+      "fileName": "itf-lec-week13-wireless-network-2569-thai.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/itf/lectures/itf-lec-week13-wireless-network-2569-thai.pdf"
+      },
+      "access": "member",
+      "week": 13,
+      "scope": "final",
+      "edition": "2569",
+      "status": null,
+      "isCurrentYear": true,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Week 13",
+        "Wireless",
+        "Wi-Fi",
+        "Thai"
+      ],
+      "sizeBytes": 5162303,
+      "pages": 1,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016402-IT-Fundamentals/archive/week13.md"
+      ]
+    },
     "itf-lec-week13-wi-fi": {
       "id": "itf-lec-week13-wi-fi",
       "course": "ITF",
@@ -9566,6 +9897,50 @@
       ],
       "sizeBytes": 9977661,
       "pages": 96,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016402-IT-Fundamentals/archive/week14.md"
+      ]
+    },
+    "itf-lec-week14-web-technology-2569-thai": {
+      "id": "itf-lec-week14-web-technology-2569-thai",
+      "course": "ITF",
+      "origin": "curated",
+      "title": {
+        "th": "Lecture 14 — Introduction to Web Technology (สรุปแปลไทย)",
+        "en": "Lecture 14 — Introduction to Web Technology (Thai Summary)"
+      },
+      "description": {
+        "th": "สรุปสไลด์ฉบับ 2569 เป็นภาษาไทย วางคู่กับภาพสไลด์จริงทีละหัวข้อ: เครื่องมือสร้างเว็บ, HTML · CSS · JavaScript, static vs dynamic, web client–server, browser และ DOM — ถ้าความหมายต่างจากสไลด์ต้นฉบับ ให้ยึดต้นฉบับ",
+        "en": "The 2026 deck summarised in Thai beside the original slide images, topic by topic: web tools, HTML, CSS and JavaScript, static vs dynamic sites, web client–server, the browser and the DOM. Where it differs from the original deck, the original wins"
+      },
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/lectures/itf-lec-week14-web-technology-2569-thai.pdf",
+      "path": "public/assets/it-kmitl/itf/lectures/itf-lec-week14-web-technology-2569-thai.pdf",
+      "fileName": "itf-lec-week14-web-technology-2569-thai.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/itf/lectures/itf-lec-week14-web-technology-2569-thai.pdf"
+      },
+      "access": "member",
+      "week": 14,
+      "scope": "final",
+      "edition": "2569",
+      "status": null,
+      "isCurrentYear": true,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Week 14",
+        "Web",
+        "HTML",
+        "CSS",
+        "Thai"
+      ],
+      "sizeBytes": 6911666,
+      "pages": 1,
       "onDisk": true,
       "usedBy": [
         "content/courses/06016402-IT-Fundamentals/archive/week14.md"
@@ -9824,6 +10199,49 @@
       ],
       "sizeBytes": 10416013,
       "pages": 72,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016402-IT-Fundamentals/archive/week15.md"
+      ]
+    },
+    "itf-lec-week15-it-skills-system-2569-thai": {
+      "id": "itf-lec-week15-it-skills-system-2569-thai",
+      "course": "ITF",
+      "origin": "curated",
+      "title": {
+        "th": "Lecture 15 — Digital Skills vs Information System (สรุปแปลไทย)",
+        "en": "Lecture 15 — Digital Skills vs Information System (Thai Summary)"
+      },
+      "description": {
+        "th": "สรุปสไลด์ฉบับ 2569 เป็นภาษาไทย วางคู่กับภาพสไลด์จริงทีละหัวข้อ: ทักษะดิจิทัล, information system, SDLC ทุกเฟส, เทคนิคเก็บความต้องการ (JAD) และการย้ายระบบ — ถ้าความหมายต่างจากสไลด์ต้นฉบับ ให้ยึดต้นฉบับ",
+        "en": "The 2026 deck summarised in Thai beside the original slide images, topic by topic: digital skills, information systems, every SDLC phase, requirement gathering (JAD) and system conversion. Where it differs from the original deck, the original wins"
+      },
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/itf/lectures/itf-lec-week15-it-skills-system-2569-thai.pdf",
+      "path": "public/assets/it-kmitl/itf/lectures/itf-lec-week15-it-skills-system-2569-thai.pdf",
+      "fileName": "itf-lec-week15-it-skills-system-2569-thai.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/itf/lectures/itf-lec-week15-it-skills-system-2569-thai.pdf"
+      },
+      "access": "member",
+      "week": 15,
+      "scope": "final",
+      "edition": "2569",
+      "status": null,
+      "isCurrentYear": true,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Week 15",
+        "SDLC",
+        "Information System",
+        "Thai"
+      ],
+      "sizeBytes": 6688546,
+      "pages": 1,
       "onDisk": true,
       "usedBy": [
         "content/courses/06016402-IT-Fundamentals/archive/week15.md"

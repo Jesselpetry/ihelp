@@ -6,6 +6,7 @@ import { loadIcs, loadItf, loadMfit } from "@/lib/courses/it-kmitl";
 import { loadChem, loadEnKmitl } from "@/lib/courses/en-kmitl";
 
 import { ITF_QUIZ, ITF_QUIZ_ID } from "@/lib/quiz/itf-quiz";
+import { ITF_FINAL_MOCK_EXAM } from "@/lib/quiz/itf-final-mock-exam";
 import { ICS_QUIZ, ICS_QUIZ_ID } from "@/lib/quiz/ics-quiz";
 import { MFIT_BLUEPRINT_QUIZ, MFIT_QUIZ, MFIT_QUIZ_ID } from "@/lib/quiz/mfit-quiz";
 import { EN_KMITL_CURATED_QUIZ, EN_KMITL_QUIZ_ID } from "@/lib/quiz/en-kmitl-quiz";
@@ -23,6 +24,13 @@ import { COMPRO_PROBLEMS } from "@/lib/pscp/compro-labs";
  * folded into the practice score.
  */
 const COMPRO_MOCK_QUIZ_ID = 900006;
+
+/**
+ * Progress key for ITF's final practice bank. Its own id for the same reason
+ * as COMPRO's mock: sixty final-scope answers must not fold into the midterm
+ * drill's score.
+ */
+const ITF_FINAL_MOCK_QUIZ_ID = 900007;
 
 const COMPRO_PROBLEM_COUNT = COMPRO_PROBLEMS.length;
 
@@ -213,7 +221,17 @@ function itfWeekDocs(): ModuleDoc[] {
 export const COURSE_BINDINGS: Record<string, CourseBinding> = {
   // ── ปี 1 เทอม 1 ───────────────────────────────────────────────────────────
   ITF: {
-    orientation: { docs: [overview("06016402-IT-Fundamentals")] },
+    orientation: {
+      docs: [
+        overview("06016402-IT-Fundamentals"),
+        {
+          slug: "final-shortcuts",
+          title: { th: "ทางลัดเตรียมสอบปลายภาค", en: "Final Exam Shortcuts" },
+          load: () => loadCourseDoc("06016402", "final-shortcuts.md"),
+          scope: "final",
+        },
+      ],
+    },
     syllabus_map: {
       title: { th: "สัปดาห์เรียน + สรุปอ่านสอบ", en: "Weekly Sessions + Exam Notes" },
       subtitle: {
@@ -235,11 +253,17 @@ export const COURSE_BINDINGS: Record<string, CourseBinding> = {
     deep_summary: {
       title: { th: "คู่มือทบทวน", en: "Study Guide" },
       subtitle: {
-        th: "คู่มือทบทวนกลางภาคฉบับเต็ม ครอบคลุม Lecture 01–07 พร้อมตารางเปรียบเทียบศัพท์และจุดที่ออกสอบบ่อย",
-        en: "The full midterm guide across lectures 01–07, with comparison tables and the recurring exam points",
+        th: "คู่มือทบทวนกลางภาค Lecture 01–07 และคู่มือทบทวนปลายภาค Week 08–15 พร้อมวิธีคำนวณ IP / Subnet ตารางเปรียบเทียบ และเช็กลิสต์ก่อนสอบ",
+        en: "The midterm guide for lectures 01–07 and the final guide for weeks 08–15, with IP/subnet calculation, comparison tables and a night-before checklist",
       },
-      scope: "midterm",
+      scope: "all",
       docs: [
+        {
+          slug: "final-study-guide",
+          title: { th: "คู่มือทบทวนปลายภาค Week 08–15", en: "Final Study Guide, Weeks 08–15" },
+          load: () => loadCourseDoc("06016402", "final-study-guide.md"),
+          scope: "final",
+        },
         {
           slug: "study-guide",
           title: { th: "คู่มือทบทวน Lecture 01–07", en: "Study Guide, Lectures 01–07" },
@@ -265,6 +289,20 @@ export const COURSE_BINDINGS: Record<string, CourseBinding> = {
       note: {
         th: "คลังข้อสอบสร้างจากคู่มือทบทวนกลางภาค ไม่ใช่ข้อสอบจริง — ใช้ทบทวนความเข้าใจ ไม่ใช่เดาแนวข้อสอบ",
         en: "Derived from the midterm review guide, not the real paper — for reinforcing concepts, not predicting questions",
+      },
+    },
+    mock_exam: {
+      title: { th: "แนวข้อสอบปลายภาค 60 ข้อ", en: "Final Practice Exam, 60 Items" },
+      subtitle: {
+        th: "ปรนัย 60 ข้อ แยกตาม Week 08–15 พร้อมคำอธิบายทุกตัวเลือก · เน้น Week 11–13 และโจทย์คำนวณ IP / Subnet",
+        en: "Sixty multiple-choice items across weeks 08–15, each option explained · weighted towards weeks 11–13 and IP/subnet calculation",
+      },
+      scope: "final",
+      bank: () => ITF_FINAL_MOCK_EXAM,
+      quizId: ITF_FINAL_MOCK_QUIZ_ID,
+      note: {
+        th: "เขียนจากสรุปรายสัปดาห์และสไลด์ฉบับแปลไทย ไม่ใช่ข้อสอบจริง — สัดส่วนข้อต่อสัปดาห์ตามที่เพื่อนร่วมรุ่นสรุปว่าเน้น ไม่ใช่ประกาศของผู้สอน",
+        en: "Written from the weekly notes and the Thai lecture summaries, not the real paper — the per-week weighting follows a classmate's emphasis notes, not an instructor's announcement",
       },
     },
     archive: {},

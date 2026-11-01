@@ -4,6 +4,8 @@
 >
 > สไลด์บรรยายฉบับ 1/2569 และใบงานแล็บของปีนี้อยู่ในคลังเรียบร้อยแล้ว · สรุปเนื้อหาด้านล่างครอบคลุมทั้ง Digital Skills, Web Server / Deployment และทฤษฎี Information System & SDLC
 
+> **ระดับความเน้นสอบปลายภาค ⭐ อ่านผ่าน จำคีย์เวิร์ด** — มาจากสรุปของเพื่อนร่วมรุ่น ไม่ใช่ประกาศของผู้สอน · สไลด์ฉบับแปลไทยทีละหัวข้อ: `itf-lec-week15-it-skills-system-2569-thai.pdf` · [โน้ต Notion](https://app.notion.com/p/ITF-407363d85cea806abdc6c9ec2254f668)
+
 ## อ่านจบแล้วต้องตอบได้
 
 - อธิบายความสำคัญของ **Digital Skills** ต่อตลาดแรงงาน (Thailand Salary Guide)
@@ -22,6 +24,7 @@
 | เอกสาร | หน้า | ไฟล์ในคลัง |
 |---|:---:|---|
 | สไลด์บรรยาย — IT Skills and System (ฉบับ 2569) | 72 | `itf-lec-week15-it-skills-system-2569.pdf` |
+| สไลด์บรรยายฉบับแปลไทย — สรุปทีละหัวข้อคู่ภาพสไลด์ (ฉบับ 2569) | 1 หน้ายาว | `itf-lec-week15-it-skills-system-2569-thai.pdf` |
 | สไลด์ประกอบแล็บ — Web Deployment | 17 | `itf-lab-week15-web-deployment-slide.pdf` |
 | ใบงานแล็บ — Web Deployment | 8 | `itf-lab-week15-web-deployment-sheet.pdf` |
 | สไลด์ฉบับปีก่อน — Information System | 66 | `itf-lec-week14-it-system.pdf` |
@@ -36,6 +39,7 @@
 - **Information system** = hardware (และเครือข่าย) · software · data · people · procedures ทำงานร่วมกันเพื่อผลิตสารสนเทศ
 - ตัวอย่าง: จองตั๋วรถที่ช่องขาย → จองออนไลน์ · ตลาดสด → ตลาดออนไลน์ · กระดาษ → ดิจิทัล
 - บทบาท: system analyst · system developer · system tester
+- สไลด์ 2569 มีภาพวิวัฒนาการ **Web 1.0 → 2.0 → 3.0**: 1.0 อ่านอย่างเดียว (หน้าเว็บนิ่ง) · 2.0 ผู้ใช้สร้างและแชร์เนื้อหาเอง (social, mobile app) · 3.0 semantic web · กระจายอำนาจ (dApp) · AI *ยังไม่ยืนยัน — รายละเอียดมาจากสรุปเพื่อน สไลด์เป็นภาพ*
 
 ### 2. System Development และ SDLC
 
@@ -88,11 +92,46 @@
 | **Economic** (cost/benefit) | ประโยชน์ตลอดอายุมากกว่าต้นทุนไหม · ROI · payback |
 
 - เก็บข้อมูลด้วย: review documentation · observe · survey · interview · **JAD session** (Joint Application Design) · research
+  - **Survey**: closed question (วิเคราะห์ง่าย) · open question (ได้ความเห็นหลากหลาย)
+  - **Interview**: structured (มีหัวข้อล่วงหน้า) · unstructured/flexible (ยืดหยุ่นตามประเด็น)
+  - **JAD**: ประชุมผู้ใช้ เจ้าของระบบ ผู้บริหาร analyst นักออกแบบ โปรแกรมเมอร์ รวบรวม requirement ในคราวเดียว
 
 | Requirement | ความหมาย |
 |---|---|
 | **Functional** | สิ่งที่ระบบต้องทำ — input · behavior · output |
 | **Non-functional** | คุณสมบัติอื่น — UI, reliability, performance, security, ข้อจำกัด |
+
+- ตัวอย่าง ATM: ตรวจบัตรและ PIN = functional · "เขียนด้วย C++" / เข้ารหัส 256-bit = non-functional
+- **System proposal** เสนอต่อ steering committee ก่อนเข้า design phase
+- ในเฟส design: สเปกทำเป็นเอกสารจัดซื้อ (RFQ · RFP · RFI) → ส่งให้ vendor หรือ VAR → ทดสอบและประเมินข้อเสนอ → ตัดสินใจ · ออกแบบ database ร่วมกับ DBA · มักออกแบบ **output ก่อน input**
+- ในเฟส implementation: เขียนโปรแกรมโดย **Full Stack Developer** · อบรมผู้ใช้ได้ 3 แบบ (one-on-one · classroom · web-based)
+- Conversion: **direct** เสี่ยงสุด · **parallel** ปลอดภัยสุด · **phased** ทีละส่วน · **pilot** ทดลองเต็มรูปแบบที่แผนก/สาขาเดียวก่อนขยาย
+
+### 4. CI/CD (สไลด์ 2569)
+
+| คำ | ความหมาย |
+|---|---|
+| **CI** — Continuous Integration | รวมโค้ดเข้าที่กลางอย่างต่อเนื่อง · Plan → Code → Build → Test → Merge |
+| **CD** มี 2 ความหมาย | **Continuous Delivery** — โค้ดที่ผ่านทดสอบถูกเตรียมพร้อมปล่อยอัตโนมัติ · **Continuous Deployment** — deploy ขึ้น production อัตโนมัติ |
+
+สไลด์ระบุเฉพาะชื่อ CI และ CD (Delivery หรือ Deployment) — คำอธิบายข้างบนมาจากสรุปเพื่อน *ยังไม่ยืนยัน*
+
+### คีย์เวิร์ดต้องจำ
+
+- **SDLC** = วงจรพัฒนาระบบ 5 เฟส: planning → analysis → design → implementation → support & security
+- 3 แนวทาง: **group into phases · involve users · define standards**
+- **Steering committee** รับ project request · planning 4 กิจกรรม: review/approve · prioritize · allocate resources · form team
+- **Preliminary investigation** = feasibility study · **detailed analysis** = logical design
+- **Feasibility 4 ด้าน**: operational · schedule · technical · economic
+- **Functional** (ระบบต้องทำอะไร) vs **non-functional** (คุณสมบัติ: performance, security)
+- **Survey** closed/open · **interview** structured/unstructured · **JAD**
+- **System proposal** ทางเลือก: modify · buy retail · web app · custom · outsource
+- **RFQ** (ระบุสินค้า ขอราคา) · **RFP** (ผู้ขายเลือกสินค้า) · **RFI** (ขอข้อมูล) · **VAR**
+- **Mock-up** · **layout chart** · **prototype / POC**
+- **Test 4 แบบ**: unit · systems · integration · acceptance (ข้อมูลจริง)
+- **Conversion 4 แบบ**: direct · parallel · phased · pilot
+- Support & security 3 งาน: maintenance · monitor performance · assess security
+- **Gantt** (ง่าย) vs **PERT** (ซับซ้อน) · **CI/CD** · **Web 1.0 / 2.0 / 3.0**
 
 ---
 
@@ -113,8 +152,10 @@
 3. Feasibility ด้านใดถามว่าองค์กรมีคนและเทคโนโลยีพอหรือไม่
 4. แผนภูมิใดเหมาะกับโครงการใหญ่ที่ซับซ้อน
 5. การเปิดใช้ระบบใหม่คู่กับระบบเดิมช่วงหนึ่งเรียกว่า conversion แบบใด
+6. การทดสอบที่ให้ผู้ใช้ลองกับข้อมูลจริงเรียกว่าอะไร
+7. CI และ CD ย่อมาจากอะไร
 
-**เฉลย** — 1. planning · 2. functional requirement · 3. technical feasibility · 4. PERT chart · 5. parallel conversion
+**เฉลย** — 1. planning · 2. functional requirement · 3. technical feasibility · 4. PERT chart · 5. parallel conversion · 6. acceptance test · 7. CI = Continuous Integration · CD = Continuous Delivery หรือ Continuous Deployment
 
 ---
 
