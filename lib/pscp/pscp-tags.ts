@@ -25,7 +25,7 @@ export const FAMILY_STYLES: Record<TagFamily, string> = {
   text: "bg-teal-100 text-teal-700 border-teal-200 dark:bg-teal-950 dark:text-teal-300 dark:border-teal-900",
   number:
     "bg-rose-100 text-rose-700 border-rose-200 dark:bg-rose-950 dark:text-rose-300 dark:border-rose-900",
-  io: "bg-slate-100 text-slate-600 border-slate-200 dark:bg-slate-900 dark:text-slate-300 dark:border-slate-800",
+  io: "bg-slate-100 text-slate-600 border-slate-200 dark:bg-white/5 dark:text-zinc-300 dark:border-white/10",
   abstraction:
     "bg-fuchsia-100 text-fuchsia-700 border-fuchsia-200 dark:bg-fuchsia-950 dark:text-fuchsia-300 dark:border-fuchsia-900",
 };

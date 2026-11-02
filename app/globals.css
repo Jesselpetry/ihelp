@@ -98,45 +98,46 @@
 }
 
 .dark {
-  /* Mirrors the light palette's cool gray-blue cast rather than a neutral gray,
-     so both themes read as the same product. Blue is lightened #2357A5 ->
-     #5c9bf5 to stay legible on a dark canvas. */
-  --background: #0f1318;
-  --foreground: #e7eaef;
-  --card: #171c23;
-  --card-foreground: #e7eaef;
-  --popover: #171c23;
-  --popover-foreground: #e7eaef;
-  --primary: #5c9bf5;
-  --primary-foreground: #09152b;
-  --secondary: #232932;
-  --secondary-foreground: #e7eaef;
-  --muted: #232932;
-  --muted-foreground: #a2acba;
-  --accent: #232932;
-  --accent-foreground: #e7eaef;
-  --destructive: #ff6b6b;
-  /* Red ink goes coral on a dark canvas: #dc2626 against #171c23 is both
-     low-contrast and harsh at night, where rose reads cleanly. */
+  /* Figma-inspired professional neutral gray palette.
+     Replaces the previous dark navy/blue cast with multi-tiered neutral charcoal
+     surfaces (#141416 canvas, #1c1c1f cards, #222226 popovers) layered with subtle
+     white opacity (hairline borders, inputs, dividers, hover rings) for crisp contrast,
+     refined depth, and effortless readability. */
+  --background: #141416;
+  --foreground: #f4f4f6;
+  --card: #1c1c1f;
+  --card-foreground: #f4f4f6;
+  --popover: #222226;
+  --popover-foreground: #f4f4f6;
+  --primary: #4c93ff;
+  --primary-foreground: #ffffff;
+  --secondary: #26262a;
+  --secondary-foreground: #e4e4e7;
+  --muted: #222226;
+  --muted-foreground: #9ca3af;
+  --accent: #2a2a30;
+  --accent-foreground: #ffffff;
+  --destructive: #f87171;
+  /* Red ink goes coral on a dark canvas for legibility and reduced eye strain */
   --ink-red: #fb7185;
-  --ink-blue: #7dd3fc;
-  --ink-highlight: #b45309;
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: #5c9bf5;
+  --ink-blue: #38bdf8;
+  --ink-highlight: #d97706;
+  --border: oklch(1 0 0 / 8.5%);
+  --input: oklch(1 0 0 / 12%);
+  --ring: #4c93ff;
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
-  --sidebar: #171c23;
-  --sidebar-foreground: #e7eaef;
-  --sidebar-primary: #5c9bf5;
-  --sidebar-primary-foreground: #09152b;
-  --sidebar-accent: #232932;
-  --sidebar-accent-foreground: #e7eaef;
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: #5c9bf5;
+  --sidebar: #18181b;
+  --sidebar-foreground: #f4f4f6;
+  --sidebar-primary: #4c93ff;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #26262a;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: oklch(1 0 0 / 8%);
+  --sidebar-ring: #4c93ff;
 }
 
 /* PSCP Theme: signature PSCP Pink.

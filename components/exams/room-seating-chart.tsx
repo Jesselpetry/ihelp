@@ -199,7 +199,7 @@ export function RoomSeatingChart({
                             ? "bg-primary text-primary-foreground font-bold shadow-md shadow-primary/30 ring-2 ring-primary ring-offset-2 scale-110 z-10"
                             : isSelected
                             ? "bg-foreground text-background font-bold ring-2 ring-foreground/20 scale-105 z-10"
-                            : "bg-slate-200 dark:bg-slate-700/80 text-slate-800 dark:text-slate-100 font-semibold hover:bg-primary/20 hover:text-primary"
+                            : "bg-slate-200 dark:bg-white/10 text-slate-800 dark:text-zinc-200 font-semibold hover:bg-primary/20 hover:text-primary"
                         }`}
                       >
                         <span className="leading-none">{seatId}</span>
@@ -246,7 +246,7 @@ export function RoomSeatingChart({
                             ? "bg-primary text-primary-foreground font-bold shadow-md shadow-primary/30 ring-2 ring-primary ring-offset-2 scale-110 z-10"
                             : isSelected
                             ? "bg-foreground text-background font-bold ring-2 ring-foreground/20 scale-105 z-10"
-                            : "bg-slate-200 dark:bg-slate-700/80 text-slate-800 dark:text-slate-100 font-semibold hover:bg-primary/20 hover:text-primary"
+                            : "bg-slate-200 dark:bg-white/10 text-slate-800 dark:text-zinc-200 font-semibold hover:bg-primary/20 hover:text-primary"
                         }`}
                       >
                         <span className="leading-none">{seatId}</span>
@@ -272,7 +272,7 @@ export function RoomSeatingChart({
           <span className="font-medium text-foreground">ที่นั่งของคุณ ({mySeat || "-"})</span>
         </div>
         <div className="flex items-center gap-1.5">
-          <div className="size-3.5 sm:size-4 rounded-full bg-slate-200 dark:bg-slate-700" />
+          <div className="size-3.5 sm:size-4 rounded-full bg-slate-200 dark:bg-white/10" />
           <span>มีผู้เข้าสอบ</span>
         </div>
         <div className="flex items-center gap-1.5">

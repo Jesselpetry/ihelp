@@ -28,7 +28,7 @@ const OFFLINE_HTML = `<!doctype html><html lang="th"><head><meta charset="utf-8"
 <style>:root{color-scheme:light dark}body{margin:0;min-height:100vh;display:flex;flex-direction:column;
 align-items:center;justify-content:center;gap:.5rem;font-family:system-ui,-apple-system,sans-serif;
 background:#f4f6f8;color:#111827;text-align:center;padding:1.5rem}
-@media(prefers-color-scheme:dark){body{background:#0f1318;color:#e7eaef}}
+@media(prefers-color-scheme:dark){body{background:#141416;color:#f4f4f6}}
 h1{font-size:1.125rem;margin:0}p{margin:0;opacity:.7;font-size:.875rem}</style></head>
 <body><h1>ออฟไลน์อยู่</h1><p>เชื่อมต่ออินเทอร์เน็ตแล้วลองใหม่อีกครั้ง</p></body></html>`;
 
