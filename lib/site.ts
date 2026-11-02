@@ -144,7 +144,7 @@ export const SITE = {
    * the manifest's background_color for `light`); `primary` is --primary, the
    * manifest's theme_color.
    */
-  themeColor: { light: "#f4f6f8", dark: "#0f1318", primary: "#2357A5" },
+  themeColor: { light: "#f4f6f8", dark: "#141416", primary: "#2357A5" },
 
   /** Language of the pages: <html lang>, the manifest and the JSON-LD. */
   locale: "th",

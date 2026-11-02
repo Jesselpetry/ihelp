@@ -314,7 +314,7 @@ $C ../../app/fonts/THSarabunNew-BoldItalic.woff2 thsarabunnew_bolditalic-webfont
 
 | token | light | dark |
 | --- | --- | --- |
-| `--ink-red` | `#dc2626` | `#fb7185` (คอรัล — `#dc2626` บนพื้น `#171c23` ทั้งคอนทราสต์ต่ำและแสบตา) |
+| `--ink-red` | `#dc2626` | `#fb7185` (คอรัล — `#dc2626` บนพื้น `#1c1c1f` ทั้งคอนทราสต์ต่ำและแสบตา) |
 | `--ink-blue` | `#2563eb` | `#7dd3fc` |
 | `--ink-highlight` | `#fde68a` | `#b45309` |
 

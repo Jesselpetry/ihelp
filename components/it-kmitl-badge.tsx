@@ -65,7 +65,7 @@ export function ItKmitlBadge({
       rel="noopener noreferrer"
       title={TOOLTIP[locale]}
       aria-label={TOOLTIP[locale]}
-      className={`group/it inline-flex items-center gap-1.5 rounded-full border border-border/80 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 px-2.5 py-0.5 text-[10px] font-semibold shadow-2xs transition-all duration-200 hover:bg-zinc-50 dark:hover:bg-zinc-800 hover:border-primary/40 hover:shadow-xs ${className}`}
+      className={`group/it inline-flex items-center gap-1.5 rounded-full border border-border/80 bg-white dark:bg-white/5 text-zinc-900 dark:text-zinc-200 px-2.5 py-0.5 text-[10px] font-semibold shadow-2xs transition-all duration-200 hover:bg-zinc-50 dark:hover:bg-white/10 hover:border-primary/40 hover:shadow-xs ${className}`}
     >
       <ItKmitlLogoSvg className="size-3.5" />
       {label}
