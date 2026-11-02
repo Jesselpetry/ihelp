@@ -10,6 +10,10 @@
 > อ่านทบทวนจากสไลด์สรุปแปลไทยทีละหัวข้อ `itf-sheet-week11-internet-th.pdf` และ
 > [โน้ตสรุปของ Tammadon Suksa (IT24) บน Notion](https://app.notion.com/p/ITF-407363d85cea806abdc6c9ec2254f668) — ฉบับเต็มพร้อมรูปอยู่ [ท้ายหน้า](#โน้ตสรุปจาก-notion-tammadon-suksa-it24)
 
+> **สไลด์เสริม: Infraclover · ITCAMP20** — [เปิดบน Canva](https://www.canva.com/design/DAGCkM3YnoQ/Z7wwI-5nryw8dqHmKzjzog/view) ·
+> สไลด์จากค่าย ITCAMP20 ที่แนะนำให้อ่านเสริมเรื่องเครือข่าย · ไม่ใช่เอกสารของผู้สอน และ*ยังไม่ยืนยัน*ว่าครอบคลุมหัวข้อใดของสัปดาห์นี้ —
+> ถ้าเนื้อหาต่างจากสไลด์วิชา ให้ยึดสไลด์วิชา
+
 ## อ่านจบแล้วต้องตอบได้
 
 - อธิบาย Internet ได้ทั้งแบบ **nuts and bolts** และแบบ **service view**
