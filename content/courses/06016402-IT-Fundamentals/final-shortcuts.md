@@ -35,7 +35,7 @@
 
 | แหล่ง | ใช้ทำอะไร |
 |---|---|
-| [โน้ตสรุปลายมือของเพื่อนร่วมรุ่น (Notion)](https://app.notion.com/p/ITF-407363d85cea806abdc6c9ec2254f668) | ต้นทางของระดับความเน้นและคีย์เวิร์ดที่เพิ่มในสรุปรายสัปดาห์ |
+| [โน้ตสรุปของ Tammadon Suksa (IT24) บน Notion](https://app.notion.com/p/ITF-407363d85cea806abdc6c9ec2254f668) | ต้นทางของระดับความเน้นและคีย์เวิร์ด · ฉบับเต็มพร้อมรูปคัดมาไว้ท้ายหน้าสรุปรายสัปดาห์ Week 08–15 แล้ว |
 | [ภาพรวมและตารางเรียน 1/2569](/courses/06016402-IT-Fundamentals/map?doc=course-materials-2569) | ตารางเรียน แล็บ และไฟล์ทั้งเทอม |
 | [คู่มือทบทวนกลางภาค](/courses/06016402-IT-Fundamentals/summary?doc=midterm-study-guide) · [คลังข้อสอบกลางภาค](/courses/06016402-IT-Fundamentals/quiz) | Week 01–07 ไม่อยู่ในขอบเขตปลายภาค ใช้ทบทวนพื้นฐานเท่านั้น |
 | [OnLearn ITF](https://onlearn.it.kmitl.ac.th/course/view.php?id=1766) | สไลด์ต้นฉบับ คลิปบันทึกการสอน และประกาศของผู้สอน |

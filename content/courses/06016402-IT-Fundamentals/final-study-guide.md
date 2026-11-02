@@ -22,7 +22,7 @@
 | Week 15 · IT Skills and System | [สรุปอ่านสอบ Week 15](/courses/06016402-IT-Fundamentals/map?doc=week15) |
 | ข้อสอบจำลองปลายภาค 60 ข้อ | [Final Mock](/courses/06016402-IT-Fundamentals/mock) |
 | สไลด์สรุปภาษาไทยของแต่ละสัปดาห์ | [คลังไฟล์วิชา ITF](/courses/06016402-IT-Fundamentals/library) (ไฟล์ชื่อลงท้าย `-2569-thai.pdf`) |
-| โน้ตสรุปของเพื่อนร่วมรุ่น (Notion) | [ITF — Notion](https://app.notion.com/p/ITF-407363d85cea806abdc6c9ec2254f668) |
+| โน้ตสรุปของ Tammadon Suksa (IT24) (Notion) — ฉบับเต็มอยู่ท้ายหน้ารายสัปดาห์ | [ITF — Notion](https://app.notion.com/p/ITF-407363d85cea806abdc6c9ec2254f668) |
 
 > โน้ต Notion เป็นงานของเพื่อนร่วมรุ่น ใช้เป็นตัวช่วยทวน ถ้าขัดกับสไลด์ให้ยึดสไลด์ — คู่มือนี้แก้จุดที่ขัดไว้ให้แล้ว (ดูหัวข้อกับดักท้ายเล่ม)
 

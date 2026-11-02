@@ -4,7 +4,7 @@
 >
 > สไลด์บรรยายฉบับ 1/2569 และใบงานแล็บของปีนี้อยู่ในคลังเรียบร้อยแล้ว · สรุปเนื้อหาด้านล่างครอบคลุมทั้ง Digital Skills, Web Server / Deployment และทฤษฎี Information System & SDLC
 
-> **ระดับความเน้นสอบปลายภาค ⭐ อ่านผ่าน จำคีย์เวิร์ด** — มาจากสรุปของเพื่อนร่วมรุ่น ไม่ใช่ประกาศของผู้สอน · สไลด์ฉบับแปลไทยทีละหัวข้อ: `itf-sheet-week15-digital-skills-th.pdf` · [โน้ต Notion](https://app.notion.com/p/ITF-407363d85cea806abdc6c9ec2254f668)
+> **ระดับความเน้นสอบปลายภาค ⭐ อ่านผ่าน จำคีย์เวิร์ด** — มาจากสรุปของเพื่อนร่วมรุ่น ไม่ใช่ประกาศของผู้สอน · สไลด์ฉบับแปลไทยทีละหัวข้อ: `itf-sheet-week15-digital-skills-th.pdf` · [โน้ตสรุปของ Tammadon Suksa (IT24) บน Notion](https://app.notion.com/p/ITF-407363d85cea806abdc6c9ec2254f668) — ฉบับเต็มพร้อมรูปอยู่ [ท้ายหน้า](#โน้ตสรุปจาก-notion-tammadon-suksa-it24)
 
 ## อ่านจบแล้วต้องตอบได้
 
@@ -178,3 +178,87 @@
 4. **การส่งงานและการประเมิน**
    - ส่งผลงานผ่าน OnLearn ในช่องทางส่งงานของ Section ตนเอง
    - ทำแบบประเมินผู้สอนและพี่ TA ภายในวันศุกร์ที่ 30 ต.ค. 2569 เวลา 12:00 น. ผ่าน [กระทู้ OnLearn](https://onlearn.it.kmitl.ac.th/mod/forum/discuss.php?d=877)
+
+---
+
+## โน้ตสรุปจาก Notion · Tammadon Suksa (IT24)
+
+> ขอบคุณ **Tammadon Suksa (IT24)** ที่สรุปและแชร์โน้ตชุดนี้ · คัดลอกจาก [ITF Week 15 บน Notion](https://app.notion.com/p/40b363d85cea80269a19f4494378a336) เมื่อ 1 พ.ย. 2569 พร้อมรูปประกอบ (ภาพสไลด์ของผู้สอนที่ผู้สรุปเขียนโน้ตทับ) · เนื้อหาเป็นสำนวนของผู้สรุป ถ้าต่างจากสไลด์ให้ยึดสไลด์ · จุดที่ iHelp ตรวจแล้วคลาดเคลื่อนมี ⚠️ กำกับไว้
+
+System Development → คือกิจกรรมที่ใช้สร้างระบบสารสนเทศ เรียกว่า System Development life cycle (SDLC)
+SDLC Goal → ระบบที่ตรงตามความต้องการของผู้ใช้ , น่าเชื่อถือ , efficient , พร้อมใช้งาน เเละเสร็จภายในงบประมาณที่กำหนด
+**3 แนวทางปฏิบัติทั่วไป (General Guidelines)**:
+1. **Group activities into phases** (แบ่งกิจกรรมเป็นเฟส)
+2. **Involve users** (ให้ผู้ใช้งานมีส่วนร่วมทุกขั้นตอน)
+3. **Define standards** (กำหนดมาตรฐานการทำงาน)
+
+### 1.Planning Phase (เฟสวางแผน)
+
+เริ่มขึ้นเมื่อ **Steering Committee (คณะกรรมการอำนวยการ)** ได้รับ **Project Request** โดยมี **4 กิจกรรมหลัก**:
+1. **Review and approve project requests** (ทบทวนและอนุมัติคำขอโครงการ)
+2. **Prioritize project requests** (จัดลำดับความสำคัญ)
+3. **Allocate resources** (จัดสรรทรัพยากร)
+4. **Form a project development team** (จัดตั้งทีมพัฒนาโครงการ)
+
+### 2.Analysis Phase (เฟสวิเคราะห์)
+
+เน้นการศึกษาการทำงานระบบเดิม และระบุความต้องการที่แท้จริงของผู้ใช้
+- **2 กิจกรรมหลัก**:
+  1. **Conduct a preliminary investigation**: การสืบสวนเบื้องต้นโดยการสัมภาษณ์ผู้ส่งคำขอเพื่อระบุปัญหา
+  2. **Perform detailed analysis**: ศึกษาการทำงานระบบเดิม กำหนดความต้องการของผู้ใช้ และเสนอทางแก้
+- *เทคนิคการเก็บรวบรวมข้อมูล (Data Gathering Techniques)**
+  - **Review documentation** (ทบทวนเอกสาร)
+  - **Observe** (สังเกตการณ์การทำงานจริง)
+  - **Survey** (แบบสอบถาม: **Closed Questions** วิเคราะห์ง่าย / **Open Questions** ได้ความเห็นหลากหลาย)
+  - **Interview** (สัมภาษณ์: **Structured** มีหัวข้อชัดเจนล่วงหน้า / **Unstructured/Flexible** ยืดหยุ่นปรับตามประเด็น)
+  - **JAD Sessions (Joint Application Design)**: การประชุมร่วมกันระหว่างผู้ใช้ เจ้าของระบบ ผู้บริหาร SA นักออกแบบ และโปรแกรมเมอร์ เพื่อเก็บความต้องการพร้อมกันในคราวเดียว
+- **ประเภทความต้องการ (Requirements)**:
+  - **Functional Requirement**: ฟังก์ชันการทำงานที่ระบบต้องทำได้ (เช่น ถอนเงิน, โอนเงิน)
+  - **Non-functional Requirement**: คุณสมบัติเชิงเทคนิค/ประสิทธิภาพ/ความปลอดภัย (เช่น เขียนด้วยภาษา C++, เข้ารหัส 256-bit, ประมวลผลภายใน 3 วินาที)
+- **ผลลัพธ์สำคัญ**: **System Proposal** เอกสารเสนอทางเลือกที่เป็นไปได้ (เช่น Modify existing system, Buy retail software, Use web apps, Build custom software, Outsource) ให้ Steering Committee พิจารณาอนุมัติก่อนเข้าสู่เฟสถัดไป
+
+### 3.Design Phase (เฟสออกแบบ)
+
+แบ่งออกเป็น **2 กิจกรรมใหญ่**:
+1. *Acquire hardware and software (จัดหาฮาร์ดแวร์/ซอฟต์แวร์)**:
+   - **Identify technical specifications**: กำหนดสเปกผ่านเอกสารการจัดซื้อ (**Procurement Documents**) 3 แบบ:
+     - **RFQ (Request for Quotation)**: ระบุสินค้าชัดเจน แล้วให้ Vendor **เสนอราคา**
+     - **RFP (Request for Proposal)**: ระบุโจทย์ความต้องการ ให้ Vendor **เลือกสินค้าที่เหมาะสมพร้อมเสนอราคา**
+     - **RFI (Request for Information)**: เอกสารไม่เป็นทางการเพื่อ **ขอข้อมูลสินค้า/บริการ** เพิ่มเติม
+   - **Solicit vendor proposals**: ส่งเอกสารให้ Vendor หรือ **VAR (Value-Added Reseller)** ซึ่งเป็นบริษัทที่ซื้อสินค้าจากผู้ผลิตมาขายต่อพร้อมเสนอบริการเสริม
+   - **Test, Evaluate vendor proposals & Make a decision**
+2. *Develop detailed design specifications (ออกแบบรายละเอียดระบบ)**:
+   - **Database design**: ออกแบบฐานข้อมูลร่วมกับ Database Administrator (DBA)
+   - **Input and Output design**: ออกแบบหน้าจอ เมนู และรายงาน (มักออกแบบ Output ก่อน) ทำเป็น **Mock-up** และ **Layout chart**
+   - **Program design**: เตรียม **Program specification package**
+   - **Prototype / Proof of Concept (POC)**: โมเดลการทำงานจริงเพื่อทดสอบฟังก์ชันสำคัญของระบบ
+
+### 4 Implementation Phase (เฟสนำไปปฏิบัติ/สร้างระบบ)
+
+สร้างระบบและส่งมอบให้ผู้ใช้งาน
+- **4 กิจกรรมหลัก**:
+  1. **Develop programs and apps**: เขียนโค้ดพัฒนาโปรแกรมโดย **Full Stack Developer**
+  2. *Install and test the new system (การทดสอบระบบ)**:
+     - **Unit test**: ทดสอบว่าแต่ละโปรแกรม/ออบเจกต์เดี่ยวๆ ทำงานถูกต้อง
+     - **Systems test**: ทดสอบว่าทุกโปรแกรมในแอปพลิเคชันทำงานร่วมกันได้ถูกต้อง
+     - **Integration test**: ทดสอบว่าแอปพลิเคชันทำงานร่วมกับแอปพลิเคชันอื่นได้
+     - **Acceptance test**: ทดสอบระบบด้วย **ข้อมูลจริง (Actual data)** เพื่อการยอมรับของผู้ใช้
+  3. **Train users**: อบรมการใช้งาน (One-on-one, Classroom, Web-based)
+  4. *Convert to the new system (กลยุทธ์การย้ายระบบ 4 แบบ)**:
+     - **Direct conversion**: เลิกใช้ระบบเก่า เปลี่ยนเป็นระบบใหม่ทันที (ตึง/เสี่ยงสุด)
+     - **Parallel conversion**: รันระบบเก่าและระบบใหม่ควบคู่กันไปช่วงหนึ่ง (ปลอดภัยสุด)
+     - **Phased conversion**: ค่อยๆ เปลี่ยนทีละเฟส/ทีละมอดูล
+     - **Pilot conversion**: ทดลองใช้ระบบใหม่เต็มรูปแบบในแผนก/สาขาสาธิตก่อน แล้วค่อยขยายผล
+
+### 5. Support and Security Phase (เฟสสนับสนุนและความปลอดภัย)
+
+การดูแลช่วยเหลือระบบและผู้ใช้งานอย่างต่อเนื่องหลังนำขึ้นใช้งานจริง
+- **3 กิจกรรมหลัก**:
+  1. **Perform maintenance activities** (บำรุงรักษาระบบ)
+  2. **Monitor system performance** (เฝ้าระวังประสิทธิภาพ)
+  3. **Assess system security** (ประเมินความปลอดภัย)
+CI/CD
+CI (Continuous Integration) → การรวมโค้ดเข้าสู่ระบบส่วนกลางตั้งเเต่ Plan → Code → Build → Test → Merge
+CD → มีสองเเบบ
+Continuous Delivery → กระบวนการผ่านการทดสอบเเล้วไปเก็บโค้ดใน repo อัตโนมัติ
+Continuous Deployment → กระบวนการนำโค้ด deploy บน production อัตโนมัติ

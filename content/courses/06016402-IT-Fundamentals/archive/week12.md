@@ -9,7 +9,7 @@
 > collision vs broadcast domain · class/private IP · NAT) และต้อง**คำนวณ IP address · Network ID · Host ID · Subnet mask** ได้ — ฝึกจากหัวข้อ
 > "วิธีคำนวณ IP ทีละขั้น" (§6) ข้างล่าง · ข้อมูลนี้มาจาก**สรุปของเพื่อนร่วมรุ่น ไม่ใช่ประกาศของผู้สอน** — ขอบเขตจริงให้ยึดประกาศใน OnLearn ·
 > อ่านทบทวนจากสไลด์สรุปแปลไทยทีละหัวข้อ `itf-sheet-week12-computer-networks-th.pdf` และ
-> [โน้ต Notion ของเพื่อน](https://app.notion.com/p/ITF-407363d85cea806abdc6c9ec2254f668)
+> [โน้ตสรุปของ Tammadon Suksa (IT24) บน Notion](https://app.notion.com/p/ITF-407363d85cea806abdc6c9ec2254f668) — ฉบับเต็มพร้อมรูปอยู่ [ท้ายหน้า](#โน้ตสรุปจาก-notion-tammadon-suksa-it24)
 
 ## อ่านจบแล้วต้องตอบได้
 
@@ -362,3 +362,230 @@ host bits = 12 → usable = 2¹² − 2 = **4,094**
 **งานที่ต้องส่ง** — โจทย์ `[CONFIG]-ROUTING-1` และ `[CONFIG]-ROUTING-2` บน SecSpace:
 `ctf.it.kmitl.ac.th` → Login ด้วยบัญชี IT → Learning → *Cisco Packet Tracer | ITF 2026* → Labs → ดาวน์โหลดไฟล์ `.pka`
 ทำจนได้ flag แล้ว Submit · flag ของแต่ละคนไม่เหมือนกัน ห้ามส่ง flag ของเพื่อน · โจทย์ที่ 2 มี router 2 ตัว ใช้หลักเดียวกับตัวอย่าง
+
+---
+
+## โน้ตสรุปจาก Notion · Tammadon Suksa (IT24)
+
+> ขอบคุณ **Tammadon Suksa (IT24)** ที่สรุปและแชร์โน้ตชุดนี้ · คัดลอกจาก [ITF Week 12 บน Notion](https://app.notion.com/p/40a363d85cea80bcb6f0c1788845fc26) เมื่อ 1 พ.ย. 2569 พร้อมรูปประกอบ (ภาพสไลด์ของผู้สอนที่ผู้สรุปเขียนโน้ตทับ) · เนื้อหาเป็นสำนวนของผู้สรุป ถ้าต่างจากสไลด์ให้ยึดสไลด์ · จุดที่ iHelp ตรวจแล้วคลาดเคลื่อนมี ⚠️ กำกับไว้
+
+1.Network Topology หรือ physical topology
+→ ลักษณะทางกายภาพ รูปเเบบการเชื่อมต่อคอมพิวเตอร์
+1. Mesh  มีความน่าเชื่อถือและ **Redundancy** สูงสุด หากสายเส้นใดขาด ข้อมูลจะสลับไปใช้เส้นทางอื่นทันที แต่ใช้สายสัญญาณจำนวนมากและมีค่าใช้จ่ายสูงที่สุด
+
+![Week 12 รูปที่ 1 — สไลด์ประกอบโน้ต](/notes/itf/week12/01.webp)
+
+1. Star จัดการง่ายและหาจุดเสียได้สะดวก หากสายของเครื่องใดขาด เครื่องอื่นยังใช้งานได้ปกติ แต่มีจุดอ่อนอยู่ที่ตัวศูนย์กลาง (**Single Point of Failure**)
+
+![Week 12 รูปที่ 2 — สไลด์ประกอบโน้ต](/notes/itf/week12/02.webp)
+
+1. Bus ทุกอุปกรณ์เชื่อมต่อเข้ากับสายนำสัญญาณแกนกลางสายเดียวกัน เรียกว่า **Backbone** หรือ **Bus** โดยมี **Terminator** ปิดอยู่ที่ปลายสายทั้งสองด้าน ประหยัดสายและติดตั้งง่าย แต่ถ้าสาย **Backbone** ขาดเพียงจุดเดียว เครือข่ายจะล่มทั้งระบบ
+
+![Week 12 รูปที่ 3 — สไลด์ประกอบโน้ต](/notes/itf/week12/03.webp)
+
+1. Ring เป็นวงกลมปิด ข้อมูลวิ่งทิศทางเดียวกันทีละโหนด ข้อมูลไม่ชนกัน เเต่ถ้าโหนดใดโหนดนึงขาด วงเเหวนจะล่มทั้งระบบ เหมาะกับพื้นที่ใหญ่ ประหยัดรายจ่าย
+
+   ![Week 12 รูปที่ 4 — สไลด์ประกอบโน้ต](/notes/itf/week12/04.webp)
+
+2. Hybrid with star backbone with three bus หรือ Star + Bus ขยายระบบง่าย เเยกจุดเสียง่าย เเต่ถ้าสาย หลักขาด การสื่อสารข้ามกลุ่มหาย ใช้สายเยอะ
+
+![Week 12 รูปที่ 5 — สไลด์ประกอบโน้ต](/notes/itf/week12/05.webp)
+
+1. Logical Topology (Multiple Access Protocal) → การจัดการการส่งสัญญาณภายใน network
+   - MA → คือข้อกำหนดควบคุมการเชื่อมต่อ ระหว่างอุปกรณ์หลายชุด ที่ใช้ ตัวกลางร่วมกัน common link
+     - จุดประสงค์ MA
+       - 1.ป้องกันการเสือกของอุปกรณ์ไม่เกี่ยวข้อง
+       - 2.ป้องกันการยึดตัวกลางเเต่เพียงผู้เดียว
+   - 2.1 CSMA (Carrier-sense multiple access) ป้องกันการชนกันของข่าวสาร
+     - มันจะเช็คก่อนว่ามีข่าวสารมั้ย ถ้ามี ก็จะไม่ส่ง เเต่ถ้าไม่มี ก็จะส่งไป
+     - BUT!!! มีโอกาสที่จะชนกันอยู่ดี เพราะ → เมื่อส่งข้อมูลไปเเล้วตรวจว่าไม่มี เเต่ จริงๆ เเล้วมี เพราะข่าวสารนั้น มันกำลังส่งมา มันยังไม่ถึงสถานี ก็เลยทำให้เกิด collision ได้
+
+     ![Week 12 รูปที่ 6 — สไลด์ประกอบโน้ต](/notes/itf/week12/06.webp)
+
+   - 2.2 CSMA/CD (Carrier-sense multiple access with Collision detection) ใช้งานจริงในทางปติบัติ
+     - Collision Detection → ดู ACK ว่าส่งข้อมูลสำเร้จหรือไม่ ถ้าไม่เเสดงว่ามันชนกัน จึงต้องส่ง Data Frame ชุดนั้นใหม่อีกรอบ เพื่อไม่ให้เกิดการชนซ้ำจึงใช้หลักการ Back off
+       - ⚠️ **หมายเหตุ iHelp:** CSMA/CD บนสาย Ethernet ตรวจการชน*ระหว่างที่ยังส่งอยู่* โดยฟังสัญญาณบนสายไปพร้อมกัน — เจอชนก็หยุดส่ง ส่ง jam signal แล้วค่อย back off · การรอ ACK เพื่อดูว่าส่งสำเร็จไหมเป็นวิธีของ **CSMA/CA** ใน Wi-Fi (Week 13)
+     - หลักการ Back off → สุ่มเวลาการรอตั้งหลัก ในช่วง 0 ถึง 2 กำลัง n เท่า ของ Propagation Delay ในตัวกลาง เมื่อ N คือจำนวนครั้งงที่ back off
+   - 2.3 Token Passing → วิธีนี้เครือข่ายต้องมีโครงสร้างเเบบ Ring (Logical หรือ Physical)
+     - หลักการคือ จะส่ง Packet พิเศษก็คือ Token วิ่งอยู่ใน Ring ถ้าสถานีไหนใน Ring จะส่งข้อมูล มันจะยึด Token มาไว้ที่สถานีนั้น เเล้วมันจะบรรจุลงใน Data Frame จนกว่า Token จะหมดเวลา ถ้าหมดเวลา ก็จะส่งกลับคืนเข้าไปใน Ring ต่อไป
+     - Image concept
+
+     ![Week 12 รูปที่ 7 — สไลด์ประกอบโน้ต](/notes/itf/week12/07.webp)
+
+2. Network Communication Standard
+   - 3.1 Ethernet
+     - Physical topology → star , bus
+     - logical topology → CSMA/CD
+
+     ![Week 12 รูปที่ 8 — สไลด์ประกอบโน้ต](/notes/itf/week12/08.webp)
+
+   - วิวัฒนาการ Ethernet
+     - 3.1.1 Standard Ethernet
+     - Ex. 10Base5 → 10 คือ Mbps , Base คือ Baseband ก็คือ Digital , 5 คือความยาวสาย
+       - ⚠️ **หมายเหตุ iHelp:** เลขท้ายบอกความยาวสายสูงสุดเป็นหน่วยร้อยเมตร — 10Base5 ยาวได้ 500 m, 10Base2 ราว 185 m (ปัดเป็น 2)
+     - ส่วน T คือ UTP มันก็คือ สาย Unshielded Twisted pair เช่น LAN
+     - ส่วน F คือ Fiber เช่นสาย Fiber Optic
+
+     ![Week 12 รูปที่ 9 — สไลด์ประกอบโน้ต](/notes/itf/week12/09.webp)
+
+   - 3.2 Change in standard
+     - 1.network ที่มีสะพานกับไม่มี
+
+     ![Week 12 รูปที่ 10 — สไลด์ประกอบโน้ต](/notes/itf/week12/10.webp)
+
+     - ถ้า Without Bridge ในรูปบน จะเกิด Collision ง่าย
+     - ถ้า With Bridge → อธิบายการเเบ่ง Subnet mask
+       - ยกตัวอย่าง 161.246.18.x /26
+       - /26 ตรงนี้คือ Prefix หรือ CIDR จำนวนที่เเบ่งจำนวนบิต เเละถูกล็อกไว้เป็น Network ID ทั้หมด 26 บิตเเรกนับจากซ้าย ก็จะเป็น 11111111 11111111 11111111 11000000
+       - พอเเปลงเเล้วมันจะได้เป็น 255.255.255.192
+       - 192 ตรงนี้คือ Subnetmask
+       - เอา 256 - Subnet Mask ได้ = 64
+       - หมายความว่าใน 1 วงย่อย จะมีทั้งหมด 64 IP
+       - เเละ ใน สองบิต ซ้ายด้านหน้า ที่เป็นชุดที่ 4 11000000
+       - เลข 11 ด้านหน้า จะเป็นตัวในการคำนวณ วงของเครื่อง คิดจากบิตก็คือ 2กำลัง n n คือจำนวน bit อย่างตัวอย่าง คือ 2 bit ก็คือ 2 กำลัง 2
+       - งั้นหมายความว่ามันมีทั้งหมด 4 วง โดย 1 วงมีทั้งหมด 64 IP ก็จะสามารถ Access ในเเต่ละ IP ในเเต่ละวงได้ ทั้งหมด 64*4 = 256 เครื่อง
+       - เเต่อย่าลืม ในเเต่ละวง - ด้วยสอง เนื่องจากมี
+       - Network Address IP กับ Broadcast Address IP
+         - Network Address IP → หมายเลขเเรกสุด ใช้ระบุชื่อวง
+         - Broadcast Address IP → หมายเลขสุดท้ายของวง (ใช้ระบุข้อมูลหาทุกเครื่องในวง)
+       - เเสดงตัวอย่างนี้ก็หมายความว่ามีทั้งหมด 248 เครื่องหรือ 248 IP ที่สามารถ Access ได้
+       - *** สามารถดูรูป Ref ได้ รูปก่อนหน้านะ ไม่ใช่รูปด้านล่างนี้ ***
+
+     ![Week 12 รูปที่ 11 — สไลด์ประกอบโน้ต](/notes/itf/week12/11.webp)
+
+     1. Switched Ethernet เเยก Collision Domain ออกจากกัน ช่วยขจัดข้อมูลชนกันข้ามเครื่อง
+
+     ![Week 12 รูปที่ 12 — สไลด์ประกอบโน้ต](/notes/itf/week12/12.webp)
+
+     1. Full-duplex switched Ethernet → มี Transmit เเละ Receiver 2 ทางพร้อมกัน เเละ Zero Collision
+   - 3.3 Fast Ethernet → Point-to-Point , Star Topology
+
+     ![Week 12 รูปที่ 13 — สไลด์ประกอบโน้ต](/notes/itf/week12/13.webp)
+
+   - 3.4 Gigabit Ethernet → Point-to-Point , star , Two stars , Hierarchy of star Topologies
+
+   ![Week 12 รูปที่ 14 — สไลด์ประกอบโน้ต](/notes/itf/week12/14.webp)
+
+   ![Week 12 รูปที่ 15 — สไลด์ประกอบโน้ต](/notes/itf/week12/15.webp)
+
+   ![Week 12 รูปที่ 16 — สไลด์ประกอบโน้ต](/notes/itf/week12/16.webp)
+
+   - 3.5 Ten-Gigabit Ethernet
+     - PMD (Physical Media Dependent) → ตัวรับสัญญาณของไฟเบอร์ ทำหน้าที่เเปลงข้อมูลให้สามารถส่งผ่านไปยังสายสัญญาณที่ใช้ได้
+
+     ![Week 12 รูปที่ 17 — สไลด์ประกอบโน้ต](/notes/itf/week12/17.webp)
+
+     ![Week 12 รูปที่ 18 — สไลด์ประกอบโน้ต](/notes/itf/week12/18.webp)
+
+3. Connecting LAN
+   - 4.1 Connecting Devices
+
+     ![Week 12 รูปที่ 19 — สไลด์ประกอบโน้ต](/notes/itf/week12/19.webp)
+
+   - Physical Layer → Passive Hub → ไม่มีข้อมูลวิ่งผ่านเป็นเเค่จุดต่อสายทางกายภาพ
+   - Physical Layer → Repeater or hub → ทำงานกับสัญญาณไฟฟ้าหรือเเสงในระดับ bit ไว้ขยายสัญญาณ
+   - Data link Layer → Bridge or two layer switch → ทำในระดับ Frame หน้าที่ตรวจสอบเเละใช้ MAC Address ส่งต่อข้อมูล เเละเเยก Collision Domain ออกจากกัน
+   - Network Layer → Router or three layer switch → ทำในระดับ Packets หน้าที่ตรวจสอบ ip address ในการ routing เพื่อส่งข้อมูลข้าม Subnet เเละเเยก Broadcast domain
+   - Transport And Application Layer → หน้าที่เเปลง Protocal ทำให้เครือข่ายหรือเเอพพลิเคชันที่ใช้คนละ protocal สื่อสารกันได้
+   - 4.2 Repeater หลักการเหมือน Redstone Repeater ใน Minecraft มันสร้าง สัญญาณใหม่ ที่เหมือนกันเปี้ยบก่อนหน้า เเล้วส่งต่อไปเพิ่ม
+   - 4.3 Bridge or Layer2 Switch → Concept คือการเชื่อม LAN โดย มี Bridge table อยู่ตรงกลาง คอยเชื่อม ระหว่าง Port สองตัว โดยเก็บเป็น Mac address
+
+   ![Week 12 รูปที่ 20 — สไลด์ประกอบโน้ต](/notes/itf/week12/20.webp)
+
+   - 4.4 Router or Layer3 Switch → concept LAN เครือข่ายภายใน ต่อกับ Router เเล้วไอ Router ที่ต่อเนี่ย มันก็ไปเชื่อมกับ router อีกตัวนึง เป็น WAN จากนั้นก็จะสามารถข้อมุลที่ส่งออกไปเป็น internet
+
+   ![Week 12 รูปที่ 21 — สไลด์ประกอบโน้ต](/notes/itf/week12/21.webp)
+
+   - 4.5. Backbone Network
+     - Concept คือ สามารถเชื่อมต่อ LAN หลายๆวงเข้าด้วยกันได้ เเละ Station ไม่ต้องต่อตรงเข้ากับ Backbone เลย เพราะ Station มันคือส่วนนึงของ LAN อยู่เเล้ว เเละ Backbone มันเชื่อมกับ LAN อีกที ในที่นี้ backbone → มันคือเเกนกลางเชื่อมต่อ ของ LAN หลายๆวงเข้าด้วยกัน เปรียบเสมือน กระดูกสันหลัง หรือเเกนหลัก ตามรูปงับ
+
+     ![Week 12 รูปที่ 22 — สไลด์ประกอบโน้ต](/notes/itf/week12/22.webp)
+
+     ![Week 12 รูปที่ 23 — สไลด์ประกอบโน้ต](/notes/itf/week12/23.webp)
+
+4. Logical Addressing
+   - 5.1 IP Version4 Address → มี 32 bits เเบ่งเป็น 4 ชุด
+
+   ![Week 12 รูปที่ 24 — สไลด์ประกอบโน้ต](/notes/itf/week12/24.webp)
+
+   - IPv4 Address Component
+
+   ![Week 12 รูปที่ 25 — สไลด์ประกอบโน้ต](/notes/itf/week12/25.webp)
+
+   - IP Address คือรวมกัน
+   - Network ID คือวงเครือข่าย
+   - Host ID คือ IP ตัวเครื่อง
+   - Subnet Mask คือป้ายขีดเเบ่ง ระหว่าง Network ID เเละ Host ID
+   - ตามตัวอย่างเเรก 10.16.127.104 → ชุดเเรก หรือ 8 bit เเรก คือ Network ID เเละ 8 bit 3 ชุดหลังมันคือ Host ID หมายความว่า เครื่องนี้มีเครื่องย่อยที่สามารถใช้ได้ทั้งหมด 2กำลัง 24 ก็คือ 16 ล้านกว่าๆ
+   - สรุป → IP Address (32 bits) = Network ID + Host ID
+   - 5.2 การตั้งค่า ipv4
+
+   ![Week 12 รูปที่ 26 — สไลด์ประกอบโน้ต](/notes/itf/week12/26.webp)
+
+   - 5.3 IP Address & Subnet Mask
+
+   ![Week 12 รูปที่ 27 — สไลด์ประกอบโน้ต](/notes/itf/week12/27.webp)
+
+   - เวลาหาค่าNetwork ID
+   - ใน คอมพิวเตอร์ เวลา ดู IP มันก็จะมีพวก DNS , gateway ทางออก Internet , หรือออกไป network อื่น
+   - Dns server → ทำหน้าที่เเปลง domain name ที่เราสนใจ
+   - ถ้า DNS sever พังหรือไม่มี เราจะเข้าเเค่ www ชื่อ domain ไม่ได้
+   - ของ Google 8.8.8.8 DNS
+
+   ![Week 12 รูปที่ 28 — สไลด์ประกอบโน้ต](/notes/itf/week12/28.webp)
+
+   - วิธีการหา Network ID โดยการใช้ IP Address เเละเเบ่ง วง /16 ตามตัวยอย่าง
+     - 5.4 Network ID → ถ้าอยู่ใน Network ID เดียวกันจะสามารถสื่อสารกันได้ เช่นตามรูป
+
+     ![Week 12 รูปที่ 29 — สไลด์ประกอบโน้ต](/notes/itf/week12/29.webp)
+
+   - 5.5 การสื่อสารในเครือข่ายคอมพิวเตอร์
+
+     ![Week 12 รูปที่ 30 — สไลด์ประกอบโน้ต](/notes/itf/week12/30.webp)
+
+     ![Week 12 รูปที่ 31 — สไลด์ประกอบโน้ต](/notes/itf/week12/31.webp)
+
+     - ISP ก็จะให้เลข Address จริงๆมา 1 addressตามรูปด้านล่าง
+
+     ![Week 12 รูปที่ 32 — สไลด์ประกอบโน้ต](/notes/itf/week12/32.webp)
+
+   1. Types of Communication in an IPv4 Network
+      - Unicast → ส่งรายคน
+      - Broadcast → ส่งไปทุกคน → Destination 255.255.255.255 หรือ All 1
+      - Multicast → ส่งเป็น Group → เราต้องไป Group IP Class(D) ในวงนั้นก่อน ก่อนที่เราจะส่งไป จากนั้น เครื่องปลายทางที่สนใจเเละต้องการข้อมูลนั้นก็กดเข้าไปที่ IP ที่จอง
+   2. Class of IPv4
+
+      ![Week 12 รูปที่ 33 — สไลด์ประกอบโน้ต](/notes/itf/week12/33.webp)
+
+      ![Week 12 รูปที่ 34 — สไลด์ประกอบโน้ต](/notes/itf/week12/34.webp)
+
+      - รูปภาพด้านบน
+      - Blocksize มันคือ Host ID ทั้งหมดที่มีได้
+      - Number of blocks มันก็คือ Network ID จำนวนของมัน
+
+      ![Week 12 รูปที่ 35 — สไลด์ประกอบโน้ต](/notes/itf/week12/35.webp)
+
+      - Classful IP Address - Class C
+        - ตัวเเรกสุดกับท้ายสุดที่สงวนไว้มีดังนี้
+          - Network Address : เช่น 210.20.77.0 → ตัวเเรกสุดไว้ระบุตัวเองของวงนั้นทั้งวง LAN
+          - Broadcast Address : เช่น 210.20.77.255 → ตัวท้ายสุดไว้กระจายพวก packet ให้ทุกเครื่องในวงนั้น
+          - เช่นเดียวกันกับทั้ง Class B เเละ Class A ขึ้นอยู่กับ Subnet mask หรือจำนวน bit ของ Host ID
+
+      ![Week 12 รูปที่ 36 — สไลด์ประกอบโน้ต](/notes/itf/week12/36.webp)
+
+      - Number of useable host addresses จำนวน Host ID ที่ว่างให้เข้าไปใช้งานในวงนั้นๆ
+      - Address Depletion → Concept ปี 1991 IP เริ่มหมด เครือข่าย Internet มันมีขนาดใหญ่ขึ้น ทำให้ IP 32 Bit เลยอาจจะไม่พอ เลยต้องใช้วิธีหลายๆอย่างดังนี้
+
+        ![Week 12 รูปที่ 37 — สไลด์ประกอบโน้ต](/notes/itf/week12/37.webp)
+
+      - จำว่ามีวิธี NAT ตามรูป → Concept เเปลง Private IP ให้เป็น Public เเละเเปลงข้อมูลกลับตอนข้อมูลตอบกลับ เเปลงเพื่อให้อุปกรณ์หลายตัวใน LAN ใช้ Public IP เดียวกันออก net ได้
+
+      ![Week 12 รูปที่ 38 — สไลด์ประกอบโน้ต](/notes/itf/week12/38.webp)
+
+      - Private Address  → IP Address ที่ไม่เชื่อม Internet
+
+      ![Week 12 รูปที่ 39 — สไลด์ประกอบโน้ต](/notes/itf/week12/39.webp)
+
+สรุป Internet มันก็คือการเชื่อมต่อ ระหว่างเครือข่ายอย่างในรูป เชื่อมต่อ เเบบ LAN โดยมี router ในการสื่อสาร
+
+![Week 12 รูปที่ 40 — สไลด์ประกอบโน้ต](/notes/itf/week12/40.webp)

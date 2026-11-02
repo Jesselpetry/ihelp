@@ -5,7 +5,7 @@
 > สไลด์ Lecture 14 *Introduction to Web Technology* ฉบับ 1/2569 อยู่ในคลังแล้ว (ตารางด้านล่าง) ส่วนคลิปบันทึกการสอนอยู่ใน OnLearn แต่ยังไม่อยู่ในคลัง —
 > สรุปหัวข้อ 1–4 มาจากสไลด์ปีก่อน *Focus on Web Technology* ของ รศ.ดร. ปานวิทย์ ธุวะนุติ (74 หน้า) ส่วนหัวข้อ 5 เสริมจากสไลด์ 2569 · ถ้าเนื้อหาต่างกันให้ยึดฉบับใน OnLearn
 
-> **ระดับความเน้นสอบปลายภาค ⭐⭐ เน้นปานกลาง** — มาจากสรุปของเพื่อนร่วมรุ่น ไม่ใช่ประกาศของผู้สอน · สไลด์ฉบับแปลไทยทีละหัวข้อ: `itf-sheet-week14-web-technology-th.pdf` · [โน้ต Notion](https://app.notion.com/p/ITF-407363d85cea806abdc6c9ec2254f668)
+> **ระดับความเน้นสอบปลายภาค ⭐⭐ เน้นปานกลาง** — มาจากสรุปของเพื่อนร่วมรุ่น ไม่ใช่ประกาศของผู้สอน · สไลด์ฉบับแปลไทยทีละหัวข้อ: `itf-sheet-week14-web-technology-th.pdf` · [โน้ตสรุปของ Tammadon Suksa (IT24) บน Notion](https://app.notion.com/p/ITF-407363d85cea806abdc6c9ec2254f668) — ฉบับเต็มพร้อมรูปอยู่ [ท้ายหน้า](#โน้ตสรุปจาก-notion-tammadon-suksa-it24)
 
 ## อ่านจบแล้วต้องตอบได้
 
@@ -181,3 +181,81 @@ uGbbBMKC10Q | คลิปย้อนหลัง Lab 14 (ศ. 16 ต.ค. 69)
    - **โฟลเดอร์ `week14` (ทำเอง):** ผูกปุ่มเพิ่มรายการสร้าง `<li>` พร้อมปุ่มลบ, กดปุ่มลบแล้วลบ `<li>` ออกจากหน้า, บันทึกสถานะลง Local Storage ทุกครั้งที่มีการเปลี่ยนแปลง
    - **โฟลเดอร์ `week14-ai` (ใช้ AI):** ก๊อปปี้ไฟล์จาก `week13-ai` สั่งงานผ่าน CLI Agent (OpenCode) ด้วย Prompt ระบุ **เป้าหมาย · ข้อจำกัด · โครงสร้าง id · การทำงาน** พร้อมแคปภาพหน้าจอคำสั่ง Prompt
    - **ส่งงาน:** ZIP `lab14-รหัสนักศึกษา.zip` (ประกอบด้วยโฟลเดอร์ `week14`, `week14-ai` และภาพ prompt)
+
+---
+
+## โน้ตสรุปจาก Notion · Tammadon Suksa (IT24)
+
+> ขอบคุณ **Tammadon Suksa (IT24)** ที่สรุปและแชร์โน้ตชุดนี้ · คัดลอกจาก [ITF Week 14 บน Notion](https://app.notion.com/p/40b363d85cea8048b37cdcd360f4f1c7) เมื่อ 1 พ.ย. 2569 พร้อมรูปประกอบ (ภาพสไลด์ของผู้สอนที่ผู้สรุปเขียนโน้ตทับ) · เนื้อหาเป็นสำนวนของผู้สรุป ถ้าต่างจากสไลด์ให้ยึดสไลด์ · จุดที่ iHelp ตรวจแล้วคลาดเคลื่อนมี ⚠️ กำกับไว้
+
+web server → req จาก user ส่ง res กลับไปให้ ทำผ่าน http
+static web → no backend เว้บเเข็งทื่อๆ → Website
+dynamic web → connect db , realtime interact → Webapp
+Server-Side Rendering (SSR) → client ส่ง req backend ดึง db or api response html กลับไป browser
+client ส่ง http req ตัวคุยกะ web server → webserver ส่ง output หรือ res กลับมา
+
+![Week 14 รูปที่ 1 — สไลด์ประกอบโน้ต](/notes/itf/week14/01.webp)
+
+![Week 14 รูปที่ 2 — สไลด์ประกอบโน้ต](/notes/itf/week14/02.webp)
+
+W3C หรือองค์กร World Wide Web Consortium → ผู้กำหนดมาตรฐาน html เเละมี html5 validator free หรืออีกอย่างนึงเรียกว่า องค์กรระหว่างประเทศที่ทำหน้าที่จัดระบบมาตรฐานที่ใช้งานบน www
+
+![Week 14 รูปที่ 3 — สไลด์ประกอบโน้ต](/notes/itf/week14/03.webp)
+
+![Week 14 รูปที่ 4 — สไลด์ประกอบโน้ต](/notes/itf/week14/04.webp)
+
+![Week 14 รูปที่ 5 — สไลด์ประกอบโน้ต](/notes/itf/week14/05.webp)
+
+html parser → เเปลงโค้ดโครงสร้างทั้งหมด ให้กลายเป็น DOM node หรือ DOM tree
+
+![Week 14 รูปที่ 6 — สไลด์ประกอบโน้ต](/notes/itf/week14/06.webp)
+
+![Week 14 รูปที่ 7 — สไลด์ประกอบโน้ต](/notes/itf/week14/07.webp)
+
+![Week 14 รูปที่ 8 — สไลด์ประกอบโน้ต](/notes/itf/week14/08.webp)
+
+![Week 14 รูปที่ 9 — สไลด์ประกอบโน้ต](/notes/itf/week14/09.webp)
+
+![Week 14 รูปที่ 10 — สไลด์ประกอบโน้ต](/notes/itf/week14/10.webp)
+
+![Week 14 รูปที่ 11 — สไลด์ประกอบโน้ต](/notes/itf/week14/11.webp)
+
+Javascript → ทำงานบน web browser เป็นหลัก
+เเต่ เขาชอบมาเลย js เนี่ยอยากใช้ข้างนอกบ้างเลยมีสิ่งที่เรียกว่า Node.js ขึ้นมา เป็น Js runtime environment ใช้ได้ทุกอย่าง เขียนอ่าน os เข้าถึง backend api บลาๆ up to u
+ตัวอย่าง Stack
+
+![Week 14 รูปที่ 12 — สไลด์ประกอบโน้ต](/notes/itf/week14/12.webp)
+
+SIngle Page application
+Traditional Page: ส่งคำขอ $\rightarrow$ Server ส่งกลับเป็น HTML ทั้งหน้า $\rightarrow$ ต้อง Page Reload ใหม่ทั้งหมด
+**SPA:** ส่งคำขอผ่าน **AJAX** →Server ส่งกลับแค่ **JSON (ข้อมูลดิบ)** → อัปเดตเฉพาะจุด **ไม่มี Page Reload**
+**SSR:** Server ส่ง **HTML พร้อมข้อมูล** มาให้ → พอเปลี่ยนหน้า ต้อง **Reload ใหม่ทั้งหน้า** (มีช่วงหน้าขาว)
+**SPA:** โหลดโครงและ JS ครั้งแรกครั้งเดียว → หลังจากนั้นยิงดึงแค่ **Data** มาอัปเดตเฉพาะจุด → **ไม่ต้อง Reload หน้าเว็บ**
+
+![Week 14 รูปที่ 13 — สไลด์ประกอบโน้ต](/notes/itf/week14/13.webp)
+
+Web deploy
+1.FTP/TLS File Transfer protocal / transport layer security
+FTP → การเเลกเปลี่ยนไฟล์ FTP ยิง req ไปที่ FTP server ส่ง ไฟล์มาให้ client โดยมีการเข้ารหัสด้วย TLS
+2.SCP (Secure copy) SSH (Secure Shell) การคัดลอกรับส่งไฟล์ระหว่างเครื่อง โดยวิ่งผ่านท่อความปลอดภัยคือ SSH
+3.SSH/GIT ใช้ version control มา deploy ผ่านโปรโตคอล ssh
+
+![Week 14 รูปที่ 14 — สไลด์ประกอบโน้ต](/notes/itf/week14/14.webp)
+
+API
+
+![Week 14 รูปที่ 15 — สไลด์ประกอบโน้ต](/notes/itf/week14/15.webp)
+
+Rest API
+
+![Week 14 รูปที่ 16 — สไลด์ประกอบโน้ต](/notes/itf/week14/16.webp)
+
+![Week 14 รูปที่ 17 — สไลด์ประกอบโน้ต](/notes/itf/week14/17.webp)
+
+GraphQL
+
+![Week 14 รูปที่ 18 — สไลด์ประกอบโน้ต](/notes/itf/week14/18.webp)
+
+เทียบ Rest api กับ graphql
+
+![Week 14 รูปที่ 19 — สไลด์ประกอบโน้ต](/notes/itf/week14/19.webp)

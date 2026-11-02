@@ -8,7 +8,7 @@
 > และจำ **keyword** ให้ได้ (encapsulation · packet switching · routing vs forwarding · tier-1 ISP / IXP · packet sniffing / IP spoofing / DoS) ·
 > ข้อมูลนี้มาจาก**สรุปของเพื่อนร่วมรุ่น ไม่ใช่ประกาศของผู้สอน** — ขอบเขตจริงให้ยึดประกาศใน OnLearn ·
 > อ่านทบทวนจากสไลด์สรุปแปลไทยทีละหัวข้อ `itf-sheet-week11-internet-th.pdf` และ
-> [โน้ต Notion ของเพื่อน](https://app.notion.com/p/ITF-407363d85cea806abdc6c9ec2254f668)
+> [โน้ตสรุปของ Tammadon Suksa (IT24) บน Notion](https://app.notion.com/p/ITF-407363d85cea806abdc6c9ec2254f668) — ฉบับเต็มพร้อมรูปอยู่ [ท้ายหน้า](#โน้ตสรุปจาก-notion-tammadon-suksa-it24)
 
 ## อ่านจบแล้วต้องตอบได้
 
@@ -205,3 +205,204 @@
   ดาวน์โหลดไฟล์ `.pka` ทำจน PC ส่งข้อมูลถึง server ได้ แล้วนำ flag ที่ได้ไปส่งในหน้าโจทย์
 - โจทย์ Layer 2 ในคอร์สคือ `[CONFIG]-VLAN-1` และ `[CONFIG]-VLAN-2` — ถ้า PC ไปไม่ถึง server ให้ตรวจ VLAN ก่อน
 - วิธีเข้า SecSpace และคำสั่ง Cisco IOS อยู่ในหัวข้อแล็บของ [Week 12](/courses/06016402-IT-Fundamentals/map?doc=week12)
+
+---
+
+## โน้ตสรุปจาก Notion · Tammadon Suksa (IT24)
+
+> ขอบคุณ **Tammadon Suksa (IT24)** ที่สรุปและแชร์โน้ตชุดนี้ · คัดลอกจาก [ITF Week 11 บน Notion](https://app.notion.com/p/40a363d85cea80dcae3ec418e2b2a360) เมื่อ 1 พ.ย. 2569 พร้อมรูปประกอบ (ภาพสไลด์ของผู้สอนที่ผู้สรุปเขียนโน้ตทับ) · เนื้อหาเป็นสำนวนของผู้สรุป ถ้าต่างจากสไลด์ให้ยึดสไลด์ · จุดที่ iHelp ตรวจแล้วคลาดเคลื่อนมี ⚠️ กำกับไว้
+
+Week 11 Internet
+1.What is the Internet
+Internet → Inter + network
+nuts and bolt → คือสำนวน เเปลว่า หลักปฎิบัติขั้นพื้นฐาน
+Internet → เชื่อมต่อกับ computing device หลายล้านทั่วโลก
+มุมมองของ nut and bolts
+**Hosts / End Systems (อุปกรณ์ปลายทาง)**: คอมพิวเตอร์, สมาร์ตโฟน, หรือเซิร์ฟเวอร์ที่อยู่ตรงขอบของเครือข่าย (Network Edge) และเป็นตัวรันแอปพลิเคชันต่างๆ
+**Packet Switches (อุปกรณ์ส่งต่อข้อมูล)**: ทำหน้าที่รับและส่งต่อก้อนข้อมูล (Packet) ไปยังเป้าหมาย ได้แก่ **Router** และ **Switch**
+**Communication Links (สาย/ตัวกลางสื่อสาร)**: ช่องทางเชื่อมต่อ เช่น สายใยแก้วนำแสง (Fiber), สายทองแดง (Copper), หรือคลื่นวิทยุ/ดาวเทียม โดยมีความเร็วในการส่งข้อมูลเรียกว่า **Bandwidth ,** Optical Fiber → Faster
+**Networks (ระบบเครือข่าย)**: กลุ่มของอุปกรณ์ ลิงก์ และ Router ที่ถูกบริหารจัดการร่วมกันโดยองค์กรต่างๆ (เช่น เครือข่ายบ้าน, เครือข่ายองค์กร หรือ ISP ผู้ให้บริการอินเทอร์เน็ต)
+เวลาส่งข้อมูลไปที่ End system มันจะ เเบ่งข้อมูลเป็นชิ้นย่อยๆก่อน ก็คือ Segment ออกมา จากนั้นจะเพิ่ม Header ข้อมูลส่วนหัวไปในเเต่ละชิ้น   
+จากนั้นก้อนข้อมูลที่ได้ จะเรียกว่า Packets จะถูกส่งไปยัง End system ปลายทางที่รับ   
+จากนั้นก็จะนำข้อมูลเเต่ส่วนหัวมาประกอบเข้าด้วยกัน
+Encapsulation → การห่อหุ้มข้อมูล
+นำข้อมูลมาเเบ่งเป็นชิ้นย่อยเพิ่มข้อมูล Header เเต่ละชิ้นไปในเเต่ละชั้นของ Layer
+ไอเดียของ Encapsulation ตามรูป
+
+![Week 11 รูปที่ 1 — สไลด์ประกอบโน้ต](/notes/itf/week11/01.webp)
+
+TCP/IP ใช้ หลักการ Encapsulation ง่ายๆ
+Application Layer → สร้าง Data หรือ Message ขึ้นมา
+Transport Layer → สร้าง Header โปรโตคอลขนส่ง ในรูปคือ TCP เพื่อระบุ Port เเละการเชื่อมต่อ ชั้นนี้เรียกว่า   
+                                    Segment
+Internet Layer → สร้าง Header ของ IP ครอบไปอีกชั้น ชั้นนี้คือระบุ Address ต้น-ปลายทาง ชั้นนี้คือ  Packet                                    หรือ Datagram
+Data Link Layer → สร้าง Header เเละ Trailer ตามรูป เพื่อระบุ MAC Address (Physical Address) ใช้ตรวจจับ                                   ข้อผิดพลาด ชั้นนี้เรียกว่า Frame
+Physical Layer → เเปลงข้อมูลทั้งหมด เป็นสัญญาณ Transmit Bits (ตัวเลข Binary ที่ส่งเป็น สัญญาณไฟฟ้า หรือคลื่นวิทยุ)
+Encapsulation → Message → Segment → Packet (Datagram) → Frame
+
+![Week 11 รูปที่ 2 — สไลด์ประกอบโน้ต](/notes/itf/week11/02.webp)
+
+เพื่อให้เห็นภาพมากขึ้นตอนเวลาส่งข้อมุลไปยัง End system destination
+
+![Week 11 รูปที่ 3 — สไลด์ประกอบโน้ต](/notes/itf/week11/03.webp)
+
+ประเภทของ Packet Switch → มีเยอะ เเต่สำคัญสองเเบบ
+Router → โดยทั่วไปใช้งานใน network core เครือข่ายเเกนกลางหลัก
+Link-layer switches → ถุกใช้งานใน access network (วงภายใน)
+สวิตซืทั้งสองอย่างทำหน้าที่ส่ง Packet → ultimate destination
+
+packet ที่เดินทางผ่าน packet switch เดินทางตั้งเเต่ sending end system ถึง receiving end system  
+เรียกว่า route หรือ path ผ่าน network
+End system หรือเครื่องของผู้ใช้อย่างเรา เข้าถึง Internet ผ่าน ISPs หรือ Internet Service Providers เช่น AIS True
+
+ISPs ให้บริการ network access หลายรูปเเบบ
+residential broadband access เช่น cable modem หรือ DSL
+High-speed local area network access
+wireless access
+56 kbps dial-up modem access
+
+Internet คือการเขื่อมต่อ end system เข้าด้วยกัน มี ISPs ที่ให้บริการ access เเก่ end system
+Concept image
+
+![Week 11 รูปที่ 4 — สไลด์ประกอบโน้ต](/notes/itf/week11/04.webp)
+
+Lower-tier ISPs เชื่อมต่อถึง upper-tier ISPs ทั้งระดับชาติเเละประเทศ เช่น  
+**Level 3 Communications**  **AT&T** (USA), **Sprint** (USA), และ **NTT** (Japan)  
+  
+Upper-tier ISP ประกอบด้วย
+high speed router เชื่อมด้วย high speed fiber optic link
+รันบน IP protocal
+Tier 1 → ระดับใหญ่สัสเร็วเเรงด้วย พวก AT&T มีเคเบิ้ลใต้น้ำเบิ้มๆเลย
+Tier 2 → ไก่ลงมาหน่อย AIS True
+Tier 3 → ตามรูปเลย
+
+![Week 11 รูปที่ 5 — สไลด์ประกอบโน้ต](/notes/itf/week11/05.webp)
+
+Protocals มีอยู่ทุกที่
+ควบคุมการส่งเเละรับ msg เช่น HTTP , streaming video , TCP , IP, Wifi
+มาตรฐาน Internet (Internet Standard) → สร้างขึ้นโดย IETF (Internet Engineering Task Force)
+RFC → Request for comment (เอกสารมาตรฐานออกโดย หน่วยงาน IETF)
+IETF → Internet Engineering Task Force
+
+End system , packet switch เเละองค์ประกอบอื่นๆของอินเทอร์เน็ต จะรัน protocal  ควบคุมการส่งข้อมูล
+TCP → Transmission Control Protocal → เเบ่งข้อมูลเป็นชิ้นเล็กๆที่เรียกว่า Packet
+> ⚠️ **หมายเหตุ iHelp:** ชิ้นข้อมูลของ TCP เรียก **segment** — คำว่า packet / datagram ใช้กับชั้น IP (ดูลำดับ Encapsulation ข้างบน)
+IP → Internet Protocal → กำหนดที่อยู่ IP Address
+สองอย่างนี้สำคัญที่สุดในอินเทอร์เน็ต
+
+ตัวอย่างข้อสอบ
+
+![Week 11 รูปที่ 6 — สไลด์ประกอบโน้ต](/notes/itf/week11/06.webp)
+
+Internet a service view คืออะไร
+Infrastructure → ให้บริการเเก่ application พวก web , strearming , game , email
+programming interface → ได้เเก่ hook ที่ช่วยให้ sending receiving app สามารถ connect เพื่อใช้งาน transport service
+application ถูกเรียกว่า distribute application
+End system เชื่อมกับ API มันคือตัวระบุว่า โปรเเกรมบน end system เครื่องหนึ่ง จะร้องขอให้ส่งข้อมูล ไปยังโปรเเกรมปลายทางไปอีกเครื่องหนึ่งอย่างไรได้บ้าง
+Image Concept
+
+![Week 11 รูปที่ 7 — สไลด์ประกอบโน้ต](/notes/itf/week11/07.webp)
+
+1. What is Protocal ? → กำหนด format ,order , ของ message ที่ถูกส่งเเละรับ ระหว่าง Network entities เเละกำหนด action ที่ต้องทำเมื่อมีการส่ง msg transmission เเละการรับ
+   - ตัวอย่าง Protocal
+
+   ```
+   |                                                 |
+   | ------ 1. TCP Connection Request (SYN) --------> |  (ก๊อกๆ ขอเชื่อมต่อหน่อย)
+   | <----- 2. TCP Connection Response (SYN+ACK) ---- |  (ได้เลย เปิดท่อให้แล้ว)
+   | ------ 3. TCP Acknowledge (ACK) ---------------> |  (รับทราบ เริ่มส่งข้อมูลกัน!)
+   |                                                 |
+   | ======= ท่อ TCP เชื่อมต่อสำเร็จ (Established) ======= |
+   |                                                 |
+   | ------ 4. HTTP GET (ส่งคำขอไฟล์ผ่านท่อ TCP) -----> |  (ขอไฟล์หน่อยจ้า)
+   | <----- 5. TCP ACK (ตอบรับว่าได้คำขอแล้ว) --------- |  (ได้รับคำขอแล้ว รอแป๊บ)
+   | <----- 6. HTTP Response + ไฟล์ข้อมูล ------------ |  (นี่ไฟล์ที่ขอครับ)
+   | ------ 7. TCP ACK (ตอบรับว่าได้ไฟล์ครบแล้ว) ------> |  (ได้ไฟล์ครบถ้วน ขอบคุณครับ)
+   ```
+
+   ![Week 11 รูปที่ 8 — สไลด์ประกอบโน้ต](/notes/itf/week11/08.webp)
+
+2. Network Edge
+   - Edge of network → computer , device , (edge network)
+   - End system ถูกเรียกว่า Host เพราะมันรันโปรเเกรม application → End system = Host
+   - บางครั้ง Host เเบ่งออกเป็น 2 ประเภท
+     - 1.Client → Smartphone , desktop
+     - 2.Server → จัดเก็บเเจกจ่าย Web page , video , email
+   - ปัจจุบัน Server ส่วนใหญ่ มี datacenter ตั้ง google ประมาณ  30/50 เเห่ง
+   - Biomedical device สามารถฝังเชื่อมต่อเป็นเครือข่ายใน body area network ได้ ด้วยอุปกรณ์ หลายอย่างรวมด้วยกัน อินเทอร์เน็ตจึงกลายเป็น internet of things อย่างเเท้จริง
+   - Network edge :
+     - Host : client , server
+   - Access network , physical media :
+     - wired , wireless
+   - Network core :
+     - network , ISPs  , enterprise network (KMITL)
+3. Access networks and physical media
+   - Access Network
+     - Home Access : DSL, Cable , FTTH ( Fiber to the home) Dial-Up and satellite
+     - Access in the enterprise : Ethernet , Wifi
+     - Wide area wireless access : 3g and lte
+       - DSL → Digital subscriber line พวกสายทองเเดงของระบบโทรศัพท์บ้าน
+       - FTTH → Fiber to the home เทคโนโลยี อืนเทอร์เน้ตความเร็วสูงผ่าน fiber optic หรือสายใยเเก้วนำเเสง หลักการคือ ISP ยิง Fiber วิ่งเข้าบ้านเราเลย
+       - Ethernet → Local Area network ส่วนใหญ่ใช้ใน Enterprise KMITL ก้เช่นกัน
+     - Wireless access networks
+       - เชื่อมต่อ endsystem เข้ากับ router ผ่าน base station เรียกว่า access point (AP)
+       - Wireless LANs ใช้ภายในอาคาร ประมาณ 100ft
+         - 802.11b/g WiFI → trasmission rate อยู่ที่ 11 , 54 ,450 Mbps ตอนนี้ Wifi 6/7 ทำความเร็ว 1Gbps ขึ้น
+         - 802.11 คือรหัส Wifi กำหนดโดย IEEE |  b/g คือรุ่น หรือเวอร์ชั่นพัฒนา
+       - Wide-area wireless access ใช้ภายใน 10 km ให้บริการโดยเครือข่ายมือถือ
+         - ความเร็วต่ำ 10 Mbps
+         - เครือข่าย Cellular 4G 5G
+     - Physical Media :
+       - Bit → เคลื่อนที่ไปมาระหว่าง transmitter กับ receiver pair
+       - physical link → ตัวกลางระหว่าง transmitter เเละ receiver
+       - guided media → สัญญาณเคลื่อนที่ผ่านตัวกลาง , Copper , fiber optic , coax
+       - unguided media → สัญญาณอิสระ
+       - Twisted pair (TP) มันคือ สายคู่เกลียว ที่นำสัญญาณ ที่ใช้ทองเเดงหุ้ม เช่น LAN
+         - Category 5 (Cat 5) 100Mbps - 1 Gbps
+         - Category 6 (Cat 6) 10Gbps
+       - Coaxial cable → สายนำสัญญาณเเบบทองเเดงเดี่ยวตรงกลางมีตาข่ายหุ้มเน้นใช้ พวก cable tv ยุคเเรกๆ
+       - Fiber optic cable → สายใยเเก้วนำเเสง นำเเสงส่งพัลส์เเสง เเต่ละพัลส์เเทนข้อมูล 1 bit low error rate
+         - **repeaters:** เครื่องทวนสัญญาณ ทำหน้าที่ช่วยขยายสัญญาณที่เริ่มอ่อนลงเมื่อส่งไประยะไกลๆ ยกตัวอย่างเหมือน Red stone repeater ในมายคราฟ
+         - **electromagnetic noise:** สัญญาณรบกวนทางแม่เหล็กไฟฟ้า (เช่น จากสายไฟแรงสูง, มอเตอร์, ฟ้าผ่า) ซึ่งสาย **Fiber Optic** จะไม่ได้รับผลกระทบเลย (**immune**) เพราะใช้แสงในการส่ง ไม่ใช่ไฟฟ้า
+4. The network core
+   - mesh of interconnected routers → เครือข่ายเเบบตาข่ายของ router ที่เชื่อมต่อกัน
+
+![Week 11 รูปที่ 9 — สไลด์ประกอบโน้ต](/notes/itf/week11/09.webp)
+
+packet switching ตัว host จะย่อย application layer message ออกเป็น packets
+วิธีการ net work ทำการส่งต่อ packets จาก router ตัวหนึ่งไปยังอีกตัว ผ่าน links บน path จาก source ต้นทาง ไปยัง destination ปลายทาง
+1. Internet structure a network of networks
+   - ให้ access ISPs หลายล้านคนทั่วโลก จะทำยังไงให้ connect กันได้ทั้งหมด ?
+     - Step 1 : ถ้าเชื่อมต่อตรงกันทุกตัว Direct Connection / Mesh ปัญหาคือจะ O(nกำลัง2) ซึ่งมันเยอะเกิน
+     - Step 2: เเนวคิดเลยสร้าง Global Transit ISP ขึ้นมาตรงกลาง เเล้วให้ access ที่ ISP ตัวนี้ ซึ่งทำให้เกิดความคิดโมเดล ธุรกิจขึ้นมาเลยมี global isp หลายเจ้า
+     - Step 3: พอเกิด global ISP หลายเจ้า packet มันจะไม่ connect กันทั้งหมดหลายล้านคนได้ จึงเกิด
+     - Step 4: เชื่อมต่อระหว่าง Global ISP มี 2 วิธีคือ
+       1. Peering link เชื่อมต่อ สอง ISP เข้าด้วยกัน เพื่อเเลก Traffic กันโดยตรง
+       2. IXP (Internet exchange point) คือศูนยืกลางเเลกเปลี่ยน ข้อมูลกลาง เชื่อมหลายๆ ISP เข้ามาที่ ตัวเดียวๆกันได้
+     - Step 5: เลยทำให้มีการเพิ่มชั้นระดับ Regional ISPs ขึ้นมา เพื่อรวม access ISP ในท้องถิ่นเข้าด้วยกันก่อน เเล้วค่อยส่งออกไปใน global ISP
+     - Step 6 : มีการเข้ามาของ Content Provider network หรือคือ Datacenter ขนาดยักษ์ ที่เชื่อมต่อกับ IXP หรือ Regional access ISP โดยตรง เพื่อลดระยะทางในการส่ง ข้อมูล เลยทำให้เข้าเว็บเร็วขึ้น
+2. Network security
+   - internet ไม่ได้ออกเเบบมาเรื่อง security ตั้งเเต่ต้น
+     - internet protocal designer ต้องคอยเเก้ปัญหาตามทีหลัง → catch-up
+     - ต้องพิจารณาความปลอดภัยทุก layer
+   - Bad guys : packet interception
+     - packet sniffing → การดักข้อมูล → Ethernet , wireless
+       - อ่านเเละบันทึก packet ที่วิ่งผ่าน เช่น software wireshark software
+   - Bad guys : packet fake identity ปลอมตัว
+     - IP spoofing : ปลอมเเปลง ip ต้นทาง ตัวอย่างในรูป
+
+     ![Week 11 รูปที่ 10 — สไลด์ประกอบโน้ต](/notes/itf/week11/10.webp)
+
+   - Bad guys : denial of service (DoS)
+     - ทำให้ไม่สามารถบริการได้
+     - concept → โจมตี ทำให้ทรัพยากร (server,bandwidth) ไม่สามารถให้บริการกับ legitimate traffic (คนที่ใช้งานจริงๆ) โดยโจมตีด้วยการใช้ bogus traffic พวกทราฟฟิกขยะ
+       - วิธีโจมตี
+       1. เลือกเป้าหมาย
+       2. hack เข้ายึด host ต่างๆในเครือข่าย
+       3. สั่งให้ host ที่ถูกยึด ระดมส่ง packet ไปยังเป้าหมาย
+
+       ![Week 11 รูปที่ 11 — สไลด์ประกอบโน้ต](/notes/itf/week11/11.webp)
+
+   - Line of defense
+
+     ![Week 11 รูปที่ 12 — สไลด์ประกอบโน้ต](/notes/itf/week11/12.webp)

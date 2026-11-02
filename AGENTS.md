@@ -53,7 +53,9 @@ Node — use `bun run dev`, never `bun --bun next`.
    in a screenshot. Never add other students' own work (submissions, group work naming
    classmates), personal data that was not already handed to the class, graded files
    (Cisco `.pka`) or saved pages of a personal account (SecSpace). Content Markdown never
-   names other students.
+   names other students. One exception, at the owner's request (2 Nov 2026): the ITF week
+   08–15 pages carry Tammadon Suksa (IT24)'s public Notion study notes, credited by name;
+   images in `public/notes/itf/`.
 6. **Academic integrity.** Never write OJ/iJudge solutions or the content of a student's
    `submission.md` / `ai_reflection.md`.
 7. **Don't guess course facts.** Mark unverified facts *ยังไม่ยืนยัน*. Midterm/final `scope`
