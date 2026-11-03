@@ -27,6 +27,7 @@ import {
   Printer,
   Plane,
   Volume2,
+  Calculator,
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -56,6 +57,7 @@ import type {
 } from "@/lib/exams/types";
 import { RoomSeatingChart } from "./room-seating-chart";
 import { PromoBanner } from "./promo-banner";
+import { GradeCalculator } from "./grade-calculator";
 import { RESIGN_SOUND } from "@/lib/exams/resign-sound";
 
 const L: Record<string, LText> = {
@@ -71,6 +73,7 @@ const L: Record<string, LText> = {
   searchButton: { th: "ค้นหา", en: "Search" },
   tabMySchedule: { th: "ตารางสอบของฉัน", en: "My Schedule" },
   tabAll: { th: "ตารางรวมทั้งคณะ", en: "All Faculty Exams" },
+  tabCalculator: { th: "คำนวณคะแนน & ตัดเกรด", en: "Grade Calculator" },
   filterAll: { th: "ทั้งหมด", en: "All Exams" },
   filterFinal: { th: "สอบปลายภาค", en: "Final Exams" },
   filterMidterm: { th: "สอบกลางภาค", en: "Midterm Exams" },
