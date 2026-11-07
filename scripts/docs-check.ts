@@ -104,7 +104,7 @@ const FIXED_DOCS = [
   "AGENTS.md",
   "README.md",
   "CONTRIBUTING.md",
-  "FILE_STRUCTURE.md",
+  "docs/FILE_STRUCTURE.md",
   "lib/README.md",
   "components/README.md",
   "scripts/README.md",
@@ -528,7 +528,7 @@ const GENERATED_START = /^\s*<!--\s*generated-files:start\s*-->\s*$/;
 const GENERATED_END = /^\s*<!--\s*generated-files:end\s*-->\s*$/;
 
 /** The two docs that each carry the list of generated files, and must agree on it. */
-const GENERATED_DOCS = ["AGENTS.md", "FILE_STRUCTURE.md"];
+const GENERATED_DOCS = ["AGENTS.md", "docs/FILE_STRUCTURE.md"];
 
 /** The backticked paths between the markers, each with the line it is first on. */
 function generatedPaths(doc: Doc, findings: Finding[]): Map<string, number> | null {
