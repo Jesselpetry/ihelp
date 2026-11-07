@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Info } from "lucide-react";
 import { useLocale, t, type LText } from "@/lib/i18n";
 import type { ModuleScope, ResolvedModule } from "@/lib/courses/spine";
 import { SubjectTrackGrid } from "@/components/subject-track-grid";
@@ -130,14 +131,26 @@ export function SubjectHub({
           <SubjectTrackGrid modules={modules} scope={reading ? "all" : scope} />
 
           {notes && notes.length > 0 && (
-            <div className="space-y-2 text-xs text-muted-foreground sm:text-sm">
-              {notes.map(({ title, note }) => (
-                <p key={t(title, locale)}>
-                  <span className="font-medium text-foreground/80">{t(title, locale)}</span>
-                  {" — "}
-                  {t(note, locale)}
-                </p>
-              ))}
+            <div className="rounded-2xl border border-border/70 bg-card/60 p-4 text-xs text-muted-foreground shadow-2xs">
+              <div className="flex items-center gap-1.5 font-semibold text-foreground/85 text-[11px] uppercase tracking-wider mb-2.5">
+                <Info className="size-3.5 text-primary shrink-0" />
+                <span>{locale === "th" ? "ข้อชี้แจงเกี่ยวกับแนวข้อสอบ" : "Course Material Notes"}</span>
+              </div>
+              <div className="space-y-2 text-[11px] sm:text-xs">
+                {notes.map(({ title, note }) => (
+                  <div
+                    key={t(title, locale)}
+                    className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-2 rounded-lg bg-muted/40 p-2.5 leading-relaxed"
+                  >
+                    <span className="font-semibold text-foreground/90 shrink-0">
+                      {t(title, locale)}
+                    </span>
+                    <span className="text-muted-foreground">
+                      {t(note, locale)}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
           )}
         </div>
