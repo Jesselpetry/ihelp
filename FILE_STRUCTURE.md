@@ -26,6 +26,13 @@ repo ยังเป็นระเบียบเมื่อมีคนเพ
 | ตัวไฟล์ | `public/assets/<ns>/<subject>/<category>/<kebab-name>` (gitignored) → Supabase Storage | `library:build` → `library:audit` → `assets:sync` |
 | คลังข้อสอบ/ควิซ | `lib/quiz/*.ts` (เอกสารยาวที่เป็นที่มาอยู่ใน `data/<ns>/<subject>/`) | `content:check` |
 | โจทย์ PSCP | branch `OP` ของ repo archive → `data/pscp/problems.json` | `pscp:build` |
+| ระบบคำนวณคะแนนและตัดเกรด (`/grade-calculator`) | `lib/exams/grade-calculator.ts`, `components/exams/calculator/` | `tsc` |
+| ตารางสอบและผังที่นั่งสอบ (`/exam-schedule`) | `lib/exams/schedule.ts`, `components/exams/room-seating-chart.tsx` | `tsc` |
+| แชทผู้ช่วยตอบคำถาม (Help Desk Chat) | `lib/chat/faq.ts`, `lib/chat/file-search.ts`, `lib/chat/guard.ts`, `components/chat-widget.tsx` | `tsc` |
+| อัตลักษณ์เว็บไซต์และ metadata | `lib/site.ts` | `tsc` |
+| โทนสีและสไตล์ธีม Dark (Figma-inspired palette) | `app/globals.css` | `bun run build` |
+| หน้า Landing Page PG IJUDGE (`/pro`) | `app/pro/page.tsx`, `app/pro/layout.tsx` | `tsc` |
+| พื้นที่อ่านหนังสือสอบปลายภาค (`/profile/<id>/study`) | `lib/study-space/plans/`, `lib/study-space/units.ts` ([docs/STUDY_SPACE.md](./docs/STUDY_SPACE.md)) | `tsc` |
 | ไฟล์ที่ generate | **ห้ามแก้มือ** — แก้ต้นทางแล้ว regenerate (ตารางใน §4) | ตามตาราง §4 |
 
 ชื่อหัวข้อสัปดาห์ของ ITF ประกาศ **สองที่** — `ITF_WEEKS` ใน `course-bindings.ts` (การ์ดหน้าสัปดาห์) และ
@@ -58,9 +65,9 @@ jq -r '.docs | to_entries[] | select(.value.unresolvedRefs | length > 0) | .key'
 
 ```
 ihelp/
-├── app/                  หน้าเว็บ (Next.js App Router) + API routes
-├── components/           React components (components/ui/ = shadcn-style primitives)
-├── lib/                  logic แบ่งตามโดเมน: courses, library, quiz, pscp, auth, supabase …
+├── app/                  หน้าเว็บ (Next.js App Router) + API routes (รวม /grade-calculator, /exam-schedule, /pro, /api/chat)
+├── components/           React components (components/ui/ = shadcn, components/exams/, chat-widget.tsx)
+├── lib/                  logic แบ่งตามโดเมน: courses, library, quiz, pscp, chat, exams, study-space, auth, supabase …
 │                         (ดู lib/README.md)
 ├── content/              เนื้อหาแบบ Markdown ที่ render เป็นหน้าเว็บ
 │   └── courses/          หนึ่งโฟลเดอร์ต่อหนึ่งรายวิชา
@@ -565,6 +572,7 @@ Markdown ของวิชา render ด้วย `react-markdown` + GFM + KaTe
 | **ข้อสอบเก่า** — `isRestrictedAsset()`: `category === "exam"` หรือ path มี `/exams/` | insider / admin (`isInsider()` — role ใน `ihelp.users`) | bucket **ปิด** `ihelp-library-exams` · `libraryExamsForInsider()` เซ็น signed URL อายุ 10 นาทีหลังเช็คสิทธิ์ · ถูกกรองออกจาก `assetsForCourse()` ก่อน จึงไม่ติดไปกับ HTML ของหน้าที่ prerender |
 | คลังข้อสอบ `/exams` (แถวใน `ihelp.exams`) | insider / admin | bucket ปิด `ihelp-exams` + `requireInsider()` — แยกจากคลังข้างบน |
 | ไฟล์ที่ผู้ใช้แชร์ · รูปโปรไฟล์ | สาธารณะ | `ihelp-resources` · `ihelp-avatars` (การแชร์ปิดโดยค่าเริ่มต้น — `NEXT_PUBLIC_UPLOADS_ENABLED`) |
+| **ระบบค้นหาของ Help Chat** (`/api/chat`) | ผู้ใช้ทั่วไปในทุกหน้า | ค้นหาเฉพาะสื่อการเรียนสาธารณะ (`isRestrictedAsset() === false`) — **ข้อสอบเก่าจะไม่ถูกค้นหาหรือส่งในแชทเด็ดขาด** |
 
 **สรุป: การล็อกอินซ่อนรายการบนหน้าคลัง ไม่ได้ทำให้ไฟล์เป็นส่วนตัว** — มีแค่ข้อสอบเก่าที่ปิดจริง
 ก่อนเพิ่มไฟล์ ให้ถือว่าไฟล์ทุกชิ้นนอกจากข้อสอบเก่าเป็นสาธารณะ

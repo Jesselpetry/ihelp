@@ -320,7 +320,9 @@ bun run build           # ต้อง build ผ่าน
 
 ## เปิด Pull Request
 
-1. สร้าง branch จาก `main` เช่น `fix/week-badge` หรือ `feat/itf-week-14`
+1. **สร้าง branch จาก `staging`** (กิ่งหลักในการรวมงานและทดสอบความเข้ากันได้) เช่น
+   `git checkout staging && git pull origin staging && git checkout -b feat/grade-calc`
+   และเมื่อเปิด Pull Request ให้เลือก base branch ปลายทางเป็น **`staging`** (ไม่ใช่ `main`)
 2. Commit สั้น ๆ ตรงประเด็น ตาม [Conventional Commits](https://www.conventionalcommits.org/)
    แบบมี scope — `type(scope): สรุป` ตามที่ใช้ใน git log เช่น
    `feat(itf): weekly sessions + exam notes on the map module` ·

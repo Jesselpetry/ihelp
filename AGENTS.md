@@ -7,7 +7,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 # AGENTS.md — working on \<i\>Help
 
 Entry point for AI agents (Claude Code loads it through `CLAUDE.md`). Humans start at
-[README.md](./README.md). Last verified: 15 Oct 2026.
+[README.md](./README.md). Last verified: 7 Nov 2026 (branch `staging`).
 
 ## What this repo is
 
@@ -18,14 +18,27 @@ Node — use `bun run dev`, never `bun --bun next`.
 - **Course hubs** `/courses/<dir>` — every course declares the same 11-module spine
   (`lib/courses/spine.ts`); `lib/courses/course-bindings.ts` says what each course fills.
 - **Media library** — PDFs and images on Supabase Storage, card metadata in `lib/library/`.
+- **Grade & Exam Score Calculator** `/grade-calculator` (redirects from `/calculator`) — 3-panel
+  score calculator with Y1-S1 presets, safe math parser (`10+5+8.5`), S/U vs letter grading,
+  target final score projection, subscore drawers, and Excel/TSV paste support.
+- **Exam Schedule & Seating** `/exam-schedule` — seat locator by 8-digit student ID, interactive
+  room seating map, calendar export (.ics), and resign countdown sound.
+- **Help Desk Chat** — floating assistant widget on every page (`components/chat-widget.tsx`,
+  `app/api/chat/route.ts`), catalog-backed instant answers (`lib/chat/faq.ts`) and file search
+  (`lib/chat/file-search.ts`) with optional streaming LLM.
 - **PSCP tools** `/pscp` — problem registry and the Learning Log wizard, which only formats
   answers the student wrote.
+- **PG IJUDGE Pro** `/pro` — bilingual product landing page for the VS Code extension.
 - Content is Thai with English technical terms. UI strings are bilingual through `LText`
-  (`{ th, en }`) — never hardcode one language.
+  (`{ th, en }`) — never hardcode one language. Design uses a Figma-inspired neutral charcoal
+  dark theme (`#141416`, `#1c1c1f`, `#222226`).
 
 ## Rules that are easy to break
 
-1. **Generated files are never edited by hand.** Change the source, then regenerate:
+1. **Branch workflow: `staging` is the primary integration branch.** All active feature
+   development, pull requests, and bugfixes target `staging`. Commits merge to `staging`
+   first for validation before promoting to `main`. Never push feature branches directly into `main`.
+2. **Generated files are never edited by hand.** Change the source, then regenerate:
 
    | File | Regenerate with |
    |---|---|
@@ -36,19 +49,19 @@ Node — use `bun run dev`, never `bun --bun next`.
    | `data/pscp/problems.json` | `bun run pscp:build` (reads the archive repo's `OP` worktree, see `scripts/build_pscp_registry.py`) |
    | `data/en-kmitl/compro/labs.json` | `bun run compro:labs` |
 
-2. **Client bundles must not see library data.** A Client Component never imports
+3. **Client bundles must not see library data.** A Client Component never imports
    `lib/library/subject-library.ts` (it pulls the manifest and stats, past exams included,
    into the browser) — use `lib/library/subject-library-ui.ts`. Nothing in `app/`,
    `components/` or `lib/` imports `resource-index.json`; it is for scripts and agents.
-3. **Gate on the server, never by hiding UI.** Hidden data is still in the payload.
-4. **Know what is actually private.**
+4. **Gate on the server, never by hiding UI.** Hidden data is still in the payload.
+5. **Know what is actually private.**
    - Past exams (`isRestrictedAsset()`: `category === "exam"` or a path containing `/exams/`)
      live in the private bucket `ihelp-library-exams`, served by short-lived signed URLs to
      insiders only.
    - Every other library file lives in the **public** bucket `ihelp-library`, and its path is
      in this public repo. The library page's list needs an IT KMITL login; the files do not.
      Treat anything you add outside `exams/` as public.
-5. **Privacy (owner's rules, 15 Oct 2026).** Official handouts already given to the class
+6. **Privacy (owner's rules, 15 Oct 2026).** Official handouts already given to the class
    (OnLearn lab sheets, slides) may be added even when a TA's or sample student's name shows
    in a screenshot. Never add other students' own work (submissions, group work naming
    classmates), personal data that was not already handed to the class, graded files
@@ -56,14 +69,21 @@ Node — use `bun run dev`, never `bun --bun next`.
    names other students. One exception, at the owner's request (2 Nov 2026): the ITF week
    08–15 pages carry Tammadon Suksa (IT24)'s public Notion study notes, credited by name;
    images in `public/notes/itf/`.
-6. **Academic integrity.** Never write OJ/iJudge solutions or the content of a student's
+7. **Academic integrity.** Never write OJ/iJudge solutions or the content of a student's
    `submission.md` / `ai_reflection.md`.
-7. **Don't guess course facts.** Mark unverified facts *ยังไม่ยืนยัน*. Midterm/final `scope`
+8. **Help chat privacy & security.** The chat widget (`components/chat-widget.tsx`, `app/api/chat/route.ts`)
+   answers only from `lib/chat/faq.ts` and catalog search (`lib/chat/file-search.ts`).
+   Past exams (`isRestrictedAsset()`) are **never indexed or searched** by chat for anyone.
+   Input normalization and anti-prompt-injection guards (`lib/chat/guard.ts`) must never be bypassed.
+9. **Dark theme color discipline.** Dark surfaces use the Figma-inspired neutral charcoal palette
+   (`--background: #141416`, `--card: #1c1c1f`, `--popover: #222226`) with subtle white opacity borders
+   (`oklch(1 0 0 / 8.5%)`) in `app/globals.css`. Never reintroduce saturated navy/blue surfaces.
+10. **Don't guess course facts.** Mark unverified facts *ยังไม่ยืนยัน*. Midterm/final `scope`
    comes from the course's `summary.md` §2, never from a week number in a filename.
-8. **Ask before outward-facing actions, every time:** `bun run assets:sync` (uploads),
+11. **Ask before outward-facing actions, every time:** `bun run assets:sync` (uploads),
    `git push`, deleting Storage objects, posting anywhere outside the repo. A read-only bucket
    listing (`bun run library:audit -- --remote`) needs no approval.
-9. **Commits only when asked.** Conventional Commits with a scope — `feat(itf): …`,
+12. **Commits only when asked.** Conventional Commits with a scope — `feat(itf): …`,
    `fix(reader): …`, `docs: …`, `chore(pscp): …`. User-visible changes get a line in
    `CHANGELOG.md` under `## [Unreleased]` with the Thai headings `### เพิ่ม` / `### ปรับปรุง` /
    `### แก้ไข` / `### ความปลอดภัย`.
@@ -82,6 +102,12 @@ Node — use `bun run dev`, never `bun --bun next`.
 | Library week view (ITF, ICS) | `lib/library/course-weeks.ts` | `library:index` |
 | Library files | `public/assets/<ns>/<subject>/<category>/<kebab-name>` (gitignored) | `library:build` → `library:audit` → `assets:sync` |
 | Quiz banks | `lib/quiz/*.ts`, notes in `data/it-kmitl/<subject>/` | `content:check` |
+| Grade calculator — Y1-S1 presets, score categories, cutoffs, arithmetic parser | `lib/exams/grade-calculator.ts` | `tsc` |
+| Exam schedule & room seating map — schedules, seat mapping, sound alert | `lib/exams/schedule.ts`, `components/exams/room-seating-chart.tsx` | `tsc` |
+| Help desk chat — written FAQs, file search patterns, security guard | `lib/chat/faq.ts`, `lib/chat/file-search.ts`, `lib/chat/guard.ts` | `tsc` |
+| Site identity, metadata, URLs, branding | `lib/site.ts` | `tsc` |
+| Dark theme tokens & palette | `app/globals.css` | `bun run build` |
+| Landing page PG IJUDGE (`/pro`) | `app/pro/page.tsx`, `app/pro/layout.tsx` | `tsc` |
 | Study space (`/profile/<id>/study`, owner only) — a student's day plan; course weeks, links, exam dates | personal plans: `lib/study-space/plans/` (`server-only`; `plans/index.ts` maps student ID → plan, and the page renders only when the session's verified ID matches the URL and has a plan) · shared: `lib/study-space/units.ts`, `links.ts`, `subjects.ts` ([docs/STUDY_SPACE.md](./docs/STUDY_SPACE.md)) | `tsc`, then open every changed link |
 | PSCP problems | the archive repo's `OP` branch | `pscp:build` |
 | UI | `app/`, `components/` (`components/ui/` = shadcn primitives) | `lint` |
