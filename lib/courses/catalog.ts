@@ -65,6 +65,8 @@ export interface CatalogCourse {
   portalHref?: string;
   /** Official subject details page on https://www.it.kmitl.ac.th */
   officialUrl?: string;
+  /** Course instructors / professors */
+  instructors?: string[];
 }
 
 export const COURSES: CatalogCourse[] = [
@@ -80,6 +82,12 @@ export const COURSES: CatalogCourse[] = [
     portalHref: "/courses/06016402-IT-Fundamentals",
     officialUrl:
       "https://www.it.kmitl.ac.th/th/subjects/06016402-information-technology-fundamentals",
+    instructors: [
+      "ศ.ดร. กิติ์สุชาต พสุภา",
+      "ผศ.ดร. พรสุรีย์ แจ่มศรี",
+      "รศ.ดร. ปานวิทย์ ธุวะนุติ",
+      "ผศ.ดร. สุวิทย์ ภูมิฤทธิกุล",
+    ],
   },
   {
     code: "ICS",
@@ -92,6 +100,10 @@ export const COURSES: CatalogCourse[] = [
     portalHref: "/courses/06016411-Intro-to-Computer-Systems",
     officialUrl:
       "https://www.it.kmitl.ac.th/th/subjects/06016411-introduction-to-computer-systems",
+    instructors: [
+      "ศ.ดร. สุขสันต์ พาณิชพาพิบูล",
+      "ผศ.ดร. สุภกิจ นุตยะสกุล",
+    ],
   },
   {
     code: "MFIT",
@@ -104,6 +116,10 @@ export const COURSES: CatalogCourse[] = [
     portalHref: "/courses/06016401-Math-for-IT",
     officialUrl:
       "https://www.it.kmitl.ac.th/th/subjects/06016401-mathematics-for-information-technology",
+    instructors: [
+      "ผศ.ดร. สมเกียรติ วังศิริพิทักษ์",
+      "ผศ.ดร. ประพันธ์ ปวรางกูร",
+    ],
   },
   {
     code: "PSCP",
@@ -116,6 +132,10 @@ export const COURSES: CatalogCourse[] = [
     portalHref: "/courses/06066303-Problem-Solving-and-Computer-Programming",
     officialUrl:
       "https://www.it.kmitl.ac.th/th/subjects/06066303-problem-solving-and-computer-programming",
+    instructors: [
+      "รศ.ดร. โชติพัชร์ ภรณวลัย",
+      "ผศ.ดร. สามารถ หมุดและ",
+    ],
   },
   {
     code: "CHARM",
@@ -164,6 +184,11 @@ export const COURSES: CatalogCourse[] = [
     portalHref: "/courses/06066101-Business-for-IT",
     officialUrl:
       "https://www.it.kmitl.ac.th/th/subjects/06066101-business-fundamentals-for-information",
+    instructors: [
+      "ศ.ดร. อาริต ธรรมโน",
+      "ผศ.ดร. พรสุรีย์ แจ่มศรี",
+      "ผศ.ดร. โอฬาร วงศ์วิรัตน์",
+    ],
   },
   {
     code: "DSA",
@@ -176,6 +201,10 @@ export const COURSES: CatalogCourse[] = [
     portalHref: "/courses/06066301-Data-Structures-and-Algorithms",
     officialUrl:
       "https://www.it.kmitl.ac.th/th/subjects/06066301-data-structures-and-algorithms",
+    instructors: [
+      "ผศ.ดร. สุพัณณดา โชติพันธ์",
+      "ดร. ภัทรภร วัฒนาชีพ",
+    ],
   },
   {
     code: "OOP",
@@ -188,6 +217,9 @@ export const COURSES: CatalogCourse[] = [
     portalHref: "/courses/06016408-Object-Oriented-Programming",
     officialUrl:
       "https://www.it.kmitl.ac.th/th/subjects/06016408-object-oriented-programming",
+    instructors: [
+      "ผศ.ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+    ],
   },
   {
     code: "PSTAT",
@@ -200,6 +232,10 @@ export const COURSES: CatalogCourse[] = [
     portalHref: "/courses/06066001-Probability-and-Statistics",
     officialUrl:
       "https://www.it.kmitl.ac.th/th/subjects/06066001-probability-and-statistics",
+    instructors: [
+      "ศ.ดร. สุขสันต์ พาณิชพาพิบูล",
+      "ผศ.ดร. สุวิทย์ ภูมิฤทธิกุล",
+    ],
   },
   {
     code: "FE2",

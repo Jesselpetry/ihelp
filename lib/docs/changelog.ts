@@ -66,14 +66,42 @@ export const CHANGELOG: VersionEntry[] = [
   {
     version: "Unreleased",
     date: null,
-    commit: "34fe3ba",
+    commit: "b4aff61",
     contributors: [CONTRIBUTORS.chatan],
     changes: [
+      {
+        kind: "fixed",
+        text: {
+          th: "แก้ไขลิงก์การ์ดสัปดาห์ที่ 0 (แนะนำรายวิชา) และคลังเอกสารเกิดข้อผิดพลาด 404 ให้เปิดอ่านได้ถูกต้อง พร้อมขยายระยะเว้นวรรคระหว่างตัวคั่นช่วงเนื้อหาและจุดพักสอบ",
+          en: "Fixed week 0 course intro and library links 404, pointing to valid spine routes, and improved timeline milestone spacing",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "ปรับโครงสร้างหน้าหลักรายวิชาสู่ระบบเส้นทางการเรียนรู้รายสัปดาห์ (Weekly Learning Path) พร้อมจุดพักสอบกลางภาคและปลายภาค และระบบค้นหา Real-time",
+          en: "Restructured course hub to Weekly Learning Path with isolated exam milestones, real-time search, and exam period filters",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "ปรับปรุงส่วนแสดงเครดิตและทีมผู้พัฒนาใน README.md สู่รูปแบบตารางมาตรฐานพร้อมข้อมูลติดต่อและบทบาทหน้าที่",
+          en: "Converted contributor showcase in README to structured table with student credentials and contact channels",
+        },
+      },
       {
         kind: "changed",
         text: {
           th: "ปรับปรุงแถบค้นหารายวิชาและดีไซน์การ์ดรายวิชาสไตล์ MIT OpenCourseWare (/) ด้วยกรอบภาพไล่เฉดสีฟ้า iHelp Blue Gradient และข้อมูลแนวนอน",
           en: "Redesigned course search bar and adopted MIT OpenCourseWare-style horizontal course cards (/) with signature iHelp blue gradient thumbnails",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "ปรับลดสเกลหน้ารายวิชา (/courses/[dir]) และปรับปรุงการ์ดแสดงสถานะสำหรับหมวดที่อยู่ระหว่างเตรียมเนื้อหา",
+          en: "Compacted course hub layout and polished empty phase preparation cards to match module stream rows",
         },
       },
     ],

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, User, Users } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useLocale } from "@/lib/i18n";
 import { courseHref, type CatalogCourse } from "@/lib/courses/catalog";
@@ -85,6 +85,23 @@ export function CourseBookCard({
         <p className="text-[11px] sm:text-xs text-muted-foreground line-clamp-1 sm:line-clamp-2 mt-0.5 font-medium">
           {subtitle}
         </p>
+
+        {/* ── Instructors / Professors ── */}
+        {course.instructors && course.instructors.length > 0 && (
+          <div
+            className="mt-1 flex items-center gap-1.5 text-[11px] text-muted-foreground/85"
+            title={course.instructors.join(", ")}
+          >
+            {course.instructors.length > 1 ? (
+              <Users className="size-3 shrink-0 text-muted-foreground/60" />
+            ) : (
+              <User className="size-3 shrink-0 text-muted-foreground/60" />
+            )}
+            <span className="line-clamp-1 font-normal">
+              {course.instructors.join(" · ")}
+            </span>
+          </div>
+        )}
 
         {/* Metadata Badges — rounded-full */}
         <div className="mt-2 flex flex-wrap items-center gap-1.5">

@@ -2,7 +2,13 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import { ChevronRight } from "lucide-react";
+import {
+  CalendarDays,
+  ChevronRight,
+  Milestone as MilestoneIcon,
+  Trophy as TrophyIcon,
+  type LucideIcon,
+} from "lucide-react";
 import {
   MODULE_ICONS,
   OVERVIEW_ANCHOR,
@@ -29,6 +35,10 @@ export interface CourseSidebarProps {
   onScopeChange: (scope: ModuleScope) => void;
   /** Whether the stream renders the overview section. */
   hasOverview: boolean;
+  weeksCount?: number;
+  hasMidtermMilestone?: boolean;
+  hasFinalMilestone?: boolean;
+  hasSecondHalf?: boolean;
 }
 
 const ArchiveIcon = MODULE_ICONS.archive;
@@ -46,7 +56,7 @@ const L = {
 interface TopicLink {
   id: string;
   title: LText;
-  Icon: (typeof PHASE_ICONS)[keyof typeof PHASE_ICONS];
+  Icon: LucideIcon;
   /** Openable modules in the section. */
   count: number;
 }
@@ -57,20 +67,122 @@ interface TopicLink {
  * stream, so the topic list collapses to a row of chips and the order puts the
  * two controls first.
  */
-export function CourseSidebar({ modules, scope, onScopeChange, hasOverview }: CourseSidebarProps) {
+export function CourseSidebar({
+  modules,
+  scope,
+  onScopeChange,
+  hasOverview,
+  weeksCount,
+  hasMidtermMilestone,
+  hasFinalMilestone,
+  hasSecondHalf,
+}: CourseSidebarProps) {
   const { locale } = useLocale();
   const archive = openArchive(modules);
   const groups = useMemo(() => topicGroups(modules, scope), [modules, scope]);
-  const readyCount = modules.filter((mod) => !isLocked(mod)).length;
+  const readyCount = weeksCount ?? modules.filter((mod) => !isLocked(mod)).length;
 
   const links = useMemo<TopicLink[]>(() => {
+    if (weeksCount !== undefined && weeksCount > 0) {
+      const weeklyLinks: TopicLink[] = [];
+
+      if (scope === "all" && hasSecondHalf) {
+        weeklyLinks.push({
+          id: "weekly-path",
+          title: { th: "สัปดาห์ (ครึ่งแรก)", en: "Weeks (1st Half)" },
+          Icon: CalendarDays,
+          count: weeksCount,
+        });
+        if (hasMidtermMilestone) {
+          weeklyLinks.push({
+            id: "milestone-midterm",
+            title: { th: "สอบกลางภาค", en: "Midterm Exam" },
+            Icon: MilestoneIcon,
+            count: 2,
+          });
+        }
+        weeklyLinks.push({
+          id: "weekly-second-half",
+          title: { th: "สัปดาห์ (ครึ่งหลัง)", en: "Weeks (2nd Half)" },
+          Icon: CalendarDays,
+          count: weeksCount,
+        });
+        if (hasFinalMilestone) {
+          weeklyLinks.push({
+            id: "milestone-final",
+            title: { th: "สอบปลายภาค", en: "Final Exam" },
+            Icon: TrophyIcon,
+            count: 2,
+          });
+        }
+      } else if (scope === "midterm") {
+        weeklyLinks.push({
+          id: "weekly-path",
+          title: hasSecondHalf
+            ? { th: "สัปดาห์ (ครึ่งแรก)", en: "Weeks (1st Half)" }
+            : { th: "เนื้อหารายสัปดาห์", en: "Weekly Sessions" },
+          Icon: CalendarDays,
+          count: weeksCount,
+        });
+        if (hasMidtermMilestone) {
+          weeklyLinks.push({
+            id: "milestone-midterm",
+            title: { th: "สอบกลางภาค", en: "Midterm Exam" },
+            Icon: MilestoneIcon,
+            count: 2,
+          });
+        }
+      } else if (scope === "final") {
+        weeklyLinks.push({
+          id: "weekly-second-half",
+          title: hasSecondHalf
+            ? { th: "สัปดาห์ (ครึ่งหลัง)", en: "Weeks (2nd Half)" }
+            : { th: "เนื้อหารายสัปดาห์", en: "Weekly Sessions" },
+          Icon: CalendarDays,
+          count: weeksCount,
+        });
+        if (hasFinalMilestone) {
+          weeklyLinks.push({
+            id: "milestone-final",
+            title: { th: "สอบปลายภาค", en: "Final Exam" },
+            Icon: TrophyIcon,
+            count: 2,
+          });
+        }
+      } else {
+        weeklyLinks.push({
+          id: "weekly-path",
+          title: { th: "เนื้อหารายสัปดาห์", en: "Weekly Sessions" },
+          Icon: CalendarDays,
+          count: weeksCount,
+        });
+        if (hasMidtermMilestone) {
+          weeklyLinks.push({
+            id: "milestone-midterm",
+            title: { th: "สอบกลางภาค", en: "Midterm Exam" },
+            Icon: MilestoneIcon,
+            count: 2,
+          });
+        }
+        if (hasFinalMilestone) {
+          weeklyLinks.push({
+            id: "milestone-final",
+            title: { th: "สอบปลายภาค", en: "Final Exam" },
+            Icon: TrophyIcon,
+            count: 2,
+          });
+        }
+      }
+      return weeklyLinks;
+    }
+
     return groups.map((group) => ({
       id: phaseAnchor(group.phase),
       title: PHASE_SHORT[group.phase],
       Icon: PHASE_ICONS[group.phase],
       count: group.open.length,
     }));
-  }, [groups]);
+  }, [groups, weeksCount, hasMidtermMilestone, hasFinalMilestone, hasSecondHalf, scope]);
 
   const ids = useMemo(
     () => [...(hasOverview ? [OVERVIEW_ANCHOR] : []), ...links.map((link) => link.id)],
