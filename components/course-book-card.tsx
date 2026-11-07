@@ -37,15 +37,14 @@ export function CourseBookCard({
 
   const grad = IHELP_GRADIENT;
 
-  // Font size scales down as the code gets longer
+  // Mirror banner watermark pattern: font-black, tracking-tighter, leading-none
+  // Sized to stay left-aligned without crowding the logo on the right
   const codeFontSize =
-    course.code.length <= 2
-      ? "3rem"
-      : course.code.length === 3
-        ? "2.75rem"
-        : course.code.length === 4
-          ? "2.25rem"
-          : "1.75rem";
+    course.code.length <= 3
+      ? "3.5rem"  // FE, DL, ITF, ICS …
+      : course.code.length === 4
+        ? "2.9rem" // MFIT, PSCP, BFIT …
+        : "2.4rem"; // CHARM, SPORT, COMPRO …
 
   return (
     <article
@@ -87,10 +86,10 @@ export function CourseBookCard({
           </span>
         </div>
 
-        {/* Course Code — left-aligned, large, bottom of frame */}
-        <div className="relative z-10 mt-auto">
+        {/* Course Code — left-aligned flush, bottom of frame, right-padded to clear logo */}
+        <div className="relative z-10 mt-auto pr-14">
           <span
-            className="font-mono font-black text-white leading-none tracking-tighter select-none drop-shadow-none"
+            className="font-black text-white leading-none tracking-tighter select-none"
             style={{ fontSize: codeFontSize }}
           >
             {course.code}
