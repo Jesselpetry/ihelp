@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { GraduationCap, Search, X } from "lucide-react";
+import { GraduationCap, Search, X, CalendarDays, BookOpen, Layers } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useLocale, t, type LText } from "@/lib/i18n";
@@ -138,23 +138,40 @@ export function CourseDirectory({
         {GROUPS.map((group, groupIdx) => {
           const courses = matches.filter((c) => c.group === group.id);
           if (courses.length === 0) return null;
+
+          // Pick an icon per group type
+          const GroupIcon =
+            group.id === "Y1-S1" || group.id === "Y1-S2"
+              ? CalendarDays
+              : Layers;
+
           return (
             <section
               key={group.id}
               className="animate-in fade-in-0 slide-in-from-bottom-4 duration-600 fill-mode-both"
               style={{ animationDelay: `${groupIdx * 120}ms` }}
             >
-              <div className="mb-4 flex items-baseline justify-between gap-3 border-b pb-2.5">
-                <div>
-                  <h2 className="text-sm font-bold uppercase tracking-wider text-foreground">
-                    {t(group.label, locale)}
-                  </h2>
-                  <p className="mt-0.5 text-xs text-muted-foreground/80">
-                    {t(group.note, locale)}
-                  </p>
+              <div className="mb-4 flex items-center justify-between gap-3 border-b pb-3">
+                <div className="flex items-center gap-2.5">
+                  {/* Group icon */}
+                  <div className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-primary/10 dark:bg-primary/15">
+                    <GroupIcon className="size-3.5 text-primary" />
+                  </div>
+                  <div>
+                    <h2 className="text-sm font-bold tracking-tight text-foreground">
+                      {t(group.label, locale)}
+                    </h2>
+                    <p className="mt-0.5 text-[11px] text-muted-foreground/70">
+                      {t(group.note, locale)}
+                    </p>
+                  </div>
                 </div>
-                <span className="shrink-0 font-mono text-xs text-muted-foreground">
-                  {courses.length} {t(L.courses, locale)}
+
+                {/* Course count pill */}
+                <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-border/60 bg-muted/50 px-2.5 py-1 font-mono text-[11px] font-semibold text-muted-foreground">
+                  <BookOpen className="size-3 opacity-60" />
+                  {courses.length}{" "}
+                  {t(L.courses, locale)}
                 </span>
               </div>
               <div className="flex flex-col gap-3 sm:gap-3.5">

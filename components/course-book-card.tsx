@@ -7,12 +7,34 @@ import { useLocale } from "@/lib/i18n";
 import { courseHref, type CatalogCourse } from "@/lib/courses/catalog";
 import { ItKmitlBadge, ItKmitlLogoSvg } from "@/components/it-kmitl-badge";
 
+/** Gradient palette per course — lighter, sky-blue tones */
+const GRADIENT_MAP: Record<string, { from: string; via: string; to: string }> =
+  {
+    ITF:    { from: "#60a5fa", via: "#3b82f6", to: "#2563eb" },
+    ICS:    { from: "#38bdf8", via: "#0ea5e9", to: "#0284c7" },
+    MFIT:   { from: "#818cf8", via: "#6366f1", to: "#4f46e5" },
+    PSCP:   { from: "#34d399", via: "#10b981", to: "#059669" },
+    CHARM:  { from: "#c084fc", via: "#a855f7", to: "#7c3aed" },
+    FE:     { from: "#fb923c", via: "#f97316", to: "#ea580c" },
+    FE2:    { from: "#fbbf24", via: "#f59e0b", to: "#d97706" },
+    SPORT:  { from: "#4ade80", via: "#22c55e", to: "#16a34a" },
+    BFIT:   { from: "#38bdf8", via: "#0ea5e9", to: "#0369a1" },
+    DSA:    { from: "#fb7185", via: "#f43f5e", to: "#e11d48" },
+    OOP:    { from: "#c084fc", via: "#a855f7", to: "#9333ea" },
+    PSTAT:  { from: "#fdba74", via: "#fb923c", to: "#ea580c" },
+    DL:     { from: "#67e8f9", via: "#22d3ee", to: "#0891b2" },
+    COMPRO: { from: "#86efac", via: "#4ade80", to: "#16a34a" },
+    CHEM:   { from: "#fca5a5", via: "#f87171", to: "#dc2626" },
+  };
+
+const DEFAULT_GRADIENT = { from: "#60a5fa", via: "#3b82f6", to: "#2563eb" };
+
 /**
  * MIT OpenCourseWare-inspired horizontal course card with:
  * - Rounded container, padding, and subtle shadow (`shadow-sm`)
- * - Left thumbnail frame using iHelp blue gradient with course code and subject name
- * - Center area with title, subtitle/description, official code, credits, and readiness modules
- * - Right area with academic level badge, official KMITL link, and course hub action button
+ * - Left thumbnail frame: large course code text + IT KMITL logo watermark (white/10 opacity)
+ * - Center area with title, subtitle/description, official code badge, credits, and readiness modules
+ * - Right area with official KMITL link and course hub action button
  *
  * @param readiness how many of the eleven spine modules this course fills.
  *   Counted on the server from what each module actually binds, so the number
@@ -32,6 +54,18 @@ export function CourseBookCard({
   const title = locale === "th" ? course.nameTh : course.nameEn;
   const subtitle = locale === "th" ? course.nameEn : course.nameTh;
 
+  const grad = GRADIENT_MAP[course.code] ?? DEFAULT_GRADIENT;
+
+  // Font size scales down as the code gets longer
+  const codeFontSize =
+    course.code.length <= 2
+      ? "3rem"
+      : course.code.length === 3
+        ? "2.75rem"
+        : course.code.length === 4
+          ? "2.25rem"
+          : "1.75rem";
+
   return (
     <article
       className={
@@ -50,37 +84,36 @@ export function CourseBookCard({
         />
       )}
 
-      {/* ── Left Thumbnail: iHelp Signature Blue Gradient with Subject Name ── */}
-      <div className="relative w-full sm:w-48 md:w-56 h-28 sm:h-32 shrink-0 rounded-xl overflow-hidden shadow-xs flex flex-col justify-between p-3 select-none bg-gradient-to-br from-[#2a68c4] via-[#2357A5] to-[#123160] border border-white/15 dark:border-white/10 transition-transform duration-300 group-hover:scale-[1.01]">
-        {/* Subtle light shimmer */}
+      {/* ── Left Thumbnail: Large Course Code + IT KMITL Logo Watermark ── */}
+      <div
+        className="relative w-full sm:w-48 md:w-56 h-28 sm:h-32 shrink-0 rounded-xl overflow-hidden shadow-xs flex flex-col justify-between p-3 select-none border border-white/10 transition-transform duration-300 group-hover:scale-[1.01]"
+        style={{
+          background: `linear-gradient(135deg, ${grad.from}, ${grad.via}, ${grad.to})`,
+        }}
+      >
+        {/* IT KMITL Logo — white, ~10% opacity, centered, no shadow */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-transparent via-transparent to-white/20"
-        />
-
-        {/* Subtle IT KMITL Logo watermark */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -bottom-3 -right-3 text-white/15 select-none transition-all duration-300 group-hover:scale-110 group-hover:opacity-100"
+          className="pointer-events-none absolute inset-0 flex items-center justify-center select-none"
         >
-          <ItKmitlLogoSvg className="size-24 text-white" />
+          <ItKmitlLogoSvg className="size-20 opacity-[0.10]" />
         </div>
 
-        {/* Top Header inside frame: Code & Faculty */}
-        <div className="relative z-10 flex items-center justify-between">
-          <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-white/20 backdrop-blur-xs text-[11px] font-mono font-bold text-white tracking-wider border border-white/20 shadow-2xs">
-            {course.code}
-          </span>
-          <span className="font-mono text-[10px] font-medium tracking-wider text-white/70 uppercase">
+        {/* Top right: "IT KMITL" label */}
+        <div className="relative z-10 flex items-center justify-end">
+          <span className="font-mono text-[10px] font-medium tracking-widest text-white/60 uppercase">
             IT KMITL
           </span>
         </div>
 
-        {/* Course Name inside frame (Bottom) */}
-        <div className="relative z-10 mt-auto">
-          <p className="text-xs sm:text-sm font-bold text-white leading-snug drop-shadow-xs line-clamp-2">
-            {title}
-          </p>
+        {/* Course Code — large, centered vertically */}
+        <div className="relative z-10 flex-1 flex items-center justify-center -mt-2">
+          <span
+            className="font-mono font-black text-white leading-none tracking-tighter select-none drop-shadow-none"
+            style={{ fontSize: codeFontSize }}
+          >
+            {course.code}
+          </span>
         </div>
       </div>
 
@@ -97,42 +130,49 @@ export function CourseBookCard({
         {/* Metadata Badges */}
         <div className="mt-3 flex flex-wrap items-center gap-2">
           {course.officialCode && (
-            <span className="font-mono text-xs font-semibold text-muted-foreground/90 bg-muted/70 dark:bg-muted/40 px-2.5 py-0.5 rounded-md border border-border/50">
+            <Badge
+              variant="secondary"
+              className="font-mono text-xs font-semibold px-2.5 py-0.5 rounded-md"
+            >
               {course.officialCode}
-            </span>
+            </Badge>
           )}
           {course.credits && (
-            <span className="text-[11px] font-medium text-muted-foreground bg-muted/50 dark:bg-muted/30 px-2 py-0.5 rounded-md border border-border/40">
-              {locale === "th" ? `${course.credits} หน่วยกิต` : `${course.credits} credits`}
-            </span>
+            <Badge
+              variant="outline"
+              className="text-[11px] font-medium px-2 py-0.5 rounded-md"
+            >
+              {locale === "th"
+                ? `${course.credits} หน่วยกิต`
+                : `${course.credits} credits`}
+            </Badge>
           )}
-          <span
-            className="inline-flex items-center gap-1.5 text-[11px] font-medium text-muted-foreground bg-muted/50 dark:bg-muted/30 px-2 py-0.5 rounded-md border border-border/40"
+          <Badge
+            variant="outline"
+            className={`inline-flex items-center gap-1.5 text-[11px] font-medium px-2 py-0.5 rounded-md ${
+              liveCount > 0
+                ? "text-emerald-600 dark:text-emerald-400 border-emerald-500/30 bg-emerald-500/5"
+                : "text-muted-foreground"
+            }`}
             title={locale === "th" ? "โมดูลที่พร้อมแล้ว" : "Modules ready"}
           >
             <span
               className={`size-1.5 rounded-full ${liveCount > 0 ? "bg-emerald-500" : "bg-muted-foreground/40"}`}
             />
             <span>
-              {readiness}/11 {locale === "th" ? "โมดูลพร้อม" : "modules ready"}
+              {readiness}/11{" "}
+              {locale === "th" ? "โมดูลพร้อม" : "modules ready"}
             </span>
-          </span>
+          </Badge>
         </div>
       </div>
 
-      {/* ── Right Section: Level, Official Link & Action Button ── */}
+      {/* ── Right Section: Official Link & Action Button ── */}
       <div className="relative z-20 shrink-0 flex sm:flex-col items-start sm:items-end justify-between self-stretch gap-2.5 pt-2 sm:pt-0 border-t sm:border-t-0 border-border/40">
         <div className="flex items-center gap-2">
           {course.officialUrl && (
             <ItKmitlBadge href={course.officialUrl} className="shrink-0" />
           )}
-          <span className="text-xs font-semibold text-primary/80 dark:text-primary/90 font-mono">
-            {course.group === "EN-KMITL"
-              ? "EN-KMITL"
-              : locale === "th"
-                ? "ปริญญาตรี"
-                : "Undergraduate"}
-          </span>
         </div>
 
         <div className="mt-auto flex items-center gap-2">
@@ -142,7 +182,10 @@ export function CourseBookCard({
               <ArrowRight className="size-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
             </span>
           ) : (
-            <Badge variant="outline" className="rounded-full text-xs text-muted-foreground px-3 py-1">
+            <Badge
+              variant="outline"
+              className="rounded-full text-xs text-muted-foreground px-3 py-1"
+            >
               {locale === "th" ? "เร็ว ๆ นี้" : "Coming soon"}
             </Badge>
           )}
