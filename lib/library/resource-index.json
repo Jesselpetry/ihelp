@@ -5,8 +5,8 @@
   "totals": {
     "courses": 15,
     "coursesWithLibrary": 14,
-    "docs": 98,
-    "renderedDocs": 71,
+    "docs": 105,
+    "renderedDocs": 78,
     "assets": 741,
     "curated": 333,
     "generated": 408,
@@ -712,6 +712,13 @@
           "href": "/courses/06016411-Intro-to-Computer-Systems/map",
           "docs": [
             "content/courses/06016411-Intro-to-Computer-Systems/archive/course-materials-2569.md",
+            "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week01.md",
+            "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week02.md",
+            "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week03.md",
+            "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week04.md",
+            "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week05.md",
+            "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week06.md",
+            "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week07.md",
             "content/courses/06016411-Intro-to-Computer-Systems/archive/week01.md",
             "content/courses/06016411-Intro-to-Computer-Systems/archive/week02.md",
             "content/courses/06016411-Intro-to-Computer-Systems/archive/week03.md",
@@ -803,7 +810,9 @@
           },
           "upcoming": false,
           "video": null,
-          "docs": [],
+          "docs": [
+            "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week01.md"
+          ],
           "assets": [
             "ics-ics-lec-week01-introduction",
             "ics-ics-lab-01",
@@ -821,7 +830,9 @@
           },
           "upcoming": false,
           "video": null,
-          "docs": [],
+          "docs": [
+            "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week02.md"
+          ],
           "assets": [
             "ics-ics-lec-week02-boolean-algebra",
             "ics-ics-lab-02",
@@ -842,7 +853,9 @@
           },
           "upcoming": false,
           "video": null,
-          "docs": [],
+          "docs": [
+            "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week03.md"
+          ],
           "assets": [
             "ics-ics-lec-week03-canonical-forms",
             "ics-ics-lab-03",
@@ -861,7 +874,9 @@
           },
           "upcoming": false,
           "video": null,
-          "docs": [],
+          "docs": [
+            "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week04.md"
+          ],
           "assets": [
             "ics-ics-lec-week04-boolean-minimization",
             "ics-ics-lab-04",
@@ -880,7 +895,9 @@
           },
           "upcoming": false,
           "video": null,
-          "docs": [],
+          "docs": [
+            "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week05.md"
+          ],
           "assets": [
             "ics-ics-lec-week05-timeresponse",
             "ics-lec-week05-v2"
@@ -895,7 +912,9 @@
           },
           "upcoming": false,
           "video": null,
-          "docs": [],
+          "docs": [
+            "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week06.md"
+          ],
           "assets": [
             "ics-ics-lec-week06-numbersystems",
             "ics-lec-week06-v2"
@@ -910,7 +929,9 @@
           },
           "upcoming": false,
           "video": null,
-          "docs": [],
+          "docs": [
+            "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week07.md"
+          ],
           "assets": [
             "ics-ics-lec-week07-mux",
             "ics-lab-week07-draft",
@@ -1227,6 +1248,13 @@
         "content/courses/06016411-Intro-to-Computer-Systems/RESOURCES_MANIFEST.md",
         "content/courses/06016411-Intro-to-Computer-Systems/archive/course-materials-2569.md",
         "content/courses/06016411-Intro-to-Computer-Systems/archive/links.md",
+        "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week01.md",
+        "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week02.md",
+        "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week03.md",
+        "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week04.md",
+        "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week05.md",
+        "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week06.md",
+        "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week07.md",
         "content/courses/06016411-Intro-to-Computer-Systems/archive/week01.md",
         "content/courses/06016411-Intro-to-Computer-Systems/archive/week02.md",
         "content/courses/06016411-Intro-to-Computer-Systems/archive/week03.md",
@@ -5811,6 +5839,179 @@
       "week": null,
       "updated": null,
       "assetRefs": [],
+      "unresolvedRefs": []
+    },
+    "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week01.md": {
+      "id": "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week01.md",
+      "path": "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week01.md",
+      "course": "ICS",
+      "role": "week",
+      "title": "สัปดาห์ที่ 1 · แนะนำระบบดิจิทัล และโปรแกรม Logisim",
+      "rendered": true,
+      "bindings": [
+        {
+          "module": "syllabus_map",
+          "segment": "map",
+          "slug": "logic-week01",
+          "href": "/courses/06016411-Intro-to-Computer-Systems/map?doc=logic-week01",
+          "chapter": null,
+          "scope": "midterm"
+        }
+      ],
+      "week": 1,
+      "updated": null,
+      "assetRefs": [
+        "ics-ics-lec-week01-introduction",
+        "ics-ics-lab-01"
+      ],
+      "unresolvedRefs": []
+    },
+    "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week02.md": {
+      "id": "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week02.md",
+      "path": "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week02.md",
+      "course": "ICS",
+      "role": "week",
+      "title": "สัปดาห์ที่ 2 · พีชคณิตบูลีน ทฤษฎีเดอมอร์แกน และเกตลอจิก",
+      "rendered": true,
+      "bindings": [
+        {
+          "module": "syllabus_map",
+          "segment": "map",
+          "slug": "logic-week02",
+          "href": "/courses/06016411-Intro-to-Computer-Systems/map?doc=logic-week02",
+          "chapter": null,
+          "scope": "midterm"
+        }
+      ],
+      "week": 2,
+      "updated": null,
+      "assetRefs": [
+        "ics-ics-lec-week02-boolean-algebra",
+        "ics-ics-lab-02"
+      ],
+      "unresolvedRefs": []
+    },
+    "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week03.md": {
+      "id": "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week03.md",
+      "path": "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week03.md",
+      "course": "ICS",
+      "role": "week",
+      "title": "สัปดาห์ที่ 3 · รูปแบบมาตรฐานคาโนนิคอล SOP และ POS",
+      "rendered": true,
+      "bindings": [
+        {
+          "module": "syllabus_map",
+          "segment": "map",
+          "slug": "logic-week03",
+          "href": "/courses/06016411-Intro-to-Computer-Systems/map?doc=logic-week03",
+          "chapter": null,
+          "scope": "midterm"
+        }
+      ],
+      "week": 3,
+      "updated": null,
+      "assetRefs": [
+        "ics-ics-lec-week03-canonical-forms",
+        "ics-ics-lab-03"
+      ],
+      "unresolvedRefs": []
+    },
+    "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week04.md": {
+      "id": "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week04.md",
+      "path": "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week04.md",
+      "course": "ICS",
+      "role": "week",
+      "title": "สัปดาห์ที่ 4 · การลดรูปฟังก์ชันลอจิกด้วยผังคาร์โนห์ (K-map)",
+      "rendered": true,
+      "bindings": [
+        {
+          "module": "syllabus_map",
+          "segment": "map",
+          "slug": "logic-week04",
+          "href": "/courses/06016411-Intro-to-Computer-Systems/map?doc=logic-week04",
+          "chapter": null,
+          "scope": "midterm"
+        }
+      ],
+      "week": 4,
+      "updated": null,
+      "assetRefs": [
+        "ics-lec-week04-kmap",
+        "ics-ics-lab-04"
+      ],
+      "unresolvedRefs": []
+    },
+    "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week05.md": {
+      "id": "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week05.md",
+      "path": "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week05.md",
+      "course": "ICS",
+      "role": "week",
+      "title": "สัปดาห์ที่ 5 · การตอบสนองเชิงเวลา และ Timing Diagram",
+      "rendered": true,
+      "bindings": [
+        {
+          "module": "syllabus_map",
+          "segment": "map",
+          "slug": "logic-week05",
+          "href": "/courses/06016411-Intro-to-Computer-Systems/map?doc=logic-week05",
+          "chapter": null,
+          "scope": "midterm"
+        }
+      ],
+      "week": 5,
+      "updated": null,
+      "assetRefs": [
+        "ics-ics-lec-week05-timeresponse"
+      ],
+      "unresolvedRefs": []
+    },
+    "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week06.md": {
+      "id": "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week06.md",
+      "path": "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week06.md",
+      "course": "ICS",
+      "role": "week",
+      "title": "สัปดาห์ที่ 6 · ระบบเลขฐาน และการคำนวณเลขฐานสอง",
+      "rendered": true,
+      "bindings": [
+        {
+          "module": "syllabus_map",
+          "segment": "map",
+          "slug": "logic-week06",
+          "href": "/courses/06016411-Intro-to-Computer-Systems/map?doc=logic-week06",
+          "chapter": null,
+          "scope": "midterm"
+        }
+      ],
+      "week": 6,
+      "updated": null,
+      "assetRefs": [
+        "ics-ics-lec-week06-numbersystems"
+      ],
+      "unresolvedRefs": []
+    },
+    "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week07.md": {
+      "id": "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week07.md",
+      "path": "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week07.md",
+      "course": "ICS",
+      "role": "week",
+      "title": "สัปดาห์ที่ 7 · มัลติเพล็กเซอร์ และดีมัลติเพล็กเซอร์ (MUX/DEMUX)",
+      "rendered": true,
+      "bindings": [
+        {
+          "module": "syllabus_map",
+          "segment": "map",
+          "slug": "logic-week07",
+          "href": "/courses/06016411-Intro-to-Computer-Systems/map?doc=logic-week07",
+          "chapter": null,
+          "scope": "midterm"
+        }
+      ],
+      "week": 7,
+      "updated": null,
+      "assetRefs": [
+        "ics-ics-lec-week07-mux",
+        "ics-lab-week07-draft"
+      ],
       "unresolvedRefs": []
     },
     "content/courses/06016411-Intro-to-Computer-Systems/archive/week01.md": {
@@ -12645,7 +12846,9 @@
       "sizeBytes": 474276,
       "pages": 12,
       "onDisk": true,
-      "usedBy": []
+      "usedBy": [
+        "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week01.md"
+      ]
     },
     "ics-ics-lec-week02-boolean-algebra": {
       "id": "ics-ics-lec-week02-boolean-algebra",
@@ -12684,7 +12887,9 @@
       "sizeBytes": 687851,
       "pages": 23,
       "onDisk": true,
-      "usedBy": []
+      "usedBy": [
+        "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week02.md"
+      ]
     },
     "ics-ics-lec-week03-canonical-forms": {
       "id": "ics-ics-lec-week03-canonical-forms",
@@ -12723,7 +12928,9 @@
       "sizeBytes": 553301,
       "pages": 16,
       "onDisk": true,
-      "usedBy": []
+      "usedBy": [
+        "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week03.md"
+      ]
     },
     "ics-ics-lec-week04-boolean-minimization": {
       "id": "ics-ics-lec-week04-boolean-minimization",
@@ -12801,7 +13008,9 @@
       "sizeBytes": 237246,
       "pages": 6,
       "onDisk": true,
-      "usedBy": []
+      "usedBy": [
+        "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week05.md"
+      ]
     },
     "ics-ics-lec-week06-numbersystems": {
       "id": "ics-ics-lec-week06-numbersystems",
@@ -12840,7 +13049,9 @@
       "sizeBytes": 265819,
       "pages": 11,
       "onDisk": true,
-      "usedBy": []
+      "usedBy": [
+        "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week06.md"
+      ]
     },
     "ics-ics-lec-week07-mux": {
       "id": "ics-ics-lec-week07-mux",
@@ -12879,7 +13090,9 @@
       "sizeBytes": 384493,
       "pages": 18,
       "onDisk": true,
-      "usedBy": []
+      "usedBy": [
+        "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week07.md"
+      ]
     },
     "ics-ics-lab-01": {
       "id": "ics-ics-lab-01",
@@ -12918,7 +13131,9 @@
       "sizeBytes": 213521,
       "pages": 4,
       "onDisk": true,
-      "usedBy": []
+      "usedBy": [
+        "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week01.md"
+      ]
     },
     "ics-ics-lab-02": {
       "id": "ics-ics-lab-02",
@@ -12957,7 +13172,9 @@
       "sizeBytes": 101080,
       "pages": 5,
       "onDisk": true,
-      "usedBy": []
+      "usedBy": [
+        "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week02.md"
+      ]
     },
     "ics-ics-lab-03": {
       "id": "ics-ics-lab-03",
@@ -12996,7 +13213,9 @@
       "sizeBytes": 245358,
       "pages": 8,
       "onDisk": true,
-      "usedBy": []
+      "usedBy": [
+        "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week03.md"
+      ]
     },
     "ics-ics-lab-04": {
       "id": "ics-ics-lab-04",
@@ -13035,7 +13254,9 @@
       "sizeBytes": 218172,
       "pages": 10,
       "onDisk": true,
-      "usedBy": []
+      "usedBy": [
+        "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week04.md"
+      ]
     },
     "ics-ics-sheet-summary": {
       "id": "ics-ics-sheet-summary",
@@ -16037,7 +16258,9 @@
       "sizeBytes": 917942,
       "pages": 19,
       "onDisk": true,
-      "usedBy": []
+      "usedBy": [
+        "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week07.md"
+      ]
     },
     "ics-lab-05-legacy": {
       "id": "ics-lab-05-legacy",
@@ -16490,7 +16713,9 @@
       "sizeBytes": 444721,
       "pages": 25,
       "onDisk": true,
-      "usedBy": []
+      "usedBy": [
+        "content/courses/06016411-Intro-to-Computer-Systems/archive/logic-week04.md"
+      ]
     },
     "ics-lec-week04-v2": {
       "id": "ics-lec-week04-v2",

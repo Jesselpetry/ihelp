@@ -44,3 +44,16 @@ export function FacebookIcon({ className }: { className?: string }) {
     </svg>
   );
 }
+
+export function NotionIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden
+      className={cn("h-4 w-4", className)}
+      fill="currentColor"
+    >
+      <path d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.046-.326L17.86 1.968c-.42-.326-.981-.7-2.055-.607L3.104 2.387c-.466.046-.56.28-.373.466l1.728 1.355zm-.28 3.033v13.626c0 .7.373 1.026 1.12 1.026l12.468-.7c.747 0 .934-.467.934-1.027V6.541c0-.56-.28-.84-.747-.84l-13.03.746c-.513.047-.745.28-.745.794zm11.758.887v9.098l-2.008.14V8.408l-5.694 7.606H6.186V7.335l2.053-.14v7.794l5.414-7.86h2.284z" />
+    </svg>
+  );
+}

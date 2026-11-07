@@ -2,16 +2,35 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, GitCommitHorizontal, Users } from "lucide-react";
+import {
+  ArrowLeft,
+  BookOpen,
+  Calendar,
+  Code2,
+  ExternalLink,
+  GitCommitHorizontal,
+  Sparkles,
+  Tag,
+} from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { CHANGELOG, type ChangeKind, type Contributor, type VersionEntry } from "@/lib/docs/changelog";
+import {
+  CHANGELOG,
+  getCurrentVersion,
+  type ChangeKind,
+  type Contributor,
+  type VersionEntry,
+} from "@/lib/docs/changelog";
 import { useLocale, t } from "@/lib/i18n";
 import { SITE } from "@/lib/site";
 import {
   ContributorBadge,
+  ContributorCard,
   ContributorModal,
   KNOWN_CONTRIBUTORS,
+  parseChangeText,
 } from "@/components/contributor-modal";
+import LIBRARY_TOTALS from "@/lib/library/library-totals.json";
 
 const L = {
   title: { th: "เวอร์ชันและ Changelog", en: "Version & Changelog" },
@@ -19,16 +38,24 @@ const L = {
     th: `ประวัติการอัปเดตของ ${SITE.plainName} แต่ละเวอร์ชัน พร้อมชื่อผู้ร่วมพัฒนา`,
     en: `Update history of ${SITE.plainName}, version by version, with contributor credits.`,
   },
-  backToList: { th: "กลับหน้ารายการโจทย์", en: "Back to problems" },
+  backToHome: { th: "กลับหน้ารวมรายวิชา", en: "Back to courses" },
   contributors: { th: "ผู้ร่วมพัฒนา", en: "Contributors" },
-  coreTeam: { th: "ทีมผู้พัฒนา iHelp", en: "iHelp Team & Contributors" },
-  viewProfileHint: { th: "คลิกเพื่อดูโปรไฟล์ Instagram และประวัติการพัฒนา", en: "Click to view Instagram profile & contributions" },
+  teamAndContributors: { th: "ทีมผู้ร่วมพัฒนา", en: "Developers & Contributors" },
+  currentVersion: { th: "เวอร์ชันปัจจุบัน", en: "Current Version" },
+  latestRelease: { th: "ปล่อยล่าสุด", en: "Latest Release" },
+  inDevelopment: { th: "กำลังพัฒนา", en: "In Development" },
+  releasedOn: { th: "ปล่อยเมื่อ", en: "Released on" },
   fullChangelog: {
-    th: "ดูฉบับเต็มบน GitHub",
-    en: "View the full changelog on GitHub",
+    th: "ดู CHANGELOG บน GitHub",
+    en: "View CHANGELOG on GitHub",
+  },
+  versionGuide: {
+    th: "คู่มือการจัดการเวอร์ชัน",
+    en: "Version Control Guide",
   },
   viewCommit: { th: "ดู commit บน GitHub", en: "View commit on GitHub" },
   viewDiff: { th: "ดูการเปลี่ยนแปลงบน GitHub", en: "View changes on GitHub" },
+  releaseTimeline: { th: "ประวัติการปล่อยเวอร์ชัน", en: "Release Timeline" },
 };
 
 const KIND_LABEL: Record<ChangeKind, { th: string; en: string }> = {
@@ -54,15 +81,6 @@ function formatDate(iso: string, locale: "th" | "en"): string {
   });
 }
 
-/**
- * Where a version's badge links on GitHub.
- *
- * A released entry links straight to the commit that marks it. "Unreleased"
- * has no commit of its own yet, so it links to a compare view from the last
- * release's commit to the repo's main branch (SITE.repo.branch) instead —
- * "everything since v0.5.0", which is what a reader actually wants from an
- * in-progress entry.
- */
 function githubHref(entry: VersionEntry): string | null {
   if (!entry.commit) return null;
   return entry.date
@@ -74,116 +92,350 @@ export function VersionView() {
   const { locale } = useLocale();
   const [selectedContributor, setSelectedContributor] = useState<Contributor | null>(null);
 
-  // Core team members list for the top showcase
+  const current = getCurrentVersion();
   const allCoreMembers: Contributor[] = Object.values(KNOWN_CONTRIBUTORS);
 
   return (
-    <main className="max-w-3xl mx-auto px-6 py-8 w-full space-y-6">
-      <div>
-        <Link
-          href="/"
-          className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary"
-        >
-          <ArrowLeft className="size-4" />
-          {t(L.backToList, locale)}
-        </Link>
-        <h1 className="text-2xl font-bold mt-2">{t(L.title, locale)}</h1>
-        <p className="text-sm text-muted-foreground mt-1">{t(L.subtitle, locale)}</p>
-        <a
-          href={`${SITE.repo.url}/blob/${SITE.repo.branch}/CHANGELOG.md`}
-          target="_blank"
-          rel="noreferrer"
-          className="inline-block text-xs text-muted-foreground hover:text-primary mt-1"
-        >
-          {t(L.fullChangelog, locale)}
-        </a>
-      </div>
-
-      {/* Core Contributors Card */}
-      <div className="rounded-xl border bg-gradient-to-br from-card via-card to-muted/30 p-4 shadow-2xs space-y-3">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Users className="size-4 text-primary" />
-            <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-              {t(L.coreTeam, locale)}
-            </h2>
+    <main className="max-w-6xl mx-auto px-4 sm:px-6 py-8 w-full space-y-8">
+      {/* Top Header Bar */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b pb-6">
+        <div>
+          <Link
+            href="/"
+            className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-primary transition-colors mb-2"
+          >
+            <ArrowLeft className="size-3.5" />
+            {t(L.backToHome, locale)}
+          </Link>
+          <div className="flex items-center gap-2.5">
+            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
+              {t(L.title, locale)}
+            </h1>
           </div>
-          <span className="text-[11px] text-muted-foreground hidden sm:inline">
-            {t(L.viewProfileHint, locale)}
-          </span>
+          <p className="text-sm text-muted-foreground mt-1">
+            {t(L.subtitle, locale)}
+          </p>
         </div>
-        <div className="flex flex-wrap items-center gap-2">
-          {allCoreMembers.map((member) => (
-            <ContributorBadge
-              key={member.github}
-              contributor={member}
-              onClick={() => setSelectedContributor(member)}
-            />
-          ))}
+
+        {/* Current Version Pill — Top Right (Clean, no green dot) */}
+        <div className="flex items-center gap-2 self-start sm:self-center">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border bg-card/90 shadow-sm text-xs">
+            <Tag className="size-3.5 text-primary" />
+            <span className="text-muted-foreground">{t(L.currentVersion, locale)}:</span>
+            <span className="font-mono font-bold text-primary">v{current.version}</span>
+          </div>
         </div>
       </div>
 
-      <div className="space-y-4">
-        {CHANGELOG.map((v) => {
-          const href = githubHref(v);
-          return (
-          <div key={v.version} className="rounded-xl border bg-card shadow-xs p-5 space-y-4">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b pb-3">
-              <div className="flex items-center gap-2.5">
-                {href ? (
-                  <a
-                    href={href}
-                    target="_blank"
-                    rel="noreferrer"
-                    title={t(v.date ? L.viewCommit : L.viewDiff, locale)}
-                    className="group inline-flex items-center gap-1.5"
-                  >
-                    <span className="font-mono text-xl font-bold text-primary transition-colors group-hover:underline">
-                      {v.date ? `v${v.version}` : v.version}
-                    </span>
-                    <GitCommitHorizontal className="size-4 text-muted-foreground transition-colors group-hover:text-primary" />
-                  </a>
-                ) : (
-                  <span className="font-mono text-xl font-bold text-primary">
-                    {v.date ? `v${v.version}` : v.version}
-                  </span>
-                )}
-                {v.date && (
-                  <span className="text-xs text-muted-foreground bg-muted px-2.5 py-1 rounded-md">
-                    {formatDate(v.date, locale)}
-                  </span>
-                )}
-              </div>
-
-              <div className="flex items-center gap-2">
-                <span className="text-xs text-muted-foreground font-medium">
-                  {t(L.contributors, locale)}:
-                </span>
-                <div className="flex flex-wrap items-center gap-1.5">
-                  {v.contributors.map((c) => (
-                    <ContributorBadge
-                      key={c.github}
-                      contributor={c}
-                      onClick={() => setSelectedContributor(c)}
-                    />
-                  ))}
-                </div>
-              </div>
+      {/* 2-Panel Layout: Main Timeline (Left) & GitHub-style Sidebar (Right) */}
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-8 items-start">
+        {/* Left Panel: Release Timeline */}
+        <div className="space-y-6">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2 text-sm font-semibold text-foreground/90">
+              <Tag className="size-4 text-primary" />
+              <span>{t(L.releaseTimeline, locale)}</span>
+              <span className="text-xs text-muted-foreground font-normal">
+                ({CHANGELOG.length})
+              </span>
             </div>
 
-            <ul className="space-y-2 pt-1">
-              {v.changes.map((change, i) => (
-                <li key={i} className="flex items-start gap-2.5 text-sm">
-                  <Badge variant={KIND_VARIANT[change.kind]} className="mt-0.5 shrink-0 uppercase text-[10px] tracking-wider px-2 py-0.5">
-                    {t(KIND_LABEL[change.kind], locale)}
-                  </Badge>
-                  <span className="text-foreground/90 leading-relaxed">{t(change.text, locale)}</span>
-                </li>
-              ))}
-            </ul>
+            <a
+              href={`${SITE.repo.url}/blob/${SITE.repo.branch}/CHANGELOG.md`}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-primary transition-colors"
+            >
+              <span>{t(L.fullChangelog, locale)}</span>
+              <ExternalLink className="size-3" />
+            </a>
           </div>
-          );
-        })}
+
+          <div className="space-y-5">
+            {CHANGELOG.map((v, index) => {
+              const href = githubHref(v);
+              const isLatest = index === 0 && Boolean(v.date);
+              const isInDev = !v.date;
+
+              return (
+                <div
+                  key={v.version}
+                  className="rounded-2xl border bg-card shadow-sm p-5 sm:p-6 space-y-4 hover:border-primary/25 transition-colors"
+                >
+                  {/* Version Item Header */}
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b pb-4">
+                    <div className="flex flex-wrap items-center gap-2.5">
+                      {href ? (
+                        <a
+                          href={href}
+                          target="_blank"
+                          rel="noreferrer"
+                          title={t(v.date ? L.viewCommit : L.viewDiff, locale)}
+                          className="group inline-flex items-center gap-1.5"
+                        >
+                          <span className="font-mono text-xl sm:text-2xl font-bold text-primary transition-colors group-hover:underline">
+                            v{v.version}
+                          </span>
+                          <GitCommitHorizontal className="size-4 text-muted-foreground transition-colors group-hover:text-primary" />
+                        </a>
+                      ) : (
+                        <span className="font-mono text-xl sm:text-2xl font-bold text-primary">
+                          v{v.version}
+                        </span>
+                      )}
+
+                      {isLatest && (
+                        <Badge
+                          variant="default"
+                          className="text-[11px] font-medium px-2.5 py-0.5 rounded-full bg-primary/15 text-primary border border-primary/30 shadow-sm"
+                        >
+                          <Sparkles className="size-3 mr-1" />
+                          {t(L.latestRelease, locale)}
+                        </Badge>
+                      )}
+
+                      {isInDev && (
+                        <Badge
+                          variant="outline"
+                          className="text-[11px] font-medium px-2.5 py-0.5 rounded-full border-amber-500/40 text-amber-600 dark:text-amber-400"
+                        >
+                          {t(L.inDevelopment, locale)}
+                        </Badge>
+                      )}
+
+                      {v.date && (
+                        <span className="inline-flex items-center gap-1 text-xs text-muted-foreground bg-muted/60 px-2.5 py-1 rounded-md">
+                          <Calendar className="size-3 text-muted-foreground/80" />
+                          {formatDate(v.date, locale)}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Contributors in this version */}
+                    <div className="flex items-center gap-2">
+                      <div className="flex flex-wrap items-center gap-1.5">
+                        {v.contributors.map((c) => (
+                          <ContributorBadge
+                            key={c.github}
+                            contributor={c}
+                            onClick={() => setSelectedContributor(c)}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Changes List */}
+                  <ul className="space-y-3 pt-1">
+                    {v.changes.map((change, i) => {
+                      const rawText = t(change.text, locale);
+                      const { cleanText, author } = parseChangeText(rawText);
+                      const contributorObj = author
+                        ? Object.values(KNOWN_CONTRIBUTORS).find(
+                            (c) => c.github.toLowerCase() === author.toLowerCase()
+                          )
+                        : null;
+
+                      return (
+                        <li key={i} className="flex items-start gap-2.5 text-sm">
+                          <Badge
+                            variant={KIND_VARIANT[change.kind]}
+                            className="mt-0.5 shrink-0 text-[10px] font-semibold px-2 py-0.5 rounded-md"
+                          >
+                            {t(KIND_LABEL[change.kind], locale)}
+                          </Badge>
+                          <div className="flex-1 min-w-0 space-y-1.5">
+                            <span className="text-foreground/90 leading-relaxed text-[13px] sm:text-sm block break-words">
+                              {cleanText}
+                            </span>
+                            {/* Attributed Contributor Badge in a separate row */}
+                            {author && (
+                              <div className="pt-0.5">
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    if (contributorObj) {
+                                      setSelectedContributor(contributorObj);
+                                    }
+                                  }}
+                                  className="group inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border bg-muted/40 hover:bg-muted text-xs font-medium text-muted-foreground hover:text-foreground transition-all shadow-2xs cursor-pointer"
+                                >
+                                  <Avatar size="sm" className="size-4 shrink-0">
+                                    <AvatarImage
+                                      src={`https://github.com/${author}.png`}
+                                      alt={`@${author}`}
+                                    />
+                                    <AvatarFallback className="text-[7px]">
+                                      {author.slice(0, 2).toUpperCase()}
+                                    </AvatarFallback>
+                                  </Avatar>
+                                  <span className="text-[11px] font-mono group-hover:text-primary transition-colors">
+                                    {locale === "th" ? `โดย @${author}` : `by @${author}`}
+                                  </span>
+                                </button>
+                              </div>
+                            )}
+                          </div>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Right Panel: GitHub-style Sidebar */}
+        <aside className="space-y-6 lg:sticky lg:top-20">
+          {/* Current Version Card (Clean, no green dot) */}
+          <div className="rounded-2xl border bg-card/60 p-4 shadow-sm space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-semibold text-muted-foreground">
+                {t(L.currentVersion, locale)}
+              </span>
+              <Tag className="size-3.5 text-muted-foreground/80" />
+            </div>
+
+            <div className="space-y-1">
+              <div className="flex items-center gap-2">
+                <span className="font-mono text-2xl font-bold text-foreground">
+                  v{current.version}
+                </span>
+                <Badge variant="outline" className="text-[10px] font-mono px-1.5 py-0">
+                  {current.commit?.slice(0, 7) || SITE.repo.branch}
+                </Badge>
+              </div>
+
+              {current.date && (
+                <p className="text-xs text-muted-foreground">
+                  {t(L.releasedOn, locale)}: {formatDate(current.date, locale)}
+                </p>
+              )}
+            </div>
+
+            {current.commit && (
+              <a
+                href={`${SITE.repo.url}/commit/${current.commit}`}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1.5 text-xs text-primary hover:underline font-medium pt-1"
+              >
+                <GitCommitHorizontal className="size-3.5" />
+                <span>{t(L.viewCommit, locale)}</span>
+                <ExternalLink className="size-2.5 opacity-70" />
+              </a>
+            )}
+          </div>
+
+          {/* Contributors List — Clean borderless cards */}
+          <div className="rounded-2xl border bg-card/40 p-4 shadow-sm space-y-3">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Code2 className="size-4 text-primary" />
+                <h2 className="text-xs font-semibold text-foreground/90">
+                  {t(L.teamAndContributors, locale)}
+                </h2>
+              </div>
+              <span className="text-[11px] text-muted-foreground font-mono">
+                {allCoreMembers.length}
+              </span>
+            </div>
+
+            <div className="space-y-1">
+              {allCoreMembers.map((member) => (
+                <ContributorCard
+                  key={member.github}
+                  contributor={member}
+                  onClick={() => setSelectedContributor(member)}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Library Statistics Grid Card */}
+          <div className="rounded-2xl border bg-card/40 p-4 shadow-sm space-y-3">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <BookOpen className="size-4 text-primary" />
+                <h2 className="text-xs font-semibold text-foreground/90">
+                  {locale === "th" ? "สถิติคลังสื่อการเรียนรู้" : "Library Statistics"}
+                </h2>
+              </div>
+              <span className="text-[10px] text-muted-foreground bg-muted px-2 py-0.5 rounded-md font-mono">
+                {LIBRARY_TOTALS.updatedMonth}
+              </span>
+            </div>
+
+            <div className="grid grid-cols-2 gap-2 text-center pt-1">
+              <div className="rounded-xl border bg-card/60 p-2.5 shadow-2xs">
+                <span className="font-mono text-lg font-bold text-foreground">
+                  {LIBRARY_TOTALS.courses}
+                </span>
+                <p className="text-[11px] text-muted-foreground mt-0.5">
+                  {locale === "th" ? "รายวิชาทั้งหมด" : "Total Courses"}
+                </p>
+              </div>
+              <div className="rounded-xl border bg-card/60 p-2.5 shadow-2xs">
+                <span className="font-mono text-lg font-bold text-foreground">
+                  {LIBRARY_TOTALS.coursesWithLibrary}
+                </span>
+                <p className="text-[11px] text-muted-foreground mt-0.5">
+                  {locale === "th" ? "มีคลังสื่อการสอน" : "With Library"}
+                </p>
+              </div>
+              <div className="rounded-xl border bg-card/60 p-2.5 shadow-2xs">
+                <span className="font-mono text-lg font-bold text-primary">
+                  {LIBRARY_TOTALS.assets}
+                </span>
+                <p className="text-[11px] text-muted-foreground mt-0.5">
+                  {locale === "th" ? "การ์ดสื่อการเรียน" : "Resource Cards"}
+                </p>
+              </div>
+              <div className="rounded-xl border bg-card/60 p-2.5 shadow-2xs">
+                <span className="font-mono text-lg font-bold text-primary">
+                  {LIBRARY_TOTALS.files}
+                </span>
+                <p className="text-[11px] text-muted-foreground mt-0.5">
+                  {locale === "th" ? "ไฟล์ในระบบ" : "Distinct Files"}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Docs & Repository Links */}
+          <div className="rounded-2xl border bg-muted/20 p-4 shadow-sm space-y-2.5 text-xs text-muted-foreground">
+            <p className="font-medium text-foreground/90">
+              {SITE.name} · Open Source
+            </p>
+            <p className="leading-relaxed">
+              {locale === "th"
+                ? "ข้อมูลเวอร์ชันถูกซิงค์จาก CHANGELOG.md และคลัง Git อัตโนมัติ"
+                : "Version history synced from CHANGELOG.md and Git commits."}
+            </p>
+            <div className="pt-1 flex flex-col gap-1.5">
+              <a
+                href={`${SITE.repo.url}/blob/${SITE.repo.branch}/docs/VERSION_CONTROL_GUIDE.md`}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1.5 text-primary hover:underline"
+              >
+                <Tag className="size-3" />
+                <span>{t(L.versionGuide, locale)}</span>
+                <ExternalLink className="size-2.5 opacity-60" />
+              </a>
+              <a
+                href={SITE.repo.url}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <ExternalLink className="size-3" />
+                <span>GitHub Repository</span>
+              </a>
+            </div>
+          </div>
+        </aside>
       </div>
 
       {/* Contributor Profile Modal */}
@@ -197,4 +449,3 @@ export function VersionView() {
     </main>
   );
 }
-

@@ -27,13 +27,23 @@
 
 ---
 
+## 📊 สถิติคลังสื่อการเรียนรู้ (Platform Statistics)
+
+<!-- stats:start -->
+| 📚 รายวิชาในระบบ | 🗂️ วิชามีคลังสื่อ | 📄 การ์ดสื่อการเรียน | 💾 ไฟล์เอกสารจริง | 📖 จำนวนหน้าเอกสาร | 🗓️ อัปเดตล่าสุด |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| **15** วิชา | **14** วิชา | **741** รายการ | **724** ไฟล์ | **13,593** หน้า | พฤศจิกายน 2569 |
+<!-- stats:end -->
+
+---
+
 ## ไฮไลต์ฟีเจอร์เด่น (Key Features)
 
 | หมวดหมู่ฟีเจอร์ | รายละเอียดความสามารถ | ทางลัด / เข้าชม |
 |:---|:---|:---:|
 | 📚 **คลังสื่อการเรียนรู้และฮับรายวิชา**<br>*(Course Hubs & Library)* | รวบรวมสไลด์ เอกสารแล็บ และสรุปรายสัปดาห์ของ 15 รายวิชา จัดเรียงตามคาบเรียนและสัปดาห์ พร้อมฟิลเตอร์แยกเนื้อหากลางภาค/ปลายภาค | [`/courses`](https://ihelp.chatan.in.th/courses) |
 | 📅 **ตารางสอบและผังที่นั่งสอบรายบุคคล**<br>*(Exam Schedule & Seating Map)* | ค้นหากำหนดการสอบ ห้องสอบ และเลขที่นั่งสอบรายวิชาด้วยรหัสนักศึกษา 8 หลัก พร้อมแสดงผลบน Interactive Seating Map เสมือนจริงในห้องเรียน และส่งออกปฏิทิน (.ics) ได้ทันที | [`/exam-schedule`](https://ihelp.chatan.in.th/exam-schedule) |
-| 🧮 **ระบบคำนวณคะแนนและตัดเกรด**<br>*(Grade & Score Calculator)*<br>*(พัฒนาบนกิ่ง staging)* | แม่แบบสัดส่วนคะแนน 7 รายวิชาหลัก ปี 1 เทอม 1 พร้อมคำนวณนิพจน์เลขสดในช่อง (`10+5+8.5`), วางคะแนนจาก Excel/TSV, ตัดเกรดคงที่ A–F และ S/U, และจำลองคะแนนสอบ Final ขั้นต่ำ | `staging` branch |
+| 🧮 **ระบบคำนวณคะแนนและตัดเกรด**<br>*(Grade & Exam Score Calculator)* | แม่แบบสัดส่วนคะแนน 7 รายวิชาหลัก ปี 1 เทอม 1 พร้อมคำนวณนิพจน์เลขสดในช่อง (`10+5+8.5`), วางคะแนนจาก Excel/TSV, ตัดเกรดคงที่ A–F และ S/U, และจำลองคะแนนสอบ Final ขั้นต่ำที่ต้องทำเพื่อคว้าเกรดเป้าหมาย | [`/grade-calculator`](https://ihelp.chatan.in.th/grade-calculator) |
 | 🤖 **Help Desk Chat Widget**<br>*(Instant AI Assistant)* | ปุ่มแชตผู้ช่วยมุมขวาล่างของทุกหน้า ตอบคำถามการใช้งานทันใจด้วยคลัง FAQ คัดสรรกว่า 75 ข้อ ค้นหาไฟล์ในคลังรายวิชาแบบเรียลไทม์ และระบบตอบคำถามด้วย AI | *มีในทุกหน้าเว็บ* |
 | ⏱️ **พื้นที่อ่านหนังสือโฟกัส**<br>*(Focus Study Space)* | หน้าจอโฟกัสพร้อมตัวจับเวลาอ่านหนังสือ/พักผ่อนขนาดใหญ่ โหมด Standby/Fullscreen และระบบติดตามโควตาอ่านสอบปลายภาค 22 วัน (112 ชั่วโมง) | [`/profile`](https://ihelp.chatan.in.th) |
 
@@ -74,6 +84,7 @@ bun run dev                  # เปิดเว็บที่ http://localhos
 | 🗂️ **[docs/FILE_STRUCTURE.md](./docs/FILE_STRUCTURE.md)** | แผนผังไดเรกทอรี, แหล่งความจริง (Source of truth) ของแต่ละโมดูล และกติกาการตั้งชื่อ |
 | 🏛️ **[LIBRARY_ARCHITECTURE.md](./docs/LIBRARY_ARCHITECTURE_AND_WORKFLOW.md)** | วงจรชีวิตของคลังสื่อ, การทำงานของ Resource Index Dictionary, และคู่มือ Public API |
 | 🛡️ **[QUARANTINE_AND_EXAMS.md](./docs/QUARANTINE_AND_EXAMS_AUDIT.md)** | รายงานตรวจสอบความปลอดภัย, ไฟล์ในระบบกักกัน (Quarantine), และแนวทางให้เครดิตรุ่นพี่ |
+| 👥 **[CONTRIBUTOR_SYSTEM.md](./docs/CONTRIBUTOR_SYSTEM.md)** | ระบบ Contributor Credit, สถาปัตยกรรมโปรไฟล์นักศึกษา, และระบบเลื่อนชั้นปีอัตโนมัติ |
 | 🏷️ **[VERSION_CONTROL_GUIDE.md](./docs/VERSION_CONTROL_GUIDE.md)** | ระเบียบการกำหนดเลขเวอร์ชัน (SemVer), การบันทึก CHANGELOG, และการผูกข้อมูลหน้า `/version` |
 | 🤖 **[AGENTS.md](./AGENTS.md)** | กฎระเบียบและแนวทางปฏิบัติสำคัญสำหรับ AI Coding Agents (Claude Code, Antigravity) |
 

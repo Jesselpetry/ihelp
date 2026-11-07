@@ -1,14 +1,26 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
+import { ArrowRight, User, Users } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useLocale } from "@/lib/i18n";
-import { courseHref, type CatalogCourse, COURSE_COLORS } from "@/lib/courses/catalog";
+import { courseHref, type CatalogCourse } from "@/lib/courses/catalog";
 import { ItKmitlBadge, ItKmitlLogoSvg } from "@/components/it-kmitl-badge";
 
-const DEFAULT_THEME_COLOR = "#2357A5";
+/** iHelp signature blue — single palette for all courses */
+const IHELP_GRADIENT = { from: "#3a72c8", via: "#2357A5", to: "#163980" };
 
 /**
+ * Compact horizontal course card:
+ * - Left thumbnail: iHelp blue gradient, uniform course code font bottom-left,
+ *   course watermark logo bleeding bottom-right:
+ *     - General Education Logo (white) for Charm School & Foundation English (GE)
+ *     - KMITL Institute seal for EN-KMITL courses
+ *     - IT KMITL logo for IT Faculty courses
+ * - Center: title, subtitle, official code & credits as rounded-full Badge components
+ * - Right: top-right official KMITL link, bottom-right course action button
+ *
  * @param readiness how many of the eleven spine modules this course fills.
  *   Counted on the server from what each module actually binds, so the number
  *   on the shelf is the same number the hub reports.
@@ -23,114 +35,162 @@ export function CourseBookCard({
   const { locale } = useLocale();
   const href = courseHref(course);
   const liveCount = readiness;
-  const courseColor = COURSE_COLORS[course.code] ?? DEFAULT_THEME_COLOR;
 
   const title = locale === "th" ? course.nameTh : course.nameEn;
   const subtitle = locale === "th" ? course.nameEn : course.nameTh;
 
+  const isGe =
+    course.code === "CHARM" ||
+    course.code === "FE" ||
+    course.code === "FE2" ||
+    Boolean(course.officialCode?.startsWith("9064"));
+
+  const isEnKmitl =
+    course.group === "EN-KMITL" ||
+    course.code === "COMPRO" ||
+    course.code === "CHEM" ||
+    Boolean(course.officialCode?.startsWith("01"));
+
+  const grad = IHELP_GRADIENT;
+
   return (
-    <div className="[perspective:1200px] w-full">
-      <article
-        style={{ "--course-color": courseColor } as React.CSSProperties}
-        className={
-          "group relative flex flex-col justify-between overflow-hidden rounded-r-2xl rounded-l-sm border transition-all duration-300 ease-out transform-gpu origin-left aspect-[1/1.08] min-h-[200px] sm:min-h-[220px] " +
-          (liveCount > 0
-            ? "bg-card hover:-translate-y-2 hover:[transform:rotateY(-7deg)_rotateX(2deg)_scale(1.02)] hover:shadow-[-3px_8px_20px_-4px_rgba(0,0,0,0.08),8px_16px_28px_-6px_rgba(35,87,165,0.18)] hover:border-[var(--course-color)]/60" +
-              (href ? " cursor-pointer" : "")
-            : "border-dashed bg-muted/20 opacity-85")
-        }
+    <article
+      className={
+        "group relative flex flex-col sm:flex-row items-stretch sm:items-center gap-3 rounded-2xl border bg-card p-2.5 sm:p-3 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md hover:border-primary/40 " +
+        (liveCount > 0
+          ? "border-border/70 dark:border-white/10"
+          : "border-dashed border-border/60 bg-muted/20 opacity-85")
+      }
+    >
+      {/* ── Full Card Navigation Overlay ── */}
+      {href && (
+        <Link
+          href={href}
+          aria-label={title}
+          className="absolute inset-0 z-10 rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+        />
+      )}
+
+      {/* ── Left Thumbnail: Course Code + Watermark Logo ── */}
+      <div
+        className="relative w-full sm:w-38 md:w-44 h-22 sm:h-24 shrink-0 rounded-xl overflow-hidden flex flex-col justify-end p-2.5 select-none border border-white/10 transition-transform duration-300 group-hover:scale-[1.01]"
+        style={{
+          background: `linear-gradient(135deg, ${grad.from}, ${grad.via}, ${grad.to})`,
+        }}
       >
-        {/* ── Spine hinge crease line ── */}
+        {/* Course Logo Watermark — bottom-right, bleeds outside frame */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-y-0 left-2.5 z-30 w-[1px] bg-border/60 transition-colors duration-300 group-hover:bg-[var(--course-color)]/40"
-        />
+          className={
+            "pointer-events-none absolute select-none " +
+            (isGe
+              ? "-bottom-2 -right-3 opacity-25"
+              : isEnKmitl
+                ? "-bottom-3 -right-3 opacity-30"
+                : "-bottom-3 -right-3 text-white opacity-25")
+          }
+        >
+          {isGe ? (
+            <Image
+              src="/ge-logo-white.webp"
+              alt=""
+              width={160}
+              height={74}
+              className="h-16 sm:h-18 w-auto object-contain select-none"
+            />
+          ) : isEnKmitl ? (
+            <Image
+              src="/kmitl-seal.svg"
+              alt=""
+              width={88}
+              height={88}
+              className="size-22 object-contain select-none"
+            />
+          ) : (
+            <ItKmitlLogoSvg className="size-22" monochrome="currentColor" />
+          )}
+        </div>
 
-        {/* ── Spine depth sheen effect on lift ── */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-y-0 left-0 z-30 w-3 bg-gradient-to-r from-black/5 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 dark:from-white/10"
-        />
+        {/* Course Code — uniform font size for all courses, left-aligned */}
+        <span className="relative z-10 font-black text-white leading-none tracking-tighter select-none text-2xl sm:text-[1.65rem] pr-6">
+          {course.code}
+        </span>
+      </div>
 
-        {/* ── Full Card Navigation Overlay ── */}
-        {href && (
-          <Link
-            href={href}
-            aria-label={title}
-            className="absolute inset-0 z-10 rounded-r-2xl rounded-l-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-          />
+      {/* ── Center Description / Details ── */}
+      <div className="flex-1 min-w-0 flex flex-col justify-center py-0.5">
+        <h3 className="text-sm sm:text-base font-bold text-foreground group-hover:text-primary transition-colors tracking-tight line-clamp-1 sm:line-clamp-2">
+          {title}
+        </h3>
+
+        <p className="text-[11px] sm:text-xs text-muted-foreground line-clamp-1 sm:line-clamp-2 mt-0.5 font-medium">
+          {subtitle}
+        </p>
+
+        {/* ── Instructors / Professors ── */}
+        {course.instructors && course.instructors.length > 0 && (
+          <div
+            className="mt-1 flex items-center gap-1.5 text-[11px] text-muted-foreground/85"
+            title={course.instructors.join(", ")}
+          >
+            {course.instructors.length > 1 ? (
+              <Users className="size-3 shrink-0 text-muted-foreground/60" />
+            ) : (
+              <User className="size-3 shrink-0 text-muted-foreground/60" />
+            )}
+            <span className="line-clamp-1 font-normal">
+              {course.instructors.join(" · ")}
+            </span>
+          </div>
         )}
 
-        {/* ── Subtle IT KMITL Watermark Logo (Bottom-Right) ── */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute bottom-0 right-0 z-10 select-none opacity-[0.04] transition-all duration-300 group-hover:scale-110 group-hover:opacity-[0.12] dark:opacity-[0.08] dark:group-hover:opacity-[0.16]"
-        >
-          <ItKmitlLogoSvg className="size-40 shrink-0" />
+        {/* Metadata Badges — rounded-full */}
+        <div className="mt-2 flex flex-wrap items-center gap-1.5">
+          {course.officialCode && (
+            <Badge
+              variant="secondary"
+              className="rounded-full font-mono text-[10px] font-semibold px-2.5 py-0.5"
+            >
+              {course.officialCode}
+            </Badge>
+          )}
+          {course.credits && (
+            <Badge
+              variant="outline"
+              className="rounded-full text-[10px] font-medium px-2.5 py-0.5"
+            >
+              {locale === "th"
+                ? `${course.credits} หน่วยกิต`
+                : `${course.credits} credits`}
+            </Badge>
+          )}
+        </div>
+      </div>
+
+      {/* ── Right Section: Top-Right IT Link & Bottom-Right Action Button ── */}
+      <div className="relative z-20 shrink-0 flex sm:flex-col items-center sm:items-end justify-between self-stretch gap-2 pt-1.5 sm:pt-0 border-t sm:border-t-0 border-border/40">
+        <div className="flex items-center justify-end">
+          {course.officialUrl && (
+            <ItKmitlBadge href={course.officialUrl} className="shrink-0" />
+          )}
         </div>
 
-        {/* ── BOOK COVER BODY ── */}
-        <div className="relative flex flex-1 flex-col p-4.5 pl-5.5 pb-4 text-left">
-          {/* ── Top Header: Badges & Official IT KMITL Link ── */}
-          <div className="relative z-20 flex items-start justify-between gap-2">
-            <div className="flex items-center gap-2">
-              <Badge
-                variant={liveCount > 0 ? "default" : "outline"}
-                className="rounded-md px-2.5 py-0.5 font-mono text-xs font-bold tracking-tight transition-transform duration-300 group-hover:scale-105"
-                style={{
-                  backgroundColor: liveCount > 0 ? courseColor : undefined,
-                  borderColor: liveCount === 0 ? courseColor : undefined,
-                  color: liveCount > 0 ? "#ffffff" : undefined,
-                }}
-              >
-                {course.code}
-              </Badge>
-              {course.officialCode && (
-                <span className="font-mono text-xs font-semibold text-muted-foreground">
-                  {course.officialCode}
-                </span>
-              )}
-              <span
-                className="font-mono text-[11px] font-semibold text-muted-foreground/70"
-                title={locale === "th" ? "โมดูลที่พร้อมแล้ว" : "Modules ready"}
-              >
-                {readiness}/11
-              </span>
-            </div>
-
-            {/* Official IT KMITL Link Badge */}
-            {course.officialUrl && (
-              <ItKmitlBadge href={course.officialUrl} className="shrink-0" />
-            )}
-          </div>
-
-          {/* ── Editorial Title Section (Top-Left Aligned) ── */}
-          <div className="relative z-20 mt-6 pointer-events-none text-left">
-            {/* Large Bold Main Subject Title */}
-            <h3 className="text-lg sm:text-xl font-black leading-tight tracking-tight text-foreground transition-colors group-hover:text-[var(--course-color)]">
-              {title}
-            </h3>
-
-            {/* Dynamic Secondary Subtitle */}
-            <p className="mt-1.5 text-xs sm:text-sm font-semibold text-muted-foreground/80 leading-snug line-clamp-2">
-              {subtitle}
-            </p>
-          </div>
-
-          {/* ── Bottom Publication Meta ── */}
-          <div className="relative z-20 mt-auto pt-3 pointer-events-none flex items-center justify-between border-t border-border/40 text-[11px] font-mono font-medium text-muted-foreground/70">
-            <span>KMITL</span>
-            <span>{course.group}</span>
-          </div>
+        <div className="mt-auto flex items-center justify-end">
+          {href ? (
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-1.5 text-xs font-semibold text-primary-foreground shadow-xs transition-all duration-200 group-hover:bg-primary/90 group-hover:shadow-sm">
+              <span>{locale === "th" ? "เข้าสู่รายวิชา" : "View Course"}</span>
+              <ArrowRight className="size-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
+            </span>
+          ) : (
+            <Badge
+              variant="outline"
+              className="rounded-full text-xs text-muted-foreground px-2.5 py-1"
+            >
+              {locale === "th" ? "เร็ว ๆ นี้" : "Coming soon"}
+            </Badge>
+          )}
         </div>
-
-        {/* ── Solid Book Footer Band (Course Theme Color) ── */}
-        <div
-          aria-hidden="true"
-          className="relative z-20 h-2.5 sm:h-3 w-full shrink-0 transition-colors duration-200"
-          style={{ backgroundColor: courseColor }}
-        />
-      </article>
-    </div>
+      </div>
+    </article>
   );
 }

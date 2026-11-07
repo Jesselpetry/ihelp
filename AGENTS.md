@@ -96,7 +96,7 @@ Node — use `bun run dev`, never `bun --bun next`.
 | What a course's 11 modules show | `lib/courses/course-bindings.ts` | `readiness`, `library:index` |
 | Course overview page | `content/courses/<dir>/summary.md` ([standard](./docs/COURSE_OVERVIEW_STANDARD.md)) | `content:check` |
 | Weekly pages (ITF, ICS) | `content/courses/<dir>/archive/weekNN.md` | `library:index`, `library:audit` |
-| Week titles (ITF, ICS) — declared **twice** | `ITF_WEEKS` / `ICS_SESSIONS` in `course-bindings.ts` **and** `ITF_SCHEDULE` / `ICS_SCHEDULE` in `lib/library/course-weeks.ts` | change both, then `library:index` |
+| Week titles (ITF, ICS) — declared **twice** | `ITF_WEEKS` / `ICS_LOGIC_WEEKS` / `ICS_SESSIONS` in `course-bindings.ts` **and** `ITF_SCHEDULE` / `ICS_SCHEDULE` in `lib/library/course-weeks.ts` | change both, then `library:index` |
 | Notes for content builders (never rendered) | `content/courses/<dir>/blueprint.md` | — |
 | Library card metadata — titles, scope, week, edition, `sourceUrl` | `lib/library/subject-library.ts` | `library:build`, `library:audit` |
 | Library week view (ITF, ICS) | `lib/library/course-weeks.ts` | `library:index` |
@@ -190,5 +190,7 @@ Known baseline (16 Oct 2026): `bun run lint` already exits 1 — 13 errors in th
 | [docs/Current_Architecture_Report.md](./docs/Current_Architecture_Report.md) | architecture review and known inconsistencies |
 | [docs/FONTS.md](./docs/FONTS.md) | typography rules for the reader |
 | [docs/STUDY_SPACE.md](./docs/STUDY_SPACE.md) | personal study space, timer preset and 22-day exam quota tracker |
+| [docs/BRANDING.md](./docs/BRANDING.md) | iHelp brand identity, naming standards, and wordmark guide |
+| [docs/CONTRIBUTOR_SYSTEM.md](./docs/CONTRIBUTOR_SYSTEM.md) | contributor credit system, student profile schema, and auto academic year promotion |
 | [lib/README.md](./lib/README.md) | the `lib/` folder and its import boundaries |
 | [content/courses/README.md](./content/courses/README.md) | course content status and gaps |

@@ -66,7 +66,71 @@ export const CHANGELOG: VersionEntry[] = [
   {
     version: "Unreleased",
     date: null,
-    commit: "adec45a",
+    commit: "b4aff61",
+    contributors: [CONTRIBUTORS.chatan],
+    changes: [
+      {
+        kind: "changed",
+        text: {
+          th: "ปรับโครงสร้างเลย์เอาต์หน้ารายวิชา (/courses/[dir]) เป็นระบบ Dual-Panel ตรึงแบนเนอร์ด้านบนคงที่ และเลื่อนอ่านเฉพาะแผงเนื้อหาฝั่งขวา",
+          en: "Restructured course hub layout to Dual-Panel architecture with pinned top banner and independently scrollable content stream",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "ปรับเปลี่ยนลายน้ำโลโก้บนการ์ดรายวิชา Charm School และ Foundation English เป็นโลโก้ GE สีขาว และวิชา EN-KMITL เป็นตราสัญลักษณ์สถาบัน",
+          en: "Updated course card watermarks for Charm School & Foundation English to white GE logo and EN-KMITL to official KMITL seal",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "ระบบ Contributor Credit และโปรไฟล์ผู้ร่วมแบ่งปันเนื้อหาท้ายหน้ารายวิชา (/courses/[dir]) พร้อมระบบคำนวณและเลื่อนชั้นปีอัตโนมัติตามรหัสนักศึกษา",
+          en: "Contributor credit & profile showcase at the bottom of course hubs with automatic student academic year advancement",
+        },
+      },
+      {
+        kind: "fixed",
+        text: {
+          th: "แก้ไขลิงก์การ์ดสัปดาห์ที่ 0 (แนะนำรายวิชา) และคลังเอกสารเกิดข้อผิดพลาด 404 ให้เปิดอ่านได้ถูกต้อง พร้อมขยายระยะเว้นวรรคระหว่างตัวคั่นช่วงเนื้อหาและจุดพักสอบ",
+          en: "Fixed week 0 course intro and library links 404, pointing to valid spine routes, and improved timeline milestone spacing",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "ปรับโครงสร้างหน้าหลักรายวิชาสู่ระบบเส้นทางการเรียนรู้รายสัปดาห์ (Weekly Learning Path) พร้อมจุดพักสอบกลางภาคและปลายภาค และระบบค้นหา Real-time",
+          en: "Restructured course hub to Weekly Learning Path with isolated exam milestones, real-time search, and exam period filters",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "ปรับปรุงส่วนแสดงเครดิตและทีมผู้พัฒนาใน README.md สู่รูปแบบตารางมาตรฐานพร้อมข้อมูลติดต่อและบทบาทหน้าที่",
+          en: "Converted contributor showcase in README to structured table with student credentials and contact channels",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "ปรับปรุงแถบค้นหารายวิชาและดีไซน์การ์ดรายวิชาสไตล์ MIT OpenCourseWare (/) ด้วยกรอบภาพไล่เฉดสีฟ้า iHelp Blue Gradient และข้อมูลแนวนอน",
+          en: "Redesigned course search bar and adopted MIT OpenCourseWare-style horizontal course cards (/) with signature iHelp blue gradient thumbnails",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "ปรับลดสเกลหน้ารายวิชา (/courses/[dir]) และปรับปรุงการ์ดแสดงสถานะสำหรับหมวดที่อยู่ระหว่างเตรียมเนื้อหา",
+          en: "Compacted course hub layout and polished empty phase preparation cards to match module stream rows",
+        },
+      },
+    ],
+  },
+  {
+    version: "0.9.0",
+    date: "2026-11-07",
+    commit: "7e91359",
     contributors: [
       CONTRIBUTORS.chatan,
       CONTRIBUTORS.phuPunnavit,
@@ -74,6 +138,34 @@ export const CHANGELOG: VersionEntry[] = [
       CONTRIBUTORS.meaookung,
     ],
     changes: [
+      {
+        kind: "changed",
+        text: {
+          th: "ปรับโฉมหน้าประวัติเวอร์ชันและผู้ร่วมพัฒนา /version สไตล์ GitHub Releases แบ่ง 2 แผง พร้อมปุ่มเวอร์ชันปัจจุบัน และการ์ดผู้ร่วมพัฒนาแบบคลีน",
+          en: "GitHub Releases-inspired 2-panel /version redesign with current version pill and clean borderless contributor cards",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "ยกเครื่อง Contributor Profile Modal ให้ Responsive ปรับปุ่มโซเชียลเป็นทรงมน (rounded-full) เงา shadow-sm/md และแจกแจงประวัติการพัฒนาละเอียด",
+          en: "Contributor Profile Modal overhaul — responsive dialog, rounded-full social buttons, subtle shadow tokens, and rich version-by-version history",
+        },
+      },
+      {
+        kind: "fixed",
+        text: {
+          th: "นำจุดเขียว AvatarBadge (online status indicator) ออกจาก Avatar ผู้ร่วมพัฒนาทั้งหมด เพื่อไม่ให้บดบังรูปโปรไฟล์",
+          en: "Remove overlapping online status AvatarBadge dot from contributor avatars to prevent profile image obstruction",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "จัดทำคู่มือการจัดการเวอร์ชัน docs/VERSION_CONTROL_GUIDE.md และอัปเดตแนวทางร่วมพัฒนาใน CONTRIBUTING.md",
+          en: "Add version control & changelog guide (docs/VERSION_CONTROL_GUIDE.md) and update CONTRIBUTING.md",
+        },
+      },
       {
         kind: "added",
         text: {
@@ -973,3 +1065,9 @@ export const CHANGELOG: VersionEntry[] = [
     ],
   },
 ];
+
+/** Get the latest stable release or current version */
+export function getCurrentVersion(): VersionEntry {
+  return CHANGELOG[0];
+}
+

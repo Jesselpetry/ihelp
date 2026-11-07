@@ -2,7 +2,13 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import { ChevronRight } from "lucide-react";
+import {
+  CalendarDays,
+  ChevronRight,
+  Milestone as MilestoneIcon,
+  Trophy as TrophyIcon,
+  type LucideIcon,
+} from "lucide-react";
 import {
   MODULE_ICONS,
   OVERVIEW_ANCHOR,
@@ -29,6 +35,10 @@ export interface CourseSidebarProps {
   onScopeChange: (scope: ModuleScope) => void;
   /** Whether the stream renders the overview section. */
   hasOverview: boolean;
+  weeksCount?: number;
+  hasMidtermMilestone?: boolean;
+  hasFinalMilestone?: boolean;
+  hasSecondHalf?: boolean;
 }
 
 const ArchiveIcon = MODULE_ICONS.archive;
@@ -46,7 +56,7 @@ const L = {
 interface TopicLink {
   id: string;
   title: LText;
-  Icon: (typeof PHASE_ICONS)[keyof typeof PHASE_ICONS];
+  Icon: LucideIcon;
   /** Openable modules in the section. */
   count: number;
 }
@@ -57,20 +67,122 @@ interface TopicLink {
  * stream, so the topic list collapses to a row of chips and the order puts the
  * two controls first.
  */
-export function CourseSidebar({ modules, scope, onScopeChange, hasOverview }: CourseSidebarProps) {
+export function CourseSidebar({
+  modules,
+  scope,
+  onScopeChange,
+  hasOverview,
+  weeksCount,
+  hasMidtermMilestone,
+  hasFinalMilestone,
+  hasSecondHalf,
+}: CourseSidebarProps) {
   const { locale } = useLocale();
   const archive = openArchive(modules);
   const groups = useMemo(() => topicGroups(modules, scope), [modules, scope]);
-  const readyCount = modules.filter((mod) => !isLocked(mod)).length;
+  const readyCount = weeksCount ?? modules.filter((mod) => !isLocked(mod)).length;
 
   const links = useMemo<TopicLink[]>(() => {
+    if (weeksCount !== undefined && weeksCount > 0) {
+      const weeklyLinks: TopicLink[] = [];
+
+      if (scope === "all" && hasSecondHalf) {
+        weeklyLinks.push({
+          id: "weekly-path",
+          title: { th: "สัปดาห์ (ครึ่งแรก)", en: "Weeks (1st Half)" },
+          Icon: CalendarDays,
+          count: weeksCount,
+        });
+        if (hasMidtermMilestone) {
+          weeklyLinks.push({
+            id: "milestone-midterm",
+            title: { th: "สอบกลางภาค", en: "Midterm Exam" },
+            Icon: MilestoneIcon,
+            count: 2,
+          });
+        }
+        weeklyLinks.push({
+          id: "weekly-second-half",
+          title: { th: "สัปดาห์ (ครึ่งหลัง)", en: "Weeks (2nd Half)" },
+          Icon: CalendarDays,
+          count: weeksCount,
+        });
+        if (hasFinalMilestone) {
+          weeklyLinks.push({
+            id: "milestone-final",
+            title: { th: "สอบปลายภาค", en: "Final Exam" },
+            Icon: TrophyIcon,
+            count: 2,
+          });
+        }
+      } else if (scope === "midterm") {
+        weeklyLinks.push({
+          id: "weekly-path",
+          title: hasSecondHalf
+            ? { th: "สัปดาห์ (ครึ่งแรก)", en: "Weeks (1st Half)" }
+            : { th: "เนื้อหารายสัปดาห์", en: "Weekly Sessions" },
+          Icon: CalendarDays,
+          count: weeksCount,
+        });
+        if (hasMidtermMilestone) {
+          weeklyLinks.push({
+            id: "milestone-midterm",
+            title: { th: "สอบกลางภาค", en: "Midterm Exam" },
+            Icon: MilestoneIcon,
+            count: 2,
+          });
+        }
+      } else if (scope === "final") {
+        weeklyLinks.push({
+          id: "weekly-second-half",
+          title: hasSecondHalf
+            ? { th: "สัปดาห์ (ครึ่งหลัง)", en: "Weeks (2nd Half)" }
+            : { th: "เนื้อหารายสัปดาห์", en: "Weekly Sessions" },
+          Icon: CalendarDays,
+          count: weeksCount,
+        });
+        if (hasFinalMilestone) {
+          weeklyLinks.push({
+            id: "milestone-final",
+            title: { th: "สอบปลายภาค", en: "Final Exam" },
+            Icon: TrophyIcon,
+            count: 2,
+          });
+        }
+      } else {
+        weeklyLinks.push({
+          id: "weekly-path",
+          title: { th: "เนื้อหารายสัปดาห์", en: "Weekly Sessions" },
+          Icon: CalendarDays,
+          count: weeksCount,
+        });
+        if (hasMidtermMilestone) {
+          weeklyLinks.push({
+            id: "milestone-midterm",
+            title: { th: "สอบกลางภาค", en: "Midterm Exam" },
+            Icon: MilestoneIcon,
+            count: 2,
+          });
+        }
+        if (hasFinalMilestone) {
+          weeklyLinks.push({
+            id: "milestone-final",
+            title: { th: "สอบปลายภาค", en: "Final Exam" },
+            Icon: TrophyIcon,
+            count: 2,
+          });
+        }
+      }
+      return weeklyLinks;
+    }
+
     return groups.map((group) => ({
       id: phaseAnchor(group.phase),
       title: PHASE_SHORT[group.phase],
       Icon: PHASE_ICONS[group.phase],
       count: group.open.length,
     }));
-  }, [groups]);
+  }, [groups, weeksCount, hasMidtermMilestone, hasFinalMilestone, hasSecondHalf, scope]);
 
   const ids = useMemo(
     () => [...(hasOverview ? [OVERVIEW_ANCHOR] : []), ...links.map((link) => link.id)],
@@ -96,11 +208,11 @@ export function CourseSidebar({ modules, scope, onScopeChange, hasOverview }: Co
     }`;
 
   return (
-    <aside className="flex flex-col gap-3 lg:sticky lg:top-20 lg:self-start lg:gap-4">
+    <div className="flex flex-col gap-3 lg:gap-3.5">
       {hasScopes(modules) && (
-        <section className={`${SURFACE} order-1 p-4`}>
+        <section className={`${SURFACE} order-1 p-3 sm:p-3.5`}>
           <h2 className={HEADING}>{t(L.scope, locale)}</h2>
-          <div className="grid grid-cols-3 rounded-full bg-muted p-1">
+          <div className="grid grid-cols-3 rounded-full bg-muted p-0.5">
             {SCOPE_OPTIONS.map((option) => {
               const Icon = SCOPE_ICON[option];
               const active = option === scope;
@@ -110,7 +222,7 @@ export function CourseSidebar({ modules, scope, onScopeChange, hasOverview }: Co
                   type="button"
                   aria-pressed={active}
                   onClick={() => onScopeChange(option)}
-                  className={`inline-flex items-center justify-center gap-1 rounded-full px-1.5 py-1.5 text-xs font-medium transition-colors ${
+                  className={`inline-flex items-center justify-center gap-1 rounded-full px-1.5 py-1 text-xs font-medium transition-colors ${
                     active
                       ? "bg-card text-primary shadow-xs"
                       : "text-muted-foreground hover:text-foreground"
@@ -126,7 +238,7 @@ export function CourseSidebar({ modules, scope, onScopeChange, hasOverview }: Co
         </section>
       )}
 
-      <section className={`${SURFACE} order-3 p-4 lg:order-2`}>
+      <section className={`${SURFACE} order-3 p-3 sm:p-3.5 lg:order-2`}>
         <h2 className={HEADING}>{t(L.topics, locale)}</h2>
 
         {/* Phones: chips in one scrollable row. */}
@@ -139,7 +251,7 @@ export function CourseSidebar({ modules, scope, onScopeChange, hasOverview }: Co
               href={`#${OVERVIEW_ANCHOR}`}
               onClick={(event) => jump(event, OVERVIEW_ANCHOR)}
               aria-current={activeId === OVERVIEW_ANCHOR ? "location" : undefined}
-              className={`shrink-0 rounded-full border border-border px-3 py-1 text-xs ${rowClass(OVERVIEW_ANCHOR, false)}`}
+              className={`shrink-0 rounded-full border border-border px-2.5 py-1 text-xs ${rowClass(OVERVIEW_ANCHOR, false)}`}
             >
               {t(OVERVIEW_TITLE, locale)}
             </a>
@@ -150,7 +262,7 @@ export function CourseSidebar({ modules, scope, onScopeChange, hasOverview }: Co
               href={`#${id}`}
               onClick={(event) => jump(event, id)}
               aria-current={activeId === id ? "location" : undefined}
-              className={`shrink-0 rounded-full border border-border px-3 py-1 text-xs ${rowClass(id, count === 0)}`}
+              className={`shrink-0 rounded-full border border-border px-2.5 py-1 text-xs ${rowClass(id, count === 0)}`}
             >
               <Icon className="size-3.5 shrink-0" aria-hidden="true" />
               {t(title, locale)}
@@ -165,7 +277,7 @@ export function CourseSidebar({ modules, scope, onScopeChange, hasOverview }: Co
               href={`#${OVERVIEW_ANCHOR}`}
               onClick={(event) => jump(event, OVERVIEW_ANCHOR)}
               aria-current={activeId === OVERVIEW_ANCHOR ? "location" : undefined}
-              className={`rounded-lg px-2.5 py-2 ${rowClass(OVERVIEW_ANCHOR, false)}`}
+              className={`rounded-lg px-2 py-1.5 ${rowClass(OVERVIEW_ANCHOR, false)}`}
             >
               {t(OVERVIEW_TITLE, locale)}
             </a>
@@ -176,20 +288,20 @@ export function CourseSidebar({ modules, scope, onScopeChange, hasOverview }: Co
               href={`#${id}`}
               onClick={(event) => jump(event, id)}
               aria-current={activeId === id ? "location" : undefined}
-              className={`rounded-lg px-2.5 py-2 ${rowClass(id, count === 0)}`}
+              className={`rounded-lg px-2 py-1.5 ${rowClass(id, count === 0)}`}
             >
-              <Icon className="size-4 shrink-0" aria-hidden="true" />
-              <span className="min-w-0 flex-1 truncate">{t(title, locale)}</span>
+              <Icon className="size-3.5 shrink-0" aria-hidden="true" />
+              <span className="min-w-0 flex-1 truncate text-xs">{t(title, locale)}</span>
               {count === 0 ? (
-                <span className="text-xs text-muted-foreground">{t(L.soon, locale)}</span>
+                <span className="text-[11px] text-muted-foreground">{t(L.soon, locale)}</span>
               ) : (
-                <span className="text-xs tabular-nums text-muted-foreground">{count}</span>
+                <span className="text-[11px] tabular-nums text-muted-foreground">{count}</span>
               )}
             </a>
           ))}
         </nav>
 
-        <p className="mt-3 hidden text-xs text-muted-foreground lg:block">
+        <p className="mt-2.5 hidden text-[11px] text-muted-foreground lg:block">
           <span className="tabular-nums">
             {readyCount}/{modules.length}
           </span>{" "}
@@ -219,7 +331,7 @@ export function CourseSidebar({ modules, scope, onScopeChange, hasOverview }: Co
           </Link>
         </section>
       )}
-    </aside>
+    </div>
   );
 }
 
@@ -239,24 +351,27 @@ function useActiveSection(ids: string[]): string | undefined {
     if (list.length === 0) return;
 
     const update = () => {
-      const line = window.innerHeight * 0.3;
+      const container = document.getElementById("course-stream-container");
+      const cRect = container?.getBoundingClientRect();
+      const line = cRect ? cRect.top + cRect.height * 0.35 : window.innerHeight * 0.3;
       let current: string | undefined;
       for (const id of list) {
         const el = document.getElementById(id);
         if (el && el.getBoundingClientRect().top <= line) current = id;
       }
       // At the very bottom the last section wins even if its heading is low.
-      const atBottom =
-        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+      const atBottom = container
+        ? container.scrollHeight - container.scrollTop - container.clientHeight <= 24
+        : window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
       setSeenId(atBottom ? list[list.length - 1] : (current ?? list[0]));
     };
 
     const frame = requestAnimationFrame(update);
-    window.addEventListener("scroll", update, { passive: true });
+    document.addEventListener("scroll", update, { passive: true, capture: true });
     window.addEventListener("resize", update);
     return () => {
       cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", update);
+      document.removeEventListener("scroll", update, { capture: true });
       window.removeEventListener("resize", update);
     };
   }, [key]);

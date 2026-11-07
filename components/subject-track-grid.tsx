@@ -2,10 +2,11 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ChevronRight, Lock } from "lucide-react";
+import { ChevronRight, Layers, Lock, Zap } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import {
   MODULE_ICONS,
+  PHASE_ICONS,
   SCOPE_BADGE,
   SCOPE_ICON,
   SCOPE_LABEL,
@@ -16,7 +17,7 @@ import {
   type TopicGroup,
 } from "@/components/course-hub-shared";
 import { useLocale, t, type LText } from "@/lib/i18n";
-import { PHASE_CATEGORY, type ModuleScope, type ResolvedModule } from "@/lib/courses/spine";
+import { PHASE_CATEGORY, PHASE_GOAL, type ModuleScope, type ResolvedModule } from "@/lib/courses/spine";
 
 const L = {
   empty: {
@@ -24,6 +25,14 @@ const L = {
     en: "Nothing prepared for this milestone yet",
   },
   soon: { th: "เร็วๆ นี้", en: "Coming soon" },
+  inPreparation: {
+    th: "อยู่ระหว่างจัดเตรียมเนื้อหาในหมวดนี้",
+    en: "Content in preparation for this phase",
+  },
+  inPreparationSub: {
+    th: "สรุปย่อความจำ คัดเฉพาะสูตร กฎ และข้อควรระวังสำคัญก่อนเข้าห้องสอบ เร็ว ๆ นี้",
+    en: "Summary notes, key formulas, and exam tips are currently being curated.",
+  },
 } satisfies Record<string, LText>;
 
 function ScopeTag({ scope }: { scope: Exclude<ModuleScope, "all"> }) {
@@ -55,14 +64,14 @@ function ModuleRow({ module: mod }: { module: ResolvedModule }) {
     <Link
       href={mod.href!}
       title={t(mod.subtitle, locale)}
-      className={`group flex items-center gap-3 px-4 py-3 transition-[box-shadow,background-color] hover:bg-primary/[0.03] hover:shadow-md dark:hover:bg-primary/10 ${SURFACE}`}
+      className={`group flex items-center gap-2.5 px-3.5 py-2.5 transition-[box-shadow,background-color] hover:bg-primary/[0.03] hover:shadow-md dark:hover:bg-primary/10 ${SURFACE}`}
     >
-      <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
-        <Icon className="size-5" />
+      <span className="flex size-8.5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+        <Icon className="size-4" />
       </span>
 
       <div className="flex min-w-0 flex-1 items-center gap-2">
-        <span className="min-w-0 truncate text-sm font-medium">{t(mod.title, locale)}</span>
+        <span className="min-w-0 truncate text-xs sm:text-sm font-medium">{t(mod.title, locale)}</span>
         {mod.scope !== "all" && <ScopeTag scope={mod.scope} />}
         {mod.badge && (
           <Badge
@@ -106,6 +115,86 @@ function LockedItem({ module: mod }: { module: ResolvedModule }) {
 }
 
 /**
+ * Placeholder card for phases that have no open modules yet (e.g. compress / cram phase).
+ * Uses the exact same horizontal size and layout as ModuleRow for seamless visual rhythm.
+ */
+function EmptyPhaseCard({ group }: { group: TopicGroup }) {
+  const { locale } = useLocale();
+  const { phase, locked } = group;
+  const PhaseIcon = PHASE_ICONS[phase];
+
+  const isCompress = phase === "compress";
+
+  const title =
+    locale === "th"
+      ? "อยู่ระหว่างจัดเตรียมเนื้อหาในหมวดนี้"
+      : "Content in preparation for this section";
+
+  const desc = isCompress
+    ? locale === "th"
+      ? "สรุปย่อความจำ คัดเฉพาะสูตร กฎ และข้อควรระวังสำคัญก่อนเข้าห้องสอบ เร็ว ๆ นี้"
+      : "Cram sheets, essential formulas, rules, and exam tips coming soon"
+    : t(PHASE_GOAL[phase], locale);
+
+  const pills = isCompress
+    ? [
+        { label: locale === "th" ? "สรุปเร่งด่วน 10 นาที" : "10-min Cram", icon: Zap },
+        { label: locale === "th" ? "บัตรคำ / บัตรสูตร" : "Key Cards", icon: Layers },
+      ]
+    : locked.map((mod) => ({
+        label: t(mod.title, locale),
+        icon: MODULE_ICONS[mod.id],
+      }));
+
+  return (
+    <div
+      className={`group flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-3.5 py-3 transition-colors border border-dashed border-border/80 bg-card/60 dark:bg-card/40 ${SURFACE}`}
+    >
+      <div className="flex items-start sm:items-center gap-3 min-w-0 flex-1">
+        <span className="flex size-8.5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary mt-0.5 sm:mt-0">
+          <PhaseIcon className="size-4" />
+        </span>
+
+        <div className="min-w-0 flex-1">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="text-xs sm:text-sm font-semibold text-foreground">
+              {title}
+            </span>
+            <div className="flex flex-wrap items-center gap-1.5">
+              {pills.map((pill, idx) => {
+                const PillIcon = pill.icon;
+                return (
+                  <span
+                    key={idx}
+                    className="inline-flex items-center gap-1 rounded-full border border-border/60 bg-muted/60 dark:bg-muted/30 px-2 py-0.5 text-[10px] font-medium text-muted-foreground"
+                  >
+                    <PillIcon className="size-2.5 text-muted-foreground/70" />
+                    <span>{pill.label}</span>
+                  </span>
+                );
+              })}
+            </div>
+          </div>
+          <p className="mt-0.5 text-[11px] sm:text-xs text-muted-foreground line-clamp-1">
+            {desc}
+          </p>
+        </div>
+      </div>
+
+      <div className="flex items-center justify-end shrink-0 pl-11.5 sm:pl-0">
+        <Badge
+          variant="outline"
+          className="rounded-full text-[10px] font-medium text-muted-foreground border-border/60 px-2.5 py-0.5"
+        >
+          <Lock className="size-2.5 mr-1 text-muted-foreground/60" />
+          {t(L.soon, locale)}
+        </Badge>
+      </div>
+    </div>
+  );
+}
+
+/**
  * One topic of the stream — a phase of the spine.
  *
  * The four topics keep the spine's A→D order because the order carries real
@@ -120,7 +209,7 @@ function TopicSection({ group }: { group: TopicGroup }) {
   const listId = `${phaseAnchor(phase)}-soon`;
 
   const aside =
-    locked.length > 0 ? (
+    locked.length > 0 && open.length > 0 ? (
       <button
         type="button"
         onClick={() => setShowLocked((prev) => !prev)}
@@ -140,18 +229,20 @@ function TopicSection({ group }: { group: TopicGroup }) {
         aside={aside}
       />
 
-      {open.length > 0 && (
+      {open.length > 0 ? (
         <div className="flex flex-col gap-2">
           {open.map((mod) => (
             <ModuleRow key={mod.id} module={mod} />
           ))}
         </div>
+      ) : (
+        <EmptyPhaseCard group={group} />
       )}
 
-      {showLocked && locked.length > 0 && (
+      {showLocked && open.length > 0 && locked.length > 0 && (
         <ul
           id={listId}
-          className={`flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground ${open.length > 0 ? "mt-3" : ""}`}
+          className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground"
         >
           {locked.map((mod) => (
             <LockedItem key={mod.id} module={mod} />

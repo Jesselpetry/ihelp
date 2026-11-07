@@ -124,7 +124,7 @@ export function CourseOverview({
   return (
     <section>
       <TopicHeader id={OVERVIEW_ANCHOR} title={t(OVERVIEW_TITLE, locale)} aside={aside} />
-      <div className={`${SURFACE} p-5 sm:p-6`}>
+      <div className={`${SURFACE} p-4 sm:p-5`}>
         {active === "summary" && filtered && (
           <div className="mb-4 flex flex-wrap items-center gap-x-3 gap-y-1 rounded-xl bg-primary/5 px-3 py-2 text-xs">
             <ScopeIcon className="size-3.5 shrink-0 text-primary" aria-hidden="true" />

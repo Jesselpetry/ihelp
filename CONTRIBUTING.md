@@ -59,6 +59,7 @@
 สำหรับรายละเอียดของระบบจัดเก็บไฟล์, กฎการตั้งชื่อ Kebab-case, และข้อกำหนดสิทธิ์ สามารถศึกษาเพิ่มเติมได้ที่:
 
 - 👉 **[คู่มือการร่วมพัฒนาฉบับเต็ม (Full Contributing Specification)](./docs/FULL_CONTRIBUTING.md)**
+- 👉 **[คู่มือการจัดการเวอร์ชันและ Changelog (Version Control Guide)](./docs/VERSION_CONTROL_GUIDE.md)**
 - 👉 **[โครงสร้างไฟล์และสารบบคลังสื่อ (File Structure)](./docs/FILE_STRUCTURE.md)**
 - 👉 **[คู่มือสถาปัตยกรรมคลังสื่อและการทำงาน (Library Architecture)](./docs/LIBRARY_ARCHITECTURE_AND_WORKFLOW.md)**
 - 👉 **[คู่มือสำหรับ AI Coding Agent (AGENTS.md)](./AGENTS.md)**

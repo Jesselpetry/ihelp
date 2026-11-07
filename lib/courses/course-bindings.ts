@@ -139,6 +139,28 @@ function mfitWeekDocs(kind: "summary" | "quiz"): ModuleDoc[] {
   });
 }
 
+const ICS_LOGIC_WEEKS = [
+  { week: 1, th: "ระบบดิจิทัลเบื้องต้น และโปรแกรม Logisim", en: "Digital Systems Intro & Logisim" },
+  { week: 2, th: "พีชคณิตบูลีน ทฤษฎีเดอมอร์แกน และเกตลอจิก", en: "Boolean Algebra & DeMorgan's Theorems" },
+  { week: 3, th: "รูปแบบมาตรฐานคาโนนิคอล SOP & POS", en: "Canonical SOP & POS Forms" },
+  { week: 4, th: "การลดรูปฟังก์ชันลอจิกด้วย K-map", en: "Logic Minimization via K-map" },
+  { week: 5, th: "การตอบสนองเชิงเวลา (Time Response & Delay)", en: "Time Response & Propagation Delay" },
+  { week: 6, th: "ระบบเลขฐานและการคำนวณเลขฐานสอง", en: "Number Systems & Binary Arithmetic" },
+  { week: 7, th: "มัลติเพล็กเซอร์และดีมัลติเพล็กเซอร์ (MUX/DEMUX)", en: "Multiplexer & Demultiplexer" },
+] as const;
+
+function icsLogicDocs(): ModuleDoc[] {
+  return ICS_LOGIC_WEEKS.map(({ week, th, en }) => {
+    const padded = String(week).padStart(2, "0");
+    return {
+      slug: `logic-week${padded}`,
+      title: { th: `สัปดาห์ที่ ${week} — ${th}`, en: `Week ${week} — ${en}` },
+      load: () => loadCourseDoc("06016411", `archive/logic-week${padded}.md`),
+      scope: "midterm" as const,
+    };
+  });
+}
+
 /**
  * ICS's second half: one page per session, lecture and lab and videos together.
  *
@@ -350,6 +372,7 @@ export const COURSE_BINDINGS: Record<string, CourseBinding> = {
           load: () =>
             loadCourseDoc("06016411", "archive/course-materials-2569.md"),
         },
+        ...icsLogicDocs(),
         ...icsSessionDocs(),
       ],
     },

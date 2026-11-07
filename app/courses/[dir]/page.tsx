@@ -9,6 +9,7 @@ import type { SpineMetrics } from "@/lib/courses/spine";
 import { getCourseScrapedInfo } from "@/lib/courses/course-content";
 import { assetsForCourse } from "@/lib/library/subject-library";
 import { splitSummaryLead } from "@/lib/docs/summary-lead";
+import { resolveCourseTimeline } from "@/lib/courses/course-timeline";
 import { SITE, absoluteUrl } from "@/lib/site";
 
 const L = {
@@ -125,6 +126,9 @@ export default async function CoursePage({
     .filter((mod) => mod.note !== undefined)
     .map((mod) => ({ title: mod.title, note: mod.note! }));
 
+  const timeline = resolveCourseTimeline(course.code, cDir);
+  const libraryHref = `/courses/${cDir}/library`;
+
   return (
     <>
       <Navbar />
@@ -140,6 +144,8 @@ export default async function CoursePage({
         officialInfo={getCourseScrapedInfo(course.code)}
         modules={modules}
         notes={notes}
+        timeline={timeline}
+        libraryHref={libraryHref}
       />
     </>
   );

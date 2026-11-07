@@ -27,6 +27,7 @@ import {
   Printer,
   Plane,
   Volume2,
+  Calculator,
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -56,6 +57,7 @@ import type {
 } from "@/lib/exams/types";
 import { RoomSeatingChart } from "./room-seating-chart";
 import { PromoBanner } from "./promo-banner";
+import { GradeCalculator } from "./grade-calculator";
 import { RESIGN_SOUND } from "@/lib/exams/resign-sound";
 
 const L: Record<string, LText> = {
@@ -71,6 +73,7 @@ const L: Record<string, LText> = {
   searchButton: { th: "ค้นหา", en: "Search" },
   tabMySchedule: { th: "ตารางสอบของฉัน", en: "My Schedule" },
   tabAll: { th: "ตารางรวมทั้งคณะ", en: "All Faculty Exams" },
+  tabCalculator: { th: "คำนวณคะแนน & ตัดเกรด", en: "Grade Calculator" },
   filterAll: { th: "ทั้งหมด", en: "All Exams" },
   filterFinal: { th: "สอบปลายภาค", en: "Final Exams" },
   filterMidterm: { th: "สอบกลางภาค", en: "Midterm Exams" },
@@ -121,9 +124,9 @@ export function ExamScheduleView({
   const urlId = searchParams.get("id") || "";
   const [studentIdInput, setStudentIdInput] = useState(urlId || "");
   const [activeStudentId, setActiveStudentId] = useState(urlId || "");
-  const [activeMainTab, setActiveMainTab] = useState<"my_schedule" | "all">(
-    "my_schedule",
-  );
+  const [activeMainTab, setActiveMainTab] = useState<
+    "my_schedule" | "all" | "calculator"
+  >("my_schedule");
   const [copied, setCopied] = useState(false);
   const [visibleBanners, setVisibleBanners] = useState<
     Record<BannerId, boolean>
@@ -675,6 +678,18 @@ export function ExamScheduleView({
           >
             <Layers className="size-3.5" />
             <span>{t(L.tabAll, locale)}</span>
+          </button>
+
+          <button
+            onClick={() => setActiveMainTab("calculator")}
+            className={`flex items-center gap-1.5 rounded-full px-5 py-2 transition-all ${
+              activeMainTab === "calculator"
+                ? "bg-card text-foreground shadow-sm font-semibold"
+                : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            <Calculator className="size-3.5 text-emerald-500" />
+            <span>{t(L.tabCalculator, locale)}</span>
           </button>
         </div>
       </div>
@@ -1370,6 +1385,13 @@ export function ExamScheduleView({
               </div>
             ))}
           </div>
+        </div>
+      )}
+
+      {/* ── TAB 3: 🧮 Grade & Score Calculator ── */}
+      {activeMainTab === "calculator" && (
+        <div className="space-y-6 animate-in fade-in-0 duration-300">
+          <GradeCalculator />
         </div>
       )}
 
