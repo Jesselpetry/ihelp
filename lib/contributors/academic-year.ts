@@ -174,3 +174,4 @@ export function formatStudentIdDisplay(studentId?: string): string | null {
   if (!studentId) return null;
   return studentId;
 }
+

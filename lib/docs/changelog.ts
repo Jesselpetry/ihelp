@@ -84,6 +84,13 @@ export const CHANGELOG: VersionEntry[] = [
         },
       },
       {
+        kind: "added",
+        text: {
+          th: "ระบบ Contributor Credit และโปรไฟล์ผู้ร่วมแบ่งปันเนื้อหาท้ายหน้ารายวิชา (/courses/[dir]) พร้อมระบบคำนวณและเลื่อนชั้นปีอัตโนมัติตามรหัสนักศึกษา",
+          en: "Contributor credit & profile showcase at the bottom of course hubs with automatic student academic year advancement",
+        },
+      },
+      {
         kind: "fixed",
         text: {
           th: "แก้ไขลิงก์การ์ดสัปดาห์ที่ 0 (แนะนำรายวิชา) และคลังเอกสารเกิดข้อผิดพลาด 404 ให้เปิดอ่านได้ถูกต้อง พร้อมขยายระยะเว้นวรรคระหว่างตัวคั่นช่วงเนื้อหาและจุดพักสอบ",

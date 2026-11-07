@@ -97,3 +97,4 @@ export interface ContributorProfile {
   /** Optional link to internal student profile page, e.g. "/profile/69070027" */
   profilePath?: string;
 }
+

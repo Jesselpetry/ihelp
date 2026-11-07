@@ -175,3 +175,4 @@ export const CONTRIBUTOR_REGISTRY: Record<string, ContributorProfile> = {
 3. ✅ **Content Contract**: ผ่าน 100% (`bun run content:check`)
 4. ✅ **UI Presentation**: ติดตั้งส่วน `CourseContributors` ท้ายหน้ารายวิชา (`SubjectHub`) และปรับแต่ง Modal ให้แสดงข้อมูลนักศึกษาและผลงานรายวิชาครบถ้วน
 5. 🚀 **Git Synchronization**: บันทึก Commit ตามมาตรฐาน Conventional Commits และผลักดัน (Push) ขึ้นทั้งกิ่ง `staging` และ `main` พร้อมกันตามคำสั่งเรียบร้อยแล้ว
+
