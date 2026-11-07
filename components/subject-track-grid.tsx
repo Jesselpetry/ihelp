@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ChevronRight, Lock } from "lucide-react";
+import { ChevronRight, Layers, Lock, Zap } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import {
   MODULE_ICONS,
@@ -17,7 +17,7 @@ import {
   type TopicGroup,
 } from "@/components/course-hub-shared";
 import { useLocale, t, type LText } from "@/lib/i18n";
-import { PHASE_CATEGORY, type ModuleScope, type ResolvedModule } from "@/lib/courses/spine";
+import { PHASE_CATEGORY, PHASE_GOAL, type ModuleScope, type ResolvedModule } from "@/lib/courses/spine";
 
 const L = {
   empty: {
@@ -116,43 +116,80 @@ function LockedItem({ module: mod }: { module: ResolvedModule }) {
 
 /**
  * Placeholder card for phases that have no open modules yet (e.g. compress / cram phase).
- * Shows what is in preparation with clean status pills.
+ * Uses the exact same horizontal size and layout as ModuleRow for seamless visual rhythm.
  */
 function EmptyPhaseCard({ group }: { group: TopicGroup }) {
   const { locale } = useLocale();
   const { phase, locked } = group;
   const PhaseIcon = PHASE_ICONS[phase];
 
+  const isCompress = phase === "compress";
+
+  const title =
+    locale === "th"
+      ? "อยู่ระหว่างจัดเตรียมเนื้อหาในหมวดนี้"
+      : "Content in preparation for this section";
+
+  const desc = isCompress
+    ? locale === "th"
+      ? "สรุปย่อความจำ คัดเฉพาะสูตร กฎ และข้อควรระวังสำคัญก่อนเข้าห้องสอบ เร็ว ๆ นี้"
+      : "Cram sheets, essential formulas, rules, and exam tips coming soon"
+    : t(PHASE_GOAL[phase], locale);
+
+  const pills = isCompress
+    ? [
+        { label: locale === "th" ? "สรุปเร่งด่วน 10 นาที" : "10-min Cram", icon: Zap },
+        { label: locale === "th" ? "บัตรคำ / บัตรสูตร" : "Key Cards", icon: Layers },
+      ]
+    : locked.map((mod) => ({
+        label: t(mod.title, locale),
+        icon: MODULE_ICONS[mod.id],
+      }));
+
   return (
     <div
-      className={`relative flex flex-col items-center justify-center rounded-2xl border border-dashed border-border/80 bg-muted/15 px-4 py-5 text-center transition-colors sm:px-6 sm:py-6 ${SURFACE}`}
+      className={`group flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-3.5 py-3 transition-colors border border-dashed border-border/80 bg-card/60 dark:bg-card/40 ${SURFACE}`}
     >
-      <div className="flex size-9 items-center justify-center rounded-full bg-primary/10 text-primary mb-2">
-        <PhaseIcon className="size-4.5" />
-      </div>
-      <h4 className="text-xs sm:text-sm font-bold text-foreground">
-        {t(L.inPreparation, locale)}
-      </h4>
-      <p className="mt-0.5 max-w-sm text-[11px] sm:text-xs text-muted-foreground leading-relaxed">
-        {t(L.inPreparationSub, locale)}
-      </p>
-      {locked.length > 0 && (
-        <div className="mt-3 flex flex-wrap items-center justify-center gap-1.5">
-          {locked.map((mod) => {
-            const ModIcon = MODULE_ICONS[mod.id];
-            return (
-              <span
-                key={mod.id}
-                className="inline-flex items-center gap-1 rounded-full border border-border/70 bg-card/70 px-2.5 py-0.5 text-[11px] font-medium text-muted-foreground shadow-2xs"
-              >
-                <ModIcon className="size-3 text-muted-foreground/70" />
-                <span>{t(mod.title, locale)}</span>
-                <Lock className="size-2.5 text-muted-foreground/50" />
-              </span>
-            );
-          })}
+      <div className="flex items-start sm:items-center gap-3 min-w-0 flex-1">
+        <span className="flex size-8.5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary mt-0.5 sm:mt-0">
+          <PhaseIcon className="size-4" />
+        </span>
+
+        <div className="min-w-0 flex-1">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="text-xs sm:text-sm font-semibold text-foreground">
+              {title}
+            </span>
+            <div className="flex flex-wrap items-center gap-1.5">
+              {pills.map((pill, idx) => {
+                const PillIcon = pill.icon;
+                return (
+                  <span
+                    key={idx}
+                    className="inline-flex items-center gap-1 rounded-full border border-border/60 bg-muted/60 dark:bg-muted/30 px-2 py-0.5 text-[10px] font-medium text-muted-foreground"
+                  >
+                    <PillIcon className="size-2.5 text-muted-foreground/70" />
+                    <span>{pill.label}</span>
+                  </span>
+                );
+              })}
+            </div>
+          </div>
+          <p className="mt-0.5 text-[11px] sm:text-xs text-muted-foreground line-clamp-1">
+            {desc}
+          </p>
         </div>
-      )}
+      </div>
+
+      <div className="flex items-center justify-end shrink-0 pl-11.5 sm:pl-0">
+        <Badge
+          variant="outline"
+          className="rounded-full text-[10px] font-medium text-muted-foreground border-border/60 px-2.5 py-0.5"
+        >
+          <Lock className="size-2.5 mr-1 text-muted-foreground/60" />
+          {t(L.soon, locale)}
+        </Badge>
+      </div>
     </div>
   );
 }
