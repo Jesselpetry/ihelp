@@ -13,13 +13,17 @@
 
 ## [Unreleased]
 
+**ผู้ร่วมพัฒนา:** Chatan Petry ([@Jesselpetry](https://github.com/Jesselpetry), IG: [@chatann_](https://instagram.com/chatann_)), PhuPunnavit ([@PhuPunnavit](https://github.com/PhuPunnavit), IG: [@priiu_i](https://instagram.com/priiu_i)), Akarapach Yootsukprasert ([@PGTHEGOD](https://github.com/PGTHEGOD), IG: [@pgthegod_x](https://instagram.com/pgthegod_x)), Meaookung144 ([@Meaookung144](https://github.com/Meaookung144), IG: [@meaookung144](https://instagram.com/meaookung144))
+
 ### เพิ่ม
 
-- **ระบบคำนวณคะแนนและตัดเกรด `/grade-calculator`** — คำนวณคะแนนตามสัดส่วนวิชา ปี 1 เทอม 1 IT KMITL (ITF, ICS, MFIT, PSCP, FE, CHARM, SPORT) แบบ 3 ส่วน (Top/Left/Right) พร้อมคำนวณสูตรเลขสดในช่อง (`10+5+8.5`), ระบบตัดเกรดแบบตายตัวแยก A–F กับ S/U (CHARM, SPORT), แผนที่เป้าหมายคะแนนสอบ Final สำหรับแต่ละเกรด, ลิ้นชักคะแนนย่อยสำหรับ Quiz/การบ้าน และลิงก์เข้าถึงตรงจากแถบนำทางหลักและแท็บใน `/exam-schedule`
+- **ระบบคำนวณคะแนนและตัดเกรด `/grade-calculator`** — คำนวณคะแนนตามสัดส่วนวิชา ปี 1 เทอม 1 IT KMITL (ITF, ICS, MFIT, PSCP, FE, CHARM, SPORT) แบบ 3 ส่วน (Top CourseNav / Left ScoreInputForm / Right ScoreResultsPanel) พร้อมคำนวณสูตรเลขสดในช่อง (`10+5+8.5`), ระบบตัดเกรดแบบคงที่แยกเกรด A–F สำหรับวิชาหลัก และเกรด S/U (Pass/Fail) สำหรับ CHARM (≥60) และ SPORT (≥50), แผนที่เป้าหมายคะแนนสอบ Final สำหรับแต่ละเกรด (Final exam target roadmap), ลิ้นชักคะแนนย่อยสำหรับ Quiz/การบ้าน, รองรับการวางตารางคะแนนจาก Excel/TSV, เครื่องมือจำลอง GPA ประจำภาคเรียน (GPS simulator) พร้อมบันทึกใน localStorage และมีลิงก์เข้าถึงตรงจากแถบนำทางหลัก (Navbar) และแท็บที่ 3 ใน `/exam-schedule`
+- **ฟีเจอร์ผู้ช่วยตอบคำถามประจำเว็บ Help-Desk Chat Widget** — ป๊อปอัปแชตลอยตัวมุมขวาล่างของเว็บ (พัฒนาโดย PhuPunnavit, [@PhuPunnavit](https://github.com/PhuPunnavit), IG: [@priiu_i](https://instagram.com/priiu_i)) ช่วยตอบคำถามการใช้งานและค้นหาไฟล์ทันใจใน ~40ms ผ่านคลังคำตอบ FAQ คัดสรรกว่า 75 ข้อ ครอบคลุมการเข้าสู่ระบบ @kmitl.ac.th, ตารางสอบ, หน้ารายวิชา, และเครื่องมือ PSCP · ระบบค้นหาเอกสารและไฟล์ในคลังรายวิชาแบบเรียลไทม์ตามชื่อวิชาและสัปดาห์ พร้อมปุ่มลัดเปิดพรีวิวเอกสารผ่านระบบสิทธิ์ของคลังโดยตรง (`?open=<asset id>`) · ระบบปัญญาประดิษฐ์สตรีมมิ่งคำตอบแบบข้อความสดเมื่อคำถามอยู่นอกเหนือ FAQ · พร้อมระบบความปลอดภัยเข้มงวด (Guard rails ตรวจจับ Prompt Injection และคำสั่งโจมตี, Rate Limit ตาม IP, ตรวจสอบ Same-origin, และระบบ Supabase graceful degradation รองรับการรันแบบออฟไลน์โดยไม่ต้องมี API key)
+- **ITF — สไลด์บรรยายฉบับสรุปแปลไทย Week 08–15** — สรุปเนื้อหาเลกเชอร์วิชา IT Fundamentals ครึ่งหลัง (สัปดาห์ 8–15) ฉบับแปลไทยและย่อจบใน 1 หน้าต่อสัปดาห์ รวม 8 สัปดาห์ (Database, Ethics & Cyberlaw, Information Systems & Enterprise, Networks 1, Networks 2, Wireless Networks, Web Technology, Digital Skills & IS) จัดทำและออกแบบบน Figma โดย PhuPunnavit ([@PhuPunnavit](https://github.com/PhuPunnavit), IG: [@priiu_i](https://instagram.com/priiu_i)) บรรจุในคลังเอกสารสาธารณะหมวดชีทสรุป (`sheets/itf-sheet-weekNN-*-th.pdf`) และแสดงในตารางเอกสารของหน้าสัปดาห์เรียน (`/courses/06016402-IT-Fundamentals/map`) ใต้สไลด์บรรยายหลักของแต่ละสัปดาห์โดยตรง พร้อมผูกคำค้นหา "ฉบับแปล" และ "แปลไทย" เข้ากับระบบ Help-Desk Chat
+- **หน้า Landing Page `/pro` สำหรับ PG IJUDGE · VS Code Extension** — หน้าแนะนำส่วนขยาย Visual Studio Code สำหรับนักศึกษา IT KMITL (พัฒนาโดย Akarapach Yootsukprasert, [@PGTHEGOD](https://github.com/PGTHEGOD), IG: [@pgthegod_x](https://instagram.com/pgthegod_x)) ตกแต่งด้วยธีมเอกลักษณ์ PSCP Pink และเอฟเฟกต์ Glow/Grid สวยงาม นำเสนอฟีเจอร์เด่น: ส่งโค้ดจาก VS Code ตรงเข้า iJudge กดปุ่มเดียวเห็นผล pass/fail รายเทสต์เคสในเอดิเตอร์, รันเทียบกับ Sample ในเครื่อง (Ctrl+Alt+R), เทสต์เคสซ่อน (hidden test cases), คลังโจทย์และโค้ดย้อนหลังแม้ iJudge ปิดข้อ, ทำงานต่อเนื่องไม่สะดุดแม้เซิร์ฟเวอร์ล่ม, และตัวช่วยตรวจคำต้องห้ามก่อนส่ง (keyword guard) พร้อมขั้นตอนติดตั้ง 3 ขั้นตอนและช่องทางขอรับ License Key ผ่าน Instagram [@pgthegod_x](https://instagram.com/pgthegod_x)
 - **ITF — ชุดเตรียมสอบปลายภาค (Week 08–15)** — คู่มือทบทวนปลายภาคฉบับเต็ม (สรุปรายสัปดาห์ วิธีคำนวณ IP · Network ID ·
   Host ID · Subnet mask ทีละขั้น ตารางเปรียบเทียบ และเช็กลิสต์คืนก่อนสอบ) · แนวข้อสอบปลายภาค 60 ข้อแยกตามสัปดาห์
-  พร้อมคำอธิบายทุกตัวเลือก (เน้น Week 11–13) · หน้าทางลัดเตรียมสอบปลายภาครวมลิงก์ทุกหน้าที่ต้องใช้ ·
-  สไลด์บรรยายฉบับสรุปแปลไทย Week 08–15 ในคลังเอกสาร
+  พร้อมคำอธิบายทุกตัวเลือก (เน้น Week 11–13) · หน้าทางลัดเตรียมสอบปลายภาครวมลิงก์ทุกหน้าที่ต้องใช้
 - **ITF — โน้ตสรุปจาก Notion ของ Tammadon Suksa (IT24) ใน Week 08–15** — คัดโน้ตฉบับเต็มพร้อมรูปสไลด์ที่เขียนโน้ตทับ
   (79 รูป) มาไว้ท้ายหน้าสรุปรายสัปดาห์ พร้อมเครดิตผู้สรุป และหมายเหตุ ⚠️ กำกับจุดที่คลาดเคลื่อนจากสไลด์
 - **ITF — ลิงก์สไลด์เสริม Infraclover · ITCAMP20 (Canva) ใน Week 11–13** — สไลด์อ่านเสริมเรื่องเครือข่าย
@@ -75,6 +79,7 @@
 
 ### ปรับปรุง
 
+- **ปรับโฉม Dark Theme สไตล์ Neutral Charcoal ดีไซน์ระดับโปร** — ปรับปรุงพาเลทสีโหมดมืดใหม่ทั้งหมด โดยแทนที่โทนสีกรมท่า/น้ำเงินเข้มเดิม ด้วย Tiered Neutral Charcoal Surfaces สไตล์ Figma ระดับมืออาชีพ: พื้นหลัง Canvas (`#141416`), การ์ดคอนเทนต์ (`#1c1c1f`), ป็อปโอเวอร์และดรอปดาวน์ (`#222226`), และแถบข้าง Sidebar (`#18181b`) ผสานเส้นขอบ Hairline borders และพื้นผิว Subtle White Opacity (`oklch(1 0 0 / 8.5%)`, `white/10`, `white/5`) เพิ่มมิติความลึก (refined depth) และความคมชัด ยกระดับการอ่านให้อ่านง่าย สบายตา คมชัด ลดการเมื่อยล้าสายตาด้วยข้อความ Off-white (`#f4f4f6`) และข้อความรอง Neutral Muted (`#9ca3af`), สีเน้นไฮไลต์ Coral Rose (`--ink-red: #fb7185`) สำหรับพื้นหลังมืด พร้อมซิงค์สี Metadata `themeColor` และหน้าออฟไลน์ Service Worker
 - **ITF — สรุปรายสัปดาห์ Week 08–15** — เพิ่มคีย์เวิร์ดต้องจำ ระดับความเน้นของแต่ละสัปดาห์ และเนื้อหาที่ขาดจากโน้ตสรุปของเพื่อนร่วมรุ่น ·
   วันสอบปลายภาคในภาพรวมรายวิชาแก้เป็น อ. 3 พ.ย. 2569 ตามตารางสอบส่วนกลาง
 - **ITF อัปเดตเนื้อหาครบ 15 สัปดาห์ตาม OnLearn (1/2569)** — เพิ่มสไลด์บรรยาย Week 12–15 (Computer Networks 2, Wireless Networks, Web Technology, IT Skills & System โดย ผศ.ดร. สุวิทย์ ภูมิฤทธิกุล) และสไลด์/ใบงานแล็บ 10, 11, 13, 14, 15 (File Management, Network 1, Web App 1, Web App 2 JavaScript, Web Deployment Vercel) พร้อมลิงก์คลิปย้อนหลังและลงทะเบียนการ์ดคลังครบทุกสัปดาห์
@@ -132,7 +137,7 @@
 
 ## [0.8.0] - 22 กันยายน 2569
 
-**ผู้ร่วมพัฒนา:** Chatan Petry ([@Jesselpetry](https://github.com/Jesselpetry))
+**ผู้ร่วมพัฒนา:** Chatan Petry ([@Jesselpetry](https://github.com/Jesselpetry), IG: [@chatann_](https://instagram.com/chatann_))
 
 ### เพิ่ม
 
@@ -183,7 +188,7 @@
 
 ## [0.7.0] - 22 กันยายน 2569
 
-**ผู้ร่วมพัฒนา:** Chatan Petry ([@Jesselpetry](https://github.com/Jesselpetry))
+**ผู้ร่วมพัฒนา:** Chatan Petry ([@Jesselpetry](https://github.com/Jesselpetry), IG: [@chatann_](https://instagram.com/chatann_))
 
 ### ความปลอดภัย
 
@@ -327,7 +332,7 @@
 
 ## [0.6.0] - 30 สิงหาคม 2569
 
-**ผู้ร่วมพัฒนา:** Chatan Petry ([@Jesselpetry](https://github.com/Jesselpetry))
+**ผู้ร่วมพัฒนา:** Chatan Petry ([@Jesselpetry](https://github.com/Jesselpetry), IG: [@chatann_](https://instagram.com/chatann_))
 
 ### เพิ่ม
 
@@ -457,7 +462,7 @@
 
 ## [0.5.0] - 17 สิงหาคม 2569
 
-**ผู้ร่วมพัฒนา:** Chatan Petry ([@Jesselpetry](https://github.com/Jesselpetry)), Akarapach Yootsukprasert ([@PGTHEGOD](https://github.com/PGTHEGOD))
+**ผู้ร่วมพัฒนา:** Chatan Petry ([@Jesselpetry](https://github.com/Jesselpetry), IG: [@chatann_](https://instagram.com/chatann_)), Akarapach Yootsukprasert ([@PGTHEGOD](https://github.com/PGTHEGOD), IG: [@pgthegod_x](https://instagram.com/pgthegod_x))
 
 ### เพิ่ม
 
@@ -480,7 +485,7 @@
   พร้อมคำอธิบายและปุ่มเปิดอ่าน ย่อ/ขยายรายละเอียดได้
 - **URL สั้นระดับบนสุด `/{slug}`** — เปิดโจทย์ด้วยชื่อสั้นได้ พร้อม redirect
   อัตโนมัติจาก URL รูปแบบเดิม
-- **หน้า `/pro`** — หน้า landing แยกพร้อม metadata สำหรับ SEO
+- **หน้า `/pro` สำหรับ PG IJUDGE · VS Code Extension** — หน้า Landing Page แนะนำส่วนขยายสำหรับ Visual Studio Code โดย Akarapach Yootsukprasert ([@PGTHEGOD](https://github.com/PGTHEGOD), IG: [@pgthegod_x](https://instagram.com/pgthegod_x)) พร้อมฟีเจอร์ส่งโค้ดตรงเข้า iJudge จากเอดิเตอร์, รันเทียบกับ Sample ในเครื่อง, ตรวจสอบ Hidden Testcases, คลังโจทย์และโค้ดย้อนหลัง, รองรับโหมดออฟไลน์, และช่องทางขอรับ License Key ผ่าน IG @pgthegod_x
 - **โจทย์ OJ สัปดาห์ 4 และสัปดาห์ 5** (3101–3116) พร้อมสคริปต์ sync สถานะโจทย์
   จาก iJudge
 
@@ -506,7 +511,7 @@
 
 ## [0.4.0] - 21 กรกฎาคม 2569
 
-**ผู้ร่วมพัฒนา:** Meaookung144 ([@Meaookung144](https://github.com/Meaookung144)), Chatan Petry ([@Jesselpetry](https://github.com/Jesselpetry))
+**ผู้ร่วมพัฒนา:** Meaookung144 ([@Meaookung144](https://github.com/Meaookung144), IG: [@meaookung144](https://instagram.com/meaookung144)), Chatan Petry ([@Jesselpetry](https://github.com/Jesselpetry), IG: [@chatann_](https://instagram.com/chatann_))
 
 ### เพิ่ม
 
@@ -527,7 +532,7 @@
 
 ## [0.3.0] - 20 กรกฎาคม 2569
 
-**ผู้ร่วมพัฒนา:** Chatan Petry ([@Jesselpetry](https://github.com/Jesselpetry))
+**ผู้ร่วมพัฒนา:** Chatan Petry ([@Jesselpetry](https://github.com/Jesselpetry), IG: [@chatann_](https://instagram.com/chatann_))
 
 ### เพิ่ม
 
@@ -535,7 +540,7 @@
 
 ## [0.2.0] - 18 กรกฎาคม 2569
 
-**ผู้ร่วมพัฒนา:** Chatan Petry ([@Jesselpetry](https://github.com/Jesselpetry))
+**ผู้ร่วมพัฒนา:** Chatan Petry ([@Jesselpetry](https://github.com/Jesselpetry), IG: [@chatann_](https://instagram.com/chatann_))
 
 ### เพิ่ม
 
@@ -548,7 +553,7 @@
 
 ## [0.1.1] - 13 กรกฎาคม 2569
 
-**ผู้ร่วมพัฒนา:** Chatan Petry ([@Jesselpetry](https://github.com/Jesselpetry))
+**ผู้ร่วมพัฒนา:** Chatan Petry ([@Jesselpetry](https://github.com/Jesselpetry), IG: [@chatann_](https://instagram.com/chatann_))
 
 ### ปรับปรุง
 
@@ -561,7 +566,7 @@
 
 ## [0.1.0] - 12 กรกฎาคม 2569
 
-**ผู้ร่วมพัฒนา:** Chatan Petry ([@Jesselpetry](https://github.com/Jesselpetry))
+**ผู้ร่วมพัฒนา:** Chatan Petry ([@Jesselpetry](https://github.com/Jesselpetry), IG: [@chatann_](https://instagram.com/chatann_))
 
 ### เพิ่ม
 
