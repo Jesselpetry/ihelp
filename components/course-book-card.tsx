@@ -11,11 +11,11 @@ import { ItKmitlBadge, ItKmitlLogoSvg } from "@/components/it-kmitl-badge";
 const IHELP_GRADIENT = { from: "#3a72c8", via: "#2357A5", to: "#163980" };
 
 /**
- * MIT OpenCourseWare-inspired horizontal course card with:
- * - Rounded container, padding, and subtle shadow (`shadow-sm`)
- * - Left thumbnail frame: large course code text + IT KMITL logo watermark (white/10 opacity)
- * - Center area with title, subtitle/description, official code badge, credits, and readiness modules
- * - Right area with official KMITL link and course hub action button
+ * Compact horizontal course card:
+ * - Left thumbnail: iHelp blue gradient, uniform course code font bottom-left,
+ *   IT KMITL logo watermark bleeding bottom-right (white, 25% opacity)
+ * - Center: title, subtitle, official code & credits as rounded-full Badge components
+ * - Right: top-right official KMITL link, bottom-right course action button
  *
  * @param readiness how many of the eleven spine modules this course fills.
  *   Counted on the server from what each module actually binds, so the number
@@ -37,19 +37,10 @@ export function CourseBookCard({
 
   const grad = IHELP_GRADIENT;
 
-  // Mirror banner watermark pattern: font-black, tracking-tighter, leading-none
-  // Sized to stay left-aligned without crowding the logo on the right
-  const codeFontSize =
-    course.code.length <= 3
-      ? "3.5rem"  // FE, DL, ITF, ICS …
-      : course.code.length === 4
-        ? "2.9rem" // MFIT, PSCP, BFIT …
-        : "2.4rem"; // CHARM, SPORT, COMPRO …
-
   return (
     <article
       className={
-        "group relative flex flex-col sm:flex-row items-stretch sm:items-center gap-4 rounded-2xl border bg-card p-3 sm:p-4 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md hover:border-primary/40 " +
+        "group relative flex flex-col sm:flex-row items-stretch sm:items-center gap-3 rounded-2xl border bg-card p-2.5 sm:p-3 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md hover:border-primary/40 " +
         (liveCount > 0
           ? "border-border/70 dark:border-white/10"
           : "border-dashed border-border/60 bg-muted/20 opacity-85")
@@ -64,55 +55,43 @@ export function CourseBookCard({
         />
       )}
 
-      {/* ── Left Thumbnail: Large Course Code + IT KMITL Logo Watermark ── */}
+      {/* ── Left Thumbnail: Course Code + White IT KMITL Logo Watermark (25% opacity) ── */}
       <div
-        className="relative w-full sm:w-48 md:w-56 h-28 sm:h-32 shrink-0 rounded-xl overflow-hidden shadow-xs flex flex-col justify-between p-3 select-none border border-white/10 transition-transform duration-300 group-hover:scale-[1.01]"
+        className="relative w-full sm:w-38 md:w-44 h-22 sm:h-24 shrink-0 rounded-xl overflow-hidden flex flex-col justify-end p-2.5 select-none border border-white/10 transition-transform duration-300 group-hover:scale-[1.01]"
         style={{
           background: `linear-gradient(135deg, ${grad.from}, ${grad.via}, ${grad.to})`,
         }}
       >
-        {/* IT KMITL Logo — white, ~10% opacity, bottom-right, bleeds outside frame */}
+        {/* IT KMITL Logo — white, 25% opacity, bottom-right, bleeds outside frame */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -bottom-5 -right-5 select-none"
+          className="pointer-events-none absolute -bottom-3 -right-3 select-none text-white opacity-25"
         >
-          <ItKmitlLogoSvg className="size-28 opacity-[0.10]" />
+          <ItKmitlLogoSvg className="size-22" monochrome="currentColor" />
         </div>
 
-        {/* Top right: "IT KMITL" label */}
-        <div className="relative z-10 flex items-center justify-end">
-          <span className="font-mono text-[10px] font-medium tracking-widest text-white/60 uppercase">
-            IT KMITL
-          </span>
-        </div>
-
-        {/* Course Code — left-aligned flush, bottom of frame, right-padded to clear logo */}
-        <div className="relative z-10 mt-auto pr-14">
-          <span
-            className="font-black text-white leading-none tracking-tighter select-none"
-            style={{ fontSize: codeFontSize }}
-          >
-            {course.code}
-          </span>
-        </div>
+        {/* Course Code — uniform font size for all courses, left-aligned */}
+        <span className="relative z-10 font-black text-white leading-none tracking-tighter select-none text-2xl sm:text-[1.65rem] pr-6">
+          {course.code}
+        </span>
       </div>
 
       {/* ── Center Description / Details ── */}
       <div className="flex-1 min-w-0 flex flex-col justify-center py-0.5">
-        <h3 className="text-base sm:text-lg font-bold text-foreground group-hover:text-primary transition-colors tracking-tight line-clamp-1 sm:line-clamp-2">
+        <h3 className="text-sm sm:text-base font-bold text-foreground group-hover:text-primary transition-colors tracking-tight line-clamp-1 sm:line-clamp-2">
           {title}
         </h3>
 
-        <p className="text-xs sm:text-sm text-muted-foreground line-clamp-1 sm:line-clamp-2 mt-1 font-medium">
+        <p className="text-[11px] sm:text-xs text-muted-foreground line-clamp-1 sm:line-clamp-2 mt-0.5 font-medium">
           {subtitle}
         </p>
 
-        {/* Metadata Badges */}
-        <div className="mt-3 flex flex-wrap items-center gap-2">
+        {/* Metadata Badges — rounded-full */}
+        <div className="mt-2 flex flex-wrap items-center gap-1.5">
           {course.officialCode && (
             <Badge
               variant="secondary"
-              className="font-mono text-xs font-semibold px-2.5 py-0.5 rounded-md"
+              className="rounded-full font-mono text-[10px] font-semibold px-2.5 py-0.5"
             >
               {course.officialCode}
             </Badge>
@@ -120,51 +99,34 @@ export function CourseBookCard({
           {course.credits && (
             <Badge
               variant="outline"
-              className="text-[11px] font-medium px-2 py-0.5 rounded-md"
+              className="rounded-full text-[10px] font-medium px-2.5 py-0.5"
             >
               {locale === "th"
                 ? `${course.credits} หน่วยกิต`
                 : `${course.credits} credits`}
             </Badge>
           )}
-          <Badge
-            variant="outline"
-            className={`inline-flex items-center gap-1.5 text-[11px] font-medium px-2 py-0.5 rounded-md ${
-              liveCount > 0
-                ? "text-emerald-600 dark:text-emerald-400 border-emerald-500/30 bg-emerald-500/5"
-                : "text-muted-foreground"
-            }`}
-            title={locale === "th" ? "โมดูลที่พร้อมแล้ว" : "Modules ready"}
-          >
-            <span
-              className={`size-1.5 rounded-full ${liveCount > 0 ? "bg-emerald-500" : "bg-muted-foreground/40"}`}
-            />
-            <span>
-              {readiness}/11{" "}
-              {locale === "th" ? "โมดูลพร้อม" : "modules ready"}
-            </span>
-          </Badge>
         </div>
       </div>
 
-      {/* ── Right Section: Official Link & Action Button ── */}
-      <div className="relative z-20 shrink-0 flex sm:flex-col items-start sm:items-end justify-between self-stretch gap-2.5 pt-2 sm:pt-0 border-t sm:border-t-0 border-border/40">
-        <div className="flex items-center gap-2">
+      {/* ── Right Section: Top-Right IT Link & Bottom-Right Action Button ── */}
+      <div className="relative z-20 shrink-0 flex sm:flex-col items-center sm:items-end justify-between self-stretch gap-2 pt-1.5 sm:pt-0 border-t sm:border-t-0 border-border/40">
+        <div className="flex items-center justify-end">
           {course.officialUrl && (
             <ItKmitlBadge href={course.officialUrl} className="shrink-0" />
           )}
         </div>
 
-        <div className="mt-auto flex items-center gap-2">
+        <div className="mt-auto flex items-center justify-end">
           {href ? (
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-primary px-3.5 py-1.5 text-xs font-semibold text-primary-foreground shadow-xs transition-all duration-200 group-hover:bg-primary/90 group-hover:shadow-sm">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-1.5 text-xs font-semibold text-primary-foreground shadow-xs transition-all duration-200 group-hover:bg-primary/90 group-hover:shadow-sm">
               <span>{locale === "th" ? "เข้าสู่รายวิชา" : "View Course"}</span>
               <ArrowRight className="size-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
             </span>
           ) : (
             <Badge
               variant="outline"
-              className="rounded-full text-xs text-muted-foreground px-3 py-1"
+              className="rounded-full text-xs text-muted-foreground px-2.5 py-1"
             >
               {locale === "th" ? "เร็ว ๆ นี้" : "Coming soon"}
             </Badge>

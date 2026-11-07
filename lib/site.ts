@@ -62,9 +62,9 @@ export const SITE = {
    * `plain` is the wordmark written as text: descriptions, keywords,
    * og:site_name and the onboarding heading. It is NOT open + text + close.
    * The drawn mark closes the bracket at the end, the written one closes the
-   * tag after the i ("<i>help"), so each is spelled out rather than derived.
+   * tag after the i ("<i>Help"), so each is spelled out rather than derived.
    */
-  wordmark: { open: "<i", text: "help", close: ">", plain: "<i>help" },
+  wordmark: { open: "<i", text: "help", close: ">", plain: "<i>Help" },
 
   /**
    * Public origin with no trailing slash: metadataBase, og:url, robots, sitemap.

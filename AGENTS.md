@@ -190,5 +190,6 @@ Known baseline (16 Oct 2026): `bun run lint` already exits 1 — 13 errors in th
 | [docs/Current_Architecture_Report.md](./docs/Current_Architecture_Report.md) | architecture review and known inconsistencies |
 | [docs/FONTS.md](./docs/FONTS.md) | typography rules for the reader |
 | [docs/STUDY_SPACE.md](./docs/STUDY_SPACE.md) | personal study space, timer preset and 22-day exam quota tracker |
+| [docs/BRANDING.md](./docs/BRANDING.md) | iHelp brand identity, naming standards, and wordmark guide |
 | [lib/README.md](./lib/README.md) | the `lib/` folder and its import boundaries |
 | [content/courses/README.md](./content/courses/README.md) | course content status and gaps |

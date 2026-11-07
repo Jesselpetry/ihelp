@@ -1,14 +1,13 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { GraduationCap, Search, X, CalendarDays, BookOpen, Layers } from "lucide-react";
+import { GraduationCap, Search, BookOpen, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useLocale, t, type LText } from "@/lib/i18n";
-import { COURSES, GROUPS } from "@/lib/courses/catalog";
+import { COURSES, GROUPS, type CourseGroup } from "@/lib/courses/catalog";
 import { SITE } from "@/lib/site";
 import { CourseBookCard } from "@/components/course-book-card";
-import LIBRARY_TOTALS from "@/lib/library/library-totals.json";
 
 const L: Record<string, LText> = {
   // The home page's headline is the site's tagline.
@@ -23,6 +22,44 @@ const L: Record<string, LText> = {
   noResults: { th: "ไม่พบรายวิชาที่ตรงกับคำค้นหา", en: "No course matches your search" },
   courses: { th: "รายวิชา", en: "courses" },
 };
+
+/* ── Mini calendar gimmick for semester/group headers ── */
+
+/** Map group ids to calendar-style short labels */
+const GROUP_CAL: Record<CourseGroup, { year: string; sem: string; shortTh: string; shortEn: string }> = {
+  "Y1-S1": { year: "1", sem: "1", shortTh: "ปี 1 · เทอม 1", shortEn: "Y1 · S1" },
+  "Y1-S2": { year: "1", sem: "2", shortTh: "ปี 1 · เทอม 2", shortEn: "Y1 · S2" },
+  "EN-KMITL": { year: "—", sem: "—", shortTh: "EN-KMITL", shortEn: "EN-KMITL" },
+};
+
+/**
+ * Tiny calendar icon component — looks like a mini torn-off desk calendar page.
+ * Shows the year number on top bar and semester number as the big date.
+ */
+function SemesterCalendar({ groupId }: { groupId: CourseGroup }) {
+  const cal = GROUP_CAL[groupId];
+  if (!cal || groupId === "EN-KMITL") {
+    // For EN-KMITL, just show a book icon instead
+    return (
+      <div className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-border/80 bg-muted/60">
+        <BookOpen className="size-4 text-muted-foreground" />
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex size-9 shrink-0 flex-col overflow-hidden rounded-lg border border-border/80 shadow-xs">
+      {/* Top bar — year */}
+      <div className="flex h-3 items-center justify-center bg-primary text-[8px] font-bold text-primary-foreground leading-none">
+        Y{cal.year}
+      </div>
+      {/* Body — semester number */}
+      <div className="flex flex-1 items-center justify-center bg-card text-sm font-black leading-none text-foreground">
+        S{cal.sem}
+      </div>
+    </div>
+  );
+}
 
 /**
  * @param readiness how many of the eleven spine modules each course fills,
@@ -62,7 +99,7 @@ export function CourseDirectory({
         </p>
       </div>
 
-      {/* ── Search Input Box (Same design as Exam Schedule) ── */}
+      {/* ── Search Input Box (Exam Schedule Design) ── */}
       <div className="mx-auto mb-8 max-w-xl animate-in fade-in-0 slide-in-from-bottom-2 duration-500 delay-100 fill-mode-both">
         <form
           onSubmit={(e) => {
@@ -100,63 +137,26 @@ export function CourseDirectory({
         </form>
       </div>
 
-      {/* Platform Stats Grid Column */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl mx-auto mb-10 animate-in fade-in-0 duration-500 delay-150 fill-mode-both">
-        <div className="rounded-2xl border bg-card/60 p-3 text-center shadow-xs hover:border-primary/30 transition-colors">
-          <div className="font-mono text-xl sm:text-2xl font-bold text-foreground">{LIBRARY_TOTALS.courses}</div>
-          <div className="text-[11px] sm:text-xs text-muted-foreground mt-0.5">
-            {locale === "th" ? "รายวิชาในระบบ" : "Total Courses"}
-          </div>
-        </div>
-        <div className="rounded-2xl border bg-card/60 p-3 text-center shadow-xs hover:border-primary/30 transition-colors">
-          <div className="font-mono text-xl sm:text-2xl font-bold text-foreground">{LIBRARY_TOTALS.coursesWithLibrary}</div>
-          <div className="text-[11px] sm:text-xs text-muted-foreground mt-0.5">
-            {locale === "th" ? "วิชามีคลังสื่อ" : "With Library"}
-          </div>
-        </div>
-        <div className="rounded-2xl border bg-card/60 p-3 text-center shadow-xs hover:border-primary/30 transition-colors">
-          <div className="font-mono text-xl sm:text-2xl font-bold text-primary">{LIBRARY_TOTALS.assets}</div>
-          <div className="text-[11px] sm:text-xs text-muted-foreground mt-0.5">
-            {locale === "th" ? "การ์ดสื่อการเรียน" : "Study Cards"}
-          </div>
-        </div>
-        <div className="rounded-2xl border bg-card/60 p-3 text-center shadow-xs hover:border-primary/30 transition-colors">
-          <div className="font-mono text-xl sm:text-2xl font-bold text-primary">{LIBRARY_TOTALS.files}</div>
-          <div className="text-[11px] sm:text-xs text-muted-foreground mt-0.5">
-            {locale === "th" ? "ไฟล์ในระบบ" : "Distinct Files"}
-          </div>
-        </div>
-      </div>
-
       {matches.length === 0 && (
         <p className="rounded-3xl border border-dashed py-12 text-center text-sm text-muted-foreground animate-in fade-in-0 duration-300">
           {t(L.noResults, locale)}
         </p>
       )}
 
-      <div className="space-y-12">
+      <div className="space-y-10">
         {GROUPS.map((group, groupIdx) => {
           const courses = matches.filter((c) => c.group === group.id);
           if (courses.length === 0) return null;
-
-          // Pick an icon per group type
-          const GroupIcon =
-            group.id === "Y1-S1" || group.id === "Y1-S2"
-              ? CalendarDays
-              : Layers;
-
           return (
             <section
               key={group.id}
               className="animate-in fade-in-0 slide-in-from-bottom-4 duration-600 fill-mode-both"
               style={{ animationDelay: `${groupIdx * 120}ms` }}
             >
+              {/* ── Section Header with Mini Calendar ── */}
               <div className="mb-4 flex items-center justify-between gap-3 border-b pb-3">
                 <div className="flex items-center gap-2.5">
-                  {/* Group icon */}
-                  <div className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-primary/10 dark:bg-primary/15">
-                    <GroupIcon className="size-3.5 text-primary" />
-                  </div>
+                  <SemesterCalendar groupId={group.id} />
                   <div>
                     <h2 className="text-sm font-bold tracking-tight text-foreground">
                       {t(group.label, locale)}
@@ -170,11 +170,11 @@ export function CourseDirectory({
                 {/* Course count pill */}
                 <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-border/60 bg-muted/50 px-2.5 py-1 font-mono text-[11px] font-semibold text-muted-foreground">
                   <BookOpen className="size-3 opacity-60" />
-                  {courses.length}{" "}
-                  {t(L.courses, locale)}
+                  {courses.length} {t(L.courses, locale)}
                 </span>
               </div>
-              <div className="flex flex-col gap-3 sm:gap-3.5">
+
+              <div className="flex flex-col gap-2.5 sm:gap-3">
                 {courses.map((c) => (
                   <CourseBookCard key={c.code} course={c} readiness={readiness[c.code] ?? 0} />
                 ))}
