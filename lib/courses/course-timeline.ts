@@ -155,10 +155,19 @@ export function resolveCourseTimeline(
 
       // Match bound reader doc
       let matchedDoc = mapDocs.find((d) => {
-        if (d.chapter !== undefined && d.chapter === wNum) {
-          return !d.scope || !week.scope || d.scope === week.scope;
+        if (d.scope && week.scope && d.scope !== week.scope) {
+          return false;
         }
-        return d.slug === `week${pad(wNum)}`;
+        if (d.chapter !== undefined && d.chapter === wNum) {
+          return true;
+        }
+        if (d.slug === `logic-week${pad(wNum)}` && week.scope === "midterm") {
+          return true;
+        }
+        if (d.slug === `week${pad(wNum)}` && (!d.scope || d.scope === week.scope)) {
+          return true;
+        }
+        return false;
       });
 
       // Special check for Week 0 (orientation in ITF)
@@ -192,7 +201,7 @@ export function resolveCourseTimeline(
 
       const label: LText = isWeekZero
         ? { th: "ปฐมนิเทศ", en: "Orientation" }
-        : code === "ICS"
+        : code === "ICS" && wScope === "final"
           ? { th: `คาบที่ ${pad(wNum)}`, en: `Session ${pad(wNum)}` }
           : { th: `สัปดาห์ที่ ${pad(wNum)}`, en: `Week ${pad(wNum)}` };
 

@@ -96,7 +96,7 @@ Node — use `bun run dev`, never `bun --bun next`.
 | What a course's 11 modules show | `lib/courses/course-bindings.ts` | `readiness`, `library:index` |
 | Course overview page | `content/courses/<dir>/summary.md` ([standard](./docs/COURSE_OVERVIEW_STANDARD.md)) | `content:check` |
 | Weekly pages (ITF, ICS) | `content/courses/<dir>/archive/weekNN.md` | `library:index`, `library:audit` |
-| Week titles (ITF, ICS) — declared **twice** | `ITF_WEEKS` / `ICS_SESSIONS` in `course-bindings.ts` **and** `ITF_SCHEDULE` / `ICS_SCHEDULE` in `lib/library/course-weeks.ts` | change both, then `library:index` |
+| Week titles (ITF, ICS) — declared **twice** | `ITF_WEEKS` / `ICS_LOGIC_WEEKS` / `ICS_SESSIONS` in `course-bindings.ts` **and** `ITF_SCHEDULE` / `ICS_SCHEDULE` in `lib/library/course-weeks.ts` | change both, then `library:index` |
 | Notes for content builders (never rendered) | `content/courses/<dir>/blueprint.md` | — |
 | Library card metadata — titles, scope, week, edition, `sourceUrl` | `lib/library/subject-library.ts` | `library:build`, `library:audit` |
 | Library week view (ITF, ICS) | `lib/library/course-weeks.ts` | `library:index` |

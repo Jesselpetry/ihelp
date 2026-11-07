@@ -394,7 +394,7 @@ function roleOf(docPath: string | null): DocRole {
   if (docPath.startsWith("data/")) return "data";
   if (lower === "summary.md") return "overview";
   if (lower === "blueprint.md") return "blueprint";
-  if (/^week\d+\.md$/.test(lower) && path.posix.basename(path.posix.dirname(docPath)) === "archive") {
+  if (/^(?:logic-)?week\d+\.md$/.test(lower) && path.posix.basename(path.posix.dirname(docPath)) === "archive") {
     return "week";
   }
   if (lower.includes("study-guide")) return "study-guide";
@@ -610,7 +610,7 @@ export async function buildResourceIndex(): Promise<BuildResult> {
 
     const { frontmatter, body } = splitFrontmatter(draft.content);
     const chapter = draft.bindings.find((b) => b.chapter !== null)?.chapter ?? null;
-    const weekFromName = draft.path?.match(/(?:^|\/)week(\d{1,2})\.md$/i);
+    const weekFromName = draft.path?.match(/(?:^|\/)(?:logic-)?week(\d{1,2})\.md$/i);
 
     docs[id] = {
       id,

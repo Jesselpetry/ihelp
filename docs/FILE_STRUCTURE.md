@@ -19,7 +19,7 @@ repo ยังเป็นระเบียบเมื่อมีคนเพ
 | ตัวตนรายวิชา — code, ชื่อ, หน่วยกิต, กลุ่ม | `lib/courses/catalog.ts` (`COURSES`) | `content:check` |
 | โมดูลของวิชา — เอกสาร/คลังข้อสอบที่ผูก | `lib/courses/course-bindings.ts` (`COURSE_BINDINGS`) | `readiness`, `library:index` |
 | ภาพรวมรายวิชาที่นักศึกษาเห็น | `content/courses/<dir>/summary.md` ([มาตรฐาน](./docs/COURSE_OVERVIEW_STANDARD.md)) | `content:check` |
-| หน้ารายสัปดาห์ของ ITF / ICS | `content/courses/<dir>/archive/weekNN.md` — หัวข้อบนการ์ดอยู่ใน `ITF_WEEKS` / `ICS_SESSIONS` ใน `course-bindings.ts` | `library:index`, `library:audit` |
+| หน้ารายสัปดาห์ของ ITF / ICS | `content/courses/<dir>/archive/weekNN.md` (และ `logic-weekNN.md` ของ ICS ครึ่งแรก) — หัวข้อบนการ์ดอยู่ใน `ITF_WEEKS`, `ICS_LOGIC_WEEKS` และ `ICS_SESSIONS` ใน `course-bindings.ts` | `library:index`, `library:audit` |
 | บันทึกสำหรับคนสร้างสื่อ (ไม่ render) | `content/courses/<dir>/blueprint.md` | — |
 | metadata ของการ์ดในคลัง — ชื่อสองภาษา คำอธิบาย `scope` `week`/`chapter` `edition` `sourceUrl` | `lib/library/subject-library.ts` (`<CODE>_ASSETS`) | `library:build`, `library:audit` |
 | ตารางสัปดาห์ในหน้าคลัง (ITF, ICS) | `lib/library/course-weeks.ts` (`COURSE_SCHEDULES`) | `library:index`, `library:audit` |
@@ -382,9 +382,9 @@ ICS และ ITF ใช้โครงเดียวกัน ผูกเข�
 
 | | ITF | ICS |
 | --- | --- | --- |
-| ไฟล์ | `week01.md`–`week15.md` | `week01.md`–`week07.md` |
-| หมายถึง | สัปดาห์ที่ N ของภาค (กลางภาค 1–7, ปลายภาค 8–15) · ตั้ง `chapter` = เลขสัปดาห์ | คาบที่ N ของ **ครึ่งหลัง** (ครั้งที่ 8–15 ของประมวลการสอน · `scope` ปลายภาค) · ไม่ตั้ง `chapter` เพราะไม่ตรงกับเลขบทของคลังข้อสอบ |
-| ชื่อบนการ์ด | `สัปดาห์ที่ N — <หัวข้อ>` จาก `ITF_WEEKS` | `คาบที่ N — <หัวข้อ>` จาก `ICS_SESSIONS` |
+| ไฟล์ | `week01.md`–`week15.md` | ครึ่งแรก: `logic-week01.md`–`logic-week07.md` · ครึ่งหลัง: `week01.md`–`week07.md` |
+| หมายถึง | สัปดาห์ที่ N ของภาค (กลางภาค 1–7, ปลายภาค 8–15) · ตั้ง `chapter` = เลขสัปดาห์ | ครึ่งแรก: สัปดาห์ที่ 1–7 (ตรรกศาสตร์ดิจิทัล & Logisim · `scope` กลางภาค) · ครึ่งหลัง: คาบที่ 1–7 (ครั้งที่ 8–15 ของประมวลการสอน · ฮาร์ดแวร์ · `scope` ปลายภาค) |
+| ชื่อบนการ์ด | `สัปดาห์ที่ N — <หัวข้อ>` จาก `ITF_WEEKS` | ครึ่งแรก: `สัปดาห์ที่ N — <หัวข้อ>` จาก `ICS_LOGIC_WEEKS` · ครึ่งหลัง: `คาบที่ N — <หัวข้อ>` จาก `ICS_SESSIONS` |
 | หน้าแรก | `archive/course-materials-2569.md` | `archive/course-materials-2569.md` |
 
 | ส่วนในหน้า | ใช้ทำอะไร |
