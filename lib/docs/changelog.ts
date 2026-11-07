@@ -85,6 +85,20 @@ export const CHANGELOG: VersionEntry[] = [
         },
       },
       {
+        kind: "added",
+        text: {
+          th: "ระบบตรวจสอบความถูกต้องของรุ่นนักศึกษาไอที (KMITL IT Cohort Formula & Auditing Rule: IT<yy-45>) ตรวจสอบความถูกต้องของเลขรุ่นกับรหัสนักศึกษา (รหัส 69 = IT24, 68 = IT23, 67 = IT22) เชื่อมต่อกระบวนการตรวจสอบ content:check (โดย @Jesselpetry)",
+          en: "Automated KMITL IT cohort calculation and auditing rule (IT<yy-45>) verifying student IDs (69 -> IT24, 68 -> IT23) integrated with content:check (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "ปรับปรุงโครงสร้าง Contributor Profile Modal ให้ Responsive 100% ไม่โดนแบนเนอร์บดบัง ปรับ Avatar เป็น rounded-full จัดลำดับข้อมูล คณะ > สาขา > ชั้นปี > รหัสนักศึกษา > รุ่น IT พร้อมระบบ Accordion พับ-ขยายสำหรับผลงานรายวิชาและประวัติ Commit (โดย @Jesselpetry)",
+          en: "Redesigned Contributor Profile Modal for full mobile responsiveness without banner clipping, rounded-full avatar, hierarchical credentials, and interactive accordions for course materials and commit history (by @Jesselpetry)",
+        },
+      },
+      {
         kind: "changed",
         text: {
           th: "ปรับปรุงการ์ดเครดิตผู้จัดทำและร่วมแบ่งปันเนื้อหาท้ายหน้ารายวิชาสู่ดีไซน์แนวนอนแบบกว้าง พร้อมไอคอน Dev/Terminal สำหรับ Lead Maintainer และปุ่มโซเชียลแบดจ์เต็ม (โดย @Jesselpetry)",

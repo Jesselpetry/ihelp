@@ -81,12 +81,88 @@ export function facultyFromStudentId(studentId?: string): LText | null {
 }
 
 /**
+ * Calculates the KMITL IT cohort (รุ่น IT) from admission year (BE) or student ID.
+ *
+ * IT Undergrad Batch Formula:
+ * batchNumber = (BE % 100) - 45
+ *
+ * Ground truth:
+ * - รหัส 69 (2569) -> IT24 (69 - 45 = 24)
+ * - รหัส 68 (2568) -> IT23 (68 - 45 = 23)
+ * - รหัส 67 (2567) -> IT22 (67 - 45 = 22)
+ * - รหัส 66 (2566) -> IT21 (66 - 45 = 21)
+ * - รหัส 65 (2565) -> IT20 (65 - 45 = 20)
+ * - รหัส 64 (2564) -> IT19 (64 - 45 = 19)
+ */
+export function calculateCohortFromAdmissionYear(admissionYearBE: number): string {
+  const yy = admissionYearBE % 100;
+  const batch = yy - 45;
+  return `IT${batch}`;
+}
+
+export interface CohortAuditResult {
+  valid: boolean;
+  expectedCohort: string | null;
+  actualCohort?: string;
+  admissionYearBE: number | null;
+  studentId?: string;
+  message?: string;
+}
+
+/**
+ * Audits a student's cohort string against their student ID or admission year.
+ * Verifies that declarations strictly adhere to the `IT<yy - 45>` convention.
+ */
+export function auditCohort(
+  studentId?: string,
+  explicitCohort?: string,
+  explicitEntryYearBE?: number,
+): CohortAuditResult {
+  const admissionYearBE = explicitEntryYearBE ?? parseAdmissionYearBE(studentId);
+  if (!admissionYearBE) {
+    return {
+      valid: true,
+      expectedCohort: explicitCohort ?? null,
+      actualCohort: explicitCohort,
+      admissionYearBE: null,
+      studentId,
+    };
+  }
+
+  const expectedCohort = calculateCohortFromAdmissionYear(admissionYearBE);
+  if (!explicitCohort) {
+    return {
+      valid: true,
+      expectedCohort,
+      actualCohort: expectedCohort,
+      admissionYearBE,
+      studentId,
+    };
+  }
+
+  const normExpected = expectedCohort.trim().toUpperCase();
+  const normActual = explicitCohort.trim().toUpperCase();
+  const valid = normExpected === normActual;
+
+  return {
+    valid,
+    expectedCohort,
+    actualCohort: explicitCohort,
+    admissionYearBE,
+    studentId,
+    message: valid
+      ? undefined
+      : `Cohort audit mismatch: student ID / year prefix (${admissionYearBE % 100}) indicates ${expectedCohort}, but '${explicitCohort}' was declared.`,
+  };
+}
+
+/**
  * Automatic Academic Year & Student Level Calculator ("ระบบเลื่อนชั้นปีเอง").
  *
  * Takes a student ID (or explicit admission year) and calculates:
  * - Exact year level (ชั้นปีที่ 1, 2, 3, 4)
  * - Alumni status if beyond 4 years
- * - Cohort badge (e.g. IT29, IT24)
+ * - Cohort badge (e.g. IT24, IT23)
  *
  * Automatically updates when time advances into a new academic year.
  */
@@ -101,6 +177,7 @@ export function calculateAcademicYear(
 
   const currentAcademicYearBE = getCurrentAcademicYearBE(asOfDate);
   const diff = currentAcademicYearBE - admissionYearBE + 1;
+  const cohort = explicitCohort ?? calculateCohortFromAdmissionYear(admissionYearBE);
 
   if (diff <= 0) {
     // Incoming freshman / not yet started
@@ -110,7 +187,7 @@ export function calculateAcademicYear(
       yearNumber: 1,
       yearLabel: { th: "ว่าที่ชั้นปีที่ 1", en: "Incoming 1st Year" },
       isAlumni: false,
-      cohort: explicitCohort,
+      cohort,
     };
   }
 
@@ -121,7 +198,7 @@ export function calculateAcademicYear(
       yearNumber: 1,
       yearLabel: { th: "ชั้นปีที่ 1", en: "1st Year" },
       isAlumni: false,
-      cohort: explicitCohort,
+      cohort,
     };
   }
 
@@ -132,7 +209,7 @@ export function calculateAcademicYear(
       yearNumber: 2,
       yearLabel: { th: "ชั้นปีที่ 2", en: "2nd Year" },
       isAlumni: false,
-      cohort: explicitCohort,
+      cohort,
     };
   }
 
@@ -143,7 +220,7 @@ export function calculateAcademicYear(
       yearNumber: 3,
       yearLabel: { th: "ชั้นปีที่ 3", en: "3rd Year" },
       isAlumni: false,
-      cohort: explicitCohort,
+      cohort,
     };
   }
 
@@ -154,7 +231,7 @@ export function calculateAcademicYear(
       yearNumber: 4,
       yearLabel: { th: "ชั้นปีที่ 4", en: "4th Year" },
       isAlumni: false,
-      cohort: explicitCohort,
+      cohort,
     };
   }
 
@@ -165,7 +242,7 @@ export function calculateAcademicYear(
     yearNumber: diff,
     yearLabel: { th: "ศิษย์เก่า (Alumni)", en: "Alumni" },
     isAlumni: true,
-    cohort: explicitCohort,
+    cohort,
   };
 }
 

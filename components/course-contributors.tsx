@@ -277,24 +277,11 @@ export function CourseContributors({
                       </span>
                     </div>
 
-                    {/* Metadata Pills (Auto Year, Cohort, Student ID, Major) */}
+                    {/* Hierarchical Metadata: คณะ > สาขา > ชั้นปี > รหัสนักศึกษา > รุ่น IT */}
                     <div className="flex flex-wrap items-center gap-1.5 text-[10px]">
-                      {profile.academic && (
-                        <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-primary/10 text-primary font-medium">
-                          <GraduationCap className="size-3" />
-                          <span>{t(profile.academic.yearLabel, locale)}</span>
-                        </span>
-                      )}
-
-                      {profile.cohort && (
-                        <span className="px-1.5 py-0.5 rounded-full bg-muted text-muted-foreground font-mono">
-                          {profile.cohort}
-                        </span>
-                      )}
-
-                      {profile.studentId && (
-                        <span className="px-1.5 py-0.5 rounded-full bg-muted/60 text-muted-foreground font-mono">
-                          {profile.studentId}
+                      {profile.faculty && (
+                        <span className="px-1.5 py-0.5 rounded-full bg-muted/40 text-muted-foreground hidden md:inline-flex">
+                          {t(profile.faculty, locale)}
                         </span>
                       )}
 
@@ -304,9 +291,22 @@ export function CourseContributors({
                         </span>
                       )}
 
-                      {profile.faculty && (
-                        <span className="px-1.5 py-0.5 rounded-full bg-muted/40 text-muted-foreground hidden md:inline-flex">
-                          {t(profile.faculty, locale)}
+                      {profile.academic && (
+                        <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-primary/10 text-primary font-medium">
+                          <GraduationCap className="size-3" />
+                          <span>{t(profile.academic.yearLabel, locale)}</span>
+                        </span>
+                      )}
+
+                      {profile.studentId && (
+                        <span className="px-1.5 py-0.5 rounded-full bg-muted/60 text-muted-foreground font-mono">
+                          {profile.studentId}
+                        </span>
+                      )}
+
+                      {profile.cohort && (
+                        <span className="px-1.5 py-0.5 rounded-full bg-muted text-foreground font-mono font-semibold">
+                          {profile.cohort}
                         </span>
                       )}
                     </div>

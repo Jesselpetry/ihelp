@@ -254,6 +254,21 @@ for (const course of COURSES) {
   }
 }
 
+// ── 7. contributor registry cohort audit ─────────────────────────────────────
+import { CONTRIBUTOR_REGISTRY, auditCohort } from "../lib/contributors";
+
+for (const [id, contributor] of Object.entries(CONTRIBUTOR_REGISTRY)) {
+  const audit = auditCohort(contributor.studentId, contributor.cohort, contributor.entryYearBE);
+  if (!audit.valid && audit.message) {
+    findings.push({
+      severity: "error",
+      rule: "contributor-cohort-mismatch",
+      where: `CONTRIBUTOR_REGISTRY.${id}`,
+      message: audit.message,
+    });
+  }
+}
+
 // ── report ───────────────────────────────────────────────────────────────────
 const errors = findings.filter((f) => f.severity === "error");
 const warnings = findings.filter((f) => f.severity === "warn");

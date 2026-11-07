@@ -49,7 +49,7 @@ flowchart TD
     B -->|"คำนวณปีการศึกษาจริง พ.ศ."| C["AcademicYearInfo"]
     C --> C1["ชั้นปีปัจจุบัน (เช่น ชั้นปีที่ 1)"]
     C --> C2["สถานะศิษย์เก่า (Alumni / ปี 4+)"]
-    C --> C3["รหัสรุ่น (เช่น IT29, IT24)"]
+    C --> C3["รหัสรุ่น (เช่น IT24, IT23)"]
     
     R["Contributor Registry (registry.ts)"] --> D["getContributorsForCourse(code)"]
     C --> D
@@ -93,22 +93,69 @@ $$\text{ชั้นปี} = \text{ปีการศึกษาปัจจ�
 
 > 💡 **จุดเด่น:** เมื่อเวลาในโลกจริงก้าวผ่านวันที่ 1 มิถุนายนของแต่ละปี ตัวแสดงผลชั้นปีของนักศึกษาทุกคนจะ **ขยับเลื่อนขึ้นชั้นปีใหม่เองโดยอัตโนมัติ** โดยที่ทีมงานไม่ต้องแก้ไขข้อมูลในโค้ดแม้แต่บรรทัดเดียว
 
+### 3.4 สูตรการคำนวณและตรวจสอบรุ่นไอที (KMITL IT Cohort Formula & Auditing Rule)
+ในการนับรุ่นของนักศึกษาปริญญาตรี คณะเทคโนโลยีสารสนเทศ สจล. มีสูตรคำนวณมาตรฐานจากปี พ.ศ. ที่เข้าศึกษา (Admission Year BE) ดังนี้:
+
+$$\text{รุ่น IT} = (\text{พ.ศ. เข้าศึกษา} \pmod{100}) - 45$$
+
+**ตารางลำดับรุ่นตามรหัสนักศึกษา (Ground Truth):**
+- **รหัส 69** (พ.ศ. 2569) ➔ **รุ่น IT24** ($69 - 45 = 24$)
+- **รหัส 68** (พ.ศ. 2568) ➔ **รุ่น IT23** ($68 - 45 = 23$)
+- **รหัส 67** (พ.ศ. 2567) ➔ **รุ่น IT22** ($67 - 45 = 22$)
+- **รหัส 66** (พ.ศ. 2566) ➔ **รุ่น IT21** ($66 - 45 = 21$)
+- **รหัส 65** (พ.ศ. 2565) ➔ **รุ่น IT20** ($65 - 45 = 20$)
+- **รหัส 64** (พ.ศ. 2564) ➔ **รุ่น IT19** ($64 - 45 = 19$)
+
+> ⚠️ **ระบบตรวจสอบอัตโนมัติ (Automated Cohort Auditing):**  
+> ฟังก์ชัน `auditCohort(studentId, explicitCohort, entryYearBE)` ใน [`lib/contributors/academic-year.ts`](../lib/contributors/academic-year.ts) ถูกเชื่อมเข้าสู่กระบวนการตรวจสัญญาของโครงการผ่าน `bun run content:check` (`scripts/validate-content.ts`) หากมีการระบุเลขรุ่นขัดแย้งกับคำนำหน้ารหัสนักศึกษา (เช่น รหัส 69 แต่ระบุ IT29) การ Build ระบบจะถูกระงับ (Fail Build) ทันที เพื่อป้องกันข้อมูลคลาดเคลื่อน
+
 ---
 
-## 4. ทะเบียนรายชื่อและสถานะข้อมูลปัจจุบัน (Master Contributor Registry Status)
+## 4. มาตรฐาน 7 บทบาทผู้ร่วมพัฒนา (Taxonomy of 7 Contributor Roles)
 
-| รหัสระบุตัว | ชื่อ-นามสกุล | รหัสนักศึกษา | ชั้นปี (คำนวณอัตโนมัติ) | คณะ / สาขา | บทบาทหลัก (Primary Role) | วิชาที่มีส่วนร่วม | สถานะข้อมูล |
+ระบบจำแนกบทบาทและขอบเขตความรับผิดชอบออกเป็น 7 บทบาทมาตรฐาน (`ContributorRole` ใน [`lib/contributors/types.ts`](../lib/contributors/types.ts)):
+
+| บทบาท (Role Key) | ชื่อบทบาท (Bilingual) | ไอคอน | ขอบเขตความรับผิดชอบและการอนุญาต |
+|---|---|:---:|---|
+| `lead-maintainer` | **ผู้ก่อตั้งและผู้ดูแลหลัก**<br>(Lead Maintainer) | `Terminal` | ดูแลสถาปัตยกรรมระบบหลัก, Security Guards, Review โค้ด, ดูแล Database, จัดการ Release และสิทธิ์การ Deploy |
+| `core-developer` | **ผู้ร่วมพัฒนาหลัก**<br>(Core Contributor) | `Code2` | พัฒนาระบบสำคัญของแพลตฟอร์ม (เช่น ระบบแชท Help Desk, เครื่องมือคำนวณ, API Endpoints) |
+| `developer` | **ผู้ร่วมพัฒนา**<br>(Contributor) | `Code2` | พัฒนาหน้าเว็บย่อย ฟีเจอร์เฉพาะทาง (เช่น หน้า `/pro`, ส่วนต่อขยาย หรือเครื่องมือส่งงาน) |
+| `content-contributor` | **ผู้ร่วมจัดทำเนื้อหา**<br>(Content Contributor) | `BookOpen` | ผู้สร้างหรือแบ่งปันเอกสาร สไลด์สรุปเนื้อหา หรือแบบฝึกหัดทบทวนในรายวิชาต่าง ๆ |
+| `translator` | **ผู้แปลและเรียบเรียง**<br>(Translator) | `FileText` | แปลและสรุปเอกสารการสอน/สไลด์บรรยายจากภาษาอังกฤษเป็นภาษาไทย เพื่อให้นักศึกษาอ่านทำความเข้าใจได้ง่ายขึ้น |
+| `note-author` | **ผู้เขียนบันทึกสรุปการเรียน**<br>(Note Author) | `FileCheck2` | ผู้จัดทำเลกเชอร์ บันทึกการเรียนรู้ส่วนบุคคล (เช่น Notion, GoodNotes) พร้อมภาพประกอบคำอธิบายอย่างละเอียด |
+| `senior-mentor` | **รุ่นพี่ผู้ร่วมแบ่งปันแนวทาง**<br>(Senior Mentor) | `GraduationCap` | รุ่นพี่ที่จัดทำแนวข้อสอบ ข้อสอบจำลอง (Mock Exam) และคำแนะนำในการเตรียมตัวสอบแก่น้อง ๆ |
+
+---
+
+## 5. ทะเบียนรายชื่อและสถานะข้อมูลปัจจุบัน (Master Contributor Registry Status)
+
+| รหัสระบุตัว | ชื่อ-นามสกุล | รหัสนักศึกษา | ชั้นปี & รุ่น (อัตโนมัติ) | คณะ / สาขา | บทบาทหลัก (Primary Role) | วิชาที่มีส่วนร่วม | สถานะข้อมูล |
 |:---:|---|:---:|:---:|:---:|---|:---:|:---:|
-| `chatan` | **Chatan Petry** (`@Jesselpetry`) | `69070027` | **ชั้นปีที่ 1** (IT29) | คณะ IT (สาขา IT) | **ผู้ก่อตั้งและผู้ดูแลหลัก (Lead Maintainer)**<br>สถาปัตยกรรมเว็บ, ระบบตัดเกรด, ผังสอบ, คลังสื่อ | ทุกวิชา (`ALL`), ITF, ICS, MFIT, PSCP, COMPRO, CHEM |  **สมบูรณ์ครบถ้วน** |
-| `phuPunnavit` | **Punnavit (Phu)** (`@PhuPunnavit`) | `6907xxxx` | **ชั้นปีที่ 1** (IT29) | คณะ IT (สาขา IT) | **ผู้ร่วมพัฒนาหลัก & แปลสไลด์สรุป (Core Contributor)**<br>สไลด์บรรยายแปลไทย 8 สัปดาห์ & Chat Widget | ITF | ⚠️ **รอรหัสนักศึกษาเต็ม** |
-| `tammadon` | **Tammadon Suksa** | `6807xxxx` | **ศิษย์เก่า (Alumni)** (IT24) | คณะ IT (สาขา IT) | **ผู้ร่วมแบ่งปันบันทึกสรุป Notion (รุ่นพี่ IT24)**<br>โน้ตสรุป ITF สัปดาห์ 08–15 (79 ภาพสไลด์จดโน้ต) | ITF | ⚠️ **รอรหัสนักศึกษา/รูปจริง** |
-| `pgthegod` | **Akarapach Yootsukprasert** (`@PGTHEGOD`) | `6907xxxx` | **ชั้นปีที่ 1** (IT29) | คณะ IT (สาขา IT) | **ผู้ร่วมพัฒนา (Contributor)**<br>หน้า Landing Page และระบบเชื่อมต่อ `/pro` | PSCP | ⚠️ **รอรหัสนักศึกษาเต็ม** |
-| `meaookung` | **Kittinan Atthasiri** (`@Meaookung144`) | `6907xxxx` | **ชั้นปีที่ 1** (IT29) | คณะ IT (สาขา IT) | **ผู้ร่วมพัฒนา (Contributor)**<br>ฟอร์มส่งงานและ Learning Log Direct Edit | PSCP | ⚠️ **รอรหัสนักศึกษาเต็ม** |
+| `chatan` | **Chatan Petry** (`@Jesselpetry`) | `69070027` | **ชั้นปีที่ 1** (IT24) | คณะ IT (สาขา IT) | **ผู้ก่อตั้งและผู้ดูแลหลัก (Lead Maintainer)**<br>สถาปัตยกรรมเว็บ, ระบบตัดเกรด, ผังสอบ, คลังสื่อ | ทุกวิชา (`ALL`), ITF, ICS, MFIT, PSCP, COMPRO, CHEM |  **สมบูรณ์ครบถ้วน** |
+| `phuPunnavit` | **Punnavit (Phu)** (`@PhuPunnavit`) | `6907xxxx` | **ชั้นปีที่ 1** (IT24) | คณะ IT (สาขา IT) | **ผู้ร่วมพัฒนาหลัก & แปลสไลด์สรุป (Core Contributor)**<br>สไลด์บรรยายแปลไทย 8 สัปดาห์ & Chat Widget | ITF | ⚠️ **รอรหัสนักศึกษาเต็ม** |
+| `tammadon` | **Tammadon Suksa** | `6907xxxx` | **ชั้นปีที่ 1** (IT24) | คณะ IT (สาขา IT) | **ผู้ร่วมแบ่งปันบันทึกสรุป Notion (IT24)**<br>โน้ตสรุป ITF สัปดาห์ 08–15 (79 ภาพสไลด์จดโน้ต) | ITF | ⚠️ **รอรหัสนักศึกษา/รูปจริง** |
+| `pgthegod` | **Akarapach Yootsukprasert** (`@PGTHEGOD`) | `6907xxxx` | **ชั้นปีที่ 1** (IT24) | คณะ IT (สาขา IT) | **ผู้ร่วมพัฒนา (Contributor)**<br>หน้า Landing Page และระบบเชื่อมต่อ `/pro` | PSCP | ⚠️ **รอรหัสนักศึกษาเต็ม** |
+| `meaookung` | **Kittinan Atthasiri** (`@Meaookung144`) | `6907xxxx` | **ชั้นปีที่ 1** (IT24) | คณะ IT (สาขา IT) | **ผู้ร่วมพัฒนา (Contributor)**<br>ฟอร์มส่งงานและ Learning Log Direct Edit | PSCP | ⚠️ **รอรหัสนักศึกษาเต็ม** |
 | `fewIt25` | **พี่ฟิว (Few IT25)** | — | **ศิษย์เก่า (Alumni)** (IT25) | คณะ IT (สาขา IT) | **รุ่นพี่ผู้จัดทำข้อสอบจำลอง (IT25)**<br>ชุดโจทย์ซ้อมสอบกลางภาค DSA และ OOP | DSA, OOP | ⚠️ **รอข้อมูลเพิ่มเติม** |
 
 ---
 
-## 5. รายการข้อมูลที่ต้องการเพิ่มเติมจากคุณ (Pending Information Checklist)
+## 6. สถาปัตยกรรม Full Profile Modal & Interactive Accordion
+
+คอมโพเนนต์ [`components/contributor-modal.tsx`](../components/contributor-modal.tsx) ได้รับการปรับปรุงโครงสร้างเพื่อความ Responsive 100%:
+1. **แก้ปัญหา Banner ทับรูปโปรไฟล์บน Mobile:**
+   - รวม Cover Banner ให้อยู่ในกระแสการเลื่อนหน้าจอเดียวกัน (`overflow-y-auto`) หมดปัญหา Avatar โดน Banner บังหรือถูกเฉือนจากการตัดกรอบ Scroll Container
+   - รูปโปรไฟล์ใช้สไตล์ **`rounded-full`** พร้อมวงแหวนพื้นหลังยกนูน (`ring-4 ring-card shadow-lg`)
+2. **การจัดลำดับข้อมูลนักศึกษาเชิงลำดับชั้น (Hierarchical Credentials):**
+   - **แถวบน:** `[Building2] คณะเทคโนโลยีสารสนเทศ` • `[BookMarked] สาขา: เทคโนโลยีสารสนเทศ (IT)`
+   - **แถวล่าง:** `[GraduationCap] ชั้นปีที่ 1` | `รหัส 69070027` | `รุ่น IT24`
+3. **การแสดงผลงานแบบ Accordion Card พร้อมตัวนับ:**
+   - **Accordion 1 (Course Materials):** แสดงผลงานและสื่อการเรียนรู้ในรายวิชาแยกเป็นรายแถว พร้อม Badge ระบุวิชา และลิงก์เปิดดู
+   - **Accordion 2 (Changelog & Commits History):** แสดงประวัติเวอร์ชัน พร้อมนับจำนวน Commit/Changes รวม และลิงก์ Hash commit ไปยัง GitHub Repository
+
+---
+
+## 7. รายการข้อมูลที่ต้องการเพิ่มเติมจากคุณ (Pending Information Checklist)
 
 เมื่อคุณตื่นนอนแล้ว สามารถตรวจสอบรายการข้อมูลที่ยังขาดหาย/ต้องการเพิ่มเติมได้ตามรายการด้านล่างนี้ และสามารถแจ้งเข้ามาเพื่อให้ระบบอัปเดตข้อมูลให้สมบูรณ์ได้ทันทีครับ:
 
@@ -116,7 +163,7 @@ $$\text{ชั้นปี} = \text{ปีการศึกษาปัจจ�
   - **Punnavit (Phu):** ปัจจุบันใช้ `6907xxxx` (ต้องการ 4 หลักท้าย เพื่อให้ระบบผูกกับอีเมล `...@kmitl.ac.th` และโปรไฟล์ iHelp ได้ถูกต้อง)
   - **Akarapach Yootsukprasert (PGTHEGOD):** ปัจจุบันใช้ `6907xxxx` (ต้องการ 4 หลักท้าย)
   - **Kittinan Atthasiri (Meaookung):** ปัจจุบันใช้ `6907xxxx` (ต้องการ 4 หลักท้าย)
-  - **Tammadon Suksa (IT24):** ปัจจุบันใช้ `6807xxxx` หากมีรหัสนักศึกษาที่ต้องการให้บันทึกอย่างเป็นทางการ
+  - **Tammadon Suksa (IT24):** ปัจจุบันใช้ `6907xxxx` หากมีรหัสนักศึกษาที่ต้องการให้บันทึกอย่างเป็นทางการ
 - [ ] **2. รูปโปรไฟล์นักศึกษา (Student Profile Pictures):**
   - ปัจจุบันระบบดึง Avatar จาก GitHub (`https://github.com/<username>.png`) และ Identicon เป็นค่าเริ่มต้น
   - หากต้องการใช้ **รูปชุดนักศึกษาจริง** หรือรูปโปรไฟล์เฉพาะบุคคล สามารถระบุ URL หรือนำไฟล์รูปภาพมาวางในโปรเจกต์ได้
@@ -127,7 +174,7 @@ $$\text{ชั้นปี} = \text{ปีการศึกษาปัจจ�
 
 ---
 
-## 6. แนวทางการเพิ่มและปรับปรุงข้อมูล Contributor (How to Add or Update)
+## 8. แนวทางการเพิ่มและปรับปรุงข้อมูล Contributor (How to Add or Update)
 
 หากต้องการเพิ่มผู้ร่วมจัดทำคนใหม่ หรือปรับปรุงข้อมูลผลงาน สามารถทำได้โดยแก้ไขไฟล์ [`lib/contributors/registry.ts`](../lib/contributors/registry.ts):
 
@@ -138,7 +185,7 @@ export const CONTRIBUTOR_REGISTRY: Record<string, ContributorProfile> = {
     id: "somchai",
     name: "สมชาย รักเรียน",
     nickname: "ชาย",
-    studentId: "69070999",     // ระบบจะนำไปคำนวณชั้นปีและสังกัดคณะอัตโนมัติ
+    studentId: "69070999",     // ระบบจะนำไปคำนวณชั้นปี สังกัดคณะ และรุ่น IT24 อัตโนมัติ
     majorKey: "IT",
     roles: ["content-contributor", "note-author"],
     primaryRole: {
@@ -168,11 +215,11 @@ export const CONTRIBUTOR_REGISTRY: Record<string, ContributorProfile> = {
 
 ---
 
-## 7. สถานะการทดสอบและการส่งมอบงาน (Deployment Status)
+## 9. สถานะการทดสอบและการส่งมอบงาน (Deployment Status)
 
 1. ✅ **TypeScript Compilation**: ผ่าน 100% ไม่มีข้อผิดพลาด (`npx tsc --noEmit -p .`)
 2. ✅ **Lint & Style Check**: ผ่าน 100% ตามมาตรฐานโปรเจกต์ (`npx eslint`)
-3. ✅ **Content Contract**: ผ่าน 100% (`bun run content:check`)
-4. ✅ **UI Presentation**: ติดตั้งส่วน `CourseContributors` ท้ายหน้ารายวิชา (`SubjectHub`) และปรับแต่ง Modal ให้แสดงข้อมูลนักศึกษาและผลงานรายวิชาครบถ้วน
+3. ✅ **Content Contract**: ผ่าน 100% พร้อมระบบตรวจเช็กความถูกต้องของรุ่น (`bun run content:check`)
+4. ✅ **UI Presentation**: Modal และ CourseContributors มีความ Responsive 100%, รูปแบบ Avatar เป็น `rounded-full`, มีระบบ Accordion และเรียงลำดับ Credentials อย่างเป็นระบบ
 5. 🚀 **Git Synchronization**: บันทึก Commit ตามมาตรฐาน Conventional Commits และผลักดัน (Push) ขึ้นทั้งกิ่ง `staging` และ `main` พร้อมกันตามคำสั่งเรียบร้อยแล้ว
 
