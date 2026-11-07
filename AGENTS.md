@@ -112,7 +112,7 @@ Node — use `bun run dev`, never `bun --bun next`.
 | PSCP problems | the archive repo's `OP` branch | `pscp:build` |
 | UI | `app/`, `components/` (`components/ui/` = shadcn primitives) | `lint` |
 
-Paths, naming rules and the scope taxonomy: [FILE_STRUCTURE.md](./FILE_STRUCTURE.md).
+Paths, naming rules and the scope taxonomy: [FILE_STRUCTURE.md](./docs/FILE_STRUCTURE.md).
 The `lib/` layout and its import boundaries: [lib/README.md](./lib/README.md).
 
 ## Finding resources — the resource index
@@ -159,7 +159,7 @@ to compare against the buckets.
 is a full example) and [docs/COURSE_OVERVIEW_STANDARD.md](./docs/COURSE_OVERVIEW_STANDARD.md).
 Bump `updated:` in `summary.md` frontmatter and the **อัปเดตล่าสุด** line together.
 
-**Add a course.** Follow the checklist in [FILE_STRUCTURE.md](./FILE_STRUCTURE.md) §8.
+**Add a course.** Follow the checklist in [FILE_STRUCTURE.md](./docs/FILE_STRUCTURE.md) §8.
 
 ## Verify before handing work back
 
@@ -181,9 +181,9 @@ Known baseline (16 Oct 2026): `bun run lint` already exits 1 — 13 errors in th
 
 | Doc | Read it for |
 |---|---|
-| [README.md](./README.md) | what the site is, how to run it, the stack |
-| [CONTRIBUTING.md](./CONTRIBUTING.md) | the contribution workflow, task by task |
-| [FILE_STRUCTURE.md](./FILE_STRUCTURE.md) | paths, naming, scope taxonomy, generated files |
+| [README.md](./README.md) · [docs/FULL_README.md](./docs/FULL_README.md) | what the site is, how to run it, technical stack |
+| [CONTRIBUTING.md](./CONTRIBUTING.md) · [docs/FULL_CONTRIBUTING.md](./docs/FULL_CONTRIBUTING.md) | the contribution workflow, task by task |
+| [FILE_STRUCTURE.md](./docs/FILE_STRUCTURE.md) | paths, naming, scope taxonomy, generated files |
 | [docs/DROPZONE_SOP.md](./docs/DROPZONE_SOP.md) | filing a pile of raw course files |
 | [docs/COURSE_OVERVIEW_STANDARD.md](./docs/COURSE_OVERVIEW_STANDARD.md) | the `summary.md` / `blueprint.md` contract |
 | [docs/LEARNING_BLUEPRINT.md](./docs/LEARNING_BLUEPRINT.md) | the 11-module spine, bindings, readiness |

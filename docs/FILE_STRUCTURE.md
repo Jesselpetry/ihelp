@@ -3,9 +3,9 @@
 เอกสารนี้อธิบาย **ว่าไฟล์แต่ละอย่างอยู่ที่ไหน ตั้งชื่อยังไง และทำไม** เพื่อให้
 repo ยังเป็นระเบียบเมื่อมีคนเพิ่มวิชาใหม่เข้ามาเรื่อย ๆ
 
-อ่านคู่กับ [CONTRIBUTING.md](./CONTRIBUTING.md) (ขั้นตอนการส่ง PR),
-[README.md](./README.md) (ภาพรวมโปรเจกต์), [AGENTS.md](./AGENTS.md) (จุดเริ่มต้นของ AI agent) และ
-[docs/LEARNING_BLUEPRINT.md](./docs/LEARNING_BLUEPRINT.md) (สัญญาว่า "หนึ่งวิชา" แปลว่าอะไร)
+อ่านคู่กับ [CONTRIBUTING.md](../CONTRIBUTING.md) (ขั้นตอนการส่ง PR),
+[README.md](../README.md) (ภาพรวมโปรเจกต์), [AGENTS.md](../AGENTS.md) (จุดเริ่มต้นของ AI agent) และ
+[LEARNING_BLUEPRINT.md](./LEARNING_BLUEPRINT.md) (สัญญาว่า "หนึ่งวิชา" แปลว่าอะไร)
 
 ---
 

@@ -360,7 +360,7 @@ Endpoint นี้มีตัวกรอง **Zero-Trust Defense in Depth** �
 
 #### Request:
 ```bash
-curl -s "https://ihelp.it.kmitl.ac.th/api/library/catalog?course=ITF&week=13&kind=exercise"
+curl -s "https://ihelp.chatan.in.th/api/library/catalog?course=ITF&week=13&kind=exercise"
 ```
 
 #### Response:
