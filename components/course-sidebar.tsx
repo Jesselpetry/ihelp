@@ -208,7 +208,7 @@ export function CourseSidebar({
     }`;
 
   return (
-    <aside className="flex flex-col gap-3 lg:sticky lg:top-20 lg:self-start lg:gap-3.5">
+    <div className="flex flex-col gap-3 lg:gap-3.5">
       {hasScopes(modules) && (
         <section className={`${SURFACE} order-1 p-3 sm:p-3.5`}>
           <h2 className={HEADING}>{t(L.scope, locale)}</h2>
@@ -331,7 +331,7 @@ export function CourseSidebar({
           </Link>
         </section>
       )}
-    </aside>
+    </div>
   );
 }
 
@@ -351,24 +351,27 @@ function useActiveSection(ids: string[]): string | undefined {
     if (list.length === 0) return;
 
     const update = () => {
-      const line = window.innerHeight * 0.3;
+      const container = document.getElementById("course-stream-container");
+      const cRect = container?.getBoundingClientRect();
+      const line = cRect ? cRect.top + cRect.height * 0.35 : window.innerHeight * 0.3;
       let current: string | undefined;
       for (const id of list) {
         const el = document.getElementById(id);
         if (el && el.getBoundingClientRect().top <= line) current = id;
       }
       // At the very bottom the last section wins even if its heading is low.
-      const atBottom =
-        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+      const atBottom = container
+        ? container.scrollHeight - container.scrollTop - container.clientHeight <= 24
+        : window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
       setSeenId(atBottom ? list[list.length - 1] : (current ?? list[0]));
     };
 
     const frame = requestAnimationFrame(update);
-    window.addEventListener("scroll", update, { passive: true });
+    document.addEventListener("scroll", update, { passive: true, capture: true });
     window.addEventListener("resize", update);
     return () => {
       cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", update);
+      document.removeEventListener("scroll", update, { capture: true });
       window.removeEventListener("resize", update);
     };
   }, [key]);

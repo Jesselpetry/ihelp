@@ -8,6 +8,7 @@ import { CourseBanner } from "@/components/course-banner";
 import { CourseSidebar } from "@/components/course-sidebar";
 import { CourseOverview } from "@/components/course-overview";
 import { CourseWeeklyTimeline } from "@/components/course-weekly-timeline";
+import { CourseContributors } from "@/components/course-contributors";
 import type { OverviewTab } from "@/components/course-hub-shared";
 import type { ScrapedCourseInfo } from "@/lib/courses/course-content";
 import type { CourseTimelineData } from "@/lib/courses/course-timeline-types";
@@ -82,42 +83,53 @@ export function SubjectHub({
     <main
       className={`mx-auto w-full ${
         reading ? "max-w-5xl lg:max-w-6xl" : "max-w-5xl"
-      } space-y-5 px-3 py-5 transition-all duration-300 ease-in-out sm:px-5 sm:py-6`}
+      } px-3 py-3 sm:px-5 sm:py-4 transition-all duration-300 ease-in-out lg:h-[calc(100dvh-4.75rem)] lg:flex lg:flex-col lg:overflow-hidden`}
     >
-      {/* ── 1. Course Banner ── */}
-      <CourseBanner
-        backHref={backHref}
-        backLabel={backLabel}
-        code={code}
-        name={name}
-        meta={meta}
-        tagline={tagline}
-        officialUrl={officialUrl}
-        overviewTabs={overviewTabs}
-        overviewTab={overviewTab}
-        onOverviewTabChange={selectOverviewTab}
-      />
+      {/* ── 1. Top Section: Course Banner (Sticky / Pinned at the top) ── */}
+      <section className="shrink-0 pb-3 sm:pb-4">
+        <CourseBanner
+          backHref={backHref}
+          backLabel={backLabel}
+          code={code}
+          name={name}
+          meta={meta}
+          tagline={tagline}
+          officialUrl={officialUrl}
+          overviewTabs={overviewTabs}
+          overviewTab={overviewTab}
+          onOverviewTabChange={selectOverviewTab}
+        />
+      </section>
 
-      {/* ── 2. Classroom 2-Panel Layout: Panel ซ้าย (Sidebar) + Panel ขวา (Stream) ── */}
-      <div
-        className={`grid gap-5 ${reading ? "" : "lg:grid-cols-[230px_minmax(0,1fr)] lg:gap-6"}`}
+      {/* ── 2. Bottom Section: Classroom 2-Panel Layout ── */}
+      <section
+        className={`grid gap-5 ${
+          reading ? "" : "lg:grid-cols-[230px_minmax(0,1fr)] lg:gap-6"
+        } lg:flex-1 lg:min-h-0 lg:overflow-hidden`}
       >
+        {/* Panel ซ้าย: CourseSidebar (Pinned in place / Stays static) */}
         {!reading && (
-          <CourseSidebar
-            modules={modules}
-            scope={scope}
-            onScopeChange={setScope}
-            hasOverview={overviewTabs.length > 0}
-            weeksCount={timeline.weeks.length}
-            hasMidtermMilestone={Boolean(timeline.midtermMilestone)}
-            hasFinalMilestone={Boolean(timeline.finalMilestone)}
-            hasSecondHalf={timeline.weeks.some(
-              (w) => w.scope === "final" || (w.scope === "all" && w.weekNumber > 7),
-            )}
-          />
+          <aside className="shrink-0 lg:h-full lg:overflow-y-auto lg:[scrollbar-width:none] lg:[&::-webkit-scrollbar]:hidden">
+            <CourseSidebar
+              modules={modules}
+              scope={scope}
+              onScopeChange={setScope}
+              hasOverview={overviewTabs.length > 0}
+              weeksCount={timeline.weeks.length}
+              hasMidtermMilestone={Boolean(timeline.midtermMilestone)}
+              hasFinalMilestone={Boolean(timeline.finalMilestone)}
+              hasSecondHalf={timeline.weeks.some(
+                (w) => w.scope === "final" || (w.scope === "all" && w.weekNumber > 7),
+              )}
+            />
+          </aside>
         )}
 
-        <div className="min-w-0 space-y-6">
+        {/* Panel ขวา: Scrollable Main Stream */}
+        <div
+          id="course-stream-container"
+          className="min-w-0 space-y-6 lg:h-full lg:overflow-y-auto lg:pr-2.5 lg:pb-16 [scrollbar-gutter:stable]"
+        >
           {/* Section 1: ภาพรวมรายวิชา (Clean CourseOverview) */}
           <CourseOverview
             summaryMarkdown={summaryMarkdown}
@@ -167,8 +179,11 @@ export function SubjectHub({
               </div>
             </div>
           )}
+
+          {/* Section 4: ผู้จัดทำและร่วมแบ่งปันเนื้อหา (Course Contributors & Authors) */}
+          <CourseContributors courseCode={code} courseName={name} />
         </div>
-      </div>
+      </section>
     </main>
   );
 }

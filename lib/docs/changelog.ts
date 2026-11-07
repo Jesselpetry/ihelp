@@ -70,6 +70,20 @@ export const CHANGELOG: VersionEntry[] = [
     contributors: [CONTRIBUTORS.chatan],
     changes: [
       {
+        kind: "changed",
+        text: {
+          th: "ปรับโครงสร้างเลย์เอาต์หน้ารายวิชา (/courses/[dir]) เป็นระบบ Dual-Panel ตรึงแบนเนอร์ด้านบนคงที่ และเลื่อนอ่านเฉพาะแผงเนื้อหาฝั่งขวา",
+          en: "Restructured course hub layout to Dual-Panel architecture with pinned top banner and independently scrollable content stream",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "ปรับเปลี่ยนลายน้ำโลโก้บนการ์ดรายวิชา Charm School และ Foundation English เป็นโลโก้ GE สีขาว และวิชา EN-KMITL เป็นตราสัญลักษณ์สถาบัน",
+          en: "Updated course card watermarks for Charm School & Foundation English to white GE logo and EN-KMITL to official KMITL seal",
+        },
+      },
+      {
         kind: "fixed",
         text: {
           th: "แก้ไขลิงก์การ์ดสัปดาห์ที่ 0 (แนะนำรายวิชา) และคลังเอกสารเกิดข้อผิดพลาด 404 ให้เปิดอ่านได้ถูกต้อง พร้อมขยายระยะเว้นวรรคระหว่างตัวคั่นช่วงเนื้อหาและจุดพักสอบ",

@@ -6,6 +6,9 @@ import {
   Sparkles,
   Code2,
   Calendar,
+  BookOpen,
+  GraduationCap,
+  User,
 } from "lucide-react";
 import {
   Dialog,
@@ -14,10 +17,15 @@ import {
 } from "@/components/ui/dialog";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { GithubIcon, InstagramIcon } from "@/components/social-icons";
+import { GithubIcon, InstagramIcon, NotionIcon } from "@/components/social-icons";
 import { CHANGELOG, type Contributor, type VersionEntry } from "@/lib/docs/changelog";
 import { useLocale, t } from "@/lib/i18n";
 import { SITE } from "@/lib/site";
+import {
+  getContributorById,
+  getContributorWithAcademicYear,
+  type ContributorProfile,
+} from "@/lib/contributors";
 
 const L = {
   profileTitle: { th: "ข้อมูลผู้ร่วมพัฒนา", en: "Contributor Profile" },
@@ -93,6 +101,18 @@ export const KNOWN_CONTRIBUTORS: Record<string, ContributorDetail> = {
       en: "PSCP Submission management and Learning Log direct edit workflow",
     },
   },
+  tammadon: {
+    name: "Tammadon Suksa (IT24)",
+    github: "tammadon",
+    role: {
+      th: "ผู้ร่วมแบ่งปันบันทึกสรุป Notion (IT24)",
+      en: "Notion Study Notes Author (Senior IT24)",
+    },
+    bio: {
+      th: "รุ่นพี่ IT24 ผู้จัดทำและแบ่งปันโน้ตสรุปวิชา ITF สัปดาห์ที่ 08–15 บน Notion พร้อม 79 ภาพสไลด์จดคำอธิบายละเอียด",
+      en: "Senior IT24 who authored and shared ITF Notion notes for Weeks 08–15 with 79 annotated slide images",
+    },
+  },
 };
 
 export function getContributorDetail(c: Contributor): ContributorDetail {
@@ -126,36 +146,76 @@ function SectionTitle({
 
 export function ContributorModal({
   contributor,
+  profile: explicitProfile,
   open,
   onOpenChange,
 }: {
   contributor: Contributor | null;
+  profile?: ContributorProfile | null;
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }) {
   const { locale } = useLocale();
 
-  if (!contributor) return null;
-  const detail = getContributorDetail(contributor);
+  if (!contributor && !explicitProfile) return null;
+
+  // Resolve full profile if available
+  const rawProfile =
+    explicitProfile ??
+    (contributor ? getContributorById(contributor.github) : undefined);
+  const profile = rawProfile
+    ? getContributorWithAcademicYear(rawProfile)
+    : undefined;
+
+  const detail = contributor
+    ? getContributorDetail(contributor)
+    : {
+        name: profile?.name ?? "Contributor",
+        github: profile?.socials.github ?? profile?.id ?? "contributor",
+        instagram: profile?.socials.instagram,
+        role: profile?.primaryRole,
+        bio: profile?.bio,
+      };
 
   // Find all versions this contributor participated in
+  const githubHandle = profile?.socials.github ?? detail.github;
   const contributions: VersionEntry[] = CHANGELOG.filter((v) =>
-    v.contributors.some((c) => c.github.toLowerCase() === contributor.github.toLowerCase())
+    v.contributors.some(
+      (c) => c.github.toLowerCase() === githubHandle.toLowerCase(),
+    ),
   );
+
+  const materials = profile?.materials ?? [];
+  const avatarUrl =
+    profile?.avatarUrl ?? `https://github.com/${detail.github}.png`;
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="w-[calc(100%-1.5rem)] sm:w-full sm:max-w-lg p-0 overflow-hidden border shadow-md rounded-2xl max-h-[88dvh] flex flex-col">
         {/* Cover gradient */}
         <div className="relative h-20 sm:h-24 bg-gradient-to-r from-primary/20 via-primary/10 to-muted border-b shrink-0">
-          {/* Badge moved to top-left to avoid colliding with top-right dialog close button */}
-          <div className="absolute top-3 left-4">
-            <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-foreground/90 bg-background/90 backdrop-blur-xs px-2.5 sm:px-3 py-1 rounded-full border shadow-sm">
-              <Code2 className="size-3 text-primary" />
-              <span>
-                {contributions.length} {t(L.versionsCount, locale)}
+          {/* Badges moved to top-left to avoid colliding with top-right dialog close button */}
+          <div className="absolute top-3 left-4 flex flex-wrap items-center gap-1.5">
+            {contributions.length > 0 && (
+              <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-foreground/90 bg-background/90 backdrop-blur-xs px-2.5 sm:px-3 py-1 rounded-full border shadow-sm">
+                <Code2 className="size-3 text-primary" />
+                <span>
+                  {contributions.length} {t(L.versionsCount, locale)}
+                </span>
               </span>
-            </span>
+            )}
+            {materials.length > 0 && (
+              <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-foreground/90 bg-background/90 backdrop-blur-xs px-2.5 sm:px-3 py-1 rounded-full border shadow-sm">
+                <BookOpen className="size-3 text-primary" />
+                <span>
+                  {materials.length}{" "}
+                  {t(
+                    { th: "ผลงานในวิชา", en: "Course works" },
+                    locale,
+                  )}
+                </span>
+              </span>
+            )}
           </div>
         </div>
 
@@ -164,35 +224,43 @@ export function ContributorModal({
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4 -mt-10 sm:-mt-12">
             <div className="flex items-end gap-3 sm:gap-3.5 min-w-0">
               <Avatar className="size-16 sm:size-20 ring-4 ring-background shadow-md shrink-0">
-                <AvatarImage
-                  src={`https://github.com/${detail.github}.png`}
-                  alt={`@${detail.github}`}
-                />
+                <AvatarImage src={avatarUrl} alt={detail.name} />
                 <AvatarFallback className="text-base sm:text-lg font-bold">
-                  {detail.github.slice(0, 2).toUpperCase()}
+                  {profile?.avatarFallback ?? detail.github.slice(0, 2).toUpperCase()}
                 </AvatarFallback>
               </Avatar>
               <div className="space-y-0.5 mb-1 min-w-0">
                 <DialogTitle className="text-lg sm:text-xl font-bold leading-tight text-foreground truncate">
                   {detail.name}
                 </DialogTitle>
-                <p className="text-xs text-muted-foreground font-mono truncate">@{detail.github}</p>
+                <div className="flex flex-wrap items-center gap-1.5">
+                  <p className="text-xs text-muted-foreground font-mono truncate">
+                    @{detail.github}
+                  </p>
+                  {profile?.nickname && (
+                    <span className="text-xs text-muted-foreground">
+                      ({profile.nickname})
+                    </span>
+                  )}
+                </div>
               </div>
             </div>
 
             {/* Social Links — Rounded Full & Wrap nicely */}
             <div className="flex flex-wrap items-center gap-2">
-              <a
-                href={`https://github.com/${detail.github}`}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 text-xs font-medium rounded-full border bg-background hover:bg-muted transition-colors shadow-sm"
-                title={t(L.openGithub, locale)}
-              >
-                <GithubIcon className="size-3.5" />
-                <span>GitHub</span>
-                <ExternalLink className="size-3 text-muted-foreground" />
-              </a>
+              {detail.github && (
+                <a
+                  href={`https://github.com/${detail.github}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 text-xs font-medium rounded-full border bg-background hover:bg-muted transition-colors shadow-sm"
+                  title={t(L.openGithub, locale)}
+                >
+                  <GithubIcon className="size-3.5" />
+                  <span>GitHub</span>
+                  <ExternalLink className="size-3 text-muted-foreground" />
+                </a>
+              )}
 
               {detail.instagram && (
                 <a
@@ -207,8 +275,67 @@ export function ContributorModal({
                   <ExternalLink className="size-3 text-pink-500/70" />
                 </a>
               )}
+
+              {profile?.socials.notion && (
+                <a
+                  href={profile.socials.notion}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 text-xs font-medium rounded-full border bg-background hover:bg-muted transition-colors shadow-sm"
+                >
+                  <NotionIcon className="size-3.5" />
+                  <span>Notion</span>
+                  <ExternalLink className="size-3 text-muted-foreground" />
+                </a>
+              )}
+
+              {profile?.profilePath && (
+                <a
+                  href={profile.profilePath}
+                  className="inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 text-xs font-medium rounded-full border bg-background hover:bg-muted transition-colors shadow-sm"
+                >
+                  <User className="size-3.5" />
+                  <span>Profile</span>
+                </a>
+              )}
             </div>
           </div>
+
+          {/* Academic status metadata pills */}
+          {profile && (
+            <div className="flex flex-wrap items-center gap-1.5 text-xs">
+              {profile.academic && (
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary/10 text-primary font-medium text-[11px]">
+                  <GraduationCap className="size-3" />
+                  <span>{t(profile.academic.yearLabel, locale)}</span>
+                </span>
+              )}
+
+              {profile.cohort && (
+                <span className="px-2 py-0.5 rounded-full bg-muted text-muted-foreground font-mono text-[11px]">
+                  {profile.cohort}
+                </span>
+              )}
+
+              {profile.studentId && (
+                <span className="px-2 py-0.5 rounded-full bg-muted/60 text-muted-foreground font-mono text-[11px]">
+                  {profile.studentId}
+                </span>
+              )}
+
+              {profile.major && (
+                <span className="px-2 py-0.5 rounded-full bg-muted/60 text-muted-foreground text-[11px]">
+                  {t(profile.major, locale)}
+                </span>
+              )}
+
+              {profile.faculty && (
+                <span className="px-2 py-0.5 rounded-full bg-muted/40 text-muted-foreground text-[11px]">
+                  {t(profile.faculty, locale)}
+                </span>
+              )}
+            </div>
+          )}
 
           {/* Role badge & bio */}
           <div className="space-y-2 rounded-xl bg-muted/40 p-3 sm:p-3.5 border shadow-sm">
@@ -227,19 +354,69 @@ export function ContributorModal({
             )}
           </div>
 
-          {/* Contributions List */}
-          <div className="space-y-3">
-            <SectionTitle icon={Code2}>
-              {t(L.contributions, locale)}
-            </SectionTitle>
+          {/* Course Materials section if available */}
+          {materials.length > 0 && (
+            <div className="space-y-2.5">
+              <SectionTitle icon={BookOpen}>
+                {t(
+                  {
+                    th: "ผลงานในรายวิชาที่ร่วมแบ่งปัน",
+                    en: "Course Materials & Resources",
+                  },
+                  locale,
+                )}
+              </SectionTitle>
 
-            <div className="space-y-3 divide-y divide-border/60">
-              {contributions.length === 0 ? (
-                <p className="text-xs text-muted-foreground italic py-2">
-                  {t({ th: "ยังไม่มีประวัติใน changelog", en: "No recorded changelog entries yet" }, locale)}
-                </p>
-              ) : (
-                contributions.map((v) => {
+              <div className="space-y-2">
+                {materials.map((item, idx) => (
+                  <div
+                    key={idx}
+                    className="rounded-lg border bg-card/60 p-2.5 text-xs space-y-1"
+                  >
+                    <div className="flex items-start justify-between gap-2">
+                      <div className="flex items-center gap-1.5">
+                        <Badge
+                          variant="outline"
+                          className="text-[10px] font-mono px-1.5 py-0 shrink-0"
+                        >
+                          {item.courseCode}
+                        </Badge>
+                        <span className="font-semibold text-foreground/90">
+                          {t(item.title, locale)}
+                        </span>
+                      </div>
+                      {item.url && (
+                        <a
+                          href={item.url}
+                          target={item.url.startsWith("http") ? "_blank" : undefined}
+                          rel={item.url.startsWith("http") ? "noreferrer" : undefined}
+                          className="inline-flex items-center gap-0.5 text-[10px] text-primary hover:underline shrink-0 font-medium"
+                        >
+                          <span>{t({ th: "เปิดดู", en: "View" }, locale)}</span>
+                          <ExternalLink className="size-2.5" />
+                        </a>
+                      )}
+                    </div>
+                    {item.description && (
+                      <p className="text-[11px] text-muted-foreground">
+                        {t(item.description, locale)}
+                      </p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Contributions List (Changelog) */}
+          {contributions.length > 0 && (
+            <div className="space-y-3">
+              <SectionTitle icon={Code2}>
+                {t(L.contributions, locale)}
+              </SectionTitle>
+
+              <div className="space-y-3 divide-y divide-border/60">
+                {contributions.map((v) => {
                   const isInDev = !v.date;
                   return (
                     <div key={v.version} className="pt-3 first:pt-0 space-y-2">
@@ -298,10 +475,10 @@ export function ContributorModal({
                       </ul>
                     </div>
                   );
-                })
-              )}
+                })}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </DialogContent>
     </Dialog>
