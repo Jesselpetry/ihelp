@@ -79,15 +79,19 @@ bun run dev                  # เปิดเว็บที่ http://localhos
 
 ---
 
-## เครดิตและทีมผู้พัฒนา
+## 👥 ทีมผู้พัฒนาและผู้มีส่วนร่วม (Core Team & Contributors)
 
-โปรเจกต์นี้เริ่มต้นและดูแลโดย **Chatan Petry** ([@Jesselpetry](https://github.com/Jesselpetry) · Instagram: [@chatann\_](https://instagram.com/chatann_))
+แพลตฟอร์ม iHelp พัฒนาและดูแลโดยนักศึกษาคณะเทคโนโลยีสารสนเทศ สจล. ร่วมกับเพื่อน ๆ และรุ่นพี่ผู้ร่วมแบ่งปันเนื้อหา โดยมีรายละเอียดบทบาทและข้อมูลติดต่อดังนี้:
 
-ขอขอบคุณเพื่อน ๆ และผู้ร่วมพัฒนาทุกท่านที่ร่วมสร้างสรรค์แพลตฟอร์มนี้:
-- **PhuPunnavit** ([@PhuPunnavit](https://github.com/PhuPunnavit) · IG: [@priiu\_i](https://instagram.com/priiu_i)) — ระบบ Help Desk Chat Widget และสรุปสไลด์บรรยาย ITF ฉบับแปลไทย Week 08–15
-- **Akarapach Yootsukprasert** ([@PGTHEGOD](https://github.com/PGTHEGOD) · IG: [@pgthegod\_x](https://instagram.com/pgthegod_x)) — หน้า Landing Page และระบบเชื่อมต่อ PG IJUDGE Extension
-- **Meaookung144** ([@Meaookung144](https://github.com/Meaookung144) · IG: [@meaookung144](https://instagram.com/meaookung144)) — ระบบฟอร์มแก้ไขไฟล์ส่งงาน PSCP และการเชื่อมต่อ GitHub
-- **Tammadon Suksa (IT24)** — บันทึกสรุปการเรียน Notion วิชา ITF สัปดาห์ที่ 08–15
+| โปรไฟล์ | ชื่อ-นามสกุล | รหัสนักศึกษา | อีเมลนักศึกษา (KMITL) | บทบาทและความรับผิดชอบหลัก | ช่องทางติดต่อ |
+|:---:|:---|:---:|:---|:---|:---:|
+| <a href="https://github.com/Jesselpetry"><img src="https://github.com/Jesselpetry.png" width="48" height="48" alt="Chatan Petry" /></a> | **Chatan Petry**<br>`@Jesselpetry` | `69070027` | `69070027@kmitl.ac.th` | **ผู้ก่อตั้งและผู้ดูแลหลัก (Lead Maintainer)**<br>สถาปัตยกรรมหลักของ iHelp, ระบบตัดเกรด, ธีมมืด Figma, คลังเอกสาร และเครื่องมือเตรียมสอบ | [GitHub](https://github.com/Jesselpetry)<br>[IG: @chatann_](https://instagram.com/chatann_) |
+| <a href="https://github.com/PhuPunnavit"><img src="https://github.com/PhuPunnavit.png" width="48" height="48" alt="Punnavit (Phu)" /></a> | **Punnavit (Phu)**<br>`@PhuPunnavit` | `6907xxxx` | `6907xxxx@kmitl.ac.th` | **ผู้ร่วมพัฒนาหลัก (Core Contributor)**<br>ระบบ Help Desk Chat Widget และสรุปสไลด์บรรยาย ITF ฉบับแปลไทย Week 08–15 | [GitHub](https://github.com/PhuPunnavit)<br>[IG: @priiu_i](https://instagram.com/priiu_i) |
+| <a href="https://github.com/PGTHEGOD"><img src="https://github.com/PGTHEGOD.png" width="48" height="48" alt="Akarapach Yootsukprasert" /></a> | **Akarapach Yootsukprasert**<br>`@PGTHEGOD` | `6907xxxx` | `6907xxxx@kmitl.ac.th` | **ผู้ร่วมพัฒนา (Contributor)**<br>หน้า Landing Page และระบบเชื่อมต่อ PG IJUDGE Extension (`/pro`) | [GitHub](https://github.com/PGTHEGOD)<br>[IG: @pgthegod_x](https://instagram.com/pgthegod_x) |
+| <a href="https://github.com/Meaookung144"><img src="https://github.com/Meaookung144.png" width="48" height="48" alt="Kittinan Atthasiri" /></a> | **Kittinan Atthasiri (Meao)**<br>`@Meaookung144` | `6907xxxx` | `6907xxxx@kmitl.ac.th` | **ผู้ร่วมพัฒนา (Contributor)**<br>ระบบฟอร์มแก้ไขไฟล์ส่งงาน PSCP และการเชื่อมต่อ GitHub | [GitHub](https://github.com/Meaookung144)<br>[IG: @meaookung144](https://instagram.com/meaookung144) |
+| <img src="https://github.com/identicons/tammadon.png" width="48" height="48" alt="Tammadon Suksa" /> | **Tammadon Suksa (IT24)** | `6807xxxx` | `6807xxxx@kmitl.ac.th` | **ผู้ร่วมแบ่งปันเนื้อหา (Content Contributor)**<br>บันทึกสรุปการเรียน Notion วิชา ITF สัปดาห์ที่ 08–15 พร้อมภาพประกอบคำอธิบาย | [Notion Notes](https://app.notion.com/p/ITF-407363d85cea806abdc6c9ec2254f668) |
+
+> 💡 **สำหรับผู้ร่วมพัฒนารายใหม่:** สามารถส่ง Pull Request เพื่อเพิ่มหรือปรับปรุงข้อมูลโปรไฟล์ รหัสนักศึกษา และอีเมลสถาบันของตนเองในตารางนี้ได้เมื่อมีส่วนร่วมในโครงการ
 
 ---
 

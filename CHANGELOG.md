@@ -13,6 +13,11 @@
 
 ## [Unreleased]
 
+### ปรับปรุง
+
+- **ปรับปรุงส่วนแสดงเครดิตและทีมผู้พัฒนาใน README.md สู่รูปแบบตารางมาตรฐาน** — ปรับปรุงโครงสร้างหัวข้อเครดิตผู้พัฒนาใน `README.md` และเอกสารคู่มือ ให้แสดงผลในรูปแบบตารางข้อมูล (Structured Table) พร้อมคอลัมน์รูปโปรไฟล์ (ดึงภาพจาก GitHub avatar), ชื่อ-นามสกุล, รหัสนักศึกษา, อีเมลสถาบัน (@kmitl.ac.th), บทบาทความรับผิดชอบ และช่องทางติดต่อ เพื่อความเป็นระเบียบและรองรับการขยายตัวของทีมผู้พัฒนาในอนาคต
+
+## [0.9.0] - 7 พฤศจิกายน 2569
 **ผู้ร่วมพัฒนา:** Chatan Petry ([@Jesselpetry](https://github.com/Jesselpetry), IG: [@chatann_](https://instagram.com/chatann_)), PhuPunnavit ([@PhuPunnavit](https://github.com/PhuPunnavit), IG: [@priiu_i](https://instagram.com/priiu_i)), Akarapach Yootsukprasert ([@PGTHEGOD](https://github.com/PGTHEGOD), IG: [@pgthegod_x](https://instagram.com/pgthegod_x)), Meaookung144 ([@Meaookung144](https://github.com/Meaookung144), IG: [@meaookung144](https://instagram.com/meaookung144))
 
 ### เพิ่ม
