@@ -1,12 +1,17 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, GitCommitHorizontal } from "lucide-react";
+import { ArrowLeft, GitCommitHorizontal, Users } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { Avatar, AvatarBadge, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { CHANGELOG, type ChangeKind, type VersionEntry } from "@/lib/docs/changelog";
+import { CHANGELOG, type ChangeKind, type Contributor, type VersionEntry } from "@/lib/docs/changelog";
 import { useLocale, t } from "@/lib/i18n";
 import { SITE } from "@/lib/site";
+import {
+  ContributorBadge,
+  ContributorModal,
+  KNOWN_CONTRIBUTORS,
+} from "@/components/contributor-modal";
 
 const L = {
   title: { th: "เวอร์ชันและ Changelog", en: "Version & Changelog" },
@@ -16,6 +21,8 @@ const L = {
   },
   backToList: { th: "กลับหน้ารายการโจทย์", en: "Back to problems" },
   contributors: { th: "ผู้ร่วมพัฒนา", en: "Contributors" },
+  coreTeam: { th: "ทีมผู้พัฒนา iHelp", en: "iHelp Team & Contributors" },
+  viewProfileHint: { th: "คลิกเพื่อดูโปรไฟล์ Instagram และประวัติการพัฒนา", en: "Click to view Instagram profile & contributions" },
   fullChangelog: {
     th: "ดูฉบับเต็มบน GitHub",
     en: "View the full changelog on GitHub",
@@ -65,6 +72,11 @@ function githubHref(entry: VersionEntry): string | null {
 
 export function VersionView() {
   const { locale } = useLocale();
+  const [selectedContributor, setSelectedContributor] = useState<Contributor | null>(null);
+
+  // Core team members list for the top showcase
+  const allCoreMembers: Contributor[] = Object.values(KNOWN_CONTRIBUTORS);
+
   return (
     <main className="max-w-3xl mx-auto px-6 py-8 w-full space-y-6">
       <div>
@@ -85,6 +97,30 @@ export function VersionView() {
         >
           {t(L.fullChangelog, locale)}
         </a>
+      </div>
+
+      {/* Core Contributors Card */}
+      <div className="rounded-xl border bg-gradient-to-br from-card via-card to-muted/30 p-4 shadow-2xs space-y-3">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Users className="size-4 text-primary" />
+            <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+              {t(L.coreTeam, locale)}
+            </h2>
+          </div>
+          <span className="text-[11px] text-muted-foreground hidden sm:inline">
+            {t(L.viewProfileHint, locale)}
+          </span>
+        </div>
+        <div className="flex flex-wrap items-center gap-2">
+          {allCoreMembers.map((member) => (
+            <ContributorBadge
+              key={member.github}
+              contributor={member}
+              onClick={() => setSelectedContributor(member)}
+            />
+          ))}
+        </div>
       </div>
 
       <div className="space-y-4">
@@ -125,22 +161,11 @@ export function VersionView() {
                 </span>
                 <div className="flex flex-wrap items-center gap-1.5">
                   {v.contributors.map((c) => (
-                    <a
+                    <ContributorBadge
                       key={c.github}
-                      href={`https://github.com/${c.github}`}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center gap-1.5 rounded-full border bg-card px-2 py-0.5 text-xs font-medium hover:bg-muted hover:border-primary/30 transition-all shadow-2xs"
-                    >
-                      <Avatar size="sm" className="size-5">
-                        <AvatarImage src={`https://github.com/${c.github}.png`} alt={`@${c.github}`} />
-                        <AvatarFallback className="text-[9px]">
-                          {c.github.slice(0, 2).toUpperCase()}
-                        </AvatarFallback>
-                        <AvatarBadge className="size-1.5 bg-emerald-500 ring-1 ring-background" />
-                      </Avatar>
-                      <span className="text-foreground font-mono text-[11px]">@{c.github}</span>
-                    </a>
+                      contributor={c}
+                      onClick={() => setSelectedContributor(c)}
+                    />
                   ))}
                 </div>
               </div>
@@ -160,6 +185,15 @@ export function VersionView() {
           );
         })}
       </div>
+
+      {/* Contributor Profile Modal */}
+      <ContributorModal
+        contributor={selectedContributor}
+        open={Boolean(selectedContributor)}
+        onOpenChange={(open) => {
+          if (!open) setSelectedContributor(null);
+        }}
+      />
     </main>
   );
 }
