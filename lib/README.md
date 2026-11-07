@@ -4,7 +4,7 @@
 ตอนนี้แบ่งตาม **โดเมน** คือแบ่งตามสิ่งที่ไฟล์นั้นพูดถึง ไม่ใช่แบ่งตามชนิดของโค้ด
 (ไม่มีโฟลเดอร์ชื่อ `types/` `utils/` `constants/` เพราะแบ่งแบบนั้นแล้วหาไฟล์ไม่เจออยู่ดี)
 
-ตรวจล่าสุด 15 ต.ค. 2569 — ตรงกับ `ls lib lib/*` ณ วันนั้น
+ตรวจล่าสุด พ.ย. 2569 — ตรงกับ `ls lib lib/*` ณ วันนั้น
 
 ```
 lib/
@@ -12,14 +12,19 @@ lib/
 ├── library/      คลังสื่อการเรียน: metadata, manifest, index, storage, ข้อสอบเก่า, ตารางสัปดาห์
 ├── quiz/         คลังข้อสอบ/แบบทดสอบรายวิชา (ไฟล์ข้อมูลล้วน ขนาดใหญ่)
 ├── pscp/         PSCP · iJudge · ComPro — โจทย์ เทสเคส ตัวรัน Python
+├── chat/         ระบบแชทผู้ช่วยตอบคำถาม: faq, ค้นหาสื่อการเรียน, guard ตรวจจับความปลอดภัย, protocol
+├── exams/        ระบบสอบและคำนวณคะแนน: grade-calculator, schedule, types, resign-sound
+├── study-space/  พื้นที่อ่านหนังสือสอบปลายภาค: plans รายบุคคล, โควตาเวลา, ลิงก์อ่าน
 ├── submission/   ตัวช่วยสร้างไฟล์ส่งงาน (wizard, markdown, draft)
 ├── docs/         เอกสารในเว็บ: สารบัญ ความคืบหน้าการอ่าน changelog ปลั๊กอิน remark
 ├── github/       การเชื่อมต่อ GitHub (หน้า /repo และการส่ง PR)
 ├── profile/      โปรไฟล์ผู้ใช้: รูป การครอป ฟอร์ม
 ├── actions/      Server Actions ("use server")
 ├── auth/         การยืนยันตัวตนและสิทธิ์
+├── storage/      จัดการ Signed URL และ Storage bucket ของ Supabase
 ├── supabase/     ตัวเชื่อม Supabase แยกตามฝั่ง (client / server / admin)
 ├── schemas/      สัญญาของเนื้อหา ใช้โดย `bun run content:check`
+├── site.ts       ศูนย์กลางข้อมูลตัวตน อัตลักษณ์ ลิงก์ และ metadata ของเว็บ
 └── *.ts          ของกลางที่ทุกโดเมนใช้ (i18n, theme, paths, flags, utils)
 ```
 
@@ -145,6 +150,10 @@ render เอกสาร (เช่นหน้ารายสัปดาห�
 
 | โฟลเดอร์ | ไฟล์ |
 |---|---|
+| `chat/` | `faq.ts` (คลัง ~75 คำตอบด่วน) · `file-search.ts` (ค้นหาสื่อจาก catalog โดยไม่พึ่ง LLM) · `guard.ts` (ป้องกัน prompt injection และ rate limiting) · `protocol.ts` · `system-prompt.ts` |
+| `exams/` | `grade-calculator.ts` (เอนจินคำนวณคะแนน, แม่แบบ 7 วิชา Y1-S1, ตัดเกรด A–F & S/U, เป้าหมาย Final, math parser) · `schedule.ts` (ตารางสอบและผังที่นั่งรายบุคคล) · `types.ts` · `resign-sound.ts` |
+| `study-space/` | `plans/` (แผนอ่านหนังสือสอบปลายภาครายบุคคล · server-only) · `units.ts` · `links.ts` · `subjects.ts` ([docs/STUDY_SPACE.md](../docs/STUDY_SPACE.md)) |
+| `storage/` | `signed-url.ts` (ออก signed URL อายุสั้นสำหรับข้อสอบเก่าและคลังปิดผ่าน service role) |
 | `docs/` | `doc-index.ts` (สิ่งที่เอกสารบอกเกี่ยวกับตัวเองก่อนเปิด) · `toc.ts` · `reading-progress.ts` · `changelog.ts` (ข้อมูลของหน้า `/version`) · `remark-notebook.ts` (ไวยากรณ์ `{==…==}` `{++…++}` และ `<sub>`/`<sup>` ของ MdView — ดู [docs/FONTS.md](../docs/FONTS.md) §8) |
 | `github/` | `github.ts` (ฝั่ง client) · `github-server.ts` (ถือ OAuth token) · `repo-tree.ts` |
 | `profile/` | `avatar.ts` · `image-crop.ts` · `profile-form.ts` |
@@ -157,6 +166,7 @@ render เอกสาร (เช่นหน้ารายสัปดาห�
 
 | ไฟล์ | หน้าที่ |
 |---|---|
+| `site.ts` | ข้อมูลตัวตนหลักของเว็บไซต์ (ชื่อ, domain, URLs, SEO metadata, branding) รวมศูนย์ในไฟล์เดียว |
 | `ltext.ts` | ข้อความสองภาษา และฟังก์ชันเดียวที่อ่านมัน — ฝั่ง server ใช้ได้ |
 | `i18n.tsx` | React context ของภาษา (ฝั่ง client) |
 | `theme.tsx` | ธีม inline ใน `<head>` ก่อน paint แรก |

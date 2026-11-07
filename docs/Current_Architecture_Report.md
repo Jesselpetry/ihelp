@@ -6,16 +6,16 @@
 |---|---|
 | Repository | `ihelp` (open source, MIT; Next.js 16.2.10 / React 19.2.4, App Router) |
 | Version | `0.6.0` at the scan · `0.8.0` today (`package.json`) |
-| Branch scanned | `main` @ `137d3b7` |
+| Branch scanned | `main` @ `137d3b7` · re-verified on `staging` @ `3d1d85f` |
 | Date of scan | 2026-08-26, media/storage sections revised 2026-08-31; file paths refreshed 2026-09-22 (`lib/` regroup, `366a9e7`) |
-| Last verified | **15 Oct 2026** against `main` @ `3ab42d3` plus the uncommitted working tree — see §0 |
+| Last verified | **7 Nov 2026** against `staging` @ `3d1d85f` (was 15 Oct 2026 @ `3ab42d3`) — see §0 |
 | Audience | Redesign of the instructional architecture — taxonomy, content schemas, learning modality coverage |
 | Scope of this document | Descriptive only. No source files were modified during the scan or the re-verification. |
 
 > **Reading note.** This is an audit of *what exists*, not a proposal. Section 5 flags structural
 > problems for the incoming expert; it does not prescribe fixes. Counts in §1–§4 were measured from the
 > tree at the commit above, not quoted from existing docs; where the system has since changed, the
-> original text is kept as history and a **Status 15 Oct 2026** line says what is true now. **§0
+> original text is kept as history and a **Status 15 Oct 2026** or **Status 7 Nov 2026** line says what is true now. **§0
 > lists what changed.** Volatile numbers carry the command that re-measures them (most come from
 > `jq .totals lib/library/resource-index.json` after `bun run library:index`).
 
@@ -23,16 +23,23 @@
 
 ## 0. What changed since the scan
 
-*Added 15 Oct 2026 (verified against `main` @ `3ab42d3` plus the uncommitted working tree).
+*Updated 7 Nov 2026 (verified against branch `staging` @ `3d1d85f`).
 Sections 1–5 keep their original text as history; wherever reality moved they carry a
-**Status 15 Oct 2026** line.*
+**Status 15 Oct 2026** or **Status 7 Nov 2026** line.*
 
 ### 0.1 Architecture
 
-| Area | At the scan | Now | Where to look |
+| Area | At the scan | Now (Nov 2026) | Where to look |
 |---|---|---|---|
 | Course page model | `TrackKind` (6) + `lib/course-tracks.ts` roadmap + a `switch` on course code in every route (§2.3, §4.2, §5.1, §5.2) | 11-module `STANDARD_SPINE`, one binding record per course, **one route for every module**. `lib/course-tracks.ts` no longer exists; `catalog.ts` is identity-only (no `tracks`) | `lib/courses/spine.ts` · `course-bindings.ts` · `course-spine.ts` · `app/courses/[dir]/[module]/page.tsx` · `docs/LEARNING_BLUEPRINT.md` |
 | Accounts and database | "no user account … and no database" (§1) | Google sign-in limited to KMITL IT student ids (`@kmitl.ac.th`, faculty code 07); roles `student` / `insider` / `admin`; Postgres schema `ihelp` (`users`, `resources`, `exams`, `site_visits`) through Drizzle, in a database shared with the itgg-2026 app; `proxy.ts` refreshes the Supabase session on every request. Quiz and lab **progress is still `localStorage` only** | `lib/auth/verify.ts` · `lib/auth/guards.ts` · `db/schema.ts` · `proxy.ts` |
+| Grade & Score Calculator | not covered | 3-panel architecture at `/grade-calculator` (redirect from `/calculator`); official syllabus presets for all 7 Y1-S1 subjects (ITF, ICS, MFIT, PSCP, FE, CHARM, SPORT); safe math expression evaluation without `eval` (e.g. `10+5+8.5`); Letter (A–F) and S/U grading; Target Final Exam score roadmaps; subscore drawers; TSV/Excel paste import; localStorage-backed | `lib/exams/grade-calculator.ts` · `components/exams/calculator/` · `components/exams/grade-calculator.tsx` · `app/grade-calculator/page.tsx` |
+| Help Desk Chat Assistant | not covered | Floating assistant widget on all pages (`components/chat-widget.tsx`); backend `app/api/chat/route.ts`; catalog-backed instant file finder (`lib/chat/file-search.ts`, ~40ms); ~75 curated FAQ answers (`lib/chat/faq.ts`); input normalization and prompt injection guard (`lib/chat/guard.ts`); optional streaming LLM (`AI_BASE_URL` / `AI_MODEL` / `AI_API_KEY`). Past exams are strictly excluded from search | `components/chat-widget.tsx` · `app/api/chat/route.ts` · `lib/chat/` |
+| Exam Schedule & Seating | not covered | Personal exam schedule and seating locator at `/exam-schedule` by 8-digit student ID; interactive room seating chart (`room-seating-chart.tsx`); .ics calendar export; countdown sound effect | `app/exam-schedule/page.tsx` · `lib/exams/schedule.ts` · `components/exams/` |
+| Personal Study Space | not covered | Personal 22-day exam preparation hub at `/profile/[student_id]/study` (server-gated); focus/break timer with fullscreen mode, standby display, and 112h quota tracker | `lib/study-space/` · `app/profile/[student_id]/study/page.tsx` · `docs/STUDY_SPACE.md` |
+| Landing Page /pro | not covered | Bilingual product showcase page for PG IJUDGE (VS Code extension by Akarapach Yootsukprasert) at `/pro` with SEO metadata and demo visuals | `app/pro/page.tsx` · `app/pro/layout.tsx` |
+| Dark theme styling | generic dark mode | Figma-inspired professional neutral charcoal palette (`#141416` canvas, `#1c1c1f` cards, `#222226` popovers) layered with subtle white opacity hairline borders (`oklch(1 0 0 / 8.5%)`) for crisp contrast | `app/globals.css` · `docs/FONTS.md` |
+| Git Workflow & Contributors | single-branch `main` | `staging` branch is the primary integration branch for all features and PRs prior to `main`; community contributions from PhuPunnavit, Meaookung144, Akarapach Yootsukprasert, and Tammadon Suksa | `CONTRIBUTING.md` · `README.md` · `AGENTS.md` |
 | Library access | files public; past papers insider-only (§3.1) | The library page is static and carries no card data; its list comes from `GET /api/library/assets`, which needs an IT KMITL sign-in. Files other than past papers still sit in the **public** bucket `ihelp-library` and their paths are in this public repo, so *behind login* is not *private* — and the module pages that render documents (e.g. the ITF/ICS weekly pages) are open and receive the course's non-exam cards as props to match their file tables (`proxy.ts` guards only `/onboarding`, `/upload`, `/exams`). Past papers: private bucket `ihelp-library-exams`, 10-minute signed URLs, insider/admin only | `app/api/library/assets/route.ts` · `lib/library/library-exams.ts` · `lib/library/asset-url.ts` |
 | Library data model | `SubjectAsset`: `scope`, `chapter`, `groupId`, `pages`, `sizeBytes` | + `week`, `edition`, `status`, `isCurrentYear`, `isDuplicate` / `duplicateOf`, `sourceUrl`; ITF and ICS open on a week-by-week view driven by `COURSE_SCHEDULES` | `lib/library/subject-library-ui.ts` · `lib/library/course-weeks.ts` |
 | Library tooling | `library:manifest`, `library:stats`, `assets:sync` | + `library:index` (one generated JSON joining courses, docs and cards), `library:audit` (consistency report; `--remote` compares with the buckets, read-only), `library:find` (search the index). `library:build` = manifest + stats + index | `package.json` · `scripts/library-*.ts` |
@@ -40,7 +47,7 @@ Sections 1–5 keep their original text as history; wherever reality moved they 
 | Course overviews | loose "five-part" convention (§4.6) | six fixed sections + 14-key frontmatter, machine-checked (`overview-*`); authoring notes moved to a non-rendered `blueprint.md` | `docs/COURSE_OVERVIEW_STANDARD.md` · `docs/templates/` |
 | Reader typography | not covered | every Markdown body renders in THSarabunNew via `MdView`; a "notebook" variant for the `overview` and `summary` modules; `{==…==}` / `{++…++}` marks | `docs/FONTS.md` · `components/md-view.tsx` · `lib/docs/remark-notebook.ts` |
 | PSCP data | 64 iJudge problems, 10 recommended | 222 in `data/oj_problems.json`, 235 in the registry `data/pscp/problems.json` (built from the archive repo's `OP` branch), 14 recommended; `/pscp/[slug]` is an in-browser workspace | `scripts/build_pscp_registry.py` · `lib/pscp/pscp.ts` |
-| Code layout | flat `lib/*.ts` (paths in §2–§4 as scanned) | grouped by domain: `lib/courses` · `library` · `quiz` · `pscp` · `submission` · `docs` · `github` · `profile` · `actions` · `auth` · `supabase` · `schemas` | `lib/README.md` |
+| Code layout | flat `lib/*.ts` (paths in §2–§4 as scanned) | grouped by domain: `lib/courses` · `library` · `quiz` · `pscp` · `chat` · `exams` · `study-space` · `submission` · `docs` · `github` · `profile` · `actions` · `auth` · `storage` · `supabase` · `schemas` · `site.ts` | `lib/README.md` |
 | Releases | 0.6.0 | 0.7.0 and 0.8.0 (both 22 Sep); the site moved to `ihelp.chatan.in.th` on 15 Sep | `CHANGELOG.md` |
 
 ### 0.2 Status of the §5 inconsistencies
@@ -88,15 +95,15 @@ their own command.
 | Course overview documents | 13 | **15** (+15 `blueprint.md`, not rendered) | `content/courses/<dir>/summary.md`, 278 KB total · `bun run library:find -- --docs` |
 | Long-form study documents | 12 | **12** | `data/it-kmitl/`, `data/en-kmitl/` — 725 KB of Markdown |
 | Content files read by no module | 28 | **11** (+15 `blueprint.md`, unrendered by design) | §5.4 — 8 `archive/links.md`, MFIT `study-guide-curriculum.json`, PSCP `archive/readme.md`, ICS `RESOURCES_MANIFEST.md` · `bun run library:audit` flags 9 of them as `orphan-doc` (not the JSON, not the PSCP readme) |
-| Media assets | 670 files / 908 MB | **705 files / 949 MiB** | Supabase Storage, **not** the repo — 653 PDFs (**13,173 pages**), 27 webp, 10 jpg, 6 `.circ`, 5 xlsx, 1 each of docx, txt, zip, accdb. Split across `ihelp-library` (537 public, 613 MiB) and `ihelp-library-exams` (168 insider-only, 335 MiB) · `.totals.files` / `.sizeBytes` / `.pages` |
-| Library cards (merged) | — | **722** | 314 curated + 408 generated-only (a curated card hides the generated one for the same URL) · `.totals.assets` / `.curated` / `.generated` · `.insider` = 171 cards flagged as past papers |
-| Curated asset records | 172 | **314** | Hand-written entries in `lib/library/subject-library.ts` (5,227 lines / 276 KB; was 137 KB) |
+| Media assets | 670 files / 908 MB | **724 files / 1,120 MiB** (was 705 files / 949 MiB) | Supabase Storage, **not** the repo — 672 PDFs (**13,593 pages**), 27 webp, 10 jpg, 6 `.circ`, 5 xlsx, 1 each of docx, txt, zip, accdb. Split across `ihelp-library` (public) and `ihelp-library-exams` (insider-only) · `.totals.files` / `.sizeBytes` / `.pages` |
+| Library cards (merged) | — | **741** (was 722) | 333 curated + 408 generated-only (a curated card hides the generated one for the same URL) · `.totals.assets` / `.curated` / `.generated` · `.insider` = 171 cards flagged as past papers |
+| Curated asset records | 172 | **333** (was 314) | Hand-written entries in `lib/library/subject-library.ts` |
 | Generated asset records | 670 | **705** | `lib/library/library-manifest.json` (353 KB), built from the file tree |
 | Quiz / exam questions | 368 | **390** | 308 in the six banks bound to courses (ITF 63, ICS 50, MFIT 65, COMPRO 10 + 60, CHEM 60) + 82 per-problem for 14 recommended problems; all typed `QuizQuestion` |
 | Executable coding problems | 35 | **39** | 14 OJ "recommended" problems (86 cases, 30 of them official) + 25 ComPro labs (123 cases) |
 | Problem-set index | 64 | **222** | `data/oj_problems.json` — weeks 1–14, 36 learning logs; the registry `data/pscp/problems.json` holds 235 |
 | Policy / how-to documents | 12 | **13** | `data/ai-guidelines/` (23 files, th/en pairs), rendered as a paginated "book" at `/library` |
-| App routes | 25 pages / 13 API routes | **24 pages / 17 route handlers** | `find app -name page.tsx`, `find app -name route.ts` — 16 handlers under `app/api/` (11 GitHub OAuth, 2 document generators, `library/assets`, `me`, `views`) + `auth/callback` |
+| App routes | 25 pages / 13 API routes | **26 pages / 17 route handlers** | `find app -name page.tsx`, `find app -name route.ts` — including `/grade-calculator`, `/calculator`, `/exam-schedule`, `/pro`, `/profile/[student_id]/study` and `app/api/chat` |
 
 ### Question bank composition
 
@@ -1120,7 +1127,7 @@ documents below the drill, not as a question bank.*
 
 ## Appendix A — Route map
 
-*Updated 15 Oct 2026 (the scan's version is in git at `137d3b7`). "Declared" is what the route file
+*Updated 7 Nov 2026 (verified against branch `staging` @ `3d1d85f`). "Declared" is what the route file
 exports — `force-static`, `force-dynamic`, `generateStaticParams()` — read from the code; no build was
 run, so the effective rendering mode is not claimed.*
 
@@ -1130,6 +1137,10 @@ run, so the effective rendering mode is not claimed.*
 | `/courses/[dir]` | `generateStaticParams()` (dir, code and slug forms) | `subject-hub.tsx` + `subject-track-grid.tsx` + `course-overview.tsx` — the 11-module grid |
 | `/courses/[dir]/[module]` — `overview` · `map` · `summary` · `cram` · `cards` · `quiz` · `speed` · `labs` · `mock` · `weak-spots` · `library` | `generateStaticParams()` (every bound module without its own `href`) | **one route for all modules:** `module-reader.tsx` (docs; `MdView` notebook variant for `overview` and `summary`), `subject-quiz-gate.tsx` → `technique-quiz.tsx` (banks), `subject-library-gate.tsx` → `GET /api/library/assets` (`library`), `compro-lab-hub.tsx` (`labs`, COMPRO only; 404 for everything else) |
 | `/courses/[dir]/exam` · `/plan` · `/analysis` | redirects in `next.config.ts` | → `/mock` · `/cram` · `/overview` |
+| `/grade-calculator` | — | `grade-calculator.tsx` (3-panel score & grade calculator with Y1-S1 presets, safe arithmetic parser, and target final score roadmaps) |
+| `/calculator` | redirect | → `/grade-calculator` |
+| `/exam-schedule` | — | `exam-schedule-view.tsx` + `room-seating-chart.tsx` (personal exam schedule, seating index, and interactive room map) |
+| `/profile/[student_id]/study` | server-gated | `study-space/` (personal 22-day focus study space with fullscreen timer) |
 | `/pscp` · `/pscp/[slug]` | `force-static` | `problems-view.tsx` (registry list) · `pscp-workspace.tsx` (statement + in-browser grader) |
 | `/recommended` | `force-dynamic` | `recommended-hub.tsx` |
 | `/recommended/[slug]` · `/quiz` · `/grade` | `generateStaticParams()` | `recommended-reader.tsx` · `technique-quiz.tsx` · `code-grader.tsx` |
@@ -1141,14 +1152,14 @@ run, so the effective rendering mode is not claimed.*
 | `/upload` | — | community uploads; 404 unless `NEXT_PUBLIC_UPLOADS_ENABLED=1` |
 | `/onboarding` · `/profile/[student_id]` (+ `/edit`) · `/auth/callback` · `/auth/unauthorized` | — | accounts |
 | `/[slug]` | `generateStaticParams()` | Redirect resolver: OJ id / `oj####` / problem slug / library slug |
-| `/pro` · `/robots.txt` · `/sitemap.xml` | — | marketing, SEO (the sitemap is generated from the spine) |
+| `/pro` · `/robots.txt` · `/sitemap.xml` | — | PG IJUDGE product landing page, SEO (the sitemap is generated from the spine) |
+| `/api/chat` | route handler | Help desk chat: catalog file search + ~75 FAQs + security guard + optional streaming LLM |
 | `/api/github/*` (11) · `/api/generate/{submission,reflection}` | route handlers | OAuth + Markdown generation |
 | `/api/library/assets` · `/api/me` · `/api/views` | `force-dynamic` | the gated library list (+ week schedule) · session probe · visitor counter |
 
 ## Appendix B — Where each concern is implemented
 
-*Updated 15 Oct 2026 — paths follow the `lib/` regroup (`lib/README.md`); the scan listed
-`lib/course-tracks.ts` and flat `lib/*.ts` banks.*
+*Updated 7 Nov 2026 — paths follow the `lib/` regroup (`lib/README.md`) and subsequent domain expansions.*
 
 | Concern | File |
 |---|---|
@@ -1158,6 +1169,13 @@ run, so the effective rendering mode is not claimed.*
 | Chapter/week lists (+ summary.md fallback parser) | `lib/courses/course-chapters.ts` |
 | Course document loaders | `lib/courses/course-content.ts` (`loadCourseOverview` / `loadCourseDoc` / `loadCourseJson`), `lib/courses/it-kmitl.ts`, `lib/courses/en-kmitl.ts`, `lib/courses/curriculum.ts` (no caller) |
 | Content contract (schemas, error/warn rules) | `lib/schemas/content.ts`, `scripts/validate-content.ts` (`bun run content:check`) |
+| Grade & score calculator engine | `lib/exams/grade-calculator.ts`, `components/exams/calculator/` |
+| Exam schedule & room seating map | `lib/exams/schedule.ts`, `components/exams/room-seating-chart.tsx` |
+| Help desk chat assistant | `lib/chat/faq.ts`, `lib/chat/file-search.ts`, `lib/chat/guard.ts`, `app/api/chat/route.ts`, `components/chat-widget.tsx` |
+| Personal study space & countdown timer | `lib/study-space/plans/`, `lib/study-space/units.ts`, `docs/STUDY_SPACE.md` |
+| Site identity, metadata & branding | `lib/site.ts` |
+| Dark theme neutral charcoal tokens | `app/globals.css`, `docs/FONTS.md` |
+| Landing page PG IJUDGE (`/pro`) | `app/pro/page.tsx`, `app/pro/layout.tsx` |
 | Question schema, grading, progress | `lib/quiz/quiz.ts` |
 | Question banks | `lib/quiz/{quiz-content,itf-quiz,ics-quiz,mfit-quiz,chem-quiz,en-kmitl-quiz,en-kmitl-mock-exam}.ts` |
 | Asset registry (curated) | `lib/library/subject-library.ts` (data) · `lib/library/subject-library-ui.ts` (types, client-safe) |
@@ -1165,7 +1183,7 @@ run, so the effective rendering mode is not claimed.*
 | Asset file stats | `lib/library/library-stats.json` ← `scripts/build-library-stats.mjs` |
 | Resource index, audit, search | `lib/library/resource-index.json` (+ `.schema.json`) ← `scripts/library-index.ts`; `scripts/library-audit.ts`; `scripts/library-find.ts`; shared code `scripts/library-shared.ts` |
 | Week-by-week schedules (ITF, ICS) | `lib/library/course-weeks.ts` |
-| Storage URLs, keys, upload, exam signing | `lib/library/asset-url.ts`, `lib/library/storage-key.ts`, `scripts/sync-library-assets.ts`, `lib/library/library-exams.ts` |
+| Storage URLs, keys, upload, exam signing | `lib/library/asset-url.ts`, `lib/library/storage-key.ts`, `scripts/sync-library-assets.ts`, `lib/library/library-exams.ts`, `lib/storage/signed-url.ts` |
 | The gated library list | `app/api/library/assets/route.ts`, `components/subject-library-gate.tsx` |
 | Sign-in, roles, database | `lib/auth/verify.ts`, `lib/auth/guards.ts`, `lib/supabase/*`, `proxy.ts`, `db/schema.ts` |
 | Python execution | `lib/pscp/pyodide-client.ts`, `public/workers/python-runner.worker.js` |

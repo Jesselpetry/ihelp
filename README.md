@@ -6,11 +6,12 @@
 แบบฝึกหัด และเครื่องมือสร้าง Learning Log ของวิชา PSCP รวมอยู่ในเว็บเดียว
 ดีไซน์ตามสไตล์ [iJudge](https://ijudge.it.kmitl.ac.th) · เว็บจริง: <https://ihelp.chatan.in.th>
 
-**15 รายวิชา (14 วิชามีคลังสื่อ) · 722 การ์ดสื่อการเรียน · 705 ไฟล์** — ณ 15 ต.ค. 2569
+**15 รายวิชา (14 วิชามีคลังสื่อ) · 741 การ์ดสื่อการเรียน · 724 ไฟล์** — อัปเดตล่าสุด พ.ย. 2569
 (ค่าปัจจุบัน: `jq .totals lib/library/resource-index.json`)
 
 <p>
   <img src="https://img.shields.io/badge/version-0.8.0-db2777?style=flat-square" alt="Version" />
+  <img src="https://img.shields.io/badge/branch-staging-blue?style=flat-square" alt="Staging Branch" />
   <img src="https://img.shields.io/badge/Next.js-16-000000?style=flat-square&logo=nextdotjs&logoColor=white" alt="Next.js 16" />
   <img src="https://img.shields.io/badge/React-19.2-61DAFB?style=flat-square&logo=react&logoColor=000000" alt="React 19" />
   <img src="https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript 5" />
@@ -25,6 +26,8 @@
 > แล้วจัดลง template ทางการของรายวิชา ไม่มีการส่งอะไรไปที่ OJ
 
 > **AI agent:** เริ่มที่ [AGENTS.md](./AGENTS.md) — กฎที่พลาดง่าย ตาราง "แก้ที่ไหน" และวิธีค้นหาในคลัง
+>
+> **Branching & Staging:** การพัฒนาและรวมงานหลักจะทำบนกิ่ง `staging` ก่อนทดสอบและผสานเข้าสู่ `main`
 
 ## วิธีรัน
 
@@ -32,6 +35,7 @@
 
 ```bash
 cd ihelp
+git checkout staging         # กิ่งหลักในการพัฒนา
 bun install                  # ครั้งแรกครั้งเดียว
 cp .env.example .env.local   # แล้วกรอกค่า — ดูตารางด้านล่าง
 bun run dev                  # http://localhost:3000
@@ -41,12 +45,13 @@ bun run dev                  # http://localhost:3000
 
 | ตัวแปรใน `.env.local` | ใช้กับ | ถ้าไม่ตั้ง |
 | --- | --- | --- |
-| `NEXT_PUBLIC_SUPABASE_URL` · `NEXT_PUBLIC_SUPABASE_ANON_KEY` | login, session (`proxy.ts` รันแทบทุก request), URL ของไฟล์ใน bucket | `proxy.ts` สร้าง Supabase client ไม่ได้ — แทบทุกหน้า error |
+| `NEXT_PUBLIC_SUPABASE_URL` · `NEXT_PUBLIC_SUPABASE_ANON_KEY` | login, session (`proxy.ts` รันแทบทุก request), URL ของไฟล์ใน bucket | ตอน dev ระบบ degrade ให้รันต่อได้โดยไม่ต้องมี credentials · ใน production `proxy.ts` สร้าง client ไม่ได้จะ error |
 | `DATABASE_URL` | Drizzle (`db/index.ts`) — โปรไฟล์ บทบาท insider ข้อสอบ ไฟล์ที่แชร์ | `@/db` throw ตอน import — route ที่ใช้ DB error |
 | `SUPABASE_SERVICE_ROLE_KEY` | signed URL ข้อสอบเก่า · `assets:sync` | ข้อสอบเก่าและการอัปโหลดใช้ไม่ได้ |
 | `ANALYTICS_SALT` | ตัวนับผู้เข้าชมที่ footer (`/api/views`) | `lib/analytics.ts` throw |
 | `GITHUB_OAUTH_CLIENT_ID` · `GITHUB_OAUTH_CLIENT_SECRET` · `NEXT_PUBLIC_APP_URL` | Push ขึ้น GitHub (ดูหัวข้อด้านล่าง) | ฟีเจอร์ GitHub ใช้ไม่ได้ |
 | `NEXT_PUBLIC_UPLOADS_ENABLED` | เปิดการแชร์ไฟล์ (`/upload`) | ค่าเริ่มต้นคือปิด (`0`) |
+| `AI_BASE_URL` · `AI_MODEL` · `AI_API_KEY` | แชทผู้ช่วยตอบคำถาม (`/api/chat` · LLM ทางเลือก) | ไม่บังคับ — แชทยังคงค้นหาไฟล์ในคลังและตอบ FAQ (~75 ข้อ) ได้ตามปกติ แต่ไม่ยิงหาโมเดลภายนอก |
 
 ตัวแปร `*_PATH` ที่ override ที่เก็บข้อมูล (`OJ_PROBLEMS_PATH`, `PSCP_REGISTRY_PATH`,
 `AI_GUIDELINES_PATH` ฯลฯ) ใช้ได้เฉพาะตอน dev — production ไม่อ่านค่าพวกนี้
@@ -179,6 +184,50 @@ Supabase Storage และเว็บเสิร์ฟจากที่นั
 > scope ที่ขอคือ `public_repo` (เขียน public repo ได้) หากต้องการ push เข้า
 > private repo เปลี่ยนเป็น `repo` ที่ `OAUTH_SCOPE` ใน `lib/github/github-server.ts`
 
+## ระบบคำนวณคะแนนและตัดเกรด (`/grade-calculator`)
+
+เครื่องมือวางแผนการเรียนและประเมินผลสอบสำหรับนักศึกษา IT KMITL (เข้าถึงได้ที่ `/grade-calculator` หรือ redirect จาก `/calculator`):
+
+- **แม่แบบสัดส่วนคะแนน 7 รายวิชา ปี 1 เทอม 1** — ITF, ICS, MFIT, PSCP, FE, CHARM, SPORT อ้างอิงตามประมวลการสอน 1/2569
+- **สถาปัตยกรรม 3 แผง (Top / Left / Right)** — สรุปคะแนนรวม & เกรดคาดการณ์ด้านบน, รายชื่อวิชาด้านซ้าย, และฟอร์มกรอกคะแนนละเอียดด้านขวา
+- **เครื่องคิดเลขคณิตศาสตร์ปลอดภัยในช่องกรอก** — รองรับนิพจน์เลขเช่น `10 + 5.5 + 8` หรือ `15 * 0.8` โดยไม่ใช้ `eval`
+- **แผนที่เป้าหมายคะแนนสอบปลายภาค (Target Final Score)** — คำนวณให้อัตโนมัติว่าต้องทำข้อสอบ Final อีกกี่คะแนนจึงจะได้เกรด A, B+, B, C+, C, D+ หรือ S
+- **ตัดเกรดแม่นยำตามระบบมหาวิทยาลัย** — แยกโหมดเกรดแบบตัวอักษร (A–F) และแบบผ่าน/ไม่ผ่าน (S/U สำหรับ CHARM และ SPORT) พร้อมจำลอง GPA
+- **ลิ้นชักคะแนนย่อย (Subscores Drawer)** — ซอยข้อย่อยสำหรับงานแล็บ การบ้าน และ Quiz หลายครั้ง
+- **นำเข้าข้อมูลจาก Excel / TSV** — คัดลอกจากตารางคะแนนแล้ววางลงระบบได้ทันที
+- **บันทึกข้อมูลในเครื่อง (localStorage)** — ปลอดภัย ไม่มีการส่งคะแนนออกนอกเบราว์เซอร์
+
+## ระบบตารางสอบและผังที่นั่งสอบ (`/exam-schedule`)
+
+- **ค้นหาตามรหัสนักศึกษา 8 หลัก** — ดูวัน เวลา ห้องสอบ และเลขที่นั่งสอบกลางภาคและปลายภาคของทุกวิชาที่ลงทะเบียน
+- **ผังที่นั่งแบบตอบสนอง (Interactive Seating Map)** — แสดงตำแหน่งที่นั่งจริงภายในห้องสอบ พร้อมข้อมูลแถวและคอลัมน์
+- **ส่งออกปฏิทิน (.ics)** — เพิ่มกำหนดการสอบเข้า Apple Calendar, Google Calendar หรือ Outlook ได้ในคลิกเดียว
+- **เสียงและหน้าต่างเตือน Resign Sound** — โหมดเสียงนับถอยหลังช่วยเตรียมพร้อมก่อนเริ่มสอบ
+
+## ระบบแชทผู้ช่วยตอบคำถาม (Help Desk Chat Widget)
+
+ผู้ช่วยอัจฉริยะแบบปุ่มลอยมุมขวาล่างทุกหน้าเว็บ (`components/chat-widget.tsx`, `app/api/chat/route.ts`):
+
+- **ค้นหาสื่อการเรียนจากคลังได้ทันที (~40ms)** — พิมพ์ชื่อวิชา สัปดาห์ หรือประเภท เช่น "ITF week 9 สรุป" หรือ "สไลด์เน็ตเวิร์ก" ระบบจะค้นจาก catalog (`lib/chat/file-search.ts`) และส่งปุ่มเปิดพรีวิวไฟล์ทันทีโดยไม่ต้องเรียก LLM
+- **คลังคำตอบสำเร็จรูป (~75 ข้อ)** — ครอบคลุมการเข้าสู่ระบบ, การใช้เครื่องมือ PSCP, กำหนดการสอบ, ขอบเขตวิชา (`lib/chat/faq.ts`)
+- **โมเดลภาษาแบบ Streaming (ทางเลือก)** — หากตั้งค่า `AI_BASE_URL` / `AI_MODEL` / `AI_API_KEY` ระบบจะส่งต่อคำถามทั่วไปที่ไม่ตรงกับ FAQ ไปยัง LLM แบบสตรีมมิ่ง
+- **ความปลอดภัยสูงสุด** — ข้อสอบเก่าถูกคัดออกจากการค้นหา 100% ไม่รั่วไหลไปยังแชท พร้อมระบบป้องกัน Prompt Injection (`lib/chat/guard.ts`) และ Rate Limit ตาม IP
+
+## PG IJUDGE Pro (`/pro`)
+
+หน้า Landing Page แนะนำส่วนขยาย [PG IJUDGE](https://github.com/PGTHEGOD) สำหรับ VS Code โดย Akarapach Yootsukprasert:
+
+- ส่งโค้ดตรวจเข้า iJudge ตรงจากตัวโปรแกรมแก้ไขโค้ด
+- รันและเทียบเทสเคสตัวอย่างในเครื่องอย่างรวดเร็วด้วยคีย์ลัด
+- ตรวจสอบผลลัพธ์ Pass / Fail แยกรายเทสต์เคส
+
+## พื้นที่อ่านหนังสือสอบปลายภาค (`/profile/[student_id]/study`)
+
+Personal Study Space ส่วนตัวสำหรับเจ้าของแผนอ่านหนังสือ:
+- ตารางอ่าน 22 วันแบบโควตาชั่วโมงครอบคลุมวิชาหลัก
+- หน้าจอโฟกัสพร้อมตัวจับเวลาและโหมดเต็มจอ
+- ข้อมูลจัดเก็บปลอดภัยบนเบราว์เซอร์ของเจ้าของบัญชี (localStorage)
+
 ## Tech stack
 
 ทุกตัวในนี้ใช้งานจริง — คืออะไร และทำอะไรใน codebase นี้
@@ -217,7 +266,7 @@ Supabase Storage และเว็บเสิร์ฟจากที่นั
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" width="48" height="48" alt="Tailwind CSS" /><br>
       <sub><b>Tailwind 4</b></sub>
     </td>
-    <td>Styling ทั้งเว็บ ผ่าน <code>@tailwindcss/postcss</code> ไม่มี <code>tailwind.config</code> · token อยู่ใน <a href="app/globals.css">globals.css</a> · <code>--primary</code> หลักเป็นสีฟ้า <code>#2357A5</code> — <code>.pscp-theme</code> rebind เป็น PSCP Pink (<code>#db2777</code> / dark <code>#ec4899</code>) และ <code>app/courses/[dir]/layout.tsx</code> rebind ต่อวิชา (<code>COURSE_COLORS</code>) · <code>tw-animate-css</code> สำหรับ animation utility</td>
+    <td>Styling ทั้งเว็บ ผ่าน <code>@tailwindcss/postcss</code> ไม่มี <code>tailwind.config</code> · token อยู่ใน <a href="app/globals.css">globals.css</a> · <code>--primary</code> หลักเป็นสีฟ้า <code>#2357A5</code> — <code>.pscp-theme</code> rebind เป็น PSCP Pink (<code>#db2777</code> / dark <code>#ec4899</code>) และ <code>app/courses/[dir]/layout.tsx</code> rebind ต่อวิชา (<code>COURSE_COLORS</code>) · ธีม Dark ได้รับแรงบันดาลใจจาก Figma ด้วย neutral charcoal palette หลายระดับชั้น (<code>#141416</code> canvas, <code>#1c1c1f</code> cards, <code>#222226</code> popovers) และ subtle white opacity borders (<code>oklch(1 0 0 / 8.5%)</code>) คมชัด สบายตา และอ่านง่าย · <code>tw-animate-css</code> สำหรับ animation utility</td>
   </tr>
   <tr>
     <td align="center" width="96">
@@ -343,6 +392,9 @@ Supabase Storage และเว็บเสิร์ฟจากที่นั
 Open source — อยากเพิ่มวิชาใหม่ เขียนสรุป อัปเดตโจทย์ แก้บั๊ก หรือเพิ่มฟีเจอร์
 อ่าน [CONTRIBUTING.md](./CONTRIBUTING.md) และ [FILE_STRUCTURE.md](./FILE_STRUCTURE.md)
 
+> **Workflow กิ่ง `staging`:** โปรเจกต์ใช้กิ่ง `staging` เป็นสาขาหลักในการรวบรวมงานและทดสอบความเข้ากันได้
+> ก่อนที่จะเปิด PR หรือผสานเข้าสู่ `main` กรุณาสร้าง feature branch จาก `staging` และเปิด PR มุ่งเป้าไปที่ `staging`
+
 | เอกสาร | ไว้ทำอะไร |
 | --- | --- |
 | [AGENTS.md](./AGENTS.md) | จุดเริ่มต้นของ AI agent — กฎที่พลาดง่าย ตาราง "แก้ที่ไหน" วิธีค้นหาในคลัง (`CLAUDE.md` แค่ include ไฟล์นี้) |
@@ -368,10 +420,15 @@ Open source — อยากเพิ่มวิชาใหม่ เขีย
   ให้คะแนนแล้ว และหน้าเว็บที่บันทึกจากบัญชีส่วนตัวห้ามเพิ่ม — เช็คลิสต์เต็มใน
   [CONTRIBUTING.md](./CONTRIBUTING.md) ข้อ 3)
 
-## เครดิต
+## เครดิตและผู้ร่วมพัฒนา
 
-สร้างและดูแลโดย **Chatan Petry** — GitHub: [@Jesselpetry](https://github.com/Jesselpetry) ·
-Instagram: [@chatann\_](https://instagram.com/chatann_)
+โปรเจกต์นี้เริ่มต้น ดูแล และออกแบบสถาปัตยกรรมหลักโดย **Chatan Petry** ([@Jesselpetry](https://github.com/Jesselpetry) · Instagram: [@chatann\_](https://instagram.com/chatann_))
+
+ขอขอบคุณผู้ร่วมพัฒนา (Contributors) ทุกท่านที่ช่วยเติมเต็มและพัฒนาเครื่องมือนี้:
+- **PhuPunnavit** ([@PhuPunnavit](https://github.com/PhuPunnavit)) — ระบบ Help Desk Chat Widget ผู้ช่วยตอบคำถามและค้นหาสื่อการเรียน, สรุปสไลด์บรรยาย ITF ฉบับแปลไทย Week 08–15
+- **Meaookung144** ([@Meaookung144](https://github.com/Meaookung144)) — ระบบฟอร์มแก้ไขไฟล์ส่งงาน PSCP ใน Repository และเชื่อมต่อ GitHub Push
+- **Akarapach Yootsukprasert** ([@PGTHEGOD](https://github.com/PGTHEGOD)) — หน้า Landing Page และระบบเชื่อมต่อ PG IJUDGE Extension (`/pro`)
+- **Tammadon Suksa (IT24)** — บันทึกสรุปการเรียน Notion สำหรับรายวิชา ITF สัปดาห์ที่ 08–15 พร้อมภาพประกอบคำอธิบาย
 
 ## License
 

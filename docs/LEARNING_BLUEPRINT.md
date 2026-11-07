@@ -4,7 +4,7 @@
 คู่กับ [`../FILE_STRUCTURE.md`](../FILE_STRUCTURE.md) (สัญญาเรื่องไฟล์) และ
 [`DROPZONE_SOP.md`](./DROPZONE_SOP.md) (ขั้นตอนนำเข้า)
 
-ตรวจล่าสุด 15 ต.ค. 2569 — ชื่อไฟล์ ฟังก์ชัน และกฎในเอกสารนี้ตรวจกับโค้ด ณ วันนั้น
+ตรวจล่าสุด พ.ย. 2569 (กิ่ง `staging` — ปรับปรุงสถิติและสถานะโมดูลจาก 15 ต.ค. 2569) — ชื่อไฟล์ ฟังก์ชัน และกฎในเอกสารนี้ตรวจกับโค้ด ณ วันนั้น
 ตัวเลขที่เปลี่ยนบ่อยมีคำสั่งกำกับว่าวัดซ้ำได้อย่างไร
 
 > **บังคับด้วยเครื่อง ไม่ใช่ด้วยวินัย**
@@ -17,7 +17,7 @@
 
 ## 1. ปัญหาที่พิมพ์เขียวนี้แก้
 
-iHelp ไม่ได้ขาดเนื้อหา — ณ 15 ต.ค. 2569 คลังมี 705 ไฟล์ (13,173 หน้า PDF) ข้อสอบ 390 ข้อ
+iHelp ไม่ได้ขาดเนื้อหา — ณ พ.ย. 2569 คลังมี 724 ไฟล์ (13,593 หน้า PDF, 741 การ์ดสื่อการเรียน) ข้อสอบ 390 ข้อ
 (308 ข้อในคลังที่ผูกกับรายวิชา + 82 ข้อรายโจทย์ PSCP) และภาพรวมรายวิชา 15 ชุด
 วัดซ้ำได้จาก `bun run library:index` (พิมพ์ยอดคลัง) และ `bun run readiness` (พิมพ์ยอดโมดูล)
 สิ่งที่ขาดคือ **สัญญาว่า "หนึ่งวิชา" แปลว่าอะไร**
@@ -197,22 +197,22 @@ export interface ModuleDoc {
 เป็นทั้งตัวเลขเดียวที่ตอบว่า "แพลตฟอร์มดีขึ้นไหม" และ backlog การผลิตเนื้อหาที่เรียงลำดับตัวเอง:
 แถวล่างสุดคือที่ที่เนื้อหาชิ้นถัดไปควรไปลง
 
-ผลเมื่อ 15 ต.ค. 2569 (working tree) — เฉลี่ย **3.9/11 (36%)** ทั้ง 15 วิชา:
+ผลการวัดล่าสุด (พ.ย. 2569 บนกิ่ง `staging`) — เฉลี่ย **4.0/11 (36%)** ทั้ง 15 วิชา:
 
 | วิชา | x/11 | เติมแล้ว |
 |---|---:|---|
 | MFIT | 8 | orientation · syllabus_map · deep_summary · cram_sheet · drill · speed_quiz · mock_exam · archive |
+| ITF | 6 | orientation · syllabus_map · deep_summary · drill · mock_exam · archive |
 | ICS | 6 | orientation · syllabus_map · deep_summary · drill · mock_exam · archive |
 | COMPRO | 6 | orientation · deep_summary · drill · applied · mock_exam · archive |
-| ITF | 5 | orientation · syllabus_map · deep_summary · drill · archive |
 | PSCP | 4 | orientation · deep_summary · applied · archive |
 | CHEM | 4 | orientation · deep_summary · drill · archive |
 | CHARM · FE · BFIT · DSA · OOP · PSTAT · FE2 · DL | 3 | orientation · deep_summary · archive (`baseline()`) |
 | SPORT | 2 | orientation · deep_summary (ไม่มีไฟล์ในคลัง จึงไม่มี archive) |
 
 โมดูลที่ยังไม่มีวิชาใดเติม: `key_cards` และ `weak_spot` (0/15) · ที่เติมน้อยสุด: `cram_sheet` และ `speed_quiz`
-(1/15, เฉพาะ MFIT) · `applied` 2/15 (PSCP, COMPRO) · `mock_exam` 3/15 (ICS, MFIT, COMPRO) · `syllabus_map` 3/15
-(ITF, ICS, MFIT) · `drill` 5/15 (ITF, ICS, MFIT, COMPRO, CHEM) · `archive` 14/15
+(1/15, เฉพาะ MFIT) · `applied` 2/15 (PSCP, COMPRO) · `syllabus_map` 3/15 (ITF, ICS, MFIT) ·
+`mock_exam` 4/15 (ITF, ICS, MFIT, COMPRO) · `drill` 5/15 (ITF, ICS, MFIT, COMPRO, CHEM) · `archive` 14/15
 
 **"เติมแล้ว" ไม่เท่ากับ "ถึง DoD"** — readiness นับว่ามีเนื้อหาผูกอยู่ ไม่ได้ตรวจเกณฑ์ใน §2:
 `speed_quiz` ของ MFIT และ `mock_exam` ของ ICS/MFIT เป็นเอกสาร Markdown ไม่ใช่โหมดจับเวลา ·
@@ -259,7 +259,7 @@ export interface ModuleDoc {
 typography ไทย), ห้องซ่อมจุดอ่อน, drill เลือกบท, cram 15 วิชา, บัตรคำ, quiz engine v2 (`numeric` / `cloze` /
 `matching` / `ordering`), timer แบบสงบ, ธงความมั่นใจ
 
-ตรวจกับโค้ด 15 ต.ค. 2569:
+ตรวจกับโค้ด พ.ย. 2569:
 
 | รายการ | สถานะ |
 |---|---|
@@ -268,9 +268,11 @@ typography ไทย), ห้องซ่อมจุดอ่อน, drill เ�
 | cram 15 วิชา | ทำแล้ว 1 วิชา (MFIT) |
 | บัตรคำ (`key_cards`) | ยังไม่ทำ — ไม่มี route |
 | quiz engine v2 | ยังไม่ทำ — `QuizKind` มีหกชนิดเดิม (`mcq` `predict-output` `spot-the-bug` `pep8` `true-false` `short-answer`) |
-| timer แบบสงบ | ยังไม่ทำ — ไม่มีตัวจับเวลาใน `technique-quiz.tsx` |
+| timer แบบสงบ | ทำแล้วบนหน้า Study Space (`/profile/<id>/study`) พร้อมโหมด Standby, Fullscreen และนับถอยหลังพัก/โฟกัส (แต่ยังไม่ฝังใน `technique-quiz.tsx`) |
 | ธงความมั่นใจ | ยังไม่ทำ — ไม่พบในโค้ด |
-| ภาษาภาพ 3 ชั้น | ทำบางส่วน — มี `animate-shimmer` ในบางการ์ด ตัวอ่านแบบ notebook (หมึกแดง ไฮไลต์) และ THSarabunNew ดู [`FONTS.md`](./FONTS.md); ไม่ได้ตรวจว่าครบสามชั้นตามแผนหรือยัง |
+| ภาษาภาพ 3 ชั้น | ทำบางส่วน — มี `animate-shimmer` ในบางการ์ด ตัวอ่านแบบ notebook (หมึกแดง ไฮไลต์) และ THSarabunNew ดู [`FONTS.md`](./FONTS.md) พร้อมปรับธีม Dark เป็น Figma-inspired Neutral Gray Palette |
 | ไฮไลต์คำศัพท์อัตโนมัติ (`glossary.json`) | ยังไม่ทำ — ไม่มีไฟล์ `glossary.json` ใน `content/` หรือ `data/` และไม่มีโค้ดอ่าน (มีแค่ไวยากรณ์ `{==…==}` ที่เขียนมือ ดู [`FONTS.md`](./FONTS.md) §8) |
+| เครื่องคิดเลขตัดเกรด & ประเมินเป้าหมาย Final | ทำแล้วที่ `/grade-calculator` (สถาปัตยกรรม 3 แผง, แม่แบบ 7 วิชา Y1-S1, math parser) |
+| ผู้ช่วยตอบคำถามและค้นสื่อการเรียน | ทำแล้วด้วย Help Desk Chat Widget (`components/chat-widget.tsx`, `app/api/chat/route.ts`) |
 
 ดูแผนเต็มที่ artifact `cb6dbc2d` (อ้างอิงภายนอก repo — ไม่ได้ตรวจ) และหัวข้อ "สิ่งที่ห้ามทำพัง" ข้างบนใช้ได้กับทุกเฟส
