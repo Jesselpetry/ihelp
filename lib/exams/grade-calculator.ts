@@ -269,7 +269,7 @@ export const Y1_S1_PRESETS: CourseCalculator[] = [
       },
     ],
     cutoffs: [...DEFAULT_CUTOFFS],
-    notes: "สามารถปรับโหมดการตัดเกรดเป็น A-F หรือ ผ่าน/ไม่ผ่าน (S/U) ได้",
+    notes: "เกณฑ์ตามประมวลการสอน 1/2569: สอบกลางภาค 30% · ปลายภาค 35% · กิจกรรมและการบ้าน 35%",
   },
   {
     id: "charm",
@@ -279,7 +279,7 @@ export const Y1_S1_PRESETS: CourseCalculator[] = [
     nameEn: "Charm School",
     credits: 2,
     color: "#ea580c",
-    mode: "letter",
+    mode: "pass_fail",
     categories: [
       {
         id: "charm-act",
@@ -304,8 +304,8 @@ export const Y1_S1_PRESETS: CourseCalculator[] = [
         isFinal: true,
       },
     ],
-    cutoffs: [...DEFAULT_CUTOFFS],
-    notes: "เน้นการเข้าเรียน ปฏิบัติจริง และโครงงานกลุ่ม",
+    cutoffs: [{ grade: "A", min: 60, point: 0 }],
+    notes: "วิชาศึกษาทั่วไป (GE) ตัดเกรดแบบผ่าน/ไม่ผ่าน (S/U) โดยต้องได้คะแนนรวม ≥ 60 คะแนน",
   },
   {
     id: "sport",
@@ -315,7 +315,7 @@ export const Y1_S1_PRESETS: CourseCalculator[] = [
     nameEn: "Sports & Recreational Activities",
     credits: 1,
     color: "#16a34a",
-    mode: "letter",
+    mode: "pass_fail",
     categories: [
       {
         id: "sport-att",
@@ -333,8 +333,8 @@ export const Y1_S1_PRESETS: CourseCalculator[] = [
         isFinal: true,
       },
     ],
-    cutoffs: [...DEFAULT_CUTOFFS],
-    notes: "เน้นการเข้าฝึกซ้อมสม่ำเสมอและการทดสอบทักษะท้ายเทอม",
+    cutoffs: [{ grade: "A", min: 50, point: 0 }],
+    notes: "วิชาศึกษาทั่วไป (GE) ตัดเกรดแบบผ่าน/ไม่ผ่าน (S/U) โดยต้องได้คะแนนรวม ≥ 50 คะแนน",
   },
 ];
 
@@ -489,13 +489,14 @@ export function calculateCourseResult(course: CourseCalculator): {
   const percentage = maxScore > 0 ? (totalScore / maxScore) * 100 : 0;
 
   if (course.mode === "pass_fail") {
-    const passed = totalScore >= 50;
+    const minPassing = course.cutoffs[0]?.min ?? 50;
+    const passed = totalScore >= minPassing;
     return {
       totalScore,
       maxScore,
       percentage,
       grade: passed ? "S" : "U",
-      point: passed ? 4.0 : 0.0,
+      point: 0.0,
       status: passed ? "pass" : "fail",
     };
   }
@@ -560,6 +561,39 @@ export function calculateFinalTargets(
     currentWithoutFinal += Math.max(0, s);
   }
   currentWithoutFinal = Math.round(currentWithoutFinal * 100) / 100;
+
+  if (course.mode === "pass_fail") {
+    const minPassing = course.cutoffs[0]?.min ?? 50;
+    const needed = Math.round((minPassing - currentWithoutFinal) * 100) / 100;
+    let status: "achieved" | "achievable" | "impossible" = "achievable";
+    let pct = 0;
+
+    if (needed <= 0) {
+      status = "achieved";
+      pct = 0;
+    } else if (needed > finalCategory.weight) {
+      status = "impossible";
+      pct = Math.round((needed / finalCategory.weight) * 100);
+    } else {
+      status = "achievable";
+      pct = Math.round((needed / finalCategory.weight) * 100);
+    }
+
+    return {
+      finalCategory,
+      currentWithoutFinal,
+      targets: [
+        {
+          grade: "S",
+          point: 0,
+          minTotal: minPassing,
+          neededOnFinal: Math.max(0, needed),
+          percentageOfFinal: pct,
+          status,
+        },
+      ],
+    };
+  }
 
   const targets: FinalTargetRequirement[] = [];
   const sortedCutoffs = [...course.cutoffs].sort((a, b) => b.min - a.min);
