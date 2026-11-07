@@ -476,16 +476,16 @@ const STATIC: Entry[] = [
   {
     id: "pscp-submit-oj",
     all: [["ส่งงานให้", "ส่งเข้า oj", "ส่ง oj ให้", "ส่ง ijudge", "submit ให้", "ส่งให้อัตโนมัติ", "ส่งโค้ดให้"]],
-    th: "เว็บไม่ส่งงานเข้า OJ ให้ครับ 🙅\n\nเครื่องมือในเว็บแค่ช่วยจัดไฟล์ที่คุณเขียนเองให้ตรง template คุณต้องส่งงานที่ iJudge เอง (ถ้าอยากส่งจาก VS Code ดู PSCP Pro ที่ /pro)",
-    en: "The site never submits to the OJ for you 🙅\n\nIts tools only format files you wrote yourself into the template; you submit on iJudge yourself (to submit from VS Code, see PSCP Pro at /pro).",
-    links: [page("PSCP Pro", "PSCP Pro", "/pro")],
+    th: "เว็บไม่ส่งงานเข้า OJ ให้ครับ 🙅\n\nเครื่องมือในเว็บแค่ช่วยจัดไฟล์ที่คุณเขียนเองให้ตรง template คุณต้องส่งงานที่ iJudge เองครับ",
+    en: "The site never submits to the OJ for you 🙅\n\nIts tools only format files you wrote yourself into the template; you submit on iJudge yourself.",
+    links: [page("PSCP", "PSCP", "/pscp")],
   },
   {
     id: "pscp-pro",
-    all: [["vs code", "vscode", "pscp pro", "ส่วนขยาย", "extension", "ส่งจาก vs"]],
-    th: "PSCP Pro คือส่วนขยาย VS Code สำหรับวิชา PSCP ครับ 🧩\n\n• รันเทสต์เคสในเครื่อง เห็นผล pass / fail ทันที\n• เตือนคำที่ห้ามใช้/ต้องมี ก่อนส่ง\n• ส่งงานจาก VS Code ตรงเข้า iJudge ด้วยบัญชีของคุณเอง\n\nดูรายละเอียดที่หน้า PSCP Pro ครับ 👇",
-    en: "PSCP Pro is a VS Code extension for PSCP 🧩\n\n• Run test cases locally and see pass / fail at once\n• Warns about banned/required words before you submit\n• Submit from VS Code straight to iJudge with your own account\n\nDetails on the PSCP Pro page 👇",
-    links: [page("PSCP Pro", "PSCP Pro", "/pro")],
+    all: [["vs code", "vscode", "pscp pro", "ส่วนขยาย", "extension", "ส่งจาก vs", "pg ijudge"]],
+    th: "PG IJUDGE Pro คือส่วนขยาย VS Code สำหรับวิชา PSCP ครับ 🧩\n\n• รันเทสต์เคสในเครื่อง เห็นผล pass / fail ทันที\n• เตือนคำที่ห้ามใช้/ต้องมี ก่อนส่ง\n• ส่งงานจาก VS Code ตรงเข้า iJudge ด้วยบัญชีของคุณเอง\n\nสามารถติดต่อสอบถามผู้พัฒนาได้ทาง IG: @pgthegod_x ครับ",
+    en: "PG IJUDGE Pro is a VS Code extension for PSCP 🧩\n\n• Run test cases locally and see pass / fail at once\n• Warns about banned/required words before you submit\n• Submit from VS Code straight to iJudge with your own account\n\nContact the developer via IG: @pgthegod_x.",
+    links: [page("PSCP", "PSCP", "/pscp")],
   },
   {
     id: "pscp-run",
