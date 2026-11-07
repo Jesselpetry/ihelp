@@ -74,6 +74,7 @@ bun run dev                  # เปิดเว็บที่ http://localhos
 | 🗂️ **[docs/FILE_STRUCTURE.md](./docs/FILE_STRUCTURE.md)** | แผนผังไดเรกทอรี, แหล่งความจริง (Source of truth) ของแต่ละโมดูล และกติกาการตั้งชื่อ |
 | 🏛️ **[LIBRARY_ARCHITECTURE.md](./docs/LIBRARY_ARCHITECTURE_AND_WORKFLOW.md)** | วงจรชีวิตของคลังสื่อ, การทำงานของ Resource Index Dictionary, และคู่มือ Public API |
 | 🛡️ **[QUARANTINE_AND_EXAMS.md](./docs/QUARANTINE_AND_EXAMS_AUDIT.md)** | รายงานตรวจสอบความปลอดภัย, ไฟล์ในระบบกักกัน (Quarantine), และแนวทางให้เครดิตรุ่นพี่ |
+| 🏷️ **[VERSION_CONTROL_GUIDE.md](./docs/VERSION_CONTROL_GUIDE.md)** | ระเบียบการกำหนดเลขเวอร์ชัน (SemVer), การบันทึก CHANGELOG, และการผูกข้อมูลหน้า `/version` |
 | 🤖 **[AGENTS.md](./AGENTS.md)** | กฎระเบียบและแนวทางปฏิบัติสำคัญสำหรับ AI Coding Agents (Claude Code, Antigravity) |
 
 ---
