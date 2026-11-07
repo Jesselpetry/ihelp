@@ -45,16 +45,10 @@ export interface ChangeEntry {
 }
 
 export interface VersionEntry {
-  version: string; // e.g. "0.3.0", or "Unreleased"
-  date: string | null; // ISO date, null for Unreleased
+  version: string; // e.g. "1.0.0", "0.9.0"
+  date: string | null; // ISO date "YYYY-MM-DD", null for Unreleased
   /**
    * The commit that marks this entry, short SHA.
-   *
-   * For a released version, the commit itself — the badge links straight to it
-   * on GitHub. For "Unreleased", the previous release's commit instead: the
-   * badge links to a compare view from there to `main`, which is what "what's
-   * new since the last release" actually means until this entry gets its own
-   * release commit and date.
    */
   commit?: string;
   contributors: Contributor[];
@@ -64,65 +58,65 @@ export interface VersionEntry {
 // Mirrors CHANGELOG.md at the repo root — keep both in sync when releasing.
 export const CHANGELOG: VersionEntry[] = [
   {
-    version: "Unreleased",
-    date: null,
-    commit: "b4aff61",
+    version: "1.0.0",
+    date: "2026-11-08",
+    commit: "08aafdc",
     contributors: [CONTRIBUTORS.chatan],
     changes: [
       {
-        kind: "changed",
+        kind: "added",
         text: {
-          th: "ปรับปรุงการ์ดผู้จัดทำท้ายวิชาให้ Responsive รูปโปรไฟล์ทรงกลมมน แบดจ์ขนาดคงที่ ผลงานแบบแถวเรียงกัน (TopicHeader) และตัดคำอธิบายยาวออก",
-          en: "Polished course contributor cards with responsive layout, rounded-full avatars, fixed-size badges, and row-by-row materials via TopicHeader",
-        },
-      },
-      {
-        kind: "changed",
-        text: {
-          th: "ปรับเปลี่ยนลายน้ำโลโก้บนการ์ดรายวิชา Charm School และ Foundation English เป็นโลโก้ GE สีขาว และวิชา EN-KMITL เป็นตราสัญลักษณ์สถาบัน",
-          en: "Updated course card watermarks for Charm School & Foundation English to white GE logo and EN-KMITL to official KMITL seal",
+          th: "ปรับโครงสร้างหน้าหลักรายวิชาสู่ระบบเส้นทางการเรียนรู้รายสัปดาห์ (Weekly Learning Path) แยกเนื้อหาครึ่งแรก/ครึ่งหลัง คั่นด้วยจุดพักสอบ (Isolated Exam Milestones) พร้อมช่องค้นหาแคปซูลแบบ Real-time (โดย @Jesselpetry)",
+          en: "Restructured course hub to Weekly Learning Path with isolated exam milestones, real-time search, and exam period filters (by @Jesselpetry)",
         },
       },
       {
         kind: "added",
         text: {
-          th: "ระบบ Contributor Credit และโปรไฟล์ผู้ร่วมแบ่งปันเนื้อหาท้ายหน้ารายวิชา (/courses/[dir]) พร้อมระบบคำนวณและเลื่อนชั้นปีอัตโนมัติตามรหัสนักศึกษา",
-          en: "Contributor credit & profile showcase at the bottom of course hubs with automatic student academic year advancement",
+          th: "จัดทำเอกสารและหน้ารายสัปดาห์สำหรับวิชา ICS ครึ่งแรก (Track A: Digital Logic สัปดาห์ที่ 1–7) ครบ 7 บท พร้อมตารางเชื่อมโยงสไลด์และแล็บ Logisim (โดย @Jesselpetry)",
+          en: "Authored 7 weekly docs and lab mappings for ICS Track A (Digital Logic weeks 1-7) covering gates, canonical forms, and MUX/DEMUX (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "ระบบ Contributor Credit และโปรไฟล์ผู้ร่วมแบ่งปันเนื้อหาท้ายหน้ารายวิชา (/courses/[dir]) รวมศูนย์ข้อมูลผู้ร่วมพัฒนาและผู้แบ่งปันเนื้อหา พร้อมระบบคำนวณและเลื่อนชั้นปีอัตโนมัติตามรหัสนักศึกษา (โดย @Jesselpetry)",
+          en: "Contributor credit & profile showcase at course hub footers with automated student academic year advancement engine (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "ปรับปรุงการ์ดเครดิตผู้จัดทำและร่วมแบ่งปันเนื้อหาท้ายหน้ารายวิชาสู่ดีไซน์แนวนอนแบบกว้าง พร้อมไอคอน Dev/Terminal สำหรับ Lead Maintainer และปุ่มโซเชียลแบดจ์เต็ม (โดย @Jesselpetry)",
+          en: "Redesigned course contributor cards to wide horizontal layout with Terminal/Dev role icons and full channel badges (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "ปรับปรุงระบบเลย์เอาต์หน้ารายวิชา (/courses/[dir]) คืนสู่ระบบการเลื่อนหน้าแบบธรรมชาติ (Natural Page Scroll) พร้อมแถบข้าง Sticky นุ่มนวล (โดย @Jesselpetry)",
+          en: "Restored natural whole-page scrolling layout on course hubs with smooth sticky navigation sidebar (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "ปรับปรุงแถบค้นหารายวิชาและการ์ดรายวิชากะทัดรัด แนวนอน สไตล์ MIT OpenCourseWare (/) พร้อมคู่มือมาตรฐานแบรนด์ docs/BRANDING.md (โดย @Jesselpetry)",
+          en: "Redesigned course search bar and compact horizontal cards (/) inspired by MIT OpenCourseWare with brand guide docs/BRANDING.md (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "ปรับเปลี่ยนลายน้ำตราสัญลักษณ์บนการ์ดรายวิชา Charm School และ Foundation English เป็นตรา GE สีขาว และวิชา EN-KMITL เป็นตราสถาบัน (โดย @Jesselpetry)",
+          en: "Updated course card watermarks for Charm School & FE to white GE logo and EN-KMITL to official KMITL seal (by @Jesselpetry)",
         },
       },
       {
         kind: "fixed",
         text: {
-          th: "แก้ไขลิงก์การ์ดสัปดาห์ที่ 0 (แนะนำรายวิชา) และคลังเอกสารเกิดข้อผิดพลาด 404 ให้เปิดอ่านได้ถูกต้อง พร้อมขยายระยะเว้นวรรคระหว่างตัวคั่นช่วงเนื้อหาและจุดพักสอบ",
-          en: "Fixed week 0 course intro and library links 404, pointing to valid spine routes, and improved timeline milestone spacing",
-        },
-      },
-      {
-        kind: "changed",
-        text: {
-          th: "ปรับโครงสร้างหน้าหลักรายวิชาสู่ระบบเส้นทางการเรียนรู้รายสัปดาห์ (Weekly Learning Path) พร้อมจุดพักสอบกลางภาคและปลายภาค และระบบค้นหา Real-time",
-          en: "Restructured course hub to Weekly Learning Path with isolated exam milestones, real-time search, and exam period filters",
-        },
-      },
-      {
-        kind: "changed",
-        text: {
-          th: "ปรับปรุงส่วนแสดงเครดิตและทีมผู้พัฒนาใน README.md สู่รูปแบบตารางมาตรฐานพร้อมข้อมูลติดต่อและบทบาทหน้าที่",
-          en: "Converted contributor showcase in README to structured table with student credentials and contact channels",
-        },
-      },
-      {
-        kind: "changed",
-        text: {
-          th: "ปรับปรุงแถบค้นหารายวิชาและดีไซน์การ์ดรายวิชาสไตล์ MIT OpenCourseWare (/) ด้วยกรอบภาพไล่เฉดสีฟ้า iHelp Blue Gradient และข้อมูลแนวนอน",
-          en: "Redesigned course search bar and adopted MIT OpenCourseWare-style horizontal course cards (/) with signature iHelp blue gradient thumbnails",
-        },
-      },
-      {
-        kind: "changed",
-        text: {
-          th: "ปรับลดสเกลหน้ารายวิชา (/courses/[dir]) และปรับปรุงการ์ดแสดงสถานะสำหรับหมวดที่อยู่ระหว่างเตรียมเนื้อหา",
-          en: "Compacted course hub layout and polished empty phase preparation cards to match module stream rows",
+          th: "แก้ไขปัญหาลิงก์สัปดาห์ที่ 7 (MUX/DEMUX) ของวิชา ICS จับคู่ผิดสโคปไปยังครึ่งหลัง (ALU/CPU) และแก้ไขลิงก์สัปดาห์ที่ 0 404 (โดย @Jesselpetry)",
+          en: "Fixed week 7 MUX/DEMUX routing to final exam scope and resolved week 0 course intro 404 links (by @Jesselpetry)",
         },
       },
     ],
@@ -130,42 +124,102 @@ export const CHANGELOG: VersionEntry[] = [
   {
     version: "0.9.0",
     date: "2026-11-07",
-    commit: "7e91359",
-    contributors: [
-      CONTRIBUTORS.chatan,
-      CONTRIBUTORS.phuPunnavit,
-      CONTRIBUTORS.pgthegod,
-      CONTRIBUTORS.meaookung,
-    ],
+    commit: "2d88966",
+    contributors: [CONTRIBUTORS.chatan],
     changes: [
       {
-        kind: "changed",
+        kind: "added",
         text: {
-          th: "ปรับโฉมหน้าประวัติเวอร์ชันและผู้ร่วมพัฒนา /version สไตล์ GitHub Releases แบ่ง 2 แผง พร้อมปุ่มเวอร์ชันปัจจุบัน และการ์ดผู้ร่วมพัฒนาแบบคลีน",
-          en: "GitHub Releases-inspired 2-panel /version redesign with current version pill and clean borderless contributor cards",
-        },
-      },
-      {
-        kind: "changed",
-        text: {
-          th: "ยกเครื่อง Contributor Profile Modal ให้ Responsive ปรับปุ่มโซเชียลเป็นทรงมน (rounded-full) เงา shadow-sm/md และแจกแจงประวัติการพัฒนาละเอียด",
-          en: "Contributor Profile Modal overhaul — responsive dialog, rounded-full social buttons, subtle shadow tokens, and rich version-by-version history",
-        },
-      },
-      {
-        kind: "fixed",
-        text: {
-          th: "นำจุดเขียว AvatarBadge (online status indicator) ออกจาก Avatar ผู้ร่วมพัฒนาทั้งหมด เพื่อไม่ให้บดบังรูปโปรไฟล์",
-          en: "Remove overlapping online status AvatarBadge dot from contributor avatars to prevent profile image obstruction",
+          th: "Public API คลังสื่อการเรียนรู้ /api/library/catalog ค้นหาและกรอง Dictionary สื่อ 570 รายการ ปลอดภัยด้วย Zero-Trust ตัดเอกสารลับ 100% (โดย @Jesselpetry)",
+          en: "High-speed public REST API /api/library/catalog indexing 570 public learning assets with zero-trust defense (by @Jesselpetry)",
         },
       },
       {
         kind: "added",
         text: {
-          th: "จัดทำคู่มือการจัดการเวอร์ชัน docs/VERSION_CONTROL_GUIDE.md และอัปเดตแนวทางร่วมพัฒนาใน CONTRIBUTING.md",
-          en: "Add version control & changelog guide (docs/VERSION_CONTROL_GUIDE.md) and update CONTRIBUTING.md",
+          th: "จัดทำเอกสารสถาปัตยกรรมคลังสื่อ docs/LIBRARY_ARCHITECTURE_AND_WORKFLOW.md และคู่มือการจัดการเวอร์ชัน docs/VERSION_CONTROL_GUIDE.md (โดย @Jesselpetry)",
+          en: "Published comprehensive library architecture docs and version control guidelines (by @Jesselpetry)",
         },
       },
+      {
+        kind: "changed",
+        text: {
+          th: "ยกเครื่องระบบคำนวณคะแนนและตัดเกรด /grade-calculator สู่สถาปัตยกรรม 3 แผง พร้อมแผนที่เป้าหมาย Final และ GPS Simulator (โดย @Jesselpetry)",
+          en: "Overhauled grade calculator to 3-panel architecture with final target roadmap, GPS simulator, and Excel paste (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "ปรับโฉมหน้าประวัติเวอร์ชันและผู้ร่วมพัฒนา /version สไตล์ GitHub Releases แบ่ง 2 แผง พร้อมป้ายระบุเวอร์ชันปัจจุบัน และการ์ดผู้ร่วมพัฒนาแบบคลีน (โดย @Jesselpetry)",
+          en: "GitHub Releases-inspired 2-panel /version redesign with current version pill and clean borderless contributor cards (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "ยกเครื่อง Contributor Profile Modal ให้ Responsive ปรับปุ่มโซเชียลเป็นทรงมน (rounded-full) เงา shadow-sm/md และแจกแจงประวัติการพัฒนาละเอียด (โดย @Jesselpetry)",
+          en: "Contributor Profile Modal overhaul — responsive dialog, rounded-full social buttons, subtle shadow tokens, and rich version history (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "fixed",
+        text: {
+          th: "นำจุดเขียว AvatarBadge (online status indicator) ออกจาก Avatar ผู้ร่วมพัฒนาทั้งหมด เพื่อไม่ให้บดบังรูปโปรไฟล์ (โดย @Jesselpetry)",
+          en: "Removed overlapping online status AvatarBadge dot from contributor avatars to prevent profile image obstruction (by @Jesselpetry)",
+        },
+      },
+    ],
+  },
+  {
+    version: "0.8.5",
+    date: "2026-11-03",
+    commit: "b993e25",
+    contributors: [CONTRIBUTORS.chatan],
+    changes: [
+      {
+        kind: "added",
+        text: {
+          th: "ระบบคำนวณคะแนนและตัดเกรดรุ่นแรก (/grade-calculator) รองรับสัดส่วนวิชา ปี 1 เทอม 1 IT KMITL, คิดเลขสดในช่อง, ตัดเกรด A-F และ S/U (โดย @Jesselpetry)",
+          en: "First-generation exam score & grade calculator with Y1-S1 presets, safe arithmetic parser, and Excel paste support (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "ITF ชุดเตรียมสอบปลายภาค Week 08–15 คู่มือคำนวณ IP Subnet ละเอียด และแนวข้อสอบ 60 ข้อพร้อมเฉลย (โดย @Jesselpetry)",
+          en: "ITF final exam prep kit (Weeks 08–15) — subnetting calculation guides, 60-question drill with answer explanations (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "ITF โน้ตสรุปจาก Notion ของ Tammadon Suksa (IT24) 79 ภาพสไลด์พร้อมจดโน้ตทับ ในหน้า Week 08-15 (โดย @Jesselpetry)",
+          en: "ITF Notion study notes by Tammadon Suksa (IT24) for Weeks 08–15 — 79 annotated slide images embedded on weekly pages (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "ลิงก์สไลด์เสริม Infraclover ITCAMP20 สำหรับสัปดาห์เน็ตเวิร์ก (โดย @Jesselpetry)",
+          en: "Linked Infraclover ITCAMP20 slides on network weeks (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "ยกเครื่องพาเลทสีโหมดมืดสู่ Neutral Charcoal สไตล์ Figma (#141416, #1c1c1f, #222226) เพิ่มความลึก คมชัด และสบายตา (โดย @Jesselpetry)",
+          en: "Overhauled dark theme with Figma-inspired neutral gray palette (#141416, #1c1c1f, #222226) with refined depth (by @Jesselpetry)",
+        },
+      },
+    ],
+  },
+  {
+    version: "0.8.4",
+    date: "2026-10-30",
+    commit: "faa09ef",
+    contributors: [CONTRIBUTORS.phuPunnavit, CONTRIBUTORS.chatan],
+    changes: [
       {
         kind: "added",
         text: {
@@ -181,101 +235,118 @@ export const CHANGELOG: VersionEntry[] = [
         },
       },
       {
+        kind: "changed",
+        text: {
+          th: "เชื่อมโยงสไลด์แปลไทยเข้ากับระบบค้นหาของ Help-Desk Chat และหน้าสารบัญสัปดาห์เรียน (โดย @PhuPunnavit)",
+          en: "Connected Thai lecture summaries to Help-Desk Chat instant search and weekly syllabus pages (by @PhuPunnavit)",
+        },
+      },
+    ],
+  },
+  {
+    version: "0.8.3",
+    date: "2026-10-22",
+    commit: "ed1d38a",
+    contributors: [CONTRIBUTORS.chatan],
+    changes: [
+      {
         kind: "added",
         text: {
-          th: "หน้า Landing Page /pro สำหรับ PG IJUDGE บน VS Code — แนะนำส่วนขยายส่งโค้ดตรงเข้า iJudge, รันเทสต์ในเครื่อง, เทสต์เคสซ่อน, และขอรับ License Key ผ่าน IG @pgthegod_x (โดย @PGTHEGOD)",
-          en: "PG IJUDGE VS Code Extension landing page (/pro) — showcase for direct submissions, local sample runner, hidden test cases, and license requests via IG @pgthegod_x (by @PGTHEGOD)",
+          th: "ตารางสอบและผังที่นั่งสอบรายบุคคล (/exam-schedule) ค้นหากำหนดการสอบ ห้องสอบ และเลขที่นั่งสอบด้วยรหัสนักศึกษา 8 หลัก พร้อมผังที่นั่ง Interactive Seating Map ในห้องเรียน และส่งออกปฏิทิน .ics (โดย @Jesselpetry)",
+          en: "Exam schedule & interactive seating map (/exam-schedule) — individual exam dates, rooms, and seat finder with .ics export (by @Jesselpetry)",
         },
       },
       {
         kind: "added",
         text: {
-          th: "ITF ชุดเตรียมสอบปลายภาค Week 08–15 — คู่มือทบทวน วิธีคำนวณเครือข่ายและ Subnet, แนวข้อสอบ 60 ข้อพร้อมเฉลยละเอียด, และหน้าทางลัดเตรียมสอบปลายภาค",
-          en: "ITF final exam prep kit (Weeks 08–15) — subnetting calculation guides, 60-question drill with answer explanations, and exam shortcuts hub",
+          th: "ตัวนับถอยหลังพร้อมเสียงเตือนขอยกเลิกสอบ (Resign countdown sound & loud-mode config) (โดย @Jesselpetry)",
+          en: "Resign countdown timer with sound alert and loud-mode confirmation modal (by @Jesselpetry)",
         },
       },
       {
         kind: "added",
         text: {
-          th: "ITF โน้ตสรุป Notion ของ Tammadon Suksa (IT24) สัปดาห์ 08–15 — 79 ภาพสไลด์พร้อมจดโน้ตทับ ท้ายหน้าสรุปรายสัปดาห์",
-          en: "ITF Notion study notes by Tammadon Suksa (IT24) for Weeks 08–15 — 79 annotated slide images embedded on weekly pages",
+          th: "พื้นที่อ่านหนังสือสอบปลายภาค (/profile/<รหัส>/study) หน้าโฟกัสพร้อมตัวจับเวลา Standby โควตา 112 ชั่วโมง และบันทึกเวลาในเครื่อง (โดย @Jesselpetry)",
+          en: "Personal study space (/profile/<id>/study) with standby focus timer, 112-hour 22-day quota tracker, and Khan Academy calculus links (by @Jesselpetry)",
         },
       },
       {
         kind: "added",
         text: {
-          th: "ตารางสอบและผังที่นั่งสอบรายบุคคล (/exam-schedule) — ค้นหากำหนดการสอบ ห้องสอบ และผังที่นั่ง Interactive Seating Map รายบุคคลของคณะ IT สจล.",
-          en: "Exam schedule & interactive seating map (/exam-schedule) — individual exam dates, rooms, and seat finder for IT KMITL students",
+          th: "ระบบภาพแชร์ OpenGraph Card (/og/*.png) และคำอธิบาย Meta อัตโนมัติทุกหน้ารายวิชา โมดูล คลังเอกสาร และตารางสอบ (โดย @Jesselpetry)",
+          en: "Automated OpenGraph social preview cards and rich metadata across courses, modules, map, library, and exam schedule (by @Jesselpetry)",
+        },
+      },
+    ],
+  },
+  {
+    version: "0.8.2",
+    date: "2026-10-17",
+    commit: "ba39a96",
+    contributors: [CONTRIBUTORS.chatan],
+    changes: [
+      {
+        kind: "added",
+        text: {
+          th: "ดัชนีคลังรวมศูนย์ resource-index.json และชุดคำสั่ง CLI ตรวจสอบคลัง library:audit และค้นหาคลัง library:find (โดย @Jesselpetry)",
+          en: "Unified resource-index.json manifest with library:audit and library:find CLI utilities (by @Jesselpetry)",
         },
       },
       {
         kind: "added",
         text: {
-          th: "พื้นที่อ่านหนังสือสอบปลายภาค (/profile/<รหัส>/study) — หน้าโฟกัสพร้อมตัวจับเวลา Standby, โควตาชั่วโมงอ่านหนังสือ 22 วัน, และลิงก์ทบทวนเนื้อหารายวัน",
-          en: "Personal study space (/profile/<id>/study) — focus standby timer, 22-day study quota tracker, and daily topic review links",
-        },
-      },
-      {
-        kind: "added",
-        text: {
-          th: "ระบบภาพแชร์ OpenGraph Card และคำอธิบาย Meta อัตโนมัติทุกรายวิชา โมดูล แผนที่เนื้อหา คลังเอกสาร และตารางสอบ",
-          en: "Automated OpenGraph social preview cards and rich metadata across courses, modules, map, library, and exam schedule",
-        },
-      },
-      {
-        kind: "added",
-        text: {
-          th: "ดัชนีคลัง resource-index.json และคำสั่งตรวจ/ค้นคลัง (library:audit, library:find)",
-          en: "Unified resource-index.json manifest with library:audit and library:find CLI utilities",
-        },
-      },
-      {
-        kind: "added",
-        text: {
-          th: "มุมมองคลังทรัพยากรรายสัปดาห์ของ ITF และ ICS จัดกลุ่มตามสัปดาห์และช่วงสอบ พร้อมลิงก์ต้นทาง OnLearn",
-          en: "Unified week-grouped library view for ITF and ICS with semester-half segmentation and OnLearn source links",
-        },
-      },
-      {
-        kind: "added",
-        text: {
-          th: "สื่อ ITF 1/2569 เพิ่ม 19 ไฟล์ และหน้าคาบเรียนรายสัปดาห์ /courses/06016402-IT-Fundamentals/map",
-          en: "19 new ITF 1/2569 course assets and weekly map sessions with summaries and quizzes",
-        },
-      },
-      {
-        kind: "added",
-        text: {
-          th: "มาตรฐานภาพรวมรายวิชา summary.md โครงสร้างเดียวกัน 6 หัวข้อสำหรับทุกรายวิชา",
-          en: "Standardised 6-section course overview format for every course in summary.md",
+          th: "ซิงก์เนื้อหา OnLearn ITF Week 11-15 ใบงานแล็บ 04, 05, 12, 13 และฝังวิดีโอบันทึกการสอน Lab 13-14 บนหน้าสัปดาห์ (โดย @Jesselpetry)",
+          en: "Synced ITF Weeks 11-15 with OnLearn, added lab sheets 04, 05, 12, 13 and embedded lecture recordings (by @Jesselpetry)",
         },
       },
       {
         kind: "changed",
         text: {
-          th: "ปรับโฉม Dark Theme สไตล์ Neutral Charcoal ดีไซน์ระดับโปร — แยกชั้นพื้นผิว Canvas, Cards, Popovers พร้อมเส้นขอบ Subtle White Opacity สบายตาลดการล้าสายตา",
-          en: "Professional neutral charcoal dark theme overhaul — tiered Figma-inspired surfaces, subtle white opacity borders, and high-legibility typography",
+          th: "ปรับเลย์เอาต์แบนเนอร์รายวิชาสไตล์ Google Classroom พร้อมลายน้ำรหัสวิชาโปร่งแสง (โดย @Jesselpetry)",
+          en: "Laid out course hubs like Google Classroom with course code watermark banners (by @Jesselpetry)",
         },
       },
       {
         kind: "changed",
         text: {
-          th: "หน้ารายวิชาจัดเลย์เอาต์ใหม่สไตล์ Google Classroom และแยก Track A / Track B ของวิชา ICS ให้ชัดเจน",
-          en: "Google Classroom-inspired course hub layout and clear Track A / Track B separation for ICS",
+          th: "แยกโครงสร้างเนื้อหาและข้อสอบครึ่งแรก/ครึ่งหลังของวิชา ICS ออกจากกันชัดเจน (โดย @Jesselpetry)",
+          en: "Separated first and second half of ICS curriculum into distinct tracks (by @Jesselpetry)",
+        },
+      },
+    ],
+  },
+  {
+    version: "0.8.1",
+    date: "2026-09-27",
+    commit: "d74328a",
+    contributors: [CONTRIBUTORS.chatan],
+    changes: [
+      {
+        kind: "added",
+        text: {
+          th: "มุมมองคลังทรัพยากรรายสัปดาห์แบบเดียวกันทั้ง ITF และ ICS จัดกลุ่มตามสัปดาห์และช่วงสอบ พร้อมลิงก์ต้นทาง OnLearn (โดย @Jesselpetry)",
+          en: "Unified week-grouped library view for ITF and ICS with semester-half segmentation and OnLearn source links (by @Jesselpetry)",
         },
       },
       {
-        kind: "changed",
+        kind: "added",
         text: {
-          th: "ITF อัปเดตเนื้อหาครบ 15 สัปดาห์ตาม OnLearn (1/2569) พร้อมคลิปย้อนหลังและใบงานแล็บ",
-          en: "ITF syllabus refreshed across all 15 weeks based on OnLearn (1/2569) with recordings and lab sheets",
+          th: "หน้าคาบเรียนรายสัปดาห์วิชา ITF (/courses/06016402-IT-Fundamentals/map) ครบ 15 สัปดาห์ พร้อมสรุปอ่านสอบและแบบทดสอบ (โดย @Jesselpetry)",
+          en: "ITF weekly sessions and exam notes mapped across 15 weeks with summaries and quizzes (by @Jesselpetry)",
         },
       },
       {
-        kind: "security",
+        kind: "added",
         text: {
-          th: "Service Worker ป้องกันการแคชหน้าส่วนตัวและหน้าที่ต้องล็อกอินหลังออกจากระบบ",
-          en: "Service Worker cache hardening — skip caching private, authenticated, and no-store pages",
+          th: "มาตรฐานภาพรวมรายวิชา summary.md โครงสร้างเดียวกัน 6 หัวข้อสำหรับทุกรายวิชา ตรวจสอบผ่าน content:check (โดย @Jesselpetry)",
+          en: "Standardised 6-section course overview format for every course in summary.md (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "fixed",
+        text: {
+          th: "ปรับปรุงการจัดหน้าตารางกว้างในตัวอ่าน Markdown ไม่ให้ล้นการ์ดบนสมาร์ตโฟน (โดย @Jesselpetry)",
+          en: "Kept wide markdown tables within card bounds on mobile phones (by @Jesselpetry)",
         },
       },
     ],
@@ -289,50 +360,36 @@ export const CHANGELOG: VersionEntry[] = [
       {
         kind: "added",
         text: {
-          th: "ข้อมูลกำกับสื่อแต่ละชิ้น — รุ่นเอกสาร สัปดาห์ที่ใช้ สถานะ และไฟล์ที่ซ้ำกัน",
-          en: "Per-asset metadata — edition, week, status, and duplicate tracking",
+          th: "สื่อแต่ละชิ้นมีข้อมูลกำกับรุ่นและสัปดาห์ (edition, week, isCurrentYear) จับคู่สไลด์กับแล็บและซ่อนไฟล์เก่าอัตโนมัติ (โดย @Jesselpetry)",
+          en: "Asset versioning and week metadata tagging to pair slides with labs and hide superseded assets (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "ทำเนียบอาจารย์ผู้สอนคณะ IT KMITL และจัดมาตรฐานชื่ออาจารย์ผู้สอน (โดย @Jesselpetry)",
+          en: "Added IT KMITL academic roster and standardised instructor names (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "ฟอนต์ TH Sarabun New สำหรับตัวอ่านเอกสาร Markdown พร้อมชุดแต่งสมุดบันทึกเส้นแดง (Red Ink Notebook variant) (โดย @Jesselpetry)",
+          en: "Render markdown in THSarabunNew webfont with red-ink notebook styling for course overviews (by @Jesselpetry)",
         },
       },
       {
         kind: "changed",
         text: {
-          th: "คลังทรัพยากรเปิดให้ใช้งานจริง — /library และเอกสารทุกหน้ากลับมาเปิดอ่านได้",
-          en: "The resource library is open — /library and every document page are live again",
+          th: "ปรับโครงสร้างหน้ารายวิชาสู่ 4 หมวดตามจุดประสงค์ (ปูพื้นฐาน, ย่อสอบ, ตะลุยโจทย์, จำลองสอบ) (โดย @Jesselpetry)",
+          en: "Restructured course hub into 4 learning objective categories instead of rigid sequential steps (by @Jesselpetry)",
         },
       },
       {
         kind: "changed",
         text: {
-          th: "ปิดการแชร์ไฟล์เข้าคลังของผู้ใช้ไว้ก่อน ผ่านธง UPLOADS_ENABLED",
-          en: "Community uploads are switched off behind the new UPLOADS_ENABLED flag",
-        },
-      },
-      {
-        kind: "changed",
-        text: {
-          th: "รายการเอกสารแสดงเป็นการ์ดบนมือถือ และเป็นตารางบนจอใหญ่",
-          en: "Document lists render as cards on phones and as a table on wider screens",
-        },
-      },
-      {
-        kind: "changed",
-        text: {
-          th: "ชั้นวางปักหมุดของ ICS เป็นตารางจัดกลุ่มรายสัปดาห์ และเริ่มต้นแบบพับไว้",
-          en: "The ICS pinned shelf is now a week-grouped table that starts collapsed",
-        },
-      },
-      {
-        kind: "changed",
-        text: {
-          th: "หน้ารายวิชาเริ่มด้วยการ์ดภาพรวมแบบแท็บ แทนที่จะเป็นรายการงานที่ต้องทำ",
-          en: "Course pages now open with a tabbed overview card instead of a task list",
-        },
-      },
-      {
-        kind: "changed",
-        text: {
-          th: "โมดูลที่ยังไม่เปิดถูกพับเก็บท้ายหมวด และการ์ดโมดูลเรียงสองคอลัมน์",
-          en: "Locked modules fold to the end of each group, and module cards sit in two columns",
+          th: "เปิดให้บริการคลังทรัพยากร /library อย่างเป็นทางการเต็มรูปแบบ นำหน้า Coming Soon ออก (โดย @Jesselpetry)",
+          en: "Officially opened the /library catalog and removed the temporary coming-soon veil (by @Jesselpetry)",
         },
       },
     ],
@@ -344,115 +401,96 @@ export const CHANGELOG: VersionEntry[] = [
     contributors: [CONTRIBUTORS.chatan],
     changes: [
       {
+        kind: "added",
+        text: {
+          th: "ติดตั้งเป็น Progressive Web App (PWA) พร้อม Service Worker (sw.js) แคชเฉพาะไฟล์จำเป็น และหน้าออฟไลน์ภาษาไทย (โดย @Jesselpetry)",
+          en: "PWA installable app with content-hashed caching service worker and Thai offline fallback (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "หน้ารวมเอกสารก่อนเข้าอ่าน (Module Index) พร้อมตรวจจับจำนวนไฟล์จริงจาก Markdown และจำสถานะการเปิดอ่านในเครื่อง (โดย @Jesselpetry)",
+          en: "Module Index view counting assets directly from markdown and tracking read status locally (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "หน้าคาบเรียนรายสัปดาห์ ICS พร้อมเครื่องเล่นวิดีโอ YouTube ฝังในตัว 35 คลิป และทะเบียนถาวร RESOURCES_MANIFEST.md (โดย @Jesselpetry)",
+          en: "ICS weekly map sessions with 35 embedded YouTube videos and permanent asset manifest (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "ระบบเปิดดูตัวอย่างไฟล์ PDF/รูปภาพ (Preview) ได้ทันทีจากในหน้าเว็บ (โดย @Jesselpetry)",
+          en: "In-page media previews for PDFs and images directly from course session tables (by @Jesselpetry)",
+        },
+      },
+      {
         kind: "security",
         text: {
-          th: "ชื่อไฟล์และ metadata ของสื่อไม่หลุดไปกับ JS bundle อีกต่อไป",
-          en: "Asset filenames and metadata no longer ship inside the browser bundle",
+          th: "ลบประวัติและข้อมูลรหัสนักศึกษาอื่น (PII) ออกจาก Storage และป้องกันข้อมูลสื่อรั่วไหลเข้า Bundle (โดย @Jesselpetry)",
+          en: "Purged leaked student PII from storage and separated client-safe library tokens to avoid JS bundle leak (by @Jesselpetry)",
         },
       },
+    ],
+  },
+  {
+    version: "0.6.2",
+    date: "2026-09-15",
+    commit: "e9cded1",
+    contributors: [CONTRIBUTORS.chatan],
+    changes: [
       {
-        kind: "added",
+        kind: "changed",
         text: {
-          th: "ติดตั้งเป็นแอปได้ (PWA) พร้อมหน้าออฟไลน์ภาษาไทยเมื่อเน็ตหลุด",
-          en: "Installable as an app (PWA), with a Thai offline page when the network drops",
-        },
-      },
-      {
-        kind: "added",
-        text: {
-          th: "หน้ารวมเอกสารก่อนเข้าอ่าน ค้นหาได้ และนับวิดีโอ/ไฟล์/หัวข้อจากเนื้อหาจริง",
-          en: "A module index page with search and counts read from the actual content",
-        },
-      },
-      {
-        kind: "added",
-        text: {
-          th: "จำได้ว่าคาบไหนเปิดอ่านไปแล้ว เก็บไว้ในเครื่อง ไม่ผูกกับบัญชี",
-          en: "Remembers which sessions you have opened, stored per device, not per account",
-        },
-      },
-      {
-        kind: "added",
-        text: {
-          th: "เปิดดู PDF และรูปภาพแบบ preview ได้ในหน้า ไม่ต้องออกไปหน้าคลัง",
-          en: "Preview PDFs and images in place without leaving for the library page",
-        },
-      },
-      {
-        kind: "added",
-        text: {
-          th: "หน้าคาบเรียนรายสัปดาห์ของ ICS 8 เอกสาร พร้อมสื่อ 17 ไฟล์และวิดีโอ 35 คลิป",
-          en: "ICS weekly session pages — 8 documents, 17 assets, and 35 videos",
-        },
-      },
-      {
-        kind: "added",
-        text: {
-          th: "Markdown รองรับบล็อก youtube สำหรับฝังวิดีโอในเอกสารรายวิชา",
-          en: "Markdown supports a youtube block for embedding videos in course documents",
-        },
-      },
-      {
-        kind: "added",
-        text: {
-          th: "คลังเรียนรู้ของรายวิชาต้องเข้าสู่ระบบด้วยอีเมล @kmitl.ac.th ก่อน",
-          en: "The per-course library now requires signing in with a @kmitl.ac.th account",
-        },
-      },
-      {
-        kind: "added",
-        text: {
-          th: "ตัวตรวจเฉลยอ้างอิง verify_solutions.py ที่ใช้ได้กับคลังโจทย์ทั้งหมด",
-          en: "verify_solutions.py — a reference-solution verifier that covers the whole problem set",
+          th: "ย้ายโดเมนหลักอย่างเป็นทางการสู่ ihelp.chatan.in.th (โดย @Jesselpetry)",
+          en: "Migrated production domain to ihelp.chatan.in.th (by @Jesselpetry)",
         },
       },
       {
         kind: "changed",
         text: {
-          th: "สื่อการเรียน 670 ไฟล์ย้ายออกจาก repository ไปอยู่บน Supabase Storage",
-          en: "670 course files moved out of the repository onto Supabase Storage",
+          th: "รีแบรนด์ Site Metadata จาก PSCP สู่ศูนย์กลางการเรียนรู้คณะ IT KMITL (iHelp) ครบวงจร (โดย @Jesselpetry)",
+          en: "Rebranded site metadata from PSCP-specific tool to comprehensive IT KMITL Learning Hub (by @Jesselpetry)",
+        },
+      },
+    ],
+  },
+  {
+    version: "0.6.1",
+    date: "2026-09-10",
+    commit: "1f6d236",
+    contributors: [CONTRIBUTORS.chatan],
+    changes: [
+      {
+        kind: "added",
+        text: {
+          th: "โจทย์สัปดาห์ 8–9 เข้าสู่ระบบการเรียนรู้ครบวงจร พร้อมเฉลยอ้างอิงและ Concept Tags จากโค้ดจริง 27 ข้อ (โดย @Jesselpetry)",
+          en: "Integrated PSCP Week 8-9 problems with verified reference solutions and AST concept tags (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "โจทย์แนะนำเพิ่มเป็น 14 ข้อ (BigFrame, Left Arrow, กองชาม, Shorten) พร้อมคู่มือ 2 ภาษา (โดย @Jesselpetry)",
+          en: "Added 4 new recommended problems (BigFrame, Left Arrow, Bowl Stack, Shorten) with bilingual guides (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "สคริปต์ตรวจความถูกต้องของเฉลยอ้างอิงทั้งคลัง scripts/verify_solutions.py (โดย @Jesselpetry)",
+          en: "Generalised solution verifier script across entire problem registry (by @Jesselpetry)",
         },
       },
       {
         kind: "changed",
         text: {
-          th: "ย้ายโดเมนไป ihelp.chatan.in.th โดเมนเดิม redirect ตามพาธเดิม",
-          en: "Moved to ihelp.chatan.in.th; the old domain redirects path-for-path",
-        },
-      },
-      {
-        kind: "changed",
-        text: {
-          th: "โจทย์สัปดาห์ 8–9 มีเฉลยอ้างอิงครบ concept tag จึงมาจากโค้ดจริง",
-          en: "Weeks 8–9 have verified reference solutions, so concept tags come from real code",
-        },
-      },
-      {
-        kind: "changed",
-        text: {
-          th: "โจทย์แนะนำเพิ่มเป็น 14 ข้อ และอัปเดตสถิติโจทย์ OJ รอบใหม่",
-          en: "The recommended set grew to 14 problems, and OJ statistics were refreshed",
-        },
-      },
-      {
-        kind: "fixed",
-        text: {
-          th: "ชื่อใบงานแล็บสาย A ของ ICS เลื่อนไปหนึ่งช่อง แก้ให้ตรงกับหัวกระดาษจริง",
-          en: "ICS lab sheet titles were off by one; corrected against the real cover pages",
-        },
-      },
-      {
-        kind: "fixed",
-        text: {
-          th: "หัวตารางหน้าโจทย์ PSCP ล้นจอบนมือถือ",
-          en: "The PSCP problems header overflowed its card on mobile",
-        },
-      },
-      {
-        kind: "fixed",
-        text: {
-          th: "build บน Vercel ล้มเพราะเนื้อที่หมด (ENOSPC)",
-          en: "Vercel builds failed with ENOSPC as the file tracer pulled in the whole project",
+          th: "หน้ารายการโจทย์ PSCP แสดงผลแบบตาราง (Table View) เป็นค่าเริ่มต้น พร้อมมาตรวัดความยากดาว 5 ดวง (โดย @Jesselpetry)",
+          en: "Reworked PSCP problem list with table view default, concept badges, and 5-star difficulty (by @Jesselpetry)",
         },
       },
     ],
@@ -460,329 +498,114 @@ export const CHANGELOG: VersionEntry[] = [
   {
     version: "0.6.0",
     date: "2026-08-30",
-    commit: "0d1b4e2",
+    commit: "e0f09e9",
     contributors: [CONTRIBUTORS.chatan],
     changes: [
-      // ── Added: community learning hub ──────────────────────────────────
       {
         kind: "added",
         text: {
-          th: "บัญชีผู้ใช้และการยืนยันตัวตน: เข้าสู่ระบบด้วย Google บัญชี @kmitl.ac.th ตรวจรหัสนักศึกษา 8 หลักและรหัสคณะ เปิดให้เฉพาะนักศึกษาคณะ IT",
-          en: "Accounts and verification: Google sign-in restricted to @kmitl.ac.th, checking the 8-digit student id and the faculty code so only IT students get in",
-        },
-      },
-      {
-        kind: "added",
-        text: {
-          th: "โปรไฟล์สาธารณะ /profile/[รหัสนักศึกษา]: ชื่อเล่น สาขา ลิงก์โซเชียล และรายการทรัพยากรที่แชร์เข้าคลังทั้งหมด",
-          en: "Public profiles at /profile/[student id]: nickname, major, social links, and everything that student has shared",
+          th: "ระบบบัญชีผู้ใช้และยืนยันตัวตนด้วย Google @kmitl.ac.th ตรวจรหัสคณะ IT 8 หลัก (โดย @Jesselpetry)",
+          en: "User accounts and authentication enforcing @kmitl.ac.th 8-digit IT student ID verification (by @Jesselpetry)",
         },
       },
       {
         kind: "added",
         text: {
-          th: "รูปโปรไฟล์: อัปโหลดเองพร้อมเครื่องมือครอบรูปและบีบอัดในเบราว์เซอร์ หรือใช้รูปจากบัญชี Google เป็นค่าเริ่มต้น",
-          en: "Profile pictures: upload with an in-browser cropper and compressor, or fall back to the Google account photo",
+          th: "หน้าโปรไฟล์นักศึกษาสาธารณะ /profile/[รหัส] พร้อมตัวนับผู้เข้าชมที่เคารพความเป็นส่วนตัวที่ Footer (โดย @Jesselpetry)",
+          en: "Public student profiles (/profile/[id]) and privacy-preserving visitor counter in footer (by @Jesselpetry)",
         },
       },
       {
         kind: "added",
         text: {
-          th: "แชร์เข้าคลัง /upload: อัปโหลดสไลด์ สรุป หรือโน้ต ระบุวิชา ประเภท และช่วงสอบ พร้อมให้เครดิตผู้แชร์",
-          en: "Community uploads at /upload: share slides, summaries, or notes tagged by subject, type, and exam scope, credited to the uploader",
+          th: "ย้ายสื่อการเรียนรู้ทั้งหมดออกจาก Git ไปเก็บยัง Supabase Storage แยก Bucket สาธารณะและ Bucket ข้อสอบลับ (โดย @Jesselpetry)",
+          en: "Migrated all learning media from Git to Supabase Storage with public and restricted exam buckets (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "security",
+        text: {
+          th: "กั้นสิทธิ์คลังทรัพยากรเฉพาะนักศึกษาคณะ IT ที่ล็อกอิน และกั้นข้อสอบเก่าเฉพาะ Insider (โดย @Jesselpetry)",
+          en: "Restricted resource library to authenticated IT students and past exam papers to insiders only (by @Jesselpetry)",
+        },
+      },
+    ],
+  },
+  {
+    version: "0.5.2",
+    date: "2026-08-26",
+    commit: "1b82b9b",
+    contributors: [CONTRIBUTORS.chatan],
+    changes: [
+      {
+        kind: "added",
+        text: {
+          th: "รวมเส้นทางรายวิชาทั้งหมดเป็นต้นไม้เดียว /courses/[dir] และฮับห้องแลป /pscp (โดย @Jesselpetry)",
+          en: "Unified /courses/[dir] route tree for all courses and dedicated /pscp lab hub (by @Jesselpetry)",
         },
       },
       {
         kind: "added",
         text: {
-          th: "ตัวนับผู้เข้าชมที่ footer: วันนี้ / 7 วัน / ทั้งหมด นับตามวันเวลาไทย ไม่เก็บ IP และไม่ใช้คุกกี้ติดตาม",
-          en: "Footer visitor counter: today / 7 days / all time on Bangkok days, storing no IP and no tracking cookie",
+          th: "พิมพ์เขียวการเรียนรู้ 11 โมดูลมาตรฐาน (lib/spine.ts) เชื่อมโยงทุกรายวิชาเข้าด้วยกัน (โดย @Jesselpetry)",
+          en: "Standardised 11-module learning spine (lib/spine.ts) binding every course to the same contract (by @Jesselpetry)",
         },
       },
       {
         kind: "added",
         text: {
-          th: "ไดอะล็อกต้อนรับแบบเลือกปลายทาง ถามผู้ใช้ใหม่ว่าอยากเริ่มที่ห้องแลป PSCP หรือคลังทรัพยากร",
-          en: "A welcome dialog that asks new visitors whether to start in the PSCP lab or the resource library",
-        },
-      },
-      // ── Changed: this release ──────────────────────────────────────────
-      {
-        kind: "changed",
-        text: {
-          th: "แท็บช่วงสอบในหน้ารายวิชาเป็นดรอปดาวน์บนมือถือ ปุ่มสามตัวพร้อมไอคอนและตัวเลขล้นแถวเดียวบนจอ 360px จนข้อความถูกตัด",
-          en: "The exam-scope tabs on subject pages become a dropdown on mobile: three buttons with icons and counts overflowed a 360px row and truncated",
-        },
-      },
-      {
-        kind: "changed",
-        text: {
-          th: "แถบนำทางแสดงรูปโปรไฟล์พร้อมชื่อเล่น และนำลิงก์ iJudge ออก (ยังอยู่ที่ footer)",
-          en: "The navbar shows your picture and nickname, and the iJudge link moved out of it (still in the footer)",
-        },
-      },
-      {
-        kind: "changed",
-        text: {
-          th: "คลังทรัพยากรขึ้นหน้า \"เร็วๆ นี้\" ชั่วคราวระหว่างจัดหมวดหมู่เอกสาร",
-          en: "The resource library sits behind a \"coming soon\" cover while its documents are being sorted",
-        },
-      },
-      // ── Added: earlier in this release ─────────────────────────────────
-      {
-        kind: "added",
-        text: {
-          th: "ฮับวิชา EN-KMITL (คอมโปร): หน้าสารบัญก่อนเริ่มทำแบบทดสอบ ปุ่มกระโดดไปข้อที่ต้องการ และข้อสอบจำลอง 60 ข้อ รวมกับ 10 ข้อคัดสรรเป็น 70 ข้อ",
-          en: "EN-KMITL (ComPro) hub: a syllabus screen before the quiz starts, a jump-to-question navigator, and a 60-question mock exam merged with the 10 curated questions for 70 total",
-        },
-      },
-      {
-        kind: "added",
-        text: {
-          th: "หมวดวิชา IT-KMITL — ฮับ ICS/Digital Logic: สรุปเนื้อหา แบบทดสอบ 50 ข้อ ข้อสอบฝึกพร้อมเฉลยละเอียด บทวิเคราะห์โครงข้อสอบ และคลังทรัพยากร",
-          en: "IT-KMITL faculty section — ICS / Digital Logic hub: summary, a 50-question quiz, a practice exam with worked solutions, an exam-blueprint analysis, and a resource library",
-        },
-      },
-      {
-        kind: "added",
-        text: {
-          th: "ฮับวิชา MFIT (คณิตศาสตร์สำหรับ IT): สรุปเนื้อหา แบบทดสอบ 45 ข้อ ข้อสอบจำลอง และคลังทรัพยากร ครอบคลุมพีชคณิตเชิงเส้นสัปดาห์ 1–7",
-          en: "MFIT (Math for IT) hub: summary, a 45-question quiz, a mock exam, and a resource library covering linear algebra weeks 1-7",
-        },
-      },
-      {
-        kind: "added",
-        text: {
-          th: "เตรียมสอบ MFIT ตามโครงข้อสอบจริง: สรุปเร่งด่วนเรียงตามข้อสอบ 10 ข้อจริง แผนอ่าน 6 ชั่วโมงตามน้ำหนักคะแนน และชุดฝึกจับเวลา (ปรนัย 20 + คำนวณ 5) รวมคลังข้อสอบเป็น 65 ข้อ",
-          en: "MFIT blueprint-led exam prep: a crash summary ordered by the real 10-question exam, a 6-hour study plan weighted by actual marks, and a timed drill (20 MCQ + 5 calculations), bringing the quiz bank to 65 questions",
-        },
-      },
-      {
-        kind: "added",
-        text: {
-          th: "ฮับ EN-KMITL แบบหลายวิชา พร้อมข้อสอบจำลองเคมีทั่วไป 60 ข้อ และคลังทรัพยากรของตัวเอง",
-          en: "A multi-subject EN-KMITL hub with a 60-question General Chemistry mock exam and its own resource library",
-        },
-      },
-      {
-        kind: "added",
-        text: {
-          th: "สารบัญด้านข้างแบบโต้ตอบในทุกหน้าอ่าน: ไล่ตามตำแหน่งที่อ่าน แถบความคืบหน้า ค้นหาหัวข้อ พับ/ขยายได้ และเลื่อนแยกอิสระจากเนื้อหา",
-          en: "An interactive table-of-contents side panel on every reader: scroll-spy, live reading progress, a search filter, and independent, foldable scrolling",
-        },
-      },
-      {
-        kind: "added",
-        text: {
-          th: "route เดียว /courses/[dir] รองรับทุกวิชา แทนโครง en-kmitl และ it-kmitl ที่แยกกันคนละต้นไม้",
-          en: "One unified /courses route tree serving every subject, replacing the separate en-kmitl and it-kmitl route trees",
-        },
-      },
-      {
-        kind: "added",
-        text: {
-          th: "route /pscp — ฮับห้องแลป Python พร้อมหน้าย่อยแยกตามโมดูล",
-          en: "The /pscp route: a Python lab hub with per-module pages",
-        },
-      },
-      {
-        kind: "added",
-        text: {
-          th: "คลังทรัพยากรสร้างการ์ดจากไฟล์อัตโนมัติ (scripts/build-library-manifest.mjs) — วางไฟล์ลง public/assets/ ตามกติกาแล้วขึ้นเว็บทันที ไม่ต้องเขียน entry มือ",
-          en: "The resource library now generates cards from the file tree (scripts/build-library-manifest.mjs) — drop a file into public/assets/ and it appears without a hand-written entry",
-        },
-      },
-      {
-        kind: "added",
-        text: {
-          th: "นำเข้าสื่อการเรียนปี 1 ทั้งหมดจากคลัง kmitl-archive — 670 ไฟล์ ครอบคลุม 13 รายวิชาทั้งเทอม 1 และเทอม 2",
-          en: "Ingested the full Year-1 media set from kmitl-archive — 670 files across 13 subjects, both semesters",
-        },
-      },
-      {
-        kind: "added",
-        text: {
-          th: "นำเข้าเอกสาร Markdown จาก kmitl-archive และ iLearn — 30 ไฟล์ รวมคู่มือทบทวน MFIT สัปดาห์ 8–15",
-          en: "Ingested 30 course markdown documents from kmitl-archive and iLearn, including MFIT's weeks 8-15 study guide",
-        },
-      },
-      {
-        kind: "added",
-        text: {
-          th: "workflow _dropzone/ — วางไฟล์ที่ยังไม่ได้จัดหมวด แล้วให้ AI agent จัดวิชา/หมวด/ขอบเขตสอบให้ตาม docs/DROPZONE_SOP.md",
-          en: "The _dropzone/ workflow — drop unsorted files and let an AI agent classify subject, category, and exam scope per docs/DROPZONE_SOP.md",
-        },
-      },
-      {
-        kind: "added",
-        text: {
-          th: "เอกสาร FILE_STRUCTURE.md — กติกา path การตั้งชื่อไฟล์ และ taxonomy กลางภาค/ปลายภาคที่ทุกวิชาต้องทำตาม",
-          en: "FILE_STRUCTURE.md — the path rules, filename conventions, and midterm/final taxonomy every subject follows",
-        },
-      },
-      {
-        kind: "added",
-        text: {
-          th: "พิมพ์เขียวการเรียนรู้ 11 โมดูล (lib/spine.ts) — สัญญาเดียวว่าหน้าวิชาต้องมีอะไรบ้าง แทนที่ track 6 แบบเดิมที่เขียนตายตัวในแต่ละหน้า เชื่อมกับแต่ละวิชาผ่าน lib/course-bindings.ts",
-          en: "An eleven-module learning spine (lib/spine.ts) — one declared contract for what a course page offers, replacing six hard-coded tracks; lib/course-bindings.ts declares what each course actually fills",
-        },
-      },
-      {
-        kind: "added",
-        text: {
-          th: "สัญญาคลังข้อสอบที่ตรวจได้ด้วยเครื่อง (lib/schemas/content.ts, npm run content:check) รันในขั้น build — ทุกข้อต้องมีแหล่งอ้างอิง ตัวเลือกห้าม id ซ้ำ คลังข้อสอบแต่ละชุดต้องมี progress key ไม่ชนกัน",
-          en: "A machine-checked content contract (lib/schemas/content.ts, npm run content:check) wired into the build — every question needs a source reference, option ids must be unique, and quiz banks need unique progress keys",
-        },
-      },
-      {
-        kind: "added",
-        text: {
-          th: "npm run readiness — รายงานความครบของพิมพ์เขียวแต่ละวิชาเป็นคะแนน x/11",
-          en: "npm run readiness — reports each course's spine completion as an x/11 score",
-        },
-      },
-      {
-        kind: "added",
-        text: {
-          th: "เอกสาร docs/LEARNING_BLUEPRINT.md — สัญญาเต็มของพิมพ์เขียว 11 โมดูลที่ระบบตรวจอยู่",
-          en: "docs/LEARNING_BLUEPRINT.md — the full eleven-module contract the build enforces",
-        },
-      },
-      {
-        kind: "added",
-        text: {
-          th: "การ์ดสรุปวิชาแบบพับ/ขยายได้ พร้อมสารบัญของตัวเองเมื่อดูเนื้อหาเต็ม",
-          en: "A collapsible course summary card with its own table-of-contents panel when viewing the full content",
-        },
-      },
-      {
-        kind: "added",
-        text: {
-          th: "ฟิลด์ chapter บนไฟล์ในคลังทรัพยากรและข้อสอบ อ่านจากชื่อไฟล์อัตโนมัติ — กรองคลังทรัพยากรตามบท/สัปดาห์ได้แล้ว",
-          en: "A chapter field on library assets and quiz questions, backfilled from filenames — the resource library can now be filtered by chapter/week",
-        },
-      },
-
-      // ── Changed ────────────────────────────────────────────────────────
-      {
-        kind: "changed",
-        text: {
-          th: "ออกแบบใหม่: navbar, footer, splash screen, subject hub และหน้าต่างพรีวิวคลังทรัพยากร",
-          en: "Redesigned the navbar, footer, splash screen, subject hub, and the library preview modal",
+          th: "นำเข้าชุดสื่อการเรียนปี 1 จากคลัง kmitl-archive (662 ไฟล์) และเวิร์กโฟลว์จัดการไฟล์ _dropzone/ (โดย @Jesselpetry)",
+          en: "Ingested Year-1 media archive (662 files) and introduced agent-driven _dropzone/ file intake workflow (by @Jesselpetry)",
         },
       },
       {
         kind: "changed",
         text: {
-          th: "คอมโพเนนต์ร่วมชุดใหม่: course directory, module/track grid, การ์ดโมดูล PSCP, lab hub และ badge ของแต่ละวิชา",
-          en: "New shared components: course directory, module/track grid, PSCP module cards, lab hub, and subject badges",
+          th: "บีบอัดเอกสาร PDF ทั้งหมดผ่าน Visual Regression Gate ลดขนาดลง 32% (โดย @Jesselpetry)",
+          en: "Recompressed PDFs behind visual regression gate reducing total size by 32% (by @Jesselpetry)",
         },
       },
       {
         kind: "changed",
         text: {
-          th: "เปลี่ยนชื่อไฟล์ใน public/assets/ ทั้งหมดเป็น kebab-case (155 ไฟล์) และจัดเข้าโฟลเดอร์หมวด — ไฟล์เคมีที่มีช่องว่างในชื่อไม่ต้อง escape ใน URL อีกต่อไป",
-          en: "Renamed every file under public/assets/ to kebab-case (155 files) and sorted into category folders — the chemistry PDFs with spaces no longer need URL escaping",
-        },
-      },
-      {
-        kind: "changed",
-        text: {
-          th: "บีบอัด PDF ทุกไฟล์ผ่านการตรวจสอบภาพก่อน-หลัง (visual regression gate) — จาก 1,328 MB เหลือ 908 MB (ลด 32%) ใน 475 จาก 621 ไฟล์ ส่วน 101 ไฟล์ที่ภาพจะเสียถูกกันไว้ที่ขนาดเดิม",
-          en: "PDFs recompressed behind a visual-regression gate — 1,328 MB down to 908 MB (32% smaller) across 475 of 621 files, holding back the 101 that would visibly degrade",
-        },
-      },
-      {
-        kind: "changed",
-        text: {
-          th: "แยกข้อสอบจำลอง 60 ข้อของ COMPRO ออกจากคลังฝึก 10 ข้อ เป็นโมดูลของตัวเองพร้อม progress แยกต่างหาก (เดิมต่อท้ายกันเงียบๆ ทำให้เจอ 70 ข้อตอนกดทำแบบทดสอบ)",
-          en: "COMPRO's 60-question mock paper is now its own module with its own progress tracking, separated from its 10-question practice quiz (previously concatenated silently, so a student saw 70 questions when practicing 10)",
-        },
-      },
-      {
-        kind: "changed",
-        text: {
-          th: "URL เก่า /exam /plan /analysis redirect ไปยัง segment ใหม่ของแต่ละโมดูล",
-          en: "Legacy /exam, /plan, and /analysis URLs redirect to their new module segments",
-        },
-      },
-      {
-        kind: "changed",
-        text: {
-          th: "sitemap สร้างจากพิมพ์เขียว 11 โมดูลอัตโนมัติ แทนรายการ route ที่เขียนมือ",
-          en: "The sitemap is generated from the eleven-module spine instead of a hand-maintained route list",
-        },
-      },
-      {
-        kind: "changed",
-        text: {
-          th: "การ์ดโมดูลในหน้าวิชาเรียงลำดับที่พร้อมใช้ก่อนในแต่ละเฟส และดึงคลังทรัพยากรขึ้นเป็นแบนเนอร์เด่นเหนือกริดโมดูล",
-          en: "Module cards on a course page sort available-first within each phase, and the resource archive is promoted to a featured banner above the module grid",
-        },
-      },
-      {
-        kind: "changed",
-        text: {
-          th: "ปรับข้อความ modal ต้อนรับให้ตรงกับสิ่งที่ ihelp เป็นตอนนี้ — คลังการเรียนรู้เปิด ไม่ใช่แค่เครื่องมือ PSCP",
-          en: "Refreshed the welcome/disclaimer modal copy for what ihelp actually offers today — an open learning hub, not just the PSCP tool",
-        },
-      },
-      {
-        kind: "changed",
-        text: {
-          th: "แปลงหลาย route จาก force-dynamic เป็น static generation เพื่อให้อยู่ในโควตา 12 serverless function ของ Vercel Hobby",
-          en: "Converted several force-dynamic routes to static generation to stay within Vercel Hobby's 12-function limit",
-        },
-      },
-
-      // ── Fixed ──────────────────────────────────────────────────────────
-      {
-        kind: "fixed",
-        text: {
-          th: "รวมเนื้อหา EN-KMITL เข้า repo เอง — deploy จริงไม่มี repo พี่น้องที่โค้ดเคยอ้างอิง ทำให้หน้าเพจ 404",
-          en: "Bundled EN-KMITL content into this repo — production only deploys this repo, so the page 404'd looking for markdown in a sibling repo that doesn't exist there",
+          th: "ปรับชื่อไฟล์สื่อการสอนทั้งหมดเป็นรูปแบบมาตรฐาน kebab-case (โดย @Jesselpetry)",
+          en: "Sanitised all asset filenames to standard kebab-case across public/assets/ (by @Jesselpetry)",
         },
       },
       {
         kind: "fixed",
         text: {
-          th: "แก้การเรนเดอร์สูตรคณิตศาสตร์ (KaTeX) ใน markdown viewer",
-          en: "Fixed math formula rendering (KaTeX) in the markdown viewer",
+          th: "แก้ไขปัญหาสูตรคณิตศาสตร์ $$...$$ หลายบรรทัดกลืนเนื้อหาในตัวอ่าน Markdown (โดย @Jesselpetry)",
+          en: "Fixed multi-line KaTeX display math swallowing following document text in MdView (by @Jesselpetry)",
+        },
+      },
+    ],
+  },
+  {
+    version: "0.5.1",
+    date: "2026-08-22",
+    commit: "319b244",
+    contributors: [CONTRIBUTORS.chatan],
+    changes: [
+      {
+        kind: "added",
+        text: {
+          th: "ขยายฮับสู่หลายรายวิชา — CE-KMITL, EN-KMITL (ข้อสอบเคมี 60 ข้อ และคอมโปร), ICS Digital Logic และ MFIT Linear Algebra (โดย @Jesselpetry)",
+          en: "Expanded course hubs to CE, EN-KMITL (Chem 60-q mock & ComPro), ICS Digital Logic, and MFIT (by @Jesselpetry)",
         },
       },
       {
-        kind: "fixed",
+        kind: "added",
         text: {
-          th: "แก้ asset ID ชนกันในตัวสร้าง library manifest",
-          en: "Fixed a duplicate asset ID collision in the library manifest generator",
+          th: "แผนอ่านติวเข้ม MFIT 6 ชั่วโมง พร้อมชุดฝึกจับเวลา และสรุปตามพิมพ์เขียวข้อสอบจริง (โดย @Jesselpetry)",
+          en: "MFIT cram summary, 6-hour study plan, timed drill, and 20-question blueprint quiz (by @Jesselpetry)",
         },
       },
       {
-        kind: "fixed",
+        kind: "added",
         text: {
-          th: "สูตร $$...$$ แบบหลายบรรทัดเคยกลืนหัวข้อและย่อหน้าที่เหลือทั้งไฟล์ให้กลายเป็นข้อความดิบ — เกิดกับทุกหน้า markdown ในเว็บ ไม่ใช่แค่ไฟล์เดียว",
-          en: "Multi-line $$...$$ math blocks were silently swallowing every heading and paragraph after them into raw text — affecting every markdown page in the app, not just one file",
-        },
-      },
-      {
-        kind: "fixed",
-        text: {
-          th: "แก้คำเตือน workspace-root ของ Turbopack และลบ lockfile ที่ไม่ตรงกับตัวจัดการแพ็กเกจของโปรเจกต์อีกต่อไป",
-          en: "Fixed a Turbopack workspace-root warning and dropped a stray lockfile that no longer matched the project's package manager",
-        },
-      },
-      {
-        kind: "changed",
-        text: {
-          th: "ซิงก์ข้อมูลโจทย์ OJ และ HTML cache รอบใหม่",
-          en: "Refreshed the OJ problem data and the cached HTML",
-        },
-      },
-      {
-        kind: "fixed",
-        text: {
-          th: "hydration error จากตำแหน่งแท็ก script และการซ้อนแถวตารางที่ไม่ถูกต้อง",
-          en: "Hydration errors from script placement and invalid table row nesting",
+          th: "สารบัญด้านข้างแบบโต้ตอบ (Interactive Real-Time TOC) พร้อม Scroll Spy ในหน้าอ่านเอกสาร (โดย @Jesselpetry)",
+          en: "Interactive real-time TOC side panel with scroll spy, reading progress, and search filter (by @Jesselpetry)",
         },
       },
     ],
@@ -796,106 +619,101 @@ export const CHANGELOG: VersionEntry[] = [
       {
         kind: "added",
         text: {
-          th: "ระบบ Technique Quiz: แบบทดสอบ Active-Recall 60 ข้อ ครอบคลุม 10 โจทย์แนะนำ พร้อมเฉลย 2 ภาษา (TH/EN)",
-          en: "Technique Quiz: 60 active-recall questions covering all 10 recommended problems with bilingual explanations",
+          th: "ฮับโจทย์แนะนำ 10 ข้อหลัก (/recommended) พร้อมบทวิเคราะห์จุดสำคัญและสถิติจริงจาก iJudge (โดย @Jesselpetry)",
+          en: "Recommended problems hub (/recommended) with 10 core pattern problems and scraped iJudge stats (by @Jesselpetry)",
         },
       },
       {
         kind: "added",
         text: {
-          th: "ระบบ Client-Side Grader: ตรวจโค้ด Python ผ่าน WebAssembly (Pyodide) ใน Web Worker โดยตรงในเบราว์เซอร์",
-          en: "Client-Side Grader: evaluate and run Python code in-browser via WebAssembly (Pyodide) inside a Web Worker",
+          th: "ระบบ Client-Side Python Grader ตรวจโค้ดในเบราว์เซอร์ 100% ด้วย WebAssembly (Pyodide in Web Worker) (โดย @Jesselpetry)",
+          en: "Client-side Python grader running in Web Worker via WebAssembly Pyodide (by @Jesselpetry)",
         },
       },
       {
         kind: "added",
         text: {
-          th: "หน้าจอ Splitter Panel Workspace (/recommended/[slug]): แบ่ง 2 หน้าจอปรับขนาดได้ ฝั่งซ้ายเป็นโจทย์ ฝั่งขวาเป็น Grader",
-          en: "Splitter Panel Workspace (/recommended/[slug]): resizable split screen with problem notes on left and Grader on right",
+          th: "ระบบ Technique Quiz Active-Recall 60 ข้อ พร้อมคำอธิบาย 2 ภาษา (โดย @Jesselpetry)",
+          en: "Active-recall technique quiz bank with 60 questions and bilingual explanations (by @Jesselpetry)",
         },
       },
       {
         kind: "added",
         text: {
-          th: "ระบบ Foldable Test Cases: แสดง Expected Input / Output แบบพับได้ (Default พับ) พร้อม Diff View แสดงช่องว่าง",
-          en: "Foldable Test Cases: expandable expected I/O with whitespace diff inspector",
+          th: "หน้าจอ Splitter Panel Workspace ลากปรับขนาดได้ พร้อม Foldable Expected I/O และ Diff View (โดย @Jesselpetry)",
+          en: "Resizable splitter panel workspace with foldable test cases and expected I/O diff view (by @Jesselpetry)",
         },
       },
       {
         kind: "added",
         text: {
-          th: "ระบบตรวจสไตล์โค้ด PEP-8 & PSCP Rules และคีย์ลัด Ctrl+Enter สำหรับสั่งรันเทส",
-          en: "PEP-8 & PSCP code style linter and Ctrl+Enter execution shortcut",
+          th: "ระบบตรวจสอบสไตล์โค้ด PEP-8 & PSCP Rules และคีย์ลัดสั่งรันโค้ดทันที (โดย @Jesselpetry)",
+          en: "PEP-8 and PSCP rule style checker with Cmd+Enter keyboard shortcut execution (by @Jesselpetry)",
         },
       },
       {
         kind: "changed",
         text: {
-          th: "ปรับปรุงเลย์เอาต์หน้าโจทย์แนะนำให้ Fit-to-Screen 100% เลื่อนเฉพาะเนื้อหาแต่ละฝั่งอย่างอิสระ",
-          en: "Enhanced recommended problem reader to fit 100% viewport height with independent panel scrollbars",
+          th: "ยกระดับ UI มือถือเต็มรูปแบบ แท็บปรับตามความกว้างจอ และตัวแปร CSS สำหรับ Split Layout (โดย @Jesselpetry)",
+          en: "Polished mobile responsiveness with adaptive tabs and fluid responsive CSS split variables (by @Jesselpetry)",
         },
       },
       {
         kind: "fixed",
         text: {
-          th: "แก้ไขการ Hydrate ข้อมูลแบบ Primitive String ใน useDraft ป้องกันข้อผิดพลาด [object Object]",
-          en: "Fixed primitive string hydration in useDraft preventing [object Object] errors",
+          th: "แก้ไขการ Hydrate ข้อมูล Primitive String ใน useDraft ป้องกันข้อผิดพลาด [object Object] (โดย @Jesselpetry)",
+          en: "Fixed useDraft primitive string hydration issue preventing [object Object] serialization (by @Jesselpetry)",
         },
       },
+    ],
+  },
+  {
+    version: "0.4.2",
+    date: "2026-08-13",
+    commit: "de8ce4b",
+    contributors: [CONTRIBUTORS.pgthegod, CONTRIBUTORS.chatan],
+    changes: [
       {
         kind: "added",
         text: {
-          th: "ฮับโจทย์แนะนำ /recommended — โจทย์คัดมา 10 ข้อ พร้อมปุ่มสลับสถานะของตัวเอง",
-          en: "The /recommended hub — 10 curated problems with per-problem status toggles",
-        },
-      },
-      {
-        kind: "added",
-        text: {
-          th: "หน้าอ่านโค้ดเฉลย พร้อมไฮไลต์ไวยากรณ์ เลขบรรทัด และการ์ดสรุปจุดสำคัญ",
-          en: "Solution reader with syntax highlighting, line numbers, and a key-takeaways card",
-        },
-      },
-      {
-        kind: "added",
-        text: {
-          th: "ดึงสถิติจริงจาก iJudge — อัตราผ่านและวันหมดเขตของแต่ละข้อ",
-          en: "Real iJudge statistics — pass rates and deadlines for every problem",
-        },
-      },
-      {
-        kind: "added",
-        text: {
-          th: "URL สั้นระดับบนสุด /{slug} พร้อม redirect จากรูปแบบเดิม",
-          en: "Top-level /{slug} URLs, with redirects from the old shape",
-        },
-      },
-      {
-        kind: "added",
-        text: {
-          th: "หน้า Landing Page /pro สำหรับส่วนขยาย PG IJUDGE บน VS Code — โดย Akarapach Yootsukprasert (@PGTHEGOD)",
-          en: "PG IJUDGE VS Code Extension landing page (/pro) — by Akarapach Yootsukprasert (@PGTHEGOD)",
-        },
-      },
-      {
-        kind: "added",
-        text: {
-          th: "โจทย์ OJ สัปดาห์ 4 และ 5 (3101–3116) พร้อมสคริปต์ sync สถานะโจทย์",
-          en: "Week 4 and 5 OJ problems (3101–3116), plus a status sync script",
+          th: "หน้า Landing Page /pro สำหรับ PG IJUDGE · VS Code Extension แนะนำส่วนขยายส่งโค้ดตรงเข้า iJudge, รันเทสต์ในเครื่อง, เทสต์เคสซ่อน, ทำงานออฟไลน์ และขอรับ License Key ผ่าน IG @pgthegod_x (โดย @PGTHEGOD)",
+          en: "PG IJUDGE VS Code Extension landing page (/pro) showcasing direct submissions, local sample runner, hidden test cases, and license requests via IG @pgthegod_x (by @PGTHEGOD)",
         },
       },
       {
         kind: "changed",
         text: {
-          th: "ยกเครื่องการแสดงผลบนมือถือ — แท็บปรับตามจอ ปุ่มกดง่ายขึ้น แถบเครื่องมือกะทัดรัด",
-          en: "Mobile overhaul — adaptive tabs, larger touch targets, and a compact toolbar",
+          th: "ผูก Metadata SEO และโครงสร้างเส้นทางสำหรับส่วนขยายเครื่องมือช่วยเขียนโค้ด (โดย @PGTHEGOD)",
+          en: "Integrated SEO metadata, Open Graph cards, and top-level route routing for PG IJUDGE (by @PGTHEGOD)",
+        },
+      },
+    ],
+  },
+  {
+    version: "0.4.1",
+    date: "2026-07-31",
+    commit: "22c4528",
+    contributors: [CONTRIBUTORS.chatan],
+    changes: [
+      {
+        kind: "added",
+        text: {
+          th: "แบนเนอร์ประกาศเตรียมตัวสอบสัมภาษณ์โค้ด (Code Interview) (โดย @Jesselpetry)",
+          en: "Announcement banner for upcoming PSCP Code Interview (by @Jesselpetry)",
         },
       },
       {
-        kind: "fixed",
+        kind: "added",
         text: {
-          th: "ป้ายเทคนิคชื่อยาวล้นออกนอกแถว และการ์ดสถิติ Learning Log แสดงซ้ำสองใบ",
-          en: "Long technique badges overflowed their row, and the Learning Log stat card was duplicated",
+          th: "เพิ่มชุดโจทย์ OJ Week 4 และ Week 5 (รหัส 3101–3116) พร้อมตรวจสถานะซิงก์ (โดย @Jesselpetry)",
+          en: "Added OJ problems for Week 4 and Week 5 (ids 3101-3116) with sync verification (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "แผงพรีวิวไฟล์เลื่อนไปยังไฟล์ที่รอ Push อัตโนมัติ (Auto-scroll target preview) (โดย @Jesselpetry)",
+          en: "Auto-scrolled target preview panel to pending unpushed file (by @Jesselpetry)",
         },
       },
     ],
@@ -909,50 +727,36 @@ export const CHANGELOG: VersionEntry[] = [
       {
         kind: "added",
         text: {
-          th: "ระบบเชื่อมต่อ GitHub (OAuth) และ Push ไฟล์ submission.md / ai_reflection.md เข้า Repository โดยตรง",
-          en: "Direct GitHub integration (OAuth) to push submission.md / ai_reflection.md to repositories",
+          th: "ระบบเชื่อมต่อ GitHub OAuth และ Push ไฟล์ submission.md / ai_reflection.md เข้า Repository โดยตรง (โดย @Meaookung144)",
+          en: "Direct edit submission and push to GitHub repository via OAuth integration (by @Meaookung144)",
         },
       },
       {
         kind: "added",
         text: {
-          th: "ตัวแก้ไขไฟล์ออนไลน์ (/repo) สำหรับแก้ไขและดูตัวอย่างไฟล์ก่อน Push",
-          en: "Online file editor (/repo) to inspect and edit repository files before pushing",
+          th: "ตัวแก้ไขไฟล์ออนไลน์ (/repo) ตรวจทานและแก้ไขโค้ดใน Repo ก่อนกด Push (โดย @Meaookung144)",
+          en: "Online repository file viewer and editor before committing to GitHub (by @Meaookung144)",
         },
       },
       {
         kind: "added",
         text: {
-          th: "หน้าประวัติเวอร์ชัน (/version) และการบันทึก Changelog ของโปรเจกต์",
-          en: "Version history page (/version) and project Changelog tracking",
-        },
-      },
-      {
-        kind: "added",
-        text: {
-          th: "ส่วนแสดงผล Avatar พร้อม AvatarBadge สำหรับผู้ร่วมพัฒนาในหน้า /version",
-          en: "Contributor avatar badges with status indicators on the /version page",
+          th: "หน้าประวัติเวอร์ชันและผู้ร่วมพัฒนา (/version) พร้อม Changelog workflow (โดย @Jesselpetry)",
+          en: "Version history page (/version) and standardized changelog release workflow (by @Jesselpetry)",
         },
       },
       {
         kind: "changed",
         text: {
-          th: "ปรับปรุง Navbar ให้รองรับอุปกรณ์เคลื่อนที่ (Mobile Responsive) พร้อมเมนู Hamburger",
-          en: "Mobile responsive Navbar with hamburger menu navigation",
-        },
-      },
-      {
-        kind: "changed",
-        text: {
-          th: "ปรับปรุง UI ส่วน GitHub Push และ Wizard ขั้นตอน 1–10 ให้ใช้ง่ายขึ้น",
-          en: "Improved GitHub Push UI and step 1–10 wizard navigation",
+          th: "ปรับปรุง Navbar รองรับ Mobile Responsive พร้อมเมนู Hamburger และ Contributor Avatars (โดย @Jesselpetry)",
+          en: "Mobile-responsive navbar with hamburger drawer and contributor avatar showcases (by @Jesselpetry)",
         },
       },
       {
         kind: "fixed",
         text: {
-          th: "แก้ไขการทำงานของ Folder Component ในหน้าจัดการ Repository",
-          en: "Fixed folder tree component handling in the repo editor",
+          th: "ปรับปรุงการทำงานของ Folder Component ในหน้าจัดการ Repo (โดย @Meaookung144)",
+          en: "Fixed folder tree component rendering in repository explorer (by @Meaookung144)",
         },
       },
     ],
@@ -966,8 +770,8 @@ export const CHANGELOG: VersionEntry[] = [
       {
         kind: "added",
         text: {
-          th: "ระบบสลับธีม (light / dark) พร้อมปุ่ม toggle แบบมี animation",
-          en: "Light / dark theme system with an animated toggle button",
+          th: "ระบบสลับธีม Light / Dark Mode พร้อมปุ่ม Toggle แอนิเมชันนุ่มนวล (โดย @Jesselpetry)",
+          en: "Theme system (light/dark) with animated toggle button (by @Jesselpetry)",
         },
       },
     ],
@@ -980,20 +784,23 @@ export const CHANGELOG: VersionEntry[] = [
     changes: [
       {
         kind: "added",
-        text: { th: "ประกาศเปิดโจทย์ Week 3", en: "Announced Week 3 problems" },
-      },
-      {
-        kind: "changed",
         text: {
-          th: "ปรับการเรียงลำดับโจทย์และทางลัดประจำสัปดาห์",
-          en: "Improved problem sorting and weekly shortcuts",
+          th: "ประกาศเปิดโจทย์ Week 3 (โดย @Jesselpetry)",
+          en: "Announced Week 3 problems opening (by @Jesselpetry)",
         },
       },
       {
         kind: "changed",
         text: {
-          th: "อัปเดตรายการโจทย์ใน data/oj_problems.json",
-          en: "Updated the problem list in data/oj_problems.json",
+          th: "ปรับปรุงการจัดเรียงโจทย์และเพิ่มคีย์ลัดประจำสัปดาห์ lib/shortcuts.ts (โดย @Jesselpetry)",
+          en: "Updated problem sorting and weekly shortcuts in lib/shortcuts.ts (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "อัปเดตข้อมูลโจทย์ใน data/oj_problems.json (โดย @Jesselpetry)",
+          en: "Refreshed problem list in data/oj_problems.json (by @Jesselpetry)",
         },
       },
     ],
@@ -1007,8 +814,15 @@ export const CHANGELOG: VersionEntry[] = [
       {
         kind: "changed",
         text: {
-          th: "ต้องกดยืนยันว่าอ่านเนื้อหาแล้วก่อนดาวน์โหลดไฟล์ submission.md / ai_reflection.md",
-          en: "Downloads now require confirming you've read the file first",
+          th: "บังคับยืนยันว่าอ่านเงื่อนไขและแนวปฏิบัติ AI ของวิชาก่อนดาวน์โหลดไฟล์ ป้องกันการส่งงานโดยไม่อ่านกติกา (โดย @Jesselpetry)",
+          en: "Gate downloads behind read confirmation to ensure students review AI guidelines first (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "fixed",
+        text: {
+          th: "แก้ไข Path การสร้างไฟล์ของโจทย์ Week 2 (โดย @Jesselpetry)",
+          en: "Fixed file generation path for Week 2 problems (by @Jesselpetry)",
         },
       },
     ],
@@ -1022,45 +836,51 @@ export const CHANGELOG: VersionEntry[] = [
       {
         kind: "added",
         text: {
-          th: "Wizard ทีละขั้นตอนสำหรับสร้าง submission.md / ai_reflection.md",
-          en: "Step-by-step wizard for generating submission.md / ai_reflection.md",
+          th: "ระบบสร้าง submission.md และ ai_reflection.md สำหรับวิชา PSCP ทีละขั้นตอน (Wizard) (โดย @Jesselpetry)",
+          en: "Step-by-step wizard for generating submission.md and ai_reflection.md for PSCP (by @Jesselpetry)",
         },
       },
       {
         kind: "added",
         text: {
-          th: "รายการโจทย์พร้อมระดับความยาก วันหมดเขต และแท็บกรองรายสัปดาห์",
-          en: "Problem list with difficulty, expiry date, and weekly filter tabs",
-        },
-      },
-      {
-        kind: "added",
-        text: { th: "หน้า /library — อ่านเอกสาร AI-Guidelines-PSCP", en: "/library page for reading the AI-Guidelines-PSCP docs" },
-      },
-      {
-        kind: "added",
-        text: {
-          th: "หน้า /history — เก็บประวัติไฟล์ที่เคยสร้างไว้ในเครื่อง",
-          en: "/history page storing previously generated files locally",
+          th: "รายการโจทย์พร้อมระดับความยาก วันหมดเขต และแท็บกรองรายสัปดาห์ (โดย @Jesselpetry)",
+          en: "Problem registry with difficulty, deadlines, and weekly filter tabs (by @Jesselpetry)",
         },
       },
       {
         kind: "added",
         text: {
-          th: "แบบร่างบันทึกอัตโนมัติแยกตามโจทย์ และ splash screen",
-          en: "Auto-saved drafts per problem, plus a splash screen",
+          th: "หน้า /library อ่านเอกสารแนวปฏิบัติการใช้ AI ของวิชา PSCP (โดย @Jesselpetry)",
+          en: "/library page for reading the official AI Guidelines for PSCP (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "หน้า /history จัดเก็บประวัติไฟล์ที่เคยสร้างไว้ในเครื่อง (โดย @Jesselpetry)",
+          en: "/history page storing previously generated files locally (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "ระบบบันทึกแบบร่างอัตโนมัติแยกตามโจทย์ และหน้า Splash Screen (โดย @Jesselpetry)",
+          en: "Auto-saved drafts per problem, plus a welcoming splash screen (by @Jesselpetry)",
         },
       },
       {
         kind: "changed",
         text: {
-          th: "ปรับสีทั่วเว็บให้ผ่านมาตรฐาน WCAG AA contrast",
-          en: "Adjusted colors site-wide to meet WCAG AA contrast",
+          th: "ปรับปรุงสีทั่วทั้งเว็บไซต์ให้ผ่านมาตรฐานความคมชัด WCAG AA (โดย @Jesselpetry)",
+          en: "Adjusted site-wide color contrast to comply with WCAG AA accessibility standards (by @Jesselpetry)",
         },
       },
       {
         kind: "fixed",
-        text: { th: "แก้ไอคอน Instagram และ case ของข้อความบางจุด", en: "Fixed the Instagram icon and some text casing" },
+        text: {
+          th: "ปรับแก้ไอคอน Instagram และ case ของข้อความบางจุด (โดย @Jesselpetry)",
+          en: "Fixed Instagram icon rendering and casing in multiple headings (by @Jesselpetry)",
+        },
       },
     ],
   },
@@ -1070,4 +890,3 @@ export const CHANGELOG: VersionEntry[] = [
 export function getCurrentVersion(): VersionEntry {
   return CHANGELOG[0];
 }
-
