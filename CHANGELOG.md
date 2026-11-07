@@ -11,6 +11,12 @@
 ของเว็บนี้ที่เป็นนักศึกษาไทย หัวข้อย่อยใช้ **เพิ่ม** / **ปรับปรุง** / **แก้ไข** /
 **ความปลอดภัย** แทน Added / Changed / Fixed / Security
 
+## [Unreleased]
+
+### ปรับปรุง
+
+- **ปรับปรุงแถบค้นหารายวิชาและดีไซน์การ์ดรายวิชาสไตล์ MIT OpenCourseWare (`/`)** — ปรับปรุงช่องค้นหารายวิชาในหน้าหลักให้มีดีไซน์โค้งมน (rounded-full) พร้อมเงาบาง (shadow-sm) พื้นหลังเบลอ (backdrop-blur-md), ปุ่มล้างคำค้นหา และปุ่มกด "ค้นหา" ทรงแคปซูลในมาตรฐานเดียวกับหน้าตารางสอบ · ปรับดีไซน์การ์ดรายวิชา (`components/course-book-card.tsx`) เป็นการ์ดแนวนอนพร้อมขอบมน เงาบาง และ padding สไตล์ MIT OpenCourseWare โดยมีกรอบภาพไล่เฉดสีฟ้า iHelp Blue Gradient ด้านซ้ายที่ระบุรหัสวิชาและชื่อวิชา, ข้อมูลคำอธิบายวิชาตรงกลาง (รหัสทางการ, หน่วยกิต, ตัวบ่งชี้โมดูลพร้อมใช้งาน), และป้ายระดับการศึกษา (Undergraduate / ปริญญาตรี) พร้อมปุ่ม "เข้าสู่รายวิชา" ทรงแคปซูลและลิงก์เว็บทางการ IT KMITL ด้านขวา
+
 ## [0.9.0] - 7 พฤศจิกายน 2569
 
 **ผู้ร่วมพัฒนา:** Chatan Petry ([@Jesselpetry](https://github.com/Jesselpetry), IG: [@chatann_](https://instagram.com/chatann_)), PhuPunnavit ([@PhuPunnavit](https://github.com/PhuPunnavit), IG: [@priiu_i](https://instagram.com/priiu_i)), Akarapach Yootsukprasert ([@PGTHEGOD](https://github.com/PGTHEGOD), IG: [@pgthegod_x](https://instagram.com/pgthegod_x)), Meaookung144 ([@Meaookung144](https://github.com/Meaookung144), IG: [@meaookung144](https://instagram.com/meaookung144))

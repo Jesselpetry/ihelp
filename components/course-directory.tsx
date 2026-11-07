@@ -1,7 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { GraduationCap, Search } from "lucide-react";
+import { GraduationCap, Search, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useLocale, t, type LText } from "@/lib/i18n";
 import { COURSES, GROUPS } from "@/lib/courses/catalog";
@@ -17,6 +18,8 @@ const L: Record<string, LText> = {
     en: "Summaries, quizzes, problem banks, and lecture slides for every first-year course, in one place",
   },
   search: { th: "ค้นหารายวิชา ชื่อ หรือรหัสวิชา...", en: "Search a course, name, or code..." },
+  searchButton: { th: "ค้นหา", en: "Search" },
+  clearSearch: { th: "ล้างการค้นหา", en: "Clear search" },
   noResults: { th: "ไม่พบรายวิชาที่ตรงกับคำค้นหา", en: "No course matches your search" },
   courses: { th: "รายวิชา", en: "courses" },
 };
@@ -59,15 +62,42 @@ export function CourseDirectory({
         </p>
       </div>
 
-      <div className="relative mb-8 animate-in fade-in-0 slide-in-from-bottom-2 duration-500 delay-100 fill-mode-both">
-        <Search className="pointer-events-none absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
-        <Input
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder={t(L.search, locale)}
-          aria-label={t(L.search, locale)}
-          className="h-11 rounded-full pl-10 transition-shadow focus-visible:ring-2 focus-visible:ring-primary/20"
-        />
+      {/* ── Search Input Box (Same design as Exam Schedule) ── */}
+      <div className="mx-auto mb-8 max-w-xl animate-in fade-in-0 slide-in-from-bottom-2 duration-500 delay-100 fill-mode-both">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+          role="search"
+          className="relative flex items-center shadow-sm rounded-full border bg-card/90 p-1.5 backdrop-blur-md transition-all focus-within:border-primary/50 focus-within:ring-2 focus-within:ring-primary/20"
+        >
+          <Search className="ml-3 size-4 text-muted-foreground shrink-0" />
+          <Input
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder={t(L.search, locale)}
+            aria-label={t(L.search, locale)}
+            className="h-9 border-0 bg-transparent px-3 text-sm focus-visible:ring-0 focus-visible:ring-offset-0"
+          />
+          {query && (
+            <button
+              type="button"
+              onClick={() => setQuery("")}
+              title={t(L.clearSearch, locale)}
+              aria-label={t(L.clearSearch, locale)}
+              className="p-1 text-muted-foreground hover:text-foreground mr-1 transition-colors"
+            >
+              <X className="size-4" />
+            </button>
+          )}
+          <Button
+            type="submit"
+            size="sm"
+            className="rounded-full px-5 text-xs font-semibold"
+          >
+            {t(L.searchButton, locale)}
+          </Button>
+        </form>
       </div>
 
       {/* Platform Stats Grid Column */}
@@ -127,7 +157,7 @@ export function CourseDirectory({
                   {courses.length} {t(L.courses, locale)}
                 </span>
               </div>
-              <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="flex flex-col gap-3 sm:gap-3.5">
                 {courses.map((c) => (
                   <CourseBookCard key={c.code} course={c} readiness={readiness[c.code] ?? 0} />
                 ))}

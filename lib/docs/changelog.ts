@@ -64,6 +64,21 @@ export interface VersionEntry {
 // Mirrors CHANGELOG.md at the repo root — keep both in sync when releasing.
 export const CHANGELOG: VersionEntry[] = [
   {
+    version: "Unreleased",
+    date: null,
+    commit: "34fe3ba",
+    contributors: [CONTRIBUTORS.chatan],
+    changes: [
+      {
+        kind: "changed",
+        text: {
+          th: "ปรับปรุงแถบค้นหารายวิชาและดีไซน์การ์ดรายวิชาสไตล์ MIT OpenCourseWare (/) ด้วยกรอบภาพไล่เฉดสีฟ้า iHelp Blue Gradient และข้อมูลแนวนอน",
+          en: "Redesigned course search bar and adopted MIT OpenCourseWare-style horizontal course cards (/) with signature iHelp blue gradient thumbnails",
+        },
+      },
+    ],
+  },
+  {
     version: "0.9.0",
     date: "2026-11-07",
     commit: "7e91359",
