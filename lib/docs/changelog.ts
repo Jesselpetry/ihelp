@@ -77,13 +77,6 @@ export const CHANGELOG: VersionEntry[] = [
       {
         kind: "added",
         text: {
-          th: "ระบบคำนวณคะแนนและตัดเกรด (/grade-calculator) — สัดส่วนวิชา ปี 1 เทอม 1 IT KMITL สถาปัตยกรรม 3 ส่วน พร้อมคำนวณสูตรเลขสดในช่อง, ตัดเกรดคงที่ A–F และ S/U, แผนที่เป้าหมายคะแนนสอบ Final, และนำเข้าตารางจาก Excel/TSV",
-          en: "Grade & score calculator (/grade-calculator) — Year 1 Semester 1 presets with 3-panel layout, live arithmetic evaluation, fixed A–F / S–U grading, final target roadmap, and Excel/TSV paste import",
-        },
-      },
-      {
-        kind: "added",
-        text: {
           th: "ฟีเจอร์ Chat Help-Desk มุมขวาล่าง — ผู้ช่วยตอบคำถามการใช้งานทันใจด้วย FAQ กว่า 75 ข้อ ค้นหาไฟล์ในคลังรายวิชาแบบเรียลไทม์ และระบบ AI สตรีมมิ่ง พร้อม Guard Rails เข้มงวด (โดย @PhuPunnavit)",
           en: "Help-Desk Chat Widget — instant how-to answers with 75+ FAQs, real-time course file search with direct previews, and guarded streaming AI fallback (by @PhuPunnavit)",
         },

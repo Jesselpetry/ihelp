@@ -184,9 +184,9 @@ Supabase Storage และเว็บเสิร์ฟจากที่นั
 > scope ที่ขอคือ `public_repo` (เขียน public repo ได้) หากต้องการ push เข้า
 > private repo เปลี่ยนเป็น `repo` ที่ `OAUTH_SCOPE` ใน `lib/github/github-server.ts`
 
-## ระบบคำนวณคะแนนและตัดเกรด (`/grade-calculator`)
+## ระบบคำนวณคะแนนและตัดเกรด (`/grade-calculator` — พัฒนาบนกิ่ง `staging`)
 
-เครื่องมือวางแผนการเรียนและประเมินผลสอบสำหรับนักศึกษา IT KMITL (เข้าถึงได้ที่ `/grade-calculator` หรือ redirect จาก `/calculator`):
+เครื่องมือวางแผนการเรียนและประเมินผลสอบสำหรับนักศึกษา IT KMITL (อยู่ในระหว่างการทดสอบบนกิ่ง `staging` เข้าถึงได้ที่ `/grade-calculator` หรือ redirect จาก `/calculator`):
 
 - **แม่แบบสัดส่วนคะแนน 7 รายวิชา ปี 1 เทอม 1** — ITF, ICS, MFIT, PSCP, FE, CHARM, SPORT อ้างอิงตามประมวลการสอน 1/2569
 - **สถาปัตยกรรม 3 แผง (Top / Left / Right)** — สรุปคะแนนรวม & เกรดคาดการณ์ด้านบน, รายชื่อวิชาด้านซ้าย, และฟอร์มกรอกคะแนนละเอียดด้านขวา
