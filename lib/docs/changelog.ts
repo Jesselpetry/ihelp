@@ -11,7 +11,31 @@ export const GITHUB_REPO = `${SITE.repo.owner}/${SITE.repo.name}`;
 export interface Contributor {
   name: string;
   github: string; // handle, no @
+  instagram?: string; // handle, no @
 }
+
+export const CONTRIBUTORS = {
+  chatan: {
+    name: "Chatan Petry",
+    github: "Jesselpetry",
+    instagram: "chatann_",
+  },
+  phuPunnavit: {
+    name: "PhuPunnavit",
+    github: "PhuPunnavit",
+    instagram: "priiu_i",
+  },
+  pgthegod: {
+    name: "PGTHEGOD",
+    github: "PGTHEGOD",
+    instagram: "pgthegod_x",
+  },
+  meaookung: {
+    name: "Meaookung144",
+    github: "Meaookung144",
+    instagram: "meaookung144",
+  },
+} as const satisfies Record<string, Contributor>;
 
 export type ChangeKind = "added" | "changed" | "fixed" | "security";
 
@@ -40,10 +64,142 @@ export interface VersionEntry {
 // Mirrors CHANGELOG.md at the repo root — keep both in sync when releasing.
 export const CHANGELOG: VersionEntry[] = [
   {
+    version: "Unreleased",
+    date: null,
+    commit: "adec45a",
+    contributors: [
+      CONTRIBUTORS.chatan,
+      CONTRIBUTORS.phuPunnavit,
+      CONTRIBUTORS.pgthegod,
+      CONTRIBUTORS.meaookung,
+    ],
+    changes: [
+      {
+        kind: "added",
+        text: {
+          th: "ระบบคำนวณคะแนนและตัดเกรด (/grade-calculator) — สัดส่วนวิชา ปี 1 เทอม 1 IT KMITL สถาปัตยกรรม 3 ส่วน พร้อมคำนวณสูตรเลขสดในช่อง, ตัดเกรดคงที่ A–F และ S/U, แผนที่เป้าหมายคะแนนสอบ Final, และนำเข้าตารางจาก Excel/TSV",
+          en: "Grade & score calculator (/grade-calculator) — Year 1 Semester 1 presets with 3-panel layout, live arithmetic evaluation, fixed A–F / S–U grading, final target roadmap, and Excel/TSV paste import",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "ฟีเจอร์ Chat Help-Desk มุมขวาล่าง — ผู้ช่วยตอบคำถามการใช้งานทันใจด้วย FAQ กว่า 75 ข้อ ค้นหาไฟล์ในคลังรายวิชาแบบเรียลไทม์ และระบบ AI สตรีมมิ่ง พร้อม Guard Rails เข้มงวด (โดย @PhuPunnavit)",
+          en: "Help-Desk Chat Widget — instant how-to answers with 75+ FAQs, real-time course file search with direct previews, and guarded streaming AI fallback (by @PhuPunnavit)",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "ITF สไลด์บรรยายฉบับสรุปแปลไทย Week 08–15 — เลกเชอร์ครึ่งหลังแปลไทยย่อจบใน 1 หน้า ออกแบบใน Figma บรรจุในคลังเอกสารและหน้าสัปดาห์เรียน พร้อมคำค้นหา 'แปลไทย' (โดย @PhuPunnavit)",
+          en: "ITF Thai lecture summaries for Weeks 08–15 — one-page condensed sheets in Figma, filed under library cheatsheets and linked on weekly pages (by @PhuPunnavit)",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "หน้า Landing Page /pro สำหรับ PG IJUDGE บน VS Code — แนะนำส่วนขยายส่งโค้ดตรงเข้า iJudge, รันเทสต์ในเครื่อง, เทสต์เคสซ่อน, และขอรับ License Key ผ่าน IG @pgthegod_x (โดย @PGTHEGOD)",
+          en: "PG IJUDGE VS Code Extension landing page (/pro) — showcase for direct submissions, local sample runner, hidden test cases, and license requests via IG @pgthegod_x (by @PGTHEGOD)",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "ITF ชุดเตรียมสอบปลายภาค Week 08–15 — คู่มือทบทวน วิธีคำนวณเครือข่ายและ Subnet, แนวข้อสอบ 60 ข้อพร้อมเฉลยละเอียด, และหน้าทางลัดเตรียมสอบปลายภาค",
+          en: "ITF final exam prep kit (Weeks 08–15) — subnetting calculation guides, 60-question drill with answer explanations, and exam shortcuts hub",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "ITF โน้ตสรุป Notion ของ Tammadon Suksa (IT24) สัปดาห์ 08–15 — 79 ภาพสไลด์พร้อมจดโน้ตทับ ท้ายหน้าสรุปรายสัปดาห์",
+          en: "ITF Notion study notes by Tammadon Suksa (IT24) for Weeks 08–15 — 79 annotated slide images embedded on weekly pages",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "ตารางสอบและผังที่นั่งสอบรายบุคคล (/exam-schedule) — ค้นหากำหนดการสอบ ห้องสอบ และผังที่นั่ง Interactive Seating Map รายบุคคลของคณะ IT สจล.",
+          en: "Exam schedule & interactive seating map (/exam-schedule) — individual exam dates, rooms, and seat finder for IT KMITL students",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "พื้นที่อ่านหนังสือสอบปลายภาค (/profile/<รหัส>/study) — หน้าโฟกัสพร้อมตัวจับเวลา Standby, โควตาชั่วโมงอ่านหนังสือ 22 วัน, และลิงก์ทบทวนเนื้อหารายวัน",
+          en: "Personal study space (/profile/<id>/study) — focus standby timer, 22-day study quota tracker, and daily topic review links",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "ระบบภาพแชร์ OpenGraph Card และคำอธิบาย Meta อัตโนมัติทุกรายวิชา โมดูล แผนที่เนื้อหา คลังเอกสาร และตารางสอบ",
+          en: "Automated OpenGraph social preview cards and rich metadata across courses, modules, map, library, and exam schedule",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "ดัชนีคลัง resource-index.json และคำสั่งตรวจ/ค้นคลัง (library:audit, library:find)",
+          en: "Unified resource-index.json manifest with library:audit and library:find CLI utilities",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "มุมมองคลังทรัพยากรรายสัปดาห์ของ ITF และ ICS จัดกลุ่มตามสัปดาห์และช่วงสอบ พร้อมลิงก์ต้นทาง OnLearn",
+          en: "Unified week-grouped library view for ITF and ICS with semester-half segmentation and OnLearn source links",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "สื่อ ITF 1/2569 เพิ่ม 19 ไฟล์ และหน้าคาบเรียนรายสัปดาห์ /courses/06016402-IT-Fundamentals/map",
+          en: "19 new ITF 1/2569 course assets and weekly map sessions with summaries and quizzes",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "มาตรฐานภาพรวมรายวิชา summary.md โครงสร้างเดียวกัน 6 หัวข้อสำหรับทุกรายวิชา",
+          en: "Standardised 6-section course overview format for every course in summary.md",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "ปรับโฉม Dark Theme สไตล์ Neutral Charcoal ดีไซน์ระดับโปร — แยกชั้นพื้นผิว Canvas, Cards, Popovers พร้อมเส้นขอบ Subtle White Opacity สบายตาลดการล้าสายตา",
+          en: "Professional neutral charcoal dark theme overhaul — tiered Figma-inspired surfaces, subtle white opacity borders, and high-legibility typography",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "หน้ารายวิชาจัดเลย์เอาต์ใหม่สไตล์ Google Classroom และแยก Track A / Track B ของวิชา ICS ให้ชัดเจน",
+          en: "Google Classroom-inspired course hub layout and clear Track A / Track B separation for ICS",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "ITF อัปเดตเนื้อหาครบ 15 สัปดาห์ตาม OnLearn (1/2569) พร้อมคลิปย้อนหลังและใบงานแล็บ",
+          en: "ITF syllabus refreshed across all 15 weeks based on OnLearn (1/2569) with recordings and lab sheets",
+        },
+      },
+      {
+        kind: "security",
+        text: {
+          th: "Service Worker ป้องกันการแคชหน้าส่วนตัวและหน้าที่ต้องล็อกอินหลังออกจากระบบ",
+          en: "Service Worker cache hardening — skip caching private, authenticated, and no-store pages",
+        },
+      },
+    ],
+  },
+  {
     version: "0.8.0",
     date: "2026-09-22",
     commit: "adec45a",
-    contributors: [{ name: "Chatan Petry", github: "Jesselpetry" }],
+    contributors: [CONTRIBUTORS.chatan],
     changes: [
       {
         kind: "added",
@@ -100,7 +256,7 @@ export const CHANGELOG: VersionEntry[] = [
     version: "0.7.0",
     date: "2026-09-22",
     commit: "83ec90e",
-    contributors: [{ name: "Chatan Petry", github: "Jesselpetry" }],
+    contributors: [CONTRIBUTORS.chatan],
     changes: [
       {
         kind: "security",
@@ -220,7 +376,7 @@ export const CHANGELOG: VersionEntry[] = [
     version: "0.6.0",
     date: "2026-08-30",
     commit: "0d1b4e2",
-    contributors: [{ name: "Chatan Petry", github: "Jesselpetry" }],
+    contributors: [CONTRIBUTORS.chatan],
     changes: [
       // ── Added: community learning hub ──────────────────────────────────
       {
@@ -550,10 +706,7 @@ export const CHANGELOG: VersionEntry[] = [
     version: "0.5.0",
     date: "2026-08-17",
     commit: "6cac82c",
-    contributors: [
-      { name: "Chatan Petry", github: "Jesselpetry" },
-      { name: "Akarapach Yootsukprasert", github: "PGTHEGOD" },
-    ],
+    contributors: [CONTRIBUTORS.chatan, CONTRIBUTORS.pgthegod],
     changes: [
       {
         kind: "added",
@@ -635,8 +788,8 @@ export const CHANGELOG: VersionEntry[] = [
       {
         kind: "added",
         text: {
-          th: "หน้า /pro พร้อม metadata สำหรับ SEO",
-          en: "A /pro landing page with its own SEO metadata",
+          th: "หน้า Landing Page /pro สำหรับส่วนขยาย PG IJUDGE บน VS Code — โดย Akarapach Yootsukprasert (@PGTHEGOD)",
+          en: "PG IJUDGE VS Code Extension landing page (/pro) — by Akarapach Yootsukprasert (@PGTHEGOD)",
         },
       },
       {
@@ -666,10 +819,7 @@ export const CHANGELOG: VersionEntry[] = [
     version: "0.4.0",
     date: "2026-07-21",
     commit: "0f7b7ce",
-    contributors: [
-      { name: "Meaookung144", github: "Meaookung144" },
-      { name: "Chatan Petry", github: "Jesselpetry" },
-    ],
+    contributors: [CONTRIBUTORS.meaookung, CONTRIBUTORS.chatan],
     changes: [
       {
         kind: "added",
@@ -726,7 +876,7 @@ export const CHANGELOG: VersionEntry[] = [
     version: "0.3.0",
     date: "2026-07-20",
     commit: "e2f4b32",
-    contributors: [{ name: "Chatan Petry", github: "Jesselpetry" }],
+    contributors: [CONTRIBUTORS.chatan],
     changes: [
       {
         kind: "added",
@@ -741,7 +891,7 @@ export const CHANGELOG: VersionEntry[] = [
     version: "0.2.0",
     date: "2026-07-18",
     commit: "9f653a5",
-    contributors: [{ name: "Chatan Petry", github: "Jesselpetry" }],
+    contributors: [CONTRIBUTORS.chatan],
     changes: [
       {
         kind: "added",
@@ -767,7 +917,7 @@ export const CHANGELOG: VersionEntry[] = [
     version: "0.1.1",
     date: "2026-07-13",
     commit: "1c1136f",
-    contributors: [{ name: "Chatan Petry", github: "Jesselpetry" }],
+    contributors: [CONTRIBUTORS.chatan],
     changes: [
       {
         kind: "changed",
@@ -782,7 +932,7 @@ export const CHANGELOG: VersionEntry[] = [
     version: "0.1.0",
     date: "2026-07-12",
     commit: "c288176",
-    contributors: [{ name: "Chatan Petry", github: "Jesselpetry" }],
+    contributors: [CONTRIBUTORS.chatan],
     changes: [
       {
         kind: "added",
