@@ -6,6 +6,7 @@ import { ChevronRight, Lock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import {
   MODULE_ICONS,
+  PHASE_ICONS,
   SCOPE_BADGE,
   SCOPE_ICON,
   SCOPE_LABEL,
@@ -24,6 +25,14 @@ const L = {
     en: "Nothing prepared for this milestone yet",
   },
   soon: { th: "เร็วๆ นี้", en: "Coming soon" },
+  inPreparation: {
+    th: "อยู่ระหว่างจัดเตรียมเนื้อหาในหมวดนี้",
+    en: "Content in preparation for this phase",
+  },
+  inPreparationSub: {
+    th: "สรุปย่อความจำ คัดเฉพาะสูตร กฎ และข้อควรระวังสำคัญก่อนเข้าห้องสอบ เร็ว ๆ นี้",
+    en: "Summary notes, key formulas, and exam tips are currently being curated.",
+  },
 } satisfies Record<string, LText>;
 
 function ScopeTag({ scope }: { scope: Exclude<ModuleScope, "all"> }) {
@@ -55,14 +64,14 @@ function ModuleRow({ module: mod }: { module: ResolvedModule }) {
     <Link
       href={mod.href!}
       title={t(mod.subtitle, locale)}
-      className={`group flex items-center gap-3 px-4 py-3 transition-[box-shadow,background-color] hover:bg-primary/[0.03] hover:shadow-md dark:hover:bg-primary/10 ${SURFACE}`}
+      className={`group flex items-center gap-2.5 px-3.5 py-2.5 transition-[box-shadow,background-color] hover:bg-primary/[0.03] hover:shadow-md dark:hover:bg-primary/10 ${SURFACE}`}
     >
-      <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
-        <Icon className="size-5" />
+      <span className="flex size-8.5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+        <Icon className="size-4" />
       </span>
 
       <div className="flex min-w-0 flex-1 items-center gap-2">
-        <span className="min-w-0 truncate text-sm font-medium">{t(mod.title, locale)}</span>
+        <span className="min-w-0 truncate text-xs sm:text-sm font-medium">{t(mod.title, locale)}</span>
         {mod.scope !== "all" && <ScopeTag scope={mod.scope} />}
         {mod.badge && (
           <Badge
@@ -106,6 +115,49 @@ function LockedItem({ module: mod }: { module: ResolvedModule }) {
 }
 
 /**
+ * Placeholder card for phases that have no open modules yet (e.g. compress / cram phase).
+ * Shows what is in preparation with clean status pills.
+ */
+function EmptyPhaseCard({ group }: { group: TopicGroup }) {
+  const { locale } = useLocale();
+  const { phase, locked } = group;
+  const PhaseIcon = PHASE_ICONS[phase];
+
+  return (
+    <div
+      className={`relative flex flex-col items-center justify-center rounded-2xl border border-dashed border-border/80 bg-muted/15 px-4 py-5 text-center transition-colors sm:px-6 sm:py-6 ${SURFACE}`}
+    >
+      <div className="flex size-9 items-center justify-center rounded-full bg-primary/10 text-primary mb-2">
+        <PhaseIcon className="size-4.5" />
+      </div>
+      <h4 className="text-xs sm:text-sm font-bold text-foreground">
+        {t(L.inPreparation, locale)}
+      </h4>
+      <p className="mt-0.5 max-w-sm text-[11px] sm:text-xs text-muted-foreground leading-relaxed">
+        {t(L.inPreparationSub, locale)}
+      </p>
+      {locked.length > 0 && (
+        <div className="mt-3 flex flex-wrap items-center justify-center gap-1.5">
+          {locked.map((mod) => {
+            const ModIcon = MODULE_ICONS[mod.id];
+            return (
+              <span
+                key={mod.id}
+                className="inline-flex items-center gap-1 rounded-full border border-border/70 bg-card/70 px-2.5 py-0.5 text-[11px] font-medium text-muted-foreground shadow-2xs"
+              >
+                <ModIcon className="size-3 text-muted-foreground/70" />
+                <span>{t(mod.title, locale)}</span>
+                <Lock className="size-2.5 text-muted-foreground/50" />
+              </span>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+
+/**
  * One topic of the stream — a phase of the spine.
  *
  * The four topics keep the spine's A→D order because the order carries real
@@ -120,7 +172,7 @@ function TopicSection({ group }: { group: TopicGroup }) {
   const listId = `${phaseAnchor(phase)}-soon`;
 
   const aside =
-    locked.length > 0 ? (
+    locked.length > 0 && open.length > 0 ? (
       <button
         type="button"
         onClick={() => setShowLocked((prev) => !prev)}
@@ -140,18 +192,20 @@ function TopicSection({ group }: { group: TopicGroup }) {
         aside={aside}
       />
 
-      {open.length > 0 && (
+      {open.length > 0 ? (
         <div className="flex flex-col gap-2">
           {open.map((mod) => (
             <ModuleRow key={mod.id} module={mod} />
           ))}
         </div>
+      ) : (
+        <EmptyPhaseCard group={group} />
       )}
 
-      {showLocked && locked.length > 0 && (
+      {showLocked && open.length > 0 && locked.length > 0 && (
         <ul
           id={listId}
-          className={`flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground ${open.length > 0 ? "mt-3" : ""}`}
+          className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground"
         >
           {locked.map((mod) => (
             <LockedItem key={mod.id} module={mod} />

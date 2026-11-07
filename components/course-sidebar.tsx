@@ -96,11 +96,11 @@ export function CourseSidebar({ modules, scope, onScopeChange, hasOverview }: Co
     }`;
 
   return (
-    <aside className="flex flex-col gap-3 lg:sticky lg:top-20 lg:self-start lg:gap-4">
+    <aside className="flex flex-col gap-3 lg:sticky lg:top-20 lg:self-start lg:gap-3.5">
       {hasScopes(modules) && (
-        <section className={`${SURFACE} order-1 p-4`}>
+        <section className={`${SURFACE} order-1 p-3 sm:p-3.5`}>
           <h2 className={HEADING}>{t(L.scope, locale)}</h2>
-          <div className="grid grid-cols-3 rounded-full bg-muted p-1">
+          <div className="grid grid-cols-3 rounded-full bg-muted p-0.5">
             {SCOPE_OPTIONS.map((option) => {
               const Icon = SCOPE_ICON[option];
               const active = option === scope;
@@ -110,7 +110,7 @@ export function CourseSidebar({ modules, scope, onScopeChange, hasOverview }: Co
                   type="button"
                   aria-pressed={active}
                   onClick={() => onScopeChange(option)}
-                  className={`inline-flex items-center justify-center gap-1 rounded-full px-1.5 py-1.5 text-xs font-medium transition-colors ${
+                  className={`inline-flex items-center justify-center gap-1 rounded-full px-1.5 py-1 text-xs font-medium transition-colors ${
                     active
                       ? "bg-card text-primary shadow-xs"
                       : "text-muted-foreground hover:text-foreground"
@@ -126,7 +126,7 @@ export function CourseSidebar({ modules, scope, onScopeChange, hasOverview }: Co
         </section>
       )}
 
-      <section className={`${SURFACE} order-3 p-4 lg:order-2`}>
+      <section className={`${SURFACE} order-3 p-3 sm:p-3.5 lg:order-2`}>
         <h2 className={HEADING}>{t(L.topics, locale)}</h2>
 
         {/* Phones: chips in one scrollable row. */}
@@ -139,7 +139,7 @@ export function CourseSidebar({ modules, scope, onScopeChange, hasOverview }: Co
               href={`#${OVERVIEW_ANCHOR}`}
               onClick={(event) => jump(event, OVERVIEW_ANCHOR)}
               aria-current={activeId === OVERVIEW_ANCHOR ? "location" : undefined}
-              className={`shrink-0 rounded-full border border-border px-3 py-1 text-xs ${rowClass(OVERVIEW_ANCHOR, false)}`}
+              className={`shrink-0 rounded-full border border-border px-2.5 py-1 text-xs ${rowClass(OVERVIEW_ANCHOR, false)}`}
             >
               {t(OVERVIEW_TITLE, locale)}
             </a>
@@ -150,7 +150,7 @@ export function CourseSidebar({ modules, scope, onScopeChange, hasOverview }: Co
               href={`#${id}`}
               onClick={(event) => jump(event, id)}
               aria-current={activeId === id ? "location" : undefined}
-              className={`shrink-0 rounded-full border border-border px-3 py-1 text-xs ${rowClass(id, count === 0)}`}
+              className={`shrink-0 rounded-full border border-border px-2.5 py-1 text-xs ${rowClass(id, count === 0)}`}
             >
               <Icon className="size-3.5 shrink-0" aria-hidden="true" />
               {t(title, locale)}
@@ -165,7 +165,7 @@ export function CourseSidebar({ modules, scope, onScopeChange, hasOverview }: Co
               href={`#${OVERVIEW_ANCHOR}`}
               onClick={(event) => jump(event, OVERVIEW_ANCHOR)}
               aria-current={activeId === OVERVIEW_ANCHOR ? "location" : undefined}
-              className={`rounded-lg px-2.5 py-2 ${rowClass(OVERVIEW_ANCHOR, false)}`}
+              className={`rounded-lg px-2 py-1.5 ${rowClass(OVERVIEW_ANCHOR, false)}`}
             >
               {t(OVERVIEW_TITLE, locale)}
             </a>
@@ -176,20 +176,20 @@ export function CourseSidebar({ modules, scope, onScopeChange, hasOverview }: Co
               href={`#${id}`}
               onClick={(event) => jump(event, id)}
               aria-current={activeId === id ? "location" : undefined}
-              className={`rounded-lg px-2.5 py-2 ${rowClass(id, count === 0)}`}
+              className={`rounded-lg px-2 py-1.5 ${rowClass(id, count === 0)}`}
             >
-              <Icon className="size-4 shrink-0" aria-hidden="true" />
-              <span className="min-w-0 flex-1 truncate">{t(title, locale)}</span>
+              <Icon className="size-3.5 shrink-0" aria-hidden="true" />
+              <span className="min-w-0 flex-1 truncate text-xs">{t(title, locale)}</span>
               {count === 0 ? (
-                <span className="text-xs text-muted-foreground">{t(L.soon, locale)}</span>
+                <span className="text-[11px] text-muted-foreground">{t(L.soon, locale)}</span>
               ) : (
-                <span className="text-xs tabular-nums text-muted-foreground">{count}</span>
+                <span className="text-[11px] tabular-nums text-muted-foreground">{count}</span>
               )}
             </a>
           ))}
         </nav>
 
-        <p className="mt-3 hidden text-xs text-muted-foreground lg:block">
+        <p className="mt-2.5 hidden text-[11px] text-muted-foreground lg:block">
           <span className="tabular-nums">
             {readyCount}/{modules.length}
           </span>{" "}

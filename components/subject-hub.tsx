@@ -86,8 +86,8 @@ export function SubjectHub({
   return (
     <main
       className={`mx-auto w-full ${
-        reading ? "max-w-5xl lg:max-w-6xl xl:max-w-7xl" : "max-w-6xl"
-      } space-y-6 px-3 py-6 transition-all duration-300 ease-in-out sm:px-6 sm:py-8`}
+        reading ? "max-w-5xl lg:max-w-6xl" : "max-w-5xl"
+      } space-y-5 px-3 py-5 transition-all duration-300 ease-in-out sm:px-5 sm:py-6`}
     >
       <CourseBanner
         backHref={backHref}
@@ -103,7 +103,7 @@ export function SubjectHub({
       />
 
       <div
-        className={`grid gap-6 ${reading ? "" : "lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-8"}`}
+        className={`grid gap-5 ${reading ? "" : "lg:grid-cols-[230px_minmax(0,1fr)] lg:gap-6"}`}
       >
         {!reading && (
           <CourseSidebar
@@ -114,7 +114,7 @@ export function SubjectHub({
           />
         )}
 
-        <div className="min-w-0 space-y-8">
+        <div className="min-w-0 space-y-6">
           <CourseOverview
             summaryMarkdown={summaryMarkdown}
             officialInfo={officialInfo}

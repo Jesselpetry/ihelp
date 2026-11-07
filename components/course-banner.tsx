@@ -59,8 +59,8 @@ export function CourseBanner({
       </div>
 
       <header
-        className={`relative isolate flex min-h-36 flex-col justify-end overflow-hidden rounded-2xl bg-gradient-to-br from-primary to-primary/80 p-5 text-primary-foreground sm:min-h-44 sm:p-7 ${
-          showSwitch ? "pt-14 sm:pt-7 sm:pr-48" : ""
+        className={`relative isolate flex min-h-28 flex-col justify-end overflow-hidden rounded-2xl bg-gradient-to-br from-primary to-primary/80 p-4 text-primary-foreground sm:min-h-36 sm:p-5 ${
+          showSwitch ? "pt-12 sm:pt-6 sm:pr-44" : ""
         }`}
       >
         {/*
@@ -70,7 +70,7 @@ export function CourseBanner({
          */}
         <span
           aria-hidden="true"
-          className="pointer-events-none absolute -bottom-3 -right-2 -z-10 select-none whitespace-nowrap text-[5.5rem] font-black leading-none tracking-tighter opacity-10 sm:-bottom-5 sm:text-[9rem]"
+          className="pointer-events-none absolute -bottom-3 -right-2 -z-10 select-none whitespace-nowrap text-[4.5rem] font-black leading-none tracking-tighter opacity-10 sm:-bottom-4 sm:text-[6.5rem]"
         >
           {code}
         </span>
@@ -79,7 +79,7 @@ export function CourseBanner({
           <div
             role="group"
             aria-label={t(SWITCH_LABEL, locale)}
-            className="absolute right-3 top-3 inline-flex rounded-full bg-primary-foreground/15 p-0.5 backdrop-blur sm:right-5 sm:top-5"
+            className="absolute right-3 top-3 inline-flex rounded-full bg-primary-foreground/15 p-0.5 backdrop-blur sm:right-4 sm:top-4"
           >
             {overviewTabs.map((tab) => {
               const active = tab === overviewTab;
@@ -89,7 +89,7 @@ export function CourseBanner({
                   type="button"
                   aria-pressed={active}
                   onClick={() => onOverviewTabChange(tab)}
-                  className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
+                  className={`rounded-full px-2.5 py-0.5 text-xs font-medium transition-colors ${
                     active
                       ? "bg-primary-foreground text-primary"
                       : "text-primary-foreground/85 hover:text-primary-foreground"
@@ -102,14 +102,14 @@ export function CourseBanner({
           </div>
         )}
 
-        <div className="space-y-1.5">
-          <span className="inline-block rounded-full bg-primary-foreground/15 px-2.5 py-0.5 font-mono text-xs">
+        <div className="space-y-1">
+          <span className="inline-block rounded-full bg-primary-foreground/15 px-2 py-0.5 font-mono text-[11px]">
             {code}
           </span>
-          <h1 className="text-2xl font-semibold leading-tight sm:text-3xl">{t(name, locale)}</h1>
-          {meta && <p className="text-sm opacity-85">{meta}</p>}
+          <h1 className="text-xl font-bold leading-tight sm:text-2xl">{t(name, locale)}</h1>
+          {meta && <p className="text-xs sm:text-sm opacity-85 font-mono">{meta}</p>}
           {tagline && (
-            <p className="line-clamp-2 text-sm opacity-90 sm:line-clamp-1">{t(tagline, locale)}</p>
+            <p className="line-clamp-2 text-xs sm:text-sm opacity-90 sm:line-clamp-1">{t(tagline, locale)}</p>
           )}
         </div>
       </header>
