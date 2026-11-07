@@ -72,8 +72,8 @@ export const CHANGELOG: VersionEntry[] = [
       {
         kind: "changed",
         text: {
-          th: "ปรับปรุงการ์ดผู้จัดทำและร่วมแบ่งปันเนื้อหาท้ายหน้ารายวิชาสู่ดีไซน์แนวนอนแบบกว้าง พร้อมไอคอน Terminal/Dev สำหรับผู้ก่อตั้ง และแบดจ์เต็มสำหรับช่องทางติดต่อ",
-          en: "Redesigned course contributor cards to wide horizontal layout with Terminal/Dev role icons and full channel badges",
+          th: "ปรับปรุงการ์ดผู้จัดทำท้ายวิชาให้ Responsive รูปโปรไฟล์ทรงกลมมน แบดจ์ขนาดคงที่ ผลงานแบบแถวเรียงกัน (TopicHeader) และตัดคำอธิบายยาวออก",
+          en: "Polished course contributor cards with responsive layout, rounded-full avatars, fixed-size badges, and row-by-row materials via TopicHeader",
         },
       },
       {
