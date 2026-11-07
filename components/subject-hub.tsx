@@ -170,7 +170,7 @@ export function SubjectHub({
           )}
 
           {/* Section 4: ผู้จัดทำและร่วมแบ่งปันเนื้อหา (Course Contributors & Authors) */}
-          <CourseContributors courseCode={code} courseName={name} />
+          <CourseContributors courseCode={code} />
         </div>
       </div>
     </main>

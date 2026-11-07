@@ -4,12 +4,14 @@ import { useState } from "react";
 import Link from "next/link";
 import {
   BookOpen,
+  ChevronRight,
   Code2,
   ExternalLink,
+  FileCheck2,
+  FileText,
   GraduationCap,
-  HeartHandshake,
-  Layers,
   Sparkles,
+  Target,
   Terminal,
   Upload,
   User,
@@ -22,18 +24,19 @@ import {
   InstagramIcon,
   NotionIcon,
 } from "@/components/social-icons";
-import { useLocale, t, type LText } from "@/lib/i18n";
+import { useLocale, t } from "@/lib/i18n";
 import {
   getContributorsForCourse,
   getContributorWithAcademicYear,
+  type ContributorMaterial,
   type ContributorProfile,
   type ContributorRole,
 } from "@/lib/contributors";
 import { ContributorModal } from "@/components/contributor-modal";
+import { SURFACE, TopicHeader } from "@/components/course-hub-shared";
 
 export interface CourseContributorsProps {
   courseCode: string;
-  courseName?: LText;
 }
 
 const L = {
@@ -41,21 +44,17 @@ const L = {
     th: "ผู้จัดทำและร่วมแบ่งปันเนื้อหา",
     en: "Course Contributors & Authors",
   },
-  sectionSubtitle: {
-    th: "เนื้อหา ชีตสรุป สไลด์บรรยาย และบันทึกการเรียนรู้ในรายวิชานี้ ได้รับการแบ่งปันและเรียบเรียงโดยเพื่อน ๆ และรุ่นพี่ เพื่อประโยชน์ทางการศึกษาของนักศึกษา IT KMITL",
-    en: "Study notes, cheat sheets, translated slides, and materials for this course are generously authored and shared by peers and alumni for IT KMITL students.",
-  },
   viewProfile: {
-    th: "ดูรายละเอียดโปรไฟล์",
-    en: "View Full Profile",
+    th: "ดูรายละเอียด",
+    en: "Details",
   },
   openNotion: {
-    th: "Notion Notes",
-    en: "Notion Notes",
+    th: "Notion",
+    en: "Notion",
   },
   ihelpProfile: {
-    th: "โปรไฟล์ iHelp",
-    en: "iHelp Profile",
+    th: "Profile",
+    en: "Profile",
   },
   contributeTitle: {
     th: "มีชีตสรุปหรือบันทึกอยากแบ่งปัน?",
@@ -70,8 +69,8 @@ const L = {
     en: "Contribution Guide (Dropzone SOP)",
   },
   allContributorsButton: {
-    th: "ดูทีมผู้พัฒนาและผู้มีส่วนร่วมทั้งหมด",
-    en: "View All Contributors",
+    th: "ดูผู้พัฒนาทั้งหมด",
+    en: "All Contributors",
   },
   contributionsInCourse: {
     th: "ผลงานและเอกสารในวิชานี้",
@@ -80,30 +79,120 @@ const L = {
 };
 
 /**
+ * Returns an appropriate icon based on material type
+ */
+function MaterialIcon({ type }: { type: ContributorMaterial["type"] }) {
+  switch (type) {
+    case "sheet":
+      return <BookOpen className="size-3.5" />;
+    case "slide":
+      return <FileText className="size-3.5" />;
+    case "notes":
+      return <FileCheck2 className="size-3.5" />;
+    case "mock_exam":
+      return <Target className="size-3.5" />;
+    case "code":
+    case "tool":
+      return <Terminal className="size-3.5" />;
+    default:
+      return <BookOpen className="size-3.5" />;
+  }
+}
+
+/**
+ * Reusable row component for contributed materials in a course.
+ * Follows the standard stream row design used in CourseWeekCard and CourseExamMilestone.
+ */
+export function ContributorMaterialRow({
+  material,
+}: {
+  material: ContributorMaterial;
+}) {
+  const { locale } = useLocale();
+  const isExternal = Boolean(material.url && material.url.startsWith("http"));
+
+  const rowContent = (
+    <div className="group flex items-center gap-2.5 px-3 py-2 rounded-xl transition-[box-shadow,background-color] hover:bg-primary/[0.04] dark:hover:bg-primary/10 border border-border/50 bg-muted/20">
+      {/* Circular type icon */}
+      <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+        <MaterialIcon type={material.type} />
+      </span>
+
+      {/* Title & description */}
+      <div className="flex min-w-0 flex-1 flex-col justify-center">
+        <div className="flex items-center gap-2 min-w-0">
+          <span className="truncate text-xs font-medium text-foreground group-hover:text-primary transition-colors">
+            {t(material.title, locale)}
+          </span>
+          {material.badge && (
+            <Badge
+              variant="outline"
+              className="text-[9px] px-1.5 py-0 shrink-0 border-primary/30 text-primary"
+            >
+              {t(material.badge, locale)}
+            </Badge>
+          )}
+        </div>
+        {material.description && (
+          <p className="truncate text-[11px] text-muted-foreground mt-0.5">
+            {t(material.description, locale)}
+          </p>
+        )}
+      </div>
+
+      {/* Action / Arrow indicator */}
+      {material.url && (
+        <span className="shrink-0 text-muted-foreground group-hover:text-primary transition-colors pl-1">
+          {isExternal ? (
+            <ExternalLink className="size-3.5 opacity-70 group-hover:opacity-100" />
+          ) : (
+            <ChevronRight className="size-4 transition-transform group-hover:translate-x-0.5" />
+          )}
+        </span>
+      )}
+    </div>
+  );
+
+  if (material.url) {
+    return (
+      <a
+        href={material.url}
+        target={isExternal ? "_blank" : undefined}
+        rel={isExternal ? "noreferrer" : undefined}
+        className="block no-underline"
+      >
+        {rowContent}
+      </a>
+    );
+  }
+
+  return rowContent;
+}
+
+/**
  * Returns a fitting role icon:
- * - Developer / Lead maintainer -> Code2 / Terminal
+ * - Developer / Lead maintainer -> Terminal / Code2
  * - Content contributor / note author -> BookOpen
  * - Senior mentor -> GraduationCap
  */
 function RoleIcon({ roles }: { roles: ContributorRole[] }) {
   if (roles.includes("lead-maintainer")) {
-    return <Terminal className="size-3.5 text-primary shrink-0" />;
+    return <Terminal className="size-3 text-primary shrink-0" />;
   }
   if (roles.includes("core-developer") || roles.includes("developer")) {
-    return <Code2 className="size-3.5 text-primary shrink-0" />;
+    return <Code2 className="size-3 text-primary shrink-0" />;
   }
   if (roles.includes("senior-mentor")) {
-    return <GraduationCap className="size-3.5 text-primary shrink-0" />;
+    return <GraduationCap className="size-3 text-primary shrink-0" />;
   }
   if (roles.includes("note-author") || roles.includes("content-contributor")) {
-    return <BookOpen className="size-3.5 text-primary shrink-0" />;
+    return <BookOpen className="size-3 text-primary shrink-0" />;
   }
-  return <Sparkles className="size-3.5 text-primary shrink-0" />;
+  return <Sparkles className="size-3 text-primary shrink-0" />;
 }
 
 export function CourseContributors({
   courseCode,
-  courseName,
 }: CourseContributorsProps) {
   const { locale } = useLocale();
   const [selectedContributor, setSelectedContributor] =
@@ -115,47 +204,32 @@ export function CourseContributors({
     return null;
   }
 
+  const aside = (
+    <div className="flex items-center gap-2">
+      <span className="rounded-full bg-primary/10 border border-primary/25 px-2.5 py-0.5 text-xs font-medium text-primary">
+        {contributors.length} {locale === "th" ? "ผู้จัดทำ" : "contributors"}
+      </span>
+      <Link
+        href="/version"
+        className="hidden sm:inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors ml-1"
+      >
+        <span>{t(L.allContributorsButton, locale)}</span>
+        <ChevronRight className="size-3.5" />
+      </Link>
+    </div>
+  );
+
   return (
-    <section className="space-y-4 pt-4 border-t border-border/60">
-      {/* ── Section Header ── */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-border/70 pb-3">
-        <div className="space-y-1">
-          <div className="flex items-center gap-2">
-            <HeartHandshake className="size-4 text-primary shrink-0" />
-            <h3 className="text-sm sm:text-base font-semibold text-foreground">
-              {t(L.sectionTitle, locale)}
-            </h3>
-            <Badge
-              variant="secondary"
-              className="text-[10px] font-mono px-2 py-0.5 rounded-full"
-            >
-              {contributors.length}
-            </Badge>
-          </div>
-          <p className="text-xs text-muted-foreground leading-relaxed max-w-2xl">
-            {courseName
-              ? locale === "th"
-                ? `เนื้อหา ชีตสรุป สไลด์บรรยาย และบันทึกการเรียนรู้ในวิชา ${t(courseName, locale)} ได้รับการแบ่งปันและเรียบเรียงโดยเพื่อน ๆ และรุ่นพี่ เพื่อประโยชน์ทางการศึกษาของนักศึกษา IT KMITL`
-                : `Study notes, cheat sheets, and materials for ${t(courseName, locale)} are generously authored and shared by peers and alumni for IT KMITL students.`
-              : t(L.sectionSubtitle, locale)}
-          </p>
-        </div>
+    <div className="pt-8 sm:pt-10">
+      {/* ── Standard Topic Header (Same standard as weekly path & exam milestones) ── */}
+      <TopicHeader
+        id="course-contributors"
+        title={t(L.sectionTitle, locale)}
+        aside={aside}
+      />
 
-        <Button
-          asChild
-          variant="ghost"
-          size="sm"
-          className="text-xs text-muted-foreground hover:text-foreground h-8 self-start sm:self-auto shrink-0"
-        >
-          <Link href="/version">
-            <Layers className="size-3.5 mr-1 text-primary" />
-            <span>{t(L.allContributorsButton, locale)}</span>
-          </Link>
-        </Button>
-      </div>
-
-      {/* ── Wide Horizontal Contributor Cards (การ์ดแนวนอนยาว) ── */}
-      <div className="space-y-4">
+      {/* ── Contributor Cards (Horizontal Rows with fixed-size badges & rounded-full avatars) ── */}
+      <div className="flex flex-col gap-3">
         {contributors.map((rawContributor) => {
           const profile = getContributorWithAcademicYear(rawContributor);
           const courseMaterials = profile.materials.filter(
@@ -167,99 +241,90 @@ export function CourseContributors({
           return (
             <div
               key={profile.id}
-              className="group relative w-full rounded-2xl border border-border/70 bg-card/70 p-4 sm:p-5 transition-all duration-200 hover:border-primary/40 hover:bg-card hover:shadow-sm space-y-4"
+              className={`p-3.5 sm:p-4 space-y-3 ${SURFACE}`}
             >
-              {/* Top Row: Avatar + Info + Full Badges on the right */}
-              <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-4">
-                {/* Left: Avatar + Details */}
-                <div className="flex items-start gap-3.5 min-w-0">
-                  <Avatar className="size-14 sm:size-16 shrink-0 rounded-2xl ring-2 ring-border/60 group-hover:ring-primary/40 shadow-sm transition-all">
-                    <AvatarImage src={profile.avatarUrl} alt={profile.name} />
-                    <AvatarFallback className="text-sm font-semibold bg-primary/10 text-primary rounded-2xl">
+              {/* Header: Avatar, Name, Metadata, Fixed-Size Badges */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                {/* Left: Avatar + Identity */}
+                <div className="flex items-center gap-3 min-w-0">
+                  <Avatar className="size-11 sm:size-12 shrink-0 rounded-full ring-2 ring-border/60 shadow-xs">
+                    <AvatarImage
+                      src={profile.avatarUrl}
+                      alt={profile.name}
+                      className="rounded-full object-cover"
+                    />
+                    <AvatarFallback className="text-xs font-bold rounded-full bg-primary/10 text-primary">
                       {profile.avatarFallback ??
                         profile.name.slice(0, 2).toUpperCase()}
                     </AvatarFallback>
                   </Avatar>
 
-                  <div className="min-w-0 flex-1 space-y-1.5">
-                    {/* Name & Nickname & Role Badge */}
-                    <div className="flex flex-wrap items-center gap-2">
-                      <h4 className="text-base sm:text-lg font-bold text-foreground leading-tight">
+                  <div className="min-w-0 flex-1 space-y-1">
+                    <div className="flex flex-wrap items-center gap-1.5 min-w-0">
+                      <h4 className="text-sm sm:text-base font-semibold text-foreground truncate">
                         {profile.name}
                       </h4>
                       {profile.nickname && (
-                        <span className="text-xs sm:text-sm text-muted-foreground">
+                        <span className="text-xs text-muted-foreground truncate">
                           ({profile.nickname})
                         </span>
                       )}
 
                       {/* Primary Role Badge with Developer/Category Icon */}
-                      <span className="inline-flex items-center gap-1 text-[11px] font-medium text-foreground/90 bg-muted/60 border border-border/60 px-2.5 py-0.5 rounded-full shadow-2xs">
+                      <span className="inline-flex items-center gap-1 text-[10px] font-medium text-foreground/90 bg-muted/60 border border-border/60 px-2 py-0.5 rounded-full shrink-0">
                         <RoleIcon roles={profile.roles} />
                         <span>{t(profile.primaryRole, locale)}</span>
                       </span>
                     </div>
 
-                    {/* Metadata Pill Tags (Auto Year, Cohort, Student ID, Major) */}
-                    <div className="flex flex-wrap items-center gap-1.5 text-[11px]">
-                      {/* Auto-calculated Academic Year Badge */}
+                    {/* Metadata Pills (Auto Year, Cohort, Student ID, Major) */}
+                    <div className="flex flex-wrap items-center gap-1.5 text-[10px]">
                       {profile.academic && (
-                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-primary/10 text-primary font-medium">
+                        <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-primary/10 text-primary font-medium">
                           <GraduationCap className="size-3" />
                           <span>{t(profile.academic.yearLabel, locale)}</span>
                         </span>
                       )}
 
-                      {/* Cohort Badge if available */}
                       {profile.cohort && (
-                        <span className="px-2 py-0.5 rounded-md bg-muted text-muted-foreground font-mono font-medium">
+                        <span className="px-1.5 py-0.5 rounded-full bg-muted text-muted-foreground font-mono">
                           {profile.cohort}
                         </span>
                       )}
 
-                      {/* Student ID */}
                       {profile.studentId && (
-                        <span className="px-2 py-0.5 rounded-md bg-muted/60 text-muted-foreground font-mono">
+                        <span className="px-1.5 py-0.5 rounded-full bg-muted/60 text-muted-foreground font-mono">
                           {profile.studentId}
                         </span>
                       )}
 
-                      {/* Major / Department */}
                       {profile.major && (
-                        <span className="px-2 py-0.5 rounded-md bg-muted/60 text-muted-foreground">
+                        <span className="px-1.5 py-0.5 rounded-full bg-muted/60 text-muted-foreground">
                           {t(profile.major, locale)}
                         </span>
                       )}
 
-                      {/* Faculty */}
                       {profile.faculty && (
-                        <span className="px-2 py-0.5 rounded-md bg-muted/40 text-muted-foreground hidden sm:inline-flex">
+                        <span className="px-1.5 py-0.5 rounded-full bg-muted/40 text-muted-foreground hidden md:inline-flex">
                           {t(profile.faculty, locale)}
                         </span>
                       )}
                     </div>
-
-                    {/* Bio / Description */}
-                    {profile.bio && (
-                      <p className="text-xs text-muted-foreground leading-relaxed pt-0.5 max-w-2xl">
-                        {t(profile.bio, locale)}
-                      </p>
-                    )}
                   </div>
                 </div>
 
-                {/* Right: Full Social Badges & Profile Button */}
-                <div className="flex flex-wrap items-center gap-2 self-start shrink-0 pt-1 lg:pt-0">
+                {/* Right: Fixed-Size Action Badges */}
+                <div className="flex flex-wrap items-center gap-1.5 shrink-0 self-start sm:self-center">
                   {/* GitHub Full Badge */}
                   {profile.socials.github && (
                     <a
                       href={`https://github.com/${profile.socials.github}`}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium rounded-full border bg-background hover:bg-muted text-foreground/90 hover:text-primary transition-all shadow-2xs"
+                      className="h-7 px-2.5 rounded-full border bg-background hover:bg-muted text-foreground/90 hover:text-primary inline-flex items-center gap-1.5 text-xs transition-colors shrink-0"
                     >
-                      <GithubIcon className="size-3.5" />
-                      <span>GitHub</span>
+                      <GithubIcon className="size-3.5 shrink-0" />
+                      <span className="font-medium">GitHub</span>
                       <span className="font-mono text-[11px] text-muted-foreground">
                         @{profile.socials.github}
                       </span>
@@ -272,9 +337,9 @@ export function CourseContributors({
                       href={`https://instagram.com/${profile.socials.instagram}`}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium rounded-full border border-pink-500/20 bg-pink-500/10 text-pink-600 dark:text-pink-400 hover:bg-pink-500/15 transition-all shadow-2xs"
+                      className="h-7 px-2.5 rounded-full border border-pink-500/20 bg-pink-500/10 text-pink-600 dark:text-pink-400 hover:bg-pink-500/15 inline-flex items-center gap-1.5 text-xs transition-colors shrink-0"
                     >
-                      <InstagramIcon className="size-3.5 text-pink-500" />
+                      <InstagramIcon className="size-3.5 text-pink-500 shrink-0" />
                       <span className="font-mono text-[11px]">
                         @{profile.socials.instagram}
                       </span>
@@ -287,11 +352,11 @@ export function CourseContributors({
                       href={profile.socials.notion}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium rounded-full border border-border/80 bg-background hover:bg-muted text-foreground/90 transition-all shadow-2xs"
+                      className="h-7 px-2.5 rounded-full border border-border/80 bg-background hover:bg-muted text-foreground/90 inline-flex items-center gap-1.5 text-xs transition-colors shrink-0"
                     >
-                      <NotionIcon className="size-3.5" />
+                      <NotionIcon className="size-3.5 shrink-0" />
                       <span>{t(L.openNotion, locale)}</span>
-                      <ExternalLink className="size-3 text-muted-foreground ml-0.5" />
+                      <ExternalLink className="size-2.5 text-muted-foreground shrink-0" />
                     </a>
                   )}
 
@@ -299,9 +364,9 @@ export function CourseContributors({
                   {profile.profilePath && (
                     <Link
                       href={profile.profilePath}
-                      className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium rounded-full border bg-background hover:bg-muted text-foreground/90 hover:text-primary transition-all shadow-2xs"
+                      className="h-7 px-2.5 rounded-full border bg-background hover:bg-muted text-foreground/90 hover:text-primary inline-flex items-center gap-1.5 text-xs transition-colors shrink-0"
                     >
-                      <User className="size-3.5" />
+                      <User className="size-3.5 shrink-0" />
                       <span>{t(L.ihelpProfile, locale)}</span>
                     </Link>
                   )}
@@ -311,63 +376,32 @@ export function CourseContributors({
                     variant="outline"
                     size="sm"
                     onClick={() => setSelectedContributor(rawContributor)}
-                    className="rounded-full text-xs h-7.5 px-3 bg-muted/40 hover:bg-muted"
+                    className="h-7 px-2.5 rounded-full text-xs font-normal shrink-0"
                   >
                     <span>{t(L.viewProfile, locale)}</span>
-                    <ExternalLink className="size-3 ml-1 opacity-70" />
+                    <ExternalLink className="size-2.5 ml-1 opacity-70 shrink-0" />
                   </Button>
                 </div>
               </div>
 
-              {/* Bottom Row: Contributions in THIS Course */}
+              {/* Bio if available */}
+              {profile.bio && (
+                <p className="text-xs text-muted-foreground leading-relaxed pt-0.5">
+                  {t(profile.bio, locale)}
+                </p>
+              )}
+
+              {/* Contributed Materials: Row by Row (เหมือนแถวเอกสารรายสัปดาห์) */}
               {courseMaterials.length > 0 && (
-                <div className="pt-2 border-t border-border/50 space-y-2">
-                  <div className="flex items-center gap-1.5 text-xs font-semibold text-foreground/80">
-                    <BookOpen className="size-3.5 text-primary" />
+                <div className="pt-2 border-t border-border/40 space-y-1.5">
+                  <div className="flex items-center gap-1 text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
+                    <BookOpen className="size-3 text-primary" />
                     <span>{t(L.contributionsInCourse, locale)}:</span>
                   </div>
 
-                  <div className="grid gap-2 sm:grid-cols-2">
-                    {courseMaterials.map((item, idx) => (
-                      <div
-                        key={idx}
-                        className="rounded-xl bg-muted/30 p-2.5 border border-border/40 text-xs flex flex-col justify-between gap-1.5"
-                      >
-                        <div className="space-y-1">
-                          <div className="flex items-start justify-between gap-2">
-                            <span className="font-semibold text-foreground/90 leading-snug">
-                              {t(item.title, locale)}
-                            </span>
-                            {item.badge && (
-                              <Badge
-                                variant="outline"
-                                className="text-[9px] px-1.5 py-0 shrink-0 border-primary/30 text-primary"
-                              >
-                                {t(item.badge, locale)}
-                              </Badge>
-                            )}
-                          </div>
-                          {item.description && (
-                            <p className="text-[11px] text-muted-foreground line-clamp-2 leading-relaxed">
-                              {t(item.description, locale)}
-                            </p>
-                          )}
-                        </div>
-
-                        {item.url && (
-                          <div className="pt-1">
-                            <a
-                              href={item.url}
-                              target={item.url.startsWith("http") ? "_blank" : undefined}
-                              rel={item.url.startsWith("http") ? "noreferrer" : undefined}
-                              className="inline-flex items-center gap-1 text-[11px] text-primary hover:underline font-medium"
-                            >
-                              <span>เปิดดูเอกสาร / ลิงก์</span>
-                              <ExternalLink className="size-2.5" />
-                            </a>
-                          </div>
-                        )}
-                      </div>
+                  <div className="flex flex-col gap-1.5">
+                    {courseMaterials.map((material, idx) => (
+                      <ContributorMaterialRow key={idx} material={material} />
                     ))}
                   </div>
                 </div>
@@ -377,30 +411,32 @@ export function CourseContributors({
         })}
       </div>
 
-      {/* ── Community Invitation / CTA Banner ── */}
-      <div className="rounded-2xl border border-dashed border-border/80 bg-muted/20 p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div className="space-y-1">
-          <p className="text-xs sm:text-sm font-semibold text-foreground flex items-center gap-1.5">
-            <Upload className="size-3.5 text-primary" />
-            <span>{t(L.contributeTitle, locale)}</span>
-          </p>
-          <p className="text-[11px] sm:text-xs text-muted-foreground leading-relaxed">
-            {t(L.contributeDesc, locale)}
-          </p>
+      {/* ── Community Invitation (Standard card style matching milestones) ── */}
+      <div className={`mt-4 p-3.5 sm:p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border border-primary/20 dark:border-primary/15 ${SURFACE}`}>
+        <div className="flex items-center gap-3">
+          <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+            <Upload className="size-4" />
+          </span>
+          <div className="space-y-0.5">
+            <p className="text-xs sm:text-sm font-semibold text-foreground">
+              {t(L.contributeTitle, locale)}
+            </p>
+            <p className="text-[11px] text-muted-foreground">
+              {t(L.contributeDesc, locale)}
+            </p>
+          </div>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2 shrink-0">
-          <Button asChild size="sm" variant="outline" className="text-xs h-8 rounded-full">
-            <a
-              href="https://github.com/Jesselpetry/ihelp/blob/staging/docs/DROPZONE_SOP.md"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <span>{t(L.contributeButton, locale)}</span>
-              <ExternalLink className="size-3 ml-1 opacity-70" />
-            </a>
-          </Button>
-        </div>
+        <Button asChild size="sm" variant="outline" className="h-7.5 px-3 rounded-full text-xs shrink-0 self-start sm:self-auto">
+          <a
+            href="https://github.com/Jesselpetry/ihelp/blob/staging/docs/DROPZONE_SOP.md"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span>{t(L.contributeButton, locale)}</span>
+            <ExternalLink className="size-3 ml-1 opacity-70" />
+          </a>
+        </Button>
       </div>
 
       {/* ── Detail Modal ── */}
@@ -419,6 +455,6 @@ export function CourseContributors({
           }}
         />
       )}
-    </section>
+    </div>
   );
 }
