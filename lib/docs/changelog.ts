@@ -72,8 +72,8 @@ export const CHANGELOG: VersionEntry[] = [
       {
         kind: "changed",
         text: {
-          th: "ปรับโครงสร้างเลย์เอาต์หน้ารายวิชา (/courses/[dir]) เป็นระบบ Dual-Panel ตรึงแบนเนอร์ด้านบนคงที่ และเลื่อนอ่านเฉพาะแผงเนื้อหาฝั่งขวา",
-          en: "Restructured course hub layout to Dual-Panel architecture with pinned top banner and independently scrollable content stream",
+          th: "ปรับปรุงการ์ดผู้จัดทำและร่วมแบ่งปันเนื้อหาท้ายหน้ารายวิชาสู่ดีไซน์แนวนอนแบบกว้าง พร้อมไอคอน Terminal/Dev สำหรับผู้ก่อตั้ง และแบดจ์เต็มสำหรับช่องทางติดต่อ",
+          en: "Redesigned course contributor cards to wide horizontal layout with Terminal/Dev role icons and full channel badges",
         },
       },
       {

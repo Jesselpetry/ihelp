@@ -8,17 +8,22 @@ import {
   Calendar,
   BookOpen,
   GraduationCap,
+  Terminal,
   User,
 } from "lucide-react";
-import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { GithubIcon, InstagramIcon, NotionIcon } from "@/components/social-icons";
-import { CHANGELOG, type Contributor, type VersionEntry } from "@/lib/docs/changelog";
+import {
+  GithubIcon,
+  InstagramIcon,
+  NotionIcon,
+} from "@/components/social-icons";
+import {
+  CHANGELOG,
+  type Contributor,
+  type VersionEntry,
+} from "@/lib/docs/changelog";
 import { useLocale, t } from "@/lib/i18n";
 import { SITE } from "@/lib/site";
 import {
@@ -29,7 +34,10 @@ import {
 
 const L = {
   profileTitle: { th: "ข้อมูลผู้ร่วมพัฒนา", en: "Contributor Profile" },
-  contributions: { th: "ประวัติการร่วมพัฒนาใน iHelp", en: "Contributions in iHelp" },
+  contributions: {
+    th: "ประวัติการร่วมพัฒนาใน iHelp",
+    en: "Contributions in iHelp",
+  },
   versionsCount: { th: "เวอร์ชันที่มีส่วนร่วม", en: "Versions Contributed" },
   openGithub: { th: "เปิด GitHub Profile", en: "Open GitHub Profile" },
   openInstagram: { th: "เปิด Instagram Profile", en: "Open Instagram Profile" },
@@ -42,7 +50,10 @@ const L = {
 const AUTHOR_REGEX = /\s*\((?:โดย|by)\s+@([A-Za-z0-9_-]+)\)\s*$/i;
 
 /** Parses and extracts author attribution like (โดย @user) or (by @user) from changelog text */
-export function parseChangeText(text: string): { cleanText: string; author: string | null } {
+export function parseChangeText(text: string): {
+  cleanText: string;
+  author: string | null;
+} {
   const match = text.match(AUTHOR_REGEX);
   if (match) {
     return {
@@ -65,7 +76,10 @@ export const KNOWN_CONTRIBUTORS: Record<string, ContributorDetail> = {
     name: "Chatan Petry",
     github: "Jesselpetry",
     instagram: "chatann_",
-    role: { th: "ผู้ก่อตั้งและผู้ดูแลหลัก (Lead Maintainer)", en: "Creator & Lead Maintainer" },
+    role: {
+      th: "ผู้ก่อตั้งและผู้ดูแลหลัก (Lead Maintainer)",
+      en: "Creator & Lead Maintainer",
+    },
     bio: {
       th: "สถาปัตยกรรมหลักของ iHelp, ระบบตัดเกรด, ธีมมืด Figma, คลังเอกสาร และเครื่องมือเตรียมสอบ",
       en: "Core architecture of iHelp, Grade Calculator, Figma dark theme, Library & Exam tools",
@@ -117,7 +131,7 @@ export const KNOWN_CONTRIBUTORS: Record<string, ContributorDetail> = {
 
 export function getContributorDetail(c: Contributor): ContributorDetail {
   const matchKey = Object.keys(KNOWN_CONTRIBUTORS).find(
-    (k) => k.toLowerCase() === c.github.toLowerCase()
+    (k) => k.toLowerCase() === c.github.toLowerCase(),
   );
   const known = matchKey ? KNOWN_CONTRIBUTORS[matchKey] : undefined;
   return {
@@ -209,10 +223,7 @@ export function ContributorModal({
                 <BookOpen className="size-3 text-primary" />
                 <span>
                   {materials.length}{" "}
-                  {t(
-                    { th: "ผลงานในวิชา", en: "Course works" },
-                    locale,
-                  )}
+                  {t({ th: "ผลงานในวิชา", en: "Course works" }, locale)}
                 </span>
               </span>
             )}
@@ -226,7 +237,8 @@ export function ContributorModal({
               <Avatar className="size-16 sm:size-20 ring-4 ring-background shadow-md shrink-0">
                 <AvatarImage src={avatarUrl} alt={detail.name} />
                 <AvatarFallback className="text-base sm:text-lg font-bold">
-                  {profile?.avatarFallback ?? detail.github.slice(0, 2).toUpperCase()}
+                  {profile?.avatarFallback ??
+                    detail.github.slice(0, 2).toUpperCase()}
                 </AvatarFallback>
               </Avatar>
               <div className="space-y-0.5 mb-1 min-w-0">
@@ -341,8 +353,23 @@ export function ContributorModal({
           <div className="space-y-2 rounded-xl bg-muted/40 p-3 sm:p-3.5 border shadow-sm">
             {detail.role && (
               <div className="flex items-center gap-1.5">
-                <Badge variant="secondary" className="text-xs font-medium rounded-full py-0.5">
-                  <Sparkles className="size-3 text-primary mr-1" />
+                <Badge
+                  variant="secondary"
+                  className="text-xs font-medium rounded-full py-0.5"
+                >
+                  {profile?.roles.includes("lead-maintainer") ? (
+                    <Terminal className="size-3 text-primary mr-1" />
+                  ) : profile?.roles.includes("core-developer") ||
+                    profile?.roles.includes("developer") ? (
+                    <Code2 className="size-3 text-primary mr-1" />
+                  ) : profile?.roles.includes("senior-mentor") ? (
+                    <GraduationCap className="size-3 text-primary mr-1" />
+                  ) : profile?.roles.includes("note-author") ||
+                    profile?.roles.includes("content-contributor") ? (
+                    <BookOpen className="size-3 text-primary mr-1" />
+                  ) : (
+                    <Sparkles className="size-3 text-primary mr-1" />
+                  )}
                   {t(detail.role, locale)}
                 </Badge>
               </div>
@@ -388,8 +415,14 @@ export function ContributorModal({
                       {item.url && (
                         <a
                           href={item.url}
-                          target={item.url.startsWith("http") ? "_blank" : undefined}
-                          rel={item.url.startsWith("http") ? "noreferrer" : undefined}
+                          target={
+                            item.url.startsWith("http") ? "_blank" : undefined
+                          }
+                          rel={
+                            item.url.startsWith("http")
+                              ? "noreferrer"
+                              : undefined
+                          }
                           className="inline-flex items-center gap-0.5 text-[10px] text-primary hover:underline shrink-0 font-medium"
                         >
                           <span>{t({ th: "เปิดดู", en: "View" }, locale)}</span>
@@ -426,15 +459,21 @@ export function ContributorModal({
                             v{v.version}
                           </span>
                           {isInDev ? (
-                            <Badge variant="outline" className="text-[10px] py-0 px-2 border-amber-500/40 text-amber-600 dark:text-amber-400 rounded-full">
+                            <Badge
+                              variant="outline"
+                              className="text-[10px] py-0 px-2 border-amber-500/40 text-amber-600 dark:text-amber-400 rounded-full"
+                            >
                               {t(L.inDevelopment, locale)}
                             </Badge>
                           ) : (
                             <span className="inline-flex items-center gap-1 text-[11px] text-muted-foreground bg-muted/50 px-2 py-0.5 rounded-md">
                               <Calendar className="size-3 text-muted-foreground/70" />
-                              {new Date(v.date!).toLocaleDateString(locale === "th" ? "th-TH" : "en-GB", {
-                                dateStyle: "medium",
-                              })}
+                              {new Date(v.date!).toLocaleDateString(
+                                locale === "th" ? "th-TH" : "en-GB",
+                                {
+                                  dateStyle: "medium",
+                                },
+                              )}
                             </span>
                           )}
                         </div>
@@ -459,17 +498,33 @@ export function ContributorModal({
 
                       <ul className="space-y-1.5 pl-3 border-l-2 border-primary/30">
                         {v.changes.slice(0, 4).map((change, idx) => {
-                          const { cleanText } = parseChangeText(t(change.text, locale));
+                          const { cleanText } = parseChangeText(
+                            t(change.text, locale),
+                          );
                           return (
-                            <li key={idx} className="text-[12px] text-foreground/85 leading-relaxed flex items-start gap-1.5">
-                              <span className="text-primary/70 mt-1 shrink-0 text-xs">•</span>
-                              <span className="break-words min-w-0">{cleanText}</span>
+                            <li
+                              key={idx}
+                              className="text-[12px] text-foreground/85 leading-relaxed flex items-start gap-1.5"
+                            >
+                              <span className="text-primary/70 mt-1 shrink-0 text-xs">
+                                •
+                              </span>
+                              <span className="break-words min-w-0">
+                                {cleanText}
+                              </span>
                             </li>
                           );
                         })}
                         {v.changes.length > 4 && (
                           <li className="text-[11px] text-muted-foreground italic pl-3">
-                            + {v.changes.length - 4} {t({ th: "รายการเพิ่มเติมในเวอร์ชันนี้", en: "more changes in this version" }, locale)}
+                            + {v.changes.length - 4}{" "}
+                            {t(
+                              {
+                                th: "รายการเพิ่มเติมในเวอร์ชันนี้",
+                                en: "more changes in this version",
+                              },
+                              locale,
+                            )}
                           </li>
                         )}
                       </ul>
@@ -531,7 +586,10 @@ export function ContributorCard({
       </div>
 
       {/* Social action icons — Rounded full & clean */}
-      <div className="flex items-center gap-1.5 shrink-0" onClick={(e) => e.stopPropagation()}>
+      <div
+        className="flex items-center gap-1.5 shrink-0"
+        onClick={(e) => e.stopPropagation()}
+      >
         <a
           href={`https://github.com/${detail.github}`}
           target="_blank"
