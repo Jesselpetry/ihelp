@@ -7,27 +7,8 @@ import { useLocale } from "@/lib/i18n";
 import { courseHref, type CatalogCourse } from "@/lib/courses/catalog";
 import { ItKmitlBadge, ItKmitlLogoSvg } from "@/components/it-kmitl-badge";
 
-/** Gradient palette per course — lighter, sky-blue tones */
-const GRADIENT_MAP: Record<string, { from: string; via: string; to: string }> =
-  {
-    ITF:    { from: "#60a5fa", via: "#3b82f6", to: "#2563eb" },
-    ICS:    { from: "#38bdf8", via: "#0ea5e9", to: "#0284c7" },
-    MFIT:   { from: "#818cf8", via: "#6366f1", to: "#4f46e5" },
-    PSCP:   { from: "#34d399", via: "#10b981", to: "#059669" },
-    CHARM:  { from: "#c084fc", via: "#a855f7", to: "#7c3aed" },
-    FE:     { from: "#fb923c", via: "#f97316", to: "#ea580c" },
-    FE2:    { from: "#fbbf24", via: "#f59e0b", to: "#d97706" },
-    SPORT:  { from: "#4ade80", via: "#22c55e", to: "#16a34a" },
-    BFIT:   { from: "#38bdf8", via: "#0ea5e9", to: "#0369a1" },
-    DSA:    { from: "#fb7185", via: "#f43f5e", to: "#e11d48" },
-    OOP:    { from: "#c084fc", via: "#a855f7", to: "#9333ea" },
-    PSTAT:  { from: "#fdba74", via: "#fb923c", to: "#ea580c" },
-    DL:     { from: "#67e8f9", via: "#22d3ee", to: "#0891b2" },
-    COMPRO: { from: "#86efac", via: "#4ade80", to: "#16a34a" },
-    CHEM:   { from: "#fca5a5", via: "#f87171", to: "#dc2626" },
-  };
-
-const DEFAULT_GRADIENT = { from: "#60a5fa", via: "#3b82f6", to: "#2563eb" };
+/** iHelp signature blue — single palette for all courses */
+const IHELP_GRADIENT = { from: "#3a72c8", via: "#2357A5", to: "#163980" };
 
 /**
  * MIT OpenCourseWare-inspired horizontal course card with:
@@ -54,7 +35,7 @@ export function CourseBookCard({
   const title = locale === "th" ? course.nameTh : course.nameEn;
   const subtitle = locale === "th" ? course.nameEn : course.nameTh;
 
-  const grad = GRADIENT_MAP[course.code] ?? DEFAULT_GRADIENT;
+  const grad = IHELP_GRADIENT;
 
   // Font size scales down as the code gets longer
   const codeFontSize =
@@ -91,12 +72,12 @@ export function CourseBookCard({
           background: `linear-gradient(135deg, ${grad.from}, ${grad.via}, ${grad.to})`,
         }}
       >
-        {/* IT KMITL Logo — white, ~10% opacity, centered, no shadow */}
+        {/* IT KMITL Logo — white, ~10% opacity, bottom-right, bleeds outside frame */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 flex items-center justify-center select-none"
+          className="pointer-events-none absolute -bottom-5 -right-5 select-none"
         >
-          <ItKmitlLogoSvg className="size-20 opacity-[0.10]" />
+          <ItKmitlLogoSvg className="size-28 opacity-[0.10]" />
         </div>
 
         {/* Top right: "IT KMITL" label */}
@@ -106,8 +87,8 @@ export function CourseBookCard({
           </span>
         </div>
 
-        {/* Course Code — large, centered vertically */}
-        <div className="relative z-10 flex-1 flex items-center justify-center -mt-2">
+        {/* Course Code — left-aligned, large, bottom of frame */}
+        <div className="relative z-10 mt-auto">
           <span
             className="font-mono font-black text-white leading-none tracking-tighter select-none drop-shadow-none"
             style={{ fontSize: codeFontSize }}
