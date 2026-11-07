@@ -11,7 +11,7 @@
 ของเว็บนี้ที่เป็นนักศึกษาไทย หัวข้อย่อยใช้ **เพิ่ม** / **ปรับปรุง** / **แก้ไข** /
 **ความปลอดภัย** แทน Added / Changed / Fixed / Security
 
-## [Unreleased]
+## [0.9.0] - 7 พฤศจิกายน 2569
 
 **ผู้ร่วมพัฒนา:** Chatan Petry ([@Jesselpetry](https://github.com/Jesselpetry), IG: [@chatann_](https://instagram.com/chatann_)), PhuPunnavit ([@PhuPunnavit](https://github.com/PhuPunnavit), IG: [@priiu_i](https://instagram.com/priiu_i)), Akarapach Yootsukprasert ([@PGTHEGOD](https://github.com/PGTHEGOD), IG: [@pgthegod_x](https://instagram.com/pgthegod_x)), Meaookung144 ([@Meaookung144](https://github.com/Meaookung144), IG: [@meaookung144](https://instagram.com/meaookung144))
 
@@ -80,6 +80,9 @@
 
 ### ปรับปรุง
 
+- **ปรับโฉมหน้าประวัติเวอร์ชันและผู้ร่วมพัฒนา `/version` สไตล์ GitHub Releases** — จัดเลย์เอาต์ใหม่แบ่ง 2 แผง (ซ้าย: ไทม์ไลน์บันทึกการเปลี่ยนแปลงและเลขเวอร์ชัน, ขวา: ป้ายระบุเวอร์ชันปัจจุบันและประวัติการปล่อยล่าสุด พร้อมการ์ดข้อมูลผู้ร่วมพัฒนาแบบคลีนไม่มีเส้นขอบ) และปรับปุ่มโซเชียลเป็นทรงมนสมบูรณ์ (`rounded-full`)
+- **ยกเครื่อง Contributor Profile Modal** — จัดระเบียบการแสดงผลประวัติการร่วมพัฒนาแยกตามเวอร์ชัน วันที่ปล่อย และลิงก์ Commit/Compare ชัดเจนบน GitHub พร้อมปรับปรุงการจัดระยะตัวอักษรให้อ่านง่ายเป็นระเบียบ และจำกัดเงาให้อยู่ในระดับสบายตา (`shadow-sm` / `shadow-md`)
+- **จัดทำคู่มือการจัดการเวอร์ชันและ Changelog (`docs/VERSION_CONTROL_GUIDE.md`)** — รวบรวมแนวทางการกำหนดเลขเวอร์ชันตาม Semantic Versioning การรวมงานรายวัน/ข้ามวัน และอัปเดตคู่มือ `CONTRIBUTING.md`
 - **ปรับโฉม Dark Theme สไตล์ Neutral Charcoal ดีไซน์ระดับโปร** — ปรับปรุงพาเลทสีโหมดมืดใหม่ทั้งหมด โดยแทนที่โทนสีกรมท่า/น้ำเงินเข้มเดิม ด้วย Tiered Neutral Charcoal Surfaces สไตล์ Figma ระดับมืออาชีพ: พื้นหลัง Canvas (`#141416`), การ์ดคอนเทนต์ (`#1c1c1f`), ป็อปโอเวอร์และดรอปดาวน์ (`#222226`), และแถบข้าง Sidebar (`#18181b`) ผสานเส้นขอบ Hairline borders และพื้นผิว Subtle White Opacity (`oklch(1 0 0 / 8.5%)`, `white/10`, `white/5`) เพิ่มมิติความลึก (refined depth) และความคมชัด ยกระดับการอ่านให้อ่านง่าย สบายตา คมชัด ลดการเมื่อยล้าสายตาด้วยข้อความ Off-white (`#f4f4f6`) และข้อความรอง Neutral Muted (`#9ca3af`), สีเน้นไฮไลต์ Coral Rose (`--ink-red: #fb7185`) สำหรับพื้นหลังมืด พร้อมซิงค์สี Metadata `themeColor` และหน้าออฟไลน์ Service Worker
 - **ITF — สรุปรายสัปดาห์ Week 08–15** — เพิ่มคีย์เวิร์ดต้องจำ ระดับความเน้นของแต่ละสัปดาห์ และเนื้อหาที่ขาดจากโน้ตสรุปของเพื่อนร่วมรุ่น ·
   วันสอบปลายภาคในภาพรวมรายวิชาแก้เป็น อ. 3 พ.ย. 2569 ตามตารางสอบส่วนกลาง
@@ -122,6 +125,7 @@
 
 ### แก้ไข
 
+- **การแสดงผล Avatar Profile Badge** — นำจุดเขียว online status (`AvatarBadge`) ที่ซ้อนทับและบดบังรูปโปรไฟล์ของผู้ร่วมพัฒนาออกทั้งหมด
 - **ชื่อไฟล์ตอนดาวน์โหลดเฉลย CHEM บทที่ 4** — ใช้ชื่อไฟล์จริง `ch04-stiochiometry-2569-key.pdf`
   แทนชื่อเดิมก่อนเปลี่ยนชื่อไฟล์ที่มีเว้นวรรคและตัวพิมพ์ใหญ่
 - **ภาพรวม ITF ตรงกับสไลด์ 2569** — ลำดับ 5 ขั้นตอนการ boot (หา firmware ก่อน POST),

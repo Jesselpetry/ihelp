@@ -6,11 +6,14 @@
 แบบฝึกหัด และเครื่องมือสร้าง Learning Log ของวิชา PSCP รวมอยู่ในเว็บเดียว
 ดีไซน์ตามสไตล์ [iJudge](https://ijudge.it.kmitl.ac.th) · เว็บจริง: <https://ihelp.chatan.in.th>
 
-**15 รายวิชา (14 วิชามีคลังสื่อ) · 741 การ์ดสื่อการเรียน · 724 ไฟล์** — อัปเดตล่าสุด พ.ย. 2569
-(ค่าปัจจุบัน: `jq .totals lib/library/resource-index.json`)
+<!-- stats:start -->
+| 📚 รายวิชาในระบบ | 🗂️ วิชามีคลังสื่อ | 📄 การ์ดสื่อการเรียน | 💾 ไฟล์เอกสารจริง | 📖 จำนวนหน้าเอกสาร | 🗓️ อัปเดตล่าสุด |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| **15** วิชา | **14** วิชา | **741** รายการ | **724** ไฟล์ | **13,593** หน้า | พฤศจิกายน 2569 |
+<!-- stats:end -->
 
 <p>
-  <img src="https://img.shields.io/badge/version-0.8.0-db2777?style=flat-square" alt="Version" />
+  <img src="https://img.shields.io/badge/version-0.9.0-db2777?style=flat-square" alt="Version" />
   <img src="https://img.shields.io/badge/branch-staging-blue?style=flat-square" alt="Staging Branch" />
   <img src="https://img.shields.io/badge/Next.js-16-000000?style=flat-square&logo=nextdotjs&logoColor=white" alt="Next.js 16" />
   <img src="https://img.shields.io/badge/React-19.2-61DAFB?style=flat-square&logo=react&logoColor=000000" alt="React 19" />

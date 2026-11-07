@@ -7,6 +7,7 @@ import { useLocale, t, type LText } from "@/lib/i18n";
 import { COURSES, GROUPS } from "@/lib/courses/catalog";
 import { SITE } from "@/lib/site";
 import { CourseBookCard } from "@/components/course-book-card";
+import LIBRARY_TOTALS from "@/lib/library/library-totals.json";
 
 const L: Record<string, LText> = {
   // The home page's headline is the site's tagline.
@@ -67,6 +68,34 @@ export function CourseDirectory({
           aria-label={t(L.search, locale)}
           className="h-11 rounded-full pl-10 transition-shadow focus-visible:ring-2 focus-visible:ring-primary/20"
         />
+      </div>
+
+      {/* Platform Stats Grid Column */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl mx-auto mb-10 animate-in fade-in-0 duration-500 delay-150 fill-mode-both">
+        <div className="rounded-2xl border bg-card/60 p-3 text-center shadow-xs hover:border-primary/30 transition-colors">
+          <div className="font-mono text-xl sm:text-2xl font-bold text-foreground">{LIBRARY_TOTALS.courses}</div>
+          <div className="text-[11px] sm:text-xs text-muted-foreground mt-0.5">
+            {locale === "th" ? "รายวิชาในระบบ" : "Total Courses"}
+          </div>
+        </div>
+        <div className="rounded-2xl border bg-card/60 p-3 text-center shadow-xs hover:border-primary/30 transition-colors">
+          <div className="font-mono text-xl sm:text-2xl font-bold text-foreground">{LIBRARY_TOTALS.coursesWithLibrary}</div>
+          <div className="text-[11px] sm:text-xs text-muted-foreground mt-0.5">
+            {locale === "th" ? "วิชามีคลังสื่อ" : "With Library"}
+          </div>
+        </div>
+        <div className="rounded-2xl border bg-card/60 p-3 text-center shadow-xs hover:border-primary/30 transition-colors">
+          <div className="font-mono text-xl sm:text-2xl font-bold text-primary">{LIBRARY_TOTALS.assets}</div>
+          <div className="text-[11px] sm:text-xs text-muted-foreground mt-0.5">
+            {locale === "th" ? "การ์ดสื่อการเรียน" : "Study Cards"}
+          </div>
+        </div>
+        <div className="rounded-2xl border bg-card/60 p-3 text-center shadow-xs hover:border-primary/30 transition-colors">
+          <div className="font-mono text-xl sm:text-2xl font-bold text-primary">{LIBRARY_TOTALS.files}</div>
+          <div className="text-[11px] sm:text-xs text-muted-foreground mt-0.5">
+            {locale === "th" ? "ไฟล์ในระบบ" : "Distinct Files"}
+          </div>
+        </div>
       </div>
 
       {matches.length === 0 && (

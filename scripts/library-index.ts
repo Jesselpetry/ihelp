@@ -14,8 +14,12 @@
  * library.
  */
 import fs from "node:fs";
+import path from "node:path";
 
 import { INDEX_FILE, INDEX_RELATIVE, buildResourceIndex, serializeIndex } from "./library-shared";
+import { updateReadmeStats } from "./sync-readme-stats";
+
+const TOTALS_FILE = path.resolve(__dirname, "../lib/library/library-totals.json");
 
 // Wrapped rather than left at top level: tsx transforms this file to CJS,
 // where a top-level await throws ERR_REQUIRE_ASYNC_MODULE.
@@ -24,6 +28,16 @@ async function main() {
 
   const text = serializeIndex(index);
   fs.writeFileSync(INDEX_FILE, text);
+
+  // Write safe, aggregate library totals for client/UI components
+  const totalsWithMonth = {
+    ...index.totals,
+    updatedMonth: "พ.ย. 2569",
+  };
+  fs.writeFileSync(TOTALS_FILE, JSON.stringify(totalsWithMonth, null, 2) + "\n");
+
+  // Keep README tables dynamically in sync
+  updateReadmeStats();
 
   for (const warning of extras.warnings) console.warn(`warning: ${warning}`);
 

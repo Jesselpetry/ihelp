@@ -5,7 +5,6 @@ import { useState } from "react";
 import { usePathname } from "next/navigation";
 import {
   CalendarDays,
-  Calculator,
   Code2,
   Library,
   Menu,
@@ -32,11 +31,6 @@ const NAV_LINKS: { href: string; label: LText; icon: typeof Library }[] = [
     href: "/exam-schedule",
     label: { th: "ตารางสอบ", en: "Exams" },
     icon: CalendarDays,
-  },
-  {
-    href: "/grade-calculator",
-    label: { th: "ตัดเกรด", en: "Calculator" },
-    icon: Calculator,
   },
   { href: "/version", label: { th: "เวอร์ชัน", en: "Version" }, icon: Tag },
 ];

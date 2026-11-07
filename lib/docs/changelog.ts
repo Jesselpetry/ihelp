@@ -64,9 +64,9 @@ export interface VersionEntry {
 // Mirrors CHANGELOG.md at the repo root — keep both in sync when releasing.
 export const CHANGELOG: VersionEntry[] = [
   {
-    version: "Unreleased",
-    date: null,
-    commit: "adec45a",
+    version: "0.9.0",
+    date: "2026-11-07",
+    commit: "7e91359",
     contributors: [
       CONTRIBUTORS.chatan,
       CONTRIBUTORS.phuPunnavit,
@@ -74,6 +74,34 @@ export const CHANGELOG: VersionEntry[] = [
       CONTRIBUTORS.meaookung,
     ],
     changes: [
+      {
+        kind: "changed",
+        text: {
+          th: "ปรับโฉมหน้าประวัติเวอร์ชันและผู้ร่วมพัฒนา /version สไตล์ GitHub Releases แบ่ง 2 แผง พร้อมปุ่มเวอร์ชันปัจจุบัน และการ์ดผู้ร่วมพัฒนาแบบคลีน",
+          en: "GitHub Releases-inspired 2-panel /version redesign with current version pill and clean borderless contributor cards",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "ยกเครื่อง Contributor Profile Modal ให้ Responsive ปรับปุ่มโซเชียลเป็นทรงมน (rounded-full) เงา shadow-sm/md และแจกแจงประวัติการพัฒนาละเอียด",
+          en: "Contributor Profile Modal overhaul — responsive dialog, rounded-full social buttons, subtle shadow tokens, and rich version-by-version history",
+        },
+      },
+      {
+        kind: "fixed",
+        text: {
+          th: "นำจุดเขียว AvatarBadge (online status indicator) ออกจาก Avatar ผู้ร่วมพัฒนาทั้งหมด เพื่อไม่ให้บดบังรูปโปรไฟล์",
+          en: "Remove overlapping online status AvatarBadge dot from contributor avatars to prevent profile image obstruction",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "จัดทำคู่มือการจัดการเวอร์ชัน docs/VERSION_CONTROL_GUIDE.md และอัปเดตแนวทางร่วมพัฒนาใน CONTRIBUTING.md",
+          en: "Add version control & changelog guide (docs/VERSION_CONTROL_GUIDE.md) and update CONTRIBUTING.md",
+        },
+      },
       {
         kind: "added",
         text: {
@@ -973,3 +1001,9 @@ export const CHANGELOG: VersionEntry[] = [
     ],
   },
 ];
+
+/** Get the latest stable release or current version */
+export function getCurrentVersion(): VersionEntry {
+  return CHANGELOG[0];
+}
+
