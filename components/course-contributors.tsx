@@ -4,11 +4,13 @@ import { useState } from "react";
 import Link from "next/link";
 import {
   BookOpen,
+  Code2,
   ExternalLink,
   GraduationCap,
   HeartHandshake,
   Layers,
   Sparkles,
+  Terminal,
   Upload,
   User,
 } from "lucide-react";
@@ -25,6 +27,7 @@ import {
   getContributorsForCourse,
   getContributorWithAcademicYear,
   type ContributorProfile,
+  type ContributorRole,
 } from "@/lib/contributors";
 import { ContributorModal } from "@/components/contributor-modal";
 
@@ -43,12 +46,12 @@ const L = {
     en: "Study notes, cheat sheets, translated slides, and materials for this course are generously authored and shared by peers and alumni for IT KMITL students.",
   },
   viewProfile: {
-    th: "ดูโปรไฟล์ผู้ร่วมพัฒนา",
-    en: "View Contributor Profile",
+    th: "ดูรายละเอียดโปรไฟล์",
+    en: "View Full Profile",
   },
   openNotion: {
-    th: "เปิดอ่านบน Notion",
-    en: "Open on Notion",
+    th: "Notion Notes",
+    en: "Notion Notes",
   },
   ihelpProfile: {
     th: "โปรไฟล์ iHelp",
@@ -70,15 +73,33 @@ const L = {
     th: "ดูทีมผู้พัฒนาและผู้มีส่วนร่วมทั้งหมด",
     en: "View All Contributors",
   },
-  studentIdPrefix: {
-    th: "รหัส",
-    en: "ID",
-  },
   contributionsInCourse: {
-    th: "ผลงานในวิชานี้",
+    th: "ผลงานและเอกสารในวิชานี้",
     en: "Contributions in this course",
   },
 };
+
+/**
+ * Returns a fitting role icon:
+ * - Developer / Lead maintainer -> Code2 / Terminal
+ * - Content contributor / note author -> BookOpen
+ * - Senior mentor -> GraduationCap
+ */
+function RoleIcon({ roles }: { roles: ContributorRole[] }) {
+  if (roles.includes("lead-maintainer")) {
+    return <Terminal className="size-3.5 text-primary shrink-0" />;
+  }
+  if (roles.includes("core-developer") || roles.includes("developer")) {
+    return <Code2 className="size-3.5 text-primary shrink-0" />;
+  }
+  if (roles.includes("senior-mentor")) {
+    return <GraduationCap className="size-3.5 text-primary shrink-0" />;
+  }
+  if (roles.includes("note-author") || roles.includes("content-contributor")) {
+    return <BookOpen className="size-3.5 text-primary shrink-0" />;
+  }
+  return <Sparkles className="size-3.5 text-primary shrink-0" />;
+}
 
 export function CourseContributors({
   courseCode,
@@ -95,7 +116,7 @@ export function CourseContributors({
   }
 
   return (
-    <section className="space-y-4 pt-2">
+    <section className="space-y-4 pt-4 border-t border-border/60">
       {/* ── Section Header ── */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-border/70 pb-3">
         <div className="space-y-1">
@@ -124,7 +145,7 @@ export function CourseContributors({
           asChild
           variant="ghost"
           size="sm"
-          className="text-xs text-muted-foreground hover:text-foreground h-8 self-start sm:self-auto"
+          className="text-xs text-muted-foreground hover:text-foreground h-8 self-start sm:self-auto shrink-0"
         >
           <Link href="/version">
             <Layers className="size-3.5 mr-1 text-primary" />
@@ -133,8 +154,8 @@ export function CourseContributors({
         </Button>
       </div>
 
-      {/* ── Contributors Grid ── */}
-      <div className="grid gap-3.5 sm:grid-cols-2">
+      {/* ── Wide Horizontal Contributor Cards (การ์ดแนวนอนยาว) ── */}
+      <div className="space-y-4">
         {contributors.map((rawContributor) => {
           const profile = getContributorWithAcademicYear(rawContributor);
           const courseMaterials = profile.materials.filter(
@@ -146,36 +167,44 @@ export function CourseContributors({
           return (
             <div
               key={profile.id}
-              className="group relative flex flex-col justify-between rounded-xl border border-border/70 bg-card/70 p-4 transition-all duration-200 hover:border-primary/40 hover:bg-card hover:shadow-xs"
+              className="group relative w-full rounded-2xl border border-border/70 bg-card/70 p-4 sm:p-5 transition-all duration-200 hover:border-primary/40 hover:bg-card hover:shadow-sm space-y-4"
             >
-              <div className="space-y-3">
-                {/* Header: Avatar, Name, Student ID, Auto-Year, Faculty */}
-                <div className="flex items-start gap-3">
-                  <Avatar className="size-12 shrink-0 ring-2 ring-border/60 group-hover:ring-primary/40 transition-all">
+              {/* Top Row: Avatar + Info + Full Badges on the right */}
+              <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-4">
+                {/* Left: Avatar + Details */}
+                <div className="flex items-start gap-3.5 min-w-0">
+                  <Avatar className="size-14 sm:size-16 shrink-0 rounded-2xl ring-2 ring-border/60 group-hover:ring-primary/40 shadow-sm transition-all">
                     <AvatarImage src={profile.avatarUrl} alt={profile.name} />
-                    <AvatarFallback className="text-xs font-semibold bg-primary/10 text-primary">
+                    <AvatarFallback className="text-sm font-semibold bg-primary/10 text-primary rounded-2xl">
                       {profile.avatarFallback ??
                         profile.name.slice(0, 2).toUpperCase()}
                     </AvatarFallback>
                   </Avatar>
 
-                  <div className="min-w-0 flex-1 space-y-1">
-                    <div className="flex flex-wrap items-center gap-1.5">
-                      <span className="text-sm font-semibold text-foreground truncate">
+                  <div className="min-w-0 flex-1 space-y-1.5">
+                    {/* Name & Nickname & Role Badge */}
+                    <div className="flex flex-wrap items-center gap-2">
+                      <h4 className="text-base sm:text-lg font-bold text-foreground leading-tight">
                         {profile.name}
-                      </span>
+                      </h4>
                       {profile.nickname && (
-                        <span className="text-xs text-muted-foreground">
+                        <span className="text-xs sm:text-sm text-muted-foreground">
                           ({profile.nickname})
                         </span>
                       )}
+
+                      {/* Primary Role Badge with Developer/Category Icon */}
+                      <span className="inline-flex items-center gap-1 text-[11px] font-medium text-foreground/90 bg-muted/60 border border-border/60 px-2.5 py-0.5 rounded-full shadow-2xs">
+                        <RoleIcon roles={profile.roles} />
+                        <span>{t(profile.primaryRole, locale)}</span>
+                      </span>
                     </div>
 
-                    {/* Metadata Pill Tags */}
-                    <div className="flex flex-wrap items-center gap-1.5 text-[10px]">
+                    {/* Metadata Pill Tags (Auto Year, Cohort, Student ID, Major) */}
+                    <div className="flex flex-wrap items-center gap-1.5 text-[11px]">
                       {/* Auto-calculated Academic Year Badge */}
                       {profile.academic && (
-                        <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-primary/10 text-primary font-medium">
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-primary/10 text-primary font-medium">
                           <GraduationCap className="size-3" />
                           <span>{t(profile.academic.yearLabel, locale)}</span>
                         </span>
@@ -183,52 +212,130 @@ export function CourseContributors({
 
                       {/* Cohort Badge if available */}
                       {profile.cohort && (
-                        <span className="px-1.5 py-0.5 rounded-md bg-muted text-muted-foreground font-mono">
+                        <span className="px-2 py-0.5 rounded-md bg-muted text-muted-foreground font-mono font-medium">
                           {profile.cohort}
                         </span>
                       )}
 
                       {/* Student ID */}
                       {profile.studentId && (
-                        <span className="px-1.5 py-0.5 rounded-md bg-muted/60 text-muted-foreground font-mono">
+                        <span className="px-2 py-0.5 rounded-md bg-muted/60 text-muted-foreground font-mono">
                           {profile.studentId}
                         </span>
                       )}
 
                       {/* Major / Department */}
                       {profile.major && (
-                        <span className="px-1.5 py-0.5 rounded-md bg-muted/60 text-muted-foreground">
+                        <span className="px-2 py-0.5 rounded-md bg-muted/60 text-muted-foreground">
                           {t(profile.major, locale)}
                         </span>
                       )}
+
+                      {/* Faculty */}
+                      {profile.faculty && (
+                        <span className="px-2 py-0.5 rounded-md bg-muted/40 text-muted-foreground hidden sm:inline-flex">
+                          {t(profile.faculty, locale)}
+                        </span>
+                      )}
                     </div>
+
+                    {/* Bio / Description */}
+                    {profile.bio && (
+                      <p className="text-xs text-muted-foreground leading-relaxed pt-0.5 max-w-2xl">
+                        {t(profile.bio, locale)}
+                      </p>
+                    )}
                   </div>
                 </div>
 
-                {/* Primary Role Badge */}
-                <div className="pt-0.5">
-                  <span className="inline-flex items-center gap-1 text-[11px] font-medium text-foreground/90 bg-muted/40 border border-border/50 px-2 py-0.5 rounded-md">
-                    <Sparkles className="size-3 text-primary shrink-0" />
-                    <span>{t(profile.primaryRole, locale)}</span>
-                  </span>
+                {/* Right: Full Social Badges & Profile Button */}
+                <div className="flex flex-wrap items-center gap-2 self-start shrink-0 pt-1 lg:pt-0">
+                  {/* GitHub Full Badge */}
+                  {profile.socials.github && (
+                    <a
+                      href={`https://github.com/${profile.socials.github}`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium rounded-full border bg-background hover:bg-muted text-foreground/90 hover:text-primary transition-all shadow-2xs"
+                    >
+                      <GithubIcon className="size-3.5" />
+                      <span>GitHub</span>
+                      <span className="font-mono text-[11px] text-muted-foreground">
+                        @{profile.socials.github}
+                      </span>
+                    </a>
+                  )}
+
+                  {/* Instagram Full Badge */}
+                  {profile.socials.instagram && (
+                    <a
+                      href={`https://instagram.com/${profile.socials.instagram}`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium rounded-full border border-pink-500/20 bg-pink-500/10 text-pink-600 dark:text-pink-400 hover:bg-pink-500/15 transition-all shadow-2xs"
+                    >
+                      <InstagramIcon className="size-3.5 text-pink-500" />
+                      <span className="font-mono text-[11px]">
+                        @{profile.socials.instagram}
+                      </span>
+                    </a>
+                  )}
+
+                  {/* Notion Full Badge */}
+                  {profile.socials.notion && (
+                    <a
+                      href={profile.socials.notion}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium rounded-full border border-border/80 bg-background hover:bg-muted text-foreground/90 transition-all shadow-2xs"
+                    >
+                      <NotionIcon className="size-3.5" />
+                      <span>{t(L.openNotion, locale)}</span>
+                      <ExternalLink className="size-3 text-muted-foreground ml-0.5" />
+                    </a>
+                  )}
+
+                  {/* iHelp Profile Full Badge */}
+                  {profile.profilePath && (
+                    <Link
+                      href={profile.profilePath}
+                      className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium rounded-full border bg-background hover:bg-muted text-foreground/90 hover:text-primary transition-all shadow-2xs"
+                    >
+                      <User className="size-3.5" />
+                      <span>{t(L.ihelpProfile, locale)}</span>
+                    </Link>
+                  )}
+
+                  {/* View Details Profile Modal Button */}
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setSelectedContributor(rawContributor)}
+                    className="rounded-full text-xs h-7.5 px-3 bg-muted/40 hover:bg-muted"
+                  >
+                    <span>{t(L.viewProfile, locale)}</span>
+                    <ExternalLink className="size-3 ml-1 opacity-70" />
+                  </Button>
                 </div>
+              </div>
 
-                {/* Contributions in THIS course */}
-                {courseMaterials.length > 0 && (
-                  <div className="space-y-1.5 pt-1">
-                    <p className="text-[11px] font-semibold text-foreground/80 flex items-center gap-1">
-                      <BookOpen className="size-3 text-primary" />
-                      <span>{t(L.contributionsInCourse, locale)}:</span>
-                    </p>
+              {/* Bottom Row: Contributions in THIS Course */}
+              {courseMaterials.length > 0 && (
+                <div className="pt-2 border-t border-border/50 space-y-2">
+                  <div className="flex items-center gap-1.5 text-xs font-semibold text-foreground/80">
+                    <BookOpen className="size-3.5 text-primary" />
+                    <span>{t(L.contributionsInCourse, locale)}:</span>
+                  </div>
 
-                    <ul className="space-y-1.5">
-                      {courseMaterials.map((item, idx) => (
-                        <li
-                          key={idx}
-                          className="text-[11px] leading-relaxed text-muted-foreground bg-muted/30 rounded-lg p-2 border border-border/40"
-                        >
-                          <div className="flex items-start justify-between gap-1.5">
-                            <span className="font-medium text-foreground/90">
+                  <div className="grid gap-2 sm:grid-cols-2">
+                    {courseMaterials.map((item, idx) => (
+                      <div
+                        key={idx}
+                        className="rounded-xl bg-muted/30 p-2.5 border border-border/40 text-xs flex flex-col justify-between gap-1.5"
+                      >
+                        <div className="space-y-1">
+                          <div className="flex items-start justify-between gap-2">
+                            <span className="font-semibold text-foreground/90 leading-snug">
                               {t(item.title, locale)}
                             </span>
                             {item.badge && (
@@ -241,84 +348,37 @@ export function CourseContributors({
                             )}
                           </div>
                           {item.description && (
-                            <p className="text-[10px] text-muted-foreground mt-0.5 line-clamp-2">
+                            <p className="text-[11px] text-muted-foreground line-clamp-2 leading-relaxed">
                               {t(item.description, locale)}
                             </p>
                           )}
-                        </li>
-                      ))}
-                    </ul>
+                        </div>
+
+                        {item.url && (
+                          <div className="pt-1">
+                            <a
+                              href={item.url}
+                              target={item.url.startsWith("http") ? "_blank" : undefined}
+                              rel={item.url.startsWith("http") ? "noreferrer" : undefined}
+                              className="inline-flex items-center gap-1 text-[11px] text-primary hover:underline font-medium"
+                            >
+                              <span>เปิดดูเอกสาร / ลิงก์</span>
+                              <ExternalLink className="size-2.5" />
+                            </a>
+                          </div>
+                        )}
+                      </div>
+                    ))}
                   </div>
-                )}
-              </div>
-
-              {/* Bottom Footer Actions */}
-              <div className="flex flex-wrap items-center justify-between gap-2 pt-3 mt-3 border-t border-border/50">
-                <div className="flex items-center gap-1.5">
-                  {profile.socials.github && (
-                    <a
-                      href={`https://github.com/${profile.socials.github}`}
-                      target="_blank"
-                      rel="noreferrer"
-                      title={`GitHub: @${profile.socials.github}`}
-                      className="size-7 rounded-full flex items-center justify-center border bg-card hover:bg-muted text-foreground/80 hover:text-primary transition-colors"
-                    >
-                      <GithubIcon className="size-3.5" />
-                    </a>
-                  )}
-
-                  {profile.socials.instagram && (
-                    <a
-                      href={`https://instagram.com/${profile.socials.instagram}`}
-                      target="_blank"
-                      rel="noreferrer"
-                      title={`Instagram: @${profile.socials.instagram}`}
-                      className="size-7 rounded-full flex items-center justify-center border border-pink-500/20 bg-pink-500/10 text-pink-500 hover:bg-pink-500/20 transition-colors"
-                    >
-                      <InstagramIcon className="size-3.5" />
-                    </a>
-                  )}
-
-                  {profile.socials.notion && (
-                    <a
-                      href={profile.socials.notion}
-                      target="_blank"
-                      rel="noreferrer"
-                      title={t(L.openNotion, locale)}
-                      className="size-7 rounded-full flex items-center justify-center border border-muted-foreground/30 bg-muted/40 text-foreground hover:bg-muted transition-colors"
-                    >
-                      <NotionIcon className="size-3.5" />
-                    </a>
-                  )}
-
-                  {profile.profilePath && (
-                    <Link
-                      href={profile.profilePath}
-                      title={t(L.ihelpProfile, locale)}
-                      className="size-7 rounded-full flex items-center justify-center border bg-card hover:bg-muted text-foreground/80 hover:text-primary transition-colors"
-                    >
-                      <User className="size-3.5" />
-                    </Link>
-                  )}
                 </div>
-
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setSelectedContributor(rawContributor)}
-                  className="text-[11px] h-7 px-2.5 text-muted-foreground hover:text-foreground"
-                >
-                  <span>{t(L.viewProfile, locale)}</span>
-                  <ExternalLink className="size-3 ml-1 opacity-70" />
-                </Button>
-              </div>
+              )}
             </div>
           );
         })}
       </div>
 
       {/* ── Community Invitation / CTA Banner ── */}
-      <div className="rounded-xl border border-dashed border-border/80 bg-muted/20 p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="rounded-2xl border border-dashed border-border/80 bg-muted/20 p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="space-y-1">
           <p className="text-xs sm:text-sm font-semibold text-foreground flex items-center gap-1.5">
             <Upload className="size-3.5 text-primary" />
@@ -330,7 +390,7 @@ export function CourseContributors({
         </div>
 
         <div className="flex flex-wrap items-center gap-2 shrink-0">
-          <Button asChild size="sm" variant="outline" className="text-xs h-8">
+          <Button asChild size="sm" variant="outline" className="text-xs h-8 rounded-full">
             <a
               href="https://github.com/Jesselpetry/ihelp/blob/staging/docs/DROPZONE_SOP.md"
               target="_blank"
@@ -348,7 +408,8 @@ export function CourseContributors({
         <ContributorModal
           contributor={{
             name: selectedContributor.name,
-            github: selectedContributor.socials.github ?? selectedContributor.id,
+            github:
+              selectedContributor.socials.github ?? selectedContributor.id,
             instagram: selectedContributor.socials.instagram,
           }}
           profile={selectedContributor}
