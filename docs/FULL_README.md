@@ -13,7 +13,7 @@
 <!-- stats:end -->
 
 <p>
-  <img src="https://img.shields.io/badge/version-0.9.0-db2777?style=flat-square" alt="Version" />
+  <img src="https://img.shields.io/badge/version-1.0.0-db2777?style=flat-square" alt="Version" />
   <img src="https://img.shields.io/badge/branch-staging-blue?style=flat-square" alt="Staging Branch" />
   <img src="https://img.shields.io/badge/Next.js-16-000000?style=flat-square&logo=nextdotjs&logoColor=white" alt="Next.js 16" />
   <img src="https://img.shields.io/badge/React-19.2-61DAFB?style=flat-square&logo=react&logoColor=000000" alt="React 19" />
