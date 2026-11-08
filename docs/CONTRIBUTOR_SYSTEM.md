@@ -131,11 +131,11 @@ $$\text{รุ่น IT} = (\text{พ.ศ. เข้าศึกษา} \pmod{10
 
 | รหัสระบุตัว | ชื่อ-นามสกุล | รหัสนักศึกษา | ชั้นปี & รุ่น (อัตโนมัติ) | คณะ / สาขา | บทบาทหลัก (Primary Role) | วิชาที่มีส่วนร่วม | สถานะข้อมูล |
 |:---:|---|:---:|:---:|:---:|---|:---:|:---:|
-| `chatan` | **Chatan Petry (Jess)** (`@Jesselpetry`) | `69070027` | **ชั้นปีที่ 1** (IT24) | คณะ IT (สาขา IT) | **ผู้ก่อตั้งและผู้ดูแลหลัก (Lead Maintainer)**<br>สถาปัตยกรรมเว็บ, ระบบตัดเกรด, ผังสอบ, คลังสื่อ | ทุกวิชา (`ALL`), ITF, ICS, MFIT, PSCP, COMPRO, CHEM |  **สมบูรณ์ครบถ้วน** |
-| `phuPunnavit` | **Punnavit Tangkolchan (Phu)** (`@PhuPunnavit`) | `69070119` | **ชั้นปีที่ 1** (IT24) | คณะ IT (สาขา IT) | **ผู้ร่วมพัฒนาหลัก & แปลสไลด์สรุป (Core Contributor)**<br>สไลด์บรรยายแปลไทย 8 สัปดาห์ & Chat Widget | ITF |  **สมบูรณ์ครบถ้วน** |
-| `tammadon` | **Tammadon Suksa (Bank)** | `69070082` | **ชั้นปีที่ 1** (IT24) | คณะ IT (สาขา IT) | **ผู้ร่วมแบ่งปันบันทึกสรุป Notion (IT24)**<br>โน้ตสรุป ITF สัปดาห์ 08–15 (79 ภาพสไลด์จดโน้ต) | ITF |  **สมบูรณ์ครบถ้วน** |
-| `pgthegod` | **Akarapach Yootsukprasert (Park)** (`@PGTHEGOD`) | `69070225` | **ชั้นปีที่ 1** (IT24) | คณะ IT (สาขา IT) | **ผู้ร่วมพัฒนา (Contributor)**<br>หน้า Landing Page และระบบเชื่อมต่อ `/pro` | PSCP |  **สมบูรณ์ครบถ้วน** |
-| `meaookung` | **Kittinan Atthasiri (Meao)** (`@Meaookung144`) | `6907xxxx` | **ชั้นปีที่ 1** (IT24) | คณะ IT (สาขา IT) | **ผู้ร่วมพัฒนา (Contributor)**<br>ฟอร์มส่งงานและ Learning Log Direct Edit | PSCP | ⚠️ **รอรหัสนักศึกษาเต็ม** |
+| `chatan` | **Chatan Petry** (`@Jesselpetry`) | `69070027` | **ชั้นปีที่ 1** (IT24) | คณะ IT (สาขา IT) | **ผู้ก่อตั้งและผู้ดูแลหลัก (Lead Maintainer)**<br>สถาปัตยกรรมเว็บ, ระบบตัดเกรด, ผังสอบ, คลังสื่อ | ทุกวิชา (`ALL`), ITF, ICS, MFIT, PSCP, COMPRO, CHEM |  **สมบูรณ์ครบถ้วน** |
+| `phuPunnavit` | **Punnavit Tangkolchan** (`@PhuPunnavit`) | `69070119` | **ชั้นปีที่ 1** (IT24) | คณะ IT (สาขา IT) | **ผู้ร่วมพัฒนาหลัก & แปลสไลด์สรุป (Core Contributor)**<br>สไลด์บรรยายแปลไทย 8 สัปดาห์ & Chat Widget | ITF |  **สมบูรณ์ครบถ้วน** |
+| `tammadon` | **Tammadon Suksa** | `69070082` | **ชั้นปีที่ 1** (IT24) | คณะ IT (สาขา IT) | **ผู้ร่วมแบ่งปันบันทึกสรุป Notion (IT24)**<br>โน้ตสรุป ITF สัปดาห์ 08–15 (79 ภาพสไลด์จดโน้ต) | ITF |  **สมบูรณ์ครบถ้วน** |
+| `pgthegod` | **Akarapach Yootsukprasert** (`@PGTHEGOD`) | `69070225` | **ชั้นปีที่ 1** (IT24) | คณะ IT (สาขา IT) | **ผู้ร่วมพัฒนา (Contributor)**<br>หน้า Landing Page และระบบเชื่อมต่อ `/pro` | PSCP |  **สมบูรณ์ครบถ้วน** |
+| `meaookung` | **Kittinan Atthasiri** (`@Meaookung144`) | `6907xxxx` | **ชั้นปีที่ 1** (IT24) | คณะ IT (สาขา IT) | **ผู้ร่วมพัฒนา (Contributor)**<br>ฟอร์มส่งงานและ Learning Log Direct Edit | PSCP | ⚠️ **รอรหัสนักศึกษาเต็ม** |
 | `fewIt25` | **พี่ฟิว (Few IT25)** | — | **ศิษย์เก่า (Alumni)** (IT25) | คณะ IT (สาขา IT) | **รุ่นพี่ผู้จัดทำข้อสอบจำลอง (IT25)**<br>ชุดโจทย์ซ้อมสอบกลางภาค DSA และ OOP | DSA, OOP | ⚠️ **รอข้อมูลเพิ่มเติม** |
 
 ---
@@ -167,11 +167,11 @@ $$\text{รุ่น IT} = (\text{พ.ศ. เข้าศึกษา} \pmod{10
 เมื่อคุณตื่นนอนแล้ว สามารถตรวจสอบรายการข้อมูลที่ยังขาดหาย/ต้องการเพิ่มเติมได้ตามรายการด้านล่างนี้ และสามารถแจ้งเข้ามาเพื่อให้ระบบอัปเดตข้อมูลให้สมบูรณ์ได้ทันทีครับ:
 
 - [x] **1. รหัสนักศึกษา 8 หลักจริงของผู้ร่วมพัฒนา:**
-  - **Chatan Petry (Jess):** `69070027` (`69070027@kmitl.ac.th`)
-  - **Punnavit Tangkolchan (Phu):** `69070119` (`69070119@kmitl.ac.th`)
-  - **Akarapach Yootsukprasert (Park):** `69070225` (`69070225@kmitl.ac.th`)
-  - **Tammadon Suksa (Bank):** `69070082` (`69070082@kmitl.ac.th`)
-  - **Kittinan Atthasiri (Meaookung):** ปัจจุบันใช้ `6907xxxx` (ต้องการ 4 หลักท้าย เพื่อให้ระบบผูกกับอีเมล `...@kmitl.ac.th` และโปรไฟล์ iHelp ได้ถูกต้อง)
+  - **Chatan Petry:** `69070027` (`69070027@kmitl.ac.th`)
+  - **Punnavit Tangkolchan:** `69070119` (`69070119@kmitl.ac.th`)
+  - **Akarapach Yootsukprasert:** `69070225` (`69070225@kmitl.ac.th`)
+  - **Tammadon Suksa:** `69070082` (`69070082@kmitl.ac.th`)
+  - **Kittinan Atthasiri:** ปัจจุบันใช้ `6907xxxx` (ต้องการ 4 หลักท้าย เพื่อให้ระบบผูกกับอีเมล `...@kmitl.ac.th` และโปรไฟล์ iHelp ได้ถูกต้อง)
 - [ ] **2. รูปโปรไฟล์นักศึกษา (Student Profile Pictures):**
   - ปัจจุบันระบบดึง Avatar จาก GitHub (`https://github.com/<username>.png`) และ Identicon เป็นค่าเริ่มต้น
   - หากต้องการใช้ **รูปชุดนักศึกษาจริง** หรือรูปโปรไฟล์เฉพาะบุคคล สามารถระบุ URL หรือนำไฟล์รูปภาพมาวางในโปรเจกต์ได้

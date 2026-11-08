@@ -264,11 +264,6 @@ export function CourseContributors({
                       <h4 className="text-sm sm:text-base font-semibold text-foreground truncate">
                         {profile.name}
                       </h4>
-                      {profile.nickname && (
-                        <span className="text-xs text-muted-foreground truncate">
-                          ({profile.nickname})
-                        </span>
-                      )}
 
                       {/* Primary Role Badge with Developer/Category Icon */}
                       <span className="inline-flex items-center gap-1 text-[10px] font-medium text-foreground/90 bg-muted/60 border border-border/60 px-2 py-0.5 rounded-full shrink-0">

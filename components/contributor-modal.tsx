@@ -86,7 +86,7 @@ export const KNOWN_CONTRIBUTORS: Record<string, ContributorDetail> = {
     },
   },
   PhuPunnavit: {
-    name: "Punnavit Tangkolchan (Phu)",
+    name: "Punnavit Tangkolchan",
     github: "PhuPunnavit",
     instagram: "priiu_i",
     role: { th: "ผู้ร่วมพัฒนา (Core Contributor)", en: "Core Contributor" },
@@ -96,7 +96,7 @@ export const KNOWN_CONTRIBUTORS: Record<string, ContributorDetail> = {
     },
   },
   PGTHEGOD: {
-    name: "Akarapach Yootsukprasert (Park)",
+    name: "Akarapach Yootsukprasert",
     github: "PGTHEGOD",
     instagram: "pgthegod_x",
     role: { th: "ผู้ร่วมพัฒนา (Contributor)", en: "Contributor" },
@@ -106,7 +106,7 @@ export const KNOWN_CONTRIBUTORS: Record<string, ContributorDetail> = {
     },
   },
   Meaookung144: {
-    name: "Kittinan Atthasiri (Meao)",
+    name: "Kittinan Atthasiri",
     github: "Meaookung144",
     instagram: "meaookung144",
     role: { th: "ผู้ร่วมพัฒนา (Contributor)", en: "Contributor" },
@@ -116,7 +116,7 @@ export const KNOWN_CONTRIBUTORS: Record<string, ContributorDetail> = {
     },
   },
   tammadon: {
-    name: "Tammadon Suksa (Bank)",
+    name: "Tammadon Suksa",
     github: "tammadon",
     role: {
       th: "ผู้ร่วมแบ่งปันบันทึกสรุป Notion (IT24)",
@@ -248,18 +248,11 @@ export function ContributorModal({
                 </AvatarFallback>
               </Avatar>
 
-              {/* Identity & Subtitle (No truncation!) */}
+              {/* Identity & Subtitle (No truncation, clean standardized name) */}
               <div className="space-y-1">
-                <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
-                  <DialogTitle className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-                    {detail.name}
-                  </DialogTitle>
-                  {profile?.nickname && (
-                    <span className="text-sm text-muted-foreground font-normal">
-                      ({profile.nickname})
-                    </span>
-                  )}
-                </div>
+                <DialogTitle className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
+                  {detail.name}
+                </DialogTitle>
 
                 {/* Subtitle / Meta Line */}
                 <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs">
