@@ -46,7 +46,7 @@ Sections 1–5 keep their original text as history; wherever reality moved they 
 | Contract checks | "No test suite" (§5.9) | `bun run content:check` (runs as `prebuild`; error and warn rules for banks, spine, bindings, recommended problems and the overview standard), `bun run readiness`, `bun run library:audit`. Still no unit-test runner | `scripts/validate-content.ts` · `scripts/readiness.ts` · `scripts/library-audit.ts` |
 | Course overviews | loose "five-part" convention (§4.6) | six fixed sections + 14-key frontmatter, machine-checked (`overview-*`); authoring notes moved to a non-rendered `blueprint.md` | `docs/COURSE_OVERVIEW_STANDARD.md` · `docs/templates/` |
 | Reader typography | not covered | every Markdown body renders in THSarabunNew via `MdView`; a "notebook" variant for the `overview` and `summary` modules; `{==…==}` / `{++…++}` marks | `docs/FONTS.md` · `components/md-view.tsx` · `lib/docs/remark-notebook.ts` |
-| PSCP data | 64 iJudge problems, 10 recommended | 222 in `data/oj_problems.json`, 235 in the registry `data/pscp/problems.json` (built from the archive repo's `OP` branch), 14 recommended; `/pscp/[slug]` is an in-browser workspace | `scripts/build_pscp_registry.py` · `lib/pscp/pscp.ts` |
+| PSCP data | 64 iJudge problems, 10 recommended | 273 in `data/oj_problems.json`, 273 in the registry `data/pscp/problems.json` (built from the archive repo's `OP` branch), 14 recommended; `/pscp/[slug]` is an in-browser workspace | `scripts/build_pscp_registry.py` · `lib/pscp/pscp.ts` |
 | Code layout | flat `lib/*.ts` (paths in §2–§4 as scanned) | grouped by domain: `lib/courses` · `library` · `quiz` · `pscp` · `chat` · `exams` · `study-space` · `submission` · `docs` · `github` · `profile` · `actions` · `auth` · `storage` · `supabase` · `schemas` · `site.ts` | `lib/README.md` |
 | Releases | 0.6.0 | 0.7.0 and 0.8.0 (both 22 Sep); the site moved to `ihelp.chatan.in.th` on 15 Sep | `CHANGELOG.md` |
 
@@ -101,7 +101,7 @@ their own command.
 | Generated asset records | 670 | **705** | `lib/library/library-manifest.json` (353 KB), built from the file tree |
 | Quiz / exam questions | 368 | **390** | 308 in the six banks bound to courses (ITF 63, ICS 50, MFIT 65, COMPRO 10 + 60, CHEM 60) + 82 per-problem for 14 recommended problems; all typed `QuizQuestion` |
 | Executable coding problems | 35 | **39** | 14 OJ "recommended" problems (86 cases, 30 of them official) + 25 ComPro labs (123 cases) |
-| Problem-set index | 64 | **222** | `data/oj_problems.json` — weeks 1–14, 36 learning logs; the registry `data/pscp/problems.json` holds 235 |
+| Problem-set index | 64 | **273** | `data/oj_problems.json` — weeks 1–16, 36 learning logs; the registry `data/pscp/problems.json` holds 273 |
 | Policy / how-to documents | 12 | **13** | `data/ai-guidelines/` (23 files, th/en pairs), rendered as a paginated "book" at `/library` |
 | App routes | 25 pages / 13 API routes | **26 pages / 17 route handlers** | `find app -name page.tsx`, `find app -name route.ts` — including `/grade-calculator`, `/calculator`, `/exam-schedule`, `/pro`, `/profile/[student_id]/study` and `app/api/chat` |
 
@@ -135,7 +135,7 @@ There are three, and they barely intersect:
 2. **PSCP problem path** — `/pscp` (64 iJudge problems with deadlines) and `/recommended`
    (10 annotated problems) → `/recommended/<slug>` (reader) → `/recommended/<slug>/quiz` (technique
    self-test) or `/recommended/<slug>/grade` (in-browser Python grader).
-   *Status 15 Oct 2026: `/pscp` lists the 235-problem registry and each problem opens an in-browser
+   *Status 8 Nov 2026: `/pscp` lists the 273-problem registry and each problem opens an in-browser
    workspace at `/pscp/<slug>`; `/recommended` has 14 problems.*
 3. **Coursework-compliance path** — `/make/submission` and `/make/reflection` (form wizards that
    fill official Markdown templates) → `/history` → optional GitHub push (`/repo`, 13 API routes).
@@ -441,9 +441,9 @@ and `components/pscp/test-case-navigator.tsx` (horizontal numbered tab strip `[ 
 **(c) Problem index** — `/pscp` renders all 64 iJudge problems from `data/oj_problems.json` with
 deadlines. Week numbers are **derived, not stored**: distinct expiry dates are sorted ascending and
 the ordinal becomes the week (`lib/pscp/master.ts`).
-*Status 15 Oct 2026: `/pscp` now renders the registry `data/pscp/problems.json` (235 problems),
+*Status 8 Nov 2026: `/pscp` now renders the registry `data/pscp/problems.json` (273 problems),
 built by `scripts/build_pscp_registry.py` from the course archive repo — the problem index
-(`data/oj_problems.json`, 222 problems), `all_problems_detail.json` and the reference solutions come
+(`data/oj_problems.json`, 273 problems), `all_problems_detail.json` and the reference solutions come
 from its `OP` branch, the authored `problem.md` write-ups from its main branch. `oj_problems.json`
 carries a stored `week` (the derived ordinal in `master.ts` is only the fallback), and each registry
 problem opens an in-browser workspace at `/pscp/<slug>`.*
@@ -1113,7 +1113,7 @@ count):*
 | ITF | ● + 15 weekly pages | 63 | — | 108 | — | 5/11 |
 | ICS | ● + 7 session pages | 50 | practice paper (md) | 114 | — | 6/11 |
 | MFIT | ● + weeks 8–15 (md) | 65 | midterm + final papers (md) | 110 | — | 8/11 |
-| PSCP | ● | — | — | 38 | `/pscp` registry (235) · 14 recommended | 4/11 |
+| PSCP | ● | — | — | 38 | `/pscp` registry (273) · 14 recommended | 4/11 |
 | COMPRO | ● | 10 | 60 (bank, own module) | 7 (in-app docs) | 25 labs | 6/11 |
 | CHEM | ● | 60 | — | 12 | — | 4/11 |
 | CHARM · FE · SPORT · BFIT · DSA · OOP · PSTAT · FE2 · DL | ● | — | — | 0–117 | — | 2–3/11 |

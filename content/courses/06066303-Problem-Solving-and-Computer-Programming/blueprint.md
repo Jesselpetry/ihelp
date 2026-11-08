@@ -80,7 +80,7 @@ type LabChallenge = {
 | 5 | สตริง — index, `len`, slicing, immutability, การวนซ้ำบนสตริง | `PSCP_Lec_Chapter05-2022.pdf` |
 
 - ต้นทาง: `kmitl-archive/archive/Y1-S1/Problem-Solving-and-Computer-Programming` · `IT-KMITL/Y1-S1/PSCP/pscp-69070027` · `IT-KMITL/Y1-S1/PSCP/ihelp`
-- ดัชนีโจทย์ OJ: `data/oj_problems.json` (135 ข้อ)
+- ดัชนีโจทย์ OJ: `data/oj_problems.json` (273 ข้อ)
 
 ## 5. ช่องว่างข้อมูล
 
