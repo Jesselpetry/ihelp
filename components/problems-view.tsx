@@ -81,16 +81,33 @@ export function ProblemsView({ data }: { data: PscpHubData }) {
         );
       })
       .sort((a, b) => {
-        // Expired sinks to the bottom, then Learning Log (submission first),
-        // then newest week first, then Recommended, then id.
+        // 1. TA Exam Recommended problems ALWAYS float to the very top
+        const examA = Boolean(a.examRecommended);
+        const examB = Boolean(b.examRecommended);
+        if (examA !== examB) return examA ? -1 : 1;
+        if (examA && examB) {
+          const order = [3476, 3753, 3609, 3644, 3645, 3650, 3672, 3752];
+          const idxA = order.indexOf(a.id);
+          const idxB = order.indexOf(b.id);
+          if (idxA !== -1 && idxB !== -1) return idxA - idxB;
+        }
+
+        // 2. Expired sinks to the bottom (for non-exam-recommended problems)
         const expA = isExpired(a, now);
         const expB = isExpired(b, now);
         if (expA !== expB) return expA ? 1 : -1;
+
+        // 3. Learning Log (submission first)
         if (a.learningLog !== b.learningLog) return a.learningLog ? -1 : 1;
+
+        // 4. Newest week first
         const weekA = a.week ?? 0;
         const weekB = b.week ?? 0;
         if (weekA !== weekB) return weekB - weekA;
+
+        // 5. Recommended
         if (a.recommended !== b.recommended) return a.recommended ? -1 : 1;
+
         return a.id - b.id;
       });
   }, [problems, query, weekFilter, filter, concept, progress, locale]);

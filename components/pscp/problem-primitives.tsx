@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Check, Code2, Clock, ExternalLink, PanelsTopLeft, Star, TriangleAlert } from "lucide-react";
+import { Check, Code2, Clock, ExternalLink, PanelsTopLeft, Sparkles, Star, TriangleAlert } from "lucide-react";
 import type { PscpProblem } from "@/lib/pscp/pscp";
 import type { PscpProgress } from "@/lib/pscp/pscp-client";
 import { Button } from "@/components/ui/button";
@@ -202,13 +202,19 @@ export function ProblemMeta({
           ? `${problem.cases.length} ${t(PL.cases, locale)}`
           : t(PL.noCases, locale)}
       </MetaItem>
-      {problem.expireLabel && (
-        <MetaItem
-          icon={expired ? TriangleAlert : Clock}
-          tone={expired ? "destructive" : "default"}
-        >
-          {expired ? t(PL.expired, locale) : `${t(PL.due, locale)} ${shortDate(problem.expireLabel)}`}
+      {problem.examRecommended ? (
+        <MetaItem icon={Sparkles} className="text-amber-600 dark:text-amber-400 font-medium">
+          {locale === "th" ? "TA แนะนำก่อนสอบ" : "TA Recommend"}
         </MetaItem>
+      ) : (
+        problem.expireLabel && (
+          <MetaItem
+            icon={expired ? TriangleAlert : Clock}
+            tone={expired ? "destructive" : "default"}
+          >
+            {expired ? t(PL.expired, locale) : `${t(PL.due, locale)} ${shortDate(problem.expireLabel)}`}
+          </MetaItem>
+        )
       )}
     </div>
   );

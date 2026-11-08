@@ -48,7 +48,7 @@ export function ProblemCard({
   onToggleSolved: () => void;
   locale: Locale;
 }) {
-  const expired = isExpired(problem, new Date());
+  const expired = isExpired(problem, new Date()) && !problem.examRecommended;
   const state = problemState(solved, attempt, expired);
   const takeaway = problem.takeaway?.points?.[0];
 

@@ -45,7 +45,7 @@ export function ProblemRow({
   onToggleSolved: () => void;
   locale: Locale;
 }) {
-  const expired = isExpired(problem, new Date());
+  const expired = isExpired(problem, new Date()) && !problem.examRecommended;
   const state = problemState(solved, attempt, expired);
 
   return (
