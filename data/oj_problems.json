@@ -2653,7 +2653,7 @@
   },
   {
     "id": 3476,
-    "name": "[LEARNING LOGS] CuteCat CuteFox",
+    "name": "[Recommend] [LEARNING LOGS] CuteCat CuteFox",
     "week": 11,
     "status": "Passed",
     "difficulty": 2,
@@ -2663,7 +2663,7 @@
     "expire_date": "30 October 2026, 23:59",
     "released": "2026-09-18T09:00:00.000Z",
     "is_learning_log": true,
-    "is_recommended": false,
+    "is_recommended": true,
     "is_midterm": false,
     "is_mini_exam": false,
     "url": "https://ijudge.it.kmitl.ac.th/problems/3476/description?problemPage=15"
@@ -3979,7 +3979,7 @@
   },
   {
     "id": 3609,
-    "name": "3nPlus1",
+    "name": "[Recommend] 3nPlus1",
     "week": 14,
     "status": "Passed",
     "difficulty": 1,
@@ -3989,7 +3989,7 @@
     "expire_date": "30 October 2026, 23:59",
     "released": "2026-10-09T11:00:00.000Z",
     "is_learning_log": false,
-    "is_recommended": false,
+    "is_recommended": true,
     "is_midterm": false,
     "is_mini_exam": false,
     "url": "https://ijudge.it.kmitl.ac.th/problems/3609/description?problemPage=23"
@@ -4064,7 +4064,7 @@
   },
   {
     "id": 3644,
-    "name": "08.00 - B RNG",
+    "name": "[Recommend] 08.00 - B RNG",
     "week": 15,
     "status": "Not Passed",
     "difficulty": 3,
@@ -4074,14 +4074,14 @@
     "expire_date": "30 October 2026, 23:59",
     "released": "2026-10-19T09:00:00.000Z",
     "is_learning_log": false,
-    "is_recommended": false,
+    "is_recommended": true,
     "is_midterm": false,
     "is_mini_exam": false,
     "url": "https://ijudge.it.kmitl.ac.th/problems/3644/description?problemPage=23"
   },
   {
     "id": 3645,
-    "name": "PhoneNumber",
+    "name": "[Recommend] PhoneNumber",
     "week": 15,
     "status": "Not Passed",
     "difficulty": 1,
@@ -4091,7 +4091,7 @@
     "expire_date": "30 October 2026, 23:59",
     "released": "2026-10-19T09:00:00.000Z",
     "is_learning_log": false,
-    "is_recommended": false,
+    "is_recommended": true,
     "is_midterm": false,
     "is_mini_exam": false,
     "url": "https://ijudge.it.kmitl.ac.th/problems/3645/description?problemPage=23"
@@ -4166,7 +4166,7 @@
   },
   {
     "id": 3650,
-    "name": "BookWorm",
+    "name": "[Recommend] BookWorm",
     "week": 15,
     "status": "Not Passed",
     "difficulty": 1,
@@ -4176,7 +4176,7 @@
     "expire_date": "30 October 2026, 23:59",
     "released": "2026-10-19T09:00:00.000Z",
     "is_learning_log": false,
-    "is_recommended": false,
+    "is_recommended": true,
     "is_midterm": false,
     "is_mini_exam": false,
     "url": "https://ijudge.it.kmitl.ac.th/problems/3650/description?problemPage=24"
@@ -4489,7 +4489,7 @@
   },
   {
     "id": 3672,
-    "name": "นับสระและหาสระเรียงกันยาวที่สุด",
+    "name": "[Recommend] นับสระและหาสระเรียงกันยาวที่สุด",
     "week": 16,
     "status": "Not Passed",
     "difficulty": 2,
@@ -4499,7 +4499,7 @@
     "expire_date": "30 October 2026, 23:59",
     "released": "2026-10-27T11:00:00.000Z",
     "is_learning_log": false,
-    "is_recommended": false,
+    "is_recommended": true,
     "is_midterm": false,
     "is_mini_exam": false,
     "url": "https://ijudge.it.kmitl.ac.th/problems/3672/description?problemPage=26"
@@ -4639,5 +4639,39 @@
     "is_midterm": false,
     "is_mini_exam": false,
     "url": "https://ijudge.it.kmitl.ac.th/problems/3680/description?problemPage=27"
+  },
+  {
+    "id": 3752,
+    "name": "[Recommend] Who's the author",
+    "week": 16,
+    "status": "Not Passed",
+    "difficulty": 2,
+    "passed_count": 0,
+    "attempt_count": 0,
+    "percentage": 0.0,
+    "expire_date": "30 October 2026, 23:59",
+    "released": "2026-10-30T12:00:00.000Z",
+    "is_learning_log": false,
+    "is_recommended": true,
+    "is_midterm": false,
+    "is_mini_exam": false,
+    "url": "https://ijudge.it.kmitl.ac.th/problems/3752/description"
+  },
+  {
+    "id": 3753,
+    "name": "[Recommend] Members",
+    "week": 16,
+    "status": "Not Passed",
+    "difficulty": 2,
+    "passed_count": 0,
+    "attempt_count": 0,
+    "percentage": 0.0,
+    "expire_date": "30 October 2026, 23:59",
+    "released": "2026-10-30T12:00:00.000Z",
+    "is_learning_log": false,
+    "is_recommended": true,
+    "is_midterm": false,
+    "is_mini_exam": false,
+    "url": "https://ijudge.it.kmitl.ac.th/problems/3753/description"
   }
 ]

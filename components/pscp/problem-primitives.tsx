@@ -31,6 +31,8 @@ export const PL: Record<string, LText> = {
   difficulty: { th: "ความยาก", en: "Difficulty" },
   learningLog: { th: "Learning Log", en: "Learning Log" },
   recommended: { th: "แนะนำ", en: "Recommended" },
+  examRecommended: { th: "TA แนะนำ", en: "TA Recommend" },
+  taPreExamTip: { th: "ข้อแนะนำก่อนวันสอบ โดยพี่ๆ TA :3", en: "Pre-Exam Recommendations from TAs :3" },
 };
 
 /** A problem is past due once its parsed deadline is behind `now`. */

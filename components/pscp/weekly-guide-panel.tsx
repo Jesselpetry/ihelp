@@ -22,7 +22,6 @@ import type { PscpProblem } from "@/lib/pscp/pscp";
 import type { PscpProgress } from "@/lib/pscp/pscp-client";
 import type { SubjectAsset } from "@/lib/library/subject-library-ui";
 import { useLocale, t, type LText } from "@/lib/i18n";
-import { cn } from "@/lib/utils";
 
 const L = {
   midtermScope: { th: "ขอบเขตกลางภาค", en: "Midterm scope" },
@@ -87,7 +86,7 @@ export function WeeklyGuidePanel({
 
   const solvedCount = problems.filter((p) => progress[p.id]?.solved).length;
   const learningLogCount = problems.filter((p) => p.learningLog).length;
-  const gradableCount = problems.filter((p) => p.cases && p.cases.length > 0).length;
+  const recommendedCount = problems.filter((p) => p.recommended).length;
 
   return (
     <div className="mb-6 overflow-hidden rounded-2xl border bg-card/90 shadow-sm transition-all duration-200">
@@ -113,6 +112,13 @@ export function WeeklyGuidePanel({
               <span className="font-semibold text-foreground">{problems.length}</span>
               <span className="text-muted-foreground">{t(L.problemsCount, locale)}</span>
             </div>
+            {recommendedCount > 0 && (
+              <div className="flex items-center gap-1.5 rounded-lg border border-amber-500/30 bg-amber-500/10 px-2.5 py-1 text-xs text-amber-600 dark:text-amber-400 font-medium">
+                <Sparkles className="size-3" />
+                <span className="font-semibold">{recommendedCount}</span>
+                <span>{locale === "th" ? "ข้อแนะนำ" : "Recommend"}</span>
+              </div>
+            )}
             {learningLogCount > 0 && (
               <div className="flex items-center gap-1.5 rounded-lg border border-amber-500/20 bg-amber-500/10 px-2.5 py-1 text-xs text-amber-500">
                 <Sparkles className="size-3" />

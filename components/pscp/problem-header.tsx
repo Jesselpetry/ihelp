@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
-import { ExternalLink, Star, X } from "lucide-react";
+import { ExternalLink, Sparkles, Star, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLocale, t, type LText } from "@/lib/i18n";
 import { tagLabel } from "@/lib/pscp/pscp-tags";
@@ -24,6 +24,9 @@ const L: Record<string, LText> = {
   bookmark: { th: "บันทึกบุ๊กมาร์ก", en: "Bookmark problem" },
   bookmarked: { th: "บุ๊กมาร์กแล้ว", en: "Bookmarked" },
   difficulty: { th: "ความยาก", en: "Difficulty" },
+  recommend: { th: "โจทย์แนะนำ", en: "Recommend" },
+  taRecommend: { th: "TA แนะนำก่อนสอบ", en: "TA Exam Recommend" },
+  taPreExamTip: { th: "ข้อแนะนำก่อนวันสอบ โดยพี่ๆ TA :3", en: "Pre-Exam Recommendations from TAs :3" },
 };
 
 export interface ProblemHeaderProps {
@@ -37,6 +40,8 @@ export interface ProblemHeaderProps {
   expireIso?: string | null;
   limits?: PscpLimits | null;
   difficulty?: number;
+  recommended?: boolean;
+  examRecommended?: boolean;
   url?: string;
   onClose?: () => void;
   className?: string;
@@ -55,6 +60,8 @@ export function ProblemHeader({
   expireIso,
   limits,
   difficulty,
+  recommended,
+  examRecommended,
   url,
   onClose,
   className,
@@ -131,8 +138,8 @@ export function ProblemHeader({
             <span className="font-mono text-muted-foreground/90">#{id}</span>
           </nav>
 
-          {/* Title & Inline Star Bookmark */}
-          <div className="mt-1 flex items-center gap-2">
+          {/* Title & Inline Star Bookmark & Recommended Badge */}
+          <div className="mt-1 flex flex-wrap items-center gap-2">
             <h1 className="truncate text-xl font-bold tracking-tight text-foreground sm:text-2xl">
               {title}
             </h1>
@@ -159,6 +166,20 @@ export function ProblemHeader({
                 )}
               />
             </button>
+            {recommended && (
+              <span
+                className={cn(
+                  "inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold shadow-2xs",
+                  examRecommended
+                    ? "border border-amber-500/35 bg-amber-500/15 text-amber-600 dark:text-amber-400"
+                    : "border border-primary/25 bg-primary/10 text-primary",
+                )}
+                title={examRecommended ? t(L.taPreExamTip, locale) : t(L.recommend, locale)}
+              >
+                <Sparkles className="size-3" />
+                <span>{examRecommended ? t(L.taRecommend, locale) : t(L.recommend, locale)}</span>
+              </span>
+            )}
           </div>
 
           {/* Monochromatic, subtle topic chips */}

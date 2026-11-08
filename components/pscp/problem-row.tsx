@@ -53,6 +53,7 @@ export function ProblemRow({
       className={cn(
         "group border-l-2 border-l-transparent",
         problem.learningLog && "border-l-primary",
+        problem.examRecommended && "border-l-amber-500 bg-amber-500/[0.02]",
         expired && "opacity-70 hover:opacity-100",
       )}
       data-ll={problem.learningLog || undefined}
@@ -73,9 +74,19 @@ export function ProblemRow({
             {problem.cleanName || problem.name}
           </Link>
           {problem.recommended && (
-            <Badge className="shrink-0 gap-1 rounded-full bg-primary/10 px-2 py-0 text-[10px] font-medium text-primary shadow-none">
+            <Badge
+              className={cn(
+                "shrink-0 gap-1 rounded-full px-2 py-0 text-[10px] font-semibold shadow-none",
+                problem.examRecommended
+                  ? "border border-amber-500/35 bg-amber-500/15 text-amber-600 dark:text-amber-400"
+                  : "border border-primary/25 bg-primary/10 text-primary",
+              )}
+              title={problem.examRecommended ? t(PL.taPreExamTip, locale) : t(PL.recommended, locale)}
+            >
               <Sparkles className="size-2.5" />
-              {t(PL.recommended, locale)}
+              {problem.examRecommended
+                ? t(PL.examRecommended, locale)
+                : t(PL.recommended, locale)}
             </Badge>
           )}
           {problem.learningLog && (

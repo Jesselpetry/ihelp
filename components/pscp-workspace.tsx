@@ -109,6 +109,8 @@ export function PscpWorkspace({
         expireIso={problem.expireIso}
         limits={problem.limits}
         difficulty={problem.difficulty}
+        recommended={problem.recommended}
+        examRecommended={problem.examRecommended}
         url={problem.url}
         onClose={onClose}
       />

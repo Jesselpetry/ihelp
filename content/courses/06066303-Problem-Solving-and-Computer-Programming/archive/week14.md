@@ -261,6 +261,20 @@ students_sorted = sorted(students, key=lambda s: (-s["score"], s["age"]))
    - 10 นาทีแรก: อ่านโจทย์ให้ครบทุกข้อ แล้วเรียงลำดับทำข้อที่คิดว่าง่ายที่สุดก่อน
    - เก็บข้อย่อยประเภทคำนวณและข้อความ (Diff 0) ให้ได้คะแนนเต็มอย่างรวดเร็ว
 
+> 🫪 **ข้อแนะนำก่อนวันสอบ โดยพี่ๆ TA :3**
+> จะมีข้อที่กำกับว่า `[Recommend]` อยู่ใน course หลัก ซึ่งอาจช่วยให้น้องๆ ทำข้อสอบได้สบายกว่าเดิม อย่าลืมเข้าไปลองทำกันน้าา
+> 
+> - [`CuteCat CuteFox`](/pscp/oj3476-cutecat-cutefox) (OJ 3476)
+> - [`Members`](/pscp/oj3753-members) (OJ 3753)
+> - [`3nPlus1`](/pscp/oj3609-3nplus1) (OJ 3609)
+> - [`08.00 - B RNG`](/pscp/oj3644-08-00-b-rng) (OJ 3644)
+> - [`PhoneNumber`](/pscp/oj3645-phonenumber) (OJ 3645)
+> - [`BookWorm`](/pscp/oj3650-bookworm) (OJ 3650)
+> - [`นับสระและหาสระเรียงกันยาวที่สุด`](/pscp/oj3672) (OJ 3672)
+> - [`Who's the author`](/pscp/oj3752-whos-the-author) (OJ 3752)
+> 
+> *Good Luck! By พี่ๆ TA :3 ขอให้น้องๆ ทำข้อสอบได้กันเยอะทุกคนน้าา*
+
 ---
 
 ## จุดที่มักพลาด
@@ -314,3 +328,10 @@ students_sorted = sorted(students, key=lambda s: (-s["score"], s["age"]))
 | **oj3486** | ตำบลกระสุนตก | 2 | — | คำนวณพิกัดและระยะกระสุนตก เปรียบเทียบระยะทางเพื่อค้นหาเป้าหมายที่ได้รับความเสียหาย |
 | **oj3487** | ติดตั้งหลอดไฟ | 3 | — | ปัญหาการวางตำแหน่งหลอดไฟให้ครอบคลุมพื้นที่มากที่สุดด้วยจำนวนหลอดไฟน้อยที่สุด (Greedy Strategy หรือ Interval Covering) |
 | **oj3488** | ไฟส่อง | 2 | — | คำนวณพื้นที่รัศมีแสงสว่างและการซ้อนทับกันของโคมไฟหลายดวง |
+| [`oj3609`](/pscp/oj3609-3nplus1) | [3nPlus1](/pscp/oj3609-3nplus1) | 1 | `[Recommend]` Collatz / While Loop | คำนวณความยาวลำดับ 3n+1 (Collatz Sequence) จนกว่าค่าจะกลายเป็น 1 (โจทย์แนะนำก่อนสอบโดย TA) |
+| [`oj3644`](/pscp/oj3644-08-00-b-rng) | [08.00 - B RNG](/pscp/oj3644-08-00-b-rng) | 2 | `[Recommend]` Loops / Simulation | จำลองและคำนวณการสุ่มตัวเลขตามกฎเกณฑ์ (โจทย์แนะนำก่อนสอบโดย TA) |
+| [`oj3645`](/pscp/oj3645-phonenumber) | [PhoneNumber](/pscp/oj3645-phonenumber) | 1 | `[Recommend]` Strings / Slicing | จัดรูปแบบและตรวจสอบหมายเลขโทรศัพท์ตามมาตรฐาน (โจทย์แนะนำก่อนสอบโดย TA) |
+| [`oj3650`](/pscp/oj3650-bookworm) | [BookWorm](/pscp/oj3650-bookworm) | 1 | `[Recommend]` Loops / Math | หนอนแทะหนังสือ คำนวณจำนวนหน้าและเวลาที่หนอนใช้ในการแทะ (โจทย์แนะนำก่อนสอบโดย TA) |
+| [`oj3672`](/pscp/oj3672) | [นับสระและหาสระเรียงกันยาวที่สุด](/pscp/oj3672) | 2 | `[Recommend]` Strings / Vowels | นับจำนวนสระทั้งหมดและค้นหาลำดับสระที่เรียงต่อกันยาวที่สุดในข้อความ (โจทย์แนะนำก่อนสอบโดย TA) |
+| [`oj3752`](/pscp/oj3752-whos-the-author) | [Who's the author](/pscp/oj3752-whos-the-author) | 2 | `[Recommend]` Strings / Conditions | วิเคราะห์และระบุตัวตนผู้เขียนตามเงื่อนไข (โจทย์แนะนำก่อนสอบโดย TA) |
+| [`oj3753`](/pscp/oj3753-members) | [Members](/pscp/oj3753-members) | 2 | `[Recommend]` Lists / Sets | จัดการและตรวจสอบรายชื่อสมาชิกในกลุ่ม (โจทย์แนะนำก่อนสอบโดย TA) |

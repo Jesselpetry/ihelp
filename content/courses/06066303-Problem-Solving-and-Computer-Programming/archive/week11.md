@@ -205,7 +205,7 @@ if 0 <= r < 5 and 0 <= c < 7:
 | [`oj3473`](/pscp/oj3473-fourdirections) | [FourDirections](/pscp/oj3473-fourdirections) | 2 | 2D Arrays / Directions | รับสตริงทิศทาง ('U', 'D', 'L', 'R') แล้วสร้างรูปสัญลักษณ์ลูกศร 2 มิติขนาด $5 \times 5$ เรียงต่อกัน |
 | [`oj3474`](/pscp/oj3474-resistor) | [Resistor](/pscp/oj3474-resistor) | 2 | Lists / Lookup | ถอดรหัสแถบสีตัวต้านทาน คำนวณค่าความต้านทานและค่าความคลาดเคลื่อน |
 | [`oj3475`](/pscp/oj3475-muddled-menu) | [Muddled Menu](/pscp/oj3475-muddled-menu) | 2 | Lists / Reversal | จัดการลำดับเมนูอาหารที่มีคำสั่งแทรกหน้า ลบรายการ และกลับลำดับ |
-| [`oj3476`](/pscp/oj3476-cutecat-cutefox) | [CuteCat CuteFox](/pscp/oj3476-cutecat-cutefox) ⭐ | 2 | `[LEARNING LOGS]` Counting / Sorting | จำแนกและจัดกลุ่มสัตว์เลี้ยงตามประเภทและระดับความน่ารัก พร้อมเรียงลำดับ |
+| [`oj3476`](/pscp/oj3476-cutecat-cutefox) | [CuteCat CuteFox](/pscp/oj3476-cutecat-cutefox) ⭐ | 2 | `[LEARNING LOGS]` `[Recommend]` Counting / Sorting | จำแนกและจัดกลุ่มสัตว์เลี้ยงตามประเภทและระดับความน่ารัก พร้อมเรียงลำดับ (โจทย์แนะนำก่อนสอบโดย TA) |
 | [`oj3477`](/pscp/oj3477-pad-thai) | [Pad Thai](/pscp/oj3477-pad-thai) ⭐ | 2 | `[LEARNING LOGS]` Lists / Verification | ตรวจสอบส่วนผสมและขั้นตอนการทำผัดไทยให้ตรงตามสูตรมาตรฐาน |
 | [`oj3478`](/pscp/oj3478-easy-histogram) | [Easy Histogram](/pscp/oj3478-easy-histogram) | 1 | Frequency / Sorting | นับความถี่ของตัวอักษรภาษาอังกฤษ พิมพ์ฮิสโตแกรมเรียงตามตัวพิมพ์เล็กและพิมพ์ใหญ่ |
 | [`oj3479`](/pscp/oj3479-name-of-card) | [Name of Card](/pscp/oj3479-name-of-card) | 1 | Lookups / Strings | แปลงรหัสไพ่สั้นเป็นชื่อเต็มตามแต้มและดอกไพ่ |

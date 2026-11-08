@@ -21,7 +21,7 @@ import { tagLabel } from "@/lib/pscp/pscp-tags";
 import { t, type LText, type Locale } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
-export type Filter = "all" | "ll" | "gradable" | "solved" | "unsolved";
+export type Filter = "all" | "recommended" | "ll" | "gradable" | "solved" | "unsolved";
 export type ViewMode = "grid" | "table";
 
 const L: Record<string, LText> = {
@@ -36,6 +36,7 @@ const L: Record<string, LText> = {
   empty: { th: "ไม่พบโจทย์ที่ตรงกับตัวกรอง", en: "No problems match the filter." },
   resetFilter: { th: "ล้างตัวกรอง", en: "Reset filters" },
   all: { th: "ทั้งหมด", en: "All" },
+  filterRecommended: { th: "โจทย์แนะนำ ★", en: "Recommend ★" },
   filterLL: { th: "Learning Log", en: "Learning Log" },
   filterGradable: { th: "ตรวจได้", en: "Gradable" },
   filterSolved: { th: "ผ่านแล้ว", en: "Solved" },
@@ -168,6 +169,7 @@ export function ProblemList({
             options={
               [
                 ["all", t(L.all, locale)],
+                ["recommended", t(L.filterRecommended, locale)],
                 ["ll", t(L.filterLL, locale)],
                 ["gradable", t(L.filterGradable, locale)],
                 ["solved", t(L.filterSolved, locale)],

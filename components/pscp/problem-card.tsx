@@ -57,17 +57,12 @@ export function ProblemCard({
       className={cn(
         "group relative flex flex-col rounded-xl border bg-card p-4 transition-colors",
         "hover:border-foreground/20 hover:bg-muted/30",
+        problem.examRecommended && "border-amber-500/35 hover:border-amber-500/60 bg-gradient-to-br from-amber-500/[0.04] to-transparent",
         expired && "opacity-70 hover:opacity-100",
       )}
     >
       {/* Identity */}
       <div className="flex items-center gap-2">
-        {problem.recommended && (
-          <Sparkles
-            className="size-3.5 shrink-0 text-primary"
-            aria-label={t(PL.recommended, locale)}
-          />
-        )}
         <span className="font-mono text-xs tabular-nums text-muted-foreground">
           OJ {problem.id}
         </span>
@@ -78,6 +73,22 @@ export function ProblemCard({
             </span>
             <WeekBadge week={problem.week} variant="plain" />
           </>
+        )}
+        {problem.recommended && (
+          <Badge
+            className={cn(
+              "rounded-full px-2 py-0 text-[10px] font-semibold shadow-none gap-1 shrink-0",
+              problem.examRecommended
+                ? "bg-amber-500/15 border border-amber-500/35 text-amber-600 dark:text-amber-400"
+                : "bg-primary/10 border border-primary/25 text-primary",
+            )}
+            title={problem.examRecommended ? t(PL.taPreExamTip, locale) : t(PL.recommended, locale)}
+          >
+            <Sparkles className="size-2.5" />
+            {problem.examRecommended
+              ? t(PL.examRecommended, locale)
+              : t(PL.recommended, locale)}
+          </Badge>
         )}
         {problem.learningLog && (
           <Badge className="rounded-full bg-primary/10 px-2 py-0 text-[10px] font-medium text-primary shadow-none">

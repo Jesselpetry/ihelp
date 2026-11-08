@@ -54,6 +54,7 @@ function difficultyBadge(diff: number | undefined) {
 export function OjProblemsDeck({ items, onOpenProblem }: OjProblemsDeckProps) {
   const { locale } = useLocale();
   const llCount = items.filter((item) => item.isLearningLog).length;
+  const recCount = items.filter((item) => item.isRecommended).length;
 
   return (
     <section className="brand-shelf my-6 not-prose">
@@ -69,8 +70,14 @@ export function OjProblemsDeck({ items, onOpenProblem }: OjProblemsDeckProps) {
         </div>
 
         <div className="flex items-center gap-2">
+          {recCount > 0 && (
+            <span className="inline-flex items-center gap-1 rounded-full border border-amber-500/40 bg-amber-500/15 px-2.5 py-0.5 text-xs font-semibold text-amber-700 dark:text-amber-300">
+              <Sparkles className="size-3" />
+              <span>{recCount} {locale === "th" ? "ข้อแนะนำ" : "Recommend"}</span>
+            </span>
+          )}
           {llCount > 0 && (
-            <span className="inline-flex items-center gap-1 rounded-full border border-amber-500/30 bg-amber-500/10 px-2.5 py-0.5 text-xs font-medium text-amber-600 dark:text-amber-400">
+            <span className="inline-flex items-center gap-1 rounded-full border border-primary/30 bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary">
               <Sparkles className="size-3" />
               <span>{llCount} {t(L.llRequired, locale)}</span>
             </span>
@@ -125,8 +132,14 @@ export function OjProblemsDeck({ items, onOpenProblem }: OjProblemsDeckProps) {
                         {diffMeta.label}
                       </span>
                     )}
+                    {item.isRecommended && (
+                      <span className="inline-flex items-center gap-1 rounded-full border border-amber-500/40 bg-amber-500/15 px-2 py-0.5 text-[10px] font-semibold text-amber-700 dark:text-amber-300">
+                        <Sparkles className="size-2.5" />
+                        Recommend
+                      </span>
+                    )}
                     {item.isLearningLog && (
-                      <span className="inline-flex items-center gap-1 rounded-full border border-amber-500/30 bg-amber-500/10 px-2 py-0.5 text-[10px] font-semibold text-amber-600 dark:text-amber-400">
+                      <span className="inline-flex items-center gap-1 rounded-full border border-primary/30 bg-primary/10 px-2 py-0.5 text-[10px] font-semibold text-primary">
                         <Sparkles className="size-2.5" />
                         [LL]
                       </span>
@@ -260,11 +273,17 @@ export function OjProblemsDeck({ items, onOpenProblem }: OjProblemsDeckProps) {
                       )}
                     </td>
 
-                    {/* Tags & LL */}
+                    {/* Tags, Recommend & LL */}
                     <td className="py-3 px-3 text-center whitespace-nowrap">
                       <div className="inline-flex flex-wrap items-center justify-center gap-1">
+                        {item.isRecommended && (
+                          <span className="inline-flex items-center gap-1 rounded-full border border-amber-500/40 bg-amber-500/15 px-2 py-0.5 text-[10px] font-semibold text-amber-700 dark:text-amber-300">
+                            <Sparkles className="size-2.5" />
+                            Recommend
+                          </span>
+                        )}
                         {item.isLearningLog && (
-                          <span className="inline-flex items-center gap-1 rounded-full border border-amber-500/30 bg-amber-500/10 px-2 py-0.5 text-[10px] font-semibold text-amber-600 dark:text-amber-400">
+                          <span className="inline-flex items-center gap-1 rounded-full border border-primary/30 bg-primary/10 px-2 py-0.5 text-[10px] font-semibold text-primary">
                             <Sparkles className="size-2.5" />
                             LL
                           </span>
@@ -274,7 +293,7 @@ export function OjProblemsDeck({ items, onOpenProblem }: OjProblemsDeckProps) {
                             {item.tags}
                           </span>
                         )}
-                        {!item.isLearningLog && !item.tags && (
+                        {!item.isRecommended && !item.isLearningLog && !item.tags && (
                           <span className="text-xs text-muted-foreground">-</span>
                         )}
                       </div>

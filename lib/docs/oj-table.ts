@@ -25,6 +25,7 @@ export interface OjProblemItem {
   difficulty?: number;
   tags?: string;
   isLearningLog: boolean;
+  isRecommended?: boolean;
   takeaway: string;
   href: string;
 }
@@ -158,9 +159,14 @@ export function parseOjProblemTable(node: HastNode | undefined): OjProblemItem[]
 
     const tagText = tagCol >= 0 && tagCol < cells.length ? hastText(cells[tagCol]).trim() : "";
     const isLearningLog = /\[LL\]|LL|learning\s*log|⭐/i.test(tagText);
+    const isRecommended =
+      /\[Recommend\]|Recommend|แนะนำ/i.test(tagText) ||
+      /\[Recommend\]|Recommend|แนะนำ/i.test(name) ||
+      (id ? [3476, 3753, 3609, 3644, 3645, 3650, 3672, 3752, 2996, 2997, 2998, 3019, 3020, 3022, 3159, 3167, 3226, 3237].includes(id) : false);
     const cleanTag = tagText
       .replace(/⭐/g, "")
       .replace(/\[LL\]/gi, "")
+      .replace(/\[Recommend\]/gi, "")
       .replace(/^[-–—]$/, "")
       .trim();
 
@@ -177,6 +183,7 @@ export function parseOjProblemTable(node: HastNode | undefined): OjProblemItem[]
       difficulty,
       tags: cleanTag || undefined,
       isLearningLog,
+      isRecommended,
       takeaway,
       href,
     });

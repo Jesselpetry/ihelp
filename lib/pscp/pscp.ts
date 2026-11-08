@@ -47,6 +47,7 @@ export interface PscpProblem {
   difficulty: number;
   learningLog: boolean;
   recommended: boolean;
+  examRecommended?: boolean;
   midterm: boolean;
   url: string;
   expireLabel: string;

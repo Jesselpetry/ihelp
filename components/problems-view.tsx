@@ -8,6 +8,7 @@ import { PscpWorkspace } from "@/components/pscp-workspace";
 import { ProblemsHeader } from "@/components/pscp/problems-header";
 import { ProblemList, type Filter, type ViewMode } from "@/components/pscp/problem-list";
 import { WeeklyGuidePanel } from "@/components/pscp/weekly-guide-panel";
+import { ExamRecommendBanner } from "@/components/pscp/exam-recommend-banner";
 import { isExpired } from "@/components/pscp/problem-primitives";
 import { tagLabel } from "@/lib/pscp/pscp-tags";
 import {
@@ -62,6 +63,7 @@ export function ProblemsView({ data }: { data: PscpHubData }) {
       .filter((p) => {
         if (weekFilter !== "all" && p.week !== weekFilter) return false;
         if (concept && !p.tags.includes(concept)) return false;
+        if (filter === "recommended" && !p.recommended) return false;
         if (filter === "ll" && !p.learningLog) return false;
         if (filter === "gradable" && p.cases.length === 0) return false;
         if (filter === "solved" && !progress[p.id]?.solved) return false;
@@ -129,6 +131,12 @@ export function ProblemsView({ data }: { data: PscpHubData }) {
           onOpenProblem={setOpenId}
         />
       )}
+
+      {/* Pre-Exam Recommendations Callout Banner */}
+      <ExamRecommendBanner
+        onSelectProblem={setOpenId}
+        onFilterRecommended={() => setFilter("recommended")}
+      />
 
       <ProblemList
         problems={filtered}
