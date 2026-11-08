@@ -9,6 +9,7 @@ import {
 import { CourseOfficialInfo } from "@/components/course-official-info";
 import {
   OVERVIEW_ANCHOR,
+  OVERVIEW_TAB_LABEL,
   OVERVIEW_TITLE,
   SURFACE,
   TopicHeader,
@@ -41,8 +42,12 @@ interface CourseOverviewProps {
   officialInfo?: ScrapedCourseInfo | null;
   /** Official subject page on https://www.it.kmitl.ac.th */
   officialUrl?: string;
-  /** Which reading to show. Controlled by the hub; the switch lives in the banner. */
+  /** Which reading to show. */
   tab: OverviewTab;
+  /** Callback when user changes the reading tab. */
+  onTabChange?: (tab: OverviewTab) => void;
+  /** Available reading options (summary, official). */
+  overviewTabs?: OverviewTab[];
   /** Whether the full summary is open. The hub hides its sidebar while it is. */
   expanded: boolean;
   onExpandedChange: (expanded: boolean) => void;
@@ -58,6 +63,7 @@ const L = {
   onlyMidterm: { th: "แสดงเฉพาะครึ่งแรก (ขอบเขตกลางภาค)", en: "Showing the first half only (midterm scope)" },
   onlyFinal: { th: "แสดงเฉพาะครึ่งหลัง (ขอบเขตปลายภาค)", en: "Showing the second half only (final scope)" },
   showAll: { th: "แสดงทั้งสองครึ่ง", en: "Show both halves" },
+  overviewSwitch: { th: "รูปแบบภาพรวม", en: "Overview version" },
 } satisfies Record<string, LText>;
 
 export function CourseOverview({
@@ -65,6 +71,8 @@ export function CourseOverview({
   officialInfo,
   officialUrl,
   tab,
+  onTabChange,
+  overviewTabs,
   expanded,
   onExpandedChange,
   scope,
@@ -75,7 +83,7 @@ export function CourseOverview({
   if (!summaryMarkdown && !officialInfo) return null;
 
   // A course with only one of the two readings must not render a blank card
-  // when the banner still says the other one.
+  // when the toggle still says the other one.
   const active: OverviewTab =
     tab === "summary" && !summaryMarkdown
       ? "official"
@@ -91,35 +99,64 @@ export function CourseOverview({
   const markdown = summaryMarkdown && filtered ? filterParts(summaryMarkdown, scope) : summaryMarkdown;
   const collapsible = markdown ? isSummaryCollapsible(markdown) : false;
   const ScopeIcon = scope === "final" ? Flag : Milestone;
+  const showSwitch = overviewTabs && overviewTabs.length > 1;
 
-  let aside = null;
-  if (active === "official" && officialUrl) {
-    aside = (
-      <Button
-        asChild
-        variant="ghost"
-        size="sm"
-        className="h-7 gap-1 rounded-full px-2.5 text-xs text-muted-foreground hover:text-primary"
-      >
-        <a href={officialUrl} target="_blank" rel="noopener noreferrer">
-          <span>{t(L.viewOfficial, locale)}</span>
-          <ExternalLink className="size-3" />
-        </a>
-      </Button>
-    );
-  } else if (showExpanded && collapsible) {
-    aside = (
-      <Button
-        variant="ghost"
-        size="sm"
-        onClick={() => onExpandedChange(false)}
-        className="h-7 cursor-pointer gap-1 rounded-full px-2.5 text-xs text-muted-foreground hover:text-primary"
-      >
-        <ChevronUp className="size-3.5" />
-        <span>{t(L.collapseContent, locale)}</span>
-      </Button>
-    );
-  }
+  const aside = (
+    <div className="flex flex-wrap items-center gap-2">
+      {showSwitch && (
+        <div
+          role="group"
+          aria-label={t(L.overviewSwitch, locale)}
+          className="inline-flex rounded-full bg-muted/80 p-0.5 border border-border/50 text-xs shadow-2xs backdrop-blur"
+        >
+          {overviewTabs.map((tTab) => {
+            const isActive = tTab === active;
+            return (
+              <button
+                key={tTab}
+                type="button"
+                aria-pressed={isActive}
+                onClick={() => onTabChange?.(tTab)}
+                className={`cursor-pointer rounded-full px-2.5 py-0.5 text-xs font-medium transition-colors ${
+                  isActive
+                    ? "bg-card text-foreground shadow-xs font-semibold"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {t(OVERVIEW_TAB_LABEL[tTab], locale)}
+              </button>
+            );
+          })}
+        </div>
+      )}
+
+      {active === "official" && officialUrl && (
+        <Button
+          asChild
+          variant="ghost"
+          size="sm"
+          className="h-7 gap-1 rounded-full px-2.5 text-xs text-muted-foreground hover:text-primary"
+        >
+          <a href={officialUrl} target="_blank" rel="noopener noreferrer">
+            <span>{t(L.viewOfficial, locale)}</span>
+            <ExternalLink className="size-3" />
+          </a>
+        </Button>
+      )}
+
+      {showExpanded && collapsible && (
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => onExpandedChange(false)}
+          className="h-7 cursor-pointer gap-1 rounded-full px-2.5 text-xs text-muted-foreground hover:text-primary"
+        >
+          <ChevronUp className="size-3.5" />
+          <span>{t(L.collapseContent, locale)}</span>
+        </Button>
+      )}
+    </div>
+  );
 
   return (
     <section>

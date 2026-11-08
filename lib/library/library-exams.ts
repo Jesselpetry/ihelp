@@ -8,18 +8,12 @@ import { BUCKETS } from "@/lib/storage/buckets";
 import { signObjectUrls } from "@/lib/storage/signed-url";
 
 /**
- * Private bucket holding the library's past exam papers.
- *
- * Separate from `ihelp-exams`, which backs the curated /exams archive and is
- * keyed by rows in ihelp.exams. This one mirrors the public ihelp-library
- * layout — same object keys — so a file's key does not change when it is
- * reclassified as an exam.
+ * Restricted storage bucket identifier.
  */
 export const LIBRARY_EXAM_BUCKET = BUCKETS.libraryExams;
 
 /**
- * A course's past exams with short-lived signed URLs, or [] for anyone who is
- * not an insider.
+ * Signs restricted assets for authorized users, or returns [] otherwise.
  *
  * isInsider() is the actual access control. The service-role client behind
  * signObjectUrls() bypasses storage policies, so it is reached only after that

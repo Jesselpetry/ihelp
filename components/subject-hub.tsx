@@ -94,12 +94,9 @@ export function SubjectHub({
         meta={meta}
         tagline={tagline}
         officialUrl={officialUrl}
-        overviewTabs={overviewTabs}
-        overviewTab={overviewTab}
-        onOverviewTabChange={selectOverviewTab}
       />
 
-      {/* ── 2. Classroom 2-Panel Layout: Panel ซ้าย (Sidebar) + Panel ขวา (Stream) ── */}
+      {/* ── 2. Classroom 2-Panel Layout: Panel ซ้าย (Sticky Sidebar) + Panel ขวา (Stream) ── */}
       <div
         className={`grid gap-5 ${reading ? "" : "lg:grid-cols-[230px_minmax(0,1fr)] lg:gap-6"}`}
       >
@@ -119,12 +116,14 @@ export function SubjectHub({
         )}
 
         <div className="min-w-0 space-y-6">
-          {/* Section 1: ภาพรวมรายวิชา (Clean CourseOverview) */}
+          {/* Section 1: ภาพรวมรายวิชา (Clean CourseOverview with Overview Version Switcher) */}
           <CourseOverview
             summaryMarkdown={summaryMarkdown}
             officialInfo={officialInfo}
             officialUrl={officialUrl}
             tab={overviewTab}
+            onTabChange={selectOverviewTab}
+            overviewTabs={overviewTabs}
             expanded={isSummaryExpanded}
             onExpandedChange={setIsSummaryExpanded}
             scope={scope}

@@ -454,3 +454,11 @@ html[data-theme-transition]::view-transition-new(root) {
   50% { opacity: 0.45; }
 }
 
+/*
+ * iHelp Signature Gradient Surface
+ * Tri-stop royal cobalt gradient: Cerulean (#3a72c8) -> Sapphire (#2357A5) -> Navy (#163980)
+ */
+.bg-ihelp-gradient {
+  background: linear-gradient(135deg, #3a72c8, #2357A5, #163980);
+}
+

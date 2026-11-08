@@ -1,20 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { ArrowRight, User, Users } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useLocale } from "@/lib/i18n";
 import { courseHref, type CatalogCourse } from "@/lib/courses/catalog";
-import { ItKmitlBadge, ItKmitlLogoSvg } from "@/components/it-kmitl-badge";
-
-/** iHelp signature blue — single palette for all courses */
-const IHELP_GRADIENT = { from: "#3a72c8", via: "#2357A5", to: "#163980" };
+import { ItKmitlBadge } from "@/components/it-kmitl-badge";
+import { CourseWatermark } from "@/components/course-watermark";
+import { IHELP_GRADIENT_CSS } from "@/lib/courses/course-theme";
 
 /**
  * Compact horizontal course card:
- * - Left thumbnail: iHelp blue gradient, uniform course code font bottom-left,
- *   course watermark logo bleeding bottom-right:
+ * - Left thumbnail: iHelp signature blue gradient, uniform course code font bottom-left,
+ *   standardized course watermark logo bleeding bottom-right:
  *     - General Education Logo (white) for Charm School & Foundation English (GE)
  *     - KMITL Institute seal for EN-KMITL courses
  *     - IT KMITL logo for IT Faculty courses
@@ -39,20 +37,6 @@ export function CourseBookCard({
   const title = locale === "th" ? course.nameTh : course.nameEn;
   const subtitle = locale === "th" ? course.nameEn : course.nameTh;
 
-  const isGe =
-    course.code === "CHARM" ||
-    course.code === "FE" ||
-    course.code === "FE2" ||
-    Boolean(course.officialCode?.startsWith("9064"));
-
-  const isEnKmitl =
-    course.group === "EN-KMITL" ||
-    course.code === "COMPRO" ||
-    course.code === "CHEM" ||
-    Boolean(course.officialCode?.startsWith("01"));
-
-  const grad = IHELP_GRADIENT;
-
   return (
     <article
       className={
@@ -74,42 +58,10 @@ export function CourseBookCard({
       {/* ── Left Thumbnail: Course Code + Watermark Logo ── */}
       <div
         className="relative w-full sm:w-38 md:w-44 h-22 sm:h-24 shrink-0 rounded-xl overflow-hidden flex flex-col justify-end p-2.5 select-none border border-white/10 transition-transform duration-300 group-hover:scale-[1.01]"
-        style={{
-          background: `linear-gradient(135deg, ${grad.from}, ${grad.via}, ${grad.to})`,
-        }}
+        style={{ background: IHELP_GRADIENT_CSS }}
       >
         {/* Course Logo Watermark — bottom-right, bleeds outside frame */}
-        <div
-          aria-hidden="true"
-          className={
-            "pointer-events-none absolute select-none " +
-            (isGe
-              ? "-bottom-2 -right-3 opacity-25"
-              : isEnKmitl
-                ? "-bottom-3 -right-3 opacity-30"
-                : "-bottom-3 -right-3 text-white opacity-25")
-          }
-        >
-          {isGe ? (
-            <Image
-              src="/ge-logo-white.webp"
-              alt=""
-              width={160}
-              height={74}
-              className="h-16 sm:h-18 w-auto object-contain select-none"
-            />
-          ) : isEnKmitl ? (
-            <Image
-              src="/kmitl-seal.svg"
-              alt=""
-              width={88}
-              height={88}
-              className="size-22 object-contain select-none"
-            />
-          ) : (
-            <ItKmitlLogoSvg className="size-22" monochrome="currentColor" />
-          )}
-        </div>
+        <CourseWatermark code={course.code} course={course} size="thumbnail" />
 
         {/* Course Code — uniform font size for all courses, left-aligned */}
         <span className="relative z-10 font-black text-white leading-none tracking-tighter select-none text-2xl sm:text-[1.65rem] pr-6">
