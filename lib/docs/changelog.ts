@@ -124,6 +124,37 @@ export const MAJOR_EVOLUTION_MILESTONES: EvolutionMilestone[] = [
   },
 ];
 
+/**
+ * คืนค่าหมุดหมายวิวัฒนาการหลัก (Major Evolution Milestone) ที่ตรงกับเลขเวอร์ชัน
+ */
+export function getEvolutionMilestone(version: string): EvolutionMilestone | null {
+  if (version === "1.0.0" || version.startsWith("1.0.")) {
+    return MAJOR_EVOLUTION_MILESTONES.find((m) => m.version === "v1.0.0") ?? null;
+  }
+  if (version.startsWith("0.9.")) {
+    return MAJOR_EVOLUTION_MILESTONES.find((m) => m.version === "v0.9.x") ?? null;
+  }
+  if (version.startsWith("0.8.")) {
+    return MAJOR_EVOLUTION_MILESTONES.find((m) => m.version === "v0.8.x") ?? null;
+  }
+  if (version.startsWith("0.7.")) {
+    return MAJOR_EVOLUTION_MILESTONES.find((m) => m.version === "v0.7.x") ?? null;
+  }
+  if (version.startsWith("0.6.")) {
+    return MAJOR_EVOLUTION_MILESTONES.find((m) => m.version === "v0.6.x") ?? null;
+  }
+  if (version.startsWith("0.5.")) {
+    return MAJOR_EVOLUTION_MILESTONES.find((m) => m.version === "v0.5.x") ?? null;
+  }
+  if (version.startsWith("0.4.")) {
+    return MAJOR_EVOLUTION_MILESTONES.find((m) => m.version === "v0.4.x") ?? null;
+  }
+  if (version.startsWith("0.1.")) {
+    return MAJOR_EVOLUTION_MILESTONES.find((m) => m.version === "v0.1.x") ?? null;
+  }
+  return null;
+}
+
 // Mirrors CHANGELOG.md at the repo root — keep both in sync when releasing.
 export const CHANGELOG: VersionEntry[] = [
   {
@@ -158,6 +189,13 @@ export const CHANGELOG: VersionEntry[] = [
         text: {
           th: "ระบบตรวจสอบความถูกต้องของรุ่นนักศึกษาไอที (KMITL IT Cohort Formula & Auditing Rule: IT<yy-45>) ตรวจสอบความถูกต้องของเลขรุ่นกับรหัสนักศึกษา (รหัส 69 = IT24, 68 = IT23, 67 = IT22) เชื่อมต่อกระบวนการตรวจสอบ content:check (โดย @Jesselpetry)",
           en: "Automated KMITL IT cohort calculation and auditing rule (IT<yy-45>) verifying student IDs (69 -> IT24, 68 -> IT23) integrated with content:check (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "รวมศูนย์มาตรฐานสัญลักษณ์และธีมแบนเนอร์รายวิชา (Unified Course Watermark & Gradient Banner System) ผ่าน CourseWatermark และ course-theme.ts เชื่อมโยงแบนเนอร์และภาพย่อการ์ดให้สอดคล้องกัน (โดย @Jesselpetry)",
+          en: "Standardized course watermark and gradient banner system via CourseWatermark and course-theme.ts, aligning course hub banners with catalog cards (by @Jesselpetry)",
         },
       },
       {

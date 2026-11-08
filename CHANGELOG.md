@@ -12,20 +12,9 @@
 
 ---
 
-## การนับลำดับวิวัฒนาการหลักของ <i>Help
-
-- **v0.1.x** — จุดเริ่มต้น PSCP Learning-Log Maker & AI Guidelines
-- **v0.4.x** — การเชื่อมต่อ GitHub OAuth โดย Meaookung144 และหน้า /pro โดย PGTHEGOD
-- **v0.5.x** — ห้องแลปโจทย์แนะนำ, Client-Side WASM Grader, Technique Quiz และการขยายสู่ 11 โมดูล (Spine)
-- **v0.6.x** — ระบบสมาชิกไอที (@kmitl.ac.th), ย้ายสื่อขึ้น Supabase Storage และรีแบรนด์สู่ iHelp
-- **v0.7.x** — PWA ออฟไลน์ และคาบเรียนรายสัปดาห์ ICS พร้อมวิดีโอ YouTube
-- **v0.8.x** — คลังสื่อเปิดเต็มรูปแบบ, ตารางสอบผังที่นั่ง, Help-Desk Chat โดย PhuPunnavit, สไลด์แปลไทย และเครื่องคิดเกรด
-- **v0.9.x** — REST API คลังสื่อสาธารณะ, ยกเครื่อง Grade Calculator 3 แผง และหน้ารวมผู้พัฒนา
-- **v1.0.0** — Production Release: สถาปัตยกรรม Weekly Learning Path, ICS Track A และระบบ Contributor Credit System สมบูรณ์แบบ
-
----
-
 ## [1.0.0] - 8 พฤศจิกายน 2569
+
+> **วิวัฒนาการหลัก (v1.0.0):** Production Release: สถาปัตยกรรม Weekly Learning Path, ICS Track A และระบบ Contributor Credit System สมบูรณ์แบบ
 
 **ผู้ร่วมพัฒนา:** Chatan Petry ([@Jesselpetry](https://github.com/Jesselpetry), IG: [@chatann_](https://instagram.com/chatann_))
 
@@ -38,6 +27,7 @@
 
 ### ปรับปรุง
 
+- **รวมศูนย์มาตรฐานสัญลักษณ์และธีมแบนเนอร์รายวิชา (Unified Course Watermark & Gradient Banner System)** — พัฒนาคอมโพเนนต์ร่วม `CourseWatermark` และโมดูลธีม `lib/courses/course-theme.ts` เพื่อรวมศูนย์การจัดการไล่เฉดสีฟ้าอันเป็นเอกลักษณ์ (`IHELP_GRADIENT_CSS` / `.bg-ihelp-gradient`) เส้นขอบขาวโปร่งแสง (`border-white/10`) และเงาละมุน พร้อมเชื่อมโยงการแสดงผลบนแบนเนอร์หน้ารายวิชา (`components/course-banner.tsx`) ให้สอดคล้องกับภาพย่อการ์ดรายวิชา (`components/course-book-card.tsx`) ครอบคลุมทั้งวิชา IT, GE (Charm School, Foundation English) และ EN-KMITL (โดย @Jesselpetry)
 - **ปรับปรุงโครงสร้าง Contributor Profile Modal ให้ Responsive 100% และไม่โดนแบนเนอร์บดบัง** — ปรับ Avatar ทรงกลมมน (`rounded-full`), จัดลำดับข้อมูล คณะ > สาขา > ชั้นปี > รหัสนักศึกษา > รุ่น IT พร้อมระบบ Accordion พับ-ขยายสำหรับผลงานรายวิชาและประวัติ Commit (โดย @Jesselpetry)
 - **ปรับปรุงการ์ดเครดิตผู้จัดทำและร่วมแบ่งปันเนื้อหาท้ายหน้ารายวิชาสู่ดีไซน์แนวนอนแบบกว้าง (Wide Horizontal Cards)** — แสดงผลงานรายวิชาแนวนอน พร้อมไอคอน Dev/Terminal สำหรับ Lead Maintainer และปุ่มโซเชียลแบดจ์เต็ม (โดย @Jesselpetry)
 - **ปรับปรุงระบบเลย์เอาต์หน้ารายวิชา (`/courses/[dir]`) คืนสู่ระบบการเลื่อนหน้าแบบธรรมชาติ (Natural Page Scroll)** — เลื่อนหน้าพร้อมกันอย่างลื่นไหลและเชื่อมโยง Sidebar Jump Links อัตโนมัติ (โดย @Jesselpetry)
@@ -51,6 +41,8 @@
 ---
 
 ## [0.9.0] - 7 พฤศจิกายน 2569
+
+> **วิวัฒนาการหลัก (v0.9.x):** REST API คลังสื่อสาธารณะ, ยกเครื่อง Grade Calculator 3 แผง และหน้ารวมผู้พัฒนา
 
 **ผู้ร่วมพัฒนา:** Chatan Petry ([@Jesselpetry](https://github.com/Jesselpetry), IG: [@chatann_](https://instagram.com/chatann_))
 
@@ -150,6 +142,8 @@
 
 ## [0.8.0] - 22 กันยายน 2569
 
+> **วิวัฒนาการหลัก (v0.8.x):** คลังสื่อเปิดเต็มรูปแบบ, ตารางสอบผังที่นั่ง, Help-Desk Chat โดย PhuPunnavit, สไลด์แปลไทย และเครื่องคิดเกรด
+
 **ผู้ร่วมพัฒนา:** Chatan Petry ([@Jesselpetry](https://github.com/Jesselpetry), IG: [@chatann_](https://instagram.com/chatann_))
 
 ### เพิ่ม
@@ -166,6 +160,8 @@
 ---
 
 ## [0.7.0] - 22 กันยายน 2569
+
+> **วิวัฒนาการหลัก (v0.7.x):** PWA ออฟไลน์ และคาบเรียนรายสัปดาห์ ICS พร้อมวิดีโอ YouTube
 
 **ผู้ร่วมพัฒนา:** Chatan Petry ([@Jesselpetry](https://github.com/Jesselpetry), IG: [@chatann_](https://instagram.com/chatann_))
 
@@ -210,6 +206,8 @@
 ---
 
 ## [0.6.0] - 30 สิงหาคม 2569
+
+> **วิวัฒนาการหลัก (v0.6.x):** ระบบสมาชิกไอที (@kmitl.ac.th), ย้ายสื่อขึ้น Supabase Storage และรีแบรนด์สู่ iHelp
 
 **ผู้ร่วมพัฒนา:** Chatan Petry ([@Jesselpetry](https://github.com/Jesselpetry), IG: [@chatann_](https://instagram.com/chatann_))
 
@@ -259,6 +257,8 @@
 ---
 
 ## [0.5.0] - 17 สิงหาคม 2569
+
+> **วิวัฒนาการหลัก (v0.5.x):** ห้องแลปโจทย์แนะนำ, Client-Side WASM Grader, Technique Quiz และการขยายสู่ 11 โมดูล (Spine)
 
 **ผู้ร่วมพัฒนา:** Chatan Petry ([@Jesselpetry](https://github.com/Jesselpetry), IG: [@chatann_](https://instagram.com/chatann_)), Akarapach Yootsukprasert ([@PGTHEGOD](https://github.com/PGTHEGOD), IG: [@pgthegod_x](https://instagram.com/pgthegod_x))
 
@@ -310,6 +310,8 @@
 ---
 
 ## [0.4.0] - 21 กรกฎาคม 2569
+
+> **วิวัฒนาการหลัก (v0.4.x):** การเชื่อมต่อ GitHub OAuth โดย Meaookung144 และหน้า /pro โดย PGTHEGOD
 
 **ผู้ร่วมพัฒนา:** Meaookung144 ([@Meaookung144](https://github.com/Meaookung144), IG: [@meaookung144](https://instagram.com/meaookung144)), Chatan Petry ([@Jesselpetry](https://github.com/Jesselpetry), IG: [@chatann_](https://instagram.com/chatann_))
 
@@ -369,6 +371,8 @@
 ---
 
 ## [0.1.0] - 12 กรกฎาคม 2569
+
+> **วิวัฒนาการหลัก (v0.1.x):** จุดเริ่มต้น PSCP Learning-Log Maker & AI Guidelines
 
 **ผู้ร่วมพัฒนา:** Chatan Petry ([@Jesselpetry](https://github.com/Jesselpetry), IG: [@chatann_](https://instagram.com/chatann_))
 
