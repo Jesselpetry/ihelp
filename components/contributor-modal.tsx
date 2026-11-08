@@ -582,9 +582,9 @@ export function ContributorCard({
         </div>
       </div>
 
-      {/* Social action icons — Rounded full & clean */}
+      {/* Social action icons — Clean GitHub button */}
       <div
-        className="flex items-center gap-1.5 shrink-0"
+        className="flex items-center shrink-0"
         onClick={(e) => e.stopPropagation()}
       >
         <a
@@ -596,18 +596,6 @@ export function ContributorCard({
         >
           <GithubIcon className="size-3.5" />
         </a>
-
-        {detail.instagram && (
-          <a
-            href={`https://instagram.com/${detail.instagram}`}
-            target="_blank"
-            rel="noreferrer"
-            title={`Instagram: @${detail.instagram}`}
-            className="size-7 rounded-full flex items-center justify-center border border-border/60 bg-muted/30 hover:bg-muted hover:border-border text-foreground/80 hover:text-pink-500 transition-colors shadow-2xs"
-          >
-            <InstagramIcon className="size-3.5 text-pink-500" />
-          </a>
-        )}
       </div>
     </div>
   );
@@ -644,14 +632,6 @@ export function ContributorBadge({
       <span className="text-foreground font-mono text-[11px] group-hover:text-primary transition-colors">
         @{detail.github}
       </span>
-      {detail.instagram && (
-        <span
-          title={`Instagram: @${detail.instagram}`}
-          className="text-pink-500/80 group-hover:text-pink-600 transition-colors"
-        >
-          <InstagramIcon className="size-3" />
-        </span>
-      )}
     </button>
   );
 }
