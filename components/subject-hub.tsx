@@ -141,7 +141,10 @@ export function SubjectHub({
             />
           )}
 
-          {/* Section 3: ข้อชี้แจงเกี่ยวกับแนวข้อสอบ */}
+          {/* Section 3: ผู้จัดทำและร่วมแบ่งปันเนื้อหา (Course Contributors & Authors) */}
+          <CourseContributors courseCode={code} />
+
+          {/* Section 4: ข้อชี้แจงเกี่ยวกับแนวข้อสอบ (Placed below Contributors) */}
           {notes && notes.length > 0 && (
             <div className="rounded-2xl border border-border/70 bg-card/60 p-4 text-xs text-muted-foreground shadow-2xs">
               <div className="flex items-center gap-1.5 font-semibold text-foreground/85 text-[11px] uppercase tracking-wider mb-2.5">
@@ -167,9 +170,6 @@ export function SubjectHub({
               </div>
             </div>
           )}
-
-          {/* Section 4: ผู้จัดทำและร่วมแบ่งปันเนื้อหา (Course Contributors & Authors) */}
-          <CourseContributors courseCode={code} />
         </div>
       </div>
     </main>

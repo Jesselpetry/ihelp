@@ -95,6 +95,30 @@ function formatCredentialLine(
 }
 
 /**
+ * Returns an academic role label tailored specifically to this course's contributed materials.
+ * Excludes developer/maintainer labels on subject pages.
+ */
+function getAcademicRole(
+  materials: ContributorMaterial[],
+  locale: "th" | "en",
+): string {
+  const types = new Set(materials.map((m) => m.type));
+  if (types.has("notes")) {
+    return locale === "th" ? "ผู้แบ่งปันบันทึกสรุป" : "Study Notes";
+  }
+  if (types.has("slide")) {
+    return locale === "th" ? "ผู้แปลสไลด์สรุป" : "Slide Summaries";
+  }
+  if (types.has("sheet")) {
+    return locale === "th" ? "ผู้จัดทำชีตสรุป" : "Summary Author";
+  }
+  if (types.has("mock_exam")) {
+    return locale === "th" ? "ผู้จัดทำข้อสอบจำลอง" : "Mock Exam Author";
+  }
+  return locale === "th" ? "ผู้แบ่งปันเนื้อหา" : "Contributor";
+}
+
+/**
  * Returns an appropriate icon based on material type
  */
 function MaterialIcon({ type }: { type: ContributorMaterial["type"] }) {
@@ -207,7 +231,7 @@ export function CourseContributors({
   );
 
   return (
-    <div className="pt-8 sm:pt-10">
+    <div>
       {/* ── Standard Topic Header: Title on left, text link on right without pills ── */}
       <TopicHeader
         id="course-contributors"
@@ -219,11 +243,20 @@ export function CourseContributors({
       <div className="flex flex-col gap-3">
         {contributors.map((rawContributor) => {
           const profile = getContributorWithAcademicYear(rawContributor);
+          // Only academic materials for this subject (excludes site developer tools)
           const courseMaterials = profile.materials.filter(
             (m) =>
-              m.courseCode.toUpperCase() === courseCode.toUpperCase() ||
-              m.courseCode === "ALL",
+              m.courseCode.toUpperCase() === courseCode.toUpperCase() &&
+              m.type !== "tool",
           );
+
+          if (courseMaterials.length === 0) return null;
+
+          const academicRole = getAcademicRole(courseMaterials, locale);
+          const academicSummary =
+            courseMaterials[0]?.description
+              ? t(courseMaterials[0].description, locale)
+              : courseMaterials.map((m) => t(m.title, locale)).join(" · ");
 
           return (
             <div
@@ -262,9 +295,9 @@ export function CourseContributors({
                         {profile.name}
                       </button>
 
-                      {/* Tiny Tag: Lead Maintainer / Primary Role */}
+                      {/* Tiny Tag: Academic Role in this Subject */}
                       <span className="text-xs font-mono py-0.5 px-2 rounded bg-neutral-100 dark:bg-neutral-800 text-muted-foreground shrink-0">
-                        {t(profile.primaryRole, locale)}
+                        {academicRole}
                       </span>
                     </div>
 
@@ -273,10 +306,10 @@ export function CourseContributors({
                       {formatCredentialLine(profile, locale)}
                     </p>
 
-                    {/* Bio / Scope text integrated right here, capped at 1 line */}
-                    {profile.bio && (
+                    {/* Academic Scope / Resource summary for this course, capped at 1 line */}
+                    {academicSummary && (
                       <p className="text-xs text-muted-foreground/80 line-clamp-1 pt-0.5">
-                        {t(profile.bio, locale)}
+                        {academicSummary}
                       </p>
                     )}
                   </div>

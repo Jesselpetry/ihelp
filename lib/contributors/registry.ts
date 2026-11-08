@@ -36,7 +36,7 @@ export const CONTRIBUTOR_REGISTRY: Record<string, ContributorProfile> = {
       email: "69070027@kmitl.ac.th",
     },
     profilePath: "/profile/69070027",
-    courses: ["ALL", "ITF", "ICS", "MFIT", "PSCP", "COMPRO", "CHEM", "FE", "CHARM", "SPORT"],
+    courses: ["ICS", "MFIT", "COMPRO"],
     materials: [
       {
         courseCode: "ALL",
@@ -338,13 +338,17 @@ export function getContributorById(idOrGithub: string): ContributorProfile | und
 }
 
 /**
- * Returns all contributors who contributed to a given course.
- * Also includes lead maintainers if they have content in the course.
+ * Returns all contributors who contributed academic materials to a given course.
+ * Only includes contributors who have academic resources (sheets, slides, notes, mock exams).
+ * Website development tools and core platform contributions are excluded from subject pages.
  */
 export function getContributorsForCourse(courseCode: string): ContributorProfile[] {
   const code = courseCode.toUpperCase();
   return Object.values(CONTRIBUTOR_REGISTRY).filter((c) =>
-    c.courses.includes("ALL") || c.courses.includes(code),
+    c.courses.includes(code) &&
+    c.materials.some(
+      (m) => m.courseCode.toUpperCase() === code && m.type !== "tool",
+    ),
   );
 }
 
