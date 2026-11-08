@@ -4,7 +4,6 @@ import { useState } from "react";
 import Link from "next/link";
 import {
   ArrowLeft,
-  BookOpen,
   Calendar,
   Code2,
   ExternalLink,
@@ -30,7 +29,6 @@ import {
   KNOWN_CONTRIBUTORS,
   parseChangeText,
 } from "@/components/contributor-modal";
-import LIBRARY_TOTALS from "@/lib/library/library-totals.json";
 
 const L = {
   title: { th: "เวอร์ชันและ Changelog", en: "Version & Changelog" },
@@ -350,56 +348,6 @@ export function VersionView() {
                   onClick={() => setSelectedContributor(member)}
                 />
               ))}
-            </div>
-          </div>
-
-          {/* Library Statistics Grid Card */}
-          <div className="rounded-2xl border bg-card/40 p-4 shadow-sm space-y-3">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <BookOpen className="size-4 text-primary" />
-                <h2 className="text-xs font-semibold text-foreground/90">
-                  {locale === "th" ? "สถิติคลังสื่อการเรียนรู้" : "Library Statistics"}
-                </h2>
-              </div>
-              <span className="text-[10px] text-muted-foreground bg-muted px-2 py-0.5 rounded-md font-mono">
-                {LIBRARY_TOTALS.updatedMonth}
-              </span>
-            </div>
-
-            <div className="grid grid-cols-2 gap-2 text-center pt-1">
-              <div className="rounded-xl border bg-card/60 p-2.5 shadow-2xs">
-                <span className="font-mono text-lg font-bold text-foreground">
-                  {LIBRARY_TOTALS.courses}
-                </span>
-                <p className="text-[11px] text-muted-foreground mt-0.5">
-                  {locale === "th" ? "รายวิชาทั้งหมด" : "Total Courses"}
-                </p>
-              </div>
-              <div className="rounded-xl border bg-card/60 p-2.5 shadow-2xs">
-                <span className="font-mono text-lg font-bold text-foreground">
-                  {LIBRARY_TOTALS.coursesWithLibrary}
-                </span>
-                <p className="text-[11px] text-muted-foreground mt-0.5">
-                  {locale === "th" ? "มีคลังสื่อการสอน" : "With Library"}
-                </p>
-              </div>
-              <div className="rounded-xl border bg-card/60 p-2.5 shadow-2xs">
-                <span className="font-mono text-lg font-bold text-primary">
-                  {LIBRARY_TOTALS.assets}
-                </span>
-                <p className="text-[11px] text-muted-foreground mt-0.5">
-                  {locale === "th" ? "การ์ดสื่อการเรียน" : "Resource Cards"}
-                </p>
-              </div>
-              <div className="rounded-xl border bg-card/60 p-2.5 shadow-2xs">
-                <span className="font-mono text-lg font-bold text-primary">
-                  {LIBRARY_TOTALS.files}
-                </span>
-                <p className="text-[11px] text-muted-foreground mt-0.5">
-                  {locale === "th" ? "ไฟล์ในระบบ" : "Distinct Files"}
-                </p>
-              </div>
             </div>
           </div>
 
