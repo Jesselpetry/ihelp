@@ -127,8 +127,8 @@ export function PscpWorkspace({
           />
         </section>
 
-        {/* Right: Embedded Code Editor & Compact Tabbed Test Case Runner */}
-        <section className="min-w-0 space-y-3 bg-muted/[0.15] px-4 py-4 sm:px-5 lg:overflow-y-auto">
+        {/* Right: Solid Dark IDE Panel with Embedded Code Editor & Fixed Location Test Case Runner */}
+        <section className="min-w-0 space-y-4 bg-[#0a0a0d] p-4 sm:p-5 lg:overflow-y-auto border-t lg:border-t-0 lg:border-l border-zinc-800/80">
           <CodeGrader
             problemId={problem.id}
             problemName={problem.cleanName}
@@ -138,7 +138,7 @@ export function PscpWorkspace({
           />
 
           {/* Wizard hand-off — same ?problem= contract the wizards read. */}
-          <div className="flex flex-wrap items-center gap-2 rounded-2xl border bg-card p-3.5 shadow-xs">
+          <div className="flex flex-wrap items-center gap-2 rounded-2xl border border-zinc-800/80 bg-[#141419] p-3.5 shadow-sm text-zinc-200">
             {problem.learningLog && (
               <Button asChild size="sm" className="h-8 gap-1 rounded-full text-xs font-medium">
                 <Link href={`/make/submission?problem=${problem.id}`}>

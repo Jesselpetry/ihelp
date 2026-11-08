@@ -53,12 +53,12 @@ const L: Record<string, LText> = {
   loadStarter: { th: "โค้ดเริ่มต้น", en: "Load Starter" },
 };
 
-/** Neutral Charcoal theme matching the Figma-inspired dark theme */
+/** Solid Neutral Dark theme matching professional IDE / VS Code dark surfaces */
 const pscpEditorTheme = EditorView.theme(
   {
     "&": {
-      backgroundColor: "transparent",
-      color: "var(--foreground)",
+      backgroundColor: "#0d0d11",
+      color: "#f4f4f5",
       height: "100%",
       fontSize: "13px",
       fontFamily:
@@ -66,6 +66,7 @@ const pscpEditorTheme = EditorView.theme(
     },
     ".cm-scroller": {
       lineHeight: "1.6",
+      backgroundColor: "#0d0d11",
     },
     ".cm-content": {
       caretColor: "oklch(0.65 0.24 350)", // PSCP Pink
@@ -76,37 +77,37 @@ const pscpEditorTheme = EditorView.theme(
       borderLeftWidth: "2px",
     },
     "&.cm-focused .cm-selectionBackground, .cm-selectionBackground, .cm-content ::selection": {
-      backgroundColor: "oklch(1 0 0 / 12%) !important",
+      backgroundColor: "rgba(236, 72, 153, 0.25) !important",
     },
     ".cm-gutters": {
-      backgroundColor: "transparent",
-      color: "var(--muted-foreground)",
-      borderRight: "1px solid oklch(1 0 0 / 6%)",
+      backgroundColor: "#0d0d11",
+      color: "#71717a",
+      borderRight: "1px solid #1e1e26",
       paddingRight: "8px",
       userSelect: "none",
     },
     ".cm-gutterElement": {
       paddingLeft: "10px",
-      color: "var(--muted-foreground)",
-      opacity: "0.6",
+      color: "#71717a",
+      opacity: "0.7",
     },
     ".cm-activeLineGutter": {
-      backgroundColor: "transparent",
-      color: "var(--foreground)",
+      backgroundColor: "#16161f",
+      color: "#f4f4f5",
       opacity: "1",
       fontWeight: "bold",
     },
     ".cm-activeLine": {
-      backgroundColor: "oklch(1 0 0 / 3%)",
+      backgroundColor: "#16161f",
     },
     ".cm-foldPlaceholder": {
-      backgroundColor: "oklch(1 0 0 / 10%)",
+      backgroundColor: "#272733",
       border: "none",
-      color: "var(--muted-foreground)",
+      color: "#a1a1aa",
     },
     ".cm-matchingBracket, .cm-nonmatchingBracket": {
-      backgroundColor: "oklch(1 0 0 / 15%)",
-      outline: "1px solid oklch(1 0 0 / 30%)",
+      backgroundColor: "rgba(255, 255, 255, 0.15)",
+      outline: "1px solid rgba(255, 255, 255, 0.3)",
       borderRadius: "2px",
     },
   },
@@ -318,29 +319,29 @@ export function CodeEditor({
   return (
     <div
       className={cn(
-        "flex flex-col rounded-2xl border bg-card/60 shadow-xs backdrop-blur-xs transition-all",
+        "flex flex-col rounded-2xl border border-zinc-800/80 bg-[#141419] shadow-sm overflow-hidden text-zinc-100 transition-all",
         isFullscreen
-          ? "fixed inset-0 z-50 rounded-none border-none bg-background p-4 sm:p-6"
+          ? "fixed inset-0 z-50 rounded-none border-none bg-[#0d0d11] p-4 sm:p-6"
           : "min-h-[22rem]",
         className,
       )}
     >
       {/* Editor Header Utility Bar */}
-      <div className="flex shrink-0 items-center justify-between border-b bg-muted/20 px-3.5 py-2">
+      <div className="flex shrink-0 items-center justify-between border-b border-zinc-800/80 bg-[#181820] px-4 py-2.5">
         {/* Left: Language indicator and status dot */}
         <div className="flex items-center gap-2.5">
-          <span className="flex items-center gap-1.5 font-mono text-xs font-semibold text-foreground">
+          <span className="flex items-center gap-1.5 font-mono text-xs font-semibold text-zinc-100">
             <Code2 className="size-3.5 text-primary" />
             {tr(L.pythonVer, locale)}
           </span>
 
-          <span className="text-muted-foreground/30 select-none">·</span>
+          <span className="text-zinc-600 select-none">·</span>
 
-          <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
+          <span className="flex items-center gap-1.5 text-xs text-zinc-400">
             <span
               className={cn(
                 "size-1.5 rounded-full transition-colors",
-                saveStatus === "saved" ? "bg-emerald-500" : "bg-amber-400 animate-pulse",
+                saveStatus === "saved" ? "bg-emerald-400" : "bg-amber-400 animate-pulse",
               )}
             />
             <span>{saveStatus === "saved" ? tr(L.saved, locale) : tr(L.saving, locale)}</span>
@@ -355,10 +356,10 @@ export function CodeEditor({
               variant="ghost"
               size="sm"
               onClick={() => handleCodeChange(starterCode)}
-              className="h-7 cursor-pointer gap-1 px-2 text-[11px] text-muted-foreground hover:text-foreground"
+              className="h-7 cursor-pointer gap-1 px-2 text-[11px] text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/60"
               title={tr(L.loadStarter, locale)}
             >
-              <Sparkles className="size-3 text-amber-500" />
+              <Sparkles className="size-3 text-amber-400" />
               <span className="hidden sm:inline">{tr(L.loadStarter, locale)}</span>
             </Button>
           )}
@@ -368,7 +369,7 @@ export function CodeEditor({
             variant="ghost"
             size="sm"
             onClick={handleReset}
-            className="size-7 cursor-pointer p-0 text-muted-foreground hover:text-foreground"
+            className="size-7 cursor-pointer p-0 text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/60"
             title={tr(L.reset, locale)}
             aria-label={tr(L.reset, locale)}
           >
@@ -380,12 +381,12 @@ export function CodeEditor({
             variant="ghost"
             size="sm"
             onClick={handleFormat}
-            className="size-7 cursor-pointer p-0 text-muted-foreground hover:text-foreground"
+            className="size-7 cursor-pointer p-0 text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/60"
             title={formatted ? tr(L.formatted, locale) : tr(L.format, locale)}
             aria-label={tr(L.format, locale)}
           >
             {formatted ? (
-              <Check className="size-3.5 text-emerald-500" />
+              <Check className="size-3.5 text-emerald-400" />
             ) : (
               <Wand2 className="size-3.5" />
             )}
@@ -396,12 +397,12 @@ export function CodeEditor({
             variant="ghost"
             size="sm"
             onClick={handleCopy}
-            className="size-7 cursor-pointer p-0 text-muted-foreground hover:text-foreground"
+            className="size-7 cursor-pointer p-0 text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/60"
             title={copied ? tr(L.copied, locale) : tr(L.copyAll, locale)}
             aria-label={tr(L.copyAll, locale)}
           >
             {copied ? (
-              <Check className="size-3.5 text-emerald-500" />
+              <Check className="size-3.5 text-emerald-400" />
             ) : (
               <Copy className="size-3.5" />
             )}
@@ -412,7 +413,7 @@ export function CodeEditor({
             variant="ghost"
             size="sm"
             onClick={() => setIsFullscreen((prev) => !prev)}
-            className="size-7 cursor-pointer p-0 text-muted-foreground hover:text-foreground"
+            className="size-7 cursor-pointer p-0 text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/60"
             title={isFullscreen ? tr(L.exitFullscreen, locale) : tr(L.fullscreen, locale)}
             aria-label={isFullscreen ? tr(L.exitFullscreen, locale) : tr(L.fullscreen, locale)}
           >
@@ -426,7 +427,7 @@ export function CodeEditor({
       </div>
 
       {/* CodeMirror Editor Body */}
-      <div className="relative min-h-0 flex-1 overflow-hidden bg-card/40">
+      <div className="relative min-h-0 flex-1 overflow-hidden bg-[#0d0d11]">
         <CodeMirror
           value={displayCode}
           height={isFullscreen ? "calc(100vh - 10rem)" : "100%"}
@@ -447,16 +448,16 @@ export function CodeEditor({
       </div>
 
       {/* Editor Bottom Action Bar */}
-      <div className="flex shrink-0 flex-wrap items-center justify-between gap-2 border-t bg-muted/20 px-3.5 py-2.5">
+      <div className="flex shrink-0 flex-wrap items-center justify-between gap-2 border-t border-zinc-800/80 bg-[#181820] px-4 py-2.5">
         {/* Left: Execution readout & shortcut hint */}
-        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+        <div className="flex items-center gap-2 text-xs text-zinc-400">
           {durationMs !== undefined ? (
-            <span className="font-mono tabular-nums text-foreground">
+            <span className="font-mono tabular-nums text-zinc-200">
               {tr(L.duration, locale)}: {durationMs}ms
               {memoryFormatted && ` · ${memoryFormatted}`}
             </span>
           ) : (
-            <span className="text-[11px] text-muted-foreground/80">
+            <span className="text-[11px] text-zinc-500">
               {tr(L.shortcutHint, locale)}
             </span>
           )}
@@ -470,19 +471,19 @@ export function CodeEditor({
                 type="button"
                 variant="outline"
                 size="sm"
-                className="h-8 cursor-pointer gap-1.5 rounded-full px-3 text-xs font-normal text-muted-foreground hover:text-foreground"
+                className="h-8 cursor-pointer gap-1.5 rounded-full border-zinc-700 bg-zinc-800/60 px-3 text-xs font-normal text-zinc-300 hover:bg-zinc-800 hover:text-zinc-100"
               >
                 <Download className="size-3.5" />
                 <span>{tr(L.exportSolution, locale)}</span>
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-48">
-              <DropdownMenuItem onClick={handleExportPy} className="cursor-pointer gap-2 text-xs">
+            <DropdownMenuContent align="end" className="w-48 bg-[#181820] border-zinc-800 text-zinc-200">
+              <DropdownMenuItem onClick={handleExportPy} className="cursor-pointer gap-2 text-xs focus:bg-zinc-800 focus:text-zinc-100">
                 <FileCode className="size-4 text-primary" />
                 <span>{tr(L.exportPy, locale)}</span>
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={handleExportJson} className="cursor-pointer gap-2 text-xs">
-                <Download className="size-4 text-muted-foreground" />
+              <DropdownMenuItem onClick={handleExportJson} className="cursor-pointer gap-2 text-xs focus:bg-zinc-800 focus:text-zinc-100">
+                <Download className="size-4 text-zinc-400" />
                 <span>{tr(L.exportJson, locale)}</span>
               </DropdownMenuItem>
             </DropdownMenuContent>
@@ -493,7 +494,7 @@ export function CodeEditor({
             size="sm"
             onClick={onRun}
             disabled={running}
-            className="h-8 cursor-pointer gap-1.5 rounded-full bg-primary px-4 text-xs font-semibold text-primary-foreground shadow-xs transition-transform active:scale-95 disabled:pointer-events-none"
+            className="h-8 cursor-pointer gap-1.5 rounded-full bg-primary hover:bg-primary/90 px-4 text-xs font-semibold text-primary-foreground shadow-sm transition-transform active:scale-95 disabled:pointer-events-none"
           >
             {running ? (
               <>

@@ -261,11 +261,11 @@ export function CodeGrader({
 
       {/* PEP-8 Style Linter (shown if violations exist) */}
       {report && report.violations.length > 0 && (
-        <div className="rounded-2xl border bg-card p-3.5 shadow-xs space-y-2.5 animate-in fade-in-50 duration-150">
+        <div className="rounded-2xl border border-zinc-800/80 bg-[#141419] p-3.5 shadow-sm space-y-2.5 text-zinc-200 animate-in fade-in-50 duration-150">
           <div className="flex items-center gap-2">
             <ShieldAlert className="size-3.5 text-primary" />
-            <h3 className="text-xs font-semibold text-foreground">{t(L.pep8Title, locale)}</h3>
-            <Badge variant="outline" className="rounded-full text-[9px] px-1.5 py-0 font-mono">
+            <h3 className="text-xs font-semibold text-zinc-100">{t(L.pep8Title, locale)}</h3>
+            <Badge variant="outline" className="rounded-full text-[9px] px-1.5 py-0 font-mono border-zinc-700 text-zinc-300">
               {report.violations.length}
             </Badge>
           </div>
@@ -273,21 +273,21 @@ export function CodeGrader({
             {report.violations.map((v, i) => (
               <li
                 key={`${v.code}-${v.line}-${v.col}-${i}`}
-                className="rounded-lg border bg-muted/20 px-2.5 py-1.5 text-xs"
+                className="rounded-lg border border-zinc-800 bg-[#0d0d11] px-2.5 py-1.5 text-xs text-zinc-200"
               >
                 <div className="flex flex-wrap items-center gap-1.5">
-                  <Badge variant="outline" className="rounded-full font-mono text-[9px] px-1.5 py-0">
+                  <Badge variant="outline" className="rounded-full font-mono text-[9px] px-1.5 py-0 border-zinc-700 text-zinc-300">
                     {v.code}
                   </Badge>
-                  <span className="font-mono text-[10px] text-muted-foreground">
+                  <span className="font-mono text-[10px] text-zinc-400">
                     {locale === "th" ? "บรรทัด" : "line"} {v.line}:{v.col}
                   </span>
                 </div>
-                <p className="mt-0.5 text-foreground text-[11px] leading-relaxed">
+                <p className="mt-0.5 text-zinc-200 text-[11px] leading-relaxed">
                   {t(v.message, locale)}
                 </p>
                 {v.sourceRef && (
-                  <p className="mt-0.5 flex items-center gap-1 text-[10px] text-muted-foreground italic">
+                  <p className="mt-0.5 flex items-center gap-1 text-[10px] text-zinc-400 italic">
                     <BookOpen className="size-2.5" />
                     {v.sourceRef}
                   </p>
@@ -295,8 +295,8 @@ export function CodeGrader({
               </li>
             ))}
           </ul>
-          <Separator />
-          <p className="text-[10px] text-muted-foreground">{t(L.pep8Note, locale)}</p>
+          <Separator className="bg-zinc-800" />
+          <p className="text-[10px] text-zinc-400">{t(L.pep8Note, locale)}</p>
         </div>
       )}
 
