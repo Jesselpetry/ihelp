@@ -11,7 +11,7 @@ termId: Y1-S1
 prerequisites: []
 language: th
 semester: "1/2569"
-updated: "2026-09-26"
+updated: "2026-11-08"
 sources:
   - สไลด์เลกเชอร์ Ch1–Ch5 และเอกสาร Self-study Ch1–Ch5 (คณะวิทยาศาสตร์ 2569)
   - Discussion Class Ch3 และเอกสารทบทวน Ch4
@@ -21,7 +21,7 @@ sources:
 
 > เคมีพื้นฐานจากคณะวิทยาศาสตร์ — โครงสร้างอะตอม ตารางธาตุ พันธะเคมี ปริมาณสารสัมพันธ์ และของเหลวกับสารละลาย
 >
-> **อัปเดตล่าสุด** 26 ก.ย. 2569 · ข้อมูลภาคเรียน 1/2569 (ครอบคลุมถึงสอบกลางภาค)
+> **อัปเดตล่าสุด** 8 พ.ย. 2569 · ข้อมูลภาคเรียน 1/2569 (ครอบคลุมถึงสอบกลางภาค)
 
 ## 1. ข้อมูลรายวิชา
 
@@ -99,27 +99,34 @@ sources:
 
 ## 4. สิ่งที่ต้องจำ
 
-```
-บทที่ 1  c = λν          E = hν = hc/λ        E_n = −2.18×10⁻¹⁸/n²
-         λ = h/mv        1/λ = R(1/n₁² − 1/n₂²)   R = 1.097×10⁷ m⁻¹
-         e⁻ สูงสุดในชั้น = 2n²   ออร์บิทัลในชั้น = n²   ℓ: 0…n−1   mℓ: −ℓ…+ℓ (2ℓ+1 ค่า)
+> สรุปสูตรคำนวณและแนวคิดหลักสำหรับเตรียมสอบกลางภาค (บทที่ 1–5)
 
-บทที่ 2  Z_eff = Z − S (S = e⁻ ชั้นใน)
-         คาบ →: ขนาด↓ IE↑ EA↑ EN↑   |   หมู่ ↓: ขนาด↑ IE↓ EA↓ EN↓
+### บทที่ 1 — โครงสร้างอะตอม
+- **คลื่นและพลังงาน:** $c = \lambda\nu \qquad E = h\nu = \dfrac{hc}{\lambda} \qquad E_n = -\dfrac{2.18 \times 10^{-18}}{n^2}\text{ J}$
+- **สมมติฐานเดอบรอยล์ และ Rydberg:** $\lambda = \dfrac{h}{mv} \qquad \dfrac{1}{\lambda} = R\left(\dfrac{1}{n_1^2} - \dfrac{1}{n_2^2}\right) \quad (R = 1.097 \times 10^7\text{ m}^{-1})$
+- **อิเล็กตรอนและออร์บิทัล:** $e^-$ สูงสุดในชั้น $= 2n^2$ · ออร์บิทัลในชั้น $= n^2$ · $\ell: 0 \dots n-1$ · $m_\ell: -\ell \dots +\ell$ ($2\ell+1$ ค่า)
 
-บทที่ 3  FC = เวเลนซ์ − nonbonding − ½(bonding)
-         U ∝ Q₁Q₂/r        BO = (bonding − antibonding)/2
-         พันธะคู่ = 1σ + 1π      พันธะสาม = 1σ + 2π
+### บทที่ 2 — ตารางธาตุและสมบัติ
+- **ประจุนิวเคลียสสุทธิ:** $Z_{\text{eff}} = Z - S$ ($S$ = จำนวน $e^-$ ชั้นใน)
+- **แนวโน้มตามตารางธาตุ:**
+  - ซ้าย $\to$ ขวา (ตามคาบ): ขนาดอะตอม $\downarrow$ · $\text{IE} \uparrow$ · $\text{EA} \uparrow$ · $\text{EN} \uparrow$
+  - บน $\to$ ล่าง (ตามหมู่): ขนาดอะตอม $\uparrow$ · $\text{IE} \downarrow$ · $\text{EA} \downarrow$ · $\text{EN} \downarrow$
 
-บทที่ 4  1 mol = 6.02×10²³ = MW กรัม = 22.4 dm³ (STP)
-         %ธาตุ = (n×AW)/MW × 100     %Yield = จริง/ทฤษฎี × 100
-         M = mol/L(สารละลาย)   m = mol/kg(ตัวทำละลาย)   M₁V₁ = M₂V₂
+### บทที่ 3 — พันธะเคมี
+- **ประจุฟอร์มัล:** $\text{FC} = \text{เวเลนซ์} - \text{nonbonding} - \frac{1}{2}(\text{bonding})$
+- **แลตทิซและอันดับพันธะ:** $U \propto \dfrac{Q_1 Q_2}{r} \qquad \text{Bond Order (BO)} = \dfrac{\text{bonding} - \text{antibonding}}{2}$
+- **ประเภทพันธะ:** พันธะเดี่ยว = $1\sigma$ · พันธะคู่ = $1\sigma + 1\pi$ · พันธะสาม = $1\sigma + 2\pi$
 
-บทที่ 5  2.303 log(P₂/P₁) = (ΔH_vap/R)((T₂−T₁)/(T₁T₂))    R = 8.314 J/mol·K
-         P = kX (Henry)      P_A = X_A P°_A (Raoult)
-         ΔP = P°_A X_B    ΔT_b = K_b·m    ΔT_f = K_f·m    π = CRT (R = 0.0821)
-         K_b(น้ำ) = 0.52    K_f(น้ำ) = 1.86
-```
+### บทที่ 4 — ปริมาณสารสัมพันธ์
+- **โมลและมวล:** $1\text{ mol} = 6.02 \times 10^{23}\text{ อนุภาค} = \text{MW กรัม} = 22.4\text{ dm}^3\text{ (ที่ STP)}$
+- **ร้อยละและผลได้:** $\%\text{ธาตุ} = \dfrac{n \times \text{AW}}{\text{MW}} \times 100 \qquad \%\text{Yield} = \dfrac{\text{ผลได้จริง}}{\text{ผลได้ตามทฤษฎี}} \times 100$
+- **ความเข้มข้น:** $M = \dfrac{\text{mol}}{\text{L (สารละลาย)}} \qquad m = \dfrac{\text{mol}}{\text{kg (ตัวทำละลาย)}} \qquad M_1 V_1 = M_2 V_2$
+
+### บทที่ 5 — ของเหลวและสารละลาย
+- **Clausius–Clapeyron:** $2.303 \log\left(\dfrac{P_2}{P_1}\right) = \dfrac{\Delta H_{\text{vap}}}{R}\left(\dfrac{T_2 - T_1}{T_1 T_2}\right) \quad (R = 8.314\text{ J/mol}\cdot\text{K})$
+- **ความดันไอและกฎราอูลต์:** $P = kX\text{ (Henry)} \qquad P_A = X_A P_A^\circ\text{ (Raoult)} \qquad \Delta P = P_A^\circ X_B$
+- **สมบัติคอลลิเกทีฟ:** $\Delta T_b = K_b \cdot m \qquad \Delta T_f = K_f \cdot m \qquad \pi = CRT \quad (R = 0.0821\text{ L}\cdot\text{atm/mol}\cdot\text{K})$
+- **ค่าคงที่น้ำ:** $K_b(\text{น้ำ}) = 0.52^\circ\text{C}/m \qquad K_f(\text{น้ำ}) = 1.86^\circ\text{C}/m$
 
 ## 5. การประเมินและเตรียมสอบ
 

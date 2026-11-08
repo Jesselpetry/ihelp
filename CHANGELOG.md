@@ -42,7 +42,10 @@
 
 ### แก้ไข
 
-- **แก้ปัญหาสูตรคณิตศาสตร์ซ้อนทับกัน (LaTeX Stack Overlap & Math Rendering Bug) โดยอัปเกรดเป็น MathJax v3 SVG Engine (`rehype-mathjax/svg`)** — แก้ไขปัญหาตัวแปร, เศษส่วน (`\frac`), ลิมิต (`\lim`) และเลขยกกำลังในเนื้อหาวิชา Math for IT และ Logic ซ้อนทับกันอันเนื่องมาจาก `white-space: normal` และ `overflow-wrap` ใน KaTeX เดิม โดยเปลี่ยนมาเรนเดอร์เป็นภาพเวกเตอร์ SVG ที่คำนวณตำแหน่งแน่นอนด้วย MathJax v3 SVG (สถาปัตยกรรมเดียวกับ Mathpix) พร้อมจัดระเบียบ CSS ให้รองรับ Responsive Overflow Scrolling บนมือถือ และเชื่อมโยงสไตล์หมึกแดงใน Notebook Mode (`frac-line`, `\boxed{}`) เข้ากับแท็ก SVG ของ MathJax อย่างสมบูรณ์แบบ (โดย @Jesselpetry)
+- **แก้ปัญหาสูตรคณิตศาสตร์ซ้อนทับกัน (LaTeX Display Stack Overlap & Math Isolation)** — แก้ไขปัญหาตัวแปร, เศษส่วน (`\frac`), ลิมิต (`\lim`) และเลขยกกำลังในเนื้อหาวิชา Math for IT และ Logic ซ้อนทับกันอันเนื่องมาจาก `white-space: normal` และการตัดคำของพารากราฟ (`overflow-wrap: anywhere`) โดยกำหนดการคำนวณ Strut และพื้นที่แสดงผลสูตรคณิตศาสตร์ใน `app/globals.css` (`white-space: nowrap !important; display: inline-block; min-width: 100%; text-align: center; overflow-wrap: normal !important;`) ควบคู่กับการรองรับ MathJax/KaTeX SVG Styling สำหรับโหมดสมุดเลกเชอร์ (โดย @Jesselpetry)
+- **แก้ไขปัญหาสระภาษาไทยลอยและแปลงบล็อกข้อความจำลองโค้ด (Pseudo-code Markdown Textarea) ในเอกสารคู่มือเตรียมสอบสู่ตารางและรายการตามมาตรฐาน** —
+  - ปรับปรุงการจัดรูปแบบสูตรคณิตศาสตร์และข้อความภาษาไทยใน Math Renderer (`app/globals.css`, `components/md-view.tsx`) ป้องกันการแตกคำและสระวรรณยุกต์ภาษาไทยลอย/แยกส่วน (`overflow-wrap: normal !important; word-break: normal !important;`) และใช้ฟอนต์ `IBM Plex Sans Thai` ในการจัดเรียงอักษรควบคู่กับ KaTeX
+  - แปลงบล็อกโค้ดธรรมดา (Textarea Code Blocks) ที่บันทึกขั้นตอนคำนวณและตาราง ASCII ในคู่มือสรุปวิชา Math for IT (Week 08–15, Mock Exam, Quizzes), IT Fundamentals (Midterm & Final Guides), Business for IT (สมการบัญชี งบการเงิน EOQ) และ General Chemistry (สูตรและสิ่งที่ต้องจำ บทที่ 1–5) ให้กลายเป็น Markdown Table, Numbered Steps และสมการคณิตศาสตร์ LaTeX ที่ถูกต้องและอ่านง่ายในทุกขนาดหน้าจอ (โดย @Jesselpetry)
 
 ---
 

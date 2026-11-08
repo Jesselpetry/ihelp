@@ -11,23 +11,14 @@
 
 ครึ่งหลังของวิชานี้คือ **แคลคูลัสทั้งก้อน** เรียงตามลำดับที่สร้างต่อกันเป็นชั้น ๆ:
 
-```
-Week 8   ฟังก์ชัน → ลิมิต → ความต่อเนื่อง        (รากฐาน — ถ้าพังตรงนี้ พังทั้งเทอม)
-   ↓
-Week 9   อนุพันธ์ (I)  นิยาม + กฎพื้นฐาน
-   ↓
-Week 10  อนุพันธ์ (II) Chain Rule + Implicit + Related Rates
-   ↓
-Week 11  การประยุกต์อนุพันธ์  ค่าสุดขีด / วาดกราฟ / Optimization
-   ↓
-Week 12  ปริพันธ์ (I)  Antiderivative + Riemann Sum + ทฤษฎีบทหลัก
-   ↓
-Week 13  ปริพันธ์ (II) u-Substitution + ปริพันธ์จำกัดเขตขั้นสูง
-   ↓
-Week 14  Integration by Parts + พื้นที่ระหว่างเส้นโค้ง + ปริมาตร (Disk/Washer)
-   ↓
-Week 15  จุดศูนย์กลางมวล / Centroid + อนุพันธ์ย่อย (Partial Derivatives)
-```
+1. **Week 8 — ฟังก์ชัน $\to$ ลิมิต $\to$ ความต่อเนื่อง** *(รากฐานสำคัญ)*
+2. **Week 9 — อนุพันธ์ (I)** นิยาม + กฎพื้นฐาน
+3. **Week 10 — อนุพันธ์ (II)** Chain Rule + Implicit + Related Rates
+4. **Week 11 — การประยุกต์อนุพันธ์** ค่าสุดขีด / วาดกราฟ / Optimization
+5. **Week 12 — ปริพันธ์ (I)** Antiderivative + Riemann Sum + ทฤษฎีบทหลัก
+6. **Week 13 — ปริพันธ์ (II)** u-Substitution + ปริพันธ์จำกัดเขตขั้นสูง
+7. **Week 14 — เทคนิคและโจทย์ปริพันธ์** Integration by Parts + พื้นที่ระหว่างเส้นโค้ง + ปริมาตร (Disk/Washer)
+8. **Week 15 — การประยุกต์และอนุพันธ์หลายตัวแปร** Centroid + จุดศูนย์กลางมวล + อนุพันธ์ย่อย (Partial Derivatives)
 
 **หลักคิดของอาจารย์ (จากสไลด์ Calculus-01):**
 > *"Calculus is a **limit machine**. DO NOT learn calculus as if it were simply a collection of new formulas."*

@@ -55,10 +55,8 @@
 
 ### 8.1 ลำดับชั้นของข้อมูล ⭐⭐
 
-```
-Bit → Byte/Character → Field → Record → Data file → Database
- 0/1   8 bits = 1 ตัวอักษร   (เล็กสุดที่ผู้ใช้เข้าถึง)       (ไฟล์หลายไฟล์)
-```
+> **ลำดับชั้นของข้อมูล:**  
+> **Bit** ($0/1$) $\to$ **Byte / Character** (8 bits = 1 ตัวอักษร) $\to$ **Field** (เล็กสุดที่ผู้ใช้เข้าถึง) $\to$ **Record** $\to$ **Data file** $\to$ **Database**
 
 | ระดับ | จุดจำ |
 |---|---|
@@ -372,11 +370,11 @@ Content provider network (Google, Facebook) — เครือข่ายส�
 
 ### 12.4 อุปกรณ์เชื่อมต่อ ⭐⭐⭐
 
-```
-Layer 1  Physical   Repeater / Hub      ทำงานระดับ bit / สัญญาณ
-Layer 2  Data link  Bridge / L2 switch  ทำงานระดับ frame (MAC address)
-Layer 3  Network    Router / L3 switch  ทำงานระดับ packet (IP address)
-```
+| Layer | ชื่อชั้น | อุปกรณ์ | ข้อมูลและหลักการทำงาน |
+|:---:|---|---|---|
+| **Layer 1** | Physical | **Repeater / Hub** | ทำงานระดับ bit / สัญญาณไฟฟ้า (ไม่กรองข้อมูล ส่งออกทุกพอร์ต) |
+| **Layer 2** | Data link | **Bridge / L2 switch** | ทำงานระดับ frame (**MAC address**) — แยก collision domain |
+| **Layer 3** | Network | **Router / L3 switch** | ทำงานระดับ packet (**IP address**) — แยก broadcast domain |
 
 | อุปกรณ์ | ใช้อะไรตัดสิน | กรอง? | แยก domain |
 |---|---|---|---|
@@ -614,9 +612,7 @@ Sender ◄──ACK────────  AP
 | **W3C** | องค์กรกำกับมาตรฐาน HTML · มี HTML5 validator |
 | **Responsive** | ปรับเนื้อหาตามขนาดจอ |
 
-```
-HTML = โครงกระดูก      CSS = เสื้อผ้า      JavaScript = พฤติกรรม
-```
+> 💡 **เปรียบเทียบหน้าที่:** **HTML** = โครงกระดูก · **CSS** = เสื้อผ้าหน้าผม · **JavaScript** = พฤติกรรมและการโต้ตอบ
 
 ### 14.2 Static web vs Dynamic web ⭐⭐
 
@@ -736,9 +732,8 @@ HTML = โครงกระดูก      CSS = เสื้อผ้า      J
 
 ### 15.2 SDLC — 5 เฟส ⭐⭐
 
-```
-Planning → Analysis → Design → Implementation → Support & Security
-```
+> **วงจร 5 ขั้นตอน:**  
+> **1. Planning** $\to$ **2. Analysis** $\to$ **3. Design** $\to$ **4. Implementation** $\to$ **5. Support & Security**
 
 - เป้าหมาย: ระบบตรงความต้องการ · **reliable · efficient · available** · ตรงเวลาและงบ
 - แนวทาง 3 ข้อ: **จัดงานเป็นเฟส · ให้ผู้ใช้มีส่วนร่วม · กำหนดมาตรฐาน**

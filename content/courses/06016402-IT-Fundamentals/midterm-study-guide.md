@@ -1266,10 +1266,7 @@ Perpendicular (แนวตั้ง):   N S N S N S N S N S       ← ขั้
 Word processing · Presentation · Spreadsheet · Database · Note taking · Calendar and contact management · Project management · Accounting · Personal finance · Legal · Tax preparation · Document management · Enterprise computing
 
 **Developing Projects — 5 ขั้นตอน ⭐:**
-
-```
-Create a project → Edit a project → Format a project → Save a project → Distribute a project
-```
+> **Create a project** $\to$ **Edit a project** $\to$ **Format a project** $\to$ **Save a project** $\to$ **Distribute a project**
 
 **รายละเอียดแต่ละประเภท ⭐⭐**
 
@@ -1885,12 +1882,12 @@ Machine cycle มี 4 ขั้น: **S1 Fetch → S2 Decode → S3 Execute →
 
 ถ้าใช้ SRAM ทั้งหมดจะเร็วมากแต่แพงเกินไปและความจุไม่พอ ถ้าใช้ DRAM ทั้งหมดจะราคาถูกแต่ CPU ต้องรอข้อมูลนาน จึงเกิดลำดับชั้น:
 
-```
-Fast/Small  L1 cache  (บน processor chip)
-            L2 cache  (บน processor chip)
-            L3 cache  (บน mainboard)
-Slow/Large  RAM       (บน mainboard)
-```
+| ความเร็ว / ความจุ | ลำดับชั้นหน่วยความจำ | ตำแหน่งติดตั้ง |
+|---|---|---|
+| เร็วสุด / จุต่ำสุด | **L1 cache** | บน processor chip |
+| เร็วมาก / จุน้อย | **L2 cache** | บน processor chip |
+| เร็ว / จุปานกลาง | **L3 cache** | บน mainboard |
+| ช้ากว่า / จุมาก | **RAM** | บน mainboard |
 
 **หลักการทำงาน:** memory cache เก็บ **คำสั่งและข้อมูลที่ถูกใช้บ่อย** ไว้ใกล้ CPU ที่สุด ทำให้ CPU ดึงข้อมูลส่วนใหญ่ได้จาก cache ที่เร็วมาก แทนที่จะต้องไปดึงจาก RAM ที่ช้ากว่าทุกครั้ง จึง **เร่งกระบวนการของคอมพิวเตอร์โดยรวม** ในราคาที่ยอมรับได้ — เป็นการได้ความเร็วใกล้เคียง SRAM ในราคาใกล้เคียง DRAM
 </details>
@@ -2072,11 +2069,10 @@ Slow/Large  RAM       (บน mainboard)
 
 **สรุปการไหลของข้อมูลตามแบบจำลองพื้นฐาน:**
 
-```
-Input (OMR, NFC/RFID, MICR)  →  Computer/Process (DBMS)  →  Output (Label Printer, Large-format Printer)
-        [Data]                          ↕                              [Information]
-                                Storage (SSD/RAID/Enterprise Storage)
-```
+- **Input [Data]:** OMR, NFC/RFID, MICR
+- **Computer / Process:** DBMS
+  - ↕ **Storage:** SSD / RAID / Enterprise Storage
+- **Output [Information]:** Label Printer, Large-format Printer
 </details>
 
 ---
