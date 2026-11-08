@@ -12,6 +12,23 @@
 
 ---
 
+## [Unreleased]
+
+### เพิ่ม
+
+- **จัดทำคู่มือและสรุปเนื้อหารายสัปดาห์ 14 สัปดาห์สำหรับวิชา PSCP (`archive/week01.md` – `week14.md`)** — จัดทำเนื้อหาวิชา Problem Solving and Computer Programming ครบ 14 สัปดาห์ ครอบคลุมตั้งแต่ Algorithm/Flowchart, ตัวแปรและชนิดข้อมูล, Conditionals, Loops, Strings, Functions, กลยุทธ์สอบกลางภาค, Nested Loops/Pattern Printing, Lists, Tuples, 2D Lists/Matrices, Dictionaries & Sets, Recursion/File I/O, ไปจนถึง Sorting Algorithms/Binary Search และกลยุทธ์สอบปลายภาค พร้อมตารางเอกสารประกอบการเรียนและกรอบข้อความข้อสอบเก่า (โดย @Jesselpetry)
+- **เพิ่มแผงสรุปและแนะนำประจำสัปดาห์บนหน้าโจทย์ PSCP (`components/pscp/weekly-guide-panel.tsx`)** — เมื่อเลือกดูสัปดาห์ในหน้า `/pscp?week=N` แผงสรุปประจำสัปดาห์จะแสดงหัวข้อสองภาษา แบดจ์ช่วงสอบ (Midterm/Final) สถิติจำนวนโจทย์รวมและโจทย์ Learning Log พร้อมแถบวัดความคืบหน้า (Solved Meter), กล่องสรุปเนื้อหาแบบย่อที่พับขยายได้ (Notebook summary), ปุ่มพรีวิวสไลด์/แบบฝึกหัด PDF ทันทีผ่าน Preview Modal และปุ่มทางลัดเข้าสู่ระบบอ่านเต็มรูปแบบใน Course Reader (โดย @Jesselpetry)
+- **เชื่อมโยงหลักสูตรรายสัปดาห์ PSCP เข้ากับระบบ Course Spine (`lib/courses/course-bindings.ts`) และ Course Weeks (`lib/library/course-weeks.ts`)** — รองรับโมดูล `syllabus_map` (`/courses/06066303-problem-solving-and-computer-programming/map`) ให้แสดง 14 สัปดาห์แบบโต้ตอบได้สมบูรณ์แบบพร้อมตารางเอกสารคลังสื่อ (โดย @Jesselpetry)
+
+### ปรับปรุง
+
+- **ปรับปรุงการ์ดผู้จัดทำในหน้ารายวิชา (Course Contributors Section) สู่ดีไซน์กะทัดรัด คลีน และ De-boxed** — ลด Padding เหลือ p-4/p-5, ปรับ Avatar สู่ 44–48px, รวมข้อมูลการศึกษาเป็นบรรทัดเดียว 'IT KMITL #24 · ปี 1 (รหัสนักศึกษา)', แปลงกลุ่มปุ่มโซเชียลเป็นไอคอนโมโนโครมขนาดกะทัดรัด (w-8 h-8), ปรับรายการผลงานเป็น Borderless List พร้อม Hover Highlight และปรับหัวข้อหมวดให้เรียบง่ายไร้ Badge ซ้ำซ้อน (โดย @Jesselpetry)
+- **ย้ายปุ่มสลับรูปแบบภาพรวม (ฉบับย่อ / ทางการ) จากแบนเนอร์วิชาไปยังหัวข้อภาพรวม (`components/course-overview.tsx`, `components/course-banner.tsx`)** — ปลดล็อคแบนเนอร์รายวิชาให้สะอาดตาและคงทนต่อการแสดงผล นำปุ่มสลับเวอร์ชันแคปซูลไปวางไว้ข้างหัวข้อ "ภาพรวม" (Overview) ซึ่งเป็นตำแหน่งที่ควบคุมเนื้อหาโดยตรง พร้อมปุ่มทางลัดไปยังเว็บคณะฯ หรือปุ่มย่อเนื้อหาเมื่อขยาย (โดย @Jesselpetry)
+- **จัดโครงสร้างหน้ารายวิชาแบบ Dual-Panel สไตล์ Classroom พร้อมการเลื่อนแบบธรรมชาติ (`components/subject-hub.tsx`, `components/course-sidebar.tsx`)** — คงโครงสร้างแบนเนอร์ด้านบนและการเลื่อนหน้าตามธรรมชาติ (Natural Page Scroll) โดยเมื่อเลื่อนหน้าจอ แบนเนอร์จะเลื่อนตามขึ้นไป และแผงนำทางด้านซ้าย (ช่วงสอบและหัวข้อ) จะ Sticky อยู่ใต้ขอบบนอย่างลงตัว ควบคู่ไปกับแผงสตรีมเนื้อหารายสัปดาห์ด้านขวา (โดย @Jesselpetry)
+- **รวมศูนย์มาตรฐานสัญลักษณ์ลายน้ำและพื้นหลังแกรเดียนต์รายวิชา (`lib/courses/course-theme.ts`, `components/course-watermark.tsx`)** — สร้างโมดูลธีม `IHELP_GRADIENT_CSS` และคอมโพเนนต์ `CourseWatermark` แสดงตรา GE สีขาวสำหรับ Charm School และ Foundation English, ตราพระจอมเกล้าสำหรับวิชา EN-KMITL และตราคณะไอทีสำหรับวิชาไอที ทั้งบนการ์ดหน้ารวมและแบนเนอร์หน้ารายวิชา (โดย @Jesselpetry)
+
+---
+
 ## [1.0.0] - 8 พฤศจิกายน 2569
 
 > **วิวัฒนาการหลัก (v1.0.0):** Production Release: สถาปัตยกรรม Weekly Learning Path, ICS Track A และระบบ Contributor Credit System สมบูรณ์แบบ
