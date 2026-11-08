@@ -86,7 +86,7 @@ export const KNOWN_CONTRIBUTORS: Record<string, ContributorDetail> = {
     },
   },
   PhuPunnavit: {
-    name: "Punnavit (Phu)",
+    name: "Punnavit Tangkolchan (Phu)",
     github: "PhuPunnavit",
     instagram: "priiu_i",
     role: { th: "ผู้ร่วมพัฒนา (Core Contributor)", en: "Core Contributor" },
@@ -96,7 +96,7 @@ export const KNOWN_CONTRIBUTORS: Record<string, ContributorDetail> = {
     },
   },
   PGTHEGOD: {
-    name: "Akarapach Yootsukprasert",
+    name: "Akarapach Yootsukprasert (Park)",
     github: "PGTHEGOD",
     instagram: "pgthegod_x",
     role: { th: "ผู้ร่วมพัฒนา (Contributor)", en: "Contributor" },
@@ -116,7 +116,7 @@ export const KNOWN_CONTRIBUTORS: Record<string, ContributorDetail> = {
     },
   },
   tammadon: {
-    name: "Tammadon Suksa (IT24)",
+    name: "Tammadon Suksa (Bank)",
     github: "tammadon",
     role: {
       th: "ผู้ร่วมแบ่งปันบันทึกสรุป Notion (IT24)",

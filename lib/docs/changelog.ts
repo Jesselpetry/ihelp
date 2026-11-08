@@ -21,17 +21,17 @@ export const CONTRIBUTORS = {
     instagram: "chatann_",
   },
   phuPunnavit: {
-    name: "PhuPunnavit",
+    name: "Punnavit Tangkolchan",
     github: "PhuPunnavit",
     instagram: "priiu_i",
   },
   pgthegod: {
-    name: "PGTHEGOD",
+    name: "Akarapach Yootsukprasert",
     github: "PGTHEGOD",
     instagram: "pgthegod_x",
   },
   meaookung: {
-    name: "Meaookung144",
+    name: "Kittinan Atthasiri",
     github: "Meaookung144",
     instagram: "meaookung144",
   },

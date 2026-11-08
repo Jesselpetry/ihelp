@@ -6,7 +6,7 @@ export const CONTRIBUTOR_REGISTRY: Record<string, ContributorProfile> = {
   chatan: {
     id: "chatan",
     name: "Chatan Petry",
-    nickname: "Chatan",
+    nickname: "Jess",
     studentId: "69070027",
     entryYearBE: 2569,
     majorKey: "IT",
@@ -82,9 +82,9 @@ export const CONTRIBUTOR_REGISTRY: Record<string, ContributorProfile> = {
 
   phuPunnavit: {
     id: "phuPunnavit",
-    name: "Punnavit (Phu)",
+    name: "Punnavit Tangkolchan",
     nickname: "Phu",
-    studentId: "6907xxxx", // Placeholder: replace with full student ID when provided
+    studentId: "69070119",
     entryYearBE: 2569,
     majorKey: "IT",
     department: {
@@ -97,7 +97,7 @@ export const CONTRIBUTOR_REGISTRY: Record<string, ContributorProfile> = {
     },
     cohort: "IT24",
     avatarUrl: "https://github.com/PhuPunnavit.png",
-    avatarFallback: "PP",
+    avatarFallback: "PT",
     roles: ["core-developer", "content-contributor", "translator"],
     primaryRole: {
       th: "ผู้ร่วมพัฒนาหลัก & แปลสไลด์สรุป (Core Contributor)",
@@ -110,7 +110,7 @@ export const CONTRIBUTOR_REGISTRY: Record<string, ContributorProfile> = {
     socials: {
       github: "PhuPunnavit",
       instagram: "priiu_i",
-      email: "6907xxxx@kmitl.ac.th",
+      email: "69070119@kmitl.ac.th",
     },
     courses: ["ITF"],
     materials: [
@@ -142,8 +142,8 @@ export const CONTRIBUTOR_REGISTRY: Record<string, ContributorProfile> = {
   tammadon: {
     id: "tammadon",
     name: "Tammadon Suksa",
-    nickname: "Tammadon",
-    studentId: "6907xxxx", // IT24 classmate
+    nickname: "Bank",
+    studentId: "69070082",
     entryYearBE: 2569,
     cohort: "IT24",
     faculty: {
@@ -166,6 +166,7 @@ export const CONTRIBUTOR_REGISTRY: Record<string, ContributorProfile> = {
       en: "IT24 classmate who authored and shared comprehensive ITF Notion notes for Weeks 08–15 with 79 annotated slide images",
     },
     socials: {
+      email: "69070082@kmitl.ac.th",
       notion: "https://app.notion.com/p/ITF-407363d85cea806abdc6c9ec2254f668",
     },
     courses: ["ITF"],
@@ -190,8 +191,8 @@ export const CONTRIBUTOR_REGISTRY: Record<string, ContributorProfile> = {
   pgthegod: {
     id: "pgthegod",
     name: "Akarapach Yootsukprasert",
-    nickname: "PG",
-    studentId: "6907xxxx", // Placeholder
+    nickname: "Park",
+    studentId: "69070225",
     entryYearBE: 2569,
     majorKey: "IT",
     department: {
@@ -217,7 +218,7 @@ export const CONTRIBUTOR_REGISTRY: Record<string, ContributorProfile> = {
     socials: {
       github: "PGTHEGOD",
       instagram: "pgthegod_x",
-      email: "6907xxxx@kmitl.ac.th",
+      email: "69070225@kmitl.ac.th",
     },
     courses: ["PSCP"],
     materials: [
