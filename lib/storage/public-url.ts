@@ -46,8 +46,7 @@ export function publicObjectUrl(bucket: BucketId, key: string): string | null {
  * to tell our own Storage URLs from anything else a card can carry, so it only
  * appends `?download=` where Supabase understands it.
  *
- * The trailing slash keeps `ihelp-library` from also claiming
- * `ihelp-library-exams`, whose name starts with the same characters.
+ * The trailing slash ensures exact bucket path matching.
  */
 export function isPublicObjectUrl(bucket: BucketId, url: string): boolean {
   const base = publicBucketBase(bucket);

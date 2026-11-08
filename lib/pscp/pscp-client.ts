@@ -67,3 +67,37 @@ export function setPscpSolved(id: number, solved: boolean): void {
   all[id] = { ...prev, solved };
   persist(all);
 }
+
+export const PSCP_BOOKMARKS_EVENT = "ihelp-pscp-bookmarks-changed";
+export const PSCP_BOOKMARKS_KEY = "ihelp-pscp-bookmarks-v1";
+
+export function loadPscpBookmarks(): number[] {
+  if (typeof window === "undefined") return [];
+  try {
+    const raw = window.localStorage.getItem(PSCP_BOOKMARKS_KEY);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
+export function isPscpBookmarked(id: number): boolean {
+  return loadPscpBookmarks().includes(id);
+}
+
+export function togglePscpBookmark(id: number): boolean {
+  if (typeof window === "undefined") return false;
+  const list = loadPscpBookmarks();
+  const exists = list.includes(id);
+  const next = exists ? list.filter((x) => x !== id) : [...list, id];
+  try {
+    window.localStorage.setItem(PSCP_BOOKMARKS_KEY, JSON.stringify(next));
+  } catch {
+    // Quota failure
+  }
+  window.dispatchEvent(new Event(PSCP_BOOKMARKS_EVENT));
+  return !exists;
+}
+

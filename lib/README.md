@@ -109,17 +109,14 @@ Client Component import: `courses/course-spine.ts`, `courses/course-content.ts`,
 | `resource-index.json` · `resource-index.schema.json` | ผลลัพธ์ของ `bun run library:index` — ไฟล์เดียวที่ join วิชา (โมดูล สัปดาห์ เอกสาร) เอกสาร (บทบาท ใครแสดง ไฟล์ที่อ้าง) และการ์ดทุกใบ (path, bucket, สิทธิ์, ขนาด, `onDisk`, `usedBy`) · ห้ามแก้มือ ห้าม import จากโค้ดแอป · schema คือคำอธิบายแต่ละฟิลด์ |
 | `asset-url.ts` | แปลง path ของไฟล์ไปเป็น URL จริง (public bucket `ihelp-library` หรือ path เดิมถ้าไม่ได้ตั้ง Supabase) |
 | `storage-key.ts` | แปลง path เป็น object key ของ bucket (Supabase ไม่รับคีย์ที่ไม่ใช่ ASCII) — ตัวอัปโหลดกับตัว resolve ใช้ฟังก์ชันเดียวกัน |
-| `library-exams.ts` | ข้อสอบเก่าในคลัง เปิดได้เฉพาะ role insider/admin ผ่าน signed URL จาก bucket ปิด `ihelp-library-exams` · **server-only** |
+| `library-exams.ts` | ระบบจัดการสื่อจำกัดสิทธิ์สำหรับผู้ดูแลระบบ · **server-only** |
 | `exams.ts` | คลังข้อสอบ `/exams` (ตาราง `ihelp.exams`) ซึ่งเป็นคนละ bucket กับข้างบน (`ihelp-exams`) · **server-only** |
 | `library.ts` | หนังสือ AI-Guidelines-PSCP ที่ผูกมากับโปรเจกต์ (`data/ai-guidelines/`) |
 | `resources.ts` | ค่าคงที่ของงานอัปโหลดจากชุมชน (แยกจาก `actions/upload.ts` เพราะ "use server" export ค่าคงที่ไม่ได้) · ปิดอยู่ด้วย `UPLOADS_ENABLED` ใน `flags.ts` |
 
 **ใครเห็นอะไร:** รายการไฟล์ของคลังมาจาก `app/api/library/assets/route.ts` ซึ่งต้องล็อกอิน IT KMITL
-(หน้า `/courses/<dir>/library` เป็นหน้าสถิตที่ไม่มีข้อมูลการ์ด) แต่ไฟล์ที่ไม่ใช่ข้อสอบอยู่ใน bucket
-**สาธารณะ** และ path ของมันอยู่ใน repo สาธารณะ — "หลังล็อกอิน" ไม่เท่ากับส่วนตัว ยิ่งกว่านั้นหน้าโมดูลที่
-render เอกสาร (เช่นหน้ารายสัปดาห์ของ ITF/ICS) ไม่ได้อยู่หลังล็อกอิน และรับการ์ดที่ไม่ใช่ข้อสอบของวิชานั้น
-เป็น props เพื่อจับคู่กับตารางไฟล์ในเอกสาร
-มีแค่ข้อสอบเก่า (`isRestrictedAsset()`: `category === "exam"` หรือ path มี `/exams/`) ที่อยู่ bucket ปิด
+(หน้า `/courses/<dir>/library` เป็นหน้าสถิตที่ไม่มีข้อมูลการ์ด) ไฟล์สื่อการเรียนรู้อยู่ใน bucket
+`ihelp-library` และให้บริการตามสิทธิ์ที่กำหนด — "หลังล็อกอิน" ไม่เท่ากับส่วนตัว ให้ปฏิบัติตามมาตรฐานความเป็นส่วนตัวอย่างเคร่งครัด
 
 ## `lib/quiz/` — คลังข้อสอบ
 

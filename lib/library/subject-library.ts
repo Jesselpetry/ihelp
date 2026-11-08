@@ -4639,7 +4639,7 @@ export const ITF_ASSETS: SubjectAsset[] = [
     };
   }),
 
-  // ── Past papers (insider-only — see isRestrictedAsset) ─────────────────────
+  // ── Practice papers (restricted — see isRestrictedAsset) ─────────────────────
   {
     id: "itf-itf-quiz-01",
     title: { th: "ควิซที่ 1", en: "Quiz 1" },
@@ -5042,6 +5042,202 @@ export const PSCP_ASSETS: SubjectAsset[] = [
     fileType: "pdf",
     url: "/assets/it-kmitl/pscp/exercises/pscp-ex-pretest-week04.pdf",
     fileName: "pscp-ex-pretest-week04.pdf",
+  },
+  {
+    id: "pscp-pscp-hw-week01",
+    title: { th: "การบ้านสัปดาห์ที่ 1", en: "Homework — Week 01" },
+    description: { th: "การบ้านสัปดาห์ที่ 1 การเขียนโปรแกรมเบื้องต้น", en: "Week 1 homework on basic programming" },
+    tags: ["Homework","Week 01"],
+    category: "exercise",
+    scope: "midterm",
+    courseCode: "PSCP",
+    fileType: "pdf",
+    week: 1,
+    chapter: 1,
+    url: "/assets/it-kmitl/pscp/exercises/pscp-hw-week01.pdf",
+    fileName: "pscp-hw-week01.pdf",
+  },
+  {
+    id: "pscp-pscp-hw-week02",
+    title: { th: "การบ้านสัปดาห์ที่ 2", en: "Homework — Week 02" },
+    description: { th: "การบ้านสัปดาห์ที่ 2 ตัวแปรและนิพจน์", en: "Week 2 homework on variables and expressions" },
+    tags: ["Homework","Week 02"],
+    category: "exercise",
+    scope: "midterm",
+    courseCode: "PSCP",
+    fileType: "pdf",
+    week: 2,
+    chapter: 2,
+    url: "/assets/it-kmitl/pscp/exercises/pscp-hw-week02.pdf",
+    fileName: "pscp-hw-week02.pdf",
+  },
+  {
+    id: "pscp-pscp-hw-03",
+    title: { th: "การบ้านสัปดาห์ที่ 3", en: "Homework — Week 03" },
+    description: { th: "การบ้านสัปดาห์ที่ 3 การทำงานแบบมีเงื่อนไข", en: "Week 3 homework on conditionals" },
+    tags: ["Homework","Week 03"],
+    category: "exercise",
+    scope: "midterm",
+    courseCode: "PSCP",
+    fileType: "pdf",
+    week: 3,
+    chapter: 3,
+    url: "/assets/it-kmitl/pscp/exercises/pscp-hw-03.pdf",
+    fileName: "pscp-hw-03.pdf",
+  },
+  {
+    id: "pscp-pscp-quiz-02",
+    title: { th: "ควิซสัปดาห์ที่ 2", en: "Quiz — Week 02" },
+    description: { th: "ข้อสอบย่อยสัปดาห์ที่ 2 หัวข้อตัวแปรและชนิดข้อมูล", en: "Week 2 quiz on variables and data types" },
+    tags: ["Quiz","Week 02"],
+    category: "exam",
+    scope: "midterm",
+    courseCode: "PSCP",
+    fileType: "pdf",
+    week: 2,
+    chapter: 2,
+    url: "/assets/it-kmitl/pscp/exams/pscp-quiz-02.pdf",
+    fileName: "pscp-quiz-02.pdf",
+  },
+  {
+    id: "pscp-pscp-quiz-04",
+    title: { th: "ควิซสัปดาห์ที่ 4", en: "Quiz — Week 04" },
+    description: { th: "ข้อสอบย่อยสัปดาห์ที่ 4 หัวข้อการวนซ้ำ", en: "Week 4 quiz on loops" },
+    tags: ["Quiz","Week 04"],
+    category: "exam",
+    scope: "midterm",
+    courseCode: "PSCP",
+    fileType: "pdf",
+    week: 4,
+    chapter: 4,
+    url: "/assets/it-kmitl/pscp/exams/pscp-quiz-04.pdf",
+    fileName: "pscp-quiz-04.pdf",
+  },
+  {
+    id: "pscp-pscp-quiz-05",
+    title: { th: "ควิซสัปดาห์ที่ 5", en: "Quiz — Week 05" },
+    description: { th: "ข้อสอบย่อยสัปดาห์ที่ 5 หัวข้อสตริง", en: "Week 5 quiz on strings" },
+    tags: ["Quiz","Week 05"],
+    category: "exam",
+    scope: "midterm",
+    courseCode: "PSCP",
+    fileType: "pdf",
+    week: 5,
+    chapter: 5,
+    url: "/assets/it-kmitl/pscp/exams/pscp-quiz-05.pdf",
+    fileName: "pscp-quiz-05.pdf",
+  },
+  {
+    id: "pscp-pscp-quiz-06",
+    title: { th: "ควิซสัปดาห์ที่ 6", en: "Quiz — Week 06" },
+    description: { th: "ข้อสอบย่อยสัปดาห์ที่ 6 หัวข้อฟังก์ชันและขอบเขตตัวแปร", en: "Week 6 quiz on functions and scope" },
+    tags: ["Quiz","Week 06"],
+    category: "exam",
+    scope: "midterm",
+    courseCode: "PSCP",
+    fileType: "pdf",
+    week: 6,
+    chapter: 6,
+    url: "/assets/it-kmitl/pscp/exams/pscp-quiz-06.pdf",
+    fileName: "pscp-quiz-06.pdf",
+  },
+  {
+    id: "pscp-pscp-quiz-pscp100",
+    title: { th: "แบบทดสอบความพร้อม PSCP 100", en: "PSCP 100 Readiness Quiz" },
+    description: { th: "แบบทดสอบชุดรวมความพร้อมก่อนสอบกลางภาค", en: "Pre-midterm readiness quiz set" },
+    tags: ["Quiz","PSCP100","Midterm"],
+    category: "exam",
+    scope: "midterm",
+    courseCode: "PSCP",
+    fileType: "pdf",
+    week: 7,
+    chapter: 7,
+    url: "/assets/it-kmitl/pscp/exams/pscp-quiz-pscp100.pdf",
+    fileName: "pscp-quiz-pscp100.pdf",
+  },
+  {
+    id: "pscp-pscp-midterm-hwsince-week-4",
+    title: { th: "โจทย์ทบทวนหลังสัปดาห์ที่ 4 เป็นต้นไป", en: "Practice Problems from Week 4 Onward" },
+    description: { th: "ชุดโจทย์ทบทวนโครงสร้างข้อมูลและอัลกอริทึม", en: "Review problems on data structures and algorithms" },
+    tags: ["Homework","Review"],
+    category: "exercise",
+    scope: "final",
+    courseCode: "PSCP",
+    fileType: "pdf",
+    week: 10,
+    chapter: 10,
+    url: "/assets/it-kmitl/pscp/exams/pscp-midterm-hwsince-week-4.pdf",
+    fileName: "pscp-midterm-hwsince-week-4.pdf",
+  },
+  {
+    id: "pscp-pscp-quiz-week11",
+    title: { th: "ควิซสัปดาห์ที่ 11", en: "Quiz — Week 11" },
+    description: { th: "ข้อสอบย่อยสัปดาห์ที่ 11 หัวข้อลิสต์ 2 มิติและเมทริกซ์", en: "Week 11 quiz on 2D lists and matrices" },
+    tags: ["Quiz","Week 11"],
+    category: "exam",
+    scope: "final",
+    courseCode: "PSCP",
+    fileType: "pdf",
+    week: 11,
+    chapter: 11,
+    url: "/assets/it-kmitl/pscp/exams/pscp-quiz-week11.pdf",
+    fileName: "pscp-quiz-week11.pdf",
+  },
+  {
+    id: "pscp-pscp-quiz-week12",
+    title: { th: "ควิซสัปดาห์ที่ 12", en: "Quiz — Week 12" },
+    description: { th: "ข้อสอบย่อยสัปดาห์ที่ 12 หัวข้อดิกชันนารีและเซต", en: "Week 12 quiz on dictionaries and sets" },
+    tags: ["Quiz","Week 12"],
+    category: "exam",
+    scope: "final",
+    courseCode: "PSCP",
+    fileType: "pdf",
+    week: 12,
+    chapter: 12,
+    url: "/assets/it-kmitl/pscp/exams/pscp-quiz-week12.pdf",
+    fileName: "pscp-quiz-week12.pdf",
+  },
+  {
+    id: "pscp-pscp-quiz-week13",
+    title: { th: "ควิซสัปดาห์ที่ 13", en: "Quiz — Week 13" },
+    description: { th: "ข้อสอบย่อยสัปดาห์ที่ 13 หัวข้อการเรียกซ้ำและไฟล์", en: "Week 13 quiz on recursion and files" },
+    tags: ["Quiz","Week 13"],
+    category: "exam",
+    scope: "final",
+    courseCode: "PSCP",
+    fileType: "pdf",
+    week: 13,
+    chapter: 13,
+    url: "/assets/it-kmitl/pscp/exams/pscp-quiz-week13.pdf",
+    fileName: "pscp-quiz-week13.pdf",
+  },
+  {
+    id: "pscp-pscp-quiz-week14",
+    title: { th: "ควิซสัปดาห์ที่ 14", en: "Quiz — Week 14" },
+    description: { th: "ข้อสอบย่อยสัปดาห์ที่ 14 หัวข้ออัลกอริทึมเรียงลำดับและเตรียมสอบปลายภาค", en: "Week 14 quiz on sorting algorithms and final exam prep" },
+    tags: ["Quiz","Week 14"],
+    category: "exam",
+    scope: "final",
+    courseCode: "PSCP",
+    fileType: "pdf",
+    week: 14,
+    chapter: 14,
+    url: "/assets/it-kmitl/pscp/exams/pscp-quiz-week14.pdf",
+    fileName: "pscp-quiz-week14.pdf",
+  },
+  {
+    id: "pscp-pscp-ex-sorting-test",
+    title: { th: "แบบทดสอบอัลกอริทึมการเรียงลำดับ", en: "Sorting Algorithm Test" },
+    description: { th: "แบบทดสอบการทำงานของอัลกอริทึมเรียงลำดับ การไล่สถานะอาเรย์", en: "Sorting algorithm test and array state tracing" },
+    tags: ["Practice","Sorting"],
+    category: "exercise",
+    scope: "final",
+    courseCode: "PSCP",
+    fileType: "pdf",
+    week: 14,
+    chapter: 14,
+    url: "/assets/it-kmitl/pscp/exercises/pscp-ex-sorting-test.pdf",
+    fileName: "pscp-ex-sorting-test.pdf",
   },
 ];
 
@@ -5555,11 +5751,7 @@ export function coursesWithAssets(): Set<string> {
  * A course's freely-viewable library assets, with page counts and file sizes
  * filled in and `url` rewritten to Supabase Storage.
  *
- * Past exams are NOT here. They are insider-only (see isRestrictedAsset), they
- * live in a private bucket, and they are reachable only through
- * restrictedAssetsForCourse() behind a role check. Excluding them at this level
- * — rather than hiding them in the UI — is what keeps their titles and
- * filenames out of the statically prerendered HTML for these pages.
+ * Restricted assets are NOT here. They are kept separate behind role checks.
  *
  * Order matters: withAssetStats() keys off the original "/assets/…" path, so
  * the rewrite has to come last. Everything downstream — the gallery, the
@@ -5573,11 +5765,7 @@ export function assetsForCourse(code: string): SubjectAsset[] | undefined {
 }
 
 /**
- * A course's past exams, still carrying their original "/assets/…" path.
- *
- * Deliberately returns no usable URL: the caller has to mint a signed one after
- * authorizing the reader (see lib/library/library-exams.ts). Exported for that module
- * and for the counts on the course hub, not for rendering.
+ * A course's restricted assets, still carrying their original "/assets/…" path.
  */
 export function restrictedAssetsForCourse(code: string): SubjectAsset[] {
   return withAssetStats(mergedAssets(code).filter(isRestrictedAsset));

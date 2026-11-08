@@ -65,7 +65,9 @@ const L = {
   },
 };
 
-type EnrichedContributorProfile = ReturnType<typeof getContributorWithAcademicYear>;
+type EnrichedContributorProfile = ReturnType<
+  typeof getContributorWithAcademicYear
+>;
 
 /**
  * Formats university credentials into a single clean caption line:
@@ -208,9 +210,7 @@ export function ContributorMaterialRow({
   return rowContent;
 }
 
-export function CourseContributors({
-  courseCode,
-}: CourseContributorsProps) {
+export function CourseContributors({ courseCode }: CourseContributorsProps) {
   const { locale } = useLocale();
   const [selectedContributor, setSelectedContributor] =
     useState<ContributorProfile | null>(null);
@@ -253,16 +253,12 @@ export function CourseContributors({
           if (courseMaterials.length === 0) return null;
 
           const academicRole = getAcademicRole(courseMaterials, locale);
-          const academicSummary =
-            courseMaterials[0]?.description
-              ? t(courseMaterials[0].description, locale)
-              : courseMaterials.map((m) => t(m.title, locale)).join(" · ");
+          const academicSummary = courseMaterials[0]?.description
+            ? t(courseMaterials[0].description, locale)
+            : courseMaterials.map((m) => t(m.title, locale)).join(" · ");
 
           return (
-            <div
-              key={profile.id}
-              className={`p-4 sm:p-5 space-y-3 ${SURFACE}`}
-            >
+            <div key={profile.id} className={`p-4 sm:p-5 space-y-3 ${SURFACE}`}>
               {/* Header: Avatar, Name, Single-line Metadata, Compact Icon Actions */}
               <div className="flex items-start justify-between gap-3">
                 {/* Left: Compact Avatar (44-48px) + Identity */}
@@ -393,7 +389,9 @@ export function CourseContributors({
       </div>
 
       {/* ── Community Invitation ── */}
-      <div className={`mt-3 p-3.5 sm:p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border border-primary/20 dark:border-primary/15 ${SURFACE}`}>
+      <div
+        className={`mt-3 p-3.5 sm:p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border border-primary/20 dark:border-primary/15 ${SURFACE}`}
+      >
         <div className="flex items-center gap-3">
           <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
             <Upload className="size-4" />
@@ -408,7 +406,12 @@ export function CourseContributors({
           </div>
         </div>
 
-        <Button asChild size="sm" variant="outline" className="h-7.5 px-3 rounded-full text-xs shrink-0 self-start sm:self-auto">
+        <Button
+          asChild
+          size="sm"
+          variant="outline"
+          className="h-7.5 px-3 rounded-full text-xs shrink-0 self-start sm:self-auto"
+        >
           <a
             href="https://github.com/Jesselpetry/ihelp/blob/staging/docs/DROPZONE_SOP.md"
             target="_blank"

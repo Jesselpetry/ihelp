@@ -7,6 +7,7 @@ import { useGithub } from "@/lib/github/github";
 import { PscpWorkspace } from "@/components/pscp-workspace";
 import { ProblemsHeader } from "@/components/pscp/problems-header";
 import { ProblemList, type Filter, type ViewMode } from "@/components/pscp/problem-list";
+import { WeeklyGuidePanel } from "@/components/pscp/weekly-guide-panel";
 import { isExpired } from "@/components/pscp/problem-primitives";
 import { tagLabel } from "@/lib/pscp/pscp-tags";
 import {
@@ -117,6 +118,17 @@ export function ProblemsView({ data }: { data: PscpHubData }) {
         gh={gh}
         locale={locale}
       />
+
+      {weekFilter !== "all" && (
+        <WeeklyGuidePanel
+          week={weekFilter}
+          problems={problems.filter((p) => p.week === weekFilter)}
+          progress={progress}
+          summaryMarkdown={data.weeklySummaries?.[weekFilter] ?? null}
+          assets={data.assets ?? []}
+          onOpenProblem={setOpenId}
+        />
+      )}
 
       <ProblemList
         problems={filtered}

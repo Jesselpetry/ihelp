@@ -3,6 +3,9 @@ import path from "path";
 import { ROOT } from "@/lib/paths";
 import type { LText } from "@/lib/ltext";
 import type { TestCase } from "@/lib/pscp/grader-types";
+import { assetsForCourse } from "@/lib/library/subject-library";
+import type { SubjectAsset } from "@/lib/library/subject-library-ui";
+import { loadCourseDoc } from "@/lib/courses/course-content";
 
 // Registry built by `scripts/build_pscp_registry.py` from the course archive
 // (oj_problems.json + all_problems_detail.json + oj*/main.py). Override the
@@ -119,10 +122,20 @@ export interface PscpHubData {
   caseCount: number;
   edgeCaseCount: number;
   weeks: number[];
+  weeklySummaries: Record<number, string>;
+  assets: SubjectAsset[];
 }
 
 export function loadPscpHub(): PscpHubData {
   const problems = loadPscpProblems();
+  const weeklySummaries: Record<number, string> = {};
+  for (let w = 1; w <= 14; w++) {
+    const padded = String(w).padStart(2, "0");
+    const doc = loadCourseDoc("06066303", `archive/week${padded}.md`);
+    if (doc) weeklySummaries[w] = doc;
+  }
+  const assets = assetsForCourse("PSCP") ?? [];
+
   return {
     problems,
     total: problems.length,
@@ -134,6 +147,8 @@ export function loadPscpHub(): PscpHubData {
     weeks: [...new Set(problems.map((p) => p.week).filter((w): w is number => w !== null))].sort(
       (a, b) => a - b,
     ),
+    weeklySummaries,
+    assets,
   };
 }
 

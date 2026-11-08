@@ -17,14 +17,10 @@ import path from "node:path";
 
 import { BUCKETS } from "../lib/storage/buckets";
 
-/** Public bucket: every library file except past exams. */
+/** Public bucket for library assets. */
 export const LIBRARY_BUCKET = BUCKETS.library;
 
-/**
- * Past exams are insider-only, so they go to a private bucket instead. Keeping
- * the same object key in both means reclassifying a file is a move, not a
- * rename. See lib/library/library-exams.ts for the read side.
- */
+/** Restricted bucket. */
 export const RESTRICTED_BUCKET = BUCKETS.libraryExams;
 
 export interface StorageConfig {

@@ -22,9 +22,6 @@ export type LibraryAssetsResponse = { assets: SubjectAsset[]; schedule?: CourseS
  * session there is nothing to read in the HTML, in the RSC payload, or from this
  * route.
  *
- * Past exams are a second tier on top: insiders additionally get them, with
- * short-lived signed URLs, from libraryExamsForInsider().
- *
  * A course with a week-by-week schedule gets it here too rather than in the
  * client bundle — it links the lecture recordings, which belong behind the same
  * sign-in as the slides.

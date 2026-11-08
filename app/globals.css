@@ -329,17 +329,63 @@ html[data-theme-transition]::view-transition-new(root) {
 }
 
 .katex-display > .katex {
-  white-space: normal;
+  white-space: nowrap !important;
   text-align: center;
+  display: inline-block;
+  min-width: 100%;
 }
 
 .katex {
   font-size: 1.05em;
+  line-height: 1.2;
+  white-space: nowrap !important;
   text-rendering: auto;
+}
+
+/* Prevent paragraph overflow-wrap from breaking inline math */
+.katex,
+.katex-display,
+.katex-html {
+  overflow-wrap: normal !important;
+  word-break: normal !important;
 }
 
 .katex .text {
   font-family: var(--font-sans), system-ui, sans-serif !important;
+}
+
+/* MathJax SVG enhancements (clean responsive vector math) */
+mjx-container[jax="SVG"] {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+mjx-container[jax="SVG"] > svg {
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 0.75rem 0;
+  padding: 0.5rem 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+}
+
+@media (max-width: 640px) {
+  mjx-container[jax="SVG"][display="true"] {
+    font-size: 0.92em;
+  }
 }
 
 /*
@@ -396,17 +442,21 @@ html[data-theme-transition]::view-transition-new(root) {
 /*
  * Notebook variant only — a marked-up worksheet rather than a typeset one.
  * Scoped to .md-notebook-view so ordinary readers, quizzes and PSCP
- * statements keep KaTeX's own black rules.
+ * statements keep KaTeX's / MathJax's own black rules.
  */
-.md-notebook-view .katex .frac-line {
+.md-notebook-view .katex .frac-line,
+.md-notebook-view mjx-container[jax="SVG"] g[data-mml-node="mfrac"] > rect {
   border-bottom-color: var(--ink-red);
+  fill: var(--ink-red);
   border-bottom-width: 1.5px;
 }
 
 /* \boxed{} is the final answer, ringed like a marker would ring it. */
 .md-notebook-view .katex .fbox,
-.md-notebook-view .katex .boxpad {
+.md-notebook-view .katex .boxpad,
+.md-notebook-view mjx-container[jax="SVG"] g[data-mml-node="menclose"] > rect {
   border-color: var(--ink-red);
+  stroke: var(--ink-red);
   border-width: 1.5px;
   border-radius: 2px;
 }

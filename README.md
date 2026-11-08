@@ -83,7 +83,7 @@ bun run dev                  # เปิดเว็บที่ http://localhos
 | 🤝 **[FULL_CONTRIBUTING.md](./docs/FULL_CONTRIBUTING.md)** | ข้อกำหนดการส่ง PR อย่างละเอียด, การจัดหมวดหมู่สื่อ, กฎสิทธิ์การเข้าถึง, และ Commit Convention |
 | 🗂️ **[docs/FILE_STRUCTURE.md](./docs/FILE_STRUCTURE.md)** | แผนผังไดเรกทอรี, แหล่งความจริง (Source of truth) ของแต่ละโมดูล และกติกาการตั้งชื่อ |
 | 🏛️ **[LIBRARY_ARCHITECTURE.md](./docs/LIBRARY_ARCHITECTURE_AND_WORKFLOW.md)** | วงจรชีวิตของคลังสื่อ, การทำงานของ Resource Index Dictionary, และคู่มือ Public API |
-| 🛡️ **[QUARANTINE_AND_EXAMS.md](./docs/QUARANTINE_AND_EXAMS_AUDIT.md)** | รายงานตรวจสอบความปลอดภัย, ไฟล์ในระบบกักกัน (Quarantine), และแนวทางให้เครดิตรุ่นพี่ |
+| 🛡️ **[QUARANTINE_AUDIT.md](./docs/QUARANTINE_AUDIT.md)** | รายงานตรวจสอบความปลอดภัย, ไฟล์ในระบบกักกัน (Quarantine), และแนวทางให้เครดิตรุ่นพี่ |
 | 👥 **[CONTRIBUTOR_SYSTEM.md](./docs/CONTRIBUTOR_SYSTEM.md)** | ระบบ Contributor Credit, สถาปัตยกรรมโปรไฟล์นักศึกษา, และระบบเลื่อนชั้นปีอัตโนมัติ |
 | 🏷️ **[VERSION_CONTROL_GUIDE.md](./docs/VERSION_CONTROL_GUIDE.md)** | ระเบียบการกำหนดเลขเวอร์ชัน (SemVer), การบันทึก CHANGELOG, และการผูกข้อมูลหน้า `/version` |
 | 🤖 **[AGENTS.md](./AGENTS.md)** | กฎระเบียบและแนวทางปฏิบัติสำคัญสำหรับ AI Coding Agents (Claude Code, Antigravity) |

@@ -507,7 +507,7 @@
               "properties": {
                 "bucket": {
                   "enum": ["ihelp-library", "ihelp-library-exams"],
-                  "description": "ihelp-library (public) for member cards; ihelp-library-exams (private, served by signed URL to insiders) when access is insider."
+                  "description": "Supabase Storage bucket for the asset."
                 },
                 "key": {
                   "type": "string",

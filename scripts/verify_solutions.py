@@ -54,6 +54,13 @@ KNOWN_DISPUTED = {
         "official sample 2 expects a leading '$' that the statement's own worked "
         "example and prose do not produce; the solution follows the prose"
     ),
+    3385: (
+        "official samples 2 and 3 contain iJudge testcase reference placeholders ('$43', '$44') "
+        "instead of raw inputs"
+    ),
+    3547: (
+        "official sample 1 output has trailing spaces ('  ') after the closing bracket"
+    ),
 }
 
 

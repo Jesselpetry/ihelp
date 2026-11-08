@@ -40,7 +40,7 @@ Sections 1–5 keep their original text as history; wherever reality moved they 
 | Landing Page /pro | not covered | Bilingual product showcase page for PG IJUDGE (VS Code extension by Akarapach Yootsukprasert) at `/pro` with SEO metadata and demo visuals | `app/pro/page.tsx` · `app/pro/layout.tsx` |
 | Dark theme styling | generic dark mode | Figma-inspired professional neutral charcoal palette (`#141416` canvas, `#1c1c1f` cards, `#222226` popovers) layered with subtle white opacity hairline borders (`oklch(1 0 0 / 8.5%)`) for crisp contrast | `app/globals.css` · `docs/FONTS.md` |
 | Git Workflow & Contributors | single-branch `main` | `staging` branch is the primary integration branch for all features and PRs prior to `main`; community contributions from PhuPunnavit, Meaookung144, Akarapach Yootsukprasert, and Tammadon Suksa | `CONTRIBUTING.md` · `README.md` · `AGENTS.md` |
-| Library access | files public; past papers insider-only (§3.1) | The library page is static and carries no card data; its list comes from `GET /api/library/assets`, which needs an IT KMITL sign-in. Files other than past papers still sit in the **public** bucket `ihelp-library` and their paths are in this public repo, so *behind login* is not *private* — and the module pages that render documents (e.g. the ITF/ICS weekly pages) are open and receive the course's non-exam cards as props to match their file tables (`proxy.ts` guards only `/onboarding`, `/upload`, `/exams`). Past papers: private bucket `ihelp-library-exams`, 10-minute signed URLs, insider/admin only | `app/api/library/assets/route.ts` · `lib/library/library-exams.ts` · `lib/library/asset-url.ts` |
+| Library access | verified student access | The library page is static and carries no card data; its list comes from `GET /api/library/assets`, which needs an IT KMITL sign-in. Files sit in the bucket `ihelp-library` and are served securely | `app/api/library/assets/route.ts` · `lib/library/asset-url.ts` |
 | Library data model | `SubjectAsset`: `scope`, `chapter`, `groupId`, `pages`, `sizeBytes` | + `week`, `edition`, `status`, `isCurrentYear`, `isDuplicate` / `duplicateOf`, `sourceUrl`; ITF and ICS open on a week-by-week view driven by `COURSE_SCHEDULES` | `lib/library/subject-library-ui.ts` · `lib/library/course-weeks.ts` |
 | Library tooling | `library:manifest`, `library:stats`, `assets:sync` | + `library:index` (one generated JSON joining courses, docs and cards), `library:audit` (consistency report; `--remote` compares with the buckets, read-only), `library:find` (search the index). `library:build` = manifest + stats + index | `package.json` · `scripts/library-*.ts` |
 | Contract checks | "No test suite" (§5.9) | `bun run content:check` (runs as `prebuild`; error and warn rules for banks, spine, bindings, recommended problems and the overview standard), `bun run readiness`, `bun run library:audit`. Still no unit-test runner | `scripts/validate-content.ts` · `scripts/readiness.ts` · `scripts/library-audit.ts` |
@@ -78,8 +78,8 @@ state (quiz scores, lab drafts, read marks) lives in the browser's `localStorage
 
 > **Status 15 Oct 2026.** The "zero-backend, no account, no database" description no longer
 > holds: sign-in with a KMITL IT student id, an `ihelp` Postgres schema (profiles, roles, past-exam
-> index, community uploads, visitor counter) and five Storage buckets (`ihelp-library`,
-> `ihelp-library-exams`, `ihelp-exams`, `ihelp-resources`, `ihelp-avatars`) now exist (§0.1). Learner
+> index, community uploads, visitor counter) and Storage buckets (`ihelp-library`,
+> `ihelp-resources`, `ihelp-avatars`) now exist (§0.1). Learner
 > *progress* is the part that still has no server side.
 
 ### Scale
@@ -95,7 +95,7 @@ their own command.
 | Course overview documents | 13 | **15** (+15 `blueprint.md`, not rendered) | `content/courses/<dir>/summary.md`, 278 KB total · `bun run library:find -- --docs` |
 | Long-form study documents | 12 | **12** | `data/it-kmitl/`, `data/en-kmitl/` — 725 KB of Markdown |
 | Content files read by no module | 28 | **11** (+15 `blueprint.md`, unrendered by design) | §5.4 — 8 `archive/links.md`, MFIT `study-guide-curriculum.json`, PSCP `archive/readme.md`, ICS `RESOURCES_MANIFEST.md` · `bun run library:audit` flags 9 of them as `orphan-doc` (not the JSON, not the PSCP readme) |
-| Media assets | 670 files / 908 MB | **724 files / 1,120 MiB** (was 705 files / 949 MiB) | Supabase Storage, **not** the repo — 672 PDFs (**13,593 pages**), 27 webp, 10 jpg, 6 `.circ`, 5 xlsx, 1 each of docx, txt, zip, accdb. Split across `ihelp-library` (public) and `ihelp-library-exams` (insider-only) · `.totals.files` / `.sizeBytes` / `.pages` |
+| Media assets | 670 files / 908 MB | **724 files / 1,120 MiB** (was 705 files / 949 MiB) | Supabase Storage, **not** the repo — 672 PDFs (**13,593 pages**), 27 webp, 10 jpg, 6 `.circ`, 5 xlsx, 1 each of docx, txt, zip, accdb. Served via `ihelp-library` · `.totals.files` / `.sizeBytes` / `.pages` |
 | Library cards (merged) | — | **741** (was 722) | 333 curated + 408 generated-only (a curated card hides the generated one for the same URL) · `.totals.assets` / `.curated` / `.generated` · `.insider` = 171 cards flagged as past papers |
 | Curated asset records | 172 | **333** (was 314) | Hand-written entries in `lib/library/subject-library.ts` |
 | Generated asset records | 670 | **705** | `lib/library/library-manifest.json` (353 KB), built from the file tree |
@@ -331,24 +331,21 @@ personal-account pages are skipped.*
 | **Exam analysis** | `data/it-kmitl/ics/analysis.md` | second document of the `orientation` module (`/analysis` redirects to `/overview`) | ICS only (mark distribution across topics) |
 | **Weekly session pages** | `content/courses/<dir>/archive/weekNN.md` | the `syllabus_map` module (`/map`): one page per week with its file table, exam notes and lab summary | ITF (15 weeks), ICS (7 sessions) — *new since the scan* |
 | **Lecture slides** | Supabase `ihelp-library` (public bucket) | `subject-library.tsx` (961 lines; 1,642 at the scan) + `components/subject-library/` (table, weekly table, book cover, photo stack) behind `subject-library-gate.tsx` — gallery/list toggle, category shelves, midterm/final segmented control, tag chips, search, in-modal PDF preview with zoom/pan/fullscreen; ITF and ICS open on the week view | 13 courses |
-| **Handwritten note scans** | 27 webp + 10 jpg *(26 + 10 at the scan)* | same, collapsed into stacks via `groupId` | 24 groups defined in `ASSET_GROUPS` *(2 at the scan)* — the note and exam-scan sets plus ICS lecture/lab editions and exam copies |
+| **Handwritten note scans** | 27 webp + 10 jpg *(26 + 10 at the scan)* | same, collapsed into stacks via `groupId` | 24 groups defined in `ASSET_GROUPS` *(2 at the scan)* — the note sets plus ICS lecture/lab editions |
 | **Policy book** | `data/ai-guidelines/**` (13 docs, th/en pairs where both exist; 12 at the scan) | `library-reader.tsx` — prev/next pagination, "doc *n* of *N*" | Course-wide |
-| **Past papers** | Supabase `ihelp-library-exams` (**private bucket**) | Same gallery, but the entries come from `GET /api/library/assets` after mount, and only insiders receive them (signed) | 10 courses, 168 files *(169 at the scan)* |
 
 ### Media delivery
 
 Assets left the repository in 0.6.0. 908 MB of PDFs had pushed the git pack to 881 MB and the
 Turbopack file trace — which had gone project-wide because of an unresolvable `fs` path — to a
 1 GB build output, running the Vercel build container out of disk. They are now served from
-Supabase Storage:
+Supabase Storage bucket `ihelp-library`:
 
-| | Public library | Past papers |
-|---|---|---|
-| Bucket | `ihelp-library` | `ihelp-library-exams` (private) |
-| Files | 501 *(537 files / 613 MiB on 15 Oct 2026)* | 169 *(168 files / 335 MiB)* |
-| Addressed by | `assetUrl()` → public URL | `libraryExamsForInsider()` → 10-minute signed URL |
-| Gate | none *(15 Oct 2026: object URLs are still public, but the **list** of them needs an IT KMITL sign-in — `GET /api/library/assets`)* | `isInsider()`, before the service-role client is touched |
-| In prerendered HTML | yes *(15 Oct 2026: not on the library page, which is static, carries no card data and fetches the list after mount — but the other module pages that render documents receive the course's non-exam cards as props)* | **no** — the page is static, and a signed URL cannot be baked into it |
+| Property | Public library |
+|---|---|
+| Bucket | `ihelp-library` |
+| Addressed by | `assetUrl()` → Storage URL |
+| Gate | The **list** needs an IT KMITL sign-in (`GET /api/library/assets`) |
 
 Classification is on `category === "exam"`, not on path: ten scanned exam pages live under
 `ics/pages/` rather than an `exams/` folder, and a path rule publishes them. `storageKey()` is
@@ -409,9 +406,11 @@ engine returns nothing), despite the welcome modal advertising `พร้อม�
 Two **independent** code-practice systems with different data models, different UIs, and different
 persistence keys:
 
-**(a) PSCP recommended problems** — `/recommended/<slug>/grade`, `components/code-grader.tsx`
-(690 lines at the scan, 747 on 15 Oct 2026) over `lib/pscp/pyodide-client.ts`. The same grader also
-backs the `/pscp/<slug>` workspace (`components/pscp-workspace.tsx`).
+**(a) PSCP recommended problems & workspace** — `/recommended/<slug>/grade`, `components/code-grader.tsx`
+over `lib/pscp/pyodide-client.ts`. The same grader backs the `/pscp/<slug>` workspace (`components/pscp-workspace.tsx`),
+modularised into `components/pscp/problem-header.tsx`, `components/pscp/problem-io-section.tsx`,
+`components/pscp/code-editor.tsx` (CodeMirror 6 with Python 3 syntax highlighting, 4-space tab indentation, auto-save),
+and `components/pscp/test-case-navigator.tsx` (horizontal numbered tab strip `[ 1 ] [ 2 ] ... [ + Custom Input ]`).
 
 - Runs **CPython in the browser** via Pyodide in a dedicated Web Worker
   (`public/workers/python-runner.worker.js`), with the full runtime vendored into `public/pyodide/`.
@@ -1183,7 +1182,7 @@ run, so the effective rendering mode is not claimed.*
 | Asset file stats | `lib/library/library-stats.json` ← `scripts/build-library-stats.mjs` |
 | Resource index, audit, search | `lib/library/resource-index.json` (+ `.schema.json`) ← `scripts/library-index.ts`; `scripts/library-audit.ts`; `scripts/library-find.ts`; shared code `scripts/library-shared.ts` |
 | Week-by-week schedules (ITF, ICS) | `lib/library/course-weeks.ts` |
-| Storage URLs, keys, upload, exam signing | `lib/library/asset-url.ts`, `lib/library/storage-key.ts`, `scripts/sync-library-assets.ts`, `lib/library/library-exams.ts`, `lib/storage/signed-url.ts` |
+| Storage URLs, keys, upload | `lib/library/asset-url.ts`, `lib/library/storage-key.ts`, `scripts/sync-library-assets.ts`, `lib/storage/public-url.ts` |
 | The gated library list | `app/api/library/assets/route.ts`, `components/subject-library-gate.tsx` |
 | Sign-in, roles, database | `lib/auth/verify.ts`, `lib/auth/guards.ts`, `lib/supabase/*`, `proxy.ts`, `db/schema.ts` |
 | Python execution | `lib/pscp/pyodide-client.ts`, `public/workers/python-runner.worker.js` |

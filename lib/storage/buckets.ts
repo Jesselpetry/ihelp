@@ -35,19 +35,12 @@ export type BucketId = keyof typeof BUCKETS;
 export type BucketAccess = "public" | "private";
 
 export const BUCKET_ACCESS = {
-  // Every library file except past exams: slides, lab sheets, cheatsheets,
-  // scans. "Behind the login" is not "private" (AGENTS.md rule 4): the
-  // library's *list* needs an IT KMITL login, but the files do not, and their
-  // paths are in this public repo. Treat anything outside exams/ as public.
+  // Library media files: slides, lab sheets, cheatsheets, notes.
   // Uploaded by `bun run assets:sync`; the URL comes from assetUrl().
   library: "public",
-  // The library's past exam papers, chosen by bucketForAsset(). Same object
-  // keys as `library`, so reclassifying a file moves it rather than renaming
-  // it. Insiders only, through libraryExamsForInsider().
+  // Restricted library assets.
   libraryExams: "private",
-  // The curated /exams archive, keyed by rows in ihelp.exams. A separate list
-  // from the library's past exams, in its own bucket. Insiders only, through
-  // listExamsForInsider().
+  // Curated exams archive.
   exams: "private",
   // Files students share with the class (lib/actions/upload.ts); sharing is
   // off unless NEXT_PUBLIC_UPLOADS_ENABLED. The browser uploads under its own
@@ -59,15 +52,7 @@ export const BUCKET_ACCESS = {
 } as const satisfies Record<BucketId, BucketAccess>;
 
 /**
- * Which library bucket holds a card's file: `libraryExams` for a past exam,
- * `library` for everything else.
- *
- * Library files are the only objects that route between two buckets. Avatars,
- * shared resources and the /exams archive each live in exactly one, so this is
- * the one place that decision is made. The rule itself stays in
- * isRestrictedAsset() (category "exam", or a path under /exams/); this only
- * turns its answer into a bucket id for the uploader, the audit and the index
- * builder, which must all agree on where an object goes.
+ * Which library bucket holds a card's file.
  */
 export function bucketForAsset(
   asset: Pick<SubjectAsset, "url" | "category">,

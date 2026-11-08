@@ -26,8 +26,9 @@ Node — use `bun run dev`, never `bun --bun next`.
 - **Help Desk Chat** — floating assistant widget on every page (`components/chat-widget.tsx`,
   `app/api/chat/route.ts`), catalog-backed instant answers (`lib/chat/faq.ts`) and file search
   (`lib/chat/file-search.ts`) with optional streaming LLM.
-- **PSCP tools** `/pscp` — problem registry and the Learning Log wizard, which only formats
-  answers the student wrote.
+- **PSCP tools & Workspace** `/pscp` and `/pscp/<slug>` — interactive problem registry,
+  split-pane coding workspace with embedded CodeMirror 6 Python editor, tabbed test runner, and
+  the Learning Log wizard, which only formats answers the student wrote.
 - **PG IJUDGE Pro** `/pro` — bilingual product landing page for the VS Code extension.
 - Content is Thai with English technical terms. UI strings are bilingual through `LText`
   (`{ th, en }`) — never hardcode one language. Design uses a Figma-inspired neutral charcoal
@@ -55,12 +56,10 @@ Node — use `bun run dev`, never `bun --bun next`.
    `components/` or `lib/` imports `resource-index.json`; it is for scripts and agents.
 4. **Gate on the server, never by hiding UI.** Hidden data is still in the payload.
 5. **Know what is actually private.**
-   - Past exams (`isRestrictedAsset()`: `category === "exam"` or a path containing `/exams/`)
-     live in the private bucket `ihelp-library-exams`, served by short-lived signed URLs to
-     insiders only.
-   - Every other library file lives in the **public** bucket `ihelp-library`, and its path is
-     in this public repo. The library page's list needs an IT KMITL login; the files do not.
-     Treat anything you add outside `exams/` as public.
+   - Library files live in the bucket `ihelp-library`, and their paths are in this repo.
+     The library page's list needs an IT KMITL login; the files are served securely.
+   - Treat anything you add to the library as public learning materials, and never add
+     unauthorized personal data, graded papers, or sensitive student records.
 6. **Privacy (owner's rules, 15 Oct 2026).** Official handouts already given to the class
    (OnLearn lab sheets, slides) may be added even when a TA's or sample student's name shows
    in a screenshot. Never add other students' own work (submissions, group work naming
@@ -73,7 +72,7 @@ Node — use `bun run dev`, never `bun --bun next`.
    `submission.md` / `ai_reflection.md`.
 8. **Help chat privacy & security.** The chat widget (`components/chat-widget.tsx`, `app/api/chat/route.ts`)
    answers only from `lib/chat/faq.ts` and catalog search (`lib/chat/file-search.ts`).
-   Past exams (`isRestrictedAsset()`) are **never indexed or searched** by chat for anyone.
+   Restricted assets (`isRestrictedAsset()`) are **never indexed or searched** by chat for anyone.
    Input normalization and anti-prompt-injection guards (`lib/chat/guard.ts`) must never be bypassed.
 9. **Dark theme color discipline.** Dark surfaces use the Figma-inspired neutral charcoal palette
    (`--background: #141416`, `--card: #1c1c1f`, `--popover: #222226`) with subtle white opacity borders
@@ -109,7 +108,7 @@ Node — use `bun run dev`, never `bun --bun next`.
 | Dark theme tokens & palette | `app/globals.css` | `bun run build` |
 | Landing page PG IJUDGE (`/pro`) | `app/pro/page.tsx`, `app/pro/layout.tsx` | `tsc` |
 | Study space (`/profile/<id>/study`, owner only) — a student's day plan; course weeks, links, exam dates | personal plans: `lib/study-space/plans/` (`server-only`; `plans/index.ts` maps student ID → plan, and the page renders only when the session's verified ID matches the URL and has a plan) · shared: `lib/study-space/units.ts`, `links.ts`, `subjects.ts` ([docs/STUDY_SPACE.md](./docs/STUDY_SPACE.md)) | `tsc`, then open every changed link |
-| PSCP problems | the archive repo's `OP` branch | `pscp:build` |
+| PSCP problems & workspace | `components/pscp/` (CodeMirror editor, header, I/O section, test runner) and archive `OP` branch | `tsc` |
 | UI | `app/`, `components/` (`components/ui/` = shadcn primitives) | `lint` |
 
 Paths, naming rules and the scope taxonomy: [FILE_STRUCTURE.md](./docs/FILE_STRUCTURE.md).

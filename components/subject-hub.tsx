@@ -110,7 +110,8 @@ export function SubjectHub({
             hasMidtermMilestone={Boolean(timeline.midtermMilestone)}
             hasFinalMilestone={Boolean(timeline.finalMilestone)}
             hasSecondHalf={timeline.weeks.some(
-              (w) => w.scope === "final" || (w.scope === "all" && w.weekNumber > 7),
+              (w) =>
+                w.scope === "final" || (w.scope === "all" && w.weekNumber > 7),
             )}
           />
         )}
@@ -150,7 +151,9 @@ export function SubjectHub({
               <div className="flex items-center gap-1.5 font-semibold text-foreground/85 text-[11px] uppercase tracking-wider mb-2.5">
                 <Info className="size-3.5 text-primary shrink-0" />
                 <span>
-                  {locale === "th" ? "ข้อชี้แจงเกี่ยวกับแนวข้อสอบ" : "Course Material Notes"}
+                  {locale === "th"
+                    ? "ข้อชี้แจงเกี่ยวกับแนวข้อสอบ"
+                    : "Course Material Notes"}
                 </span>
               </div>
               <div className="space-y-2 text-[11px] sm:text-xs">

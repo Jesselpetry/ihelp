@@ -14,7 +14,7 @@
 graph LR
     subgraph Ingestion["1. Ingestion & Storage"]
         Raw["Raw Ingestion<br/>_dropzone/"] --> Sanitized["Sanitization &<br/>Kebab-case Naming"]
-        Sanitized --> Cloud["Supabase Storage<br/>Dual-Bucket Model"]
+        Sanitized --> Cloud["Supabase Storage<br/>ihelp-library"]
     end
 
     subgraph BuildEngine["2. Build & Indexing Engine"]
@@ -35,23 +35,21 @@ graph LR
 1. **Git Repository Bloat & Build Container Crashes:** ในอดีต ไฟล์ PDF กว่า 670 ไฟล์ มีขนาดรวมกว่า 908 MB การเก็บไฟล์ดิบไว้ใน `public/assets/` ใน Git ทำให้ Git pack file บวมถึง 881 MB ส่งผลให้ Vercel Build Container หน่วยความจำเต็มและพื้นที่ดิสก์หมด (`ENOSPC > 1GB`)
 2. **Disconnected Metadata:** ไฟล์บนดิสก์ ข้อมูลในหน้ารายวิชา และตารางเอกสารการสอนไม่ผูกโยงกัน ระบบเดิมไม่ทราบว่าไฟล์ใดสัมพันธ์กับหัวข้อหรือสัปดาห์ใด
 3. **Information Retrieval Overhead for AI & Tools:** การที่ AI หรือเครื่องมือภายนอกต้องไล่อ่าน TypeScript กว่า 5,000 บรรทัดหรือแสกนไฟล์ PDF ทั้งหมด สร้าง Overhead มหาศาล
-4. **Security & Academic Privacy:** ข้อสอบเก่าและเฉลยต้องได้รับการคุ้มครอง ไม่เปิดเผยสู่สาธารณะ ในขณะที่เอกสารประกอบการสอนสาธารณะต้องเข้าถึงได้รวดเร็วผ่าน CDN
+4. **Security & Academic Privacy:** เอกสารประกอบการสอนสาธารณะต้องเข้าถึงได้รวดเร็วผ่าน CDN พร้อมการปกป้องข้อมูลส่วนบุคคลตามมาตรฐาน PDPA อย่างเคร่งครัด
 
 ---
 
 ## 2. End-to-End Asset Lifecycle Pipeline
 
-วงจรชีวิตของไฟล์สื่อการเรียนรู้ตั้งแต่ได้รับมาจนถึงการแสดงผลบนหน้าเว็บ มี 7 ขั้นตอนหลัก:
+วงจรชีวิตของไฟล์สื่อการเรียนรู้ตั้งแต่ได้รับมาจนถึงการแสดงผลบนหน้าเว็บ มี 6 ขั้นตอนหลัก:
 
 ```mermaid
 flowchart TD
     A["_dropzone/ (Raw File Inbox)"] --> B["Content Inspection & Metadata Extraction"]
     B --> C["Kebab-case Renaming & Category Placement"]
     C --> D["Asset Optimization & Compression (Ghostscript/WebP)"]
-    D --> E{"Is it a Restricted Asset?<br/>(isRestrictedAsset)"}
-    E -- "Yes (Exam / Quiz)" --> F["Private Bucket: ihelp-library-exams"]
-    E -- "No (Slides / Sheets / Labs)" --> G["Public Bucket: ihelp-library"]
-    F & G --> H["Build Manifest & Stats (Deterministic)"]
+    D --> E["Upload to Supabase Storage: ihelp-library"]
+    E --> H["Build Manifest & Stats (Deterministic)"]
     H --> I["Compile resource-index.json (The Dictionary)"]
     I --> J["Web UI / Doc Tables / Chat / Public API"]
 ```
@@ -74,7 +72,7 @@ public/assets/<namespace>/<subject>/<category>/<kebab-filename>
 |---|---|---|
 | `<namespace>` | `it-kmitl`, `en-kmitl` | ขอบเขตหรือสังกัดหลักสูตรของคณะ |
 | `<subject>` | `itf`, `ics`, `mfit`, `pscp`, `bfit`, `dsa` | รหัสย่อวิชา (อักษรตัวพิมพ์เล็ก) |
-| `<category>` | `lectures`, `sheets`, `exercises`, `notes`, `references`, `exams` | หมวดหมู่การใช้งานบนชั้นวางเอกสาร (Gallery Shelf) |
+| `<category>` | `lectures`, `sheets`, `exercises`, `notes`, `references` | หมวดหมู่การใช้งานบนชั้นวางเอกสาร (Gallery Shelf) |
 | `<kebab-filename>` | `itf-lec-week13-network-basics.pdf` | ชื่อไฟล์มาตรฐานแบบ Lowercase Kebab-case |
 
 > [!IMPORTANT]
@@ -93,27 +91,19 @@ public/assets/<namespace>/<subject>/<category>/<kebab-filename>
 * ไฟล์ PDF ขนาดใหญ่จะถูกบีบอัดด้วย Ghostscript ผ่าน `scripts/compress-assets.sh` โดยเลือกคุณภาพระดับ `ebook` (150 dpi) หรือ `screen` (72 dpi) เพื่อให้ขนาดไฟล์ลดลง 40–80% โดยที่ตัวหนังสือและไดอะแกรมยังคมชัด
 * ภาพถ่ายโน้ตหรือไวท์บอร์ดจะถูกแปลงเป็นรูปแบบ WebP (`.webp`) เพื่อประหยัดแบนด์วิดท์
 
-### ขั้นที่ 4: สถาปัตยกรรมคลาวด์ Dual-Bucket (Cloud Storage Architecture)
+### ขั้นที่ 4: สถาปัตยกรรมคลาวด์ (Cloud Storage Architecture)
 ไฟล์ทั้งหมดจะถูกซิงก์ขึ้น Supabase Storage ผ่านสคริปต์ `scripts/sync-library-assets.ts`:
 
 ```mermaid
 graph TD
-    Asset["Subject Asset"] --> Check{"isRestrictedAsset(asset)<br/>category === 'exam' OR<br/>path contains '/exams/'"}
-    Check -- No --> PubBucket["Bucket: ihelp-library<br/>(Public CDN)"]
-    Check -- Yes --> PrivBucket["Bucket: ihelp-library-exams<br/>(Private Storage)"]
+    Asset["Subject Asset"] --> PubBucket["Bucket: ihelp-library<br/>(Supabase Storage CDN)"]
     PubBucket --> URL["Direct CDN URL<br/>assetUrl()"]
-    PrivBucket --> Token["Signed URL (10 min)<br/>libraryExamsForInsider()"]
 ```
 
-1. **`ihelp-library` (Public Bucket):**
-   * เก็บสไลด์, ชีทสรุป, ใบงาน, โน้ต และเอกสารอ้างอิง
-   * สามารถเข้าถึงได้โดยตรงผ่าน Public URL (`assetUrl(url)`)
-   * ตั้งค่าหัวอ่านแคชระดับ CDN: `Cache-Control: public, max-age=31536000` (1 ปี) เนื่องจากไฟล์เนื้อหามีชื่อแบบ Content-immutable
-2. **`ihelp-library-exams` (Private Bucket):**
-   * เก็บข้อสอบเก่า ควิซ และเอกสารเฉลยทั้งหมด
-   * **สิทธิ์การเข้าถึง:** เฉพาะนักศึกษาที่ผ่านการยืนยันตัวตน (Insider / KMITL IT Student)
-   * เข้าถึงผ่าน **Short-lived Signed URL** อายุ 10 นาทีที่สร้างขึ้นบนเซิร์ฟเวอร์เท่านั้น
-   * **ห้ามเปิดเผยสู่สาธารณะ ห้ามดัชนีลง Help Desk Chat และห้ามส่งออกผ่าน Public API โดยเด็ดขาด**
+**`ihelp-library` (Storage Bucket):**
+* เก็บสไลด์, ชีทสรุป, ใบงาน, โน้ต และเอกสารอ้างอิง
+* สามารถเข้าถึงได้อย่างรวดเร็วผ่าน Public URL (`assetUrl(url)`)
+* ตั้งค่าหัวอ่านแคชระดับ CDN: `Cache-Control: public, max-age=31536000` (1 ปี) เนื่องจากไฟล์เนื้อหามีชื่อแบบ Content-immutable
 
 ### ขั้นที่ 5: การสร้าง Manifest และ Stats แบบ Deterministic
 การประมวลผลดัชนีแบ่งเป็น 3 ส่วนที่ทำงานเรียงตามลำดับ (`bun run library:build`):
@@ -199,8 +189,7 @@ graph TB
 
     subgraph Layer3["Layer 3: Security & Access Control Layer"]
         AuthGuard["KMITL IT Email & Faculty Code 07 Guard"]
-        Signer["Storage URL Signer (10-min TTL for Exams)"]
-        PublicSanitizer["Public Zero-Trust Exam Filter"]
+        PublicSanitizer["Public Zero-Trust Privacy Filter"]
     end
 
     subgraph Layer2["Layer 2: Metadata & Dictionary Engine Layer"]
@@ -211,7 +200,6 @@ graph TB
 
     subgraph Layer1["Layer 1: Storage & Physical Asset Layer"]
         SupabasePublic["Supabase Bucket: ihelp-library (Public CDN)"]
-        SupabasePrivate["Supabase Bucket: ihelp-library-exams (Private Encrypted)"]
     end
 
     Layer1 --> Layer2
@@ -347,14 +335,12 @@ Endpoint สาธารณะสำหรับ AI Agents, ค้นหาด�
 | `offset` | integer | No | ลำดับเริ่มต้นสำหรับการแบ่งหน้า (ค่าเริ่มต้น `0`) |
 | `summary` | boolean | No | หากเป็น `true` จะคืนค่าสถิติสรุปภาพรวมโดยไม่ส่ง array รายการ |
 
-### Security & Privacy Guarantee (Zero Exam Leakage)
-Endpoint นี้มีตัวกรอง **Zero-Trust Defense in Depth** ถึง 5 ชั้น เพื่อป้องกันไม่ให้ข้อสอบเก่าหลุดรอดออกไป:
-1. ตัดรายการที่มี `access === "insider"`
-2. ตัดรายการที่มี `category === "exam"`
-3. ตัดรายการที่ URL มีคำว่า `/exams/`
-4. ตัดรายการที่ชี้ไปยัง Storage Bucket `ihelp-library-exams`
-5. ตรวจสอบซ้ำด้วยฟังก์ชัน `isRestrictedAsset()` จาก `subject-library-ui.ts`
-6. หากผู้ใช้เรียกค้น `?kind=exam` ระบบจะส่งคืนรายการว่าง `[]` เสมอ
+### Security & Privacy Guarantee (Strict Privacy & Access Control)
+Endpoint นี้มีตัวกรอง **Zero-Trust Defense in Depth** เพื่อป้องกันไม่ให้ข้อมูลที่ไม่ได้รับอนุญาตหลุดรอดออกไป:
+1. ตัดรายการที่ไม่ได้เปิดเผยสาธารณะ
+2. ตรวจสอบความถูกต้องและสถานะการตรวจสอบความเป็นส่วนตัว (PDPA) ทุกรายการ
+3. ป้องกันการเข้าถึงไฟล์ที่ไม่ได้ลงทะเบียนในสารบบอย่างเคร่งครัด
+4. ให้บริการเฉพาะเอกสารประกอบการสอนที่ผ่านการรับรองแล้วเท่านั้น
 
 ### ตัวอย่างการเรียกใช้งาน (API Request & Response)
 

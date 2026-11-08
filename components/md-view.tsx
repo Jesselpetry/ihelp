@@ -5,6 +5,7 @@ import { Flag, Milestone } from "lucide-react";
 import ReactMarkdown, { type Components } from "react-markdown";
 import { fenceFor } from "@/components/md-fences";
 import { SessionMaterialsDeck, type SessionDocumentItem } from "@/components/session-materials";
+import { OjProblemsDeck } from "@/components/pscp/oj-problems-deck";
 import type { SubjectAsset } from "@/lib/library/subject-library-ui";
 import remarkGfm from "remark-gfm";
 import remarkFrontmatter from "remark-frontmatter";
@@ -16,6 +17,7 @@ import { slugifyHeading } from "@/lib/docs/toc";
 import { remarkNotebook } from "@/lib/docs/remark-notebook";
 import { hasParts, splitParts, type DocChunk, type PartScope } from "@/lib/docs/parts";
 import { readDocTable, textTableFromHast, type HastNode } from "@/lib/docs/doc-table";
+import { parseOjProblemTable } from "@/lib/docs/oj-table";
 import {
   KATEX_OPTIONS,
   PART_MARKER_LINE,
@@ -289,6 +291,7 @@ export interface MdViewProps {
   assets?: SubjectAsset[];
   courseCode?: string;
   onOpenPreview?: (asset: SubjectAsset) => void;
+  onOpenProblem?: (id: number) => void;
   /**
    * "notebook" adds the lecture-pad accents — red pen markers, a double
    * margin rule, wavy underlines, red fraction bars. Body text is unaffected.
@@ -413,6 +416,7 @@ export function MdView({
   assets,
   courseCode,
   onOpenPreview,
+  onOpenProblem,
   variant = "default",
 }: MdViewProps) {
   const notebook = variant === "notebook";
@@ -431,6 +435,15 @@ export function MdView({
             />
           );
         }
+        const ojProblems = parseOjProblemTable(node);
+        if (ojProblems) {
+          return (
+            <OjProblemsDeck
+              items={ojProblems}
+              onOpenProblem={onOpenProblem}
+            />
+          );
+        }
         return (
           <div className="md-scroll-x my-4 overflow-x-auto overscroll-x-contain [scrollbar-width:thin] rounded-lg border">
             <table className="w-full text-[13px] sm:text-sm border-collapse" {...p} />
@@ -438,7 +451,7 @@ export function MdView({
         );
       },
     };
-  }, [assets, courseCode, onOpenPreview, notebook]);
+  }, [assets, courseCode, onOpenPreview, onOpenProblem, notebook]);
 
   /*
    * font-sarabun: every Markdown body in the app renders in THSarabunNew. It

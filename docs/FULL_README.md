@@ -127,15 +127,9 @@ Supabase Storage และเว็บเสิร์ฟจากที่นั
 | --- | --- | --- |
 | **รายการสื่อบนหน้า** `/courses/<วิชา>/library` | นักศึกษา IT ที่เข้าสู่ระบบแล้ว — อีเมล `@kmitl.ac.th` ที่รหัสนักศึกษามีรหัสคณะ `07` (`lib/auth/verify.ts`) | หน้านี้ prerender เป็น static ไม่มีข้อมูลไฟล์ในหน้า รายการมาจาก `/api/library/assets` ซึ่งตอบ 401 ถ้าไม่มี session ที่ผ่านการยืนยัน (ตอน dev ไม่บังคับล็อกอิน) |
 | **ตัวไฟล์ทั่วไป** — สไลด์ ใบงาน ชีท ภาพสมุดจด | ใครก็ได้ที่มี URL | bucket **สาธารณะ** `ihelp-library` และ path ของไฟล์อยู่ใน repo สาธารณะ (`library-manifest.json`, `subject-library.ts`) |
-| **ข้อสอบเก่า** (`category: "exam"`) | เฉพาะ insider — ผู้ใช้ที่มี role `insider` หรือ `admin` (`isInsider()`) | bucket **ปิด** `ihelp-library-exams` เสิร์ฟด้วย signed URL อายุ 10 นาที (`lib/library/library-exams.ts` ส่งมากับ `/api/library/assets`) |
 
 การล็อกอินจึง**ซ่อนรายการบนหน้าคลัง ไม่ได้ทำให้ไฟล์เป็นส่วนตัว** — ก่อนอัปโหลด
-ให้ถือว่าไฟล์ทุกชิ้นนอกจากข้อสอบเก่าเป็นสาธารณะ
-
-การจัดว่าอะไรเป็นข้อสอบดูจาก `category === "exam"` **ไม่ใช่ path** — หน้าข้อสอบ
-ที่ถ่ายมาเก็บไว้ที่ `/assets/it-kmitl/ics/pages/pg-*.jpg` อยู่นอกโฟลเดอร์
-`exams/` ถ้าใช้ path ตัดสินจะหลุดสาธารณะทันที ดู `isRestrictedAsset()` ใน
-`lib/library/subject-library-ui.ts`
+ให้ถือว่าไฟล์ทุกชิ้นในคลังเป็นสาธารณะ ห้ามนำเข้าข้อมูลส่วนบุคคลที่ไม่ได้รับอนุญาตโดยเด็ดขาด
 
 รายละเอียดโครงสร้าง กติกาตั้งชื่อ และ taxonomy กลางภาค/ปลายภาค อยู่ใน
 **[FILE_STRUCTURE.md](./FILE_STRUCTURE.md)**
@@ -328,7 +322,7 @@ Personal Study Space ส่วนตัวสำหรับเจ้าขอ�
       <img src="https://cdn.simpleicons.org/supabase/3FCF8E" width="48" height="48" alt="Supabase" /><br>
       <sub><b>Supabase</b></sub>
     </td>
-    <td>Auth (Google OAuth จำกัด <code>@kmitl.ac.th</code> รหัสคณะ <code>07</code> ผ่าน <code>@supabase/ssr</code>) + Storage ห้า bucket: <code>ihelp-library</code> (สื่อการเรียน สาธารณะ) · <code>ihelp-library-exams</code> (ข้อสอบเก่าของคลัง ปิด signed URL อายุ 10 นาที) · <code>ihelp-exams</code> (คลัง <code>/exams</code> ปิด) · <code>ihelp-resources</code> (ไฟล์ที่ผู้ใช้แชร์) · <code>ihelp-avatars</code> (รูปโปรไฟล์) — สื่อการเรียนอยู่บน bucket ไม่ได้อยู่ใน git (จำนวนและขนาดดู <code>totals</code> ใน <code>resource-index.json</code>)</td>
+    <td>Auth (Google OAuth จำกัด <code>@kmitl.ac.th</code> รหัสคณะ <code>07</code> ผ่าน <code>@supabase/ssr</code>) + Storage: <code>ihelp-library</code> (สื่อการเรียนรู้) · <code>ihelp-resources</code> (ไฟล์ที่ผู้ใช้แชร์) · <code>ihelp-avatars</code> (รูปโปรไฟล์) — สื่อการเรียนอยู่บน bucket ไม่ได้อยู่ใน git (จำนวนและขนาดดู <code>totals</code> ใน <code>resource-index.json</code>)</td>
   </tr>
   <tr>
     <td align="center" width="96">

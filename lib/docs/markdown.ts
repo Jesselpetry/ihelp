@@ -65,6 +65,20 @@ export const KATEX_OPTIONS = {
 } as const;
 
 /**
+ * Options for rehype-mathjax/svg.
+ *
+ * Configured with local font caching so each formula embeds its vector glyphs
+ * cleanly within SVG <defs>, eliminating CSS font metrics desync, font loading
+ * flickers, and vertical stack overlap.
+ */
+export const MATHJAX_OPTIONS = {
+  svg: {
+    fontCache: "local",
+    mtextInheritFont: true,
+  },
+} as const;
+
+/**
  * `$$...$$` -> a valid remark-math fence, one block at a time.
  *
  * remark-math's `$$` is a fence construct, not a pair of inline delimiters:

@@ -107,9 +107,7 @@ ihelp/
 > เดิมไฟล์เหล่านี้อยู่ใน repo — PDF ~908 MB ดัน git pack ไป 881 MB และทำให้ build
 > ของ Vercel เนื้อที่หมด (ENOSPC)
 >
-> **สอง bucket:** `ihelp-library` (**สาธารณะ** — ทุกไฟล์ยกเว้นข้อสอบเก่า) และ
-> `ihelp-library-exams` (ปิด เฉพาะ insider) `assets:sync` เลือก bucket ให้เองจาก
-> `isRestrictedAsset()` และใช้ object key เดียวกันทั้งสอง bucket · `assets:sync` มีแต่อัปโหลด
+> **Supabase Storage:** ไฟล์จัดเก็บใน bucket `ihelp-library` บน Supabase Storage · `assets:sync` มีแต่อัปโหลด
 > ไม่ลบ object ที่มีอยู่ — สิทธิ์ของแต่ละส่วนอยู่ใน §9
 
 ### กติกา path
@@ -568,22 +566,17 @@ Markdown ของวิชา render ด้วย `react-markdown` + GFM + KaTe
 | ส่วน | ใครเข้าถึงได้ | กลไก |
 | --- | --- | --- |
 | รายการสื่อบนหน้า `/courses/<dir>/library` (และตารางสัปดาห์ + ลิงก์วิดีโอ OnLearn ที่มากับมัน) | นักศึกษา IT ที่ล็อกอินแล้ว — `verifyKmitlIt()` (`lib/auth/verify.ts`): อีเมล `@kmitl.ac.th` รหัสนักศึกษา 8 หลัก หลักที่ 3–4 เป็น `07` | หน้า prerender เป็น static ไม่มีข้อมูลไฟล์ในหน้า รายการมาจาก `GET /api/library/assets?course=<CODE>` ซึ่งตอบ 401 ถ้าไม่มี session ที่ผ่านการยืนยัน (เฉพาะ production — ตอน dev ไม่บังคับล็อกอิน) |
-| **ตัวไฟล์ทั่วไป** — ทุก `category` ยกเว้น `exam` | **ใครก็ได้ที่มี URL** | bucket **สาธารณะ** `ihelp-library` (URL แบบ `…/storage/v1/object/public/ihelp-library/<key>` — `assetUrl()`) path ของไฟล์อยู่ใน repo สาธารณะ (`library-manifest.json`, `subject-library.ts`) หน้าโมดูลอื่นที่มีตารางไฟล์ (เช่นหน้าสัปดาห์ของ ITF/ICS) แสดงการ์ดของไฟล์เดียวกันโดยไม่ต้องล็อกอิน — `proxy.ts` กันแค่ `/onboarding` `/upload` `/exams` |
-| **ข้อสอบเก่า** — `isRestrictedAsset()`: `category === "exam"` หรือ path มี `/exams/` | insider / admin (`isInsider()` — role ใน `ihelp.users`) | bucket **ปิด** `ihelp-library-exams` · `libraryExamsForInsider()` เซ็น signed URL อายุ 10 นาทีหลังเช็คสิทธิ์ · ถูกกรองออกจาก `assetsForCourse()` ก่อน จึงไม่ติดไปกับ HTML ของหน้าที่ prerender |
-| คลังข้อสอบ `/exams` (แถวใน `ihelp.exams`) | insider / admin | bucket ปิด `ihelp-exams` + `requireInsider()` — แยกจากคลังข้างบน |
+| **ตัวไฟล์ทั่วไป** | **ใครก็ได้ที่มี URL** | bucket **สาธารณะ** `ihelp-library` (URL แบบ `…/storage/v1/object/public/ihelp-library/<key>` — `assetUrl()`) path ของไฟล์อยู่ใน repo สาธารณะ (`library-manifest.json`, `subject-library.ts`) หน้าโมดูลอื่นที่มีตารางไฟล์ (เช่นหน้าสัปดาห์ของ ITF/ICS) แสดงการ์ดของไฟล์เดียวกันโดยไม่ต้องล็อกอิน |
 | ไฟล์ที่ผู้ใช้แชร์ · รูปโปรไฟล์ | สาธารณะ | `ihelp-resources` · `ihelp-avatars` (การแชร์ปิดโดยค่าเริ่มต้น — `NEXT_PUBLIC_UPLOADS_ENABLED`) |
-| **ระบบค้นหาของ Help Chat** (`/api/chat`) | ผู้ใช้ทั่วไปในทุกหน้า | ค้นหาเฉพาะสื่อการเรียนสาธารณะ (`isRestrictedAsset() === false`) — **ข้อสอบเก่าจะไม่ถูกค้นหาหรือส่งในแชทเด็ดขาด** |
+| **ระบบค้นหาของ Help Chat** (`/api/chat`) | ผู้ใช้ทั่วไปในทุกหน้า | ค้นหาเฉพาะสื่อการเรียนรู้สาธารณะที่ได้รับการยืนยัน |
 
-**สรุป: การล็อกอินซ่อนรายการบนหน้าคลัง ไม่ได้ทำให้ไฟล์เป็นส่วนตัว** — มีแค่ข้อสอบเก่าที่ปิดจริง
-ก่อนเพิ่มไฟล์ ให้ถือว่าไฟล์ทุกชิ้นนอกจากข้อสอบเก่าเป็นสาธารณะ
+**สรุป: การล็อกอินซ่อนรายการบนหน้าคลัง ไม่ได้ทำให้ไฟล์เป็นส่วนตัว**
+ก่อนเพิ่มไฟล์ ให้ถือว่าไฟล์ทุกชิ้นในคลังเป็นสาธารณะ และห้ามนำข้อมูลส่วนบุคคลที่ไม่ได้รับอนุญาตเข้าสู่ระบบ
 
 กติกาที่ตามมา:
 
-- การจัดประเภทดูจาก `category` **ไม่ใช่ path** อย่างเดียว — หน้าข้อสอบที่ถ่ายภาพเก็บใน `notes/` หรือ `pages/`
-  ก็ยังเป็นข้อสอบ ต้องตั้ง `category: "exam"` ถ้าไม่แน่ใจว่าไฟล์ไหนเป็นข้อสอบ ให้ถือว่าเป็นแล้วรายงานไว้
 - อะไรที่จำกัดสิทธิ์ต้องกันที่ฝั่ง server ตั้งแต่ต้นทาง ไม่ใช่ซ่อนด้วย UI — Client Component จึงห้าม import
-  `subject-library.ts` และ `resource-index.json` (มีชื่อข้อสอบเก่าทั้งหมด)
-- ชื่อและ path ของข้อสอบเก่ายังอยู่ใน repo สาธารณะ (`library-manifest.json`, `subject-library.ts`) แม้ตัวไฟล์ปิด
+  `subject-library.ts` และ `resource-index.json` ตรงๆ ให้ใช้ `subject-library-ui.ts` เสมอ
 
 ### 9.2 กติกาก่อนเพิ่มไฟล์
 

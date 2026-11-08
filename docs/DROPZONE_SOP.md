@@ -51,12 +51,10 @@ neutrally; it is not a to-do list.
 | Layer | Who can read it | Mechanism (code) |
 | --- | --- | --- |
 | The library page's **file list** | a signed-in KMITL IT student (a campus `@kmitl.ac.th` address whose student id carries faculty code `07`) — enforced in production | `GET /api/library/assets` (`app/api/library/assets/route.ts`). The page itself is static and ships no card data |
-| **Document pages with file tables** — the ITF/ICS weekly pages and any other module reader | any visitor; these pages are not behind login (`proxy.ts` guards only `/onboarding`, `/upload`, `/exams`) | the reader receives the course's non-exam cards as props (`assetsForCourse()` in `app/courses/[dir]/[module]/page.tsx`) so a table can show matching file cards |
-| **Non-exam files** — public bucket `ihelp-library` | anyone who holds the object URL; the paths are also in this public repo (`lib/library/subject-library.ts`, `library-manifest.json`) | `assetUrl()` builds the public Storage URL |
-| **Past exams** — private bucket `ihelp-library-exams` | insider / admin accounts only, through 10-minute signed URLs | `isRestrictedAsset()` decides the bucket; `libraryExamsForInsider()` signs |
+| **Document pages with file tables** — the ITF/ICS weekly pages and any other module reader | any visitor; these pages are not behind login (`proxy.ts` guards only `/onboarding`, `/upload`) | the reader receives the course's public cards as props (`assetsForCourse()` in `app/courses/[dir]/[module]/page.tsx`) so a table can show matching file cards |
+| **Library files** — bucket `ihelp-library` | verified users holding the object URL; the paths are in `lib/library/subject-library.ts` | `assetUrl()` builds the Storage URL |
 
-So "behind login" is **not** "private". Only past exams are private. Treat
-everything you file outside an exam card as public.
+So "behind login" is **not** "private". Treat everything you file as public, and never ingest unauthorized personal data.
 
 ---
 
@@ -462,22 +460,15 @@ mv "_dropzone/ORIGINAL NAME.pdf" \
 > The bytes are served from Supabase Storage, so a routed file is invisible in
 > production until `bun run assets:sync` uploads it — see Phase 5.
 
-### Routing past exams
+### Restricted content & Privacy check
 
-Anything that is a past paper — `category: "exam"` — is **restricted content**.
-It is uploaded to the private `ihelp-library-exams` bucket and served only to
-insiders through a short-lived signed URL. `bun run assets:sync` decides that
-from the same `isRestrictedAsset()` rule the app uses, so you do not route it by
-hand. What you must get right is the **classification**:
+Any file containing personal data, student submissions, or unauthorized materials is **restricted content**.
+`bun run assets:sync` uploads verified assets to `ihelp-library`. What you must get right is the **classification**:
 
-- The rule is `category === "exam"` **or** a path that contains `/exams/`. Nothing
-  else makes a file private, and the folder alone is not enough in the other
-  direction: a past paper filed under `notes/` or `pages/` because it is a
-  photograph is still an exam, and it stays public unless its entry says
-  `category: "exam"`. Ten scanned exam pages under `ics/pages/` are exactly this case.
-- If you are unsure whether something is a past paper, treat it as one and say
+- Ensure materials do not contain personal names, student IDs, or sensitive details.
+- If you are unsure whether something should be published, hold it (Phase 6) and say
   so in the Phase 8 report. Over-restricting is recoverable; publishing someone's
-  exam paper is not.
+  private material is not.
 
 > ⚠️ **`summary.md` is hand-maintained and follows the 6-section standard in
 > [`COURSE_OVERVIEW_STANDARD.md`](./COURSE_OVERVIEW_STANDARD.md).** Never overwrite
@@ -669,16 +660,10 @@ bun run assets:sync                       # upload only what the buckets are mis
 bun run library:audit -- --remote         # confirm: no not-uploaded, no insider-in-public-bucket
 ```
 
-`assets:sync` reads the cards you just wrote to decide which bucket each file
-belongs in — public `ihelp-library`, or private `ihelp-library-exams` for anything
-`isRestrictedAsset()` says is an exam. Run it **after** 5.1 and 5.3, never before:
-run in the wrong order and a past paper whose `category` is only set on its
-curated card gets uploaded to the public bucket.
+`assets:sync` reads the cards you just wrote to upload files to Supabase Storage
+`ihelp-library`. Run it **after** 5.1 and 5.3, never before.
 
-Check the line it prints — it names how many files went to the restricted
-bucket. If a past paper is not counted there, its classification is wrong; fix
-the entry and re-run rather than moving the object by hand. `-- --force`
-re-uploads everything; use it only if the owner asks.
+`-- --force` re-uploads everything; use it only if the owner asks.
 
 If the remote audit reports `insider-in-public-bucket`, stop and tell the owner:
 the fix is deleting that public object, and deleting Storage objects needs their

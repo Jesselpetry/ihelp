@@ -1,4 +1,5 @@
 import type { CourseSchedule, CourseWeek } from "@/lib/library/subject-library-ui";
+import { PSCP_WEEKS } from "@/lib/pscp/pscp-weeks";
 
 /**
  * Week-by-week schedules for the courses whose library opens on the week view.
@@ -100,9 +101,24 @@ const ICS_SCHEDULE: CourseSchedule = {
   ],
 };
 
+const PSCP_SCHEDULE: CourseSchedule = {
+  parts: {
+    midterm: {
+      label: { th: "ขอบเขตกลางภาค (สัปดาห์ 1–7)", en: "Midterm scope (Weeks 1–7)" },
+      detail: { th: "พื้นฐาน Python · เงื่อนไข · ลูป · สตริง · ฟังก์ชัน", en: "Python basics · Conditionals · Loops · Strings · Functions" },
+    },
+    final: {
+      label: { th: "ขอบเขตปลายภาค (สัปดาห์ 8–14)", en: "Final scope (Weeks 8–14)" },
+      detail: { th: "ลูปซ้อนลูป · ลิสต์ · เมทริกซ์ · ดิกชันนารี · ไฟล์ · Sorting", en: "Nested loops · Lists · Matrices · Dictionaries · Files · Sorting" },
+    },
+  },
+  weeks: PSCP_WEEKS.map(({ week, scope, title }) => ({ week, scope, title })),
+};
+
 export const COURSE_SCHEDULES: Record<string, CourseSchedule> = {
   ITF: ITF_SCHEDULE,
   ICS: ICS_SCHEDULE,
+  PSCP: PSCP_SCHEDULE,
 };
 
 export function scheduleForCourse(code: string): CourseSchedule | undefined {
