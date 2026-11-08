@@ -25,7 +25,7 @@ const L: Record<string, LText> = {
   notRun: { th: "ยังไม่ได้รัน", en: "Not run yet" },
   stdin: { th: "อินพุต (stdin)", en: "Input (stdin)" },
   expected: { th: "ผลลัพธ์ที่คาดหวัง", en: "Expected Output" },
-  actual: { th: "ผลลัพธ์จากโค้ดของคุณ", en: "Your Output" },
+  actual: { th: "ผลลัพธ์จริงจากโค้ด", en: "Your Output" },
   copy: { th: "คัดลอก", en: "Copy" },
   copied: { th: "คัดลอกแล้ว", en: "Copied" },
   showDiff: { th: "ดู Diff", en: "Diff" },
@@ -48,6 +48,7 @@ const L: Record<string, LText> = {
     en: "(Custom input — no expected output)",
   },
   clear: { th: "ล้าง", en: "Clear" },
+  caseLabel: { th: "เคสที่", en: "Case" },
 };
 
 function CopyButton({ text }: { text: string }) {
@@ -65,10 +66,10 @@ function CopyButton({ text }: { text: string }) {
     <button
       type="button"
       onClick={handleCopy}
-      className="inline-flex cursor-pointer items-center gap-1 rounded px-1.5 py-0.5 font-mono text-[10px] text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-zinc-100"
+      className="inline-flex cursor-pointer items-center gap-1 rounded px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
       title={copied ? tr(L.copied, locale) : tr(L.copy, locale)}
     >
-      {copied ? <Check className="size-2.5 text-emerald-400" /> : <Copy className="size-2.5" />}
+      {copied ? <Check className="size-2.5 text-emerald-500" /> : <Copy className="size-2.5" />}
       <span>{copied ? tr(L.copied, locale) : tr(L.copy, locale)}</span>
     </button>
   );
@@ -76,7 +77,7 @@ function CopyButton({ text }: { text: string }) {
 
 /** Render visible newlines as ↵ */
 function renderWithVisibleLinebreaks(text: string) {
-  if (!text) return <span className="text-zinc-500 italic font-mono text-[11px]">(empty)</span>;
+  if (!text) return <span className="text-muted-foreground italic font-mono text-[11px]">(empty)</span>;
   const lines = text.split("\n");
   return (
     <span>
@@ -84,7 +85,7 @@ function renderWithVisibleLinebreaks(text: string) {
         <span key={idx}>
           {line}
           {idx < lines.length - 1 && (
-            <span className="text-zinc-600 select-none mx-0.5">↵</span>
+            <span className="text-muted-foreground/50 select-none mx-0.5">↵</span>
           )}
           {idx < lines.length - 1 && "\n"}
         </span>
@@ -161,11 +162,11 @@ export function TestCaseNavigator({
   };
 
   return (
-    <div className={cn("rounded-2xl border border-zinc-800/80 bg-[#141419] p-4 text-zinc-100 shadow-sm space-y-3", className)}>
-      {/* Top Header Row: 1 2 3 4 5 Buttons Strip + Batch Summary Chip */}
-      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-zinc-800/80 pb-3">
-        {/* Numbered Buttons [ 1 ] [ 2 ] [ 3 ] [ 4 ] [ 5 ] ... [ + Custom ] */}
-        <div className="flex min-w-0 flex-wrap items-center gap-1.5">
+    <div className={cn("rounded-2xl border bg-card p-4 text-foreground shadow-xs space-y-3.5", className)}>
+      {/* 1. Centered Circular Buttons (1, 2, 3...) at the top of Test Case Panel */}
+      <div className="flex flex-col items-center justify-center gap-2 border-b border-border/50 pb-3">
+        {/* Row of centered circle buttons */}
+        <div className="flex flex-wrap items-center justify-center gap-2">
           {cases.map((tc, index) => {
             const res = resultMap.get(tc.id);
             const isPassed = res?.status === "P";
@@ -181,10 +182,10 @@ export function TestCaseNavigator({
                   setDiffOpen(false);
                 }}
                 className={cn(
-                  "relative inline-flex size-8 items-center justify-center rounded-lg font-mono text-xs font-semibold transition-all cursor-pointer select-none",
+                  "relative inline-flex size-8 shrink-0 rounded-full items-center justify-center font-mono text-xs font-semibold transition-all cursor-pointer select-none",
                   isActive
-                    ? "bg-zinc-100 text-zinc-950 font-bold shadow-sm"
-                    : "bg-[#1c1c24] text-zinc-400 hover:bg-[#252530] hover:text-zinc-200 border border-zinc-800",
+                    ? "bg-primary text-primary-foreground font-bold shadow-xs ring-2 ring-primary/20 scale-105"
+                    : "border border-border/70 bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground",
                 )}
                 title={`Case ${index + 1}: ${tr(tc.label, locale)}`}
               >
@@ -194,8 +195,8 @@ export function TestCaseNavigator({
                 {res && (
                   <span
                     className={cn(
-                      "absolute -top-1 -right-1 size-2 rounded-full ring-2 ring-[#141419]",
-                      isPassed ? "bg-emerald-400" : isFailed ? "bg-rose-500" : "bg-zinc-400",
+                      "absolute -top-0.5 -right-0.5 size-2.5 rounded-full ring-2 ring-card shadow-2xs",
+                      isPassed ? "bg-emerald-500" : isFailed ? "bg-destructive" : "bg-muted-foreground",
                     )}
                   />
                 )}
@@ -203,7 +204,7 @@ export function TestCaseNavigator({
             );
           })}
 
-          {/* [+ Custom] Button */}
+          {/* (+) Circular Button for Custom Input */}
           <button
             type="button"
             onClick={() => {
@@ -211,35 +212,35 @@ export function TestCaseNavigator({
               setDiffOpen(false);
             }}
             className={cn(
-              "inline-flex h-8 items-center gap-1 rounded-lg px-2.5 font-mono text-xs font-medium transition-all cursor-pointer select-none",
+              "relative inline-flex size-8 shrink-0 rounded-full items-center justify-center font-mono text-xs font-semibold transition-all cursor-pointer select-none border border-dashed",
               activeCaseIndex === -1
-                ? "bg-zinc-100 text-zinc-950 font-bold shadow-sm"
-                : "bg-[#1c1c24] text-zinc-400 hover:bg-[#252530] hover:text-zinc-200 border border-zinc-800",
+                ? "bg-primary text-primary-foreground border-primary font-bold shadow-xs ring-2 ring-primary/20 scale-105"
+                : "border-border/80 text-muted-foreground hover:bg-muted hover:text-foreground",
             )}
+            title={tr(L.customInput, locale)}
           >
-            <Plus className="size-3" />
-            <span>{tr(L.customInput, locale)}</span>
+            <Plus className="size-3.5" />
           </button>
         </div>
 
-        {/* Batch Results Summary Chip Bar */}
-        <div className="flex shrink-0 items-center">
+        {/* Centered Results Summary Chip */}
+        <div className="flex items-center justify-center">
           {running ? (
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 px-2.5 py-0.5 text-xs font-medium text-amber-300">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 px-3 py-0.5 text-xs font-medium text-amber-600 dark:text-amber-400">
               <Loader2 className="size-3 animate-spin" />
               <span>{tr(L.running, locale)}</span>
             </span>
           ) : hasRun ? (
             allPassed ? (
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-0.5 text-xs font-semibold text-emerald-400">
-                <Check className="size-3" />
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-0.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+                <Check className="size-3.5" />
                 <span>
                   {tr(L.passed, locale)} {passedCount}/{totalCases}
                 </span>
               </span>
             ) : (
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-rose-500/30 bg-rose-500/10 px-2.5 py-0.5 text-xs font-semibold text-rose-400">
-                <X className="size-3" />
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-destructive/30 bg-destructive/10 px-3 py-0.5 text-xs font-semibold text-destructive">
+                <X className="size-3.5" />
                 <span>
                   {tr(L.failed, locale)} {totalCases - passedCount}/{totalCases}
                   {failedCasesIndices.length > 0 && ` (Case ${failedCasesIndices.join(", ")})`}
@@ -247,23 +248,23 @@ export function TestCaseNavigator({
               </span>
             )
           ) : (
-            <span className="rounded-full border border-zinc-800 bg-[#1c1c24] px-2.5 py-0.5 text-xs text-zinc-400">
+            <span className="rounded-full border border-border/60 bg-muted/40 px-3 py-0.5 text-xs text-muted-foreground">
               {tr(L.notRun, locale)}
             </span>
           )}
         </div>
       </div>
 
-      {/* Fixed Static Location Inspection Grid (2 Columns, strictly fixed height) */}
+      {/* 2. Fixed Static Layout: ฝั่งซ้ายเป็น input ฝั่งขวาเป็นผลลัพธ์ที่คาดหวัง */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
-        {/* Left Column: Fixed Location Test Case Input (stdin) */}
+        {/* ฝั่งซ้าย (Left Side): Input (stdin) */}
         <div className="flex flex-col space-y-1.5">
-          <div className="flex h-5 items-center justify-between">
-            <span className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-zinc-400">
-              <Terminal className="size-3 text-primary" />
+          <div className="flex h-6 items-center justify-between">
+            <span className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+              <Terminal className="size-3.5 text-primary" />
               <span>{tr(L.stdin, locale)}</span>
               {activeCase?.official && (
-                <span className="rounded bg-zinc-800/80 px-1 py-0.2 text-[9px] font-normal text-zinc-400">
+                <span className="rounded bg-muted px-1.5 py-0.2 text-[9px] font-normal text-muted-foreground">
                   Official
                 </span>
               )}
@@ -277,7 +278,7 @@ export function TestCaseNavigator({
               <button
                 type="button"
                 onClick={() => setCustomStdin("")}
-                className="text-[10px] text-zinc-400 hover:text-zinc-200 cursor-pointer"
+                className="text-[10px] text-muted-foreground hover:text-foreground cursor-pointer"
               >
                 {tr(L.clear, locale)}
               </button>
@@ -285,7 +286,7 @@ export function TestCaseNavigator({
           </div>
 
           {activeCaseIndex >= 0 && activeCase ? (
-            <pre className="h-52 overflow-y-auto whitespace-pre rounded-xl border border-zinc-800/80 bg-[#0d0d11] p-3 font-mono text-xs leading-relaxed text-zinc-200 selection:bg-zinc-800 scrollbar-thin">
+            <pre className="h-52 overflow-y-auto whitespace-pre rounded-xl border border-border/70 bg-muted/30 p-3 font-mono text-xs leading-relaxed text-foreground selection:bg-muted/60 scrollbar-thin">
               {renderWithVisibleLinebreaks(activeCase.stdin)}
             </pre>
           ) : (
@@ -293,18 +294,18 @@ export function TestCaseNavigator({
               value={customStdin}
               onChange={(e) => setCustomStdin(e.target.value)}
               placeholder={tr(L.customPlaceholder, locale)}
-              className="h-52 w-full resize-none rounded-xl border border-zinc-800/80 bg-[#0d0d11] p-3 font-mono text-xs leading-relaxed text-zinc-200 placeholder:text-zinc-600 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary scrollbar-thin"
+              className="h-52 w-full resize-none rounded-xl border border-border/70 bg-background p-3 font-mono text-xs leading-relaxed text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary scrollbar-thin"
             />
           )}
         </div>
 
-        {/* Right Column: Fixed Location Test Case Output (Expected on top, Actual below) */}
+        {/* ฝั่งขวา (Right Side): ผลลัพธ์ที่คาดหวัง (Expected Output) และ ผลลัพธ์จริง (Your Output) */}
         <div className="flex flex-col space-y-2">
-          {/* Top Half: Expected Output (Fixed position & height) */}
+          {/* ส่วนบนฝั่งขวา: ผลลัพธ์ที่คาดหวัง (Expected Output) */}
           <div className="space-y-1">
-            <div className="flex h-5 items-center justify-between">
-              <span className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-emerald-400">
-                <Check className="size-3" />
+            <div className="flex h-6 items-center justify-between">
+              <span className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
+                <Check className="size-3.5" />
                 <span>{tr(L.expected, locale)}</span>
               </span>
               {activeCaseIndex >= 0 && activeCase && (
@@ -312,32 +313,32 @@ export function TestCaseNavigator({
               )}
             </div>
 
-            <pre className="h-[90px] overflow-y-auto whitespace-pre rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-2.5 font-mono text-xs leading-relaxed text-emerald-200 scrollbar-thin">
+            <pre className="h-[92px] overflow-y-auto whitespace-pre rounded-xl border border-emerald-500/25 bg-emerald-500/5 p-2.5 font-mono text-xs leading-relaxed text-emerald-950 dark:text-emerald-200 scrollbar-thin">
               {activeCaseIndex >= 0 && activeCase ? (
                 renderWithVisibleLinebreaks(activeCase.expected)
               ) : (
-                <span className="text-zinc-500 italic text-[11px]">{tr(L.customNoExpected, locale)}</span>
+                <span className="text-muted-foreground italic text-[11px]">{tr(L.customNoExpected, locale)}</span>
               )}
             </pre>
           </div>
 
-          {/* Bottom Half: Your Output (Actual / Diff / Error) (Fixed position & height) */}
+          {/* ส่วนล่างฝั่งขวา: ผลลัพธ์จริงจากโค้ด (Your Output) */}
           <div className="space-y-1">
-            <div className="flex h-5 items-center justify-between">
+            <div className="flex h-6 items-center justify-between">
               <div className="flex items-center gap-1.5 text-[11px]">
-                <span className="flex items-center gap-1 font-semibold uppercase tracking-wider text-zinc-400">
-                  <Code2 className="size-3 text-primary" />
+                <span className="flex items-center gap-1 font-semibold uppercase tracking-wider text-muted-foreground">
+                  <Code2 className="size-3.5 text-primary" />
                   <span>{tr(L.actual, locale)}</span>
                 </span>
 
-                {/* Status indicator on the output box */}
+                {/* Status indicator on output box */}
                 {activeCaseIndex >= 0 && activeResult && (
                   <span
                     className={cn(
                       "font-mono text-[10px] font-semibold px-1.5 py-0.2 rounded",
                       isCasePassed
-                        ? "bg-emerald-500/20 text-emerald-300"
-                        : "bg-rose-500/20 text-rose-300",
+                        ? "bg-emerald-500/15 text-emerald-600 dark:text-emerald-400"
+                        : "bg-destructive/15 text-destructive",
                     )}
                   >
                     {isCasePassed
@@ -356,7 +357,7 @@ export function TestCaseNavigator({
                   <button
                     type="button"
                     onClick={() => setDiffOpen((prev) => !prev)}
-                    className="inline-flex cursor-pointer items-center gap-1 rounded bg-zinc-800 px-1.5 py-0.5 text-[10px] font-medium text-zinc-300 hover:bg-zinc-700"
+                    className="inline-flex cursor-pointer items-center gap-1 rounded bg-muted px-1.5 py-0.5 text-[10px] font-medium text-foreground hover:bg-muted/80"
                   >
                     <Sparkles className="size-2.5 text-primary" />
                     <span>{diffOpen ? tr(L.hideDiff, locale) : tr(L.showDiff, locale)}</span>
@@ -388,18 +389,18 @@ export function TestCaseNavigator({
 
             <div
               className={cn(
-                "h-[90px] overflow-y-auto rounded-xl border p-2.5 font-mono text-xs leading-relaxed scrollbar-thin",
+                "h-[92px] overflow-y-auto rounded-xl border p-2.5 font-mono text-xs leading-relaxed scrollbar-thin",
                 activeCaseIndex >= 0
                   ? activeResult
                     ? isCasePassed
-                      ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-300"
-                      : "border-rose-500/30 bg-rose-500/10 text-rose-300"
-                    : "border-zinc-800/80 bg-[#0d0d11] text-zinc-500 flex items-center justify-center italic text-xs"
+                      ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300"
+                      : "border-destructive/30 bg-destructive/10 text-destructive"
+                    : "border-border/60 bg-muted/20 text-muted-foreground flex items-center justify-center italic text-xs"
                   : customResult
                     ? customResult.error
-                      ? "border-rose-500/30 bg-rose-500/10 text-rose-300"
-                      : "border-zinc-800/80 bg-[#0d0d11] text-zinc-200"
-                    : "border-zinc-800/80 bg-[#0d0d11] text-zinc-500 flex items-center justify-center italic text-xs",
+                      ? "border-destructive/30 bg-destructive/10 text-destructive"
+                      : "border-border/70 bg-muted/30 text-foreground"
+                    : "border-border/60 bg-muted/20 text-muted-foreground flex items-center justify-center italic text-xs",
               )}
             >
               {activeCaseIndex >= 0 ? (
