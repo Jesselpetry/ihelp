@@ -140,18 +140,25 @@ $$\text{รุ่น IT} = (\text{พ.ศ. เข้าศึกษา} \pmod{10
 
 ---
 
-## 6. สถาปัตยกรรม Full Profile Modal & Interactive Accordion
+## 6. สถาปัตยกรรม Full Profile Modal & Streamlined UI (De-boxed)
 
-คอมโพเนนต์ [`components/contributor-modal.tsx`](../components/contributor-modal.tsx) ได้รับการปรับปรุงโครงสร้างเพื่อความ Responsive 100%:
-1. **แก้ปัญหา Banner ทับรูปโปรไฟล์บน Mobile:**
-   - รวม Cover Banner ให้อยู่ในกระแสการเลื่อนหน้าจอเดียวกัน (`overflow-y-auto`) หมดปัญหา Avatar โดน Banner บังหรือถูกเฉือนจากการตัดกรอบ Scroll Container
-   - รูปโปรไฟล์ใช้สไตล์ **`rounded-full`** พร้อมวงแหวนพื้นหลังยกนูน (`ring-4 ring-card shadow-lg`)
-2. **การจัดลำดับข้อมูลนักศึกษาเชิงลำดับชั้น (Hierarchical Credentials):**
-   - **แถวบน:** `[Building2] คณะเทคโนโลยีสารสนเทศ` • `[BookMarked] สาขา: เทคโนโลยีสารสนเทศ (IT)`
-   - **แถวล่าง:** `[GraduationCap] ชั้นปีที่ 1` | `รหัส 69070027` | `รุ่น IT24`
-3. **การแสดงผลงานแบบ Accordion Card พร้อมตัวนับ:**
-   - **Accordion 1 (Course Materials):** แสดงผลงานและสื่อการเรียนรู้ในรายวิชาแยกเป็นรายแถว พร้อม Badge ระบุวิชา และลิงก์เปิดดู
-   - **Accordion 2 (Changelog & Commits History):** แสดงประวัติเวอร์ชัน พร้อมนับจำนวน Commit/Changes รวม และลิงก์ Hash commit ไปยัง GitHub Repository
+คอมโพเนนต์ [`components/contributor-modal.tsx`](../components/contributor-modal.tsx) ได้รับการปรับปรุงโครงสร้างตามหลัก Modern Minimalist UI & Responsive 100%:
+1. **แก้ปัญหา Text Truncation & Layout Spacing:**
+   - ขยายพื้นที่แสดงผลชื่อผู้พัฒนา (`text-xl sm:text-2xl font-bold`) และ Username โดยไม่ตัดทอนข้อความ (`no truncation`)
+   - แยกแถวปุ่ม Action ออกมาด้านล่างอย่างอิสระ ทำให้ชื่อและข้อมูลประจำตัวมีพื้นที่หายใจ (Ample whitespace to breathe)
+2. **De-box the UI (ลดการตีกรอบซ้อนกรอบ):**
+   - ยกเลิกกรอบนอก (`border rounded-xl`) ของ Accordion แต่ละส่วน และใช้หัวข้อแบบ Typographic Heading สะอาดตา
+   - แปลงรายการผลงานและเอกสารจากการ์ดแบบมีกรอบซ้อน มาเป็นรายการเรียบง่ายที่มีเพียงเส้นคั่นบางเบา (`divide-y divide-border/40`)
+3. **Consolidate Header Badges & Pill Fatigue:**
+   - ตัด Badge ตัวเลขบนขวาของ Cover Banner ออก เพื่อลดความซ้ำซ้อนกับตัวนับในหัวข้อ Accordion
+   - ปรับแต่ง Badge รหัสวิชา (`ALL`, `ICS`, `MFIT`, `COMPRO`) ให้เป็นโทนสีกลางความเปรียบต่างต่ำ (`bg-muted text-muted-foreground font-mono text-[10px]`) โดยไม่มีเส้นขอบหนา
+4. **กระชับข้อมูลนักศึกษา (Streamlined Student Metadata String):**
+   - เปลี่ยนจากชุดการ์ดและ Badge หลายเม็ด มาเป็นบรรทัด Subtitle ที่กระชับ อ่านง่าย เช่น: `IT KMITL #24 · ชั้นปีที่ 1 · รหัส 69070027`
+5. **จัดวาง Role & Bio ให้เชื่อมโยงกับชื่อผู้พัฒนาอย่างแนบเนียน:**
+   - แสดง Badge บทบาทหลักขนาดกะทัดรัดใต้ชื่อ พร้อมข้อความคำอธิบายสั้น ๆ ในโทนสี Muted ทันที โดยไม่แยกเป็นกล่องกรอบต่างหาก
+6. **ปุ่มลิงก์ภายนอกสไตล์เอกภาพ (Unified Action Buttons):**
+   - ปุ่ม GitHub, Instagram และ Notion ใช้สไตล์ Secondary Outline/Ghost ที่เป็นมาตรฐานเดียวกัน ให้สีสันมาจากไอคอนแบรนด์เท่านั้น และตัดปุ่ม Profile ซ้ำซ้อนออก
+   - ในรายการผลงาน แทนที่ข้อความ "เปิดดู" ด้วยไอคอนลูกศร `ExternalLink` ด้านขวาสุดที่เรียบง่ายและสะอาดตา
 
 ---
 

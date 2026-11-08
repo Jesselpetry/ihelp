@@ -4,23 +4,12 @@ import { useState } from "react";
 import {
   ExternalLink,
   GitCommitHorizontal,
-  Sparkles,
   Code2,
-  Calendar,
   BookOpen,
-  GraduationCap,
-  Terminal,
-  User,
-  Building2,
-  BookMarked,
   ChevronDown,
-  FileText,
-  FileCheck2,
-  Target,
 } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
 import {
   GithubIcon,
   InstagramIcon,
@@ -37,29 +26,25 @@ import {
   getContributorById,
   getContributorWithAcademicYear,
   type ContributorProfile,
-  type ContributorMaterial,
 } from "@/lib/contributors";
 
 const L = {
   profileTitle: { th: "ข้อมูลผู้ร่วมพัฒนา", en: "Contributor Profile" },
   contributions: {
-    th: "ประวัติการร่วมพัฒนาใน iHelp",
-    en: "Contributions in iHelp",
+    th: "ประวัติการร่วมพัฒนา",
+    en: "Contributions & Changelog",
   },
   versionsCount: { th: "เวอร์ชัน", en: "versions" },
-  changesCount: { th: "รายการ commit/changes", en: "commits/changes" },
+  changesCount: { th: "รายการ", en: "changes" },
   materialsTitle: {
     th: "ผลงานและสื่อการเรียนรู้ในรายวิชา",
     en: "Course Materials & Resources",
   },
-  materialsCount: { th: "รายการผลงาน", en: "materials" },
   openGithub: { th: "เปิด GitHub Profile", en: "Open GitHub Profile" },
   openInstagram: { th: "เปิด Instagram Profile", en: "Open Instagram Profile" },
-  latestWork: { th: "ผลงานในเวอร์ชันนี้", en: "Work in this version" },
   inDevelopment: { th: "กำลังพัฒนา", en: "In Development" },
   viewCommit: { th: "ดู commit", en: "View commit" },
-  viewDiff: { th: "ดู changes", en: "View changes" },
-  viewWork: { th: "เปิดดู", en: "View" },
+  moreChanges: { th: "รายการเพิ่มเติม", en: "more changes" },
 };
 
 const AUTHOR_REGEX = /\s*\((?:โดย|by)\s+@([A-Za-z0-9_-]+)\)\s*$/i;
@@ -157,25 +142,6 @@ export function getContributorDetail(c: Contributor): ContributorDetail {
   };
 }
 
-/** Icon for course material category */
-function MaterialIcon({ type }: { type: ContributorMaterial["type"] }) {
-  switch (type) {
-    case "sheet":
-      return <BookOpen className="size-3.5 text-primary shrink-0" />;
-    case "slide":
-      return <FileText className="size-3.5 text-primary shrink-0" />;
-    case "notes":
-      return <FileCheck2 className="size-3.5 text-primary shrink-0" />;
-    case "mock_exam":
-      return <Target className="size-3.5 text-primary shrink-0" />;
-    case "code":
-    case "tool":
-      return <Terminal className="size-3.5 text-primary shrink-0" />;
-    default:
-      return <BookOpen className="size-3.5 text-primary shrink-0" />;
-  }
-}
-
 export function ContributorModal({
   contributor,
   profile: explicitProfile,
@@ -234,85 +200,115 @@ export function ContributorModal({
   const avatarUrl =
     profile?.avatarUrl ?? `https://github.com/${detail.github}.png`;
 
+  // Concise student meta string without pill wrapping: e.g. "IT KMITL #24 · ชั้นปีที่ 1 · รหัส 69070027"
+  const metaParts: string[] = [];
+  if (profile?.cohort) {
+    const cohortNumber = profile.cohort.replace(/[^0-9]/g, "");
+    metaParts.push(cohortNumber ? `IT KMITL #${cohortNumber}` : profile.cohort);
+  } else if (profile?.faculty) {
+    metaParts.push(t(profile.faculty, locale));
+  }
+
+  if (profile?.academic?.yearLabel) {
+    metaParts.push(t(profile.academic.yearLabel, locale));
+  }
+
+  if (profile?.studentId) {
+    metaParts.push(
+      `${t({ th: "รหัส", en: "ID" }, locale)} ${profile.studentId}`,
+    );
+  }
+
+  const studentMetaString = metaParts.join(" · ");
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="w-[calc(100%-1.25rem)] sm:w-full sm:max-w-xl p-0 overflow-hidden border shadow-xl rounded-2xl max-h-[88dvh] flex flex-col bg-card">
-        {/* Scrollable Container containing everything so it never clips or overlaps */}
+      <DialogContent className="w-[calc(100%-1.25rem)] sm:w-full sm:max-w-xl p-0 overflow-hidden border border-border/60 shadow-xl rounded-2xl max-h-[88dvh] flex flex-col bg-card">
+        {/* Scrollable Container */}
         <div className="overflow-y-auto min-w-0 flex-1 overscroll-contain">
-          {/* Cover gradient banner — Inside scroll flow */}
-          <div className="relative h-24 sm:h-28 bg-gradient-to-r from-primary/20 via-primary/10 to-muted/50 border-b overflow-hidden shrink-0">
-            {/* Subtle backdrop pattern */}
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/15 via-transparent to-transparent opacity-60 pointer-events-none" />
-
-            {/* Quick summary badges placed on top right with space from close button */}
-            <div className="absolute top-3 right-12 hidden sm:flex items-center gap-1.5 z-10 pointer-events-none">
-              {contributions.length > 0 && (
-                <span className="inline-flex items-center gap-1 text-[11px] font-medium text-foreground/90 bg-background/90 backdrop-blur-xs px-2.5 py-0.5 rounded-full border shadow-xs">
-                  <Code2 className="size-3 text-primary" />
-                  <span>
-                    {contributions.length} {t(L.versionsCount, locale)}
-                  </span>
-                </span>
-              )}
-              {materials.length > 0 && (
-                <span className="inline-flex items-center gap-1 text-[11px] font-medium text-foreground/90 bg-background/90 backdrop-blur-xs px-2.5 py-0.5 rounded-full border shadow-xs">
-                  <BookOpen className="size-3 text-primary" />
-                  <span>
-                    {materials.length} {t({ th: "ผลงาน", en: "works" }, locale)}
-                  </span>
-                </span>
-              )}
-            </div>
+          {/* Cover gradient banner — clean, no duplicate floating badges */}
+          <div className="relative h-24 sm:h-28 bg-gradient-to-r from-primary/15 via-primary/5 to-muted/30 border-b border-border/40 overflow-hidden shrink-0">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent opacity-50 pointer-events-none" />
           </div>
 
-          {/* Profile info body */}
-          <div className="px-4 sm:px-6 pb-6 pt-0 space-y-4 sm:space-y-5">
-            {/* Header: Avatar, Name, Handle, Social Badges */}
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4 -mt-11 sm:-mt-13 relative z-20">
-              {/* Avatar + Name */}
-              <div className="flex items-end gap-3 sm:gap-3.5 min-w-0">
-                <Avatar className="size-18 sm:size-22 rounded-full ring-4 ring-card shadow-lg shrink-0 bg-card">
-                  <AvatarImage
-                    src={avatarUrl}
-                    alt={detail.name}
-                    className="rounded-full object-cover"
-                  />
-                  <AvatarFallback className="rounded-full text-base sm:text-lg font-bold bg-muted text-foreground">
-                    {profile?.avatarFallback ??
-                      detail.github.slice(0, 2).toUpperCase()}
-                  </AvatarFallback>
-                </Avatar>
+          {/* Profile Content Body */}
+          <div className="px-5 sm:px-6 pb-6 pt-0 space-y-6">
+            {/* Header: Avatar, Name, Handle, Subtitle, Bio, and Actions */}
+            <div className="space-y-3.5 -mt-11 sm:-mt-13 relative z-10">
+              {/* Avatar — rounded-full with background ring */}
+              <Avatar className="size-20 sm:size-22 rounded-full ring-4 ring-card shadow-md shrink-0 bg-card">
+                <AvatarImage
+                  src={avatarUrl}
+                  alt={detail.name}
+                  className="rounded-full object-cover"
+                />
+                <AvatarFallback className="rounded-full text-base sm:text-lg font-bold bg-muted text-foreground">
+                  {profile?.avatarFallback ??
+                    detail.github.slice(0, 2).toUpperCase()}
+                </AvatarFallback>
+              </Avatar>
 
-                <div className="space-y-0.5 mb-1 min-w-0">
-                  <DialogTitle className="text-lg sm:text-xl font-bold leading-tight text-foreground truncate">
+              {/* Identity & Subtitle (No truncation!) */}
+              <div className="space-y-1">
+                <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
+                  <DialogTitle className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
                     {detail.name}
                   </DialogTitle>
-                  <div className="flex flex-wrap items-center gap-1.5">
-                    <p className="text-xs text-muted-foreground font-mono truncate">
-                      @{detail.github}
-                    </p>
-                    {profile?.nickname && (
-                      <span className="text-xs text-muted-foreground font-sans">
-                        ({profile.nickname})
+                  {profile?.nickname && (
+                    <span className="text-sm text-muted-foreground font-normal">
+                      ({profile.nickname})
+                    </span>
+                  )}
+                </div>
+
+                {/* Subtitle / Meta Line */}
+                <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs">
+                  <span className="text-muted-foreground font-mono">
+                    @{detail.github}
+                  </span>
+
+                  {studentMetaString && (
+                    <>
+                      <span className="text-muted-foreground/30">·</span>
+                      <span className="text-muted-foreground">
+                        {studentMetaString}
                       </span>
-                    )}
-                  </div>
+                    </>
+                  )}
                 </div>
               </div>
 
-              {/* Social Links — Fixed Size, rounded-full, wrap nicely */}
-              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 shrink-0 self-start sm:self-end">
+              {/* Role Badge & Bio (Integrated cleanly below name, no boxed container) */}
+              {(detail.role || detail.bio) && (
+                <div className="space-y-1.5 pt-0.5">
+                  {detail.role && (
+                    <div className="flex items-center gap-1.5">
+                      <span className="inline-flex items-center text-[11px] font-medium text-foreground/90 bg-muted px-2 py-0.5 rounded">
+                        {t(detail.role, locale)}
+                      </span>
+                    </div>
+                  )}
+                  {detail.bio && (
+                    <p className="text-xs text-muted-foreground leading-relaxed max-w-lg">
+                      {t(detail.bio, locale)}
+                    </p>
+                  )}
+                </div>
+              )}
+
+              {/* Action Buttons — Unified secondary outline style */}
+              <div className="flex flex-wrap items-center gap-2 pt-1">
                 {detail.github && (
                   <a
                     href={`https://github.com/${detail.github}`}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-full border bg-card hover:bg-muted text-foreground transition-colors shadow-2xs shrink-0"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-full border border-border/60 bg-muted/30 hover:bg-muted hover:border-border text-foreground/80 hover:text-foreground transition-colors shadow-2xs"
                     title={t(L.openGithub, locale)}
                   >
                     <GithubIcon className="size-3.5" />
                     <span>GitHub</span>
-                    <ExternalLink className="size-3 text-muted-foreground" />
+                    <ExternalLink className="size-3 text-muted-foreground/60" />
                   </a>
                 )}
 
@@ -321,12 +317,12 @@ export function ContributorModal({
                     href={`https://instagram.com/${detail.instagram}`}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-full border bg-pink-500/10 text-pink-600 dark:text-pink-400 border-pink-500/25 hover:bg-pink-500/15 transition-colors shadow-2xs shrink-0"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-full border border-border/60 bg-muted/30 hover:bg-muted hover:border-border text-foreground/80 hover:text-foreground transition-colors shadow-2xs"
                     title={t(L.openInstagram, locale)}
                   >
                     <InstagramIcon className="size-3.5 text-pink-500" />
                     <span className="font-mono">@{detail.instagram}</span>
-                    <ExternalLink className="size-3 text-pink-500/70" />
+                    <ExternalLink className="size-3 text-muted-foreground/60" />
                   </a>
                 )}
 
@@ -335,260 +331,144 @@ export function ContributorModal({
                     href={profile.socials.notion}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-full border bg-card hover:bg-muted text-foreground transition-colors shadow-2xs shrink-0"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-full border border-border/60 bg-muted/30 hover:bg-muted hover:border-border text-foreground/80 hover:text-foreground transition-colors shadow-2xs"
                   >
                     <NotionIcon className="size-3.5" />
                     <span>Notion</span>
-                    <ExternalLink className="size-3 text-muted-foreground" />
-                  </a>
-                )}
-
-                {profile?.profilePath && (
-                  <a
-                    href={profile.profilePath}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-full border bg-card hover:bg-muted text-foreground transition-colors shadow-2xs shrink-0"
-                  >
-                    <User className="size-3.5" />
-                    <span>Profile</span>
+                    <ExternalLink className="size-3 text-muted-foreground/60" />
                   </a>
                 )}
               </div>
             </div>
 
-            {/* Hierarchical Academic Credentials (คณะ IT > สาขา IT > ชั้นปี > รหัสนักศึกษา > รุ่น IT) */}
-            {profile && (
-              <div className="rounded-xl border bg-muted/25 p-3 space-y-2 text-xs">
-                {/* Row 1: คณะ & สาขา */}
-                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-foreground/85 font-medium">
-                  {profile.faculty && (
-                    <div className="inline-flex items-center gap-1.5">
-                      <Building2 className="size-3.5 text-primary shrink-0" />
-                      <span>{t(profile.faculty, locale)}</span>
-                    </div>
-                  )}
-
-                  {profile.faculty && (profile.department || profile.major) && (
-                    <span className="text-muted-foreground/40 hidden sm:inline">•</span>
-                  )}
-
-                  {(profile.department || profile.major) && (
-                    <div className="inline-flex items-center gap-1.5">
-                      <BookMarked className="size-3.5 text-primary shrink-0" />
-                      <span>
-                        {t({ th: "สาขา", en: "Major" }, locale)}:{" "}
-                        {t(profile.department ?? profile.major!, locale)}
-                      </span>
-                    </div>
-                  )}
-                </div>
-
-                {/* Row 2: ชั้นปี | รหัส | รุ่น IT */}
-                <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
-                  {/* 1. ชั้นปี */}
-                  {profile.academic && (
-                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary/10 text-primary font-medium text-[11px] border border-primary/20 shadow-2xs">
-                      <GraduationCap className="size-3 shrink-0" />
-                      <span>{t(profile.academic.yearLabel, locale)}</span>
-                    </span>
-                  )}
-
-                  {/* 2. รหัสนักศึกษา */}
-                  {profile.studentId && (
-                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-background text-muted-foreground font-mono text-[11px] border shadow-2xs">
-                      <span className="text-[10px] text-muted-foreground/70 font-sans">
-                        {t({ th: "รหัส", en: "ID" }, locale)}
-                      </span>
-                      <span>{profile.studentId}</span>
-                    </span>
-                  )}
-
-                  {/* 3. รุ่น IT */}
-                  {profile.cohort && (
-                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-background text-foreground font-mono font-semibold text-[11px] border border-primary/30 shadow-2xs">
-                      <span className="text-[10px] text-muted-foreground font-sans font-normal">
-                        {t({ th: "รุ่น", en: "Cohort" }, locale)}
-                      </span>
-                      <span className="text-primary">{profile.cohort}</span>
-                    </span>
-                  )}
-                </div>
-              </div>
-            )}
-
-            {/* Role badge & bio */}
-            <div className="space-y-2 rounded-xl bg-muted/40 p-3 sm:p-3.5 border shadow-2xs">
-              {detail.role && (
-                <div className="flex items-center gap-1.5">
-                  <Badge
-                    variant="secondary"
-                    className="text-xs font-medium rounded-full py-0.5"
+            {/* ── De-boxed Sections (Clean borderless containers with thin dividers) ── */}
+            <div className="space-y-6 pt-3 border-t border-border/40">
+              {/* Section 1: Course Materials (Clean divide-y list, no card nesting) */}
+              {materials.length > 0 && (
+                <div className="space-y-2">
+                  {/* Section Heading */}
+                  <button
+                    type="button"
+                    onClick={() => setOpenMaterials(!openMaterials)}
+                    className="w-full flex items-center justify-between py-1 hover:text-foreground transition-colors cursor-pointer text-left"
                   >
-                    {profile?.roles.includes("lead-maintainer") ? (
-                      <Terminal className="size-3 text-primary mr-1" />
-                    ) : profile?.roles.includes("core-developer") ||
-                      profile?.roles.includes("developer") ? (
-                      <Code2 className="size-3 text-primary mr-1" />
-                    ) : profile?.roles.includes("senior-mentor") ? (
-                      <GraduationCap className="size-3 text-primary mr-1" />
-                    ) : profile?.roles.includes("note-author") ||
-                      profile?.roles.includes("content-contributor") ? (
-                      <BookOpen className="size-3 text-primary mr-1" />
-                    ) : (
-                      <Sparkles className="size-3 text-primary mr-1" />
-                    )}
-                    {t(detail.role, locale)}
-                  </Badge>
-                </div>
-              )}
-              {detail.bio && (
-                <p className="text-xs text-muted-foreground leading-relaxed break-words">
-                  {t(detail.bio, locale)}
-                </p>
-              )}
-            </div>
+                    <div className="flex items-center gap-2">
+                      <BookOpen className="size-4 text-primary shrink-0" />
+                      <span className="text-xs sm:text-sm font-semibold text-foreground">
+                        {t(L.materialsTitle, locale)}
+                      </span>
+                      <span className="text-xs font-normal text-muted-foreground">
+                        ({materials.length})
+                      </span>
+                    </div>
+                    <ChevronDown
+                      className={`size-4 text-muted-foreground transition-transform duration-200 ${
+                        openMaterials ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
 
-            {/* ── Accordion Section 1: Course Materials ── */}
-            {materials.length > 0 && (
-              <div className="rounded-xl border bg-card/60 overflow-hidden shadow-2xs">
-                {/* Accordion Header */}
-                <button
-                  type="button"
-                  onClick={() => setOpenMaterials(!openMaterials)}
-                  className="w-full flex items-center justify-between p-3 sm:p-3.5 hover:bg-muted/40 transition-colors cursor-pointer text-left"
-                >
-                  <div className="flex items-center gap-2">
-                    <BookOpen className="size-4 text-primary shrink-0" />
-                    <span className="text-xs sm:text-sm font-semibold text-foreground">
-                      {t(L.materialsTitle, locale)}
-                    </span>
-                    <Badge
-                      variant="outline"
-                      className="text-[10px] px-2 py-0 rounded-full border-primary/30 text-primary"
-                    >
-                      {materials.length} {t({ th: "รายการ", en: "items" }, locale)}
-                    </Badge>
-                  </div>
-                  <ChevronDown
-                    className={`size-4 text-muted-foreground transition-transform duration-200 ${
-                      openMaterials ? "rotate-180" : ""
-                    }`}
-                  />
-                </button>
-
-                {/* Accordion Body */}
-                {openMaterials && (
-                  <div className="px-3 pb-3 sm:px-3.5 sm:pb-3.5 pt-0 space-y-2 border-t border-border/40">
-                    <div className="pt-2 space-y-2">
+                  {/* Section List: Thin divide-y lines */}
+                  {openMaterials && (
+                    <div className="divide-y divide-border/40">
                       {materials.map((item, idx) => (
                         <div
                           key={idx}
-                          className="rounded-lg border bg-muted/20 p-2.5 text-xs space-y-1 hover:bg-muted/40 transition-colors"
+                          className="py-2.5 flex items-start justify-between gap-3 group"
                         >
-                          <div className="flex items-start justify-between gap-2">
-                            <div className="flex items-center gap-1.5 min-w-0">
-                              <MaterialIcon type={item.type} />
-                              <Badge
-                                variant="outline"
-                                className="text-[10px] font-mono px-1.5 py-0 shrink-0 border-primary/30 text-primary"
-                              >
+                          <div className="space-y-0.5 min-w-0">
+                            <div className="flex items-center gap-2 min-w-0">
+                              {/* Neutral low-contrast course badge */}
+                              <span className="bg-muted text-muted-foreground font-mono text-[10px] px-1.5 py-0.5 rounded shrink-0 font-normal">
                                 {item.courseCode}
-                              </Badge>
-                              <span className="font-semibold text-foreground/90 truncate">
+                              </span>
+                              <span className="text-xs font-medium text-foreground/90 group-hover:text-primary transition-colors">
                                 {t(item.title, locale)}
                               </span>
+                              {item.badge && (
+                                <span className="text-[10px] text-muted-foreground hidden sm:inline">
+                                  · {t(item.badge, locale)}
+                                </span>
+                              )}
                             </div>
-                            {item.url && (
-                              <a
-                                href={item.url}
-                                target={
-                                  item.url.startsWith("http")
-                                    ? "_blank"
-                                    : undefined
-                                }
-                                rel={
-                                  item.url.startsWith("http")
-                                    ? "noreferrer"
-                                    : undefined
-                                }
-                                className="inline-flex items-center gap-1 text-[11px] text-primary hover:underline shrink-0 font-medium ml-1"
-                              >
-                                <span>{t(L.viewWork, locale)}</span>
-                                <ExternalLink className="size-2.5" />
-                              </a>
+                            {item.description && (
+                              <p className="text-[11px] text-muted-foreground leading-relaxed pl-7">
+                                {t(item.description, locale)}
+                              </p>
                             )}
                           </div>
-                          {item.description && (
-                            <p className="text-[11px] text-muted-foreground leading-relaxed pl-5">
-                              {t(item.description, locale)}
-                            </p>
+
+                          {/* Right-aligned clean arrow icon */}
+                          {item.url && (
+                            <a
+                              href={item.url}
+                              target={
+                                item.url.startsWith("http")
+                                  ? "_blank"
+                                  : undefined
+                              }
+                              rel={
+                                item.url.startsWith("http")
+                                  ? "noreferrer"
+                                  : undefined
+                              }
+                              className="shrink-0 p-1 text-muted-foreground hover:text-primary transition-colors mt-0.5"
+                              title={t({ th: "เปิดดู", en: "Open" }, locale)}
+                            >
+                              <ExternalLink className="size-3.5" />
+                            </a>
                           )}
                         </div>
                       ))}
                     </div>
-                  </div>
-                )}
-              </div>
-            )}
+                  )}
+                </div>
+              )}
 
-            {/* ── Accordion Section 2: Contributions & Commit History ── */}
-            {contributions.length > 0 && (
-              <div className="rounded-xl border bg-card/60 overflow-hidden shadow-2xs">
-                {/* Accordion Header */}
-                <button
-                  type="button"
-                  onClick={() => setOpenChangelog(!openChangelog)}
-                  className="w-full flex items-center justify-between p-3 sm:p-3.5 hover:bg-muted/40 transition-colors cursor-pointer text-left"
-                >
-                  <div className="flex flex-wrap items-center gap-2">
-                    <Code2 className="size-4 text-primary shrink-0" />
-                    <span className="text-xs sm:text-sm font-semibold text-foreground">
-                      {t(L.contributions, locale)}
-                    </span>
-                    <div className="flex items-center gap-1">
-                      <Badge
-                        variant="outline"
-                        className="text-[10px] px-2 py-0 rounded-full border-primary/30 text-primary"
-                      >
-                        {contributions.length} {t(L.versionsCount, locale)}
-                      </Badge>
-                      <span className="text-[11px] text-muted-foreground font-mono hidden sm:inline">
-                        ({totalAttributedChanges} commits/changes)
+              {/* Section 2: Contributions & Commit History (Clean divide-y list) */}
+              {contributions.length > 0 && (
+                <div className="space-y-2">
+                  {/* Section Heading */}
+                  <button
+                    type="button"
+                    onClick={() => setOpenChangelog(!openChangelog)}
+                    className="w-full flex items-center justify-between py-1 hover:text-foreground transition-colors cursor-pointer text-left"
+                  >
+                    <div className="flex items-center gap-2">
+                      <Code2 className="size-4 text-primary shrink-0" />
+                      <span className="text-xs sm:text-sm font-semibold text-foreground">
+                        {t(L.contributions, locale)}
+                      </span>
+                      <span className="text-xs font-normal text-muted-foreground">
+                        ({contributions.length} {t(L.versionsCount, locale)} ·{" "}
+                        {totalAttributedChanges} {t(L.changesCount, locale)})
                       </span>
                     </div>
-                  </div>
-                  <ChevronDown
-                    className={`size-4 text-muted-foreground transition-transform duration-200 ${
-                      openChangelog ? "rotate-180" : ""
-                    }`}
-                  />
-                </button>
+                    <ChevronDown
+                      className={`size-4 text-muted-foreground transition-transform duration-200 ${
+                        openChangelog ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
 
-                {/* Accordion Body */}
-                {openChangelog && (
-                  <div className="px-3 pb-3 sm:px-3.5 sm:pb-3.5 pt-0 border-t border-border/40">
-                    <div className="pt-3 space-y-3 divide-y divide-border/50">
+                  {/* Section List: Thin divide-y lines */}
+                  {openChangelog && (
+                    <div className="divide-y divide-border/40 pt-1">
                       {contributions.map((v) => {
                         const isInDev = !v.date;
                         return (
-                          <div
-                            key={v.version}
-                            className="pt-3 first:pt-0 space-y-2"
-                          >
-                            <div className="flex flex-wrap items-center justify-between gap-1.5 text-xs">
-                              <div className="flex flex-wrap items-center gap-1.5">
-                                <span className="font-mono font-bold text-primary text-sm">
+                          <div key={v.version} className="py-3 space-y-1.5">
+                            <div className="flex items-center justify-between gap-2 text-xs">
+                              <div className="flex items-center gap-2">
+                                <span className="font-mono font-semibold text-primary text-xs">
                                   v{v.version}
                                 </span>
                                 {isInDev ? (
-                                  <Badge
-                                    variant="outline"
-                                    className="text-[10px] py-0 px-2 border-amber-500/40 text-amber-600 dark:text-amber-400 rounded-full"
-                                  >
-                                    {t(L.inDevelopment, locale)}
-                                  </Badge>
+                                  <span className="text-[10px] text-amber-500 font-medium">
+                                    ({t(L.inDevelopment, locale)})
+                                  </span>
                                 ) : (
-                                  <span className="inline-flex items-center gap-1 text-[11px] text-muted-foreground bg-muted/50 px-2 py-0.5 rounded-md">
-                                    <Calendar className="size-3 text-muted-foreground/70" />
+                                  <span className="text-[10px] text-muted-foreground/70">
                                     {new Date(v.date!).toLocaleDateString(
                                       locale === "th" ? "th-TH" : "en-GB",
                                       {
@@ -608,16 +488,16 @@ export function ContributorModal({
                                   }
                                   target="_blank"
                                   rel="noreferrer"
-                                  className="inline-flex items-center gap-1 text-[11px] text-muted-foreground hover:text-primary transition-colors font-mono bg-muted/40 hover:bg-muted px-2 py-0.5 rounded border shadow-2xs shrink-0"
+                                  className="text-[10px] font-mono text-muted-foreground/70 hover:text-primary transition-colors flex items-center gap-1"
                                 >
-                                  <GitCommitHorizontal className="size-3 text-primary" />
+                                  <GitCommitHorizontal className="size-3 text-primary/70" />
                                   <span>{v.commit.slice(0, 7)}</span>
-                                  <ExternalLink className="size-2.5 ml-0.5 opacity-60" />
+                                  <ExternalLink className="size-2.5 opacity-60" />
                                 </a>
                               )}
                             </div>
 
-                            <ul className="space-y-1.5 pl-3 border-l-2 border-primary/30">
+                            <ul className="space-y-1 pl-2 border-l border-primary/25">
                               {v.changes.slice(0, 4).map((change, idx) => {
                                 const { cleanText } = parseChangeText(
                                   t(change.text, locale),
@@ -625,27 +505,19 @@ export function ContributorModal({
                                 return (
                                   <li
                                     key={idx}
-                                    className="text-[12px] text-foreground/85 leading-relaxed flex items-start gap-1.5"
+                                    className="text-[11px] text-muted-foreground leading-relaxed flex items-start gap-1.5"
                                   >
-                                    <span className="text-primary/70 mt-1 shrink-0 text-xs">
-                                      •
+                                    <span className="text-primary/60 shrink-0 select-none">
+                                      –
                                     </span>
-                                    <span className="break-words min-w-0">
-                                      {cleanText}
-                                    </span>
+                                    <span>{cleanText}</span>
                                   </li>
                                 );
                               })}
                               {v.changes.length > 4 && (
-                                <li className="text-[11px] text-muted-foreground italic pl-3">
+                                <li className="text-[10px] text-muted-foreground/70 italic pl-2.5">
                                   + {v.changes.length - 4}{" "}
-                                  {t(
-                                    {
-                                      th: "รายการเพิ่มเติมในเวอร์ชันนี้",
-                                      en: "more changes in this version",
-                                    },
-                                    locale,
-                                  )}
+                                  {t(L.moreChanges, locale)}
                                 </li>
                               )}
                             </ul>
@@ -653,10 +525,10 @@ export function ContributorModal({
                         );
                       })}
                     </div>
-                  </div>
-                )}
-              </div>
-            )}
+                  )}
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </DialogContent>
@@ -720,7 +592,7 @@ export function ContributorCard({
           target="_blank"
           rel="noreferrer"
           title={`GitHub: @${detail.github}`}
-          className="size-7 rounded-full flex items-center justify-center border bg-card hover:bg-muted hover:border-primary/40 text-foreground/80 hover:text-primary transition-colors shadow-2xs"
+          className="size-7 rounded-full flex items-center justify-center border border-border/60 bg-muted/30 hover:bg-muted hover:border-border text-foreground/80 hover:text-primary transition-colors shadow-2xs"
         >
           <GithubIcon className="size-3.5" />
         </a>
@@ -731,9 +603,9 @@ export function ContributorCard({
             target="_blank"
             rel="noreferrer"
             title={`Instagram: @${detail.instagram}`}
-            className="size-7 rounded-full flex items-center justify-center border border-pink-500/20 bg-pink-500/10 text-pink-500 hover:bg-pink-500/20 hover:border-pink-500/40 transition-colors shadow-2xs"
+            className="size-7 rounded-full flex items-center justify-center border border-border/60 bg-muted/30 hover:bg-muted hover:border-border text-foreground/80 hover:text-pink-500 transition-colors shadow-2xs"
           >
-            <InstagramIcon className="size-3.5" />
+            <InstagramIcon className="size-3.5 text-pink-500" />
           </a>
         )}
       </div>
@@ -757,7 +629,7 @@ export function ContributorBadge({
     <button
       type="button"
       onClick={onClick}
-      className="group inline-flex items-center gap-1.5 rounded-full border bg-card px-2.5 py-1 text-xs font-medium hover:bg-muted hover:border-primary/40 active:scale-95 transition-all shadow-2xs cursor-pointer text-left"
+      className="group inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-card px-2.5 py-1 text-xs font-medium hover:bg-muted hover:border-primary/40 active:scale-95 transition-all shadow-2xs cursor-pointer text-left"
     >
       <Avatar size="sm" className="size-5 rounded-full">
         <AvatarImage
