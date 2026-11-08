@@ -8,6 +8,7 @@ import {
   Code2,
   ExternalLink,
   GitCommitHorizontal,
+  Milestone,
   Sparkles,
   Tag,
 } from "lucide-react";
@@ -16,6 +17,7 @@ import { Badge } from "@/components/ui/badge";
 import {
   CHANGELOG,
   getCurrentVersion,
+  MAJOR_EVOLUTION_MILESTONES,
   type ChangeKind,
   type Contributor,
   type VersionEntry,
@@ -54,6 +56,14 @@ const L = {
   viewCommit: { th: "ดู commit บน GitHub", en: "View commit on GitHub" },
   viewDiff: { th: "ดูการเปลี่ยนแปลงบน GitHub", en: "View changes on GitHub" },
   releaseTimeline: { th: "ประวัติการปล่อยเวอร์ชัน", en: "Release Timeline" },
+  evolutionTitle: {
+    th: "การนับลำดับวิวัฒนาการหลักของ <i>Help",
+    en: "Major Evolution Milestones of <i>Help",
+  },
+  evolutionSubtitle: {
+    th: "ลำดับหมุดหมายสำคัญจากจุดเริ่มต้นสู่ Production Release",
+    en: "Key architectural milestones from inception to production release",
+  },
 };
 
 const KIND_LABEL: Record<ChangeKind, { th: string; en: string }> = {
@@ -129,6 +139,60 @@ export function VersionView() {
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-8 items-start">
         {/* Left Panel: Release Timeline */}
         <div className="space-y-6">
+          {/* Major Evolution Milestones Card */}
+          <section className="rounded-2xl border bg-card/60 p-5 sm:p-6 space-y-4 shadow-sm">
+            <div className="flex items-center justify-between border-b pb-3">
+              <div className="flex items-center gap-2">
+                <Milestone className="size-4 text-primary" />
+                <h2 className="text-sm font-semibold text-foreground/90">
+                  {t(L.evolutionTitle, locale)}
+                </h2>
+              </div>
+              <span className="text-[11px] text-muted-foreground font-mono">
+                {MAJOR_EVOLUTION_MILESTONES.length} milestones
+              </span>
+            </div>
+
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              {t(L.evolutionSubtitle, locale)}
+            </p>
+
+            <div className="relative border-l-2 border-border/40 pl-6 space-y-3.5 my-2">
+              {MAJOR_EVOLUTION_MILESTONES.map((item) => (
+                <div
+                  key={item.version}
+                  className="relative flex flex-col sm:flex-row sm:items-baseline gap-1.5 sm:gap-3 text-xs"
+                >
+                  <span
+                    className={`absolute -left-[29px] top-1 size-2 rounded-full ring-4 ${
+                      item.highlight
+                        ? "bg-primary ring-primary/20"
+                        : "bg-muted-foreground/40 ring-background"
+                    }`}
+                  />
+                  <span
+                    className={`font-mono text-[11px] font-semibold shrink-0 px-2 py-0.5 rounded ${
+                      item.highlight
+                        ? "bg-primary/15 text-primary border border-primary/30"
+                        : "bg-muted text-foreground/80"
+                    }`}
+                  >
+                    {item.version}
+                  </span>
+                  <span
+                    className={`leading-relaxed ${
+                      item.highlight
+                        ? "text-foreground font-medium"
+                        : "text-muted-foreground"
+                    }`}
+                  >
+                    {t(item.summary, locale)}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </section>
+
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2 text-sm font-semibold text-foreground/90">
               <Tag className="size-4 text-primary" />

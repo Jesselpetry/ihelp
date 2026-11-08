@@ -12,6 +12,19 @@
 
 ---
 
+## การนับลำดับวิวัฒนาการหลักของ <i>Help
+
+- **v0.1.x** — จุดเริ่มต้น PSCP Learning-Log Maker & AI Guidelines
+- **v0.4.x** — การเชื่อมต่อ GitHub OAuth โดย Meaookung144 และหน้า /pro โดย PGTHEGOD
+- **v0.5.x** — ห้องแลปโจทย์แนะนำ, Client-Side WASM Grader, Technique Quiz และการขยายสู่ 11 โมดูล (Spine)
+- **v0.6.x** — ระบบสมาชิกไอที (@kmitl.ac.th), ย้ายสื่อขึ้น Supabase Storage และรีแบรนด์สู่ iHelp
+- **v0.7.x** — PWA ออฟไลน์ และคาบเรียนรายสัปดาห์ ICS พร้อมวิดีโอ YouTube
+- **v0.8.x** — คลังสื่อเปิดเต็มรูปแบบ, ตารางสอบผังที่นั่ง, Help-Desk Chat โดย PhuPunnavit, สไลด์แปลไทย และเครื่องคิดเกรด
+- **v0.9.x** — REST API คลังสื่อสาธารณะ, ยกเครื่อง Grade Calculator 3 แผง และหน้ารวมผู้พัฒนา
+- **v1.0.0** — Production Release: สถาปัตยกรรม Weekly Learning Path, ICS Track A และระบบ Contributor Credit System สมบูรณ์แบบ
+
+---
+
 ## [1.0.0] - 8 พฤศจิกายน 2569
 
 **ผู้ร่วมพัฒนา:** Chatan Petry ([@Jesselpetry](https://github.com/Jesselpetry), IG: [@chatann_](https://instagram.com/chatann_))

@@ -55,6 +55,75 @@ export interface VersionEntry {
   changes: ChangeEntry[];
 }
 
+export interface EvolutionMilestone {
+  version: string;
+  summary: LText;
+  highlight?: boolean;
+}
+
+/**
+ * การนับลำดับวิวัฒนาการหลักของ <i>Help (Major Evolution Milestones)
+ */
+export const MAJOR_EVOLUTION_MILESTONES: EvolutionMilestone[] = [
+  {
+    version: "v0.1.x",
+    summary: {
+      th: "จุดเริ่มต้น PSCP Learning-Log Maker & AI Guidelines",
+      en: "Origins: PSCP Learning-Log Maker & AI Guidelines",
+    },
+  },
+  {
+    version: "v0.4.x",
+    summary: {
+      th: "การเชื่อมต่อ GitHub OAuth โดย Meaookung144 และหน้า /pro โดย PGTHEGOD",
+      en: "GitHub OAuth integration by Meaookung144 & /pro landing page by PGTHEGOD",
+    },
+  },
+  {
+    version: "v0.5.x",
+    summary: {
+      th: "ห้องแลปโจทย์แนะนำ, Client-Side WASM Grader, Technique Quiz และการขยายสู่ 11 โมดูล (Spine)",
+      en: "Curated Problem Labs, Client-Side WASM Grader, Technique Quiz & 11-module Spine expansion",
+    },
+  },
+  {
+    version: "v0.6.x",
+    summary: {
+      th: "ระบบสมาชิกไอที (@kmitl.ac.th), ย้ายสื่อขึ้น Supabase Storage และรีแบรนด์สู่ iHelp",
+      en: "IT KMITL Member Auth (@kmitl.ac.th), Supabase Storage migration & rebrand to iHelp",
+    },
+  },
+  {
+    version: "v0.7.x",
+    summary: {
+      th: "PWA ออฟไลน์ และคาบเรียนรายสัปดาห์ ICS พร้อมวิดีโอ YouTube",
+      en: "Offline PWA & ICS Weekly Sessions with integrated YouTube lectures",
+    },
+  },
+  {
+    version: "v0.8.x",
+    summary: {
+      th: "คลังสื่อเปิดเต็มรูปแบบ, ตารางสอบผังที่นั่ง, Help-Desk Chat โดย PhuPunnavit, สไลด์แปลไทย และเครื่องคิดเกรด",
+      en: "Open Media Library, Exam Seating Locator, Help-Desk Chat by PhuPunnavit, Thai slides & Grade Calculator",
+    },
+  },
+  {
+    version: "v0.9.x",
+    summary: {
+      th: "REST API คลังสื่อสาธารณะ, ยกเครื่อง Grade Calculator 3 แผง และหน้ารวมผู้พัฒนา",
+      en: "Public Catalog REST API, 3-panel Grade Calculator overhaul & Version/Contributors page",
+    },
+  },
+  {
+    version: "v1.0.0",
+    highlight: true,
+    summary: {
+      th: "Production Release: สถาปัตยกรรม Weekly Learning Path, ICS Track A และระบบ Contributor Credit System สมบูรณ์แบบ",
+      en: "Production Release: Weekly Learning Path architecture, ICS Track A & Full Contributor Credit System",
+    },
+  },
+];
+
 // Mirrors CHANGELOG.md at the repo root — keep both in sync when releasing.
 export const CHANGELOG: VersionEntry[] = [
   {
