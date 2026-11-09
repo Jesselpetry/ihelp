@@ -341,8 +341,15 @@ export function resolveCourseTimeline(
     title: L.finalTitle,
     subtitle: L.finalSubtitle,
     studyGuide: {
-      title: L.finalGuideTitle,
-      subtitle: L.finalGuideSub,
+      title: code === "MFIT"
+        ? { th: "สอบปลายภาค", en: "Final Examination" }
+        : L.finalGuideTitle,
+      subtitle: code === "MFIT"
+        ? {
+            th: "ศูนย์บัญชาการรบ MFIT: คลังข้อสอบเก่าฉบับจริง · ข้อสอบจำลอง 25 ข้อ · ชีทสรุปสูตร · แผนรบ 35 คะแนน",
+            en: "MFIT War Room: Past paper vault, 25-item mock exam, formula sheets & 35-point blueprint",
+          }
+        : L.finalGuideSub,
       href: code === "MFIT"
         ? `/courses/${cDir}/summary?doc=final-war-room`
         : hasSummary

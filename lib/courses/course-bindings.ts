@@ -9,6 +9,7 @@ import { ITF_QUIZ, ITF_QUIZ_ID } from "@/lib/quiz/itf-quiz";
 import { ITF_FINAL_MOCK_EXAM } from "@/lib/quiz/itf-final-mock-exam";
 import { ICS_QUIZ, ICS_QUIZ_ID } from "@/lib/quiz/ics-quiz";
 import { MFIT_BLUEPRINT_QUIZ, MFIT_QUIZ, MFIT_QUIZ_ID } from "@/lib/quiz/mfit-quiz";
+import { MFIT_FINAL_MOCK_EXAM, MFIT_FINAL_MOCK_QUIZ_ID } from "@/lib/quiz/mfit-final-mock-exam";
 import { EN_KMITL_CURATED_QUIZ, EN_KMITL_QUIZ_ID } from "@/lib/quiz/en-kmitl-quiz";
 import { EN_KMITL_MOCK_EXAM } from "@/lib/quiz/en-kmitl-mock-exam";
 import { CHEM_QUIZ, CHEM_QUIZ_ID } from "@/lib/quiz/chem-quiz";
@@ -538,10 +539,17 @@ export const COURSE_BINDINGS: Record<string, CourseBinding> = {
       ],
     },
     mock_exam: {
-      title: { th: "ข้อสอบชุดจำลอง + เฉลย", en: "Mock Exam + Key" },
+      title: { th: "แนวข้อสอบจำลองปลายภาค (25 ข้อ)", en: "Final Practice Mock Exam (25 Items)" },
       subtitle: {
-        th: "4 พาร์ต 100 คะแนน: ปรนัย เติมคำ อัตนัย และข้อวิเคราะห์ พร้อมเฉลยละเอียด",
-        en: "Four parts, 100 marks: multiple choice, fill-in, written, and analysis, fully worked",
+        th: "ปรนัย 25 ข้อ ครอบคลุม 5 เสาหลักแคลคูลัส (Week 08–15) พร้อมเฉลยละเอียดและวิเคราะห์ตัวเลือก",
+        en: "Twenty-five items across the 5 pillars of calculus (weeks 08–15), fully worked",
+      },
+      scope: "final",
+      bank: () => MFIT_FINAL_MOCK_EXAM,
+      quizId: MFIT_FINAL_MOCK_QUIZ_ID,
+      note: {
+        th: "อ้างอิงจากโครงสร้างข้อสอบจริงปลายภาค 2559–2561 และสถิติแนวข้อสอบ 1/2569 (35 คะแนน)",
+        en: "Referenced from actual past final exams 2016-2018 and 1/2569 blueprint statistics (35 points)",
       },
       docs: [
         {

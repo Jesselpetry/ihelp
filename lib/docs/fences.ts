@@ -50,3 +50,28 @@ export function parseYouTubeFence(source: string): FenceVideo[] {
   }
   return videos;
 }
+
+export interface FenceWarRoomConfig {
+  course: string;
+  scope: string;
+}
+
+/**
+ * Parses a ```mfit-war-room fence.
+ * Example:
+ *   course=MFIT
+ *   scope=final
+ */
+export function parseWarRoomFence(source: string): FenceWarRoomConfig {
+  const config: FenceWarRoomConfig = { course: "MFIT", scope: "final" };
+  for (const line of source.split("\n")) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith("#")) continue;
+    const [rawKey, ...rest] = trimmed.split("=");
+    const key = rawKey?.trim().toLowerCase();
+    const val = rest.join("=").trim();
+    if (key === "course" && val) config.course = val.toUpperCase();
+    if (key === "scope" && val) config.scope = val.toLowerCase();
+  }
+  return config;
+}

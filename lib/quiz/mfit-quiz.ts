@@ -9,16 +9,25 @@ export const MFIT_QUIZ_ID = 900004;
 export interface MfitChapter {
   chapter: number;
   title: LText;
+  scope?: "midterm" | "final";
 }
 
 export const MFIT_CHAPTERS: MfitChapter[] = [
-  { chapter: 1, title: { th: "เมทริกซ์และการดำเนินการ", en: "Matrices & Operations" } },
-  { chapter: 2, title: { th: "Inverse และ Determinants", en: "Inverse & Determinants" } },
-  { chapter: 3, title: { th: "ระบบสมการเชิงเส้น", en: "Systems of Linear Equations" } },
-  { chapter: 4, title: { th: "เวกเตอร์ใน Rⁿ", en: "Vectors in Rⁿ" } },
-  { chapter: 5, title: { th: "ปริภูมิเวกเตอร์และความเป็นอิสระ", en: "Vector Spaces & Independence" } },
-  { chapter: 6, title: { th: "การแปลงเชิงเส้น", en: "Linear Transformations" } },
-  { chapter: 7, title: { th: "Eigenvalue และ Orthogonal Matrix", en: "Eigenvalues & Orthogonal Matrices" } },
+  { chapter: 1, title: { th: "เมทริกซ์และการดำเนินการ", en: "Matrices & Operations" }, scope: "midterm" },
+  { chapter: 2, title: { th: "Inverse และ Determinants", en: "Inverse & Determinants" }, scope: "midterm" },
+  { chapter: 3, title: { th: "ระบบสมการเชิงเส้น", en: "Systems of Linear Equations" }, scope: "midterm" },
+  { chapter: 4, title: { th: "เวกเตอร์ใน Rⁿ", en: "Vectors in Rⁿ" }, scope: "midterm" },
+  { chapter: 5, title: { th: "ปริภูมิเวกเตอร์และความเป็นอิสระ", en: "Vector Spaces & Independence" }, scope: "midterm" },
+  { chapter: 6, title: { th: "การแปลงเชิงเส้น", en: "Linear Transformations" }, scope: "midterm" },
+  { chapter: 7, title: { th: "Eigenvalue และ Orthogonal Matrix", en: "Eigenvalues & Orthogonal Matrices" }, scope: "midterm" },
+  { chapter: 8, title: { th: "ลิมิตและความต่อเนื่อง (Calc-01)", en: "Limits & Continuity (Calc-01)" }, scope: "final" },
+  { chapter: 9, title: { th: "อนุพันธ์และอัตราการเปลี่ยนแปลง (Calc-02)", en: "Derivatives & Rates of Change (Calc-02)" }, scope: "final" },
+  { chapter: 10, title: { th: "กฎลูกโซ่และอนุพันธ์ฟังก์ชันแฝง (Calc-03)", en: "Chain Rule & Implicit Diff (Calc-03)" }, scope: "final" },
+  { chapter: 11, title: { th: "การประยุกต์อนุพันธ์ & ค่าสุดขีด (Calc-04)", en: "Optimization & Extreme Values (Calc-04)" }, scope: "final" },
+  { chapter: 12, title: { th: "ปริพันธ์ไม่จำกัดเขต & แทนค่าตัวแปร (Calc-05)", en: "Indefinite Integrals & Substitution (Calc-05)" }, scope: "final" },
+  { chapter: 13, title: { th: "ปริพันธ์จำกัดเขต & ทฤษฎีบทหลัก FTC (Calc-06)", en: "Definite Integrals & FTC (Calc-06)" }, scope: "final" },
+  { chapter: 14, title: { th: "การอินทิเกรตแยกส่วน By Parts (Calc-07)", en: "Integration by Parts (Calc-07)" }, scope: "final" },
+  { chapter: 15, title: { th: "พื้นที่และปริมาตรทรงตันหมุน (Calc-08)", en: "Area & Volume of Revolution (Calc-08)" }, scope: "final" },
 ];
 
 export const MFIT_QUIZ: QuizQuestion[] = [

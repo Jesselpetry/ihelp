@@ -1,6 +1,11 @@
 # ⚔️ MFIT Final Exam War Room — ศูนย์รวมข้อสอบเก่า & ยุทธศาสตร์พิชิตปลายภาค (35 คะแนน)
 ## 06016401 Mathematics for Information Technology · Final Examination Study Guide & Vault
 
+```mfit-war-room
+course=MFIT
+scope=final
+```
+
 > **สรุปยุทธศาสตร์การรบปลายภาค 1/2569:**  
 > การสอบปลายภาควิชา MFIT เป็น **ข้อเขียนแสดงวิธีทำล้วน 100% (Constructed-Response)** รวม **35 คะแนนเต็ม** (คิดเป็น 35% ของคะแนนรวมทั้งรายวิชา)  
 > ขอบเขตเนื้อหา: **แคลคูลัสล้วน (สัปดาห์ที่ 8 ถึง 15)** ตามชุดสไลด์บรรยาย `Calculus-01` ถึง `Calculus-08`  

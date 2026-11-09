@@ -16,6 +16,16 @@
 
 ### เพิ่ม
 
+- **ระบบปุ่มฮีโร่สอบปลายภาคสีแดง, ศูนย์บัญชาการรบโต้ตอบ (Interactive War Room Portal), คลังข้อสอบจริง และชุดข้อสอบจำลองแคลคูลัส 25 ข้อ (โดย @Jesselpetry)** —
+  1. ยกระดับการ์ดจุดพักสอบปลายภาคบนไทม์ไลน์รายวิชา (`components/course-exam-milestone.tsx`) ด้วยการ์ดฮีโร่สีแดงไล่เฉด (`bg-gradient-to-r from-red-600 via-rose-600 to-red-700`) พร้อมตัวอักษรหนาใหญ่สีขาวโดดเด่นสะดุดตา **"สอบปลายภาค"** พร้อมป้ายระบุ 35 คะแนนเต็ม และปุ่ม "เข้าสู่ War Room →"
+  2. พัฒนาระบบศูนย์บัญชาการรบโต้ตอบ `<MfitWarRoomPortal />` (`components/mfit-war-room-portal.tsx`) ผ่านระบบ Fenced Embeds ````mfit-war-room (`lib/docs/fences.ts`, `components/md-fences.tsx`) ในหน้า Final War Room (`study-guide-final-war-room.md`) แทนที่หน้าเอกสารด้วยแดชบอร์ด 5 โหมดแบบ Interactive:
+     - 🎯 **ข้อสอบจำลองปลายภาค (Mock Exam Simulator)**: ระบบฝึกทำข้อสอบจำลองแบบเต็ม 25 ข้อ หรือเลือกเจาะลึกราย 5 เสาหลัก พร้อมเฉลยละเอียดและวิเคราะห์วิธีทำทีละขั้น
+     - 📚 **คลังข้อสอบเก่าฉบับจริง (Past Papers Vault)**: เชื่อมต่อบัคเก็ตลับ `ihelp-library-exams` แสดงรายการข้อสอบจริง 7 ชุด (ปี 2561, 2560, 2559, เฉลยลายมือ NoteLub, ชุดคลังกลาง, สำเนา 2559, ชุดคละบท) พร้อมปุ่มพรีวิวทันทีผ่าน `PreviewModal` และดาวน์โหลด
+     - 📑 **ชีทสรุปสูตร & เอกสารทางการ (Official Formula Sheets)**: รวม 6 ฉบับทางการ (Useful Info 2569, Holy Shit Final Part 1, Final Recap W08–13, Diff & Int Recap, Cheat Sheets 2022 & 2023)
+     - 📊 **วิเคราะห์ 35 คะแนน & 10 กับดักจุดผิด (Blueprint & Deadly Traps)**: รายละเอียดคะแนน 5 เสาหลักและ 10 จุดตาย All-or-Nothing
+     - 📖 **คู่มือวิธีทำโจทย์แบบละเอียด (Deep Study Guide)**: ทางลัด Fast-Scroll เชื่อมโยงเข้าสู่เนื้อหาเลกเชอร์มาร์กดาวน์ฉบับสมบูรณ์ด้านล่าง
+  3. จัดทำชุดคลังข้อสอบจำลองแคลคูลัสปลายภาค 25 ข้อ (`lib/quiz/mfit-final-mock-exam.ts`) ครอบคลุม 5 เสาหลักตามโครงสร้างข้อสอบจริง 2559–2561 และสัดส่วน 35 คะแนน 1/2569 พร้อมผูกเชื่อมโยงเข้ากับระบบแบบทดสอบ `mock_exam` ใน `lib/courses/course-bindings.ts` และอัปเดตบทเรียนปลายภาคใน `lib/quiz/mfit-quiz.ts`
+
 - **คลังสื่อการเรียนรู้สไลด์สรุปเนื้อหาแปลไทยวิชา ICS ครึ่งหลัง บทที่ 1–7 และแนวข้อสอบปลายภาค (โดย @PhuPunnavit)** —
   1. เพิ่มสไลด์สรุปเนื้อหาฮาร์ดแวร์ครึ่งหลังแปลไทยฉบับอ่านเข้าใจง่ายในหน้าเดียวจาก Figma รวม 7 บท (`ics-sheet-ch01-computer-system-th.pdf` ถึง `ics-sheet-ch07-alu-cpu-creation-th.pdf`) ครอบคลุม Computer System, Memory & I/O Addressing, MUX/Latch/Buffer, Counter & DAC/ADC (I/II), Memory Unit, และ ALU & CPU Creation
   2. เพิ่มชุดแนวข้อสอบปลายภาควิชา ICS พร้อมเฉลยคำตอบข้อเขียน (`ics-sheet-final-exam-guide-th.pdf`) อธิบายขั้นตอนการคำนวณและข้อเขียนอย่างละเอียด

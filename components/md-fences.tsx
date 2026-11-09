@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { VideoPlayer } from "@/components/media/video-player";
-import { parseYouTubeFence } from "@/lib/docs/fences";
+import { parseYouTubeFence, parseWarRoomFence } from "@/lib/docs/fences";
+import { MfitWarRoomPortal } from "@/components/mfit-war-room-portal";
 
 /**
  * Fenced blocks that render as something other than a code box.
@@ -35,6 +36,10 @@ export const FENCES: Record<string, FenceRenderer> = {
   youtube: (source) => {
     const videos = parseYouTubeFence(source);
     return videos.length > 0 ? <VideoPlayer provider="youtube" videos={videos} /> : null;
+  },
+  "mfit-war-room": (source) => {
+    const config = parseWarRoomFence(source);
+    return <MfitWarRoomPortal config={config} />;
   },
 };
 
