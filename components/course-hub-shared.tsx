@@ -229,7 +229,6 @@ export interface ResourceItemCardProps {
   onPreview?: () => void;
   downloadUrl: string;
   fileName: string;
-  previewLabel?: string;
   downloadTitle?: string;
 }
 
