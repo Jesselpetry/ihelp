@@ -115,10 +115,51 @@ const PSCP_SCHEDULE: CourseSchedule = {
   weeks: PSCP_WEEKS.map(({ week, scope, title }) => ({ week, scope, title })),
 };
 
+const MFIT_SCHEDULE: CourseSchedule = {
+  parts: {
+    midterm: {
+      label: {
+        th: "ครึ่งแรก · พีชคณิตเชิงเส้น (Linear Algebra)",
+        en: "First half · Linear Algebra",
+      },
+      detail: { th: "อ.ดร. ประพันธ์ · สอบกลางภาค 35%", en: "Dr. Praphan · Midterm 35%" },
+      short: "Midterm",
+      tab: { th: "ครึ่งแรก · พีชคณิตเชิงเส้น", en: "1st half · Linear Algebra" },
+    },
+    final: {
+      label: {
+        th: "ครึ่งหลัง · แคลคูลัส (Calculus)",
+        en: "Second half · Calculus",
+      },
+      detail: { th: "อ.ดร. สมเกียรติ · สอบปลายภาค 35%", en: "Dr. Somkiat · Final 35%" },
+      short: "Final",
+      tab: { th: "ครึ่งหลัง · แคลคูลัส", en: "2nd half · Calculus" },
+    },
+  },
+  weeks: [
+    { week: 1, scope: "midterm", title: { th: "แนะนำรายวิชาและเมทริกซ์", en: "Course Intro & Matrices" } },
+    { week: 2, scope: "midterm", title: { th: "เมทริกซ์และดีเทอร์มิแนนต์", en: "Matrices & Determinants" } },
+    { week: 3, scope: "midterm", title: { th: "ระบบสมการเชิงเส้น", en: "Systems of Linear Equations" } },
+    { week: 4, scope: "midterm", title: { th: "เวกเตอร์ในปริภูมิ Rⁿ", en: "Vectors in Rⁿ" } },
+    { week: 5, scope: "midterm", title: { th: "ปริภูมิเวกเตอร์และความเป็นอิสระเชิงเส้น", en: "Vector Spaces & Linear Independence" } },
+    { week: 6, scope: "midterm", title: { th: "การแปลงเชิงเส้น", en: "Linear Transformations" } },
+    { week: 7, scope: "midterm", title: { th: "ค่าไอเกน เวกเตอร์ไอเกน และเมทริกซ์เชิงตั้งฉาก", en: "Eigenvalues & Orthogonal Matrix" } },
+    { week: 8, scope: "final", title: { th: "ฟังก์ชัน, ลิมิต และความต่อเนื่อง", en: "Function, Limit & Continuity" } },
+    { week: 9, scope: "final", title: { th: "อนุพันธ์ (I) นิยาม + กฎพื้นฐาน", en: "Differentiation (I) & Basic Rules" } },
+    { week: 10, scope: "final", title: { th: "อนุพันธ์ (II) กฎลูกโซ่, ฟังก์ชันแฝง, อัตราสัมพัทธ์", en: "Chain Rule, Implicit & Related Rates" } },
+    { week: 11, scope: "final", title: { th: "การประยุกต์อนุพันธ์, วาดกราฟ, ค่าสุดขีด", en: "Applications of Differentiation & Extrema" } },
+    { week: 12, scope: "final", title: { th: "ปริพันธ์ (I) ปฏิยานุพันธ์, Riemann Sum, FTC", en: "Integration (I) & FTC" } },
+    { week: 13, scope: "final", title: { th: "ปริพันธ์ (II) u-Substitution และสมมาตร", en: "Integration (II) & u-Substitution" } },
+    { week: 14, scope: "final", title: { th: "Integration by Parts, พื้นที่ และทรงตันหมุน", en: "Integration by Parts, Area & Volume" } },
+    { week: 15, scope: "final", title: { th: "จุดศูนย์กลางมวล, Centroid และอนุพันธ์ย่อย", en: "Centroid & Partial Derivatives" } },
+  ],
+};
+
 export const COURSE_SCHEDULES: Record<string, CourseSchedule> = {
   ITF: ITF_SCHEDULE,
   ICS: ICS_SCHEDULE,
   PSCP: PSCP_SCHEDULE,
+  MFIT: MFIT_SCHEDULE,
 };
 
 export function scheduleForCourse(code: string): CourseSchedule | undefined {

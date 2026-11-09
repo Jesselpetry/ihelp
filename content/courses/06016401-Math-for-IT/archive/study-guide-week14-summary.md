@@ -6,6 +6,17 @@
 
 ---
 
+## 📚 เอกสารประจำสัปดาห์
+
+| เอกสาร | ไฟล์ในคลัง | หน้า |
+|---|---|:---:|
+| สไลด์บรรยาย — อินทิเกรตแยกส่วน พื้นที่ และปริมาตรทรงตันหมุน (ฉบับจดโน้ต) | `mfit-lec-calculus-07.pdf` | 11 |
+| สไลด์ประกอบการเรียน — Calculus-07 (Handout) | `mfit-lec-calculus-07-handout.pdf` | 11 |
+| ใบงานโจทย์การบ้าน — HW14 By Parts & Volumes (ฉบับ 2569) | `mfit-hw-week14-integration-apps-2569.pdf` | 1 |
+| เฉลยการบ้านละเอียด — HW14 แสดงวิธีทำทุกข้อ | `mfit-hw-week14-integration-apps.pdf` | 3 |
+
+---
+
 # ส่วนที่ 1: Integration by Parts (ปริพันธ์ทีละส่วน)
 
 ## 1. ที่มา: Product Rule กลับหลัง

@@ -16,6 +16,15 @@
 
 ### เพิ่ม
 
+- **ศูนย์บัญชาการสอบปลายภาค MFIT Final Exam War Room (`study-guide-final-war-room.md`)** — จัดทำหน้าคู่มือทบทวนและยุทธศาสตร์การทำข้อสอบปลายภาคแบบ Exclusive ณ จุดพักสอบปลายภาค (`/courses/06016401-Math-for-IT/summary?doc=final-war-room`) พร้อมเชื่อมโยงกับปุ่ม 'คู่มือทบทวน' ในแถบไทม์ไลน์รายวิชา (`lib/courses/course-timeline.ts` และ `lib/courses/course-bindings.ts`):
+  1. วิเคราะห์และแจกแจงโครงสร้างข้อสอบปลายภาค 1/2569 สัดส่วน 35 คะแนนเต็ม (ข้อเขียนอัตนัย 100%) แยกตาม 5 เสาหลักแคลคูลัส (Pillars 1–5): Limits & Continuity, Differentiation & Applications, Optimization & Related Rates, Indefinite & Definite Integration, Integration Applications (Area & Volume)
+  2. สรุปกลยุทธ์และสูตรลัดเฉพาะทาง: การแก้ Limit รูปแบบ 0/0 และสังยุค/L'Hôpital, อนุพันธ์ฟังก์ชันแฝง (Implicit Differentiation), การตั้งสมการและโมเดล Optimization, การอินทิเกรตเปลี่ยนตัวแปร ($u$-Substitution), ตาราง DI Method สำหรับ Integration by Parts, และสูตรทรงตันจากการหมุนแบบจาน (Disk) vs วงแหวน (Washer)
+  3. รวบรวมตารางเตือนจุดผิดอันตรายที่มักเสียคะแนนฟรี 10 ประการ (10 All-or-Nothing Deadly Traps) เพื่อป้องกันข้อผิดพลาดทางพีชคณิตและแคลคูลัส
+  4. รวบรวมชุดสรุปสูตรและเอกสารทางการสำหรับทบทวน: เอกสารข้อมูลที่เป็นประโยชน์ (Useful Information 2569), แผ่นสรุปสูตร Calculus Week 08–13, ชีตรวมสูตรแคลคูลัสฉบับพกพา NoteLub พร้อมสารบัญข้อสอบเก่าย้อนหลังพร้อมสถิติการออกสอบ (2559, 2560, 2561, สรุป NoteLub) ในคลังเรียนรู้ (โดย @Jesselpetry)
+- **คลังสื่อการเรียนรู้และตารางสรุปเอกสารประจำสัปดาห์ครึ่งหลังวิชา MFIT (Weeks 08–15 Session Materials Decks)** —
+  1. เพิ่มตารางโครงสร้างสัปดาห์ `MFIT_SCHEDULE` ใน `lib/library/course-weeks.ts` ครอบคลุม 15 สัปดาห์ (กลางภาค Week 01–07, ปลายภาค Week 08–15) และลงทะเบียนเข้าสู่ `COURSE_SCHEDULES`
+  2. ลงทะเบียนเอกสารประกอบการเรียนวิชา Math for IT ครึ่งหลังทั้งหมดใน `lib/library/subject-library.ts` แยกบทเรียน (Chapter 8–15) ชัดเจนระหว่างสไลด์และชีตคำสั่ง (`lecture`), โจทย์การบ้าน 2569 (`exercise` พร้อมแฟล็ก `isCurrentYear: true`), เฉลยการบ้านฉบับพิมพ์ทางการ และเฉลยลายมือ v2
+  3. ฝังตารางเอกสาร `## 📚 เอกสารประจำสัปดาห์` ในหน้าสรุปรายสัปดาห์ `study-guide-week08-summary.md` ถึง `week15-summary.md` ทั้ง 8 สัปดาห์ เชื่อมโยงกับคอมโพเนนต์ `SessionMaterialsDeck` แสดงผลแบบโต้ตอบทั้งการ์ดและตาราง พร้อมปุ่มเปิดดู PDF ในระบบทันที (โดย @Jesselpetry)
 - **ระบบป้ายไฮไลต์และแบนเนอร์ข้อแนะนำก่อนวันสอบวิชา PSCP จากพี่ๆ TA (`ExamRecommendBanner`, Highlight Badges & Recommended Filter)** —
   1. เพิ่มแบนเนอร์ข้อแนะนำก่อนวันสอบ (`ExamRecommendBanner` ใน `components/pscp/exam-recommend-banner.tsx`) รวบรวม 8 โจทย์สำคัญที่พี่ๆ TA แนะนำสำหรับเตรียมตัวสอบปลายภาค (Final Prep): CuteCat CuteFox (#3476), Members (#3753), 3nPlus1 (#3609), 08.00 - B RNG (#3644), PhoneNumber (#3645), BookWorm (#3650), นับสระและหาสระเรียงกันยาวที่สุด (#3672) และ Who's the author (#3752) พร้อมปุ่มคลิกทำโจทย์ใน iHelp ทันทีและลิงก์เปิดบน iJudge
   2. เพิ่มป้ายไฮไลต์สีอำพันทอง (`TA Recommend`) พร้อมประกายไฟ (Sparkles) บนการ์ดโจทย์ (`ProblemCard`), ตารางโจทย์ (`ProblemRow`), แผงหัวข้อโจทย์ (`ProblemHeader`), แผงสรุปประจำสัปดาห์ (`WeeklyGuidePanel`) และตารางโจทย์มาร์กดาวน์ (`OjProblemsDeck`)
@@ -33,6 +42,12 @@
 
 ### ปรับปรุง
 
+- **ปรับปรุงการจัดระเบียบคลังเรียนรู้และการนำทางไทม์ไลน์รายวิชา MFIT (`lib/library/subject-library.ts`, `lib/courses/course-timeline.ts`)** —
+  1. เพิ่ม `courseCode: "MFIT"` และ `chapter: 1..7` ให้กับเอกสารครึ่งแรกทั้งหมดใน `subject-library.ts` เพื่อให้ระบบคัดกรองแยกสัปดาห์ทำงานได้อย่างแม่นยำ ไม่ปะปนกัน
+  2. ปรับแต่ง `course-timeline.ts` ให้จุดพักสอบปลายภาค (Final Milestone) ของ MFIT ลิงก์ตรงเข้าสู่หน้า Final Exam War Room เพื่อให้นักศึกษาเข้าถึงยุทธการสอบและข้อสอบเก่าได้ในคลิกเดียว (โดย @Jesselpetry)
+- **ปรับปรุงการแสดงผลการ์ดผลงานผู้ร่วมจัดทำในหน้ารายวิชาสู่การ์ดเดี่ยวแบบโมเดิร์น (`components/course-contributors.tsx`)** —
+  1. ปรับหัวข้อหมวดผลงานเป็นส่วนหัวแบบมีเคาน์เตอร์แคปซูล (`ContributorSectionHeader`) แสดงจำนวนรายการ
+  2. แปลงการแสดงผลรายการผลงานเป็นการ์ดเดี่ยว (`ContributorMaterialCard`) พร้อมระบุประเภทชัดเจนและปุ่ม Action ด้านขวา (ดูสรุป, ดูสไลด์, เปิดใช้งาน ฯลฯ) ที่ปรับเปลี่ยนข้อความและไอคอนตามชนิดผลงานโดยอัตโนมัติ (โดย @Jesselpetry)
 - **อัปเดตชุดโจทย์ PSCP และเฉลยอ้างอิงให้เป็นปัจจุบันตามคลังต้นทาง (`branch OP`)** — อัปเดตข้อมูลโจทย์ใน `data/oj_problems.json`, รายละเอียดโจทย์ใน `data/all_problems_detail.json` และสร้าง registry `data/pscp/problems.json` ใหม่ รวมทั้งหมด 273 ข้อ ครอบคลุมโจทย์สัปดาห์ที่ 15 และ 16 (เพิ่มโจทย์ oj3642 ถึง oj3680 รวม 38 ข้อใหม่) พร้อมชุดเคสทดสอบทางการ (Official Cases), เคสขอบเขตที่สร้างขึ้น (Edge Cases 919 เคส) และตรวจสอบการทำงานของเฉลยอ้างอิงผ่าน `pscp:verify` ครบทุกข้อ (โดย @Jesselpetry)
 - **ยกเครื่องหน้าจอทำโจทย์และพื้นที่ทำงาน PSCP Workspace สู่ระบบ Code Editor และ Tabbed Test Runner เต็มรูปแบบ (`components/pscp/`)** —
   1. **แผงซ้าย (Problem Header & Meta Refactoring):** รวบรวมข้อมูลส่วนหัวด้วย Breadcrumbs แบบมินิมอล (`PSCP / Week X / #ID`), หัวข้อโจทย์ H1 พร้อมปุ่มบุ๊กมาร์กดาวแบบอินไลน์, ปรับป้ายแท็กหัวข้อสู่ชิปโมโนโครม (`bg-muted/60 text-muted-foreground`), แถบสถิติแนวนอนรวม Pass rate, Limit (เวลา/แรม) และกำหนดส่งด้วยจุดคั่น (`·`) โดยสงวนสีแดงไว้เฉพาะเมื่อหมดเขต

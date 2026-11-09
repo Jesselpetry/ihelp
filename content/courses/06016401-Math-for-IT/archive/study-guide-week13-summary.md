@@ -8,6 +8,17 @@
 
 ---
 
+## 📚 เอกสารประจำสัปดาห์
+
+| เอกสาร | ไฟล์ในคลัง | หน้า |
+|---|---|:---:|
+| สไลด์บรรยาย — เทคนิคการอินทิเกรต u-Substitution (ฉบับจดโน้ต) | `mfit-lec-calculus-06.pdf` | 13 |
+| สไลด์ประกอบการเรียน — Calculus-06 (Handout) | `mfit-lec-calculus-06-handout.pdf` | 12 |
+| ใบงานโจทย์การบ้าน — HW13 u-Substitution (ฉบับ 2569) | `mfit-hw-week13-integration-ii-2569.pdf` | 1 |
+| เฉลยการบ้านละเอียด — HW13 แสดงวิธีทำทุกข้อ | `mfit-hw-week13-integration-ii.pdf` | 2 |
+
+---
+
 ## 1. 🔑 u-Substitution — Chain Rule กลับหลัง
 
 ### 1.1 ที่มา

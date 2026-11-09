@@ -5,11 +5,11 @@
   "totals": {
     "courses": 15,
     "coursesWithLibrary": 14,
-    "docs": 119,
-    "renderedDocs": 92,
+    "docs": 120,
+    "renderedDocs": 93,
     "assets": 741,
-    "curated": 347,
-    "generated": 394,
+    "curated": 390,
+    "generated": 351,
     "insider": 171,
     "files": 724,
     "sizeBytes": 1119738966,
@@ -1326,6 +1326,7 @@
           "href": "/courses/06016401-Math-for-IT/summary",
           "docs": [
             "data/it-kmitl/mfit/summarize.md",
+            "content/courses/06016401-Math-for-IT/archive/study-guide-final-war-room.md",
             "content/courses/06016401-Math-for-IT/archive/study-guide-week08-summary.md",
             "content/courses/06016401-Math-for-IT/archive/study-guide-week09-summary.md",
             "content/courses/06016401-Math-for-IT/archive/study-guide-week10-summary.md",
@@ -1417,12 +1418,17 @@
       "weeks": [
         {
           "week": 1,
-          "scope": null,
-          "title": null,
+          "scope": "midterm",
+          "title": {
+            "th": "แนะนำรายวิชาและเมทริกซ์",
+            "en": "Course Intro & Matrices"
+          },
           "upcoming": false,
           "video": null,
           "docs": [],
           "assets": [
+            "mfit-w1-slides",
+            "mfit-w1-activity",
             "gen-mfit-exams-mfit-midterm-week01-pdf",
             "gen-mfit-exercises-mfit-ex-week01-activity-completed-pdf",
             "gen-mfit-lectures-mfit-lec-week01-v2-pdf"
@@ -1430,12 +1436,17 @@
         },
         {
           "week": 2,
-          "scope": null,
-          "title": null,
+          "scope": "midterm",
+          "title": {
+            "th": "เมทริกซ์และดีเทอร์มิแนนต์",
+            "en": "Matrices & Determinants"
+          },
           "upcoming": false,
           "video": null,
           "docs": [],
           "assets": [
+            "mfit-w2-slides",
+            "mfit-w2-activity",
             "gen-mfit-exercises-mfit-ex-week02-activity-v2-pdf",
             "gen-mfit-exercises-mfit-ex-week02-activity-v3-pdf",
             "gen-mfit-exercises-mfit-ex-week02-activity-pdf",
@@ -1445,12 +1456,17 @@
         },
         {
           "week": 3,
-          "scope": null,
-          "title": null,
+          "scope": "midterm",
+          "title": {
+            "th": "ระบบสมการเชิงเส้น",
+            "en": "Systems of Linear Equations"
+          },
           "upcoming": false,
           "video": null,
           "docs": [],
           "assets": [
+            "mfit-w3-slides",
+            "mfit-w3-activity",
             "gen-mfit-exercises-mfit-ex-week03-activity-v2-pdf",
             "gen-mfit-exercises-mfit-ex-week03-activity-v3-pdf",
             "gen-mfit-exercises-mfit-ex-week03-activity-pdf",
@@ -1460,12 +1476,17 @@
         },
         {
           "week": 4,
-          "scope": null,
-          "title": null,
+          "scope": "midterm",
+          "title": {
+            "th": "เวกเตอร์ในปริภูมิ Rⁿ",
+            "en": "Vectors in Rⁿ"
+          },
           "upcoming": false,
           "video": null,
           "docs": [],
           "assets": [
+            "mfit-w4-slides",
+            "mfit-w4-activity",
             "gen-mfit-exams-mfit-midterm-week04-pdf",
             "gen-mfit-exercises-mfit-ex-week04-activity-v2-pdf",
             "gen-mfit-exercises-mfit-ex-week04-activity-pdf",
@@ -1474,12 +1495,17 @@
         },
         {
           "week": 5,
-          "scope": null,
-          "title": null,
+          "scope": "midterm",
+          "title": {
+            "th": "ปริภูมิเวกเตอร์และความเป็นอิสระเชิงเส้น",
+            "en": "Vector Spaces & Linear Independence"
+          },
           "upcoming": false,
           "video": null,
           "docs": [],
           "assets": [
+            "mfit-w5-slides",
+            "mfit-w5-activity-2024",
             "gen-mfit-exams-mfit-midterm-week05-pdf",
             "gen-mfit-exercises-mfit-ex-week05-activity-v2-pdf",
             "gen-mfit-exercises-mfit-ex-week05-activity-pdf",
@@ -1488,12 +1514,17 @@
         },
         {
           "week": 6,
-          "scope": null,
-          "title": null,
+          "scope": "midterm",
+          "title": {
+            "th": "การแปลงเชิงเส้น",
+            "en": "Linear Transformations"
+          },
           "upcoming": false,
           "video": null,
           "docs": [],
           "assets": [
+            "mfit-w6-slides",
+            "mfit-w6-activity",
             "gen-mfit-exams-mfit-midterm-week06-pdf",
             "gen-mfit-exercises-mfit-ex-week06-activity-v2-pdf",
             "gen-mfit-exercises-mfit-ex-week06-activity-pdf",
@@ -1502,12 +1533,17 @@
         },
         {
           "week": 7,
-          "scope": null,
-          "title": null,
+          "scope": "midterm",
+          "title": {
+            "th": "ค่าไอเกน เวกเตอร์ไอเกน และเมทริกซ์เชิงตั้งฉาก",
+            "en": "Eigenvalues & Orthogonal Matrix"
+          },
           "upcoming": false,
           "video": null,
           "docs": [],
           "assets": [
+            "mfit-w7-slides",
+            "mfit-w7-activity",
             "gen-mfit-exams-mfit-midterm-week07-pdf",
             "gen-mfit-exercises-mfit-ex-week07-activity-v2-pdf",
             "gen-mfit-exercises-mfit-ex-week07-activity-pdf",
@@ -1516,8 +1552,11 @@
         },
         {
           "week": 8,
-          "scope": null,
-          "title": null,
+          "scope": "final",
+          "title": {
+            "th": "ฟังก์ชัน, ลิมิต และความต่อเนื่อง",
+            "en": "Function, Limit & Continuity"
+          },
           "upcoming": false,
           "video": null,
           "docs": [
@@ -1525,16 +1564,20 @@
             "content/courses/06016401-Math-for-IT/archive/study-guide-week08-summary.md"
           ],
           "assets": [
-            "gen-mfit-exercises-mfit-hw-week08-function-limit-continuity-2569-pdf",
-            "gen-mfit-exercises-mfit-hw-week08-function-limit-continuity-pdf",
-            "gen-mfit-sheets-mfit-sheet-final-recap-week08-13-v2-pdf",
-            "gen-mfit-sheets-mfit-sheet-final-recap-week08-13-pdf"
+            "mfit-w8-lec-calc-01",
+            "mfit-w8-lec-calc-01-handout",
+            "mfit-w8-hw-limit-2569",
+            "mfit-w8-hw-limit-sol",
+            "gen-mfit-sheets-mfit-sheet-final-recap-week08-13-v2-pdf"
           ]
         },
         {
           "week": 9,
-          "scope": null,
-          "title": null,
+          "scope": "final",
+          "title": {
+            "th": "อนุพันธ์ (I) นิยาม + กฎพื้นฐาน",
+            "en": "Differentiation (I) & Basic Rules"
+          },
           "upcoming": false,
           "video": null,
           "docs": [
@@ -1542,16 +1585,21 @@
             "content/courses/06016401-Math-for-IT/archive/study-guide-week09-summary.md"
           ],
           "assets": [
-            "gen-mfit-exercises-mfit-hw-week09-derivative-i-2569-pdf",
-            "gen-mfit-exercises-mfit-hw-week09-derivative-i-pdf",
-            "gen-mfit-lectures-mfit-lec-calforbio-chapter09-2552-pdf",
-            "gen-mfit-lectures-mfit-lec-week09-derivative-i-2569-pdf"
+            "mfit-w9-lec-deriv1-2569",
+            "mfit-w9-lec-calc-02",
+            "mfit-w9-lec-calc-02-handout",
+            "mfit-w9-hw-deriv1-2569",
+            "mfit-w9-hw-deriv1-sol",
+            "gen-mfit-lectures-mfit-lec-calforbio-chapter09-2552-pdf"
           ]
         },
         {
           "week": 10,
-          "scope": null,
-          "title": null,
+          "scope": "final",
+          "title": {
+            "th": "อนุพันธ์ (II) กฎลูกโซ่, ฟังก์ชันแฝง, อัตราสัมพัทธ์",
+            "en": "Chain Rule, Implicit & Related Rates"
+          },
           "upcoming": false,
           "video": null,
           "docs": [
@@ -1559,15 +1607,20 @@
             "content/courses/06016401-Math-for-IT/archive/study-guide-week10-summary.md"
           ],
           "assets": [
-            "gen-mfit-exercises-mfit-hw-week10-derivative-ii-2569-pdf",
-            "gen-mfit-exercises-mfit-hw-week10-derivative-ii-pdf",
-            "gen-mfit-lectures-mfit-lec-week10-derivative-ii-2569-pdf"
+            "mfit-w10-lec-deriv2-2569",
+            "mfit-w10-lec-calc-03",
+            "mfit-w10-lec-calc-03-handout",
+            "mfit-w10-hw-deriv2-2569",
+            "mfit-w10-hw-deriv2-sol"
           ]
         },
         {
           "week": 11,
-          "scope": null,
-          "title": null,
+          "scope": "final",
+          "title": {
+            "th": "การประยุกต์อนุพันธ์, วาดกราฟ, ค่าสุดขีด",
+            "en": "Applications of Differentiation & Extrema"
+          },
           "upcoming": false,
           "video": null,
           "docs": [
@@ -1575,16 +1628,21 @@
             "content/courses/06016401-Math-for-IT/archive/study-guide-week11-summary.md"
           ],
           "assets": [
-            "gen-mfit-exercises-mfit-hw-week11-derivative-apps-2569-pdf",
-            "gen-mfit-exercises-mfit-hw-week11-derivative-apps-v2-pdf",
-            "gen-mfit-exercises-mfit-hw-week11-derivative-apps-pdf",
-            "gen-mfit-lectures-mfit-lec-week11-derivative-apps-2569-pdf"
+            "mfit-w11-lec-derivapps-2569",
+            "mfit-w11-lec-calc-04",
+            "mfit-w11-lec-calc-04-handout",
+            "mfit-w11-hw-derivapps-2569",
+            "mfit-w11-hw-derivapps-sol",
+            "mfit-w11-hw-derivapps-sol-v2"
           ]
         },
         {
           "week": 12,
-          "scope": null,
-          "title": null,
+          "scope": "final",
+          "title": {
+            "th": "ปริพันธ์ (I) ปฏิยานุพันธ์, Riemann Sum, FTC",
+            "en": "Integration (I) & FTC"
+          },
           "upcoming": false,
           "video": null,
           "docs": [
@@ -1592,15 +1650,20 @@
             "content/courses/06016401-Math-for-IT/archive/study-guide-week12-summary.md"
           ],
           "assets": [
-            "gen-mfit-exercises-mfit-hw-week12-integration-i-2569-pdf",
-            "gen-mfit-exercises-mfit-hw-week12-integration-i-pdf",
-            "gen-mfit-lectures-mfit-lec-week12-integration-i-2569-pdf"
+            "mfit-w12-lec-int1-2569",
+            "mfit-w12-lec-calc-05",
+            "mfit-w12-lec-calc-05-handout",
+            "mfit-w12-hw-int1-2569",
+            "mfit-w12-hw-int1-sol"
           ]
         },
         {
           "week": 13,
-          "scope": null,
-          "title": null,
+          "scope": "final",
+          "title": {
+            "th": "ปริพันธ์ (II) u-Substitution และสมมาตร",
+            "en": "Integration (II) & u-Substitution"
+          },
           "upcoming": false,
           "video": null,
           "docs": [
@@ -1608,14 +1671,19 @@
             "content/courses/06016401-Math-for-IT/archive/study-guide-week13-summary.md"
           ],
           "assets": [
-            "gen-mfit-exercises-mfit-hw-week13-integration-ii-2569-pdf",
-            "gen-mfit-exercises-mfit-hw-week13-integration-ii-pdf"
+            "mfit-w13-lec-calc-06",
+            "mfit-w13-lec-calc-06-handout",
+            "mfit-w13-hw-int2-2569",
+            "mfit-w13-hw-int2-sol"
           ]
         },
         {
           "week": 14,
-          "scope": null,
-          "title": null,
+          "scope": "final",
+          "title": {
+            "th": "Integration by Parts, พื้นที่ และทรงตันหมุน",
+            "en": "Integration by Parts, Area & Volume"
+          },
           "upcoming": false,
           "video": null,
           "docs": [
@@ -1623,21 +1691,29 @@
             "content/courses/06016401-Math-for-IT/archive/study-guide-week14-summary.md"
           ],
           "assets": [
-            "gen-mfit-exercises-mfit-hw-week14-integration-apps-2569-pdf",
-            "gen-mfit-exercises-mfit-hw-week14-integration-apps-pdf"
+            "mfit-w14-lec-calc-07",
+            "mfit-w14-lec-calc-07-handout",
+            "mfit-w14-hw-intapps-2569",
+            "mfit-w14-hw-intapps-sol"
           ]
         },
         {
           "week": 15,
-          "scope": null,
-          "title": null,
+          "scope": "final",
+          "title": {
+            "th": "จุดศูนย์กลางมวล, Centroid และอนุพันธ์ย่อย",
+            "en": "Centroid & Partial Derivatives"
+          },
           "upcoming": false,
           "video": null,
           "docs": [
             "content/courses/06016401-Math-for-IT/archive/study-guide-week15-quiz.md",
             "content/courses/06016401-Math-for-IT/archive/study-guide-week15-summary.md"
           ],
-          "assets": []
+          "assets": [
+            "mfit-w15-lec-calc-08",
+            "mfit-w15-lec-calc-08-handout"
+          ]
         }
       ],
       "unscheduledAssets": [
@@ -1646,33 +1722,22 @@
         "mfit-learning-path-md",
         "mfit-drill-md",
         "mfit-mock-exam-md",
-        "mfit-w1-slides",
-        "mfit-w2-slides",
-        "mfit-w3-slides",
-        "mfit-w4-slides",
-        "mfit-w5-slides",
-        "mfit-w6-slides",
-        "mfit-w7-slides",
-        "mfit-w1-activity",
-        "mfit-w2-activity",
-        "mfit-w3-activity",
-        "mfit-w4-activity",
-        "mfit-w6-activity",
-        "mfit-w7-activity",
-        "mfit-w5-activity-2024",
         "mfit-mfit-sheet-cheatsheet-2023",
         "mfit-mfit-sheet-cheatsheet-2022",
+        "mfit-ref-calc-useful-info-2569",
+        "mfit-sheet-final-recap-w8-13",
+        "mfit-sheet-recap-calculus",
+        "mfit-final-pastpaper-2561",
+        "mfit-final-pastpaper-2560",
+        "mfit-final-pastpaper-2559",
+        "mfit-final-notelub",
+        "mfit-final-vault-cdn",
         "mfit-mfit-midterm-pastpaper-01",
         "mfit-mfit-midterm-openbook",
         "mfit-mfit-midterm-pastpaper-02",
         "mfit-mfit-ex-pretest",
         "mfit-mfit-ex-practice",
-        "gen-mfit-exams-mfit-final-2560-pdf",
-        "gen-mfit-exams-mfit-final-cdn-fbsbx-com-pdf",
         "gen-mfit-exams-mfit-final-copy-of-final-mathit-2559-pdf",
-        "gen-mfit-exams-mfit-final-final-mathit-2559-pdf",
-        "gen-mfit-exams-mfit-final-final-mathit-2561-pdf",
-        "gen-mfit-exams-mfit-final-notelub-pdf",
         "gen-mfit-exams-mfit-final-plickerscards-1up-1-63-pdf",
         "gen-mfit-exams-mfit-final-unidentified-pdf",
         "gen-mfit-exams-mfit-midterm-01-pdf",
@@ -1681,25 +1746,7 @@
         "gen-mfit-exams-mfit-midterm-open-2-pdf",
         "gen-mfit-exercises-mfit-ex-exercise-1-1-pdf",
         "gen-mfit-exercises-mfit-ex-exercise-1-pdf",
-        "gen-mfit-lectures-m4-it-calculus-01-handouts-4p-pdf",
-        "gen-mfit-lectures-mfit-lec-calculus-01-handout-pdf",
-        "gen-mfit-lectures-mfit-lec-calculus-01-pdf",
-        "gen-mfit-lectures-mfit-lec-calculus-02-handout-pdf",
-        "gen-mfit-lectures-mfit-lec-calculus-02-pdf",
-        "gen-mfit-lectures-mfit-lec-calculus-03-handout-pdf",
-        "gen-mfit-lectures-mfit-lec-calculus-03-pdf",
-        "gen-mfit-lectures-mfit-lec-calculus-04-handout-pdf",
-        "gen-mfit-lectures-mfit-lec-calculus-04-pdf",
-        "gen-mfit-lectures-mfit-lec-calculus-05-handout-pdf",
-        "gen-mfit-lectures-mfit-lec-calculus-05-pdf",
-        "gen-mfit-lectures-mfit-lec-calculus-06-handout-pdf",
-        "gen-mfit-lectures-mfit-lec-calculus-06-pdf",
-        "gen-mfit-lectures-mfit-lec-calculus-07-handout-pdf",
-        "gen-mfit-lectures-mfit-lec-calculus-07-pdf",
-        "gen-mfit-lectures-mfit-lec-calculus-08-handout-pdf",
-        "gen-mfit-lectures-mfit-lec-calculus-08-pdf",
-        "gen-mfit-references-mfit-ref-calculus-useful-info-2569-pdf",
-        "gen-mfit-sheets-mfit-sheet-recap-calculus-pdf"
+        "gen-mfit-lectures-m4-it-calculus-01-handouts-4p-pdf"
       ],
       "assets": [
         "mfit-summary-md",
@@ -1723,17 +1770,55 @@
         "mfit-w5-activity-2024",
         "mfit-mfit-sheet-cheatsheet-2023",
         "mfit-mfit-sheet-cheatsheet-2022",
+        "mfit-w8-lec-calc-01",
+        "mfit-w8-lec-calc-01-handout",
+        "mfit-w8-hw-limit-2569",
+        "mfit-w8-hw-limit-sol",
+        "mfit-w9-lec-deriv1-2569",
+        "mfit-w9-lec-calc-02",
+        "mfit-w9-lec-calc-02-handout",
+        "mfit-w9-hw-deriv1-2569",
+        "mfit-w9-hw-deriv1-sol",
+        "mfit-w10-lec-deriv2-2569",
+        "mfit-w10-lec-calc-03",
+        "mfit-w10-lec-calc-03-handout",
+        "mfit-w10-hw-deriv2-2569",
+        "mfit-w10-hw-deriv2-sol",
+        "mfit-w11-lec-derivapps-2569",
+        "mfit-w11-lec-calc-04",
+        "mfit-w11-lec-calc-04-handout",
+        "mfit-w11-hw-derivapps-2569",
+        "mfit-w11-hw-derivapps-sol",
+        "mfit-w11-hw-derivapps-sol-v2",
+        "mfit-w12-lec-int1-2569",
+        "mfit-w12-lec-calc-05",
+        "mfit-w12-lec-calc-05-handout",
+        "mfit-w12-hw-int1-2569",
+        "mfit-w12-hw-int1-sol",
+        "mfit-w13-lec-calc-06",
+        "mfit-w13-lec-calc-06-handout",
+        "mfit-w13-hw-int2-2569",
+        "mfit-w13-hw-int2-sol",
+        "mfit-w14-lec-calc-07",
+        "mfit-w14-lec-calc-07-handout",
+        "mfit-w14-hw-intapps-2569",
+        "mfit-w14-hw-intapps-sol",
+        "mfit-w15-lec-calc-08",
+        "mfit-w15-lec-calc-08-handout",
+        "mfit-ref-calc-useful-info-2569",
+        "mfit-sheet-final-recap-w8-13",
+        "mfit-sheet-recap-calculus",
+        "mfit-final-pastpaper-2561",
+        "mfit-final-pastpaper-2560",
+        "mfit-final-pastpaper-2559",
+        "mfit-final-notelub",
+        "mfit-final-vault-cdn",
         "mfit-mfit-midterm-pastpaper-01",
         "mfit-mfit-midterm-openbook",
         "mfit-mfit-midterm-pastpaper-02",
         "mfit-mfit-ex-pretest",
         "mfit-mfit-ex-practice",
-        "gen-mfit-exams-mfit-final-2560-pdf",
-        "gen-mfit-exams-mfit-final-cdn-fbsbx-com-pdf",
         "gen-mfit-exams-mfit-final-copy-of-final-mathit-2559-pdf",
-        "gen-mfit-exams-mfit-final-final-mathit-2559-pdf",
-        "gen-mfit-exams-mfit-final-final-mathit-2561-pdf",
-        "gen-mfit-exams-mfit-final-notelub-pdf",
         "gen-mfit-exams-mfit-final-plickerscards-1up-1-63-pdf",
         "gen-mfit-exams-mfit-final-unidentified-pdf",
         "gen-mfit-exams-mfit-midterm-01-pdf",
@@ -1762,38 +1847,7 @@
         "gen-mfit-exercises-mfit-ex-week06-activity-pdf",
         "gen-mfit-exercises-mfit-ex-week07-activity-v2-pdf",
         "gen-mfit-exercises-mfit-ex-week07-activity-pdf",
-        "gen-mfit-exercises-mfit-hw-week08-function-limit-continuity-2569-pdf",
-        "gen-mfit-exercises-mfit-hw-week08-function-limit-continuity-pdf",
-        "gen-mfit-exercises-mfit-hw-week09-derivative-i-2569-pdf",
-        "gen-mfit-exercises-mfit-hw-week09-derivative-i-pdf",
-        "gen-mfit-exercises-mfit-hw-week10-derivative-ii-2569-pdf",
-        "gen-mfit-exercises-mfit-hw-week10-derivative-ii-pdf",
-        "gen-mfit-exercises-mfit-hw-week11-derivative-apps-2569-pdf",
-        "gen-mfit-exercises-mfit-hw-week11-derivative-apps-v2-pdf",
-        "gen-mfit-exercises-mfit-hw-week11-derivative-apps-pdf",
-        "gen-mfit-exercises-mfit-hw-week12-integration-i-2569-pdf",
-        "gen-mfit-exercises-mfit-hw-week12-integration-i-pdf",
-        "gen-mfit-exercises-mfit-hw-week13-integration-ii-2569-pdf",
-        "gen-mfit-exercises-mfit-hw-week13-integration-ii-pdf",
-        "gen-mfit-exercises-mfit-hw-week14-integration-apps-2569-pdf",
-        "gen-mfit-exercises-mfit-hw-week14-integration-apps-pdf",
         "gen-mfit-lectures-m4-it-calculus-01-handouts-4p-pdf",
-        "gen-mfit-lectures-mfit-lec-calculus-01-handout-pdf",
-        "gen-mfit-lectures-mfit-lec-calculus-01-pdf",
-        "gen-mfit-lectures-mfit-lec-calculus-02-handout-pdf",
-        "gen-mfit-lectures-mfit-lec-calculus-02-pdf",
-        "gen-mfit-lectures-mfit-lec-calculus-03-handout-pdf",
-        "gen-mfit-lectures-mfit-lec-calculus-03-pdf",
-        "gen-mfit-lectures-mfit-lec-calculus-04-handout-pdf",
-        "gen-mfit-lectures-mfit-lec-calculus-04-pdf",
-        "gen-mfit-lectures-mfit-lec-calculus-05-handout-pdf",
-        "gen-mfit-lectures-mfit-lec-calculus-05-pdf",
-        "gen-mfit-lectures-mfit-lec-calculus-06-handout-pdf",
-        "gen-mfit-lectures-mfit-lec-calculus-06-pdf",
-        "gen-mfit-lectures-mfit-lec-calculus-07-handout-pdf",
-        "gen-mfit-lectures-mfit-lec-calculus-07-pdf",
-        "gen-mfit-lectures-mfit-lec-calculus-08-handout-pdf",
-        "gen-mfit-lectures-mfit-lec-calculus-08-pdf",
         "gen-mfit-lectures-mfit-lec-calforbio-chapter09-2552-pdf",
         "gen-mfit-lectures-mfit-lec-week01-v2-pdf",
         "gen-mfit-lectures-mfit-lec-week02-v2-pdf",
@@ -1803,18 +1857,12 @@
         "gen-mfit-lectures-mfit-lec-week05-v2-pdf",
         "gen-mfit-lectures-mfit-lec-week06-v2-pdf",
         "gen-mfit-lectures-mfit-lec-week07-v2-pdf",
-        "gen-mfit-lectures-mfit-lec-week09-derivative-i-2569-pdf",
-        "gen-mfit-lectures-mfit-lec-week10-derivative-ii-2569-pdf",
-        "gen-mfit-lectures-mfit-lec-week11-derivative-apps-2569-pdf",
-        "gen-mfit-lectures-mfit-lec-week12-integration-i-2569-pdf",
         "gen-mfit-lectures-mfit-note-week03-pdf",
-        "gen-mfit-references-mfit-ref-calculus-useful-info-2569-pdf",
-        "gen-mfit-sheets-mfit-sheet-final-recap-week08-13-v2-pdf",
-        "gen-mfit-sheets-mfit-sheet-final-recap-week08-13-pdf",
-        "gen-mfit-sheets-mfit-sheet-recap-calculus-pdf"
+        "gen-mfit-sheets-mfit-sheet-final-recap-week08-13-v2-pdf"
       ],
       "docs": [
         "content/courses/06016401-Math-for-IT/archive/links.md",
+        "content/courses/06016401-Math-for-IT/archive/study-guide-final-war-room.md",
         "content/courses/06016401-Math-for-IT/archive/study-guide-mock-exam.md",
         "content/courses/06016401-Math-for-IT/archive/study-guide-syllabus.md",
         "content/courses/06016401-Math-for-IT/archive/study-guide-week08-quiz.md",
@@ -1843,18 +1891,17 @@
       ],
       "counts": {
         "assets": 110,
-        "curated": 26,
-        "generated": 84,
+        "curated": 69,
+        "generated": 41,
         "insider": 22,
         "legacy": 0,
-        "withScope": 26,
-        "withWeek": 51,
+        "withScope": 69,
+        "withWeek": 80,
         "byCategory": {
-          "cheatsheet": 8,
+          "cheatsheet": 9,
           "exam": 22,
           "exercise": 41,
-          "lecture": 38,
-          "reference": 1
+          "lecture": 38
         }
       }
     },
@@ -4934,6 +4981,34 @@
       "assetRefs": [],
       "unresolvedRefs": []
     },
+    "content/courses/06016401-Math-for-IT/archive/study-guide-final-war-room.md": {
+      "id": "content/courses/06016401-Math-for-IT/archive/study-guide-final-war-room.md",
+      "path": "content/courses/06016401-Math-for-IT/archive/study-guide-final-war-room.md",
+      "course": "MFIT",
+      "role": "study-guide",
+      "title": "⚔️ MFIT Final Exam War Room — ศูนย์รวมข้อสอบเก่า & ยุทธศาสตร์พิชิตปลายภาค (35 คะแนน)",
+      "rendered": true,
+      "bindings": [
+        {
+          "module": "deep_summary",
+          "segment": "summary",
+          "slug": "final-war-room",
+          "href": "/courses/06016401-Math-for-IT/summary?doc=final-war-room",
+          "chapter": null,
+          "scope": "final"
+        }
+      ],
+      "week": null,
+      "updated": null,
+      "assetRefs": [
+        "mfit-ref-calc-useful-info-2569",
+        "mfit-sheet-final-recap-w8-13",
+        "mfit-sheet-recap-calculus",
+        "mfit-mfit-sheet-cheatsheet-2023",
+        "mfit-mfit-sheet-cheatsheet-2022"
+      ],
+      "unresolvedRefs": []
+    },
     "content/courses/06016401-Math-for-IT/archive/study-guide-mock-exam.md": {
       "id": "content/courses/06016401-Math-for-IT/archive/study-guide-mock-exam.md",
       "path": "content/courses/06016401-Math-for-IT/archive/study-guide-mock-exam.md",
@@ -5019,7 +5094,12 @@
       ],
       "week": 8,
       "updated": null,
-      "assetRefs": [],
+      "assetRefs": [
+        "mfit-w8-lec-calc-01",
+        "mfit-w8-lec-calc-01-handout",
+        "mfit-w8-hw-limit-2569",
+        "mfit-w8-hw-limit-sol"
+      ],
       "unresolvedRefs": []
     },
     "content/courses/06016401-Math-for-IT/archive/study-guide-week09-quiz.md": {
@@ -5063,7 +5143,13 @@
       ],
       "week": 9,
       "updated": null,
-      "assetRefs": [],
+      "assetRefs": [
+        "mfit-w9-lec-deriv1-2569",
+        "mfit-w9-lec-calc-02",
+        "mfit-w9-lec-calc-02-handout",
+        "mfit-w9-hw-deriv1-2569",
+        "mfit-w9-hw-deriv1-sol"
+      ],
       "unresolvedRefs": []
     },
     "content/courses/06016401-Math-for-IT/archive/study-guide-week10-quiz.md": {
@@ -5107,7 +5193,13 @@
       ],
       "week": 10,
       "updated": null,
-      "assetRefs": [],
+      "assetRefs": [
+        "mfit-w10-lec-deriv2-2569",
+        "mfit-w10-lec-calc-03",
+        "mfit-w10-lec-calc-03-handout",
+        "mfit-w10-hw-deriv2-2569",
+        "mfit-w10-hw-deriv2-sol"
+      ],
       "unresolvedRefs": []
     },
     "content/courses/06016401-Math-for-IT/archive/study-guide-week11-quiz.md": {
@@ -5151,7 +5243,14 @@
       ],
       "week": 11,
       "updated": null,
-      "assetRefs": [],
+      "assetRefs": [
+        "mfit-w11-lec-derivapps-2569",
+        "mfit-w11-lec-calc-04",
+        "mfit-w11-lec-calc-04-handout",
+        "mfit-w11-hw-derivapps-2569",
+        "mfit-w11-hw-derivapps-sol",
+        "mfit-w11-hw-derivapps-sol-v2"
+      ],
       "unresolvedRefs": []
     },
     "content/courses/06016401-Math-for-IT/archive/study-guide-week12-quiz.md": {
@@ -5195,7 +5294,13 @@
       ],
       "week": 12,
       "updated": null,
-      "assetRefs": [],
+      "assetRefs": [
+        "mfit-w12-lec-int1-2569",
+        "mfit-w12-lec-calc-05",
+        "mfit-w12-lec-calc-05-handout",
+        "mfit-w12-hw-int1-2569",
+        "mfit-w12-hw-int1-sol"
+      ],
       "unresolvedRefs": []
     },
     "content/courses/06016401-Math-for-IT/archive/study-guide-week13-quiz.md": {
@@ -5239,7 +5344,12 @@
       ],
       "week": 13,
       "updated": null,
-      "assetRefs": [],
+      "assetRefs": [
+        "mfit-w13-lec-calc-06",
+        "mfit-w13-lec-calc-06-handout",
+        "mfit-w13-hw-int2-2569",
+        "mfit-w13-hw-int2-sol"
+      ],
       "unresolvedRefs": []
     },
     "content/courses/06016401-Math-for-IT/archive/study-guide-week14-quiz.md": {
@@ -5283,7 +5393,12 @@
       ],
       "week": 14,
       "updated": null,
-      "assetRefs": [],
+      "assetRefs": [
+        "mfit-w14-lec-calc-07",
+        "mfit-w14-lec-calc-07-handout",
+        "mfit-w14-hw-intapps-2569",
+        "mfit-w14-hw-intapps-sol"
+      ],
       "unresolvedRefs": []
     },
     "content/courses/06016401-Math-for-IT/archive/study-guide-week15-quiz.md": {
@@ -5327,7 +5442,10 @@
       ],
       "week": 15,
       "updated": null,
-      "assetRefs": [],
+      "assetRefs": [
+        "mfit-w15-lec-calc-08",
+        "mfit-w15-lec-calc-08-handout"
+      ],
       "unresolvedRefs": []
     },
     "content/courses/06016401-Math-for-IT/blueprint.md": {
@@ -17705,7 +17823,7 @@
         "key": "it-kmitl/mfit/slides/mfit-1-2026-lecture-slides-week1.pdf"
       },
       "access": "member",
-      "week": null,
+      "week": 1,
       "scope": "midterm",
       "edition": null,
       "status": null,
@@ -17746,7 +17864,7 @@
         "key": "it-kmitl/mfit/slides/mfit-1-2026-lecture-slides-week2.pdf"
       },
       "access": "member",
-      "week": null,
+      "week": 2,
       "scope": "midterm",
       "edition": null,
       "status": null,
@@ -17787,7 +17905,7 @@
         "key": "it-kmitl/mfit/slides/mfit-1-2026-lecture-slides-week3.pdf"
       },
       "access": "member",
-      "week": null,
+      "week": 3,
       "scope": "midterm",
       "edition": null,
       "status": null,
@@ -17828,7 +17946,7 @@
         "key": "it-kmitl/mfit/slides/mfit-1-2026-lecture-slides-week4.pdf"
       },
       "access": "member",
-      "week": null,
+      "week": 4,
       "scope": "midterm",
       "edition": null,
       "status": null,
@@ -17869,7 +17987,7 @@
         "key": "it-kmitl/mfit/slides/mfit-1-2026-lecture-slides-week5.pdf"
       },
       "access": "member",
-      "week": null,
+      "week": 5,
       "scope": "midterm",
       "edition": null,
       "status": null,
@@ -17910,7 +18028,7 @@
         "key": "it-kmitl/mfit/slides/mfit-1-2026-lecture-slides-week6.pdf"
       },
       "access": "member",
-      "week": null,
+      "week": 6,
       "scope": "midterm",
       "edition": null,
       "status": null,
@@ -17951,7 +18069,7 @@
         "key": "it-kmitl/mfit/slides/mfit-1-2026-lecture-slides-week7.pdf"
       },
       "access": "member",
-      "week": null,
+      "week": 7,
       "scope": "midterm",
       "edition": null,
       "status": null,
@@ -17992,7 +18110,7 @@
         "key": "it-kmitl/mfit/activities/mfit-1-2026-in-class-activity-week1.pdf"
       },
       "access": "member",
-      "week": null,
+      "week": 1,
       "scope": "midterm",
       "edition": null,
       "status": null,
@@ -18033,7 +18151,7 @@
         "key": "it-kmitl/mfit/activities/mfit-1-2026-in-class-activity-week2.pdf"
       },
       "access": "member",
-      "week": null,
+      "week": 2,
       "scope": "midterm",
       "edition": null,
       "status": null,
@@ -18074,7 +18192,7 @@
         "key": "it-kmitl/mfit/activities/mfit-1-2026-in-class-activity-week3.pdf"
       },
       "access": "member",
-      "week": null,
+      "week": 3,
       "scope": "midterm",
       "edition": null,
       "status": null,
@@ -18115,7 +18233,7 @@
         "key": "it-kmitl/mfit/activities/mfit-1-2026-in-class-activity-week4.pdf"
       },
       "access": "member",
-      "week": null,
+      "week": 4,
       "scope": "midterm",
       "edition": null,
       "status": null,
@@ -18156,7 +18274,7 @@
         "key": "it-kmitl/mfit/activities/mfit-1-2026-in-class-activity-week6.pdf"
       },
       "access": "member",
-      "week": null,
+      "week": 6,
       "scope": "midterm",
       "edition": null,
       "status": null,
@@ -18197,7 +18315,7 @@
         "key": "it-kmitl/mfit/activities/mfit-1-2026-in-class-activity-week7.pdf"
       },
       "access": "member",
-      "week": null,
+      "week": 7,
       "scope": "midterm",
       "edition": null,
       "status": null,
@@ -18238,7 +18356,7 @@
         "key": "it-kmitl/mfit/activities/mfit-1-2024-in-class-activity-week5.pdf"
       },
       "access": "member",
-      "week": null,
+      "week": 5,
       "scope": "midterm",
       "edition": null,
       "status": null,
@@ -18293,7 +18411,9 @@
       "sizeBytes": 270800,
       "pages": 1,
       "onDisk": true,
-      "usedBy": []
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-final-war-room.md"
+      ]
     },
     "mfit-mfit-sheet-cheatsheet-2022": {
       "id": "mfit-mfit-sheet-cheatsheet-2022",
@@ -18330,6 +18450,1853 @@
       ],
       "sizeBytes": 268971,
       "pages": 3,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-final-war-room.md"
+      ]
+    },
+    "mfit-w8-lec-calc-01": {
+      "id": "mfit-w8-lec-calc-01",
+      "course": "MFIT",
+      "origin": "curated",
+      "title": {
+        "th": "Week 8 — ฟังก์ชัน ลิมิต และความต่อเนื่อง (สไลด์ฉบับจดโน้ต)",
+        "en": "Week 8 — Function, Limit & Continuity (Annotated Deck)"
+      },
+      "description": {
+        "th": "สไลด์บรรยาย Calculus-01 พร้อมจดโน้ตในชั้นเรียน: นิยามฟังก์ชัน, โดเมน/เรนจ์, ลิมิตซ้าย-ขวา, เทคนิคจัดการ 0/0, และการตรวจสอบความต่อเนื่อง 3 เงื่อนไข",
+        "en": "Calculus-01 lecture slides with in-class notes: function definitions, domain & range, one-sided limits, 0/0 indeterminacy methods, and the 3-point continuity test."
+      },
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-01.pdf",
+      "path": "public/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-01.pdf",
+      "fileName": "mfit-lec-calculus-01.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/mfit/lectures/mfit-lec-calculus-01.pdf"
+      },
+      "access": "member",
+      "week": 8,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": false,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Week 8",
+        "Lecture",
+        "PDF",
+        "Calculus",
+        "Limit",
+        "Continuity"
+      ],
+      "sizeBytes": 2154533,
+      "pages": 15,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-week08-summary.md"
+      ]
+    },
+    "mfit-w8-lec-calc-01-handout": {
+      "id": "mfit-w8-lec-calc-01-handout",
+      "course": "MFIT",
+      "origin": "curated",
+      "title": {
+        "th": "Week 8 — ฟังก์ชัน ลิมิต และความต่อเนื่อง (Handout)",
+        "en": "Week 8 — Function, Limit & Continuity (Blank Handout)"
+      },
+      "description": {
+        "th": "สไลด์ประกอบการเรียน Calculus-01 ฉบับพิมพ์แจก: ตัวอย่างโจทย์ลิมิตและการวิเคราะห์ความต่อเนื่อง",
+        "en": "Calculus-01 handout edition: limit examples and continuity analysis."
+      },
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-01-handout.pdf",
+      "path": "public/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-01-handout.pdf",
+      "fileName": "mfit-lec-calculus-01-handout.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/mfit/lectures/mfit-lec-calculus-01-handout.pdf"
+      },
+      "access": "member",
+      "week": 8,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": false,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Week 8",
+        "Handout",
+        "PDF",
+        "Calculus"
+      ],
+      "sizeBytes": 1905145,
+      "pages": 15,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-week08-summary.md"
+      ]
+    },
+    "mfit-w8-hw-limit-2569": {
+      "id": "mfit-w8-hw-limit-2569",
+      "course": "MFIT",
+      "origin": "curated",
+      "title": {
+        "th": "Week 8 — โจทย์การบ้าน HW08: ลิมิตและความต่อเนื่อง (ฉบับ 2569)",
+        "en": "Week 8 — Homework HW08: Limit & Continuity (2569 Sheet)"
+      },
+      "description": {
+        "th": "ใบงานโจทย์การบ้านประจำสัปดาห์ที่ 8 ฉบับทางการปีการศึกษา 2569: แบบฝึกหัดคำนวณลิมิตค่าสัมบูรณ์และรากที่สอง",
+        "en": "Official Week 8 homework sheet for semester 1/2569: absolute value and radical limit calculations."
+      },
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-week08-function-limit-continuity-2569.pdf",
+      "path": "public/assets/it-kmitl/mfit/exercises/mfit-hw-week08-function-limit-continuity-2569.pdf",
+      "fileName": "mfit-hw-week08-function-limit-continuity-2569.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/mfit/exercises/mfit-hw-week08-function-limit-continuity-2569.pdf"
+      },
+      "access": "member",
+      "week": 8,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": true,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Week 8",
+        "Homework",
+        "PDF",
+        "Assignment",
+        "2569"
+      ],
+      "sizeBytes": 62189,
+      "pages": 1,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-week08-summary.md"
+      ]
+    },
+    "mfit-w8-hw-limit-sol": {
+      "id": "mfit-w8-hw-limit-sol",
+      "course": "MFIT",
+      "origin": "curated",
+      "title": {
+        "th": "Week 8 — เฉลยการบ้าน HW08: ลิมิตและความต่อเนื่อง (แสดงวิธีทำละเอียด)",
+        "en": "Week 8 — HW08 Solution: Limit & Continuity (Worked Key)"
+      },
+      "description": {
+        "th": "เฉลยการบ้านสัปดาห์ที่ 8 แสดงวิธีทำทีละขั้น: การหาลิมิตซ้าย-ขวา การจัดรูปตัวประกอบ และสรุปคำตอบทุกข้อ",
+        "en": "Week 8 homework answer key: step-by-step factorization, one-sided evaluation, and final values."
+      },
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-week08-function-limit-continuity.pdf",
+      "path": "public/assets/it-kmitl/mfit/exercises/mfit-hw-week08-function-limit-continuity.pdf",
+      "fileName": "mfit-hw-week08-function-limit-continuity.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/mfit/exercises/mfit-hw-week08-function-limit-continuity.pdf"
+      },
+      "access": "member",
+      "week": 8,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": false,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Week 8",
+        "Answer Key",
+        "PDF",
+        "Worked Solution"
+      ],
+      "sizeBytes": 194142,
+      "pages": 2,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-week08-summary.md"
+      ]
+    },
+    "mfit-w9-lec-deriv1-2569": {
+      "id": "mfit-w9-lec-deriv1-2569",
+      "course": "MFIT",
+      "origin": "curated",
+      "title": {
+        "th": "Week 9 — อนุพันธ์และการหาอนุพันธ์พื้นฐาน (สไลด์ทางการ 2569)",
+        "en": "Week 9 — Basic Differentiation (Official 2569 Slides)"
+      },
+      "description": {
+        "th": "สไลด์บรรยายทางการประจำปี 2569: นิยามอนุพันธ์จากลิมิต, Power Rule, Product Rule, Quotient Rule และอนุพันธ์ของฟังก์ชันตรีโกณมิติ",
+        "en": "Official 2569 lecture deck: limit definition of derivatives, power rule, product rule, quotient rule, and trigonometric derivatives."
+      },
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-week09-derivative-i-2569.pdf",
+      "path": "public/assets/it-kmitl/mfit/lectures/mfit-lec-week09-derivative-i-2569.pdf",
+      "fileName": "mfit-lec-week09-derivative-i-2569.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/mfit/lectures/mfit-lec-week09-derivative-i-2569.pdf"
+      },
+      "access": "member",
+      "week": 9,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": true,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Week 9",
+        "Lecture",
+        "PDF",
+        "Derivatives",
+        "2569"
+      ],
+      "sizeBytes": 1593691,
+      "pages": 14,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-week09-summary.md"
+      ]
+    },
+    "mfit-w9-lec-calc-02": {
+      "id": "mfit-w9-lec-calc-02",
+      "course": "MFIT",
+      "origin": "curated",
+      "title": {
+        "th": "Week 9 — อนุพันธ์และการหาอนุพันธ์พื้นฐาน (สไลด์ฉบับจดโน้ต)",
+        "en": "Week 9 — Basic Differentiation (Annotated Deck)"
+      },
+      "description": {
+        "th": "สไลด์บรรยาย Calculus-02 พร้อมจดโน้ตประกอบการสอน: วิธีใช้ Product & Quotient Rule และตัวอย่างการหาความเร็ว/ความเร่ง",
+        "en": "Calculus-02 lecture slides with handwritten notes: product & quotient rules, rates of change, and velocity."
+      },
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-02.pdf",
+      "path": "public/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-02.pdf",
+      "fileName": "mfit-lec-calculus-02.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/mfit/lectures/mfit-lec-calculus-02.pdf"
+      },
+      "access": "member",
+      "week": 9,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": false,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Week 9",
+        "Lecture",
+        "PDF",
+        "Derivatives"
+      ],
+      "sizeBytes": 2466598,
+      "pages": 14,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-week09-summary.md"
+      ]
+    },
+    "mfit-w9-lec-calc-02-handout": {
+      "id": "mfit-w9-lec-calc-02-handout",
+      "course": "MFIT",
+      "origin": "curated",
+      "title": {
+        "th": "Week 9 — อนุพันธ์และการหาอนุพันธ์พื้นฐาน (Handout)",
+        "en": "Week 9 — Basic Differentiation (Handout)"
+      },
+      "description": {
+        "th": "สไลด์ฉบับ Handout หัวข้อ Calculus-02",
+        "en": "Calculus-02 student handout edition."
+      },
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-02-handout.pdf",
+      "path": "public/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-02-handout.pdf",
+      "fileName": "mfit-lec-calculus-02-handout.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/mfit/lectures/mfit-lec-calculus-02-handout.pdf"
+      },
+      "access": "member",
+      "week": 9,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": false,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Week 9",
+        "Handout",
+        "PDF"
+      ],
+      "sizeBytes": 2385763,
+      "pages": 14,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-week09-summary.md"
+      ]
+    },
+    "mfit-w9-hw-deriv1-2569": {
+      "id": "mfit-w9-hw-deriv1-2569",
+      "course": "MFIT",
+      "origin": "curated",
+      "title": {
+        "th": "Week 9 — โจทย์การบ้าน HW09: อนุพันธ์พื้นฐาน (ฉบับ 2569)",
+        "en": "Week 9 — Homework HW09: Differentiation (2569 Sheet)"
+      },
+      "description": {
+        "th": "ใบงานโจทย์การบ้านสัปดาห์ที่ 9 ฉบับปีการศึกษา 2569: การหาอนุพันธ์จากนิยามลิมิตและกฎการคูณ/หาร",
+        "en": "Week 9 official homework assignment: limit definitions and product/quotient rule practice."
+      },
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-week09-derivative-i-2569.pdf",
+      "path": "public/assets/it-kmitl/mfit/exercises/mfit-hw-week09-derivative-i-2569.pdf",
+      "fileName": "mfit-hw-week09-derivative-i-2569.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/mfit/exercises/mfit-hw-week09-derivative-i-2569.pdf"
+      },
+      "access": "member",
+      "week": 9,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": true,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Week 9",
+        "Homework",
+        "PDF",
+        "Assignment",
+        "2569"
+      ],
+      "sizeBytes": 61202,
+      "pages": 1,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-week09-summary.md"
+      ]
+    },
+    "mfit-w9-hw-deriv1-sol": {
+      "id": "mfit-w9-hw-deriv1-sol",
+      "course": "MFIT",
+      "origin": "curated",
+      "title": {
+        "th": "Week 9 — เฉลยการบ้าน HW09: อนุพันธ์พื้นฐาน (แสดงวิธีทำละเอียด)",
+        "en": "Week 9 — HW09 Solution: Differentiation (Worked Key)"
+      },
+      "description": {
+        "th": "เฉลยวิธีทำการบ้านสัปดาห์ที่ 9 ทุกข้อ พร้อมการจัดรูปคำตอบ",
+        "en": "Complete worked solutions for Week 9 homework problems."
+      },
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-week09-derivative-i.pdf",
+      "path": "public/assets/it-kmitl/mfit/exercises/mfit-hw-week09-derivative-i.pdf",
+      "fileName": "mfit-hw-week09-derivative-i.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/mfit/exercises/mfit-hw-week09-derivative-i.pdf"
+      },
+      "access": "member",
+      "week": 9,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": false,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Week 9",
+        "Answer Key",
+        "PDF",
+        "Worked Solution"
+      ],
+      "sizeBytes": 240414,
+      "pages": 2,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-week09-summary.md"
+      ]
+    },
+    "mfit-w10-lec-deriv2-2569": {
+      "id": "mfit-w10-lec-deriv2-2569",
+      "course": "MFIT",
+      "origin": "curated",
+      "title": {
+        "th": "Week 10 — กฎลูกโซ่และฟังก์ชันแฝง (สไลด์ทางการ 2569)",
+        "en": "Week 10 — Chain Rule & Implicit Differentiation (Official 2569 Slides)"
+      },
+      "description": {
+        "th": "สไลด์บรรยายทางการประจำปี 2569: General Power Rule, Chain Rule ขั้นสูง, อนุพันธ์ของ ln/eˣ, Implicit Differentiation และโจทย์อัตราสัมพัทธ์ (Related Rates)",
+        "en": "Official 2569 lecture deck: general power rule, multi-layer chain rules, exponential/logarithmic derivatives, implicit differentiation, and related rates."
+      },
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-week10-derivative-ii-2569.pdf",
+      "path": "public/assets/it-kmitl/mfit/lectures/mfit-lec-week10-derivative-ii-2569.pdf",
+      "fileName": "mfit-lec-week10-derivative-ii-2569.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/mfit/lectures/mfit-lec-week10-derivative-ii-2569.pdf"
+      },
+      "access": "member",
+      "week": 10,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": true,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Week 10",
+        "Lecture",
+        "PDF",
+        "Chain Rule",
+        "Implicit",
+        "2569"
+      ],
+      "sizeBytes": 1371254,
+      "pages": 12,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-week10-summary.md"
+      ]
+    },
+    "mfit-w10-lec-calc-03": {
+      "id": "mfit-w10-lec-calc-03",
+      "course": "MFIT",
+      "origin": "curated",
+      "title": {
+        "th": "Week 10 — กฎลูกโซ่และฟังก์ชันแฝง (สไลด์ฉบับจดโน้ต)",
+        "en": "Week 10 — Chain Rule & Implicit Differentiation (Annotated Deck)"
+      },
+      "description": {
+        "th": "สไลด์บรรยาย Calculus-03 พร้อมจดโน้ต: ขั้นตอนการจัดรูป dy/dx จากฟังก์ชันแฝง และการตั้งตัวแปรโจทย์อัตราสัมพัทธ์",
+        "en": "Calculus-03 annotated slides: isolating dy/dx in implicit equations and geometric related rates setups."
+      },
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-03.pdf",
+      "path": "public/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-03.pdf",
+      "fileName": "mfit-lec-calculus-03.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/mfit/lectures/mfit-lec-calculus-03.pdf"
+      },
+      "access": "member",
+      "week": 10,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": false,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Week 10",
+        "Lecture",
+        "PDF",
+        "Chain Rule"
+      ],
+      "sizeBytes": 2409629,
+      "pages": 13,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-week10-summary.md"
+      ]
+    },
+    "mfit-w10-lec-calc-03-handout": {
+      "id": "mfit-w10-lec-calc-03-handout",
+      "course": "MFIT",
+      "origin": "curated",
+      "title": {
+        "th": "Week 10 — กฎลูกโซ่และฟังก์ชันแฝง (Handout)",
+        "en": "Week 10 — Chain Rule & Implicit Differentiation (Handout)"
+      },
+      "description": {
+        "th": "สไลด์ฉบับ Handout หัวข้อ Calculus-03",
+        "en": "Calculus-03 student handout edition."
+      },
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-03-handout.pdf",
+      "path": "public/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-03-handout.pdf",
+      "fileName": "mfit-lec-calculus-03-handout.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/mfit/lectures/mfit-lec-calculus-03-handout.pdf"
+      },
+      "access": "member",
+      "week": 10,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": false,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Week 10",
+        "Handout",
+        "PDF"
+      ],
+      "sizeBytes": 2569382,
+      "pages": 12,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-week10-summary.md"
+      ]
+    },
+    "mfit-w10-hw-deriv2-2569": {
+      "id": "mfit-w10-hw-deriv2-2569",
+      "course": "MFIT",
+      "origin": "curated",
+      "title": {
+        "th": "Week 10 — โจทย์การบ้าน HW10: กฎลูกโซ่และอนุพันธ์ฟังก์ชันแฝง (ฉบับ 2569)",
+        "en": "Week 10 — Homework HW10: Chain Rule & Implicit (2569 Sheet)"
+      },
+      "description": {
+        "th": "ใบงานโจทย์การบ้านสัปดาห์ที่ 10 ฉบับปี 2569: การหาอนุพันธ์ฟังก์ชันแฝงและอนุพันธ์อันดับสูง",
+        "en": "Week 10 official homework assignment: implicit differentiation and higher-order derivatives."
+      },
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-week10-derivative-ii-2569.pdf",
+      "path": "public/assets/it-kmitl/mfit/exercises/mfit-hw-week10-derivative-ii-2569.pdf",
+      "fileName": "mfit-hw-week10-derivative-ii-2569.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/mfit/exercises/mfit-hw-week10-derivative-ii-2569.pdf"
+      },
+      "access": "member",
+      "week": 10,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": true,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Week 10",
+        "Homework",
+        "PDF",
+        "Assignment",
+        "2569"
+      ],
+      "sizeBytes": 61710,
+      "pages": 1,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-week10-summary.md"
+      ]
+    },
+    "mfit-w10-hw-deriv2-sol": {
+      "id": "mfit-w10-hw-deriv2-sol",
+      "course": "MFIT",
+      "origin": "curated",
+      "title": {
+        "th": "Week 10 — เฉลยการบ้าน HW10: กฎลูกโซ่และอนุพันธ์ฟังก์ชันแฝง (แสดงวิธีทำละเอียด)",
+        "en": "Week 10 — HW10 Solution: Chain Rule & Implicit (Worked Key)"
+      },
+      "description": {
+        "th": "เฉลยวิธีทำการบ้านสัปดาห์ที่ 10 ละเอียดทุกขั้นตอน รวม 4 หน้า",
+        "en": "Four-page complete worked solution set for Week 10 homework."
+      },
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-week10-derivative-ii.pdf",
+      "path": "public/assets/it-kmitl/mfit/exercises/mfit-hw-week10-derivative-ii.pdf",
+      "fileName": "mfit-hw-week10-derivative-ii.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/mfit/exercises/mfit-hw-week10-derivative-ii.pdf"
+      },
+      "access": "member",
+      "week": 10,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": false,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Week 10",
+        "Answer Key",
+        "PDF",
+        "Worked Solution"
+      ],
+      "sizeBytes": 285778,
+      "pages": 4,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-week10-summary.md"
+      ]
+    },
+    "mfit-w11-lec-derivapps-2569": {
+      "id": "mfit-w11-lec-derivapps-2569",
+      "course": "MFIT",
+      "origin": "curated",
+      "title": {
+        "th": "Week 11 — การประยุกต์อนุพันธ์และปัญหาค่าสุดขีด (สไลด์ทางการ 2569)",
+        "en": "Week 11 — Applications of Differentiation & Optimization (Official 2569 Slides)"
+      },
+      "description": {
+        "th": "สไลด์บรรยายทางการประจำปี 2569: Critical numbers, ค่าสุดขีดบนช่วงปิด, First & Second Derivative Test, ความเว้า, จุดเปลี่ยนเว้า และการแก้ปัญหา Optimization",
+        "en": "Official 2569 lecture deck: critical points, extreme values, 1st/2nd derivative tests, concavity, inflection points, and optimization modeling."
+      },
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-week11-derivative-apps-2569.pdf",
+      "path": "public/assets/it-kmitl/mfit/lectures/mfit-lec-week11-derivative-apps-2569.pdf",
+      "fileName": "mfit-lec-week11-derivative-apps-2569.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/mfit/lectures/mfit-lec-week11-derivative-apps-2569.pdf"
+      },
+      "access": "member",
+      "week": 11,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": true,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Week 11",
+        "Lecture",
+        "PDF",
+        "Optimization",
+        "Extrema",
+        "2569"
+      ],
+      "sizeBytes": 1453281,
+      "pages": 9,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-week11-summary.md"
+      ]
+    },
+    "mfit-w11-lec-calc-04": {
+      "id": "mfit-w11-lec-calc-04",
+      "course": "MFIT",
+      "origin": "curated",
+      "title": {
+        "th": "Week 11 — การประยุกต์อนุพันธ์และปัญหาค่าสุดขีด (สไลด์ฉบับจดโน้ต)",
+        "en": "Week 11 — Applications of Differentiation (Annotated Deck)"
+      },
+      "description": {
+        "th": "สไลด์บรรยาย Calculus-04 พร้อมจดโน้ต: แผนภาพทดสอบเครื่องหมาย f' และ f'' และขั้นตอนการตั้งฟังก์ชันเป้าหมาย Optimization",
+        "en": "Calculus-04 annotated deck: sign test diagrams for f' and f'', plus optimization objective formulation."
+      },
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-04.pdf",
+      "path": "public/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-04.pdf",
+      "fileName": "mfit-lec-calculus-04.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/mfit/lectures/mfit-lec-calculus-04.pdf"
+      },
+      "access": "member",
+      "week": 11,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": false,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Week 11",
+        "Lecture",
+        "PDF",
+        "Extrema"
+      ],
+      "sizeBytes": 5804605,
+      "pages": 9,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-week11-summary.md"
+      ]
+    },
+    "mfit-w11-lec-calc-04-handout": {
+      "id": "mfit-w11-lec-calc-04-handout",
+      "course": "MFIT",
+      "origin": "curated",
+      "title": {
+        "th": "Week 11 — การประยุกต์อนุพันธ์ (Handout)",
+        "en": "Week 11 — Applications of Differentiation (Handout)"
+      },
+      "description": {
+        "th": "สไลด์ฉบับ Handout หัวข้อ Calculus-04",
+        "en": "Calculus-04 student handout edition."
+      },
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-04-handout.pdf",
+      "path": "public/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-04-handout.pdf",
+      "fileName": "mfit-lec-calculus-04-handout.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/mfit/lectures/mfit-lec-calculus-04-handout.pdf"
+      },
+      "access": "member",
+      "week": 11,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": false,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Week 11",
+        "Handout",
+        "PDF"
+      ],
+      "sizeBytes": 1720735,
+      "pages": 9,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-week11-summary.md"
+      ]
+    },
+    "mfit-w11-hw-derivapps-2569": {
+      "id": "mfit-w11-hw-derivapps-2569",
+      "course": "MFIT",
+      "origin": "curated",
+      "title": {
+        "th": "Week 11 — โจทย์การบ้าน HW11: ปัญหาค่าสุดขีดและการหาพื้นที่สูงสุด (ฉบับ 2569)",
+        "en": "Week 11 — Homework HW11: Optimization (2569 Sheet)"
+      },
+      "description": {
+        "th": "ใบงานโจทย์การบ้านสัปดาห์ที่ 11 ฉบับปี 2569: โจทย์คำนวณพื้นที่รูปสี่เหลี่ยมผืนผ้าแนบในสามเหลี่ยมเพื่อให้ได้พื้นที่สูงสุด (Optimization)",
+        "en": "Week 11 official assignment: inscribed geometric optimization problem maximizing rectangular area."
+      },
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-week11-derivative-apps-2569.pdf",
+      "path": "public/assets/it-kmitl/mfit/exercises/mfit-hw-week11-derivative-apps-2569.pdf",
+      "fileName": "mfit-hw-week11-derivative-apps-2569.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/mfit/exercises/mfit-hw-week11-derivative-apps-2569.pdf"
+      },
+      "access": "member",
+      "week": 11,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": true,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Week 11",
+        "Homework",
+        "PDF",
+        "Assignment",
+        "2569"
+      ],
+      "sizeBytes": 51310,
+      "pages": 1,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-week11-summary.md"
+      ]
+    },
+    "mfit-w11-hw-derivapps-sol": {
+      "id": "mfit-w11-hw-derivapps-sol",
+      "course": "MFIT",
+      "origin": "curated",
+      "title": {
+        "th": "Week 11 — เฉลยการบ้าน HW11: ปัญหาค่าสุดขีด Optimization (แสดงวิธีทำละเอียด)",
+        "en": "Week 11 — HW11 Solution: Optimization (Worked Key)"
+      },
+      "description": {
+        "th": "เฉลยวิธีทำการบ้านสัปดาห์ที่ 11 แสดงการตั้งสมการพีทากอรัส อนุพันธ์เทียบศูนย์ และหาคำตอบสมบูรณ์",
+        "en": "Step-by-step optimization key: geometric formulation, derivative zeroing, and dimension calculation."
+      },
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-week11-derivative-apps.pdf",
+      "path": "public/assets/it-kmitl/mfit/exercises/mfit-hw-week11-derivative-apps.pdf",
+      "fileName": "mfit-hw-week11-derivative-apps.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/mfit/exercises/mfit-hw-week11-derivative-apps.pdf"
+      },
+      "access": "member",
+      "week": 11,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": false,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Week 11",
+        "Answer Key",
+        "PDF",
+        "Worked Solution"
+      ],
+      "sizeBytes": 244657,
+      "pages": 2,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-week11-summary.md"
+      ]
+    },
+    "mfit-w11-hw-derivapps-sol-v2": {
+      "id": "mfit-w11-hw-derivapps-sol-v2",
+      "course": "MFIT",
+      "origin": "curated",
+      "title": {
+        "th": "Week 11 — เฉลยการบ้าน HW11 (ฉบับแสดงวิธีทำลายมือ)",
+        "en": "Week 11 — HW11 Solution (Handwritten Key v2)"
+      },
+      "description": {
+        "th": "เฉลยวิธีทำการบ้านสัปดาห์ที่ 11 ฉบับลายมือแสดงภาพร่างประกอบการคิด",
+        "en": "Alternative handwritten solution for HW11 featuring step-by-step sketches."
+      },
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-week11-derivative-apps-v2.pdf",
+      "path": "public/assets/it-kmitl/mfit/exercises/mfit-hw-week11-derivative-apps-v2.pdf",
+      "fileName": "mfit-hw-week11-derivative-apps-v2.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/mfit/exercises/mfit-hw-week11-derivative-apps-v2.pdf"
+      },
+      "access": "member",
+      "week": 11,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": false,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Week 11",
+        "Answer Key",
+        "PDF"
+      ],
+      "sizeBytes": 285184,
+      "pages": 1,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-week11-summary.md"
+      ]
+    },
+    "mfit-w12-lec-int1-2569": {
+      "id": "mfit-w12-lec-int1-2569",
+      "course": "MFIT",
+      "origin": "curated",
+      "title": {
+        "th": "Week 12 — ปริพันธ์พื้นฐานและทฤษฎีบทมูลฐานของแคลคูลัส (สไลด์ทางการ 2569)",
+        "en": "Week 12 — Indefinite Integrals & FTC (Official 2569 Slides)"
+      },
+      "description": {
+        "th": "สไลด์บรรยายทางการประจำปี 2569: Antiderivative, กฎปริพันธ์ไม่จำกัดเขต, ค่าคงตัวของการอินทิเกรต (+C), Riemann Sum และ Fundamental Theorem of Calculus (FTC)",
+        "en": "Official 2569 lecture deck: antiderivatives, indefinite integral rules, arbitrary constants (+C), Riemann sums, and the Fundamental Theorem of Calculus."
+      },
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-week12-integration-i-2569.pdf",
+      "path": "public/assets/it-kmitl/mfit/lectures/mfit-lec-week12-integration-i-2569.pdf",
+      "fileName": "mfit-lec-week12-integration-i-2569.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/mfit/lectures/mfit-lec-week12-integration-i-2569.pdf"
+      },
+      "access": "member",
+      "week": 12,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": true,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Week 12",
+        "Lecture",
+        "PDF",
+        "Integrals",
+        "FTC",
+        "2569"
+      ],
+      "sizeBytes": 1180732,
+      "pages": 9,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-week12-summary.md"
+      ]
+    },
+    "mfit-w12-lec-calc-05": {
+      "id": "mfit-w12-lec-calc-05",
+      "course": "MFIT",
+      "origin": "curated",
+      "title": {
+        "th": "Week 12 — ปริพันธ์พื้นฐานและ FTC (สไลด์ฉบับจดโน้ต)",
+        "en": "Week 12 — Indefinite Integrals & FTC (Annotated Deck)"
+      },
+      "description": {
+        "th": "สไลด์บรรยาย Calculus-05 พร้อมจดโน้ต: ตัวอย่างการแก้สมการเชิงอนุพันธ์เบื้องต้น และการคำนวณพื้นที่ใต้กราฟด้วย FTC",
+        "en": "Calculus-05 annotated deck: differential equations initial value problems and definite integral evaluations."
+      },
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-05.pdf",
+      "path": "public/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-05.pdf",
+      "fileName": "mfit-lec-calculus-05.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/mfit/lectures/mfit-lec-calculus-05.pdf"
+      },
+      "access": "member",
+      "week": 12,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": false,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Week 12",
+        "Lecture",
+        "PDF",
+        "Integrals"
+      ],
+      "sizeBytes": 1831780,
+      "pages": 9,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-week12-summary.md"
+      ]
+    },
+    "mfit-w12-lec-calc-05-handout": {
+      "id": "mfit-w12-lec-calc-05-handout",
+      "course": "MFIT",
+      "origin": "curated",
+      "title": {
+        "th": "Week 12 — ปริพันธ์พื้นฐานและ FTC (Handout)",
+        "en": "Week 12 — Indefinite Integrals & FTC (Handout)"
+      },
+      "description": {
+        "th": "สไลด์ฉบับ Handout หัวข้อ Calculus-05",
+        "en": "Calculus-05 student handout edition."
+      },
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-05-handout.pdf",
+      "path": "public/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-05-handout.pdf",
+      "fileName": "mfit-lec-calculus-05-handout.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/mfit/lectures/mfit-lec-calculus-05-handout.pdf"
+      },
+      "access": "member",
+      "week": 12,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": false,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Week 12",
+        "Handout",
+        "PDF"
+      ],
+      "sizeBytes": 1598653,
+      "pages": 9,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-week12-summary.md"
+      ]
+    },
+    "mfit-w12-hw-int1-2569": {
+      "id": "mfit-w12-hw-int1-2569",
+      "course": "MFIT",
+      "origin": "curated",
+      "title": {
+        "th": "Week 12 — โจทย์การบ้าน HW12: การอินทิเกรตพื้นฐาน (ฉบับ 2569)",
+        "en": "Week 12 — Homework HW12: Basic Integration (2569 Sheet)"
+      },
+      "description": {
+        "th": "ใบงานโจทย์การบ้านสัปดาห์ที่ 12 ฉบับปี 2569: การหาปฏิยานุพันธ์และอินทิกรัลจำกัดเขต",
+        "en": "Week 12 official assignment: antiderivatives and definite integral computation."
+      },
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-week12-integration-i-2569.pdf",
+      "path": "public/assets/it-kmitl/mfit/exercises/mfit-hw-week12-integration-i-2569.pdf",
+      "fileName": "mfit-hw-week12-integration-i-2569.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/mfit/exercises/mfit-hw-week12-integration-i-2569.pdf"
+      },
+      "access": "member",
+      "week": 12,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": true,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Week 12",
+        "Homework",
+        "PDF",
+        "Assignment",
+        "2569"
+      ],
+      "sizeBytes": 63260,
+      "pages": 1,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-week12-summary.md"
+      ]
+    },
+    "mfit-w12-hw-int1-sol": {
+      "id": "mfit-w12-hw-int1-sol",
+      "course": "MFIT",
+      "origin": "curated",
+      "title": {
+        "th": "Week 12 — เฉลยการบ้าน HW12: การอินทิเกรตพื้นฐาน (แสดงวิธีทำละเอียด)",
+        "en": "Week 12 — HW12 Solution: Basic Integration (Worked Key)"
+      },
+      "description": {
+        "th": "เฉลยวิธีทำการบ้านสัปดาห์ที่ 12 แสดงการประยุกต์ทฤษฎีบทมูลฐานของแคลคูลัส",
+        "en": "Complete worked key for Week 12 homework applying FTC."
+      },
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-week12-integration-i.pdf",
+      "path": "public/assets/it-kmitl/mfit/exercises/mfit-hw-week12-integration-i.pdf",
+      "fileName": "mfit-hw-week12-integration-i.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/mfit/exercises/mfit-hw-week12-integration-i.pdf"
+      },
+      "access": "member",
+      "week": 12,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": false,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Week 12",
+        "Answer Key",
+        "PDF",
+        "Worked Solution"
+      ],
+      "sizeBytes": 146585,
+      "pages": 1,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-week12-summary.md"
+      ]
+    },
+    "mfit-w13-lec-calc-06": {
+      "id": "mfit-w13-lec-calc-06",
+      "course": "MFIT",
+      "origin": "curated",
+      "title": {
+        "th": "Week 13 — เทคนิคการอินทิเกรต u-Substitution (สไลด์ฉบับจดโน้ต)",
+        "en": "Week 13 — Integration by Substitution (Annotated Deck)"
+      },
+      "description": {
+        "th": "สไลด์บรรยาย Calculus-06 พร้อมจดโน้ต: u-Substitution ทั้งแบบไม่จำกัดเขตและจำกัดเขต, การเปลี่ยนขอบเขต, ฟังก์ชันคู่/คี่บนช่วงสมมาตร และปริพันธ์ของค่าสัมบูรณ์",
+        "en": "Calculus-06 annotated deck: u-substitution indefinite/definite forms, boundary transformations, symmetry rules, and absolute value integrals."
+      },
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-06.pdf",
+      "path": "public/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-06.pdf",
+      "fileName": "mfit-lec-calculus-06.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/mfit/lectures/mfit-lec-calculus-06.pdf"
+      },
+      "access": "member",
+      "week": 13,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": false,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Week 13",
+        "Lecture",
+        "PDF",
+        "u-Substitution"
+      ],
+      "sizeBytes": 2100602,
+      "pages": 13,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-week13-summary.md"
+      ]
+    },
+    "mfit-w13-lec-calc-06-handout": {
+      "id": "mfit-w13-lec-calc-06-handout",
+      "course": "MFIT",
+      "origin": "curated",
+      "title": {
+        "th": "Week 13 — เทคนิคการอินทิเกรต u-Substitution (Handout)",
+        "en": "Week 13 — Integration by Substitution (Handout)"
+      },
+      "description": {
+        "th": "สไลด์ฉบับ Handout หัวข้อ Calculus-06",
+        "en": "Calculus-06 student handout edition."
+      },
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-06-handout.pdf",
+      "path": "public/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-06-handout.pdf",
+      "fileName": "mfit-lec-calculus-06-handout.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/mfit/lectures/mfit-lec-calculus-06-handout.pdf"
+      },
+      "access": "member",
+      "week": 13,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": false,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Week 13",
+        "Handout",
+        "PDF"
+      ],
+      "sizeBytes": 2101731,
+      "pages": 12,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-week13-summary.md"
+      ]
+    },
+    "mfit-w13-hw-int2-2569": {
+      "id": "mfit-w13-hw-int2-2569",
+      "course": "MFIT",
+      "origin": "curated",
+      "title": {
+        "th": "Week 13 — โจทย์การบ้าน HW13: การอินทิเกรตแบบแทนค่าตัวแปร u (ฉบับ 2569)",
+        "en": "Week 13 — Homework HW13: u-Substitution (2569 Sheet)"
+      },
+      "description": {
+        "th": "ใบงานโจทย์การบ้านสัปดาห์ที่ 13 ฉบับปี 2569: โจทย์การแทนค่าตัวแปร u สำหรับฟังก์ชันตรีโกณมิติและพหุนามติดราก",
+        "en": "Week 13 official assignment: trigonometric and radical u-substitution problems."
+      },
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-week13-integration-ii-2569.pdf",
+      "path": "public/assets/it-kmitl/mfit/exercises/mfit-hw-week13-integration-ii-2569.pdf",
+      "fileName": "mfit-hw-week13-integration-ii-2569.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/mfit/exercises/mfit-hw-week13-integration-ii-2569.pdf"
+      },
+      "access": "member",
+      "week": 13,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": true,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Week 13",
+        "Homework",
+        "PDF",
+        "Assignment",
+        "2569"
+      ],
+      "sizeBytes": 61684,
+      "pages": 1,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-week13-summary.md"
+      ]
+    },
+    "mfit-w13-hw-int2-sol": {
+      "id": "mfit-w13-hw-int2-sol",
+      "course": "MFIT",
+      "origin": "curated",
+      "title": {
+        "th": "Week 13 — เฉลยการบ้าน HW13: u-Substitution (แสดงวิธีทำละเอียด)",
+        "en": "Week 13 — HW13 Solution: u-Substitution (Worked Key)"
+      },
+      "description": {
+        "th": "เฉลยวิธีทำการบ้านสัปดาห์ที่ 13 แสดงการเลือกตัวแปร u และ du อย่างเป็นระบบ",
+        "en": "Complete worked key for Week 13 homework demonstrating u-substitution mechanics."
+      },
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-week13-integration-ii.pdf",
+      "path": "public/assets/it-kmitl/mfit/exercises/mfit-hw-week13-integration-ii.pdf",
+      "fileName": "mfit-hw-week13-integration-ii.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/mfit/exercises/mfit-hw-week13-integration-ii.pdf"
+      },
+      "access": "member",
+      "week": 13,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": false,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Week 13",
+        "Answer Key",
+        "PDF",
+        "Worked Solution"
+      ],
+      "sizeBytes": 280379,
+      "pages": 2,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-week13-summary.md"
+      ]
+    },
+    "mfit-w14-lec-calc-07": {
+      "id": "mfit-w14-lec-calc-07",
+      "course": "MFIT",
+      "origin": "curated",
+      "title": {
+        "th": "Week 14 — อินทิเกรตแยกส่วน พื้นที่ และปริมาตรทรงตันหมุน (สไลด์ฉบับจดโน้ต)",
+        "en": "Week 14 — Integration by Parts, Area & Volumes (Annotated Deck)"
+      },
+      "description": {
+        "th": "สไลด์บรรยาย Calculus-07 พร้อมจดโน้ต: Integration by Parts (LIATE + ตารางลัด), เคสวนซ้ำ, พื้นที่ระหว่างเส้นโค้ง และปริมาตรทรงตันหมุน (Disk & Washer Method)",
+        "en": "Calculus-07 annotated deck: integration by parts (LIATE & tabular method), recurring cases, area between curves, and solids of revolution (Disk/Washer)."
+      },
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-07.pdf",
+      "path": "public/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-07.pdf",
+      "fileName": "mfit-lec-calculus-07.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/mfit/lectures/mfit-lec-calculus-07.pdf"
+      },
+      "access": "member",
+      "week": 14,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": false,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Week 14",
+        "Lecture",
+        "PDF",
+        "By Parts",
+        "Volume",
+        "Disk",
+        "Washer"
+      ],
+      "sizeBytes": 2458607,
+      "pages": 11,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-week14-summary.md"
+      ]
+    },
+    "mfit-w14-lec-calc-07-handout": {
+      "id": "mfit-w14-lec-calc-07-handout",
+      "course": "MFIT",
+      "origin": "curated",
+      "title": {
+        "th": "Week 14 — อินทิเกรตแยกส่วน พื้นที่ และทรงตันหมุน (Handout)",
+        "en": "Week 14 — Integration by Parts, Area & Volumes (Handout)"
+      },
+      "description": {
+        "th": "สไลด์ฉบับ Handout หัวข้อ Calculus-07",
+        "en": "Calculus-07 student handout edition."
+      },
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-07-handout.pdf",
+      "path": "public/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-07-handout.pdf",
+      "fileName": "mfit-lec-calculus-07-handout.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/mfit/lectures/mfit-lec-calculus-07-handout.pdf"
+      },
+      "access": "member",
+      "week": 14,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": false,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Week 14",
+        "Handout",
+        "PDF"
+      ],
+      "sizeBytes": 3013794,
+      "pages": 11,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-week14-summary.md"
+      ]
+    },
+    "mfit-w14-hw-intapps-2569": {
+      "id": "mfit-w14-hw-intapps-2569",
+      "course": "MFIT",
+      "origin": "curated",
+      "title": {
+        "th": "Week 14 — โจทย์การบ้าน HW14: Integration by Parts & การประยุกต์ (ฉบับ 2569)",
+        "en": "Week 14 — Homework HW14: By Parts & Applications (2569 Sheet)"
+      },
+      "description": {
+        "th": "ใบงานโจทย์การบ้านสัปดาห์ที่ 14 ฉบับปี 2569: การอินทิเกรตแยกส่วนและการคำนวณปริมาตรทรงตัน",
+        "en": "Week 14 official assignment: integration by parts and volume of revolution."
+      },
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-week14-integration-apps-2569.pdf",
+      "path": "public/assets/it-kmitl/mfit/exercises/mfit-hw-week14-integration-apps-2569.pdf",
+      "fileName": "mfit-hw-week14-integration-apps-2569.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/mfit/exercises/mfit-hw-week14-integration-apps-2569.pdf"
+      },
+      "access": "member",
+      "week": 14,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": true,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Week 14",
+        "Homework",
+        "PDF",
+        "Assignment",
+        "2569"
+      ],
+      "sizeBytes": 71672,
+      "pages": 1,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-week14-summary.md"
+      ]
+    },
+    "mfit-w14-hw-intapps-sol": {
+      "id": "mfit-w14-hw-intapps-sol",
+      "course": "MFIT",
+      "origin": "curated",
+      "title": {
+        "th": "Week 14 — เฉลยการบ้าน HW14: By Parts & การประยุกต์ (แสดงวิธีทำละเอียด)",
+        "en": "Week 14 — HW14 Solution: By Parts & Applications (Worked Key)"
+      },
+      "description": {
+        "th": "เฉลยวิธีทำการบ้านสัปดาห์ที่ 14 แสดงวิธีทำ By Parts และการตั้งปริพันธ์หาปริมาตร Disk/Washer รวม 3 หน้า",
+        "en": "Three-page worked solution set for Week 14 homework covering By Parts and Disk/Washer setup."
+      },
+      "category": "exercise",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-week14-integration-apps.pdf",
+      "path": "public/assets/it-kmitl/mfit/exercises/mfit-hw-week14-integration-apps.pdf",
+      "fileName": "mfit-hw-week14-integration-apps.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/mfit/exercises/mfit-hw-week14-integration-apps.pdf"
+      },
+      "access": "member",
+      "week": 14,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": false,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Week 14",
+        "Answer Key",
+        "PDF",
+        "Worked Solution"
+      ],
+      "sizeBytes": 314311,
+      "pages": 3,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-week14-summary.md"
+      ]
+    },
+    "mfit-w15-lec-calc-08": {
+      "id": "mfit-w15-lec-calc-08",
+      "course": "MFIT",
+      "origin": "curated",
+      "title": {
+        "th": "Week 15 — จุดศูนย์กลางมวล และอนุพันธ์ย่อย (สไลด์ฉบับจดโน้ต)",
+        "en": "Week 15 — Centroids & Partial Derivatives (Annotated Deck)"
+      },
+      "description": {
+        "th": "สไลด์บรรยาย Calculus-08 พร้อมจดโน้ต: โมเมนต์, จุดศูนย์กลางมวล, Centroid ของแผ่นระนาบ และนิยามอนุพันธ์ย่อย fx, fy เบื้องต้น",
+        "en": "Calculus-08 annotated deck: moments, centers of mass, planar centroids, and introductory partial derivatives fx and fy."
+      },
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-08.pdf",
+      "path": "public/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-08.pdf",
+      "fileName": "mfit-lec-calculus-08.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/mfit/lectures/mfit-lec-calculus-08.pdf"
+      },
+      "access": "member",
+      "week": 15,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": false,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Week 15",
+        "Lecture",
+        "PDF",
+        "Centroid",
+        "Partial Derivatives"
+      ],
+      "sizeBytes": 1641562,
+      "pages": 9,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-week15-summary.md"
+      ]
+    },
+    "mfit-w15-lec-calc-08-handout": {
+      "id": "mfit-w15-lec-calc-08-handout",
+      "course": "MFIT",
+      "origin": "curated",
+      "title": {
+        "th": "Week 15 — จุดศูนย์กลางมวล และอนุพันธ์ย่อย (Handout)",
+        "en": "Week 15 — Centroids & Partial Derivatives (Handout)"
+      },
+      "description": {
+        "th": "สไลด์ฉบับ Handout หัวข้อ Calculus-08",
+        "en": "Calculus-08 student handout edition."
+      },
+      "category": "lecture",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-08-handout.pdf",
+      "path": "public/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-08-handout.pdf",
+      "fileName": "mfit-lec-calculus-08-handout.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/mfit/lectures/mfit-lec-calculus-08-handout.pdf"
+      },
+      "access": "member",
+      "week": 15,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": false,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Week 15",
+        "Handout",
+        "PDF"
+      ],
+      "sizeBytes": 1783912,
+      "pages": 9,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-week15-summary.md"
+      ]
+    },
+    "mfit-ref-calc-useful-info-2569": {
+      "id": "mfit-ref-calc-useful-info-2569",
+      "course": "MFIT",
+      "origin": "curated",
+      "title": {
+        "th": "📌 Calculus Useful Info (แผ่นสรุปสูตรทางการ 2569)",
+        "en": "📌 Calculus Useful Info (Official 2569 Formula Sheet)"
+      },
+      "description": {
+        "th": "แผ่นข้อมูลสรุปสูตรแคลคูลัสทางการประจำปีการศึกษา 2569 ที่ใช้ประกอบการเรียนและการสอบ",
+        "en": "Official 1/2569 calculus useful info formula cheat sheet."
+      },
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/references/mfit-ref-calculus-useful-info-2569.pdf",
+      "path": "public/assets/it-kmitl/mfit/references/mfit-ref-calculus-useful-info-2569.pdf",
+      "fileName": "mfit-ref-calculus-useful-info-2569.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/mfit/references/mfit-ref-calculus-useful-info-2569.pdf"
+      },
+      "access": "member",
+      "week": null,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": true,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Cheatsheet",
+        "Formulas",
+        "PDF",
+        "2569"
+      ],
+      "sizeBytes": 32839,
+      "pages": 1,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-final-war-room.md"
+      ]
+    },
+    "mfit-sheet-final-recap-w8-13": {
+      "id": "mfit-sheet-final-recap-w8-13",
+      "course": "MFIT",
+      "origin": "curated",
+      "title": {
+        "th": "📑 สรุปทบทวนเนื้อหาปลายภาค สัปดาห์ 8–13 (Recap 19 หน้า)",
+        "en": "📑 Final Exam Intensive Recap: Weeks 8–13 (19 Pages)"
+      },
+      "description": {
+        "th": "ชีทสรุปเข้มข้นลายมืออ่านง่ายครอบคลุมหัวข้อสำคัญปลายภาค สัปดาห์ 8–13: ลิมิต, อนุพันธ์, การประยุกต์, และเทคนิคอินทิเกรต",
+        "en": "Intensive 19-page handwritten final exam review covering Weeks 8 through 13."
+      },
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/sheets/mfit-sheet-final-recap-week08-13.pdf",
+      "path": "public/assets/it-kmitl/mfit/sheets/mfit-sheet-final-recap-week08-13.pdf",
+      "fileName": "mfit-sheet-final-recap-week08-13.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/mfit/sheets/mfit-sheet-final-recap-week08-13.pdf"
+      },
+      "access": "member",
+      "week": null,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": false,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Cheatsheet",
+        "Recap",
+        "PDF"
+      ],
+      "sizeBytes": 5926993,
+      "pages": 19,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-final-war-room.md"
+      ]
+    },
+    "mfit-sheet-recap-calculus": {
+      "id": "mfit-sheet-recap-calculus",
+      "course": "MFIT",
+      "origin": "curated",
+      "title": {
+        "th": "📐 ชีทสรุปสูตรแคลคูลัส Diff & Int (6 หน้า)",
+        "en": "📐 Calculus Formula & Method Recap (6 Pages)"
+      },
+      "description": {
+        "th": "สรุปสูตรสำคัญแคลคูลัส กฎลูกโซ่ และเทคนิคการอินทิเกรตพร้อมตัวอย่างแสดงวิธีทำ",
+        "en": "Concise 6-page summary of core differentiation, chain rules, and integration methods."
+      },
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/sheets/mfit-sheet-recap-calculus.pdf",
+      "path": "public/assets/it-kmitl/mfit/sheets/mfit-sheet-recap-calculus.pdf",
+      "fileName": "mfit-sheet-recap-calculus.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/mfit/sheets/mfit-sheet-recap-calculus.pdf"
+      },
+      "access": "member",
+      "week": null,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": false,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Cheatsheet",
+        "Formulas",
+        "PDF"
+      ],
+      "sizeBytes": 1307875,
+      "pages": 6,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-final-war-room.md"
+      ]
+    },
+    "mfit-final-pastpaper-2561": {
+      "id": "mfit-final-pastpaper-2561",
+      "course": "MFIT",
+      "origin": "curated",
+      "title": {
+        "th": "📝 ข้อสอบปลายภาค MFIT ปีการศึกษา 2561 (ฉบับจริง 50 คะแนน)",
+        "en": "📝 Final Exam Paper 2018 / 2561 (50 Points)"
+      },
+      "description": {
+        "th": "ข้อสอบปลายภาคฉบับจริง 22 ข้อ 50 คะแนน: ลิมิตและความต่อเนื่อง (6 คะแนน), Differentiator (16 คะแนน), Integrate (20 คะแนน) และการประยุกต์",
+        "en": "Real 2018 final exam paper (50 marks): Limits (6 pts), Differentiation (16 pts), Integration (20 pts), and applications."
+      },
+      "category": "exam",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/exams/mfit-final-final-mathit-2561.pdf",
+      "path": "public/assets/it-kmitl/mfit/exams/mfit-final-final-mathit-2561.pdf",
+      "fileName": "mfit-final-final-mathit-2561.pdf",
+      "storage": {
+        "bucket": "ihelp-library-exams",
+        "key": "it-kmitl/mfit/exams/mfit-final-final-mathit-2561.pdf"
+      },
+      "access": "insider",
+      "week": null,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": false,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Final",
+        "ข้อสอบเก่า",
+        "PDF"
+      ],
+      "sizeBytes": 966125,
+      "pages": 12,
+      "onDisk": true,
+      "usedBy": []
+    },
+    "mfit-final-pastpaper-2560": {
+      "id": "mfit-final-pastpaper-2560",
+      "course": "MFIT",
+      "origin": "curated",
+      "title": {
+        "th": "📝 ข้อสอบปลายภาค MFIT ปีการศึกษา 2560 (ฉบับจริง 40 คะแนน)",
+        "en": "📝 Final Exam Paper 2017 / 2560 (40 Points)"
+      },
+      "description": {
+        "th": "ข้อสอบปลายภาคฉบับจริง 26 ข้อ 40 คะแนน: ลิมิตและความต่อเนื่อง (3 คะแนน), Differentiator (14 คะแนน), Integrate (13 คะแนน)",
+        "en": "Real 2017 final exam paper (40 marks): Limits (3 pts), Differentiation (14 pts), Integration (13 pts)."
+      },
+      "category": "exam",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/exams/mfit-final-2560.pdf",
+      "path": "public/assets/it-kmitl/mfit/exams/mfit-final-2560.pdf",
+      "fileName": "mfit-final-2560.pdf",
+      "storage": {
+        "bucket": "ihelp-library-exams",
+        "key": "it-kmitl/mfit/exams/mfit-final-2560.pdf"
+      },
+      "access": "insider",
+      "week": null,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": false,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Final",
+        "ข้อสอบเก่า",
+        "PDF"
+      ],
+      "sizeBytes": 1583183,
+      "pages": 10,
+      "onDisk": true,
+      "usedBy": []
+    },
+    "mfit-final-pastpaper-2559": {
+      "id": "mfit-final-pastpaper-2559",
+      "course": "MFIT",
+      "origin": "curated",
+      "title": {
+        "th": "📝 ข้อสอบปลายภาค MFIT ปีการศึกษา 2559 (ฉบับจริง 40 คะแนน)",
+        "en": "📝 Final Exam Paper 2016 / 2559 (40 Points)"
+      },
+      "description": {
+        "th": "ข้อสอบปลายภาคฉบับจริง 40 คะแนน รวมโจทย์ลิมิต, อนุพันธ์กฎลูกโซ่ และอินทิกรัล",
+        "en": "Real 2016 final exam paper covering limits, chain rules, and definite integrals."
+      },
+      "category": "exam",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/exams/mfit-final-final-mathit-2559.pdf",
+      "path": "public/assets/it-kmitl/mfit/exams/mfit-final-final-mathit-2559.pdf",
+      "fileName": "mfit-final-final-mathit-2559.pdf",
+      "storage": {
+        "bucket": "ihelp-library-exams",
+        "key": "it-kmitl/mfit/exams/mfit-final-final-mathit-2559.pdf"
+      },
+      "access": "insider",
+      "week": null,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": false,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Final",
+        "ข้อสอบเก่า",
+        "PDF"
+      ],
+      "sizeBytes": 1443688,
+      "pages": 9,
+      "onDisk": true,
+      "usedBy": []
+    },
+    "mfit-final-notelub": {
+      "id": "mfit-final-notelub",
+      "course": "MFIT",
+      "origin": "curated",
+      "title": {
+        "th": "✏️ บันทึกเฉลยข้อสอบปลายภาค NoteLub (ลายมือเฉลยวิธีทำ)",
+        "en": "✏️ NoteLub Final Worked Solutions Key"
+      },
+      "description": {
+        "th": "บันทึกเฉลยวิธีทำข้อสอบปลายภาคจากรุ่นพี่ เฉลยคำตอบทีละข้อ",
+        "en": "Student-crafted final exam solution notebook with step-by-step answers."
+      },
+      "category": "exam",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/exams/mfit-final-notelub.pdf",
+      "path": "public/assets/it-kmitl/mfit/exams/mfit-final-notelub.pdf",
+      "fileName": "mfit-final-notelub.pdf",
+      "storage": {
+        "bucket": "ihelp-library-exams",
+        "key": "it-kmitl/mfit/exams/mfit-final-notelub.pdf"
+      },
+      "access": "insider",
+      "week": null,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": false,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Final",
+        "ข้อสอบเก่า",
+        "เฉลย",
+        "PDF"
+      ],
+      "sizeBytes": 164886,
+      "pages": 3,
+      "onDisk": true,
+      "usedBy": []
+    },
+    "mfit-final-vault-cdn": {
+      "id": "mfit-final-vault-cdn",
+      "course": "MFIT",
+      "origin": "curated",
+      "title": {
+        "th": "📚 รวมชุดข้อสอบเก่าและแนวโจทย์ปลายภาค ฉบับคลังเอกสาร (19 หน้า)",
+        "en": "📚 Final Exam Archive Collection & Practice Vault (19 Pages)"
+      },
+      "description": {
+        "th": "เอกสารรวบรวมข้อสอบเก่าและเฉลยโจทย์ปลายภาคแคลคูลัสฉบับรวมชุด 19 หน้า",
+        "en": "Comprehensive 19-page compilation of past final exam problems and practice materials."
+      },
+      "category": "exam",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/exams/mfit-final-cdn-fbsbx-com.pdf",
+      "path": "public/assets/it-kmitl/mfit/exams/mfit-final-cdn-fbsbx-com.pdf",
+      "fileName": "mfit-final-cdn-fbsbx-com.pdf",
+      "storage": {
+        "bucket": "ihelp-library-exams",
+        "key": "it-kmitl/mfit/exams/mfit-final-cdn-fbsbx-com.pdf"
+      },
+      "access": "insider",
+      "week": null,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": false,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Final",
+        "ข้อสอบเก่า",
+        "PDF"
+      ],
+      "sizeBytes": 5924204,
+      "pages": 19,
       "onDisk": true,
       "usedBy": []
     },
@@ -18526,78 +20493,6 @@
       "onDisk": true,
       "usedBy": []
     },
-    "gen-mfit-exams-mfit-final-2560-pdf": {
-      "id": "gen-mfit-exams-mfit-final-2560-pdf",
-      "course": "MFIT",
-      "origin": "generated",
-      "title": {
-        "th": "Final · 2560",
-        "en": "Final · 2560"
-      },
-      "description": null,
-      "category": "exam",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/exams/mfit-final-2560.pdf",
-      "path": "public/assets/it-kmitl/mfit/exams/mfit-final-2560.pdf",
-      "fileName": "mfit-final-2560.pdf",
-      "storage": {
-        "bucket": "ihelp-library-exams",
-        "key": "it-kmitl/mfit/exams/mfit-final-2560.pdf"
-      },
-      "access": "insider",
-      "week": null,
-      "scope": null,
-      "edition": null,
-      "status": null,
-      "isCurrentYear": false,
-      "duplicateOf": null,
-      "sourceUrl": null,
-      "groupId": null,
-      "tags": [
-        "MFIT",
-        "exams"
-      ],
-      "sizeBytes": 1583183,
-      "pages": 10,
-      "onDisk": true,
-      "usedBy": []
-    },
-    "gen-mfit-exams-mfit-final-cdn-fbsbx-com-pdf": {
-      "id": "gen-mfit-exams-mfit-final-cdn-fbsbx-com-pdf",
-      "course": "MFIT",
-      "origin": "generated",
-      "title": {
-        "th": "Final · Cdn Fbsbx Com",
-        "en": "Final · Cdn Fbsbx Com"
-      },
-      "description": null,
-      "category": "exam",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/exams/mfit-final-cdn-fbsbx-com.pdf",
-      "path": "public/assets/it-kmitl/mfit/exams/mfit-final-cdn-fbsbx-com.pdf",
-      "fileName": "mfit-final-cdn-fbsbx-com.pdf",
-      "storage": {
-        "bucket": "ihelp-library-exams",
-        "key": "it-kmitl/mfit/exams/mfit-final-cdn-fbsbx-com.pdf"
-      },
-      "access": "insider",
-      "week": null,
-      "scope": null,
-      "edition": null,
-      "status": null,
-      "isCurrentYear": false,
-      "duplicateOf": null,
-      "sourceUrl": null,
-      "groupId": null,
-      "tags": [
-        "MFIT",
-        "exams"
-      ],
-      "sizeBytes": 5924204,
-      "pages": 19,
-      "onDisk": true,
-      "usedBy": []
-    },
     "gen-mfit-exams-mfit-final-copy-of-final-mathit-2559-pdf": {
       "id": "gen-mfit-exams-mfit-final-copy-of-final-mathit-2559-pdf",
       "course": "MFIT",
@@ -18631,114 +20526,6 @@
       ],
       "sizeBytes": 1318403,
       "pages": 9,
-      "onDisk": true,
-      "usedBy": []
-    },
-    "gen-mfit-exams-mfit-final-final-mathit-2559-pdf": {
-      "id": "gen-mfit-exams-mfit-final-final-mathit-2559-pdf",
-      "course": "MFIT",
-      "origin": "generated",
-      "title": {
-        "th": "Final · Final Mathit 2559",
-        "en": "Final · Final Mathit 2559"
-      },
-      "description": null,
-      "category": "exam",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/exams/mfit-final-final-mathit-2559.pdf",
-      "path": "public/assets/it-kmitl/mfit/exams/mfit-final-final-mathit-2559.pdf",
-      "fileName": "mfit-final-final-mathit-2559.pdf",
-      "storage": {
-        "bucket": "ihelp-library-exams",
-        "key": "it-kmitl/mfit/exams/mfit-final-final-mathit-2559.pdf"
-      },
-      "access": "insider",
-      "week": null,
-      "scope": null,
-      "edition": null,
-      "status": null,
-      "isCurrentYear": false,
-      "duplicateOf": null,
-      "sourceUrl": null,
-      "groupId": null,
-      "tags": [
-        "MFIT",
-        "exams"
-      ],
-      "sizeBytes": 1443688,
-      "pages": 9,
-      "onDisk": true,
-      "usedBy": []
-    },
-    "gen-mfit-exams-mfit-final-final-mathit-2561-pdf": {
-      "id": "gen-mfit-exams-mfit-final-final-mathit-2561-pdf",
-      "course": "MFIT",
-      "origin": "generated",
-      "title": {
-        "th": "Final · Final Mathit 2561",
-        "en": "Final · Final Mathit 2561"
-      },
-      "description": null,
-      "category": "exam",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/exams/mfit-final-final-mathit-2561.pdf",
-      "path": "public/assets/it-kmitl/mfit/exams/mfit-final-final-mathit-2561.pdf",
-      "fileName": "mfit-final-final-mathit-2561.pdf",
-      "storage": {
-        "bucket": "ihelp-library-exams",
-        "key": "it-kmitl/mfit/exams/mfit-final-final-mathit-2561.pdf"
-      },
-      "access": "insider",
-      "week": null,
-      "scope": null,
-      "edition": null,
-      "status": null,
-      "isCurrentYear": false,
-      "duplicateOf": null,
-      "sourceUrl": null,
-      "groupId": null,
-      "tags": [
-        "MFIT",
-        "exams"
-      ],
-      "sizeBytes": 966125,
-      "pages": 12,
-      "onDisk": true,
-      "usedBy": []
-    },
-    "gen-mfit-exams-mfit-final-notelub-pdf": {
-      "id": "gen-mfit-exams-mfit-final-notelub-pdf",
-      "course": "MFIT",
-      "origin": "generated",
-      "title": {
-        "th": "Final · Notelub",
-        "en": "Final · Notelub"
-      },
-      "description": null,
-      "category": "exam",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/exams/mfit-final-notelub.pdf",
-      "path": "public/assets/it-kmitl/mfit/exams/mfit-final-notelub.pdf",
-      "fileName": "mfit-final-notelub.pdf",
-      "storage": {
-        "bucket": "ihelp-library-exams",
-        "key": "it-kmitl/mfit/exams/mfit-final-notelub.pdf"
-      },
-      "access": "insider",
-      "week": null,
-      "scope": null,
-      "edition": null,
-      "status": null,
-      "isCurrentYear": false,
-      "duplicateOf": null,
-      "sourceUrl": null,
-      "groupId": null,
-      "tags": [
-        "MFIT",
-        "exams"
-      ],
-      "sizeBytes": 164886,
-      "pages": 3,
       "onDisk": true,
       "usedBy": []
     },
@@ -19750,546 +21537,6 @@
       "onDisk": true,
       "usedBy": []
     },
-    "gen-mfit-exercises-mfit-hw-week08-function-limit-continuity-2569-pdf": {
-      "id": "gen-mfit-exercises-mfit-hw-week08-function-limit-continuity-2569-pdf",
-      "course": "MFIT",
-      "origin": "generated",
-      "title": {
-        "th": "Homework · Week 08 Function Limit Continuity 2569",
-        "en": "Homework · Week 08 Function Limit Continuity 2569"
-      },
-      "description": null,
-      "category": "exercise",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-week08-function-limit-continuity-2569.pdf",
-      "path": "public/assets/it-kmitl/mfit/exercises/mfit-hw-week08-function-limit-continuity-2569.pdf",
-      "fileName": "mfit-hw-week08-function-limit-continuity-2569.pdf",
-      "storage": {
-        "bucket": "ihelp-library",
-        "key": "it-kmitl/mfit/exercises/mfit-hw-week08-function-limit-continuity-2569.pdf"
-      },
-      "access": "member",
-      "week": 8,
-      "scope": null,
-      "edition": null,
-      "status": null,
-      "isCurrentYear": false,
-      "duplicateOf": null,
-      "sourceUrl": null,
-      "groupId": null,
-      "tags": [
-        "MFIT",
-        "exercises"
-      ],
-      "sizeBytes": 62189,
-      "pages": 1,
-      "onDisk": true,
-      "usedBy": []
-    },
-    "gen-mfit-exercises-mfit-hw-week08-function-limit-continuity-pdf": {
-      "id": "gen-mfit-exercises-mfit-hw-week08-function-limit-continuity-pdf",
-      "course": "MFIT",
-      "origin": "generated",
-      "title": {
-        "th": "Homework · Week 08 Function Limit Continuity",
-        "en": "Homework · Week 08 Function Limit Continuity"
-      },
-      "description": null,
-      "category": "exercise",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-week08-function-limit-continuity.pdf",
-      "path": "public/assets/it-kmitl/mfit/exercises/mfit-hw-week08-function-limit-continuity.pdf",
-      "fileName": "mfit-hw-week08-function-limit-continuity.pdf",
-      "storage": {
-        "bucket": "ihelp-library",
-        "key": "it-kmitl/mfit/exercises/mfit-hw-week08-function-limit-continuity.pdf"
-      },
-      "access": "member",
-      "week": 8,
-      "scope": null,
-      "edition": null,
-      "status": null,
-      "isCurrentYear": false,
-      "duplicateOf": null,
-      "sourceUrl": null,
-      "groupId": null,
-      "tags": [
-        "MFIT",
-        "exercises"
-      ],
-      "sizeBytes": 194142,
-      "pages": 2,
-      "onDisk": true,
-      "usedBy": []
-    },
-    "gen-mfit-exercises-mfit-hw-week09-derivative-i-2569-pdf": {
-      "id": "gen-mfit-exercises-mfit-hw-week09-derivative-i-2569-pdf",
-      "course": "MFIT",
-      "origin": "generated",
-      "title": {
-        "th": "Homework · Week 09 Derivative I 2569",
-        "en": "Homework · Week 09 Derivative I 2569"
-      },
-      "description": null,
-      "category": "exercise",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-week09-derivative-i-2569.pdf",
-      "path": "public/assets/it-kmitl/mfit/exercises/mfit-hw-week09-derivative-i-2569.pdf",
-      "fileName": "mfit-hw-week09-derivative-i-2569.pdf",
-      "storage": {
-        "bucket": "ihelp-library",
-        "key": "it-kmitl/mfit/exercises/mfit-hw-week09-derivative-i-2569.pdf"
-      },
-      "access": "member",
-      "week": 9,
-      "scope": null,
-      "edition": null,
-      "status": null,
-      "isCurrentYear": false,
-      "duplicateOf": null,
-      "sourceUrl": null,
-      "groupId": null,
-      "tags": [
-        "MFIT",
-        "exercises"
-      ],
-      "sizeBytes": 61202,
-      "pages": 1,
-      "onDisk": true,
-      "usedBy": []
-    },
-    "gen-mfit-exercises-mfit-hw-week09-derivative-i-pdf": {
-      "id": "gen-mfit-exercises-mfit-hw-week09-derivative-i-pdf",
-      "course": "MFIT",
-      "origin": "generated",
-      "title": {
-        "th": "Homework · Week 09 Derivative I",
-        "en": "Homework · Week 09 Derivative I"
-      },
-      "description": null,
-      "category": "exercise",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-week09-derivative-i.pdf",
-      "path": "public/assets/it-kmitl/mfit/exercises/mfit-hw-week09-derivative-i.pdf",
-      "fileName": "mfit-hw-week09-derivative-i.pdf",
-      "storage": {
-        "bucket": "ihelp-library",
-        "key": "it-kmitl/mfit/exercises/mfit-hw-week09-derivative-i.pdf"
-      },
-      "access": "member",
-      "week": 9,
-      "scope": null,
-      "edition": null,
-      "status": null,
-      "isCurrentYear": false,
-      "duplicateOf": null,
-      "sourceUrl": null,
-      "groupId": null,
-      "tags": [
-        "MFIT",
-        "exercises"
-      ],
-      "sizeBytes": 240414,
-      "pages": 2,
-      "onDisk": true,
-      "usedBy": []
-    },
-    "gen-mfit-exercises-mfit-hw-week10-derivative-ii-2569-pdf": {
-      "id": "gen-mfit-exercises-mfit-hw-week10-derivative-ii-2569-pdf",
-      "course": "MFIT",
-      "origin": "generated",
-      "title": {
-        "th": "Homework · Week 10 Derivative II 2569",
-        "en": "Homework · Week 10 Derivative II 2569"
-      },
-      "description": null,
-      "category": "exercise",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-week10-derivative-ii-2569.pdf",
-      "path": "public/assets/it-kmitl/mfit/exercises/mfit-hw-week10-derivative-ii-2569.pdf",
-      "fileName": "mfit-hw-week10-derivative-ii-2569.pdf",
-      "storage": {
-        "bucket": "ihelp-library",
-        "key": "it-kmitl/mfit/exercises/mfit-hw-week10-derivative-ii-2569.pdf"
-      },
-      "access": "member",
-      "week": 10,
-      "scope": null,
-      "edition": null,
-      "status": null,
-      "isCurrentYear": false,
-      "duplicateOf": null,
-      "sourceUrl": null,
-      "groupId": null,
-      "tags": [
-        "MFIT",
-        "exercises"
-      ],
-      "sizeBytes": 61710,
-      "pages": 1,
-      "onDisk": true,
-      "usedBy": []
-    },
-    "gen-mfit-exercises-mfit-hw-week10-derivative-ii-pdf": {
-      "id": "gen-mfit-exercises-mfit-hw-week10-derivative-ii-pdf",
-      "course": "MFIT",
-      "origin": "generated",
-      "title": {
-        "th": "Homework · Week 10 Derivative II",
-        "en": "Homework · Week 10 Derivative II"
-      },
-      "description": null,
-      "category": "exercise",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-week10-derivative-ii.pdf",
-      "path": "public/assets/it-kmitl/mfit/exercises/mfit-hw-week10-derivative-ii.pdf",
-      "fileName": "mfit-hw-week10-derivative-ii.pdf",
-      "storage": {
-        "bucket": "ihelp-library",
-        "key": "it-kmitl/mfit/exercises/mfit-hw-week10-derivative-ii.pdf"
-      },
-      "access": "member",
-      "week": 10,
-      "scope": null,
-      "edition": null,
-      "status": null,
-      "isCurrentYear": false,
-      "duplicateOf": null,
-      "sourceUrl": null,
-      "groupId": null,
-      "tags": [
-        "MFIT",
-        "exercises"
-      ],
-      "sizeBytes": 285778,
-      "pages": 4,
-      "onDisk": true,
-      "usedBy": []
-    },
-    "gen-mfit-exercises-mfit-hw-week11-derivative-apps-2569-pdf": {
-      "id": "gen-mfit-exercises-mfit-hw-week11-derivative-apps-2569-pdf",
-      "course": "MFIT",
-      "origin": "generated",
-      "title": {
-        "th": "Homework · Week 11 Derivative Apps 2569",
-        "en": "Homework · Week 11 Derivative Apps 2569"
-      },
-      "description": null,
-      "category": "exercise",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-week11-derivative-apps-2569.pdf",
-      "path": "public/assets/it-kmitl/mfit/exercises/mfit-hw-week11-derivative-apps-2569.pdf",
-      "fileName": "mfit-hw-week11-derivative-apps-2569.pdf",
-      "storage": {
-        "bucket": "ihelp-library",
-        "key": "it-kmitl/mfit/exercises/mfit-hw-week11-derivative-apps-2569.pdf"
-      },
-      "access": "member",
-      "week": 11,
-      "scope": null,
-      "edition": null,
-      "status": null,
-      "isCurrentYear": false,
-      "duplicateOf": null,
-      "sourceUrl": null,
-      "groupId": null,
-      "tags": [
-        "MFIT",
-        "exercises"
-      ],
-      "sizeBytes": 51310,
-      "pages": 1,
-      "onDisk": true,
-      "usedBy": []
-    },
-    "gen-mfit-exercises-mfit-hw-week11-derivative-apps-v2-pdf": {
-      "id": "gen-mfit-exercises-mfit-hw-week11-derivative-apps-v2-pdf",
-      "course": "MFIT",
-      "origin": "generated",
-      "title": {
-        "th": "Homework · Week 11 Derivative Apps V 2",
-        "en": "Homework · Week 11 Derivative Apps V 2"
-      },
-      "description": null,
-      "category": "exercise",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-week11-derivative-apps-v2.pdf",
-      "path": "public/assets/it-kmitl/mfit/exercises/mfit-hw-week11-derivative-apps-v2.pdf",
-      "fileName": "mfit-hw-week11-derivative-apps-v2.pdf",
-      "storage": {
-        "bucket": "ihelp-library",
-        "key": "it-kmitl/mfit/exercises/mfit-hw-week11-derivative-apps-v2.pdf"
-      },
-      "access": "member",
-      "week": 11,
-      "scope": null,
-      "edition": null,
-      "status": null,
-      "isCurrentYear": false,
-      "duplicateOf": null,
-      "sourceUrl": null,
-      "groupId": null,
-      "tags": [
-        "MFIT",
-        "exercises"
-      ],
-      "sizeBytes": 285184,
-      "pages": 1,
-      "onDisk": true,
-      "usedBy": []
-    },
-    "gen-mfit-exercises-mfit-hw-week11-derivative-apps-pdf": {
-      "id": "gen-mfit-exercises-mfit-hw-week11-derivative-apps-pdf",
-      "course": "MFIT",
-      "origin": "generated",
-      "title": {
-        "th": "Homework · Week 11 Derivative Apps",
-        "en": "Homework · Week 11 Derivative Apps"
-      },
-      "description": null,
-      "category": "exercise",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-week11-derivative-apps.pdf",
-      "path": "public/assets/it-kmitl/mfit/exercises/mfit-hw-week11-derivative-apps.pdf",
-      "fileName": "mfit-hw-week11-derivative-apps.pdf",
-      "storage": {
-        "bucket": "ihelp-library",
-        "key": "it-kmitl/mfit/exercises/mfit-hw-week11-derivative-apps.pdf"
-      },
-      "access": "member",
-      "week": 11,
-      "scope": null,
-      "edition": null,
-      "status": null,
-      "isCurrentYear": false,
-      "duplicateOf": null,
-      "sourceUrl": null,
-      "groupId": null,
-      "tags": [
-        "MFIT",
-        "exercises"
-      ],
-      "sizeBytes": 244657,
-      "pages": 2,
-      "onDisk": true,
-      "usedBy": []
-    },
-    "gen-mfit-exercises-mfit-hw-week12-integration-i-2569-pdf": {
-      "id": "gen-mfit-exercises-mfit-hw-week12-integration-i-2569-pdf",
-      "course": "MFIT",
-      "origin": "generated",
-      "title": {
-        "th": "Homework · Week 12 Integration I 2569",
-        "en": "Homework · Week 12 Integration I 2569"
-      },
-      "description": null,
-      "category": "exercise",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-week12-integration-i-2569.pdf",
-      "path": "public/assets/it-kmitl/mfit/exercises/mfit-hw-week12-integration-i-2569.pdf",
-      "fileName": "mfit-hw-week12-integration-i-2569.pdf",
-      "storage": {
-        "bucket": "ihelp-library",
-        "key": "it-kmitl/mfit/exercises/mfit-hw-week12-integration-i-2569.pdf"
-      },
-      "access": "member",
-      "week": 12,
-      "scope": null,
-      "edition": null,
-      "status": null,
-      "isCurrentYear": false,
-      "duplicateOf": null,
-      "sourceUrl": null,
-      "groupId": null,
-      "tags": [
-        "MFIT",
-        "exercises"
-      ],
-      "sizeBytes": 63260,
-      "pages": 1,
-      "onDisk": true,
-      "usedBy": []
-    },
-    "gen-mfit-exercises-mfit-hw-week12-integration-i-pdf": {
-      "id": "gen-mfit-exercises-mfit-hw-week12-integration-i-pdf",
-      "course": "MFIT",
-      "origin": "generated",
-      "title": {
-        "th": "Homework · Week 12 Integration I",
-        "en": "Homework · Week 12 Integration I"
-      },
-      "description": null,
-      "category": "exercise",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-week12-integration-i.pdf",
-      "path": "public/assets/it-kmitl/mfit/exercises/mfit-hw-week12-integration-i.pdf",
-      "fileName": "mfit-hw-week12-integration-i.pdf",
-      "storage": {
-        "bucket": "ihelp-library",
-        "key": "it-kmitl/mfit/exercises/mfit-hw-week12-integration-i.pdf"
-      },
-      "access": "member",
-      "week": 12,
-      "scope": null,
-      "edition": null,
-      "status": null,
-      "isCurrentYear": false,
-      "duplicateOf": null,
-      "sourceUrl": null,
-      "groupId": null,
-      "tags": [
-        "MFIT",
-        "exercises"
-      ],
-      "sizeBytes": 146585,
-      "pages": 1,
-      "onDisk": true,
-      "usedBy": []
-    },
-    "gen-mfit-exercises-mfit-hw-week13-integration-ii-2569-pdf": {
-      "id": "gen-mfit-exercises-mfit-hw-week13-integration-ii-2569-pdf",
-      "course": "MFIT",
-      "origin": "generated",
-      "title": {
-        "th": "Homework · Week 13 Integration II 2569",
-        "en": "Homework · Week 13 Integration II 2569"
-      },
-      "description": null,
-      "category": "exercise",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-week13-integration-ii-2569.pdf",
-      "path": "public/assets/it-kmitl/mfit/exercises/mfit-hw-week13-integration-ii-2569.pdf",
-      "fileName": "mfit-hw-week13-integration-ii-2569.pdf",
-      "storage": {
-        "bucket": "ihelp-library",
-        "key": "it-kmitl/mfit/exercises/mfit-hw-week13-integration-ii-2569.pdf"
-      },
-      "access": "member",
-      "week": 13,
-      "scope": null,
-      "edition": null,
-      "status": null,
-      "isCurrentYear": false,
-      "duplicateOf": null,
-      "sourceUrl": null,
-      "groupId": null,
-      "tags": [
-        "MFIT",
-        "exercises"
-      ],
-      "sizeBytes": 61684,
-      "pages": 1,
-      "onDisk": true,
-      "usedBy": []
-    },
-    "gen-mfit-exercises-mfit-hw-week13-integration-ii-pdf": {
-      "id": "gen-mfit-exercises-mfit-hw-week13-integration-ii-pdf",
-      "course": "MFIT",
-      "origin": "generated",
-      "title": {
-        "th": "Homework · Week 13 Integration II",
-        "en": "Homework · Week 13 Integration II"
-      },
-      "description": null,
-      "category": "exercise",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-week13-integration-ii.pdf",
-      "path": "public/assets/it-kmitl/mfit/exercises/mfit-hw-week13-integration-ii.pdf",
-      "fileName": "mfit-hw-week13-integration-ii.pdf",
-      "storage": {
-        "bucket": "ihelp-library",
-        "key": "it-kmitl/mfit/exercises/mfit-hw-week13-integration-ii.pdf"
-      },
-      "access": "member",
-      "week": 13,
-      "scope": null,
-      "edition": null,
-      "status": null,
-      "isCurrentYear": false,
-      "duplicateOf": null,
-      "sourceUrl": null,
-      "groupId": null,
-      "tags": [
-        "MFIT",
-        "exercises"
-      ],
-      "sizeBytes": 280379,
-      "pages": 2,
-      "onDisk": true,
-      "usedBy": []
-    },
-    "gen-mfit-exercises-mfit-hw-week14-integration-apps-2569-pdf": {
-      "id": "gen-mfit-exercises-mfit-hw-week14-integration-apps-2569-pdf",
-      "course": "MFIT",
-      "origin": "generated",
-      "title": {
-        "th": "Homework · Week 14 Integration Apps 2569",
-        "en": "Homework · Week 14 Integration Apps 2569"
-      },
-      "description": null,
-      "category": "exercise",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-week14-integration-apps-2569.pdf",
-      "path": "public/assets/it-kmitl/mfit/exercises/mfit-hw-week14-integration-apps-2569.pdf",
-      "fileName": "mfit-hw-week14-integration-apps-2569.pdf",
-      "storage": {
-        "bucket": "ihelp-library",
-        "key": "it-kmitl/mfit/exercises/mfit-hw-week14-integration-apps-2569.pdf"
-      },
-      "access": "member",
-      "week": 14,
-      "scope": null,
-      "edition": null,
-      "status": null,
-      "isCurrentYear": false,
-      "duplicateOf": null,
-      "sourceUrl": null,
-      "groupId": null,
-      "tags": [
-        "MFIT",
-        "exercises"
-      ],
-      "sizeBytes": 71672,
-      "pages": 1,
-      "onDisk": true,
-      "usedBy": []
-    },
-    "gen-mfit-exercises-mfit-hw-week14-integration-apps-pdf": {
-      "id": "gen-mfit-exercises-mfit-hw-week14-integration-apps-pdf",
-      "course": "MFIT",
-      "origin": "generated",
-      "title": {
-        "th": "Homework · Week 14 Integration Apps",
-        "en": "Homework · Week 14 Integration Apps"
-      },
-      "description": null,
-      "category": "exercise",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/exercises/mfit-hw-week14-integration-apps.pdf",
-      "path": "public/assets/it-kmitl/mfit/exercises/mfit-hw-week14-integration-apps.pdf",
-      "fileName": "mfit-hw-week14-integration-apps.pdf",
-      "storage": {
-        "bucket": "ihelp-library",
-        "key": "it-kmitl/mfit/exercises/mfit-hw-week14-integration-apps.pdf"
-      },
-      "access": "member",
-      "week": 14,
-      "scope": null,
-      "edition": null,
-      "status": null,
-      "isCurrentYear": false,
-      "duplicateOf": null,
-      "sourceUrl": null,
-      "groupId": null,
-      "tags": [
-        "MFIT",
-        "exercises"
-      ],
-      "sizeBytes": 314311,
-      "pages": 3,
-      "onDisk": true,
-      "usedBy": []
-    },
     "gen-mfit-lectures-m4-it-calculus-01-handouts-4p-pdf": {
       "id": "gen-mfit-lectures-m4-it-calculus-01-handouts-4p-pdf",
       "course": "MFIT",
@@ -20323,582 +21570,6 @@
       ],
       "sizeBytes": 1290542,
       "pages": 14,
-      "onDisk": true,
-      "usedBy": []
-    },
-    "gen-mfit-lectures-mfit-lec-calculus-01-handout-pdf": {
-      "id": "gen-mfit-lectures-mfit-lec-calculus-01-handout-pdf",
-      "course": "MFIT",
-      "origin": "generated",
-      "title": {
-        "th": "Lecture · Calculus 01 Handout",
-        "en": "Lecture · Calculus 01 Handout"
-      },
-      "description": null,
-      "category": "lecture",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-01-handout.pdf",
-      "path": "public/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-01-handout.pdf",
-      "fileName": "mfit-lec-calculus-01-handout.pdf",
-      "storage": {
-        "bucket": "ihelp-library",
-        "key": "it-kmitl/mfit/lectures/mfit-lec-calculus-01-handout.pdf"
-      },
-      "access": "member",
-      "week": null,
-      "scope": null,
-      "edition": null,
-      "status": null,
-      "isCurrentYear": false,
-      "duplicateOf": null,
-      "sourceUrl": null,
-      "groupId": null,
-      "tags": [
-        "MFIT",
-        "lectures"
-      ],
-      "sizeBytes": 1905145,
-      "pages": 15,
-      "onDisk": true,
-      "usedBy": []
-    },
-    "gen-mfit-lectures-mfit-lec-calculus-01-pdf": {
-      "id": "gen-mfit-lectures-mfit-lec-calculus-01-pdf",
-      "course": "MFIT",
-      "origin": "generated",
-      "title": {
-        "th": "Lecture · Calculus 01",
-        "en": "Lecture · Calculus 01"
-      },
-      "description": null,
-      "category": "lecture",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-01.pdf",
-      "path": "public/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-01.pdf",
-      "fileName": "mfit-lec-calculus-01.pdf",
-      "storage": {
-        "bucket": "ihelp-library",
-        "key": "it-kmitl/mfit/lectures/mfit-lec-calculus-01.pdf"
-      },
-      "access": "member",
-      "week": null,
-      "scope": null,
-      "edition": null,
-      "status": null,
-      "isCurrentYear": false,
-      "duplicateOf": null,
-      "sourceUrl": null,
-      "groupId": null,
-      "tags": [
-        "MFIT",
-        "lectures"
-      ],
-      "sizeBytes": 2154533,
-      "pages": 15,
-      "onDisk": true,
-      "usedBy": []
-    },
-    "gen-mfit-lectures-mfit-lec-calculus-02-handout-pdf": {
-      "id": "gen-mfit-lectures-mfit-lec-calculus-02-handout-pdf",
-      "course": "MFIT",
-      "origin": "generated",
-      "title": {
-        "th": "Lecture · Calculus 02 Handout",
-        "en": "Lecture · Calculus 02 Handout"
-      },
-      "description": null,
-      "category": "lecture",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-02-handout.pdf",
-      "path": "public/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-02-handout.pdf",
-      "fileName": "mfit-lec-calculus-02-handout.pdf",
-      "storage": {
-        "bucket": "ihelp-library",
-        "key": "it-kmitl/mfit/lectures/mfit-lec-calculus-02-handout.pdf"
-      },
-      "access": "member",
-      "week": null,
-      "scope": null,
-      "edition": null,
-      "status": null,
-      "isCurrentYear": false,
-      "duplicateOf": null,
-      "sourceUrl": null,
-      "groupId": null,
-      "tags": [
-        "MFIT",
-        "lectures"
-      ],
-      "sizeBytes": 2385763,
-      "pages": 14,
-      "onDisk": true,
-      "usedBy": []
-    },
-    "gen-mfit-lectures-mfit-lec-calculus-02-pdf": {
-      "id": "gen-mfit-lectures-mfit-lec-calculus-02-pdf",
-      "course": "MFIT",
-      "origin": "generated",
-      "title": {
-        "th": "Lecture · Calculus 02",
-        "en": "Lecture · Calculus 02"
-      },
-      "description": null,
-      "category": "lecture",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-02.pdf",
-      "path": "public/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-02.pdf",
-      "fileName": "mfit-lec-calculus-02.pdf",
-      "storage": {
-        "bucket": "ihelp-library",
-        "key": "it-kmitl/mfit/lectures/mfit-lec-calculus-02.pdf"
-      },
-      "access": "member",
-      "week": null,
-      "scope": null,
-      "edition": null,
-      "status": null,
-      "isCurrentYear": false,
-      "duplicateOf": null,
-      "sourceUrl": null,
-      "groupId": null,
-      "tags": [
-        "MFIT",
-        "lectures"
-      ],
-      "sizeBytes": 2466598,
-      "pages": 14,
-      "onDisk": true,
-      "usedBy": []
-    },
-    "gen-mfit-lectures-mfit-lec-calculus-03-handout-pdf": {
-      "id": "gen-mfit-lectures-mfit-lec-calculus-03-handout-pdf",
-      "course": "MFIT",
-      "origin": "generated",
-      "title": {
-        "th": "Lecture · Calculus 03 Handout",
-        "en": "Lecture · Calculus 03 Handout"
-      },
-      "description": null,
-      "category": "lecture",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-03-handout.pdf",
-      "path": "public/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-03-handout.pdf",
-      "fileName": "mfit-lec-calculus-03-handout.pdf",
-      "storage": {
-        "bucket": "ihelp-library",
-        "key": "it-kmitl/mfit/lectures/mfit-lec-calculus-03-handout.pdf"
-      },
-      "access": "member",
-      "week": null,
-      "scope": null,
-      "edition": null,
-      "status": null,
-      "isCurrentYear": false,
-      "duplicateOf": null,
-      "sourceUrl": null,
-      "groupId": null,
-      "tags": [
-        "MFIT",
-        "lectures"
-      ],
-      "sizeBytes": 2569382,
-      "pages": 12,
-      "onDisk": true,
-      "usedBy": []
-    },
-    "gen-mfit-lectures-mfit-lec-calculus-03-pdf": {
-      "id": "gen-mfit-lectures-mfit-lec-calculus-03-pdf",
-      "course": "MFIT",
-      "origin": "generated",
-      "title": {
-        "th": "Lecture · Calculus 03",
-        "en": "Lecture · Calculus 03"
-      },
-      "description": null,
-      "category": "lecture",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-03.pdf",
-      "path": "public/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-03.pdf",
-      "fileName": "mfit-lec-calculus-03.pdf",
-      "storage": {
-        "bucket": "ihelp-library",
-        "key": "it-kmitl/mfit/lectures/mfit-lec-calculus-03.pdf"
-      },
-      "access": "member",
-      "week": null,
-      "scope": null,
-      "edition": null,
-      "status": null,
-      "isCurrentYear": false,
-      "duplicateOf": null,
-      "sourceUrl": null,
-      "groupId": null,
-      "tags": [
-        "MFIT",
-        "lectures"
-      ],
-      "sizeBytes": 2409629,
-      "pages": 13,
-      "onDisk": true,
-      "usedBy": []
-    },
-    "gen-mfit-lectures-mfit-lec-calculus-04-handout-pdf": {
-      "id": "gen-mfit-lectures-mfit-lec-calculus-04-handout-pdf",
-      "course": "MFIT",
-      "origin": "generated",
-      "title": {
-        "th": "Lecture · Calculus 04 Handout",
-        "en": "Lecture · Calculus 04 Handout"
-      },
-      "description": null,
-      "category": "lecture",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-04-handout.pdf",
-      "path": "public/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-04-handout.pdf",
-      "fileName": "mfit-lec-calculus-04-handout.pdf",
-      "storage": {
-        "bucket": "ihelp-library",
-        "key": "it-kmitl/mfit/lectures/mfit-lec-calculus-04-handout.pdf"
-      },
-      "access": "member",
-      "week": null,
-      "scope": null,
-      "edition": null,
-      "status": null,
-      "isCurrentYear": false,
-      "duplicateOf": null,
-      "sourceUrl": null,
-      "groupId": null,
-      "tags": [
-        "MFIT",
-        "lectures"
-      ],
-      "sizeBytes": 1720735,
-      "pages": 9,
-      "onDisk": true,
-      "usedBy": []
-    },
-    "gen-mfit-lectures-mfit-lec-calculus-04-pdf": {
-      "id": "gen-mfit-lectures-mfit-lec-calculus-04-pdf",
-      "course": "MFIT",
-      "origin": "generated",
-      "title": {
-        "th": "Lecture · Calculus 04",
-        "en": "Lecture · Calculus 04"
-      },
-      "description": null,
-      "category": "lecture",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-04.pdf",
-      "path": "public/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-04.pdf",
-      "fileName": "mfit-lec-calculus-04.pdf",
-      "storage": {
-        "bucket": "ihelp-library",
-        "key": "it-kmitl/mfit/lectures/mfit-lec-calculus-04.pdf"
-      },
-      "access": "member",
-      "week": null,
-      "scope": null,
-      "edition": null,
-      "status": null,
-      "isCurrentYear": false,
-      "duplicateOf": null,
-      "sourceUrl": null,
-      "groupId": null,
-      "tags": [
-        "MFIT",
-        "lectures"
-      ],
-      "sizeBytes": 5804605,
-      "pages": 9,
-      "onDisk": true,
-      "usedBy": []
-    },
-    "gen-mfit-lectures-mfit-lec-calculus-05-handout-pdf": {
-      "id": "gen-mfit-lectures-mfit-lec-calculus-05-handout-pdf",
-      "course": "MFIT",
-      "origin": "generated",
-      "title": {
-        "th": "Lecture · Calculus 05 Handout",
-        "en": "Lecture · Calculus 05 Handout"
-      },
-      "description": null,
-      "category": "lecture",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-05-handout.pdf",
-      "path": "public/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-05-handout.pdf",
-      "fileName": "mfit-lec-calculus-05-handout.pdf",
-      "storage": {
-        "bucket": "ihelp-library",
-        "key": "it-kmitl/mfit/lectures/mfit-lec-calculus-05-handout.pdf"
-      },
-      "access": "member",
-      "week": null,
-      "scope": null,
-      "edition": null,
-      "status": null,
-      "isCurrentYear": false,
-      "duplicateOf": null,
-      "sourceUrl": null,
-      "groupId": null,
-      "tags": [
-        "MFIT",
-        "lectures"
-      ],
-      "sizeBytes": 1598653,
-      "pages": 9,
-      "onDisk": true,
-      "usedBy": []
-    },
-    "gen-mfit-lectures-mfit-lec-calculus-05-pdf": {
-      "id": "gen-mfit-lectures-mfit-lec-calculus-05-pdf",
-      "course": "MFIT",
-      "origin": "generated",
-      "title": {
-        "th": "Lecture · Calculus 05",
-        "en": "Lecture · Calculus 05"
-      },
-      "description": null,
-      "category": "lecture",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-05.pdf",
-      "path": "public/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-05.pdf",
-      "fileName": "mfit-lec-calculus-05.pdf",
-      "storage": {
-        "bucket": "ihelp-library",
-        "key": "it-kmitl/mfit/lectures/mfit-lec-calculus-05.pdf"
-      },
-      "access": "member",
-      "week": null,
-      "scope": null,
-      "edition": null,
-      "status": null,
-      "isCurrentYear": false,
-      "duplicateOf": null,
-      "sourceUrl": null,
-      "groupId": null,
-      "tags": [
-        "MFIT",
-        "lectures"
-      ],
-      "sizeBytes": 1831780,
-      "pages": 9,
-      "onDisk": true,
-      "usedBy": []
-    },
-    "gen-mfit-lectures-mfit-lec-calculus-06-handout-pdf": {
-      "id": "gen-mfit-lectures-mfit-lec-calculus-06-handout-pdf",
-      "course": "MFIT",
-      "origin": "generated",
-      "title": {
-        "th": "Lecture · Calculus 06 Handout",
-        "en": "Lecture · Calculus 06 Handout"
-      },
-      "description": null,
-      "category": "lecture",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-06-handout.pdf",
-      "path": "public/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-06-handout.pdf",
-      "fileName": "mfit-lec-calculus-06-handout.pdf",
-      "storage": {
-        "bucket": "ihelp-library",
-        "key": "it-kmitl/mfit/lectures/mfit-lec-calculus-06-handout.pdf"
-      },
-      "access": "member",
-      "week": null,
-      "scope": null,
-      "edition": null,
-      "status": null,
-      "isCurrentYear": false,
-      "duplicateOf": null,
-      "sourceUrl": null,
-      "groupId": null,
-      "tags": [
-        "MFIT",
-        "lectures"
-      ],
-      "sizeBytes": 2101731,
-      "pages": 12,
-      "onDisk": true,
-      "usedBy": []
-    },
-    "gen-mfit-lectures-mfit-lec-calculus-06-pdf": {
-      "id": "gen-mfit-lectures-mfit-lec-calculus-06-pdf",
-      "course": "MFIT",
-      "origin": "generated",
-      "title": {
-        "th": "Lecture · Calculus 06",
-        "en": "Lecture · Calculus 06"
-      },
-      "description": null,
-      "category": "lecture",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-06.pdf",
-      "path": "public/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-06.pdf",
-      "fileName": "mfit-lec-calculus-06.pdf",
-      "storage": {
-        "bucket": "ihelp-library",
-        "key": "it-kmitl/mfit/lectures/mfit-lec-calculus-06.pdf"
-      },
-      "access": "member",
-      "week": null,
-      "scope": null,
-      "edition": null,
-      "status": null,
-      "isCurrentYear": false,
-      "duplicateOf": null,
-      "sourceUrl": null,
-      "groupId": null,
-      "tags": [
-        "MFIT",
-        "lectures"
-      ],
-      "sizeBytes": 2100602,
-      "pages": 13,
-      "onDisk": true,
-      "usedBy": []
-    },
-    "gen-mfit-lectures-mfit-lec-calculus-07-handout-pdf": {
-      "id": "gen-mfit-lectures-mfit-lec-calculus-07-handout-pdf",
-      "course": "MFIT",
-      "origin": "generated",
-      "title": {
-        "th": "Lecture · Calculus 07 Handout",
-        "en": "Lecture · Calculus 07 Handout"
-      },
-      "description": null,
-      "category": "lecture",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-07-handout.pdf",
-      "path": "public/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-07-handout.pdf",
-      "fileName": "mfit-lec-calculus-07-handout.pdf",
-      "storage": {
-        "bucket": "ihelp-library",
-        "key": "it-kmitl/mfit/lectures/mfit-lec-calculus-07-handout.pdf"
-      },
-      "access": "member",
-      "week": null,
-      "scope": null,
-      "edition": null,
-      "status": null,
-      "isCurrentYear": false,
-      "duplicateOf": null,
-      "sourceUrl": null,
-      "groupId": null,
-      "tags": [
-        "MFIT",
-        "lectures"
-      ],
-      "sizeBytes": 3013794,
-      "pages": 11,
-      "onDisk": true,
-      "usedBy": []
-    },
-    "gen-mfit-lectures-mfit-lec-calculus-07-pdf": {
-      "id": "gen-mfit-lectures-mfit-lec-calculus-07-pdf",
-      "course": "MFIT",
-      "origin": "generated",
-      "title": {
-        "th": "Lecture · Calculus 07",
-        "en": "Lecture · Calculus 07"
-      },
-      "description": null,
-      "category": "lecture",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-07.pdf",
-      "path": "public/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-07.pdf",
-      "fileName": "mfit-lec-calculus-07.pdf",
-      "storage": {
-        "bucket": "ihelp-library",
-        "key": "it-kmitl/mfit/lectures/mfit-lec-calculus-07.pdf"
-      },
-      "access": "member",
-      "week": null,
-      "scope": null,
-      "edition": null,
-      "status": null,
-      "isCurrentYear": false,
-      "duplicateOf": null,
-      "sourceUrl": null,
-      "groupId": null,
-      "tags": [
-        "MFIT",
-        "lectures"
-      ],
-      "sizeBytes": 2458607,
-      "pages": 11,
-      "onDisk": true,
-      "usedBy": []
-    },
-    "gen-mfit-lectures-mfit-lec-calculus-08-handout-pdf": {
-      "id": "gen-mfit-lectures-mfit-lec-calculus-08-handout-pdf",
-      "course": "MFIT",
-      "origin": "generated",
-      "title": {
-        "th": "Lecture · Calculus 08 Handout",
-        "en": "Lecture · Calculus 08 Handout"
-      },
-      "description": null,
-      "category": "lecture",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-08-handout.pdf",
-      "path": "public/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-08-handout.pdf",
-      "fileName": "mfit-lec-calculus-08-handout.pdf",
-      "storage": {
-        "bucket": "ihelp-library",
-        "key": "it-kmitl/mfit/lectures/mfit-lec-calculus-08-handout.pdf"
-      },
-      "access": "member",
-      "week": null,
-      "scope": null,
-      "edition": null,
-      "status": null,
-      "isCurrentYear": false,
-      "duplicateOf": null,
-      "sourceUrl": null,
-      "groupId": null,
-      "tags": [
-        "MFIT",
-        "lectures"
-      ],
-      "sizeBytes": 1783912,
-      "pages": 9,
-      "onDisk": true,
-      "usedBy": []
-    },
-    "gen-mfit-lectures-mfit-lec-calculus-08-pdf": {
-      "id": "gen-mfit-lectures-mfit-lec-calculus-08-pdf",
-      "course": "MFIT",
-      "origin": "generated",
-      "title": {
-        "th": "Lecture · Calculus 08",
-        "en": "Lecture · Calculus 08"
-      },
-      "description": null,
-      "category": "lecture",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-08.pdf",
-      "path": "public/assets/it-kmitl/mfit/lectures/mfit-lec-calculus-08.pdf",
-      "fileName": "mfit-lec-calculus-08.pdf",
-      "storage": {
-        "bucket": "ihelp-library",
-        "key": "it-kmitl/mfit/lectures/mfit-lec-calculus-08.pdf"
-      },
-      "access": "member",
-      "week": null,
-      "scope": null,
-      "edition": null,
-      "status": null,
-      "isCurrentYear": false,
-      "duplicateOf": null,
-      "sourceUrl": null,
-      "groupId": null,
-      "tags": [
-        "MFIT",
-        "lectures"
-      ],
-      "sizeBytes": 1641562,
-      "pages": 9,
       "onDisk": true,
       "usedBy": []
     },
@@ -21226,150 +21897,6 @@
       "onDisk": true,
       "usedBy": []
     },
-    "gen-mfit-lectures-mfit-lec-week09-derivative-i-2569-pdf": {
-      "id": "gen-mfit-lectures-mfit-lec-week09-derivative-i-2569-pdf",
-      "course": "MFIT",
-      "origin": "generated",
-      "title": {
-        "th": "Lecture · Week 09 Derivative I 2569",
-        "en": "Lecture · Week 09 Derivative I 2569"
-      },
-      "description": null,
-      "category": "lecture",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-week09-derivative-i-2569.pdf",
-      "path": "public/assets/it-kmitl/mfit/lectures/mfit-lec-week09-derivative-i-2569.pdf",
-      "fileName": "mfit-lec-week09-derivative-i-2569.pdf",
-      "storage": {
-        "bucket": "ihelp-library",
-        "key": "it-kmitl/mfit/lectures/mfit-lec-week09-derivative-i-2569.pdf"
-      },
-      "access": "member",
-      "week": 9,
-      "scope": null,
-      "edition": null,
-      "status": null,
-      "isCurrentYear": false,
-      "duplicateOf": null,
-      "sourceUrl": null,
-      "groupId": null,
-      "tags": [
-        "MFIT",
-        "lectures"
-      ],
-      "sizeBytes": 1593691,
-      "pages": 14,
-      "onDisk": true,
-      "usedBy": []
-    },
-    "gen-mfit-lectures-mfit-lec-week10-derivative-ii-2569-pdf": {
-      "id": "gen-mfit-lectures-mfit-lec-week10-derivative-ii-2569-pdf",
-      "course": "MFIT",
-      "origin": "generated",
-      "title": {
-        "th": "Lecture · Week 10 Derivative II 2569",
-        "en": "Lecture · Week 10 Derivative II 2569"
-      },
-      "description": null,
-      "category": "lecture",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-week10-derivative-ii-2569.pdf",
-      "path": "public/assets/it-kmitl/mfit/lectures/mfit-lec-week10-derivative-ii-2569.pdf",
-      "fileName": "mfit-lec-week10-derivative-ii-2569.pdf",
-      "storage": {
-        "bucket": "ihelp-library",
-        "key": "it-kmitl/mfit/lectures/mfit-lec-week10-derivative-ii-2569.pdf"
-      },
-      "access": "member",
-      "week": 10,
-      "scope": null,
-      "edition": null,
-      "status": null,
-      "isCurrentYear": false,
-      "duplicateOf": null,
-      "sourceUrl": null,
-      "groupId": null,
-      "tags": [
-        "MFIT",
-        "lectures"
-      ],
-      "sizeBytes": 1371254,
-      "pages": 12,
-      "onDisk": true,
-      "usedBy": []
-    },
-    "gen-mfit-lectures-mfit-lec-week11-derivative-apps-2569-pdf": {
-      "id": "gen-mfit-lectures-mfit-lec-week11-derivative-apps-2569-pdf",
-      "course": "MFIT",
-      "origin": "generated",
-      "title": {
-        "th": "Lecture · Week 11 Derivative Apps 2569",
-        "en": "Lecture · Week 11 Derivative Apps 2569"
-      },
-      "description": null,
-      "category": "lecture",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-week11-derivative-apps-2569.pdf",
-      "path": "public/assets/it-kmitl/mfit/lectures/mfit-lec-week11-derivative-apps-2569.pdf",
-      "fileName": "mfit-lec-week11-derivative-apps-2569.pdf",
-      "storage": {
-        "bucket": "ihelp-library",
-        "key": "it-kmitl/mfit/lectures/mfit-lec-week11-derivative-apps-2569.pdf"
-      },
-      "access": "member",
-      "week": 11,
-      "scope": null,
-      "edition": null,
-      "status": null,
-      "isCurrentYear": false,
-      "duplicateOf": null,
-      "sourceUrl": null,
-      "groupId": null,
-      "tags": [
-        "MFIT",
-        "lectures"
-      ],
-      "sizeBytes": 1453281,
-      "pages": 9,
-      "onDisk": true,
-      "usedBy": []
-    },
-    "gen-mfit-lectures-mfit-lec-week12-integration-i-2569-pdf": {
-      "id": "gen-mfit-lectures-mfit-lec-week12-integration-i-2569-pdf",
-      "course": "MFIT",
-      "origin": "generated",
-      "title": {
-        "th": "Lecture · Week 12 Integration I 2569",
-        "en": "Lecture · Week 12 Integration I 2569"
-      },
-      "description": null,
-      "category": "lecture",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/lectures/mfit-lec-week12-integration-i-2569.pdf",
-      "path": "public/assets/it-kmitl/mfit/lectures/mfit-lec-week12-integration-i-2569.pdf",
-      "fileName": "mfit-lec-week12-integration-i-2569.pdf",
-      "storage": {
-        "bucket": "ihelp-library",
-        "key": "it-kmitl/mfit/lectures/mfit-lec-week12-integration-i-2569.pdf"
-      },
-      "access": "member",
-      "week": 12,
-      "scope": null,
-      "edition": null,
-      "status": null,
-      "isCurrentYear": false,
-      "duplicateOf": null,
-      "sourceUrl": null,
-      "groupId": null,
-      "tags": [
-        "MFIT",
-        "lectures"
-      ],
-      "sizeBytes": 1180732,
-      "pages": 9,
-      "onDisk": true,
-      "usedBy": []
-    },
     "gen-mfit-lectures-mfit-note-week03-pdf": {
       "id": "gen-mfit-lectures-mfit-note-week03-pdf",
       "course": "MFIT",
@@ -21406,42 +21933,6 @@
       "onDisk": true,
       "usedBy": []
     },
-    "gen-mfit-references-mfit-ref-calculus-useful-info-2569-pdf": {
-      "id": "gen-mfit-references-mfit-ref-calculus-useful-info-2569-pdf",
-      "course": "MFIT",
-      "origin": "generated",
-      "title": {
-        "th": "Reference · Calculus Useful Info 2569",
-        "en": "Reference · Calculus Useful Info 2569"
-      },
-      "description": null,
-      "category": "reference",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/references/mfit-ref-calculus-useful-info-2569.pdf",
-      "path": "public/assets/it-kmitl/mfit/references/mfit-ref-calculus-useful-info-2569.pdf",
-      "fileName": "mfit-ref-calculus-useful-info-2569.pdf",
-      "storage": {
-        "bucket": "ihelp-library",
-        "key": "it-kmitl/mfit/references/mfit-ref-calculus-useful-info-2569.pdf"
-      },
-      "access": "member",
-      "week": null,
-      "scope": null,
-      "edition": null,
-      "status": null,
-      "isCurrentYear": false,
-      "duplicateOf": null,
-      "sourceUrl": null,
-      "groupId": null,
-      "tags": [
-        "MFIT",
-        "references"
-      ],
-      "sizeBytes": 32839,
-      "pages": 1,
-      "onDisk": true,
-      "usedBy": []
-    },
     "gen-mfit-sheets-mfit-sheet-final-recap-week08-13-v2-pdf": {
       "id": "gen-mfit-sheets-mfit-sheet-final-recap-week08-13-v2-pdf",
       "course": "MFIT",
@@ -21475,78 +21966,6 @@
       ],
       "sizeBytes": 3009663,
       "pages": 19,
-      "onDisk": true,
-      "usedBy": []
-    },
-    "gen-mfit-sheets-mfit-sheet-final-recap-week08-13-pdf": {
-      "id": "gen-mfit-sheets-mfit-sheet-final-recap-week08-13-pdf",
-      "course": "MFIT",
-      "origin": "generated",
-      "title": {
-        "th": "Sheet · Final Recap Week 08 13",
-        "en": "Sheet · Final Recap Week 08 13"
-      },
-      "description": null,
-      "category": "cheatsheet",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/sheets/mfit-sheet-final-recap-week08-13.pdf",
-      "path": "public/assets/it-kmitl/mfit/sheets/mfit-sheet-final-recap-week08-13.pdf",
-      "fileName": "mfit-sheet-final-recap-week08-13.pdf",
-      "storage": {
-        "bucket": "ihelp-library",
-        "key": "it-kmitl/mfit/sheets/mfit-sheet-final-recap-week08-13.pdf"
-      },
-      "access": "member",
-      "week": 8,
-      "scope": null,
-      "edition": null,
-      "status": null,
-      "isCurrentYear": false,
-      "duplicateOf": null,
-      "sourceUrl": null,
-      "groupId": null,
-      "tags": [
-        "MFIT",
-        "sheets"
-      ],
-      "sizeBytes": 5926993,
-      "pages": 19,
-      "onDisk": true,
-      "usedBy": []
-    },
-    "gen-mfit-sheets-mfit-sheet-recap-calculus-pdf": {
-      "id": "gen-mfit-sheets-mfit-sheet-recap-calculus-pdf",
-      "course": "MFIT",
-      "origin": "generated",
-      "title": {
-        "th": "Sheet · Recap Calculus",
-        "en": "Sheet · Recap Calculus"
-      },
-      "description": null,
-      "category": "cheatsheet",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/sheets/mfit-sheet-recap-calculus.pdf",
-      "path": "public/assets/it-kmitl/mfit/sheets/mfit-sheet-recap-calculus.pdf",
-      "fileName": "mfit-sheet-recap-calculus.pdf",
-      "storage": {
-        "bucket": "ihelp-library",
-        "key": "it-kmitl/mfit/sheets/mfit-sheet-recap-calculus.pdf"
-      },
-      "access": "member",
-      "week": null,
-      "scope": null,
-      "edition": null,
-      "status": null,
-      "isCurrentYear": false,
-      "duplicateOf": null,
-      "sourceUrl": null,
-      "groupId": null,
-      "tags": [
-        "MFIT",
-        "sheets"
-      ],
-      "sizeBytes": 1307875,
-      "pages": 6,
       "onDisk": true,
       "usedBy": []
     },

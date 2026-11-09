@@ -474,6 +474,12 @@ export const COURSE_BINDINGS: Record<string, CourseBinding> = {
           load: () => loadMfit().summaryMd,
           scope: "midterm",
         },
+        {
+          slug: "final-war-room",
+          title: { th: "⚔️ Final Exam War Room (คลังข้อสอบเก่า & แผน 35 คะแนน)", en: "⚔️ Final Exam War Room & 35-Pt Blueprint" },
+          load: () => loadCourseDoc("06016401", "archive/study-guide-final-war-room.md"),
+          scope: "final",
+        },
         ...mfitWeekDocs("summary"),
       ],
     },

@@ -146,7 +146,7 @@ export function resolveCourseTimeline(
 
   const weeks: CourseWeekCardData[] = [];
 
-  if (schedule && schedule.weeks.length > 0) {
+  if (code !== "MFIT" && schedule && schedule.weeks.length > 0) {
     // ── Courses with explicit weekly schedules (ITF, ICS) ───────────────────────
     for (const week of schedule.weeks) {
       const wNum = week.week;
@@ -343,11 +343,13 @@ export function resolveCourseTimeline(
     studyGuide: {
       title: L.finalGuideTitle,
       subtitle: L.finalGuideSub,
-      href: hasSummary
-        ? `/courses/${cDir}/summary`
-        : hasCram
-          ? `/courses/${cDir}/cram`
-          : `/courses/${cDir}/overview`,
+      href: code === "MFIT"
+        ? `/courses/${cDir}/summary?doc=final-war-room`
+        : hasSummary
+          ? `/courses/${cDir}/summary`
+          : hasCram
+            ? `/courses/${cDir}/cram`
+            : `/courses/${cDir}/overview`,
       isAvailable: hasSummary || hasCram,
     },
     mockExam: {
