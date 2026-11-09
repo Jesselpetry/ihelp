@@ -4,6 +4,8 @@ import {
   BookOpenText,
   BrainCircuit,
   CalendarRange,
+  Download,
+  Eye,
   FileCheck2,
   Flag,
   FlaskConical,
@@ -21,6 +23,8 @@ import {
 import type { ReactNode } from "react";
 import type { LText } from "@/lib/i18n";
 import type { ModuleId, ModuleScope, Phase, ResolvedModule } from "@/lib/courses/spine";
+import { CourseWatermark } from "@/components/course-watermark";
+import { IHELP_GRADIENT_CSS } from "@/lib/courses/course-theme";
 
 /**
  * What the course hub's pieces — banner, sidebar, overview, stream — agree on.
@@ -172,3 +176,112 @@ export const OVERVIEW_TAB_LABEL: Record<OverviewTab, LText> = {
 };
 
 export const OVERVIEW_TITLE: LText = { th: "ภาพรวม", en: "Overview" };
+
+/**
+ * Standardized minimalist war room / exam hub banner.
+ * Primary title is bold; subtitle is lighter (regular/medium) and compact.
+ * Includes official course watermark anchored cleanly to the bottom-right.
+ */
+export function ExamWarRoomBanner({
+  title,
+  subtitle,
+  code = "MFIT",
+}: {
+  title: string;
+  subtitle: string;
+  code?: string;
+}) {
+  return (
+    <header
+      style={{ background: IHELP_GRADIENT_CSS }}
+      className="relative isolate flex min-h-24 sm:min-h-28 flex-col justify-center overflow-hidden rounded-2xl border border-white/10 p-5 sm:p-6 text-white shadow-xs"
+    >
+      <CourseWatermark
+        code={code}
+        size="banner"
+        className="scale-65 sm:scale-70 origin-bottom-right"
+      />
+      <div className="relative z-10 flex flex-col justify-center space-y-1">
+        <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-white leading-tight">
+          {title}
+        </h1>
+        <p className="text-xs sm:text-sm font-normal sm:font-medium text-white/85 leading-normal">
+          {subtitle}
+        </p>
+      </div>
+    </header>
+  );
+}
+
+export interface ResourceItemCardProps {
+  title: string;
+  icon: ReactNode;
+  iconClassName?: string;
+  highlight?: boolean;
+  onPreview?: () => void;
+  downloadUrl: string;
+  fileName: string;
+  previewLabel?: string;
+  downloadTitle?: string;
+}
+
+/**
+ * Standardized single-row resource item card (past exam papers, cheatsheets, lab sheets).
+ * Circular icon badge + title on left, preview & download buttons on right.
+ */
+export function ResourceItemCard({
+  title,
+  icon,
+  iconClassName = "bg-primary/10 text-primary",
+  highlight,
+  onPreview,
+  downloadUrl,
+  fileName,
+  previewLabel = "ดูตัวอย่าง",
+  downloadTitle = "ดาวน์โหลด",
+}: ResourceItemCardProps) {
+  return (
+    <div
+      className={`group flex items-center justify-between gap-3 px-3.5 py-2.5 transition-[box-shadow,background-color] hover:bg-primary/[0.03] hover:shadow-md dark:hover:bg-primary/10 border ${
+        highlight
+          ? "border-yellow-500/30 dark:border-yellow-400/20"
+          : "border-border/40"
+      } ${SURFACE}`}
+    >
+      <div className="flex items-center gap-2.5 min-w-0 flex-1">
+        <span
+          className={`flex size-8.5 shrink-0 items-center justify-center rounded-full text-xs font-bold ${iconClassName}`}
+        >
+          {icon}
+        </span>
+
+        <span className="min-w-0 truncate text-xs sm:text-sm font-medium text-foreground">
+          {title}
+        </span>
+      </div>
+
+      <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+        {onPreview && (
+          <button
+            type="button"
+            onClick={onPreview}
+            className="inline-flex items-center gap-1 text-xs font-semibold text-primary hover:text-primary/80 px-2.5 py-1 rounded-lg hover:bg-primary/10 transition-colors"
+          >
+            <Eye className="size-3.5" />
+            <span>{previewLabel}</span>
+          </button>
+        )}
+        <a
+          href={downloadUrl}
+          download={fileName}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 text-xs font-medium text-muted-foreground hover:text-foreground p-1.5 rounded-lg hover:bg-muted transition-colors"
+          title={downloadTitle}
+        >
+          <Download className="size-3.5" />
+        </a>
+      </div>
+    </div>
+  );
+}
