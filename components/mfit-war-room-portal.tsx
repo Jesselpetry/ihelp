@@ -452,7 +452,6 @@ export function MfitWarRoomPortal({
                 }
                 downloadUrl={downloadUrl}
                 fileName={paper.fileName}
-                previewLabel={locale === "th" ? "ดูตัวอย่าง" : "Preview"}
                 downloadTitle={locale === "th" ? "ดาวน์โหลด" : "Download"}
               />
             );
@@ -503,7 +502,6 @@ export function MfitWarRoomPortal({
                 }
                 downloadUrl={downloadUrl}
                 fileName={sheet.fileName}
-                previewLabel={locale === "th" ? "ดูตัวอย่าง" : "Preview"}
                 downloadTitle={locale === "th" ? "ดาวน์โหลด" : "Download"}
               />
             );

@@ -10,16 +10,14 @@ import type { SubjectAsset } from "@/lib/library/subject-library-ui";
 import remarkGfm from "remark-gfm";
 import remarkFrontmatter from "remark-frontmatter";
 import remarkMath from "remark-math";
-import rehypeKatex from "rehype-katex";
-// No katex.min.css import here: app/globals.css loads it, ahead of the .katex
-// overrides that depend on that order.
+import rehypeMathjax from "rehype-mathjax/svg";
 import { slugifyHeading } from "@/lib/docs/toc";
 import { remarkNotebook } from "@/lib/docs/remark-notebook";
 import { hasParts, splitParts, type DocChunk, type PartScope } from "@/lib/docs/parts";
 import { readDocTable, textTableFromHast, type HastNode } from "@/lib/docs/doc-table";
 import { parseOjProblemTable } from "@/lib/docs/oj-table";
 import {
-  KATEX_OPTIONS,
+  MATHJAX_OPTIONS,
   PART_MARKER_LINE,
   REMARK_MATH_OPTIONS,
   normalizeDisplayMath,
@@ -341,7 +339,7 @@ function MdChunk({ markdown, components }: { markdown: string; components: Compo
         // only the styling of the resulting mark/u differs.
         remarkNotebook,
       ]}
-      rehypePlugins={[[rehypeKatex, KATEX_OPTIONS]]}
+      rehypePlugins={[[rehypeMathjax, MATHJAX_OPTIONS]]}
       components={components}
     >
       {normalizeDisplayMath(markdown.replace(PART_MARKER_LINE, ""))}

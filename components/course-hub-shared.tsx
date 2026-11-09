@@ -5,7 +5,6 @@ import {
   BrainCircuit,
   CalendarRange,
   Download,
-  Eye,
   FileCheck2,
   Flag,
   FlaskConical,
@@ -236,7 +235,8 @@ export interface ResourceItemCardProps {
 
 /**
  * Standardized single-row resource item card (past exam papers, cheatsheets, lab sheets).
- * Circular icon badge + title on left, preview & download buttons on right.
+ * Entire card is clickable to preview the file.
+ * Circular icon badge + title on left, direct download button on right.
  */
 export function ResourceItemCard({
   title,
@@ -246,12 +246,28 @@ export function ResourceItemCard({
   onPreview,
   downloadUrl,
   fileName,
-  previewLabel = "ดูตัวอย่าง",
   downloadTitle = "ดาวน์โหลด",
 }: ResourceItemCardProps) {
   return (
     <div
-      className={`group flex items-center justify-between gap-3 px-3.5 py-2.5 transition-[box-shadow,background-color] hover:bg-primary/[0.03] hover:shadow-md dark:hover:bg-primary/10 border ${
+      role={onPreview ? "button" : undefined}
+      tabIndex={onPreview ? 0 : undefined}
+      onClick={onPreview}
+      onKeyDown={
+        onPreview
+          ? (e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                onPreview();
+              }
+            }
+          : undefined
+      }
+      className={`group flex items-center justify-between gap-3 px-3.5 py-2.5 transition-all select-none ${
+        onPreview
+          ? "cursor-pointer hover:bg-primary/[0.04] hover:shadow-md hover:border-primary/40 active:scale-[0.995]"
+          : "hover:bg-primary/[0.03] hover:shadow-md"
+      } dark:hover:bg-primary/10 border ${
         highlight
           ? "border-yellow-500/30 dark:border-yellow-400/20"
           : "border-border/40"
@@ -259,36 +275,28 @@ export function ResourceItemCard({
     >
       <div className="flex items-center gap-2.5 min-w-0 flex-1">
         <span
-          className={`flex size-8.5 shrink-0 items-center justify-center rounded-full text-xs font-bold ${iconClassName}`}
+          className={`flex size-8.5 shrink-0 items-center justify-center rounded-full text-xs font-bold transition-transform group-hover:scale-105 ${iconClassName}`}
         >
           {icon}
         </span>
 
-        <span className="min-w-0 truncate text-xs sm:text-sm font-medium text-foreground">
+        <span className="min-w-0 truncate text-xs sm:text-sm font-medium text-foreground transition-colors group-hover:text-primary">
           {title}
         </span>
       </div>
 
       <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
-        {onPreview && (
-          <button
-            type="button"
-            onClick={onPreview}
-            className="inline-flex items-center gap-1 text-xs font-semibold text-primary hover:text-primary/80 px-2.5 py-1 rounded-lg hover:bg-primary/10 transition-colors"
-          >
-            <Eye className="size-3.5" />
-            <span>{previewLabel}</span>
-          </button>
-        )}
         <a
           href={downloadUrl}
           download={fileName}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1 text-xs font-medium text-muted-foreground hover:text-foreground p-1.5 rounded-lg hover:bg-muted transition-colors"
+          onClick={(e) => e.stopPropagation()}
+          className="inline-flex items-center justify-center text-muted-foreground hover:text-foreground p-1.5 rounded-lg hover:bg-muted transition-colors"
           title={downloadTitle}
+          aria-label={downloadTitle}
         >
-          <Download className="size-3.5" />
+          <Download className="size-4" />
         </a>
       </div>
     </div>
