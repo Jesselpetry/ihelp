@@ -431,7 +431,7 @@ export function MfitWarRoomPortal({ config }: { config?: FenceWarRoomConfig } = 
   return (
     <div className="my-6 space-y-6">
       {/* ── Command Portal Hero Header ────────────────────────────────────── */}
-      <div className="relative overflow-hidden rounded-3xl border border-red-500/30 bg-gradient-to-br from-red-950/40 via-card to-neutral-900/80 p-5 sm:p-7 shadow-xl">
+      <div className="relative overflow-hidden rounded-3xl border border-red-500/30 bg-gradient-to-br from-red-950/40 via-card to-neutral-900/80 p-5 sm:p-7">
         <div className="absolute -top-24 -right-24 size-64 rounded-full bg-red-600/10 blur-3xl pointer-events-none" />
 
         <div className="relative z-10 flex flex-col gap-4">
@@ -581,7 +581,7 @@ export function MfitWarRoomPortal({ config }: { config?: FenceWarRoomConfig } = 
                 <Button
                   size="lg"
                   onClick={() => setQuizStarted(true)}
-                  className="gap-2 bg-red-600 hover:bg-red-700 text-white font-bold shadow-lg shadow-red-950/20 shrink-0"
+                  className="gap-2 bg-red-600 hover:bg-red-700 text-white font-bold shrink-0"
                 >
                   <Flame className="size-4" />
                   <span>{locale === "th" ? "เริ่มทำข้อสอบจำลอง" : "Start Mock Exam"}</span>
