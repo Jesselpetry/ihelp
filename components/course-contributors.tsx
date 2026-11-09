@@ -6,10 +6,6 @@ import {
   BookOpen,
   ChevronRight,
   ExternalLink,
-  FileCheck2,
-  FileText,
-  Target,
-  Terminal,
   Upload,
   User,
 } from "lucide-react";
@@ -63,6 +59,10 @@ const L = {
     th: "ผลงานและเอกสารในวิชานี้",
     en: "Contributions in this course",
   },
+  itemsCount: {
+    th: "รายการ",
+    en: "items",
+  },
 };
 
 type EnrichedContributorProfile = ReturnType<
@@ -70,26 +70,23 @@ type EnrichedContributorProfile = ReturnType<
 >;
 
 /**
- * Formats university credentials into a single clean caption line:
- * e.g., "IT KMITL #24 · ปี 1 (69070027)"
+ * Formats student credentials into a clean, concise caption line:
+ * e.g., "ชั้นปีที่ 1 (69070027)" or "ศิษย์เก่า (65070021)"
  */
 function formatCredentialLine(
   profile: EnrichedContributorProfile,
   locale: "th" | "en",
 ): string {
-  const parts: string[] = [];
+  if (profile.academic) {
+    const yearLabel = t(profile.academic.yearLabel, locale);
+    return profile.studentId ? `${yearLabel} (${profile.studentId})` : yearLabel;
+  }
 
-  if (profile.cohort) {
-    const num = profile.cohort.replace(/^IT/i, "");
-    parts.push(`IT KMITL #${num}`);
-  } else if (profile.faculty) {
+  const parts: string[] = [];
+  if (profile.faculty) {
     parts.push(t(profile.faculty, locale));
   } else {
     parts.push("IT KMITL");
-  }
-
-  if (profile.academic) {
-    parts.push(t(profile.academic.yearLabel, locale));
   }
 
   const base = parts.join(" · ");
@@ -121,93 +118,141 @@ function getAcademicRole(
 }
 
 /**
- * Returns an appropriate icon based on material type
+ * Returns action button text based on material type
  */
-function MaterialIcon({ type }: { type: ContributorMaterial["type"] }) {
+function getMaterialActionLabel(
+  type: ContributorMaterial["type"],
+  locale: "th" | "en",
+): string {
   switch (type) {
-    case "sheet":
-      return <BookOpen className="size-3.5" />;
-    case "slide":
-      return <FileText className="size-3.5" />;
-    case "notes":
-      return <FileCheck2 className="size-3.5" />;
     case "mock_exam":
-      return <Target className="size-3.5" />;
-    case "code":
+      return locale === "th" ? "ดูข้อสอบ" : "View Exam";
+    case "sheet":
+      return locale === "th" ? "ดูสรุป" : "View Sheet";
+    case "slide":
+      return locale === "th" ? "ดูสไลด์" : "View Slides";
+    case "notes":
+      return locale === "th" ? "เปิดอ่านโน้ต" : "View Notes";
     case "tool":
-      return <Terminal className="size-3.5" />;
+    case "code":
+      return locale === "th" ? "เปิดใช้งาน" : "Open Tool";
     default:
-      return <BookOpen className="size-3.5" />;
+      return locale === "th" ? "เปิดดู" : "Open";
   }
 }
 
 /**
- * Reusable clean row component for contributed materials in a course.
- * Borderless with hover highlight and subtle text tags.
+ * Clean card component for each contributed material:
+ * Features a modern bullet point indicator, title, badge, description,
+ * and an explicit action button on the right side.
  */
-export function ContributorMaterialRow({
+export function ContributorMaterialCard({
   material,
 }: {
   material: ContributorMaterial;
 }) {
   const { locale } = useLocale();
   const isExternal = Boolean(material.url && material.url.startsWith("http"));
+  const actionLabel = getMaterialActionLabel(material.type, locale);
 
-  const rowContent = (
-    <div className="group flex items-center justify-between gap-3 px-3 py-2 -mx-3 rounded-lg hover:bg-neutral-100/70 dark:hover:bg-neutral-800/50 transition-colors">
-      {/* Left: Icon + Title & Description */}
-      <div className="flex items-center gap-2.5 min-w-0 flex-1">
-        <span className="text-muted-foreground group-hover:text-primary transition-colors shrink-0">
-          <MaterialIcon type={material.type} />
-        </span>
-        <div className="flex flex-col min-w-0 flex-1">
-          <div className="flex items-center gap-2 min-w-0">
-            <span className="truncate text-xs font-medium text-foreground group-hover:text-primary transition-colors">
-              {t(material.title, locale)}
-            </span>
+  return (
+    <div className="group rounded-xl border border-border/50 bg-neutral-50/70 dark:bg-neutral-900/40 p-3 sm:p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-border hover:bg-neutral-100/60 dark:hover:bg-neutral-800/50 transition-all">
+      {/* Left: Bullet point dot indicator + Info */}
+      <div className="flex items-start sm:items-center gap-2.5 min-w-0 flex-1">
+        {/* Bullet point dot */}
+        <span
+          className="size-2 rounded-full bg-primary/80 shrink-0 mt-1 sm:mt-0 ring-4 ring-primary/10 group-hover:bg-primary transition-colors"
+          aria-hidden="true"
+        />
+
+        <div className="min-w-0 flex-1 space-y-0.5">
+          <div className="flex flex-wrap items-center gap-2 min-w-0">
+            {material.url ? (
+              <a
+                href={material.url}
+                target={isExternal ? "_blank" : undefined}
+                rel={isExternal ? "noreferrer" : undefined}
+                className="text-xs sm:text-sm font-semibold text-foreground group-hover:text-primary transition-colors hover:underline underline-offset-2"
+              >
+                {t(material.title, locale)}
+              </a>
+            ) : (
+              <span className="text-xs sm:text-sm font-semibold text-foreground">
+                {t(material.title, locale)}
+              </span>
+            )}
+
+            {material.badge && (
+              <span className="text-[10px] sm:text-[11px] font-medium px-2 py-0.5 rounded-full bg-neutral-200/70 dark:bg-neutral-800 text-muted-foreground shrink-0 font-mono">
+                {t(material.badge, locale)}
+              </span>
+            )}
           </div>
+
           {material.description && (
-            <p className="truncate text-[11px] text-muted-foreground mt-0.5">
+            <p className="text-xs text-muted-foreground line-clamp-2 mt-0.5">
               {t(material.description, locale)}
             </p>
           )}
         </div>
       </div>
 
-      {/* Right: Subtle tag text + Action Arrow */}
-      <div className="flex items-center gap-2 shrink-0">
-        {material.badge && (
-          <span className="text-[11px] text-muted-foreground font-mono">
-            {t(material.badge, locale)}
-          </span>
-        )}
-        {material.url && (
-          <span className="text-muted-foreground/60 group-hover:text-primary transition-colors">
+      {/* Right: Explicit action button */}
+      {material.url && (
+        <Button
+          asChild
+          size="sm"
+          variant="outline"
+          className="h-8 px-3 rounded-full text-xs font-medium shrink-0 self-start sm:self-auto shadow-2xs hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all group/btn"
+        >
+          <a
+            href={material.url}
+            target={isExternal ? "_blank" : undefined}
+            rel={isExternal ? "noreferrer" : undefined}
+          >
+            <span>{actionLabel}</span>
             {isExternal ? (
-              <ExternalLink className="size-3.5" />
+              <ExternalLink className="size-3.5 ml-1 opacity-70 group-hover/btn:opacity-100" />
             ) : (
-              <ChevronRight className="size-3.5 transition-transform group-hover:translate-x-0.5" />
+              <ChevronRight className="size-3.5 ml-0.5 transition-transform group-hover/btn:translate-x-0.5" />
             )}
-          </span>
-        )}
-      </div>
+          </a>
+        </Button>
+      )}
     </div>
   );
+}
 
-  if (material.url) {
-    return (
-      <a
-        href={material.url}
-        target={isExternal ? "_blank" : undefined}
-        rel={isExternal ? "noreferrer" : undefined}
-        className="block no-underline"
-      >
-        {rowContent}
-      </a>
-    );
-  }
+/** Backward-compatibility alias */
+export const ContributorMaterialRow = ContributorMaterialCard;
 
-  return rowContent;
+/**
+ * Dedicated Header component for the contributed materials section.
+ */
+function ContributorSectionHeader({
+  title,
+  count,
+  locale,
+}: {
+  title: string;
+  count: number;
+  locale: "th" | "en";
+}) {
+  return (
+    <div className="flex items-center justify-between gap-3 pt-3 border-t border-border/50">
+      <div className="flex items-center gap-2 min-w-0">
+        <span className="flex size-6 items-center justify-center rounded-md bg-primary/10 text-primary shrink-0">
+          <BookOpen className="size-3.5" />
+        </span>
+        <h4 className="text-xs sm:text-sm font-semibold text-foreground tracking-tight truncate">
+          {title}
+        </h4>
+      </div>
+      <span className="text-[11px] font-medium text-muted-foreground bg-neutral-100 dark:bg-neutral-800/80 px-2 py-0.5 rounded-full border border-border/40 shrink-0">
+        {count} {t(L.itemsCount, locale)}
+      </span>
+    </div>
+  );
 }
 
 export function CourseContributors({ courseCode }: CourseContributorsProps) {
@@ -253,14 +298,11 @@ export function CourseContributors({ courseCode }: CourseContributorsProps) {
           if (courseMaterials.length === 0) return null;
 
           const academicRole = getAcademicRole(courseMaterials, locale);
-          const academicSummary = courseMaterials[0]?.description
-            ? t(courseMaterials[0].description, locale)
-            : courseMaterials.map((m) => t(m.title, locale)).join(" · ");
 
           return (
-            <div key={profile.id} className={`p-4 sm:p-5 space-y-3 ${SURFACE}`}>
-              {/* Header: Avatar, Name, Single-line Metadata, Compact Icon Actions */}
-              <div className="flex items-start justify-between gap-3">
+            <div key={profile.id} className={`p-4 sm:p-5 space-y-4 ${SURFACE}`}>
+              {/* Header: Avatar, Name, Pill Badge, Credential Line, Compact Actions */}
+              <div className="flex items-center justify-between gap-3">
                 {/* Left: Compact Avatar (44-48px) + Identity */}
                 <div className="flex items-center gap-3 min-w-0 flex-1">
                   <button
@@ -281,7 +323,7 @@ export function CourseContributors({ courseCode }: CourseContributorsProps) {
                     </Avatar>
                   </button>
 
-                  <div className="min-w-0 flex-1 space-y-0.5">
+                  <div className="min-w-0 flex-1 space-y-1">
                     <div className="flex flex-wrap items-center gap-2 min-w-0">
                       <button
                         type="button"
@@ -291,23 +333,20 @@ export function CourseContributors({ courseCode }: CourseContributorsProps) {
                         {profile.name}
                       </button>
 
-                      {/* Tiny Tag: Academic Role in this Subject */}
-                      <span className="text-xs font-mono py-0.5 px-2 rounded bg-neutral-100 dark:bg-neutral-800 text-muted-foreground shrink-0">
+                      {/* Circular/Pill Badge: Academic Role in this Subject */}
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-neutral-100 dark:bg-neutral-800 text-xs font-medium text-foreground/80 border border-border/50 shrink-0 shadow-2xs">
+                        <span
+                          className="size-1.5 rounded-full bg-primary shrink-0"
+                          aria-hidden="true"
+                        />
                         {academicRole}
                       </span>
                     </div>
 
-                    {/* Condensed single muted caption line: IT KMITL #24 · ปี 1 (69070027) */}
+                    {/* Clean caption line: ชั้นปีที่ 1 (69070027) */}
                     <p className="text-xs text-muted-foreground truncate">
                       {formatCredentialLine(profile, locale)}
                     </p>
-
-                    {/* Academic Scope / Resource summary for this course, capped at 1 line */}
-                    {academicSummary && (
-                      <p className="text-xs text-muted-foreground/80 line-clamp-1 pt-0.5">
-                        {academicSummary}
-                      </p>
-                    )}
                   </div>
                 </div>
 
@@ -368,17 +407,18 @@ export function CourseContributors({ courseCode }: CourseContributorsProps) {
                 </div>
               </div>
 
-              {/* Contributed Materials: Clean List */}
+              {/* Contributed Materials Section */}
               {courseMaterials.length > 0 && (
-                <div className="pt-2.5 border-t border-border/40 space-y-0.5">
-                  <div className="flex items-center gap-1.5 text-[11px] font-semibold text-muted-foreground uppercase tracking-wider mb-1">
-                    <BookOpen className="size-3 text-primary" />
-                    <span>{t(L.contributionsInCourse, locale)}:</span>
-                  </div>
+                <div className="space-y-2.5">
+                  <ContributorSectionHeader
+                    title={t(L.contributionsInCourse, locale)}
+                    count={courseMaterials.length}
+                    locale={locale}
+                  />
 
-                  <div className="flex flex-col">
+                  <div className="flex flex-col gap-2">
                     {courseMaterials.map((material, idx) => (
-                      <ContributorMaterialRow key={idx} material={material} />
+                      <ContributorMaterialCard key={idx} material={material} />
                     ))}
                   </div>
                 </div>
