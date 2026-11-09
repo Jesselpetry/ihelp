@@ -228,7 +228,8 @@ export interface ResourceItemCardProps {
   highlight?: boolean;
   badge?: ReactNode;
   onPreview?: () => void;
-  downloadUrl: string;
+  downloadUrl?: string;
+  onDownload?: () => void;
   fileName: string;
   downloadTitle?: string;
 }
@@ -246,6 +247,7 @@ export function ResourceItemCard({
   badge,
   onPreview,
   downloadUrl,
+  onDownload,
   fileName,
   downloadTitle = "ดาวน์โหลด",
 }: ResourceItemCardProps) {
@@ -290,12 +292,18 @@ export function ResourceItemCard({
 
       <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
         <a
-          href={downloadUrl}
+          href={downloadUrl || "#"}
           download={fileName}
           target="_blank"
           rel="noopener noreferrer"
-          onClick={(e) => e.stopPropagation()}
-          className="inline-flex items-center justify-center text-muted-foreground hover:text-foreground p-1.5 rounded-lg hover:bg-muted transition-colors"
+          onClick={(e) => {
+            e.stopPropagation();
+            if (onDownload) {
+              e.preventDefault();
+              onDownload();
+            }
+          }}
+          className="inline-flex items-center justify-center text-muted-foreground hover:text-foreground p-1.5 rounded-lg hover:bg-muted transition-colors cursor-pointer"
           title={downloadTitle}
           aria-label={downloadTitle}
         >

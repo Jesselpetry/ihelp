@@ -1,8 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 
-import { currentStudentId } from "@/lib/auth/guards";
 import { scheduleForCourse } from "@/lib/library/course-weeks";
-import { libraryExamsForInsider } from "@/lib/library/library-exams";
+import { libraryExamsForCourse } from "@/lib/library/library-exams";
 import { assetsForCourse } from "@/lib/library/subject-library";
 import type { CourseSchedule, SubjectAsset } from "@/lib/library/subject-library-ui";
 
@@ -12,19 +11,7 @@ export const dynamic = "force-dynamic";
 export type LibraryAssetsResponse = { assets: SubjectAsset[]; schedule?: CourseSchedule };
 
 /**
- * A course's resource library, for signed-in KMITL IT students.
- *
- * The library is not public. Two courses say so in their own summary.md — the
- * Foundation English workbook is Edusoft's and must stay behind a login, and the
- * IT-Fundamentals slides are the lecturer's and may not be published — so the
- * gate is here on the server rather than in the UI. The page that renders this
- * stays statically prerendered and holds no asset data at all; without a valid
- * session there is nothing to read in the HTML, in the RSC payload, or from this
- * route.
- *
- * A course with a week-by-week schedule gets it here too rather than in the
- * client bundle — it links the lecture recordings, which belong behind the same
- * sign-in as the slides.
+ * A course's resource library assets, including public materials and signed exam assets.
  */
 export async function GET(request: NextRequest) {
   const code = request.nextUrl.searchParams.get("course");
@@ -32,17 +19,12 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "course required" }, { status: 400 });
   }
 
-  // The same verified-IT-student rule the rest of the app uses: a KMITL campus
-  // mailbox whose id carries the IT faculty code. See lib/auth/verify.ts.
-  const studentId = await currentStudentId();
-  if (!studentId && process.env.NODE_ENV === "production") {
-    return NextResponse.json({ error: "unauthenticated" }, { status: 401 });
-  }
+  const [courseAssets, examAssets] = await Promise.all([
+    assetsForCourse(code) ?? [],
+    libraryExamsForCourse(code),
+  ]);
 
-  const assets = [
-    ...(assetsForCourse(code) ?? []),
-    ...((studentId || process.env.NODE_ENV !== "production") ? await libraryExamsForInsider(code) : []),
-  ];
+  const assets = [...courseAssets, ...examAssets];
 
   const body: LibraryAssetsResponse = { assets, schedule: scheduleForCourse(code) };
   return NextResponse.json(body, {

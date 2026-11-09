@@ -21,6 +21,7 @@ import {
 import { PreviewModal, type Preview } from "@/components/preview-modal";
 import { TechniqueQuiz } from "@/components/technique-quiz";
 import { useLocale, t, type LText } from "@/lib/i18n";
+import { assetUrl, assetDownloadUrl } from "@/lib/library/asset-url";
 import type { SubjectAsset } from "@/lib/library/subject-library-ui";
 import {
   MFIT_FINAL_MOCK_EXAM,
@@ -33,6 +34,7 @@ interface PastPaperItem {
   id: string;
   title: LText;
   fileName: string;
+  path: string;
   pages: number;
   isSolution?: boolean;
 }
@@ -45,6 +47,7 @@ const PAST_PAPERS: PastPaperItem[] = [
       en: "Final Exam Paper 2018 / 2561",
     },
     fileName: "mfit-final-final-mathit-2561.pdf",
+    path: "/assets/it-kmitl/mfit/exams/mfit-final-final-mathit-2561.pdf",
     pages: 22,
   },
   {
@@ -54,6 +57,7 @@ const PAST_PAPERS: PastPaperItem[] = [
       en: "Final Exam Paper 2017 / 2560",
     },
     fileName: "mfit-final-2560.pdf",
+    path: "/assets/it-kmitl/mfit/exams/mfit-final-2560.pdf",
     pages: 26,
   },
   {
@@ -63,6 +67,7 @@ const PAST_PAPERS: PastPaperItem[] = [
       en: "Final Exam Paper 2016 / 2559",
     },
     fileName: "mfit-final-final-mathit-2559.pdf",
+    path: "/assets/it-kmitl/mfit/exams/mfit-final-final-mathit-2559.pdf",
     pages: 1,
   },
   {
@@ -72,6 +77,7 @@ const PAST_PAPERS: PastPaperItem[] = [
       en: "Final Exam Paper 2016 / 2559 (Copy)",
     },
     fileName: "mfit-final-copy-of-final-mathit-2559.pdf",
+    path: "/assets/it-kmitl/mfit/exams/mfit-final-copy-of-final-mathit-2559.pdf",
     pages: 1,
   },
   {
@@ -81,6 +87,7 @@ const PAST_PAPERS: PastPaperItem[] = [
       en: "NoteLub Final Worked Solution Key",
     },
     fileName: "mfit-final-notelub.pdf",
+    path: "/assets/it-kmitl/mfit/exams/mfit-final-notelub.pdf",
     pages: 3,
     isSolution: true,
   },
@@ -91,6 +98,7 @@ const PAST_PAPERS: PastPaperItem[] = [
       en: "Final Exam Mixed Drill Set",
     },
     fileName: "mfit-final-unidentified.pdf",
+    path: "/assets/it-kmitl/mfit/exams/mfit-final-unidentified.pdf",
     pages: 6,
   },
   {
@@ -100,6 +108,7 @@ const PAST_PAPERS: PastPaperItem[] = [
       en: "Calculus Final Exam Archive Vault Collection",
     },
     fileName: "mfit-final-cdn-fbsbx-com.pdf",
+    path: "/assets/it-kmitl/mfit/exams/mfit-final-cdn-fbsbx-com.pdf",
     pages: 19,
   },
 ];
@@ -108,6 +117,7 @@ interface FormulaSheetItem {
   id: string;
   title: LText;
   fileName: string;
+  path: string;
   pages: number;
   highlight?: boolean;
   creator?: {
@@ -124,6 +134,7 @@ const FORMULA_SHEETS: FormulaSheetItem[] = [
       en: "Calculus Useful Information Sheet (1/2569)",
     },
     fileName: "mfit-ref-calculus-useful-info-2569.pdf",
+    path: "/assets/it-kmitl/mfit/references/mfit-ref-calculus-useful-info-2569.pdf",
     pages: 1,
     highlight: true,
   },
@@ -134,6 +145,7 @@ const FORMULA_SHEETS: FormulaSheetItem[] = [
       en: "Final Exam Formula Sheet (2023)",
     },
     fileName: "mfit-sheet-cheat-sheet-2023.pdf",
+    path: "/assets/it-kmitl/mfit/sheets/mfit-sheet-cheat-sheet-2023.pdf",
     pages: 1,
   },
   {
@@ -143,6 +155,7 @@ const FORMULA_SHEETS: FormulaSheetItem[] = [
       en: "Final Exam Formula Sheet (2022)",
     },
     fileName: "mfit-sheet-cheat-sheet-2022.pdf",
+    path: "/assets/it-kmitl/mfit/sheets/mfit-sheet-cheat-sheet-2022.pdf",
     pages: 3,
   },
   {
@@ -152,6 +165,7 @@ const FORMULA_SHEETS: FormulaSheetItem[] = [
       en: "Calculus Differentiation & Integration Recap",
     },
     fileName: "mfit-sheet-recap-calculus.pdf",
+    path: "/assets/it-kmitl/mfit/sheets/mfit-sheet-recap-calculus.pdf",
     pages: 6,
   },
   {
@@ -161,6 +175,7 @@ const FORMULA_SHEETS: FormulaSheetItem[] = [
       en: "Final Exam Intensive Recap Weeks 08–13",
     },
     fileName: "mfit-sheet-final-recap-week08-13.pdf",
+    path: "/assets/it-kmitl/mfit/sheets/mfit-sheet-final-recap-week08-13.pdf",
     pages: 19,
   },
   {
@@ -170,6 +185,7 @@ const FORMULA_SHEETS: FormulaSheetItem[] = [
       en: "Calculus Holy Shit Final Part 1 Cheatsheet",
     },
     fileName: "mfit-sheet-holyshit-final-part1.pdf",
+    path: "/assets/it-kmitl/mfit/sheets/mfit-sheet-holyshit-final-part1.pdf",
     pages: 21,
     highlight: true,
     creator: {
@@ -181,13 +197,19 @@ const FORMULA_SHEETS: FormulaSheetItem[] = [
 
 export function MfitWarRoomPortal({
   config,
-}: { config?: FenceWarRoomConfig } = {}) {
+  initialAssets,
+}: { config?: FenceWarRoomConfig; initialAssets?: SubjectAsset[] } = {}) {
   void config;
   const { locale } = useLocale();
   const [selectedPillar, setSelectedPillar] = useState<number | "all">("all");
   const [quizStarted, setQuizStarted] = useState(false);
   const [preview, setPreview] = useState<Preview | null>(null);
-  const [remoteAssets, setRemoteAssets] = useState<SubjectAsset[]>([]);
+  const [fetchedAssets, setFetchedAssets] = useState<SubjectAsset[]>([]);
+
+  const remoteAssets = useMemo(() => {
+    if (fetchedAssets.length > 0) return fetchedAssets;
+    return initialAssets ?? [];
+  }, [fetchedAssets, initialAssets]);
 
   // Fetch signed asset URLs for MFIT
   useEffect(() => {
@@ -199,12 +221,35 @@ export function MfitWarRoomPortal({
       })
       .then((data) => {
         if (data?.assets && data.assets.length > 0) {
-          setRemoteAssets(data.assets);
+          setFetchedAssets(data.assets);
         }
       })
       .catch(() => {});
     return () => controller.abort();
   }, []);
+
+  async function downloadPastPaper(paper: PastPaperItem) {
+    let found = remoteAssets.find(
+      (a) => a.fileName === paper.fileName || a.url?.includes(paper.fileName),
+    );
+    if (!found) {
+      try {
+        const res = await fetch("/api/library/assets?course=MFIT");
+        if (res.ok) {
+          const data = (await res.json()) as { assets?: SubjectAsset[] };
+          if (data.assets && data.assets.length > 0) {
+            setFetchedAssets(data.assets);
+            found = data.assets.find(
+              (a) => a.fileName === paper.fileName || a.url?.includes(paper.fileName),
+            );
+          }
+        }
+      } catch {}
+    }
+    if (found?.url) {
+      window.open(assetDownloadUrl(found.url, paper.fileName), "_blank");
+    }
+  }
 
   // Filter questions by selected pillar
   const quizQuestions = useMemo(() => {
@@ -228,30 +273,53 @@ export function MfitWarRoomPortal({
     );
   }, [selectedPillar]);
 
-  function openPreviewForFile(
+  async function openPreviewForFile(
     fileName: string,
     title: LText,
+    path: string,
+    category: "exam" | "cheatsheet",
     description?: LText,
   ) {
-    const found = remoteAssets.find(
+    let found = remoteAssets.find(
       (a) => a.fileName === fileName || a.url?.includes(fileName),
     );
 
-    const fallbackAsset: SubjectAsset = {
+    // If it's a past paper and not yet in remoteAssets, fetch signed URLs immediately
+    if (!found && category === "exam") {
+      try {
+        const res = await fetch("/api/library/assets?course=MFIT");
+        if (res.ok) {
+          const data = (await res.json()) as { assets?: SubjectAsset[] };
+          if (data.assets && data.assets.length > 0) {
+            setFetchedAssets(data.assets);
+            found = data.assets.find(
+              (a) => a.fileName === fileName || a.url?.includes(fileName),
+            );
+          }
+        }
+      } catch {}
+    }
+
+    const resolvedUrl =
+      found?.url || (category === "cheatsheet" ? assetUrl(path) : "");
+
+    if (!resolvedUrl) return;
+
+    const previewAsset: SubjectAsset = {
       id: `mfit-${fileName}`,
       title,
       description: description || { th: "", en: "" },
-      tags: ["MFIT", "Final", "Exam"],
-      category: "exam",
+      tags: ["MFIT", "Final", category === "exam" ? "Exam" : "Cheatsheet"],
+      category,
       scope: "final",
       courseCode: "MFIT",
       fileType: "pdf",
-      url: `/assets/it-kmitl/mfit/exams/${fileName}`,
+      url: resolvedUrl,
       fileName,
     };
 
     setPreview({
-      items: [found || fallbackAsset],
+      items: [previewAsset],
       index: 0,
     });
   }
@@ -436,9 +504,9 @@ export function MfitWarRoomPortal({
                 a.fileName === paper.fileName ||
                 a.url?.includes(paper.fileName),
             );
-            const downloadUrl =
-              remoteAsset?.url ||
-              `/assets/it-kmitl/mfit/exams/${paper.fileName}`;
+            const downloadUrl = remoteAsset?.url
+              ? assetDownloadUrl(remoteAsset.url, paper.fileName)
+              : undefined;
 
             return (
               <ResourceItemCard
@@ -457,9 +525,10 @@ export function MfitWarRoomPortal({
                     : "bg-primary/10 text-primary"
                 }
                 onPreview={() =>
-                  openPreviewForFile(paper.fileName, paper.title)
+                  openPreviewForFile(paper.fileName, paper.title, paper.path, "exam")
                 }
                 downloadUrl={downloadUrl}
+                onDownload={!downloadUrl ? () => downloadPastPaper(paper) : undefined}
                 fileName={paper.fileName}
                 downloadTitle={locale === "th" ? "ดาวน์โหลด" : "Download"}
               />
@@ -491,9 +560,9 @@ export function MfitWarRoomPortal({
                 a.fileName === sheet.fileName ||
                 a.url?.includes(sheet.fileName),
             );
-            const downloadUrl =
-              remoteAsset?.url ||
-              `/assets/it-kmitl/mfit/sheets/${sheet.fileName}`;
+            const defaultSheetUrl = assetUrl(sheet.path);
+            const rawUrl = remoteAsset?.url || defaultSheetUrl;
+            const downloadUrl = assetDownloadUrl(rawUrl, sheet.fileName);
 
             const creatorBadge = sheet.creator ? (
               <span className="inline-flex items-center gap-1.5 rounded-full bg-yellow-500/10 border border-yellow-500/25 px-2 py-0.5 text-[10px] sm:text-[11px] font-medium text-yellow-700 dark:text-yellow-400">
@@ -530,7 +599,7 @@ export function MfitWarRoomPortal({
                 highlight={sheet.highlight}
                 badge={creatorBadge}
                 onPreview={() =>
-                  openPreviewForFile(sheet.fileName, sheet.title)
+                  openPreviewForFile(sheet.fileName, sheet.title, sheet.path, "cheatsheet")
                 }
                 downloadUrl={downloadUrl}
                 fileName={sheet.fileName}

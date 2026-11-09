@@ -3,8 +3,8 @@ import "server-only";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { BUCKETS, type BucketId } from "@/lib/storage/buckets";
 
-/** Long enough to open the file, short enough not to be worth passing around. */
-export const SIGNED_URL_TTL_SECONDS = 60 * 10;
+/** Long enough to study or take an exam, without leaving links permanently public. */
+export const SIGNED_URL_TTL_SECONDS = 60 * 60 * 2; // 2 hours
 
 /**
  * Short-lived signed URLs for objects in a private bucket, keyed by the object
@@ -26,14 +26,22 @@ export async function signObjectUrls(
   keys: string[],
   ttlSeconds = SIGNED_URL_TTL_SECONDS,
 ): Promise<Map<string, string>> {
-  const storage = createAdminClient().storage.from(BUCKETS[bucket]);
-  const { data } = await storage.createSignedUrls(keys, ttlSeconds);
-
   const signed = new Map<string, string>();
-  for (const entry of data ?? []) {
-    // An object Storage cannot find comes back with an error string and a null
-    // URL instead of failing the whole batch; leave it out of the map.
-    if (entry.path && entry.signedUrl) signed.set(entry.path, entry.signedUrl);
+  try {
+    const storage = createAdminClient().storage.from(BUCKETS[bucket]);
+    const { data, error } = await storage.createSignedUrls(keys, ttlSeconds);
+    if (error) {
+      console.error(`signObjectUrls error for bucket ${bucket}:`, error);
+      return signed;
+    }
+
+    for (const entry of data ?? []) {
+      // An object Storage cannot find comes back with an error string and a null
+      // URL instead of failing the whole batch; leave it out of the map.
+      if (entry.path && entry.signedUrl) signed.set(entry.path, entry.signedUrl);
+    }
+  } catch (err) {
+    console.error(`signObjectUrls exception for bucket ${bucket}:`, err);
   }
   return signed;
 }

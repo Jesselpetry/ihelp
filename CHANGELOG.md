@@ -14,6 +14,14 @@
 
 ## [Unreleased]
 
+### แก้ไข
+
+- **แก้ไขปัญหา 404 ในการเข้าถึงข้อสอบเก่าและชีทสรุปในหน้า Final War Room บน Production (โดย @Jesselpetry)** —
+  1. แก้ไข `app/api/library/assets/route.ts` ให้คืนค่ารายการเอกสารสาธารณะ (`assetsForCourse`) และข้อสอบเก่าที่ลงนามรับรองแล้ว (`libraryExamsForCourse`) ให้ผู้เรียนเข้าถึงได้โดยตรง เพื่อไม่ให้เกิดข้อผิดพลาด 401 unauthenticated
+  2. เชื่อมโยง URL ของชีทสรุปสูตรทางการทั้ง 6 ฉบับให้แปลงเป็น Supabase Public Storage URL โดยตรงผ่าน `assetUrl(sheet.path)` และดาวน์โหลดผ่าน `assetDownloadUrl` เพื่อไม่ให้เกิดข้อผิดพลาด 404 เมื่อเรียกใช้บน Vercel Production
+  3. ปรับปรุงการลงนามข้อสอบเก่า 7 ชุดในบัคเก็ตลับ (`ihelp-library-exams`) ผ่าน `libraryExamsForCourse()` โดยขยายระยะเวลา Signed URL เป็น 2 ชั่วโมง (`SIGNED_URL_TTL_SECONDS = 7200`) และรองรับ On-demand signing เมื่อผู้เรียนกดพรีวิวหรือดาวน์โหลดข้อสอบทันที
+  4. ส่งต่อ `initialAssets` จาก `ModuleReader` เข้าสู่ `MfitWarRoomPortal` พร้อมคำนวณผสานแบบ `useMemo` ตามมาตรฐาน React 19 เพื่อความรวดเร็วและป้องกันการกระพริบของเนื้อหา
+
 ### เพิ่ม
 
 - **ระบบปุ่มฮีโร่สอบปลายภาคสีแดง, ศูนย์บัญชาการรบโต้ตอบ (Interactive War Room Portal), คลังข้อสอบจริง และชุดข้อสอบจำลองแคลคูลัส 25 ข้อ (โดย @Jesselpetry)** —

@@ -461,7 +461,7 @@ export function ModuleReader({
             />
 
             <div className="min-w-0 space-y-6 max-w-3xl xl:max-w-4xl mx-auto w-full">
-              {isWarRoom && <MfitWarRoomPortal />}
+              {isWarRoom && <MfitWarRoomPortal initialAssets={activeAssets} />}
 
               <article className="min-w-0 overflow-hidden rounded-3xl border bg-card p-4 sm:p-7 xl:p-8 shadow-sm">
                 <div className="min-w-0">
