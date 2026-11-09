@@ -1,18 +1,18 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import Link from "next/link";
 import {
-  ChevronLeft,
+  BookOpen,
   Download,
   Eye,
+  FileCheck2,
+  FileText,
   Flame,
   RotateCcw,
   Target,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { TopicHeader, SURFACE } from "@/components/course-hub-shared";
 import { CourseWatermark } from "@/components/course-watermark";
 import { IHELP_GRADIENT_CSS } from "@/lib/courses/course-theme";
@@ -35,7 +35,6 @@ interface PastPaperItem {
   fileName: string;
   pages: number;
   points: string;
-  itemCount: string;
   badge: LText;
   isSolution?: boolean;
 }
@@ -55,8 +54,7 @@ const PAST_PAPERS: PastPaperItem[] = [
     fileName: "mfit-final-final-mathit-2561.pdf",
     pages: 22,
     points: "50 คะแนน",
-    itemCount: "26 ข้อ",
-    badge: { th: "ฉบับจริงสมบูรณ์", en: "Full Official" },
+    badge: { th: "ฉบับจริง", en: "Official" },
   },
   {
     id: "mfit-final-pastpaper-2560",
@@ -72,8 +70,7 @@ const PAST_PAPERS: PastPaperItem[] = [
     fileName: "mfit-final-2560.pdf",
     pages: 26,
     points: "40 คะแนน",
-    itemCount: "22 ข้อ",
-    badge: { th: "ฉบับจริงสมบูรณ์", en: "Full Official" },
+    badge: { th: "ฉบับจริง", en: "Official" },
   },
   {
     id: "mfit-final-pastpaper-2559",
@@ -89,8 +86,7 @@ const PAST_PAPERS: PastPaperItem[] = [
     fileName: "mfit-final-final-mathit-2559.pdf",
     pages: 1,
     points: "40 คะแนน",
-    itemCount: "25 ข้อ",
-    badge: { th: "ข้อสอบจริง", en: "Official" },
+    badge: { th: "ฉบับจริง", en: "Official" },
   },
   {
     id: "mfit-final-notelub",
@@ -106,7 +102,6 @@ const PAST_PAPERS: PastPaperItem[] = [
     fileName: "mfit-final-notelub.pdf",
     pages: 3,
     points: "เฉลยวิธีทำ",
-    itemCount: "เฉลยละเอียด",
     badge: { th: "เฉลยลายมือ", en: "Worked Key" },
     isSolution: true,
   },
@@ -123,8 +118,7 @@ const PAST_PAPERS: PastPaperItem[] = [
     },
     fileName: "mfit-final-cdn-fbsbx-com.pdf",
     pages: 19,
-    points: "รวมทุกปี",
-    itemCount: "หลายชุด",
+    points: "ชุดรวม",
     badge: { th: "คลังกลาง", en: "Archive Vault" },
   },
   {
@@ -141,8 +135,7 @@ const PAST_PAPERS: PastPaperItem[] = [
     fileName: "mfit-final-copy-of-final-mathit-2559.pdf",
     pages: 1,
     points: "40 คะแนน",
-    itemCount: "25 ข้อ",
-    badge: { th: "สำเนาข้อสอบ", en: "Paper Copy" },
+    badge: { th: "สำเนา", en: "Copy" },
   },
   {
     id: "mfit-final-vault-unidentified",
@@ -158,7 +151,6 @@ const PAST_PAPERS: PastPaperItem[] = [
     fileName: "mfit-final-unidentified.pdf",
     pages: 6,
     points: "ชุดฝึกซ้อม",
-    itemCount: "คละหัวข้อ",
     badge: { th: "ชุดฝึกซ้อม", en: "Drill Set" },
   },
 ];
@@ -201,7 +193,7 @@ const FORMULA_SHEETS: FormulaSheetItem[] = [
     },
     fileName: "mfit-sheet-holyshit-final-part1.pdf",
     pages: 21,
-    badge: { th: "ชีตสรุป 21 หน้า", en: "21 Pages" },
+    badge: { th: "21 หน้า", en: "21 Pages" },
     highlight: true,
   },
   {
@@ -216,7 +208,7 @@ const FORMULA_SHEETS: FormulaSheetItem[] = [
     },
     fileName: "mfit-sheet-final-recap-week08-13.pdf",
     pages: 19,
-    badge: { th: "ติวเข้ม W08–13", en: "Recap W08-13" },
+    badge: { th: "W08–13", en: "W08-13" },
   },
   {
     id: "mfit-recap-calculus",
@@ -230,7 +222,7 @@ const FORMULA_SHEETS: FormulaSheetItem[] = [
     },
     fileName: "mfit-sheet-recap-calculus.pdf",
     pages: 6,
-    badge: { th: "สูตรครบ 6 หน้า", en: "Formulas" },
+    badge: { th: "สูตรครบ", en: "Formulas" },
   },
   {
     id: "mfit-cheat-sheet-2023",
@@ -244,7 +236,7 @@ const FORMULA_SHEETS: FormulaSheetItem[] = [
     },
     fileName: "mfit-sheet-cheat-sheet-2023.pdf",
     pages: 1,
-    badge: { th: "ฉบับปี 2023", en: "2023 Edition" },
+    badge: { th: "ปี 2023", en: "2023" },
   },
   {
     id: "mfit-cheat-sheet-2022",
@@ -258,7 +250,7 @@ const FORMULA_SHEETS: FormulaSheetItem[] = [
     },
     fileName: "mfit-sheet-cheat-sheet-2022.pdf",
     pages: 3,
-    badge: { th: "ฉบับปี 2022", en: "2022 Edition" },
+    badge: { th: "ปี 2022", en: "2022" },
   },
 ];
 
@@ -325,55 +317,40 @@ export function MfitWarRoomPortal({ config }: { config?: FenceWarRoomConfig } = 
   }
 
   return (
-    <div className="space-y-8 my-4">
-      {/* ── Official Standard Course Banner ─────────────────────────────── */}
-      <div className="space-y-3">
-        <div className="flex items-center justify-between gap-3">
-          <Link
-            href="/courses/06016401-Math-for-IT"
-            className="text-xs sm:text-sm font-medium text-muted-foreground transition-colors hover:text-primary flex items-center gap-1"
-          >
-            <ChevronLeft className="size-4" />
-            <span>{locale === "th" ? "กลับสู่หน้าหลักวิชา Math for IT" : "Back to Math for IT Hub"}</span>
-          </Link>
-          <span className="rounded-full bg-red-500/10 border border-red-500/25 px-2.5 py-0.5 text-xs font-semibold text-red-500">
-            {locale === "th" ? "จุดพักสอบปลายภาค" : "Final Exam Milestone"}
-          </span>
-        </div>
-
-        <header
-          style={{ background: IHELP_GRADIENT_CSS }}
-          className="relative isolate flex min-h-28 flex-col justify-end overflow-hidden rounded-2xl border border-white/10 p-4 text-white shadow-sm sm:min-h-36 sm:p-5"
-        >
-          <CourseWatermark code="MFIT" size="banner" />
-          <div className="relative z-10 space-y-1">
-            <div className="flex flex-wrap items-center gap-2 text-xs font-medium text-white/80">
-              <span className="font-semibold text-white">MFIT</span>
-              <span>·</span>
-              <span>06016401</span>
-              <span>·</span>
-              <span>{locale === "th" ? "ขอบเขตปลายภาค (สัปดาห์ที่ 8–15)" : "Final Scope (Weeks 8–15)"}</span>
-              <span>·</span>
-              <span className="font-bold text-white bg-white/20 px-2 py-0.5 rounded-full text-[11px]">
-                {locale === "th" ? "35 คะแนนเต็ม" : "35 Marks"}
-              </span>
-            </div>
-            <h1 className="text-xl font-bold tracking-tight text-white sm:text-2xl">
-              {locale === "th"
-                ? "สอบปลายภาค — ศูนย์บัญชาการรบ MFIT (Final War Room)"
-                : "Final Examination — MFIT War Room"}
-            </h1>
-            <p className="line-clamp-2 text-xs text-white/80 sm:text-sm">
-              {locale === "th"
-                ? "คลังข้อสอบเก่าฉบับจริงในระบบ · ข้อสอบจำลอง 25 ข้อ · ชีทสรุปสูตรทางการ · คู่มือยุทธศาสตร์พิชิต 35 คะแนน"
-                : "Official past exam vault, 25-item mock exam, formula sheets & 35-point strategic study guide"}
-            </p>
+    <div className="space-y-6 my-2">
+      {/* ── Official Big Blue Course Banner (Replaces top MD headers) ───── */}
+      <header
+        style={{ background: IHELP_GRADIENT_CSS }}
+        className="relative isolate flex min-h-28 flex-col justify-end overflow-hidden rounded-2xl border border-white/10 p-4 text-white shadow-sm sm:min-h-36 sm:p-5"
+      >
+        <CourseWatermark code="MFIT" size="banner" />
+        <div className="relative z-10 space-y-1">
+          <div className="flex flex-wrap items-center gap-2 text-xs font-medium text-white/80">
+            <span className="font-semibold text-white">MFIT</span>
+            <span>·</span>
+            <span>06016401</span>
+            <span>·</span>
+            <span>3 (2-2-5)</span>
+            <span>·</span>
+            <span className="rounded-full bg-white/20 px-2 py-0.5 text-[11px] font-bold text-white">
+              {locale === "th" ? "35 คะแนนเต็ม" : "35 Marks"}
+            </span>
           </div>
-        </header>
-      </div>
+          <h1 className="text-xl font-bold tracking-tight text-white sm:text-2xl">
+            {locale === "th"
+              ? "สอบปลายภาค — ศูนย์บัญชาการรบ MFIT (Final War Room)"
+              : "Final Examination — MFIT War Room"}
+          </h1>
+          <p className="line-clamp-2 text-xs text-white/80 sm:text-sm">
+            {locale === "th"
+              ? "คลังข้อสอบเก่าฉบับจริง · ข้อสอบจำลอง 25 ข้อ · ชีทสรุปสูตรทางการ · คู่มือยุทธศาสตร์พิชิต 35 คะแนน"
+              : "Official past exam vault, 25-item mock exam, formula sheets & 35-point strategic study guide"}
+          </p>
+        </div>
+      </header>
 
       {/* ── Section 1: ข้อสอบจำลองปลายภาค (Mock Exam Simulator) ─────────── */}
-      <section className="space-y-3" id="mock-exam">
+      <section className="space-y-3 pt-2" id="mock-exam">
         <TopicHeader
           id="mock-exam-header"
           title={locale === "th" ? "ข้อสอบจำลองปลายภาค 25 ข้อ (Final Mock Exam)" : "Final Mock Exam Simulator"}
@@ -418,30 +395,38 @@ export function MfitWarRoomPortal({ config }: { config?: FenceWarRoomConfig } = 
 
         {/* Quiz launch card or runner */}
         {!quizStarted ? (
-          <div className={`p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 ${SURFACE}`}>
-            <div className="space-y-1 min-w-0">
-              <div className="flex items-center gap-2">
-                <span className="flex size-7 items-center justify-center rounded-lg bg-red-500/10 text-red-500">
-                  <Flame className="size-4" />
-                </span>
-                <h4 className="text-sm sm:text-base font-bold text-foreground">
-                  {selectedPillar === "all"
-                    ? (locale === "th" ? "ชุดข้อสอบจำลองเต็มรูปแบบ (25 ข้อ · ครบทุก 5 เสาหลัก)" : "Full Final Mock Exam (25 Items)")
-                    : t(MFIT_FINAL_PILLARS.find((p) => p.pillar === selectedPillar)?.name || { th: "", en: "" }, locale)}
-                </h4>
+          <div
+            className={`group flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-3.5 py-3 transition-[box-shadow,background-color] hover:bg-primary/[0.03] hover:shadow-md dark:hover:bg-primary/10 border border-primary/25 ${SURFACE}`}
+          >
+            <div className="flex items-center gap-3 min-w-0 flex-1">
+              <span className="flex size-8.5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+                <Target className="size-4" />
+              </span>
+              <div className="flex min-w-0 flex-1 flex-col justify-center">
+                <div className="flex items-center gap-2">
+                  <span className="min-w-0 truncate text-xs sm:text-sm font-semibold text-foreground">
+                    {selectedPillar === "all"
+                      ? (locale === "th" ? "ชุดข้อสอบจำลองเต็มรูปแบบ (25 ข้อ · ครบทุก 5 เสาหลัก)" : "Full Final Mock Exam (25 Items)")
+                      : t(MFIT_FINAL_PILLARS.find((p) => p.pillar === selectedPillar)?.name || { th: "", en: "" }, locale)}
+                  </span>
+                  <span className="rounded-full bg-primary/10 text-primary px-2 py-0.5 text-[10px] font-semibold shrink-0">
+                    {quizQuestions.length} {locale === "th" ? "ข้อสอบ" : "items"}
+                  </span>
+                </div>
+                <p className="truncate text-xs text-muted-foreground/80 mt-0.5">
+                  {locale === "th"
+                    ? "จำลองจากสถิติข้อสอบจริง 2559–2561 (22–26 ข้อ) ข้อเขียน 100% คิดมือล้วน พร้อมเฉลยละเอียดและวิเคราะห์วิธีทำทีละขั้น"
+                    : "Engineered from authentic past final exams (2016-2018), 100% manual calculation with full step-by-step working."}
+                </p>
               </div>
-              <p className="text-xs text-muted-foreground leading-relaxed">
-                {locale === "th"
-                  ? "จำลองจากสถิติข้อสอบจริง 2559–2561 (22–26 ข้อ) ข้อเขียน 100% คิดมือล้วน พร้อมเฉลยละเอียดและวิเคราะห์วิธีทำทีละขั้น"
-                  : "Engineered from authentic past final exams (2016-2018), 100% manual calculation with full step-by-step working."}
-              </p>
             </div>
 
             <Button
+              size="sm"
               onClick={() => setQuizStarted(true)}
-              className="gap-2 bg-red-600 hover:bg-red-700 text-white font-bold shrink-0 self-end sm:self-auto rounded-xl"
+              className="gap-1.5 bg-red-600 hover:bg-red-700 text-white font-bold shrink-0 self-end sm:self-auto rounded-xl text-xs"
             >
-              <Target className="size-4" />
+              <Flame className="size-3.5" />
               <span>{locale === "th" ? `เริ่มทำข้อสอบ (${quizQuestions.length} ข้อ)` : `Start Quiz (${quizQuestions.length})`}</span>
             </Button>
           </div>
@@ -480,7 +465,7 @@ export function MfitWarRoomPortal({ config }: { config?: FenceWarRoomConfig } = 
       </section>
 
       {/* ── Section 2: คลังข้อสอบเก่าฉบับจริง (Past Papers Vault) ────────── */}
-      <section className="space-y-3 pt-4" id="past-papers">
+      <section className="space-y-2.5 pt-4" id="past-papers">
         <TopicHeader
           id="past-papers-header"
           title={locale === "th" ? "คลังข้อสอบเก่าฉบับจริง (Past Papers Vault)" : "Authentic Past Papers Vault"}
@@ -491,7 +476,7 @@ export function MfitWarRoomPortal({ config }: { config?: FenceWarRoomConfig } = 
           }
         />
 
-        <div className="flex flex-col gap-2.5">
+        <div className="flex flex-col gap-2">
           {PAST_PAPERS.map((paper) => {
             const remoteAsset = remoteAssets.find(
               (a) => a.fileName === paper.fileName || a.url?.includes(paper.fileName)
@@ -501,50 +486,62 @@ export function MfitWarRoomPortal({ config }: { config?: FenceWarRoomConfig } = 
             return (
               <div
                 key={paper.id}
-                className="group rounded-xl border border-border/50 bg-neutral-50/70 dark:bg-neutral-900/40 p-3 sm:p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-border hover:bg-neutral-100/60 dark:hover:bg-neutral-800/50 transition-all"
+                className={`group flex items-center justify-between gap-3 px-3.5 py-2.5 transition-[box-shadow,background-color] hover:bg-primary/[0.03] hover:shadow-md dark:hover:bg-primary/10 border border-border/40 ${SURFACE}`}
               >
-                <div className="flex items-start sm:items-center gap-2.5 min-w-0 flex-1">
-                  <span className="size-1.5 rounded-full bg-muted-foreground/50 shrink-0 mt-1.5 sm:mt-0 group-hover:bg-primary transition-colors" />
-                  <div className="min-w-0 flex-1 space-y-0.5">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <h4 className="text-xs sm:text-sm font-semibold text-foreground tracking-tight">
+                <div className="flex items-center gap-2.5 min-w-0 flex-1">
+                  <span
+                    className={`flex size-8.5 shrink-0 items-center justify-center rounded-full text-xs font-bold ${
+                      paper.isSolution
+                        ? "bg-emerald-500/15 text-emerald-600 dark:bg-emerald-400/15 dark:text-emerald-400"
+                        : "bg-primary/10 text-primary"
+                    }`}
+                  >
+                    {paper.isSolution ? (
+                      <FileCheck2 className="size-4" />
+                    ) : (
+                      <FileText className="size-4" />
+                    )}
+                  </span>
+
+                  <div className="flex min-w-0 flex-1 flex-col justify-center">
+                    <div className="flex items-center gap-2">
+                      <span className="min-w-0 truncate text-xs sm:text-sm font-medium text-foreground">
                         {t(paper.title, locale)}
-                      </h4>
-                      <Badge variant={paper.isSolution ? "default" : "outline"} className="text-[10px] px-1.5 py-0">
-                        {t(paper.badge, locale)}
-                      </Badge>
-                      <span className="text-[11px] text-muted-foreground tabular-nums">
-                        {paper.pages} {locale === "th" ? "หน้า" : "pages"} · {paper.points}
+                      </span>
+                      <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-medium text-muted-foreground shrink-0 hidden sm:inline-block">
+                        {paper.year}
                       </span>
                     </div>
-                    <p className="text-xs text-muted-foreground leading-relaxed line-clamp-1">
-                      {t(paper.description, locale)}
-                    </p>
+                    {paper.description && (
+                      <p className="truncate text-xs text-muted-foreground/80 mt-0.5">
+                        {t(paper.description, locale)}
+                      </p>
+                    )}
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">
-                  <Button
-                    size="sm"
-                    variant="default"
+                <div className="flex items-center gap-2 shrink-0">
+                  <span className="hidden md:block text-xs tabular-nums text-muted-foreground">
+                    {paper.pages} {locale === "th" ? "หน้า" : "pages"}
+                  </span>
+                  <button
+                    type="button"
                     onClick={() => openPreviewForFile(paper.fileName, paper.title, paper.description)}
-                    className="gap-1.5 text-xs rounded-xl font-medium"
+                    className="inline-flex items-center gap-1 text-xs font-semibold text-primary hover:text-primary/80 px-2.5 py-1 rounded-lg hover:bg-primary/10 transition-colors"
                   >
                     <Eye className="size-3.5" />
-                    <span>{locale === "th" ? "เปิดดูตัวอย่าง" : "Preview"}</span>
-                  </Button>
-
-                  <Button
-                    asChild
-                    size="sm"
-                    variant="outline"
-                    className="gap-1.5 text-xs rounded-xl"
+                    <span>{locale === "th" ? "ดูตัวอย่าง" : "Preview"}</span>
+                  </button>
+                  <a
+                    href={downloadUrl}
+                    download={paper.fileName}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-xs font-medium text-muted-foreground hover:text-foreground p-1.5 rounded-lg hover:bg-muted transition-colors"
+                    title={locale === "th" ? "ดาวน์โหลด" : "Download"}
                   >
-                    <a href={downloadUrl} download={paper.fileName} target="_blank" rel="noopener noreferrer">
-                      <Download className="size-3.5" />
-                      <span>{locale === "th" ? "ดาวน์โหลด" : "Download"}</span>
-                    </a>
-                  </Button>
+                    <Download className="size-3.5" />
+                  </a>
                 </div>
               </div>
             );
@@ -553,7 +550,7 @@ export function MfitWarRoomPortal({ config }: { config?: FenceWarRoomConfig } = 
       </section>
 
       {/* ── Section 3: ชีทสรุปสูตร & เอกสารทางการ (Official Formula Sheets) ─ */}
-      <section className="space-y-3 pt-4" id="formula-sheets">
+      <section className="space-y-2.5 pt-4" id="formula-sheets">
         <TopicHeader
           id="formula-sheets-header"
           title={locale === "th" ? "ชีทสรุปสูตร & เอกสารทางการ (Official Formula Sheets)" : "Official Formula Sheets"}
@@ -564,7 +561,7 @@ export function MfitWarRoomPortal({ config }: { config?: FenceWarRoomConfig } = 
           }
         />
 
-        <div className="flex flex-col gap-2.5">
+        <div className="flex flex-col gap-2">
           {FORMULA_SHEETS.map((sheet) => {
             const remoteAsset = remoteAssets.find(
               (a) => a.fileName === sheet.fileName || a.url?.includes(sheet.fileName)
@@ -574,54 +571,62 @@ export function MfitWarRoomPortal({ config }: { config?: FenceWarRoomConfig } = 
             return (
               <div
                 key={sheet.id}
-                className={`group rounded-xl border p-3 sm:p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 transition-all ${
+                className={`group flex items-center justify-between gap-3 px-3.5 py-2.5 transition-[box-shadow,background-color] hover:bg-primary/[0.03] hover:shadow-md dark:hover:bg-primary/10 border ${
                   sheet.highlight
-                    ? "border-yellow-500/30 bg-yellow-500/5 hover:border-yellow-500/50"
-                    : "border-border/50 bg-neutral-50/70 dark:bg-neutral-900/40 hover:border-border hover:bg-neutral-100/60 dark:hover:bg-neutral-800/50"
-                }`}
+                    ? "border-yellow-500/30 dark:border-yellow-400/20"
+                    : "border-border/40"
+                } ${SURFACE}`}
               >
-                <div className="flex items-start sm:items-center gap-2.5 min-w-0 flex-1">
-                  <span className="size-1.5 rounded-full bg-muted-foreground/50 shrink-0 mt-1.5 sm:mt-0 group-hover:bg-yellow-500 transition-colors" />
-                  <div className="min-w-0 flex-1 space-y-0.5">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <h4 className="text-xs sm:text-sm font-semibold text-foreground tracking-tight">
+                <div className="flex items-center gap-2.5 min-w-0 flex-1">
+                  <span
+                    className={`flex size-8.5 shrink-0 items-center justify-center rounded-full text-xs font-bold ${
+                      sheet.highlight
+                        ? "bg-yellow-500/15 text-yellow-600 dark:bg-yellow-400/15 dark:text-yellow-400"
+                        : "bg-primary/10 text-primary"
+                    }`}
+                  >
+                    <BookOpen className="size-4" />
+                  </span>
+
+                  <div className="flex min-w-0 flex-1 flex-col justify-center">
+                    <div className="flex items-center gap-2">
+                      <span className="min-w-0 truncate text-xs sm:text-sm font-medium text-foreground">
                         {t(sheet.title, locale)}
-                      </h4>
-                      <Badge variant={sheet.highlight ? "default" : "outline"} className="text-[10px] px-1.5 py-0">
+                      </span>
+                      <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-medium text-muted-foreground shrink-0 hidden sm:inline-block">
                         {t(sheet.badge, locale)}
-                      </Badge>
-                      <span className="text-[11px] text-muted-foreground tabular-nums">
-                        {sheet.pages} {locale === "th" ? "หน้า" : "pages"}
                       </span>
                     </div>
-                    <p className="text-xs text-muted-foreground leading-relaxed line-clamp-1">
-                      {t(sheet.description, locale)}
-                    </p>
+                    {sheet.description && (
+                      <p className="truncate text-xs text-muted-foreground/80 mt-0.5">
+                        {t(sheet.description, locale)}
+                      </p>
+                    )}
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">
-                  <Button
-                    size="sm"
-                    variant="default"
+                <div className="flex items-center gap-2 shrink-0">
+                  <span className="hidden md:block text-xs tabular-nums text-muted-foreground">
+                    {sheet.pages} {locale === "th" ? "หน้า" : "pages"}
+                  </span>
+                  <button
+                    type="button"
                     onClick={() => openPreviewForFile(sheet.fileName, sheet.title, sheet.description)}
-                    className="gap-1.5 text-xs rounded-xl font-medium"
+                    className="inline-flex items-center gap-1 text-xs font-semibold text-primary hover:text-primary/80 px-2.5 py-1 rounded-lg hover:bg-primary/10 transition-colors"
                   >
                     <Eye className="size-3.5" />
-                    <span>{locale === "th" ? "เปิดดูตัวอย่าง" : "Preview"}</span>
-                  </Button>
-
-                  <Button
-                    asChild
-                    size="sm"
-                    variant="outline"
-                    className="gap-1.5 text-xs rounded-xl"
+                    <span>{locale === "th" ? "ดูตัวอย่าง" : "Preview"}</span>
+                  </button>
+                  <a
+                    href={downloadUrl}
+                    download={sheet.fileName}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-xs font-medium text-muted-foreground hover:text-foreground p-1.5 rounded-lg hover:bg-muted transition-colors"
+                    title={locale === "th" ? "ดาวน์โหลด" : "Download"}
                   >
-                    <a href={downloadUrl} download={sheet.fileName} target="_blank" rel="noopener noreferrer">
-                      <Download className="size-3.5" />
-                      <span>{locale === "th" ? "ดาวน์โหลด" : "Download"}</span>
-                    </a>
-                  </Button>
+                    <Download className="size-3.5" />
+                  </a>
                 </div>
               </div>
             );
@@ -642,7 +647,7 @@ export function MfitWarRoomPortal({ config }: { config?: FenceWarRoomConfig } = 
         />
       </section>
 
-      {/* ── Modal Viewer ─────────────────────────────────────────────────── */}
+      {/* ── Dedicated Preview Modal ───────────────────────────────────────── */}
       {preview && (
         <PreviewModal
           preview={preview}
