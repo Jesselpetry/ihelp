@@ -34,6 +34,7 @@ bnTPDOstsQA | Lab 5.2 — สัญญาณนาฬิกา
 | เอกสาร | หน้า | ไฟล์ในคลัง |
 |---|:---:|---|
 | สไลด์บรรยาย — *Chapter 5: DAC and ADC Part-II* | 32 | `ics-lec-chapter05-dac-adc-part2-2569.pdf` |
+| สไลด์สรุปเนื้อหาแปลไทย (Figma โดย ภู ปัณณวิชญ์) | 1 | `ics-sheet-ch05-dac-adc-part2-th.pdf` |
 | ใบงานแล็บ — สร้างมัลติเพล็กเซอร์จาก universal gate | 2 | `ics-lab-05-logic-gates-2569.pdf` |
 | รายการอุปกรณ์ที่ต้องซื้อ (ทั้งเทอม) | 1 | `ics-ref-hardware-component-list-2569.pdf` |
 

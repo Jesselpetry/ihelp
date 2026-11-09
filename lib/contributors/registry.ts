@@ -112,7 +112,7 @@ export const CONTRIBUTOR_REGISTRY: Record<string, ContributorProfile> = {
       instagram: "priiu_i",
       email: "69070119@kmitl.ac.th",
     },
-    courses: ["ITF"],
+    courses: ["ITF", "ICS"],
     materials: [
       {
         courseCode: "ITF",
@@ -135,6 +135,34 @@ export const CONTRIBUTOR_REGISTRY: Record<string, ContributorProfile> = {
         },
         type: "tool",
         badge: { th: "ฟีเจอร์", en: "Feature" },
+      },
+      {
+        courseCode: "ICS",
+        title: {
+          th: "สไลด์สรุปเนื้อหาบรรยาย ICS ครึ่งหลัง บทที่ 1–7 (Figma แปลไทย 7 บท)",
+          en: "Thai Translated Lecture Slide Summaries for ICS Track B Chapters 1–7",
+        },
+        type: "slide",
+        description: {
+          th: "สไลด์แปลไทยและย่อสรุปเนื้อหาฮาร์ดแวร์สำหรับสอบปลายภาค: Computer System, Addressing, MUX/Latch, Counter, DAC/ADC, Memory และ ALU/CPU จัดทำโดย ภู ปัณณวิชญ์ (IT24)",
+          en: "Condensed Thai slide summaries for Track B Hardware Final: Computer System, Addressing, MUX/Latch, Counter, DAC/ADC, Memory, and ALU/CPU",
+        },
+        badge: { th: "สไลด์แปลไทย", en: "Thai Slides" },
+        url: "/courses/06016411-Intro-to-Computer-Systems/archive/week01",
+      },
+      {
+        courseCode: "ICS",
+        title: {
+          th: "แนวข้อสอบปลายภาค ICS พร้อมเฉลยคำตอบข้อเขียน",
+          en: "ICS Final Exam Guide with Written Problem Solutions",
+        },
+        type: "mock_exam",
+        description: {
+          th: "เจาะลึกแนวข้อสอบปลายภาคและแนวทางการตอบข้อเขียนภาคคำนวณและทฤษฎีฮาร์ดแวร์",
+          en: "Deep-dive final exam prep guide and written solution walkthroughs",
+        },
+        url: "/assets/it-kmitl/ics/sheets/ics-sheet-final-exam-guide-th.pdf",
+        badge: { th: "แนวข้อสอบ", en: "Exam Guide" },
       },
     ],
   },
@@ -169,7 +197,7 @@ export const CONTRIBUTOR_REGISTRY: Record<string, ContributorProfile> = {
       email: "69070082@kmitl.ac.th",
       notion: "https://app.notion.com/p/ITF-407363d85cea806abdc6c9ec2254f668",
     },
-    courses: ["ITF"],
+    courses: ["ITF", "MFIT"],
     materials: [
       {
         courseCode: "ITF",
@@ -184,6 +212,20 @@ export const CONTRIBUTOR_REGISTRY: Record<string, ContributorProfile> = {
         },
         url: "https://app.notion.com/p/ITF-407363d85cea806abdc6c9ec2254f668",
         badge: { th: "79 หน้าสไลด์", en: "79 Slides" },
+      },
+      {
+        courseCode: "MFIT",
+        title: {
+          th: "ชีตสรุปเตรียมสอบแคลคูลัส Holy Shit Final Part 1 (21 หน้า)",
+          en: "Calculus Holy Shit Final Part 1 Exam Prep Sheet (21 Pages)",
+        },
+        type: "sheet",
+        description: {
+          th: "สรุปสูตร เทคนิควิเคราะห์โจทย์ และตัวอย่างข้อสอบแคลคูลัสครึ่งหลังสำหรับสอบปลายภาค (21 หน้า) จัดทำโดย แบงค์ ธรรมดล (IT24)",
+          en: "Calculus Final exam summary formulas, shortcuts and problem walkthroughs (21 pages) by Tammadon Suksa (IT24)",
+        },
+        url: "/assets/it-kmitl/mfit/sheets/mfit-sheet-holyshit-final-part1.pdf",
+        badge: { th: "Holy Shit Final", en: "Holy Shit Final" },
       },
     ],
   },

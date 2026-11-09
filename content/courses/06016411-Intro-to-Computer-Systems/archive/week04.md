@@ -32,6 +32,7 @@ Q2BubNYuQkY | JK Flip Flop
 | เอกสาร | หน้า | ไฟล์ในคลัง |
 |---|:---:|---|
 | สไลด์บรรยาย — *Chapter 4: Counter and DAC & ADC Part-I* | 59 | `ics-lec-chapter04-counter-adc-2569.pdf` |
+| สไลด์สรุปเนื้อหาแปลไทย (Figma โดย ภู ปัณณวิชญ์) | 1 | `ics-sheet-ch04-counter-dac-adc-part1-th.pdf` |
 | ใบงานแล็บ — วงจรออสซิลเลเตอร์จากอินเวอร์เตอร์ 74LS04 | 2 | `ics-lab-04-inverter-oscillator-2569.pdf` |
 | รายการอุปกรณ์ที่ต้องซื้อ (ทั้งเทอม) | 1 | `ics-ref-hardware-component-list-2569.pdf` |
 

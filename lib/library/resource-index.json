@@ -7,13 +7,13 @@
     "coursesWithLibrary": 14,
     "docs": 120,
     "renderedDocs": 93,
-    "assets": 741,
-    "curated": 390,
-    "generated": 351,
+    "assets": 750,
+    "curated": 401,
+    "generated": 349,
     "insider": 171,
-    "files": 724,
-    "sizeBytes": 1119738966,
-    "pages": 13593
+    "files": 733,
+    "sizeBytes": 1157005428,
+    "pages": 13622
   },
   "courses": {
     "ITF": {
@@ -954,7 +954,8 @@
             "ics-lec-ch01-2569",
             "ics-lab-01-2569",
             "ics-lec-week01-final",
-            "ics-lec-chapter01-legacy"
+            "ics-lec-chapter01-legacy",
+            "ics-sheet-ch01-computer-system-th"
           ]
         },
         {
@@ -973,7 +974,8 @@
             "ics-lec-ch02-2569",
             "ics-lab-02-2569",
             "ics-lec-week02-final",
-            "ics-lec-chapter02-v2"
+            "ics-lec-chapter02-v2",
+            "ics-sheet-ch02-memory-io-addressing-th"
           ]
         },
         {
@@ -993,7 +995,8 @@
             "ics-lab-03-2569",
             "ics-lec-week03-final",
             "ics-lec-chapter03-legacy",
-            "ics-lec-slide03-1"
+            "ics-lec-slide03-1",
+            "ics-sheet-ch03-multiplexer-latch-buffer-th"
           ]
         },
         {
@@ -1013,7 +1016,8 @@
             "ics-lab-04-2569",
             "ics-lec-week04-final",
             "ics-lec-chapter04-legacy",
-            "ics-lec-chapter04-v2"
+            "ics-lec-chapter04-v2",
+            "ics-sheet-ch04-counter-dac-adc-part1-th"
           ]
         },
         {
@@ -1037,7 +1041,8 @@
             "ics-lab-05-v2",
             "ics-lab-05-v3",
             "ics-lab-week05",
-            "ics-lab-week05-v2"
+            "ics-lab-week05-v2",
+            "ics-sheet-ch05-dac-adc-part2-th"
           ]
         },
         {
@@ -1055,7 +1060,8 @@
           "assets": [
             "ics-lec-ch06-2569",
             "ics-lab-06-2569",
-            "ics-lec-week06-final"
+            "ics-lec-week06-final",
+            "ics-sheet-ch06-memory-unit-th"
           ]
         },
         {
@@ -1071,7 +1077,9 @@
             "content/courses/06016411-Intro-to-Computer-Systems/archive/week07.md"
           ],
           "assets": [
-            "ics-lec-ch07-2569"
+            "ics-lec-ch07-2569",
+            "ics-sheet-ch07-alu-cpu-creation-th",
+            "ics-sheet-final-exam-guide-th"
           ]
         }
       ],
@@ -1242,7 +1250,15 @@
         "ics-lec-week06-v2",
         "ics-lec-week07-copy",
         "ics-sheet-recap",
-        "ics-sheet-summary-v2"
+        "ics-sheet-summary-v2",
+        "ics-sheet-ch01-computer-system-th",
+        "ics-sheet-ch02-memory-io-addressing-th",
+        "ics-sheet-ch03-multiplexer-latch-buffer-th",
+        "ics-sheet-ch04-counter-dac-adc-part1-th",
+        "ics-sheet-ch05-dac-adc-part2-th",
+        "ics-sheet-ch06-memory-unit-th",
+        "ics-sheet-ch07-alu-cpu-creation-th",
+        "ics-sheet-final-exam-guide-th"
       ],
       "docs": [
         "content/courses/06016411-Intro-to-Computer-Systems/RESOURCES_MANIFEST.md",
@@ -1269,15 +1285,15 @@
         "data/it-kmitl/ics/summarize.md"
       ],
       "counts": {
-        "assets": 114,
-        "curated": 114,
+        "assets": 122,
+        "curated": 122,
         "generated": 0,
         "insider": 35,
         "legacy": 9,
-        "withScope": 109,
-        "withWeek": 63,
+        "withScope": 117,
+        "withWeek": 71,
         "byCategory": {
-          "cheatsheet": 6,
+          "cheatsheet": 14,
           "exam": 35,
           "exercise": 30,
           "lecture": 38,
@@ -1727,19 +1743,20 @@
         "mfit-ref-calc-useful-info-2569",
         "mfit-sheet-final-recap-w8-13",
         "mfit-sheet-recap-calculus",
+        "mfit-sheet-holyshit-final-part1",
         "mfit-final-pastpaper-2561",
         "mfit-final-pastpaper-2560",
         "mfit-final-pastpaper-2559",
         "mfit-final-notelub",
         "mfit-final-vault-cdn",
+        "mfit-final-pastpaper-2559-copy",
+        "mfit-final-vault-unidentified",
         "mfit-mfit-midterm-pastpaper-01",
         "mfit-mfit-midterm-openbook",
         "mfit-mfit-midterm-pastpaper-02",
         "mfit-mfit-ex-pretest",
         "mfit-mfit-ex-practice",
-        "gen-mfit-exams-mfit-final-copy-of-final-mathit-2559-pdf",
         "gen-mfit-exams-mfit-final-plickerscards-1up-1-63-pdf",
-        "gen-mfit-exams-mfit-final-unidentified-pdf",
         "gen-mfit-exams-mfit-midterm-01-pdf",
         "gen-mfit-exams-mfit-midterm-elementary-linear-algebra-ron-larson-david-c-pdf",
         "gen-mfit-exams-mfit-midterm-guidelineexam-mfit-pdf",
@@ -1808,19 +1825,20 @@
         "mfit-ref-calc-useful-info-2569",
         "mfit-sheet-final-recap-w8-13",
         "mfit-sheet-recap-calculus",
+        "mfit-sheet-holyshit-final-part1",
         "mfit-final-pastpaper-2561",
         "mfit-final-pastpaper-2560",
         "mfit-final-pastpaper-2559",
         "mfit-final-notelub",
         "mfit-final-vault-cdn",
+        "mfit-final-pastpaper-2559-copy",
+        "mfit-final-vault-unidentified",
         "mfit-mfit-midterm-pastpaper-01",
         "mfit-mfit-midterm-openbook",
         "mfit-mfit-midterm-pastpaper-02",
         "mfit-mfit-ex-pretest",
         "mfit-mfit-ex-practice",
-        "gen-mfit-exams-mfit-final-copy-of-final-mathit-2559-pdf",
         "gen-mfit-exams-mfit-final-plickerscards-1up-1-63-pdf",
-        "gen-mfit-exams-mfit-final-unidentified-pdf",
         "gen-mfit-exams-mfit-midterm-01-pdf",
         "gen-mfit-exams-mfit-midterm-elementary-linear-algebra-ron-larson-david-c-pdf",
         "gen-mfit-exams-mfit-midterm-guidelineexam-mfit-pdf",
@@ -1890,15 +1908,15 @@
         "data/it-kmitl/mfit/summarize.md"
       ],
       "counts": {
-        "assets": 110,
-        "curated": 69,
-        "generated": 41,
+        "assets": 111,
+        "curated": 72,
+        "generated": 39,
         "insider": 22,
         "legacy": 0,
-        "withScope": 69,
+        "withScope": 72,
         "withWeek": 80,
         "byCategory": {
-          "cheatsheet": 9,
+          "cheatsheet": 10,
           "exam": 22,
           "exercise": 41,
           "lecture": 38
@@ -5001,7 +5019,15 @@
       "week": null,
       "updated": null,
       "assetRefs": [
+        "mfit-final-pastpaper-2561",
+        "mfit-final-pastpaper-2560",
+        "mfit-final-pastpaper-2559",
+        "mfit-final-notelub",
+        "mfit-final-vault-cdn",
+        "mfit-final-pastpaper-2559-copy",
+        "mfit-final-vault-unidentified",
         "mfit-ref-calc-useful-info-2569",
+        "mfit-sheet-holyshit-final-part1",
         "mfit-sheet-final-recap-w8-13",
         "mfit-sheet-recap-calculus",
         "mfit-mfit-sheet-cheatsheet-2023",
@@ -6330,6 +6356,7 @@
       "updated": null,
       "assetRefs": [
         "ics-lec-ch01-2569",
+        "ics-sheet-ch01-computer-system-th",
         "ics-lab-01-2569",
         "ics-hardware-list-2569"
       ],
@@ -6356,6 +6383,7 @@
       "updated": null,
       "assetRefs": [
         "ics-lec-ch02-2569",
+        "ics-sheet-ch02-memory-io-addressing-th",
         "ics-lab-02-2569",
         "ics-hardware-list-2569"
       ],
@@ -6382,6 +6410,7 @@
       "updated": null,
       "assetRefs": [
         "ics-lec-ch03-2569",
+        "ics-sheet-ch03-multiplexer-latch-buffer-th",
         "ics-lab-03-2569",
         "ics-hardware-list-2569"
       ],
@@ -6408,6 +6437,7 @@
       "updated": null,
       "assetRefs": [
         "ics-lec-ch04-2569",
+        "ics-sheet-ch04-counter-dac-adc-part1-th",
         "ics-lab-04-2569",
         "ics-hardware-list-2569"
       ],
@@ -6434,6 +6464,7 @@
       "updated": null,
       "assetRefs": [
         "ics-lec-ch05-2569",
+        "ics-sheet-ch05-dac-adc-part2-th",
         "ics-lab-05-2569",
         "ics-hardware-list-2569"
       ],
@@ -6460,6 +6491,7 @@
       "updated": null,
       "assetRefs": [
         "ics-lec-ch06-2569",
+        "ics-sheet-ch06-memory-unit-th",
         "ics-lab-06-2569",
         "ics-hardware-list-2569"
       ],
@@ -6486,6 +6518,8 @@
       "updated": null,
       "assetRefs": [
         "ics-lec-ch07-2569",
+        "ics-sheet-ch07-alu-cpu-creation-th",
+        "ics-sheet-final-exam-guide-th",
         "ics-hardware-list-2569"
       ],
       "unresolvedRefs": []
@@ -17609,6 +17643,385 @@
       "onDisk": true,
       "usedBy": []
     },
+    "ics-sheet-ch01-computer-system-th": {
+      "id": "ics-sheet-ch01-computer-system-th",
+      "course": "ICS",
+      "origin": "curated",
+      "title": {
+        "th": "บทที่ 1 — ภาพรวมระบบคอมพิวเตอร์ (สไลด์สรุปแปลไทย)",
+        "en": "Ch.1 — Computer System Overview (Thai Slide Summary)"
+      },
+      "description": {
+        "th": "สไลด์สรุปอ่านง่ายภาษาไทยบทที่ 1 แนะนำวิวัฒนาการคอมพิวเตอร์ สารกึ่งตัวนำ บัส และมัลติมิเตอร์ จัดทำใน Figma โดย ภู ปัณณวิชญ์ (IT24)",
+        "en": "Figma study reading slide in Thai covering computer evolution, semiconductors, buses and multimeter basics by Punnavit Tangkolchan (IT24)"
+      },
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/ics/sheets/ics-sheet-ch01-computer-system-th.pdf",
+      "path": "public/assets/it-kmitl/ics/sheets/ics-sheet-ch01-computer-system-th.pdf",
+      "fileName": "ics-sheet-ch01-computer-system-th.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/ics/sheets/ics-sheet-ch01-computer-system-th.pdf"
+      },
+      "access": "member",
+      "week": 1,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": false,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Chapter 1",
+        "Computer System",
+        "ฉบับแปล",
+        "แปลไทย",
+        "สรุป",
+        "Final",
+        "Hardware"
+      ],
+      "sizeBytes": 3937588,
+      "pages": 1,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016411-Intro-to-Computer-Systems/archive/week01.md"
+      ]
+    },
+    "ics-sheet-ch02-memory-io-addressing-th": {
+      "id": "ics-sheet-ch02-memory-io-addressing-th",
+      "course": "ICS",
+      "origin": "curated",
+      "title": {
+        "th": "บทที่ 2 — หน่วยความจำและการอ้างแอดเดรส I/O (สไลด์สรุปแปลไทย)",
+        "en": "Ch.2 — Memory & I/O Addressing (Thai Slide Summary)"
+      },
+      "description": {
+        "th": "สไลด์สรุปอ่านง่ายภาษาไทยบทที่ 2 ครอบคลุมการแปลงเลขฐาน พาริตีบิต บัสข้อมูล แอดเดรสดีโคเดอร์ และการต่ออุปกรณ์ I/O จัดทำโดย ภู ปัณณวิชญ์ (IT24)",
+        "en": "Figma study reading slide in Thai covering radix conversion, parity bits, address decoders and I/O devices by Punnavit Tangkolchan (IT24)"
+      },
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/ics/sheets/ics-sheet-ch02-memory-io-addressing-th.pdf",
+      "path": "public/assets/it-kmitl/ics/sheets/ics-sheet-ch02-memory-io-addressing-th.pdf",
+      "fileName": "ics-sheet-ch02-memory-io-addressing-th.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/ics/sheets/ics-sheet-ch02-memory-io-addressing-th.pdf"
+      },
+      "access": "member",
+      "week": 2,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": false,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Chapter 2",
+        "Memory",
+        "I/O Addressing",
+        "ฉบับแปล",
+        "แปลไทย",
+        "สรุป",
+        "Final",
+        "Hardware"
+      ],
+      "sizeBytes": 3721865,
+      "pages": 1,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016411-Intro-to-Computer-Systems/archive/week02.md"
+      ]
+    },
+    "ics-sheet-ch03-multiplexer-latch-buffer-th": {
+      "id": "ics-sheet-ch03-multiplexer-latch-buffer-th",
+      "course": "ICS",
+      "origin": "curated",
+      "title": {
+        "th": "บทที่ 3 — มัลติเพล็กเซอร์ แลตช์ และบัฟเฟอร์ (สไลด์สรุปแปลไทย)",
+        "en": "Ch.3 — Multiplexer, Latch & Buffer (Thai Slide Summary)"
+      },
+      "description": {
+        "th": "สไลด์สรุปอ่านง่ายภาษาไทยบทที่ 3 วงจร MUX/DEMUX, ไตรสเตตบัฟเฟอร์, SR Latch และการวิเคราะห์สัญญาณแล็บ จัดทำโดย ภู ปัณณวิชญ์ (IT24)",
+        "en": "Figma study reading slide in Thai covering MUX/DEMUX, tristate buffers, SR latches and timing analysis by Punnavit Tangkolchan (IT24)"
+      },
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/ics/sheets/ics-sheet-ch03-multiplexer-latch-buffer-th.pdf",
+      "path": "public/assets/it-kmitl/ics/sheets/ics-sheet-ch03-multiplexer-latch-buffer-th.pdf",
+      "fileName": "ics-sheet-ch03-multiplexer-latch-buffer-th.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/ics/sheets/ics-sheet-ch03-multiplexer-latch-buffer-th.pdf"
+      },
+      "access": "member",
+      "week": 3,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": false,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Chapter 3",
+        "Multiplexer",
+        "Latch",
+        "Buffer",
+        "ฉบับแปล",
+        "แปลไทย",
+        "สรุป",
+        "Final",
+        "Hardware"
+      ],
+      "sizeBytes": 2380520,
+      "pages": 1,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016411-Intro-to-Computer-Systems/archive/week03.md"
+      ]
+    },
+    "ics-sheet-ch04-counter-dac-adc-part1-th": {
+      "id": "ics-sheet-ch04-counter-dac-adc-part1-th",
+      "course": "ICS",
+      "origin": "curated",
+      "title": {
+        "th": "บทที่ 4 — เคาน์เตอร์ และ DAC & ADC ตอนที่ 1 (สไลด์สรุปแปลไทย)",
+        "en": "Ch.4 — Counter & DAC/ADC Part-I (Thai Slide Summary)"
+      },
+      "description": {
+        "th": "สไลด์สรุปอ่านง่ายภาษาไทยบทที่ 4 วงจรฟลิปฟล็อป เคาน์เตอร์นับเลข วงจรออสซิลเลเตอร์ และพื้นฐานตัวแปลง DAC เบื้องต้น จัดทำโดย ภู ปัณณวิชญ์ (IT24)",
+        "en": "Figma study reading slide in Thai covering flip-flops, counter circuits, oscillators and DAC basics by Punnavit Tangkolchan (IT24)"
+      },
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/ics/sheets/ics-sheet-ch04-counter-dac-adc-part1-th.pdf",
+      "path": "public/assets/it-kmitl/ics/sheets/ics-sheet-ch04-counter-dac-adc-part1-th.pdf",
+      "fileName": "ics-sheet-ch04-counter-dac-adc-part1-th.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/ics/sheets/ics-sheet-ch04-counter-dac-adc-part1-th.pdf"
+      },
+      "access": "member",
+      "week": 4,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": false,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Chapter 4",
+        "Counter",
+        "Flip-Flop",
+        "DAC",
+        "ฉบับแปล",
+        "แปลไทย",
+        "สรุป",
+        "Final",
+        "Hardware"
+      ],
+      "sizeBytes": 4248303,
+      "pages": 1,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016411-Intro-to-Computer-Systems/archive/week04.md"
+      ]
+    },
+    "ics-sheet-ch05-dac-adc-part2-th": {
+      "id": "ics-sheet-ch05-dac-adc-part2-th",
+      "course": "ICS",
+      "origin": "curated",
+      "title": {
+        "th": "บทที่ 5 — วงจรแปลงสัญญาณ DAC และ ADC ตอนที่ 2 (สไลด์สรุปแปลไทย)",
+        "en": "Ch.5 — DAC & ADC Part-II (Thai Slide Summary)"
+      },
+      "description": {
+        "th": "สไลด์สรุปอ่านง่ายภาษาไทยบทที่ 5 เจาะลึกวงจร R-2R Ladder, Successive Approximation ADC, การคำนวณ Resolution และ Sampling Rate จัดทำโดย ภู ปัณณวิชญ์ (IT24)",
+        "en": "Figma study reading slide in Thai covering R-2R ladder, successive approximation ADC, resolution and sampling rate by Punnavit Tangkolchan (IT24)"
+      },
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/ics/sheets/ics-sheet-ch05-dac-adc-part2-th.pdf",
+      "path": "public/assets/it-kmitl/ics/sheets/ics-sheet-ch05-dac-adc-part2-th.pdf",
+      "fileName": "ics-sheet-ch05-dac-adc-part2-th.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/ics/sheets/ics-sheet-ch05-dac-adc-part2-th.pdf"
+      },
+      "access": "member",
+      "week": 5,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": false,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Chapter 5",
+        "DAC",
+        "ADC",
+        "R-2R Ladder",
+        "ฉบับแปล",
+        "แปลไทย",
+        "สรุป",
+        "Final",
+        "Hardware"
+      ],
+      "sizeBytes": 2561551,
+      "pages": 1,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016411-Intro-to-Computer-Systems/archive/week05.md"
+      ]
+    },
+    "ics-sheet-ch06-memory-unit-th": {
+      "id": "ics-sheet-ch06-memory-unit-th",
+      "course": "ICS",
+      "origin": "curated",
+      "title": {
+        "th": "บทที่ 6 — วงจรหน่วยความจำ (สไลด์สรุปแปลไทย)",
+        "en": "Ch.6 — Memory Unit (Thai Slide Summary)"
+      },
+      "description": {
+        "th": "สไลด์สรุปอ่านง่ายภาษาไทยบทที่ 6 โครงสร้าง RAM, ROM, Static vs Dynamic RAM, วงจรตารางเมทริกซ์หน่วยความจำ และบอร์ด FPGA Basys2 จัดทำโดย ภู ปัณณวิชญ์ (IT24)",
+        "en": "Figma study reading slide in Thai covering RAM/ROM architectures, SRAM vs DRAM, memory matrix and FPGA Basys2 by Punnavit Tangkolchan (IT24)"
+      },
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/ics/sheets/ics-sheet-ch06-memory-unit-th.pdf",
+      "path": "public/assets/it-kmitl/ics/sheets/ics-sheet-ch06-memory-unit-th.pdf",
+      "fileName": "ics-sheet-ch06-memory-unit-th.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/ics/sheets/ics-sheet-ch06-memory-unit-th.pdf"
+      },
+      "access": "member",
+      "week": 6,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": false,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Chapter 6",
+        "Memory",
+        "RAM",
+        "ROM",
+        "FPGA",
+        "ฉบับแปล",
+        "แปลไทย",
+        "สรุป",
+        "Final",
+        "Hardware"
+      ],
+      "sizeBytes": 2220362,
+      "pages": 1,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016411-Intro-to-Computer-Systems/archive/week06.md"
+      ]
+    },
+    "ics-sheet-ch07-alu-cpu-creation-th": {
+      "id": "ics-sheet-ch07-alu-cpu-creation-th",
+      "course": "ICS",
+      "origin": "curated",
+      "title": {
+        "th": "บทที่ 7 — การสร้างวงจร ALU และ CPU (สไลด์สรุปแปลไทย)",
+        "en": "Ch.7 — ALU & CPU Creation (Thai Slide Summary)"
+      },
+      "description": {
+        "th": "สไลด์สรุปอ่านง่ายภาษาไทยบทที่ 7 สถาปัตยกรรม Arithmetic Logic Unit, วงจรบวก/ลบ/ตรรกะ, รีจิสเตอร์, โปรแกรมเคาน์เตอร์ และโครงสร้าง CPU 4 บิต จัดทำโดย ภู ปัณณวิชญ์ (IT24)",
+        "en": "Figma study reading slide in Thai covering ALU architecture, arithmetic/logic units, registers, program counter and 4-bit CPU design by Punnavit Tangkolchan (IT24)"
+      },
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/ics/sheets/ics-sheet-ch07-alu-cpu-creation-th.pdf",
+      "path": "public/assets/it-kmitl/ics/sheets/ics-sheet-ch07-alu-cpu-creation-th.pdf",
+      "fileName": "ics-sheet-ch07-alu-cpu-creation-th.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/ics/sheets/ics-sheet-ch07-alu-cpu-creation-th.pdf"
+      },
+      "access": "member",
+      "week": 7,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": false,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Chapter 7",
+        "ALU",
+        "CPU",
+        "Architecture",
+        "ฉบับแปล",
+        "แปลไทย",
+        "สรุป",
+        "Final",
+        "Hardware"
+      ],
+      "sizeBytes": 3277729,
+      "pages": 1,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016411-Intro-to-Computer-Systems/archive/week07.md"
+      ]
+    },
+    "ics-sheet-final-exam-guide-th": {
+      "id": "ics-sheet-final-exam-guide-th",
+      "course": "ICS",
+      "origin": "curated",
+      "title": {
+        "th": "แนวข้อสอบปลายภาค ICS พร้อมเฉลยคำตอบข้อเขียน (โดย ภู ปัณณวิชญ์)",
+        "en": "ICS Final Exam Prep Guide & Written Solutions (by Punnavit)"
+      },
+      "description": {
+        "th": "ชุดแนวข้อสอบปลายภาควิชา ICS รวบรวมแนวโจทย์คำนวณ แอดเดรสซิ่ง DAC/ADC เมมโมรี และเฉลยข้อเขียนอธิบายขั้นตอนครบถ้วน จัดทำโดย ภู ปัณณวิชญ์ (IT24)",
+        "en": "ICS Final Exam preparation packet with comprehensive problem walkthroughs and written explanations by Punnavit Tangkolchan (IT24)"
+      },
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/ics/sheets/ics-sheet-final-exam-guide-th.pdf",
+      "path": "public/assets/it-kmitl/ics/sheets/ics-sheet-final-exam-guide-th.pdf",
+      "fileName": "ics-sheet-final-exam-guide-th.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/ics/sheets/ics-sheet-final-exam-guide-th.pdf"
+      },
+      "access": "member",
+      "week": 7,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": false,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Final",
+        "Exam Guide",
+        "Solutions",
+        "Written",
+        "ข้อสอบปลายภาค",
+        "เฉลย"
+      ],
+      "sizeBytes": 5625831,
+      "pages": 1,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016411-Intro-to-Computer-Systems/archive/week07.md"
+      ]
+    },
     "mfit-summary-md": {
       "id": "mfit-summary-md",
       "course": "MFIT",
@@ -20099,6 +20512,52 @@
         "content/courses/06016401-Math-for-IT/archive/study-guide-final-war-room.md"
       ]
     },
+    "mfit-sheet-holyshit-final-part1": {
+      "id": "mfit-sheet-holyshit-final-part1",
+      "course": "MFIT",
+      "origin": "curated",
+      "title": {
+        "th": "Holy Shit Final Part 1 — แคลคูลัสสรุปเข้ม (โดย Tammadon Suksa)",
+        "en": "Holy Shit Final Part 1 — Intensive Calculus Recap (by Tammadon Suksa)"
+      },
+      "description": {
+        "th": "ชีตสรุปเนื้อหาและโจทย์เตรียมสอบแคลคูลัสปลายภาค Part 1 รวม 21 หน้า จดละเอียดพร้อมเทคนิคคิดลัด ครอบคลุมฟังก์ชัน ลิมิต อนุพันธ์ และการประยุกต์ จัดทำโดย แบงค์ ธรรมดล ศึกษา (IT24)",
+        "en": "Intensive Calculus Final Exam preparation cheat sheet Part 1 (21 pages) with detailed notes and shortcuts by Tammadon Suksa (IT24)."
+      },
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/sheets/mfit-sheet-holyshit-final-part1.pdf",
+      "path": "public/assets/it-kmitl/mfit/sheets/mfit-sheet-holyshit-final-part1.pdf",
+      "fileName": "mfit-sheet-holyshit-final-part1.pdf",
+      "storage": {
+        "bucket": "ihelp-library",
+        "key": "it-kmitl/mfit/sheets/mfit-sheet-holyshit-final-part1.pdf"
+      },
+      "access": "member",
+      "week": null,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": false,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Calculus",
+        "Final",
+        "Holy Shit",
+        "Tammadon Suksa",
+        "IT24",
+        "สรุป",
+        "แคลคูลัส"
+      ],
+      "sizeBytes": 9292713,
+      "pages": 21,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-final-war-room.md"
+      ]
+    },
     "mfit-final-pastpaper-2561": {
       "id": "mfit-final-pastpaper-2561",
       "course": "MFIT",
@@ -20137,7 +20596,9 @@
       "sizeBytes": 966125,
       "pages": 12,
       "onDisk": true,
-      "usedBy": []
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-final-war-room.md"
+      ]
     },
     "mfit-final-pastpaper-2560": {
       "id": "mfit-final-pastpaper-2560",
@@ -20177,7 +20638,9 @@
       "sizeBytes": 1583183,
       "pages": 10,
       "onDisk": true,
-      "usedBy": []
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-final-war-room.md"
+      ]
     },
     "mfit-final-pastpaper-2559": {
       "id": "mfit-final-pastpaper-2559",
@@ -20217,7 +20680,9 @@
       "sizeBytes": 1443688,
       "pages": 9,
       "onDisk": true,
-      "usedBy": []
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-final-war-room.md"
+      ]
     },
     "mfit-final-notelub": {
       "id": "mfit-final-notelub",
@@ -20258,7 +20723,9 @@
       "sizeBytes": 164886,
       "pages": 3,
       "onDisk": true,
-      "usedBy": []
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-final-war-room.md"
+      ]
     },
     "mfit-final-vault-cdn": {
       "id": "mfit-final-vault-cdn",
@@ -20298,7 +20765,93 @@
       "sizeBytes": 5924204,
       "pages": 19,
       "onDisk": true,
-      "usedBy": []
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-final-war-room.md"
+      ]
+    },
+    "mfit-final-pastpaper-2559-copy": {
+      "id": "mfit-final-pastpaper-2559-copy",
+      "course": "MFIT",
+      "origin": "curated",
+      "title": {
+        "th": "📝 ข้อสอบปลายภาค MFIT ปีการศึกษา 2559 (ฉบับสำเนา)",
+        "en": "📝 Final Exam Paper 2016 / 2559 (Copy)"
+      },
+      "description": {
+        "th": "ข้อสอบปลายภาคปี 2559 ฉบับสำเนาเพิ่มเติม พร้อมโจทย์แคลคูลัส",
+        "en": "Alternate copy of 2016 final exam paper with calculus problems."
+      },
+      "category": "exam",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/exams/mfit-final-copy-of-final-mathit-2559.pdf",
+      "path": "public/assets/it-kmitl/mfit/exams/mfit-final-copy-of-final-mathit-2559.pdf",
+      "fileName": "mfit-final-copy-of-final-mathit-2559.pdf",
+      "storage": {
+        "bucket": "ihelp-library-exams",
+        "key": "it-kmitl/mfit/exams/mfit-final-copy-of-final-mathit-2559.pdf"
+      },
+      "access": "insider",
+      "week": null,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": false,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Final",
+        "ข้อสอบเก่า",
+        "PDF"
+      ],
+      "sizeBytes": 1318403,
+      "pages": 9,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-final-war-room.md"
+      ]
+    },
+    "mfit-final-vault-unidentified": {
+      "id": "mfit-final-vault-unidentified",
+      "course": "MFIT",
+      "origin": "curated",
+      "title": {
+        "th": "📝 ชุดข้อสอบรวมปลายภาค MFIT (ชุดคละหัวข้อ 6 หน้า)",
+        "en": "📝 Final Exam Mixed Problem Set (6 Pages)"
+      },
+      "description": {
+        "th": "รวมข้อสอบปลายภาคชุดคละโจทย์ ลิมิต อนุพันธ์ และปริพันธ์",
+        "en": "Compiled problem set of past final exam problems spanning limits, derivatives, and integrals."
+      },
+      "category": "exam",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/exams/mfit-final-unidentified.pdf",
+      "path": "public/assets/it-kmitl/mfit/exams/mfit-final-unidentified.pdf",
+      "fileName": "mfit-final-unidentified.pdf",
+      "storage": {
+        "bucket": "ihelp-library-exams",
+        "key": "it-kmitl/mfit/exams/mfit-final-unidentified.pdf"
+      },
+      "access": "insider",
+      "week": null,
+      "scope": "final",
+      "edition": null,
+      "status": null,
+      "isCurrentYear": false,
+      "duplicateOf": null,
+      "sourceUrl": null,
+      "groupId": null,
+      "tags": [
+        "Final",
+        "ข้อสอบเก่า",
+        "PDF"
+      ],
+      "sizeBytes": 963968,
+      "pages": 3,
+      "onDisk": true,
+      "usedBy": [
+        "content/courses/06016401-Math-for-IT/archive/study-guide-final-war-room.md"
+      ]
     },
     "mfit-mfit-midterm-pastpaper-01": {
       "id": "mfit-mfit-midterm-pastpaper-01",
@@ -20493,42 +21046,6 @@
       "onDisk": true,
       "usedBy": []
     },
-    "gen-mfit-exams-mfit-final-copy-of-final-mathit-2559-pdf": {
-      "id": "gen-mfit-exams-mfit-final-copy-of-final-mathit-2559-pdf",
-      "course": "MFIT",
-      "origin": "generated",
-      "title": {
-        "th": "Final · Copy Of Final Mathit 2559",
-        "en": "Final · Copy Of Final Mathit 2559"
-      },
-      "description": null,
-      "category": "exam",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/exams/mfit-final-copy-of-final-mathit-2559.pdf",
-      "path": "public/assets/it-kmitl/mfit/exams/mfit-final-copy-of-final-mathit-2559.pdf",
-      "fileName": "mfit-final-copy-of-final-mathit-2559.pdf",
-      "storage": {
-        "bucket": "ihelp-library-exams",
-        "key": "it-kmitl/mfit/exams/mfit-final-copy-of-final-mathit-2559.pdf"
-      },
-      "access": "insider",
-      "week": null,
-      "scope": null,
-      "edition": null,
-      "status": null,
-      "isCurrentYear": false,
-      "duplicateOf": null,
-      "sourceUrl": null,
-      "groupId": null,
-      "tags": [
-        "MFIT",
-        "exams"
-      ],
-      "sizeBytes": 1318403,
-      "pages": 9,
-      "onDisk": true,
-      "usedBy": []
-    },
     "gen-mfit-exams-mfit-final-plickerscards-1up-1-63-pdf": {
       "id": "gen-mfit-exams-mfit-final-plickerscards-1up-1-63-pdf",
       "course": "MFIT",
@@ -20562,42 +21079,6 @@
       ],
       "sizeBytes": 5324,
       "pages": 1,
-      "onDisk": true,
-      "usedBy": []
-    },
-    "gen-mfit-exams-mfit-final-unidentified-pdf": {
-      "id": "gen-mfit-exams-mfit-final-unidentified-pdf",
-      "course": "MFIT",
-      "origin": "generated",
-      "title": {
-        "th": "Final · Unidentified",
-        "en": "Final · Unidentified"
-      },
-      "description": null,
-      "category": "exam",
-      "fileType": "pdf",
-      "url": "/assets/it-kmitl/mfit/exams/mfit-final-unidentified.pdf",
-      "path": "public/assets/it-kmitl/mfit/exams/mfit-final-unidentified.pdf",
-      "fileName": "mfit-final-unidentified.pdf",
-      "storage": {
-        "bucket": "ihelp-library-exams",
-        "key": "it-kmitl/mfit/exams/mfit-final-unidentified.pdf"
-      },
-      "access": "insider",
-      "week": null,
-      "scope": null,
-      "edition": null,
-      "status": null,
-      "isCurrentYear": false,
-      "duplicateOf": null,
-      "sourceUrl": null,
-      "groupId": null,
-      "tags": [
-        "MFIT",
-        "exams"
-      ],
-      "sizeBytes": 963968,
-      "pages": 3,
       "onDisk": true,
       "usedBy": []
     },

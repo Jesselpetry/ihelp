@@ -29,6 +29,7 @@ F3WZlaGuUdU | Lab 2.2 — วัดสัญญาณวงจร low-pass
 | เอกสาร | หน้า | ไฟล์ในคลัง |
 |---|:---:|---|
 | สไลด์บรรยาย — *Chapter 2: Memory, I/O addressing* | 49 | `ics-lec-chapter02-memory-io-addressing-2569.pdf` |
+| สไลด์สรุปเนื้อหาแปลไทย (Figma โดย ภู ปัณณวิชญ์) | 1 | `ics-sheet-ch02-memory-io-addressing-th.pdf` |
 | ใบงานแล็บ — ฟังก์ชันเจเนอเรเตอร์กับออสซิลโลสโคป | 2 | `ics-lab-02-oscilloscope-2569.pdf` |
 | รายการอุปกรณ์ที่ต้องซื้อ (ทั้งเทอม) | 1 | `ics-ref-hardware-component-list-2569.pdf` |
 

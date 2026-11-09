@@ -28,6 +28,7 @@ BV7piMHvsrE | Lab 6 — สร้างวงจรบน FPGA
 | เอกสาร | หน้า | ไฟล์ในคลัง |
 |---|:---:|---|
 | สไลด์บรรยาย — *Chapter 6: Circuit concept in memory devices* | 26 | `ics-lec-chapter06-memory-circuit-2569.pdf` |
+| สไลด์สรุปเนื้อหาแปลไทย (Figma โดย ภู ปัณณวิชญ์) | 1 | `ics-sheet-ch06-memory-unit-th.pdf` |
 | ใบงานแล็บ — ลงวงจรบนบอร์ด FPGA Digilent Basys2 | 2 | `ics-lab-06-fpga-basys2-2569.pdf` |
 | รายการอุปกรณ์ที่ต้องซื้อ (ทั้งเทอม) | 1 | `ics-ref-hardware-component-list-2569.pdf` |
 

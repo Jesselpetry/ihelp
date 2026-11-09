@@ -16,6 +16,15 @@
 
 ### เพิ่ม
 
+- **คลังสื่อการเรียนรู้สไลด์สรุปเนื้อหาแปลไทยวิชา ICS ครึ่งหลัง บทที่ 1–7 และแนวข้อสอบปลายภาค (โดย @PhuPunnavit)** —
+  1. เพิ่มสไลด์สรุปเนื้อหาฮาร์ดแวร์ครึ่งหลังแปลไทยฉบับอ่านเข้าใจง่ายในหน้าเดียวจาก Figma รวม 7 บท (`ics-sheet-ch01-computer-system-th.pdf` ถึง `ics-sheet-ch07-alu-cpu-creation-th.pdf`) ครอบคลุม Computer System, Memory & I/O Addressing, MUX/Latch/Buffer, Counter & DAC/ADC (I/II), Memory Unit, และ ALU & CPU Creation
+  2. เพิ่มชุดแนวข้อสอบปลายภาควิชา ICS พร้อมเฉลยคำตอบข้อเขียน (`ics-sheet-final-exam-guide-th.pdf`) อธิบายขั้นตอนการคำนวณและข้อเขียนอย่างละเอียด
+  3. เชื่อมโยงสไลด์สรุปเข้าสู่ตารางเอกสารประจำสัปดาห์ของหน้าเนื้อหารายสัปดาห์วิชา ICS ครึ่งหลัง (`week01.md` ถึง `week07.md`) ในคลังเรียนรู้
+  4. อัปเดตข้อมูลผู้ร่วมจัดทำของนายปัณณวิชญ์ ตั้งกลชาน (@PhuPunnavit) ในระบบ `lib/contributors/registry.ts` ให้ครอบคลุมทั้งวิชา ITF และ ICS
+- **ชีตสรุปเข้มแคลคูลัสเตรียมสอบปลายภาค MFIT Holy Shit Final Part 1 (โดย @tammadon)** —
+  1. นำเข้าชีตสรุปเนื้อหาแคลคูลัสลายมือจดละเอียดพร้อมเทคนิคคิดลัดฉบับเข้มข้น Part 1 รวม 21 หน้า (`mfit-sheet-holyshit-final-part1.pdf`) จัดทำโดย แบงค์ ธรรมดล ศึกษา (IT24) ลงในคลังเรียนรู้
+  2. เชื่อมโยงเข้าสู่ตารางเอกสารติวเข้มในหน้าศูนย์บัญชาการสอบปลายภาค MFIT Final War Room (`study-guide-final-war-room.md`)
+  3. ลงทะเบียนผลงานเข้าสู่โปรไฟล์ผู้จัดทำของนายธรรมดล ศึกษา (@tammadon) ใน `lib/contributors/registry.ts` รองรับการแสดงผลเครดิตในหน้ารายวิชา Math for IT
 - **ศูนย์บัญชาการสอบปลายภาค MFIT Final Exam War Room (`study-guide-final-war-room.md`)** — จัดทำหน้าคู่มือทบทวนและยุทธศาสตร์การทำข้อสอบปลายภาคแบบ Exclusive ณ จุดพักสอบปลายภาค (`/courses/06016401-Math-for-IT/summary?doc=final-war-room`) พร้อมเชื่อมโยงกับปุ่ม 'คู่มือทบทวน' ในแถบไทม์ไลน์รายวิชา (`lib/courses/course-timeline.ts` และ `lib/courses/course-bindings.ts`):
   1. วิเคราะห์และแจกแจงโครงสร้างข้อสอบปลายภาค 1/2569 สัดส่วน 35 คะแนนเต็ม (ข้อเขียนอัตนัย 100%) แยกตาม 5 เสาหลักแคลคูลัส (Pillars 1–5): Limits & Continuity, Differentiation & Applications, Optimization & Related Rates, Indefinite & Definite Integration, Integration Applications (Area & Volume)
   2. สรุปกลยุทธ์และสูตรลัดเฉพาะทาง: การแก้ Limit รูปแบบ 0/0 และสังยุค/L'Hôpital, อนุพันธ์ฟังก์ชันแฝง (Implicit Differentiation), การตั้งสมการและโมเดล Optimization, การอินทิเกรตเปลี่ยนตัวแปร ($u$-Substitution), ตาราง DI Method สำหรับ Integration by Parts, และสูตรทรงตันจากการหมุนแบบจาน (Disk) vs วงแหวน (Washer)
@@ -45,9 +54,11 @@
 - **ปรับปรุงการจัดระเบียบคลังเรียนรู้และการนำทางไทม์ไลน์รายวิชา MFIT (`lib/library/subject-library.ts`, `lib/courses/course-timeline.ts`)** —
   1. เพิ่ม `courseCode: "MFIT"` และ `chapter: 1..7` ให้กับเอกสารครึ่งแรกทั้งหมดใน `subject-library.ts` เพื่อให้ระบบคัดกรองแยกสัปดาห์ทำงานได้อย่างแม่นยำ ไม่ปะปนกัน
   2. ปรับแต่ง `course-timeline.ts` ให้จุดพักสอบปลายภาค (Final Milestone) ของ MFIT ลิงก์ตรงเข้าสู่หน้า Final Exam War Room เพื่อให้นักศึกษาเข้าถึงยุทธการสอบและข้อสอบเก่าได้ในคลิกเดียว (โดย @Jesselpetry)
-- **ปรับปรุงการแสดงผลการ์ดผลงานผู้ร่วมจัดทำในหน้ารายวิชาสู่การ์ดเดี่ยวแบบโมเดิร์น (`components/course-contributors.tsx`)** —
-  1. ปรับหัวข้อหมวดผลงานเป็นส่วนหัวแบบมีเคาน์เตอร์แคปซูล (`ContributorSectionHeader`) แสดงจำนวนรายการ
-  2. แปลงการแสดงผลรายการผลงานเป็นการ์ดเดี่ยว (`ContributorMaterialCard`) พร้อมระบุประเภทชัดเจนและปุ่ม Action ด้านขวา (ดูสรุป, ดูสไลด์, เปิดใช้งาน ฯลฯ) ที่ปรับเปลี่ยนข้อความและไอคอนตามชนิดผลงานโดยอัตโนมัติ (โดย @Jesselpetry)
+- **ปรับปรุงการแสดงผลการ์ดผู้จัดทำและรายการผลงานในหน้ารายวิชาสู่ดีไซน์มินิมอลโมเดิร์น (`components/course-contributors.tsx`)** —
+  1. ลดทอนความหนาแน่นของส่วนหัวโปรไฟล์: ตัดคำนำหน้ารุ่น/สถาบันซ้ำซ้อนออก เหลือเพียงชั้นปีและรหัสนักศึกษา `ชั้นปีที่ 1 (69070027)` และตัดบรรทัดชื่อเอกสารซ้ำซ้อนใต้ชื่อออก เพื่อให้การ์ดดูโปร่ง สะอาดตา
+  2. ปรับแบดจ์บทบาทผู้จัดทำเป็นทรงแคปซูลมนกลม (`rounded-full`) พร้อมจุด Indicator สไตล์มินิมอล (`size-1.5 rounded-full bg-primary`)
+  3. ออกแบบส่วนหัวหมวดหมู่ผลงานใหม่ (`ContributorSectionHeader`) พร้อมเคาน์เตอร์แคปซูลแสดงจำนวนผลงานในวิชาอย่างเป็นสัดส่วน
+  4. แปลงรายการผลงานเป็นการ์ดเดี่ยว (`ContributorMaterialCard`) พร้อมบูลเล็ตพอยต์และปุ่ม Action ด้านขวา (ดูสรุป, ดูข้อสอบ, ดูสไลด์ ฯลฯ) ที่นำทางไปยังไฟล์หรือหน้าเอกสารได้อย่างสะดวกและสะอาดตา (โดย @Jesselpetry)
 - **อัปเดตชุดโจทย์ PSCP และเฉลยอ้างอิงให้เป็นปัจจุบันตามคลังต้นทาง (`branch OP`)** — อัปเดตข้อมูลโจทย์ใน `data/oj_problems.json`, รายละเอียดโจทย์ใน `data/all_problems_detail.json` และสร้าง registry `data/pscp/problems.json` ใหม่ รวมทั้งหมด 273 ข้อ ครอบคลุมโจทย์สัปดาห์ที่ 15 และ 16 (เพิ่มโจทย์ oj3642 ถึง oj3680 รวม 38 ข้อใหม่) พร้อมชุดเคสทดสอบทางการ (Official Cases), เคสขอบเขตที่สร้างขึ้น (Edge Cases 919 เคส) และตรวจสอบการทำงานของเฉลยอ้างอิงผ่าน `pscp:verify` ครบทุกข้อ (โดย @Jesselpetry)
 - **ยกเครื่องหน้าจอทำโจทย์และพื้นที่ทำงาน PSCP Workspace สู่ระบบ Code Editor และ Tabbed Test Runner เต็มรูปแบบ (`components/pscp/`)** —
   1. **แผงซ้าย (Problem Header & Meta Refactoring):** รวบรวมข้อมูลส่วนหัวด้วย Breadcrumbs แบบมินิมอล (`PSCP / Week X / #ID`), หัวข้อโจทย์ H1 พร้อมปุ่มบุ๊กมาร์กดาวแบบอินไลน์, ปรับป้ายแท็กหัวข้อสู่ชิปโมโนโครม (`bg-muted/60 text-muted-foreground`), แถบสถิติแนวนอนรวม Pass rate, Limit (เวลา/แรม) และกำหนดส่งด้วยจุดคั่น (`·`) โดยสงวนสีแดงไว้เฉพาะเมื่อหมดเขต

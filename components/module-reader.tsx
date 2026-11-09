@@ -126,7 +126,7 @@ export function ModuleReader({
   backLabel,
   nextHref,
   nextLabel = L.defaultNext,
-  assets,
+  assets: initialAssets,
   courseCode,
   title,
   subtitle,
@@ -138,6 +138,29 @@ export function ModuleReader({
   const [preview, setPreview] = useState<Preview | null>(null);
   const activePillRef = useRef<HTMLButtonElement | null>(null);
   const { opened, markOpened } = useOpenedDocs(moduleKey);
+
+  const [activeAssets, setActiveAssets] = useState<SubjectAsset[]>(initialAssets ?? []);
+
+  useEffect(() => {
+    setActiveAssets(initialAssets ?? []);
+  }, [initialAssets]);
+
+  useEffect(() => {
+    if (!courseCode) return;
+    const controller = new AbortController();
+    fetch(`/api/library/assets?course=${encodeURIComponent(courseCode)}`, {
+      signal: controller.signal,
+    })
+      .then(async (res) => {
+        if (!res.ok) return;
+        const body = (await res.json()) as { assets?: SubjectAsset[] };
+        if (body.assets && body.assets.length > 0) {
+          setActiveAssets(body.assets);
+        }
+      })
+      .catch(() => {});
+    return () => controller.abort();
+  }, [courseCode]);
 
   const hasIndex = docs.length >= INDEX_MIN_DOCS;
 
@@ -411,7 +434,7 @@ export function ModuleReader({
                   <MdView
                     variant={variant}
                     markdown={active.markdown}
-                    assets={assets}
+                    assets={activeAssets}
                     courseCode={courseCode}
                     onOpenPreview={(asset) => setPreview({ items: [asset], index: 0 })}
                   />

@@ -33,6 +33,7 @@ FLuLCeqh7bI | ตัวอย่าง — SR FF บน Tinkercad
 | เอกสาร | หน้า | ไฟล์ในคลัง |
 |---|:---:|---|
 | สไลด์บรรยาย — *Chapter 3: Multiplexer, Latch, Buffer* | 39 | `ics-lec-chapter03-mux-latch-buffer-2569.pdf` |
+| สไลด์สรุปเนื้อหาแปลไทย (Figma โดย ภู ปัณณวิชญ์) | 1 | `ics-sheet-ch03-multiplexer-latch-buffer-th.pdf` |
 | ใบงานแล็บ — วงจรสวิตช์กด LED และการหน่วงเวลาด้วย RC | 2 | `ics-lab-03-breadboard-basics-2569.pdf` |
 | รายการอุปกรณ์ที่ต้องซื้อ (ทั้งเทอม) | 1 | `ics-ref-hardware-component-list-2569.pdf` |
 

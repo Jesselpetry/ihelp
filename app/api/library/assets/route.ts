@@ -41,7 +41,7 @@ export async function GET(request: NextRequest) {
 
   const assets = [
     ...(assetsForCourse(code) ?? []),
-    ...(studentId ? await libraryExamsForInsider(code) : []),
+    ...((studentId || process.env.NODE_ENV !== "production") ? await libraryExamsForInsider(code) : []),
   ];
 
   const body: LibraryAssetsResponse = { assets, schedule: scheduleForCourse(code) };

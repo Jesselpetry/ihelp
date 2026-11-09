@@ -5583,6 +5583,173 @@
       "courseCode": "ICS"
     },
     {
+      "id": "gen-ics-sheets-ics-sheet-ch01-computer-system-th-pdf",
+      "title": {
+        "th": "Sheet · Ch 01 Computer System Th",
+        "en": "Sheet · Ch 01 Computer System Th"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "sheets"
+      ],
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/ics/sheets/ics-sheet-ch01-computer-system-th.pdf",
+      "fileName": "ics-sheet-ch01-computer-system-th.pdf",
+      "courseCode": "ICS",
+      "chapter": 1
+    },
+    {
+      "id": "gen-ics-sheets-ics-sheet-ch02-memory-io-addressing-th-pdf",
+      "title": {
+        "th": "Sheet · Ch 02 Memory IO Addressing Th",
+        "en": "Sheet · Ch 02 Memory IO Addressing Th"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "sheets"
+      ],
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/ics/sheets/ics-sheet-ch02-memory-io-addressing-th.pdf",
+      "fileName": "ics-sheet-ch02-memory-io-addressing-th.pdf",
+      "courseCode": "ICS",
+      "chapter": 2
+    },
+    {
+      "id": "gen-ics-sheets-ics-sheet-ch03-multiplexer-latch-buffer-th-pdf",
+      "title": {
+        "th": "Sheet · Ch 03 Multiplexer Latch Buffer Th",
+        "en": "Sheet · Ch 03 Multiplexer Latch Buffer Th"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "sheets"
+      ],
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/ics/sheets/ics-sheet-ch03-multiplexer-latch-buffer-th.pdf",
+      "fileName": "ics-sheet-ch03-multiplexer-latch-buffer-th.pdf",
+      "courseCode": "ICS",
+      "chapter": 3
+    },
+    {
+      "id": "gen-ics-sheets-ics-sheet-ch04-counter-dac-adc-part1-th-pdf",
+      "title": {
+        "th": "Sheet · Ch 04 Counter Dac Adc Part 1 Th",
+        "en": "Sheet · Ch 04 Counter Dac Adc Part 1 Th"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "sheets"
+      ],
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/ics/sheets/ics-sheet-ch04-counter-dac-adc-part1-th.pdf",
+      "fileName": "ics-sheet-ch04-counter-dac-adc-part1-th.pdf",
+      "courseCode": "ICS",
+      "chapter": 4
+    },
+    {
+      "id": "gen-ics-sheets-ics-sheet-ch05-dac-adc-part2-th-pdf",
+      "title": {
+        "th": "Sheet · Ch 05 Dac Adc Part 2 Th",
+        "en": "Sheet · Ch 05 Dac Adc Part 2 Th"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "sheets"
+      ],
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/ics/sheets/ics-sheet-ch05-dac-adc-part2-th.pdf",
+      "fileName": "ics-sheet-ch05-dac-adc-part2-th.pdf",
+      "courseCode": "ICS",
+      "chapter": 5
+    },
+    {
+      "id": "gen-ics-sheets-ics-sheet-ch06-memory-unit-th-pdf",
+      "title": {
+        "th": "Sheet · Ch 06 Memory Unit Th",
+        "en": "Sheet · Ch 06 Memory Unit Th"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "sheets"
+      ],
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/ics/sheets/ics-sheet-ch06-memory-unit-th.pdf",
+      "fileName": "ics-sheet-ch06-memory-unit-th.pdf",
+      "courseCode": "ICS",
+      "chapter": 6
+    },
+    {
+      "id": "gen-ics-sheets-ics-sheet-ch07-alu-cpu-creation-th-pdf",
+      "title": {
+        "th": "Sheet · Ch 07 Alu CPU Creation Th",
+        "en": "Sheet · Ch 07 Alu CPU Creation Th"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "sheets"
+      ],
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/ics/sheets/ics-sheet-ch07-alu-cpu-creation-th.pdf",
+      "fileName": "ics-sheet-ch07-alu-cpu-creation-th.pdf",
+      "courseCode": "ICS",
+      "chapter": 7
+    },
+    {
+      "id": "gen-ics-sheets-ics-sheet-final-exam-guide-th-pdf",
+      "title": {
+        "th": "Sheet · Final Exam Guide Th",
+        "en": "Sheet · Final Exam Guide Th"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "ICS",
+        "sheets"
+      ],
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/ics/sheets/ics-sheet-final-exam-guide-th.pdf",
+      "fileName": "ics-sheet-final-exam-guide-th.pdf",
+      "courseCode": "ICS"
+    },
+    {
       "id": "gen-ics-sheets-ics-sheet-recap-boolean-pdf",
       "title": {
         "th": "Sheet · Recap Boolean",
@@ -10248,6 +10415,26 @@
       "fileName": "mfit-sheet-final-recap-week08-13.pdf",
       "courseCode": "MFIT",
       "chapter": 8
+    },
+    {
+      "id": "gen-mfit-sheets-mfit-sheet-holyshit-final-part1-pdf",
+      "title": {
+        "th": "Sheet · Holyshit Final Part 1",
+        "en": "Sheet · Holyshit Final Part 1"
+      },
+      "description": {
+        "th": "",
+        "en": ""
+      },
+      "tags": [
+        "MFIT",
+        "sheets"
+      ],
+      "category": "cheatsheet",
+      "fileType": "pdf",
+      "url": "/assets/it-kmitl/mfit/sheets/mfit-sheet-holyshit-final-part1.pdf",
+      "fileName": "mfit-sheet-holyshit-final-part1.pdf",
+      "courseCode": "MFIT"
     },
     {
       "id": "gen-mfit-sheets-mfit-sheet-recap-calculus-pdf",

@@ -26,6 +26,8 @@ DOcyT0i8_yQ | บรรยาย — ALU and CPU creation
 | เอกสาร | หน้า | ไฟล์ในคลัง |
 |---|:---:|---|
 | สไลด์บรรยาย — *Chapter 7: ALU and CPU creation* | 40 | `ics-lec-chapter07-alu-cpu-2569.pdf` |
+| สไลด์สรุปเนื้อหาแปลไทย (Figma โดย ภู ปัณณวิชญ์) | 1 | `ics-sheet-ch07-alu-cpu-creation-th.pdf` |
+| แนวข้อสอบปลายภาค ICS พร้อมเฉลยคำตอบข้อเขียน (โดย ภู ปัณณวิชญ์) | 1 | `ics-sheet-final-exam-guide-th.pdf` |
 | รายการอุปกรณ์ที่ต้องซื้อ (ทั้งเทอม) | 1 | `ics-ref-hardware-component-list-2569.pdf` |
 
 สามารถกดเปิดดูหรือดาวน์โหลดไฟล์ได้ทันที หรือค้นหาเอกสารทั้งหมดได้ที่ [คลังเรียนรู้ของวิชา](../library)

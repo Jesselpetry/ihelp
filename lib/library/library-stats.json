@@ -1078,6 +1078,38 @@
     "sizeBytes": 7650567,
     "pages": 251
   },
+  "/assets/it-kmitl/ics/sheets/ics-sheet-ch01-computer-system-th.pdf": {
+    "sizeBytes": 3937588,
+    "pages": 1
+  },
+  "/assets/it-kmitl/ics/sheets/ics-sheet-ch02-memory-io-addressing-th.pdf": {
+    "sizeBytes": 3721865,
+    "pages": 1
+  },
+  "/assets/it-kmitl/ics/sheets/ics-sheet-ch03-multiplexer-latch-buffer-th.pdf": {
+    "sizeBytes": 2380520,
+    "pages": 1
+  },
+  "/assets/it-kmitl/ics/sheets/ics-sheet-ch04-counter-dac-adc-part1-th.pdf": {
+    "sizeBytes": 4248303,
+    "pages": 1
+  },
+  "/assets/it-kmitl/ics/sheets/ics-sheet-ch05-dac-adc-part2-th.pdf": {
+    "sizeBytes": 2561551,
+    "pages": 1
+  },
+  "/assets/it-kmitl/ics/sheets/ics-sheet-ch06-memory-unit-th.pdf": {
+    "sizeBytes": 2220362,
+    "pages": 1
+  },
+  "/assets/it-kmitl/ics/sheets/ics-sheet-ch07-alu-cpu-creation-th.pdf": {
+    "sizeBytes": 3277729,
+    "pages": 1
+  },
+  "/assets/it-kmitl/ics/sheets/ics-sheet-final-exam-guide-th.pdf": {
+    "sizeBytes": 5625831,
+    "pages": 1
+  },
   "/assets/it-kmitl/ics/sheets/ics-sheet-recap-boolean.pdf": {
     "sizeBytes": 406452,
     "pages": 3
@@ -1952,6 +1984,10 @@
   "/assets/it-kmitl/mfit/sheets/mfit-sheet-final-recap-week08-13.pdf": {
     "sizeBytes": 5926993,
     "pages": 19
+  },
+  "/assets/it-kmitl/mfit/sheets/mfit-sheet-holyshit-final-part1.pdf": {
+    "sizeBytes": 9292713,
+    "pages": 21
   },
   "/assets/it-kmitl/mfit/sheets/mfit-sheet-recap-calculus.pdf": {
     "sizeBytes": 1307875,

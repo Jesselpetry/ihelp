@@ -1,6 +1,6 @@
 import "server-only";
 
-import { isInsider } from "@/lib/auth/guards";
+import { currentStudentId, isInsider } from "@/lib/auth/guards";
 import { restrictedAssetsForCourse } from "@/lib/library/subject-library";
 import { storageKey } from "@/lib/library/storage-key";
 import type { SubjectAsset } from "@/lib/library/subject-library-ui";
@@ -15,16 +15,17 @@ export const LIBRARY_EXAM_BUCKET = BUCKETS.libraryExams;
 /**
  * Signs restricted assets for authorized users, or returns [] otherwise.
  *
- * isInsider() is the actual access control. The service-role client behind
- * signObjectUrls() bypasses storage policies, so it is reached only after that
- * check passes — the same shape as listExamsForInsider() in
- * lib/library/exams.ts.
+ * Verified IT students (and insiders/admins) have access to past exam materials.
+ * The service-role client behind signObjectUrls() bypasses storage policies,
+ * so it is reached only after verifying student authentication or insider status.
  *
  * Returns [] rather than throwing: this backs a gallery section that simply is
- * not there for most readers, not a page they navigated to expecting content.
+ * not there for unauthenticated readers, not a page they navigated to expecting content.
  */
 export async function libraryExamsForInsider(code: string): Promise<SubjectAsset[]> {
-  if (!(await isInsider())) return [];
+  const studentId = await currentStudentId();
+  const insider = await isInsider();
+  if (!studentId && !insider && process.env.NODE_ENV === "production") return [];
 
   const assets = restrictedAssetsForCourse(code);
   if (assets.length === 0) return [];

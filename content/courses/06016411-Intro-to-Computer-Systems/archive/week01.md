@@ -29,6 +29,7 @@ nZJrSUrbw9w | Lab 1.2 — ใช้มัลติมิเตอร์
 | เอกสาร | หน้า | ไฟล์ในคลัง |
 |---|:---:|---|
 | สไลด์บรรยาย — *Chapter 1: Computer System* | 55 | `ics-lec-chapter01-computer-system-2569.pdf` |
+| สไลด์สรุปเนื้อหาแปลไทย (Figma โดย ภู ปัณณวิชญ์) | 1 | `ics-sheet-ch01-computer-system-th.pdf` |
 | ใบงานแล็บ — การใช้มัลติมิเตอร์อนาล็อกและดิจิทัล | 2 | `ics-lab-01-multimeter-2569.pdf` |
 | รายการอุปกรณ์ที่ต้องซื้อ (ทั้งเทอม) | 1 | `ics-ref-hardware-component-list-2569.pdf` |
 

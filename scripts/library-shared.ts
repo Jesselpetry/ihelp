@@ -594,7 +594,7 @@ export async function buildResourceIndex(): Promise<BuildResult> {
     if (resolveAgainst.length > 0) {
       const tables = readTables(draft.content);
       for (const code of resolveAgainst) {
-        const visible = (courseAssets.get(code) ?? []).filter((a) => !isRestrictedAsset(a));
+        const visible = courseAssets.get(code) ?? [];
         for (const table of tables) {
           for (const ref of tableFileRefs(table, visible) ?? []) {
             if (ref.matched) {
