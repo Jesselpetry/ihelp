@@ -29,6 +29,7 @@ import { extractToc } from "@/lib/docs/toc";
 import { useOpenedDocs } from "@/lib/docs/reading-progress";
 import { useLocale, t, type LText } from "@/lib/i18n";
 import { PreviewModal, type Preview } from "@/components/preview-modal";
+import { MfitWarRoomPortal } from "@/components/mfit-war-room-portal";
 import type { SubjectAsset } from "@/lib/library/subject-library-ui";
 import { splitTitle } from "@/lib/docs/doc-index";
 
@@ -139,11 +140,8 @@ export function ModuleReader({
   const activePillRef = useRef<HTMLButtonElement | null>(null);
   const { opened, markOpened } = useOpenedDocs(moduleKey);
 
-  const [activeAssets, setActiveAssets] = useState<SubjectAsset[]>(initialAssets ?? []);
-
-  useEffect(() => {
-    setActiveAssets(initialAssets ?? []);
-  }, [initialAssets]);
+  const [remoteAssets, setRemoteAssets] = useState<SubjectAsset[] | null>(null);
+  const activeAssets = remoteAssets ?? initialAssets ?? [];
 
   useEffect(() => {
     if (!courseCode) return;
@@ -155,7 +153,7 @@ export function ModuleReader({
         if (!res.ok) return;
         const body = (await res.json()) as { assets?: SubjectAsset[] };
         if (body.assets && body.assets.length > 0) {
-          setActiveAssets(body.assets);
+          setRemoteAssets(body.assets);
         }
       })
       .catch(() => {});
@@ -178,7 +176,41 @@ export function ModuleReader({
   }, [index]);
 
   const active = index === null ? null : docs[Math.min(index, docs.length - 1)];
-  const tocItems = useMemo(() => extractToc(active?.markdown ?? ""), [active?.markdown]);
+  const isWarRoom = courseCode?.toUpperCase() === "MFIT" && active?.slug === "final-war-room";
+
+  const tocItems = useMemo(() => {
+    const items = extractToc(active?.markdown ?? "");
+    if (isWarRoom) {
+      const warRoomPrefix = [
+        {
+          id: "mock-exam-header",
+          text: locale === "th" ? "🎯 ข้อสอบจำลองปลายภาค" : "🎯 Mock Exam Simulator",
+          level: 2 as const,
+          raw: "Mock Exam",
+        },
+        {
+          id: "past-papers-header",
+          text: locale === "th" ? "📚 คลังข้อสอบเก่าฉบับจริง" : "📚 Past Papers Vault",
+          level: 2 as const,
+          raw: "Past Papers",
+        },
+        {
+          id: "formula-sheets-header",
+          text: locale === "th" ? "📑 ชีทสรุปสูตร & ทางการ" : "📑 Official Formula Sheets",
+          level: 2 as const,
+          raw: "Formula Sheets",
+        },
+        {
+          id: "study-guide-header",
+          text: locale === "th" ? "📖 สรุปวิธีทำโจทย์ & ยุทธศาสตร์" : "📖 Deep Study Guide",
+          level: 2 as const,
+          raw: "Study Guide",
+        },
+      ];
+      return [...warRoomPrefix, ...items];
+    }
+    return items;
+  }, [active?.markdown, isWarRoom, locale]);
 
   /**
    * Which document the current URL names, or null for the index.
@@ -237,7 +269,7 @@ export function ModuleReader({
 
   return (
     <>
-      <main className="mx-auto max-w-6xl xl:max-w-7xl px-3 sm:px-6 py-5 sm:py-8 w-full">
+      <main className={`mx-auto ${isWarRoom ? "max-w-5xl xl:max-w-6xl" : "max-w-6xl xl:max-w-7xl"} px-3 sm:px-6 py-5 sm:py-8 w-full`}>
       <div className="mb-4 sm:mb-6 flex items-center justify-between gap-2 sm:gap-3 text-xs sm:text-sm">
         <Link
           href={backHref}
@@ -428,7 +460,9 @@ export function ModuleReader({
               onToggleCollapse={() => setIsTocCollapsed(!isTocCollapsed)}
             />
 
-            <div className="min-w-0 space-y-4">
+            <div className={`min-w-0 space-y-6 ${isWarRoom ? "max-w-3xl xl:max-w-4xl mx-auto w-full" : ""}`}>
+              {isWarRoom && <MfitWarRoomPortal />}
+
               <article className="min-w-0 overflow-hidden rounded-3xl border bg-card p-4 sm:p-7 xl:p-8 shadow-sm">
                 <div className="min-w-0">
                   <MdView

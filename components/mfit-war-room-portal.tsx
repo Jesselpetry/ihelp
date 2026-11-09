@@ -317,35 +317,22 @@ export function MfitWarRoomPortal({ config }: { config?: FenceWarRoomConfig } = 
   }
 
   return (
-    <div className="space-y-6 my-2">
-      {/* ── Official Big Blue Course Banner (Replaces top MD headers) ───── */}
+    <div className="font-sans space-y-6 my-2">
+      {/* ── Minimalist Course Banner (Pure 2-line bold font + IT watermark) ── */}
       <header
         style={{ background: IHELP_GRADIENT_CSS }}
-        className="relative isolate flex min-h-28 flex-col justify-end overflow-hidden rounded-2xl border border-white/10 p-4 text-white shadow-sm sm:min-h-36 sm:p-5"
+        className="relative isolate flex min-h-24 sm:min-h-28 flex-col justify-center overflow-hidden rounded-2xl border border-white/10 p-5 sm:p-6 text-white shadow-xs"
       >
         <CourseWatermark code="MFIT" size="banner" />
-        <div className="relative z-10 space-y-1">
-          <div className="flex flex-wrap items-center gap-2 text-xs font-medium text-white/80">
-            <span className="font-semibold text-white">MFIT</span>
-            <span>·</span>
-            <span>06016401</span>
-            <span>·</span>
-            <span>3 (2-2-5)</span>
-            <span>·</span>
-            <span className="rounded-full bg-white/20 px-2 py-0.5 text-[11px] font-bold text-white">
-              {locale === "th" ? "35 คะแนนเต็ม" : "35 Marks"}
-            </span>
-          </div>
-          <h1 className="text-xl font-bold tracking-tight text-white sm:text-2xl">
-            {locale === "th"
-              ? "สอบปลายภาค — ศูนย์บัญชาการรบ MFIT (Final War Room)"
-              : "Final Examination — MFIT War Room"}
+        <div className="relative z-10 flex flex-col justify-center">
+          <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-white leading-snug">
+            <div>{locale === "th" ? "สอบปลายภาค" : "Final Examination"}</div>
+            <div>
+              {locale === "th"
+                ? "ศูนย์บัญชาการรบ MFIT (Final War Room)"
+                : "MFIT War Room (Final War Room)"}
+            </div>
           </h1>
-          <p className="line-clamp-2 text-xs text-white/80 sm:text-sm">
-            {locale === "th"
-              ? "คลังข้อสอบเก่าฉบับจริง · ข้อสอบจำลอง 25 ข้อ · ชีทสรุปสูตรทางการ · คู่มือยุทธศาสตร์พิชิต 35 คะแนน"
-              : "Official past exam vault, 25-item mock exam, formula sheets & 35-point strategic study guide"}
-          </p>
         </div>
       </header>
 
