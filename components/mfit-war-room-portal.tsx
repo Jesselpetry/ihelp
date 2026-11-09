@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   ExamWarRoomBanner,
   ResourceItemCard,
@@ -109,6 +110,10 @@ interface FormulaSheetItem {
   fileName: string;
   pages: number;
   highlight?: boolean;
+  creator?: {
+    name: string;
+    avatarUrl?: string;
+  };
 }
 
 const FORMULA_SHEETS: FormulaSheetItem[] = [
@@ -167,6 +172,10 @@ const FORMULA_SHEETS: FormulaSheetItem[] = [
     fileName: "mfit-sheet-holyshit-final-part1.pdf",
     pages: 21,
     highlight: true,
+    creator: {
+      name: "Tammadon Suksa",
+      avatarUrl: "https://github.com/identicons/tammadon.png",
+    },
   },
 ];
 
@@ -486,6 +495,28 @@ export function MfitWarRoomPortal({
               remoteAsset?.url ||
               `/assets/it-kmitl/mfit/sheets/${sheet.fileName}`;
 
+            const creatorBadge = sheet.creator ? (
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-yellow-500/10 border border-yellow-500/25 px-2 py-0.5 text-[10px] sm:text-[11px] font-medium text-yellow-700 dark:text-yellow-400">
+                {sheet.creator.avatarUrl && (
+                  <Avatar className="size-3.5">
+                    <AvatarImage
+                      src={sheet.creator.avatarUrl}
+                      alt={sheet.creator.name}
+                      className="object-cover"
+                    />
+                    <AvatarFallback className="text-[7px]">
+                      {sheet.creator.name.slice(0, 1)}
+                    </AvatarFallback>
+                  </Avatar>
+                )}
+                <span>
+                  {locale === "th"
+                    ? `โดย ${sheet.creator.name}`
+                    : `by ${sheet.creator.name}`}
+                </span>
+              </span>
+            ) : undefined;
+
             return (
               <ResourceItemCard
                 key={sheet.id}
@@ -497,6 +528,7 @@ export function MfitWarRoomPortal({
                     : "bg-primary/10 text-primary"
                 }
                 highlight={sheet.highlight}
+                badge={creatorBadge}
                 onPreview={() =>
                   openPreviewForFile(sheet.fileName, sheet.title)
                 }

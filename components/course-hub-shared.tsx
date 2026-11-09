@@ -226,6 +226,7 @@ export interface ResourceItemCardProps {
   icon: ReactNode;
   iconClassName?: string;
   highlight?: boolean;
+  badge?: ReactNode;
   onPreview?: () => void;
   downloadUrl: string;
   fileName: string;
@@ -242,6 +243,7 @@ export function ResourceItemCard({
   icon,
   iconClassName = "bg-primary/10 text-primary",
   highlight,
+  badge,
   onPreview,
   downloadUrl,
   fileName,
@@ -272,7 +274,7 @@ export function ResourceItemCard({
           : "border-border/40"
       } ${SURFACE}`}
     >
-      <div className="flex items-center gap-2.5 min-w-0 flex-1">
+      <div className="flex items-center gap-2 sm:gap-2.5 min-w-0 flex-1">
         <span
           className={`flex size-8.5 shrink-0 items-center justify-center rounded-full text-xs font-bold transition-transform group-hover:scale-105 ${iconClassName}`}
         >
@@ -282,6 +284,8 @@ export function ResourceItemCard({
         <span className="min-w-0 truncate text-xs sm:text-sm font-medium text-foreground transition-colors group-hover:text-primary">
           {title}
         </span>
+
+        {badge && <div className="shrink-0">{badge}</div>}
       </div>
 
       <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
