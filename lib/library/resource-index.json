@@ -5018,21 +5018,7 @@
       ],
       "week": null,
       "updated": null,
-      "assetRefs": [
-        "mfit-final-pastpaper-2561",
-        "mfit-final-pastpaper-2560",
-        "mfit-final-pastpaper-2559",
-        "mfit-final-notelub",
-        "mfit-final-vault-cdn",
-        "mfit-final-pastpaper-2559-copy",
-        "mfit-final-vault-unidentified",
-        "mfit-ref-calc-useful-info-2569",
-        "mfit-sheet-holyshit-final-part1",
-        "mfit-sheet-final-recap-w8-13",
-        "mfit-sheet-recap-calculus",
-        "mfit-mfit-sheet-cheatsheet-2023",
-        "mfit-mfit-sheet-cheatsheet-2022"
-      ],
+      "assetRefs": [],
       "unresolvedRefs": []
     },
     "content/courses/06016401-Math-for-IT/archive/study-guide-mock-exam.md": {
@@ -18824,9 +18810,7 @@
       "sizeBytes": 270800,
       "pages": 1,
       "onDisk": true,
-      "usedBy": [
-        "content/courses/06016401-Math-for-IT/archive/study-guide-final-war-room.md"
-      ]
+      "usedBy": []
     },
     "mfit-mfit-sheet-cheatsheet-2022": {
       "id": "mfit-mfit-sheet-cheatsheet-2022",
@@ -18864,9 +18848,7 @@
       "sizeBytes": 268971,
       "pages": 3,
       "onDisk": true,
-      "usedBy": [
-        "content/courses/06016401-Math-for-IT/archive/study-guide-final-war-room.md"
-      ]
+      "usedBy": []
     },
     "mfit-w8-lec-calc-01": {
       "id": "mfit-w8-lec-calc-01",
@@ -20424,9 +20406,7 @@
       "sizeBytes": 32839,
       "pages": 1,
       "onDisk": true,
-      "usedBy": [
-        "content/courses/06016401-Math-for-IT/archive/study-guide-final-war-room.md"
-      ]
+      "usedBy": []
     },
     "mfit-sheet-final-recap-w8-13": {
       "id": "mfit-sheet-final-recap-w8-13",
@@ -20466,9 +20446,7 @@
       "sizeBytes": 5926993,
       "pages": 19,
       "onDisk": true,
-      "usedBy": [
-        "content/courses/06016401-Math-for-IT/archive/study-guide-final-war-room.md"
-      ]
+      "usedBy": []
     },
     "mfit-sheet-recap-calculus": {
       "id": "mfit-sheet-recap-calculus",
@@ -20508,9 +20486,7 @@
       "sizeBytes": 1307875,
       "pages": 6,
       "onDisk": true,
-      "usedBy": [
-        "content/courses/06016401-Math-for-IT/archive/study-guide-final-war-room.md"
-      ]
+      "usedBy": []
     },
     "mfit-sheet-holyshit-final-part1": {
       "id": "mfit-sheet-holyshit-final-part1",
@@ -20554,9 +20530,7 @@
       "sizeBytes": 9292713,
       "pages": 21,
       "onDisk": true,
-      "usedBy": [
-        "content/courses/06016401-Math-for-IT/archive/study-guide-final-war-room.md"
-      ]
+      "usedBy": []
     },
     "mfit-final-pastpaper-2561": {
       "id": "mfit-final-pastpaper-2561",
@@ -20596,9 +20570,7 @@
       "sizeBytes": 966125,
       "pages": 12,
       "onDisk": true,
-      "usedBy": [
-        "content/courses/06016401-Math-for-IT/archive/study-guide-final-war-room.md"
-      ]
+      "usedBy": []
     },
     "mfit-final-pastpaper-2560": {
       "id": "mfit-final-pastpaper-2560",
@@ -20638,9 +20610,7 @@
       "sizeBytes": 1583183,
       "pages": 10,
       "onDisk": true,
-      "usedBy": [
-        "content/courses/06016401-Math-for-IT/archive/study-guide-final-war-room.md"
-      ]
+      "usedBy": []
     },
     "mfit-final-pastpaper-2559": {
       "id": "mfit-final-pastpaper-2559",
@@ -20680,9 +20650,7 @@
       "sizeBytes": 1443688,
       "pages": 9,
       "onDisk": true,
-      "usedBy": [
-        "content/courses/06016401-Math-for-IT/archive/study-guide-final-war-room.md"
-      ]
+      "usedBy": []
     },
     "mfit-final-notelub": {
       "id": "mfit-final-notelub",
@@ -20723,9 +20691,7 @@
       "sizeBytes": 164886,
       "pages": 3,
       "onDisk": true,
-      "usedBy": [
-        "content/courses/06016401-Math-for-IT/archive/study-guide-final-war-room.md"
-      ]
+      "usedBy": []
     },
     "mfit-final-vault-cdn": {
       "id": "mfit-final-vault-cdn",
@@ -20765,9 +20731,7 @@
       "sizeBytes": 5924204,
       "pages": 19,
       "onDisk": true,
-      "usedBy": [
-        "content/courses/06016401-Math-for-IT/archive/study-guide-final-war-room.md"
-      ]
+      "usedBy": []
     },
     "mfit-final-pastpaper-2559-copy": {
       "id": "mfit-final-pastpaper-2559-copy",
@@ -20807,9 +20771,7 @@
       "sizeBytes": 1318403,
       "pages": 9,
       "onDisk": true,
-      "usedBy": [
-        "content/courses/06016401-Math-for-IT/archive/study-guide-final-war-room.md"
-      ]
+      "usedBy": []
     },
     "mfit-final-vault-unidentified": {
       "id": "mfit-final-vault-unidentified",
@@ -20849,9 +20811,7 @@
       "sizeBytes": 963968,
       "pages": 3,
       "onDisk": true,
-      "usedBy": [
-        "content/courses/06016401-Math-for-IT/archive/study-guide-final-war-room.md"
-      ]
+      "usedBy": []
     },
     "mfit-mfit-midterm-pastpaper-01": {
       "id": "mfit-mfit-midterm-pastpaper-01",

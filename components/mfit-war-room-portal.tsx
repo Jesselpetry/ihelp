@@ -1,25 +1,21 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
 import {
-  AlertTriangle,
-  ArrowRight,
-  BookOpen,
-  ChevronRight,
+  ChevronLeft,
   Download,
   Eye,
-  FileText,
   Flame,
-  Layers,
   RotateCcw,
-  ShieldAlert,
-  Sparkles,
-  Swords,
   Target,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { TopicHeader, SURFACE } from "@/components/course-hub-shared";
+import { CourseWatermark } from "@/components/course-watermark";
+import { IHELP_GRADIENT_CSS } from "@/lib/courses/course-theme";
 import { PreviewModal, type Preview } from "@/components/preview-modal";
 import { TechniqueQuiz } from "@/components/technique-quiz";
 import { useLocale, t, type LText } from "@/lib/i18n";
@@ -30,8 +26,6 @@ import {
   MFIT_FINAL_MOCK_QUIZ_ID,
 } from "@/lib/quiz/mfit-final-mock-exam";
 import type { FenceWarRoomConfig } from "@/lib/docs/fences";
-
-type WarRoomTab = "mock-exam" | "past-papers" | "formula-sheets" | "blueprint-traps" | "study-guide";
 
 interface PastPaperItem {
   id: string;
@@ -118,7 +112,7 @@ const PAST_PAPERS: PastPaperItem[] = [
   },
   {
     id: "mfit-final-vault-cdn",
-    year: "คลังเอกสาร",
+    year: "คลังกลาง",
     title: {
       th: "รวมชุดข้อสอบเก่าและแนวโจทย์ปลายภาค ฉบับคลังกลาง (19 หน้า)",
       en: "Calculus Final Exam Archive Vault Collection (19 Pages)",
@@ -152,7 +146,7 @@ const PAST_PAPERS: PastPaperItem[] = [
   },
   {
     id: "mfit-final-vault-unidentified",
-    year: "ชุดคละบท",
+    year: "ชุดฝึกซ้อม",
     title: {
       th: "ชุดข้อสอบรวมปลายภาค MFIT (ชุดคละหัวข้อ 6 หน้า)",
       en: "Final Exam Mixed Problem Set (6 Pages)",
@@ -268,91 +262,9 @@ const FORMULA_SHEETS: FormulaSheetItem[] = [
   },
 ];
 
-const DEADLY_TRAPS = [
-  {
-    id: "trap-01",
-    title: { th: "กับดัก 01: ลืมเขียนสัญลักษณ์ lim ก่อนแทนค่า", en: "Trap 01: Omitting lim notation before substitution" },
-    danger: { th: "ถูกหัก 0.5–1 คะแนนทันที", en: "Immediate 0.5-1 mark deduction" },
-    why: {
-      th: "การเขียน f(x) = (x²-4)/(x-2) = x+2 ทันทีโดยไม่มี lim ถือว่าผิดหลักคณิตศาสตร์ เพราะที่ x=2 ตัวส่วนเป็น 0 นิพจน์ไม่ได้เท่ากันจริงๆ ถ้าไม่ใส่ lim",
-      en: "Writing algebraic reduction without lim is mathematically false because at x=2 the fraction is undefined.",
-    },
-    remedy: {
-      th: "เขียนคำว่า lim_{x→c} กำกับหน้าทุกบรรทัดจนกว่าจะถึงบรรทัดที่แทนค่าตัวเลข x ลงไปจริง",
-      en: "Keep writing lim_{x→c} on every single line until you actually evaluate by plugging the constant in.",
-    },
-  },
-  {
-    id: "trap-02",
-    title: { th: "กับดัก 02: ลืมบวกค่าคงตัว + C ในปริพันธ์ไม่จำกัดเขต", en: "Trap 02: Forgetting + C in indefinite integrals" },
-    danger: { th: "อาจารย์ตัดเหลือ 0 ในข้อนั้นทันที", en: "Zero credit for the entire problem" },
-    why: {
-      th: "โจทย์ Indefinite Integral ไม่มีขอบเขต คำตอบคือวงศ์ของฟังก์ชัน (Family of functions) การขาด + C หมายถึงได้คำตอบเพียงฟังก์ชันเดียว",
-      en: "Indefinite integration yields a family of functions; omitting + C loses the entire point.",
-    },
-    remedy: {
-      th: "ทันทีที่เครื่องหมายถั่วงอก ∫ และ dx หายไป ให้เขียน + C ทันทีในบรรทัดนั้น และตรวจทานซ้ำก่อนส่ง",
-      en: "The moment the integral sign and dx vanish, append + C immediately on that line.",
-    },
-  },
-  {
-    id: "trap-03",
-    title: { th: "กับดัก 03: ลืมเปลี่ยนขอบเขตเมื่อทำ u-Substitution", en: "Trap 03: Forgetting to change bounds during u-sub" },
-    danger: { th: "ขอบเขต x ปนกับตัวแปร u เสียคะแนนวิธีทำ", en: "Invalid mixed bounds and penalty" },
-    why: {
-      th: "เมื่อเปลี่ยน ∫_a^b f(g(x))g'(x)dx ไปเป็น ∫ u du ขอบเขต a, b ยังคงเป็นค่าของ x การใส่ขอบเขตเดิมกับตัวแปร u เป็นข้อผิดพลาดร้ายแรง",
-      en: "Bounds a and b belong to x; using them alongside u creates an invalid integral statement.",
-    },
-    remedy: {
-      th: "คำนวณ u(a) และ u(b) ในกรอบทดข้างๆ ทันทีที่กำหนดตัวแปร u แล้วเปลี่ยนขอบเขตบนเครื่องหมายอินทิกรัลทันที",
-      en: "Compute u(a) and u(b) immediately in a side box and update limits on the integral symbol.",
-    },
-  },
-  {
-    id: "trap-04",
-    title: { th: "กับดัก 04: สับสนระหว่าง 0/0 กับ k/0", en: "Trap 04: Confusing 0/0 with k/0" },
-    danger: { th: "ตอบผิดข้อและสรุปผลผิดทาง", en: "Wrong answer and false conclusion" },
-    why: {
-      th: "0/0 คือรูปแบบไม่กำหนด (Indeterminate Form) ต้องแยกตัวประกอบหรือคูณสังยุค แต่ k/0 (เมื่อ k ≠ 0) เป็นลิมิตอนันต์ (±∞ หรือหาค่าไม่ได้) ไม่ต้องแยกตัวประกอบ",
-      en: "0/0 is indeterminate requiring factoring/conjugate, while k/0 indicates an infinite limit or DNE.",
-    },
-    remedy: {
-      th: "แทนค่าตัวเลขก่อนเสมอ ถ้าเศษไม่เป็น 0 แต่ส่วนเป็น 0 ให้ตรวจลิมิตซ้าย-ขวาเพื่อหาว่าลู่เข้าสู่ +∞, -∞ หรือหาค่าไม่ได้",
-      en: "Always plug in numbers first. If numerator is non-zero and denominator is 0, test left and right limits.",
-    },
-  },
-  {
-    id: "trap-05",
-    title: { th: "กับดัก 05: สับสนสูตรปริมาตร Disk กับ Washer", en: "Trap 05: Washer formula error π(R-r)² instead of π(R²-r²)" },
-    danger: { th: "คำนวณปริมาตรผิดมหันต์", en: "Completely invalid volume calculation" },
-    why: {
-      th: "พื้นที่หน้าตัดวงแหวนคือ π R² - π r² = π(R² - r²) ไม่ใช่ π(R - r)² การเอารัศมีมาลบกันก่อนยกกำลังสองเป็นข้อผิดพลาดที่พบบ่อยที่สุด",
-      en: "Annular area is π(R² - r²), NOT π(R - r)². Squaring the difference is completely wrong.",
-    },
-    remedy: {
-      th: "ท่องจำให้แม่น: 'พาย คูณ (รัศมีนอกกำลังสอง ลบ รัศมีในกำลังสอง)' ไม่ใช่เอารัศมีมาลบกันก่อน",
-      en: "Always square each radius separately before subtracting: π ∫ (R(x)² - r(x)²) dx.",
-    },
-  },
-  {
-    id: "trap-06",
-    title: { th: "กับดัก 06: ท่องลำดับ LIATE ผิดในการเลือกตัวแปร u ใน By Parts", en: "Trap 06: Wrong priority order in LIATE for By Parts" },
-    danger: { th: "อินทิเกรตติดลูป วนซ้ำไม่รู้จบ", en: "Infinite integration loop without simplification" },
-    why: {
-      th: "ลำดับการเลือก u ที่ดีที่สุดคือ Logarithmic → Inverse Trig → Algebraic → Trigonometric → Exponential หากเลือกสลับ เช่น เอา e^x เป็น u จะทำให้พจน์ไม่ลดรูปลง",
-      en: "Prioritize u as Log → InvTrig → Alg → Trig → Exp. Reversing it makes the integral harder.",
-    },
-    remedy: {
-      th: "เขียนตัวย่อ L-I-A-T-E ไว้บนหัวกระดาษ และถ้าพบฟังก์ชันพหุนามคูณ e^x หรือ sin(x) ให้ใช้ DI Table (ตารางลัด) จะไม่มีวันผิด",
-      en: "Note L-I-A-T-E on scratch paper, and use tabular DI method for polynomial times exponential/trig.",
-    },
-  },
-];
-
 export function MfitWarRoomPortal({ config }: { config?: FenceWarRoomConfig } = {}) {
   void config;
   const { locale } = useLocale();
-  const [activeTab, setActiveTab] = useState<WarRoomTab>("mock-exam");
   const [selectedPillar, setSelectedPillar] = useState<number | "all">("all");
   const [quizStarted, setQuizStarted] = useState(false);
   const [preview, setPreview] = useState<Preview | null>(null);
@@ -378,15 +290,6 @@ export function MfitWarRoomPortal({ config }: { config?: FenceWarRoomConfig } = 
   // Filter questions by selected pillar
   const quizQuestions = useMemo(() => {
     if (selectedPillar === "all") return MFIT_FINAL_MOCK_EXAM;
-    const pillarConfig = MFIT_FINAL_PILLARS.find((p) => p.pillar === selectedPillar);
-    if (!pillarConfig) return MFIT_FINAL_MOCK_EXAM;
-
-    // Map pillar to chapters
-    // Pillar 1: chapter 8
-    // Pillar 2: chapters 9, 10
-    // Pillar 3: chapter 11
-    // Pillar 4: chapters 12, 13
-    // Pillar 5: chapters 14, 15
     const chapterSet = new Set<number>();
     if (selectedPillar === 1) chapterSet.add(8);
     else if (selectedPillar === 2) { chapterSet.add(9); chapterSet.add(10); }
@@ -421,694 +324,325 @@ export function MfitWarRoomPortal({ config }: { config?: FenceWarRoomConfig } = 
     });
   }
 
-  function scrollToSection(elementId: string) {
-    const target = document.getElementById(elementId);
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  }
-
   return (
-    <div className="my-6 space-y-6">
-      {/* ── Command Portal Hero Header ────────────────────────────────────── */}
-      <div className="relative overflow-hidden rounded-3xl border border-red-500/30 bg-gradient-to-br from-red-950/40 via-card to-neutral-900/80 p-5 sm:p-7">
-        <div className="absolute -top-24 -right-24 size-64 rounded-full bg-red-600/10 blur-3xl pointer-events-none" />
+    <div className="space-y-8 my-4">
+      {/* ── Official Standard Course Banner ─────────────────────────────── */}
+      <div className="space-y-3">
+        <div className="flex items-center justify-between gap-3">
+          <Link
+            href="/courses/06016401-Math-for-IT"
+            className="text-xs sm:text-sm font-medium text-muted-foreground transition-colors hover:text-primary flex items-center gap-1"
+          >
+            <ChevronLeft className="size-4" />
+            <span>{locale === "th" ? "กลับสู่หน้าหลักวิชา Math for IT" : "Back to Math for IT Hub"}</span>
+          </Link>
+          <span className="rounded-full bg-red-500/10 border border-red-500/25 px-2.5 py-0.5 text-xs font-semibold text-red-500">
+            {locale === "th" ? "จุดพักสอบปลายภาค" : "Final Exam Milestone"}
+          </span>
+        </div>
 
-        <div className="relative z-10 flex flex-col gap-4">
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <div className="flex items-center gap-2.5">
-              <span className="flex size-10 items-center justify-center rounded-xl bg-red-500/20 text-red-400 border border-red-500/30 shadow-inner">
-                <Swords className="size-5 animate-pulse" />
+        <header
+          style={{ background: IHELP_GRADIENT_CSS }}
+          className="relative isolate flex min-h-28 flex-col justify-end overflow-hidden rounded-2xl border border-white/10 p-4 text-white shadow-sm sm:min-h-36 sm:p-5"
+        >
+          <CourseWatermark code="MFIT" size="banner" />
+          <div className="relative z-10 space-y-1">
+            <div className="flex flex-wrap items-center gap-2 text-xs font-medium text-white/80">
+              <span className="font-semibold text-white">MFIT</span>
+              <span>·</span>
+              <span>06016401</span>
+              <span>·</span>
+              <span>{locale === "th" ? "ขอบเขตปลายภาค (สัปดาห์ที่ 8–15)" : "Final Scope (Weeks 8–15)"}</span>
+              <span>·</span>
+              <span className="font-bold text-white bg-white/20 px-2 py-0.5 rounded-full text-[11px]">
+                {locale === "th" ? "35 คะแนนเต็ม" : "35 Marks"}
               </span>
-              <div>
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-red-500/15 border border-red-500/30 px-2.5 py-0.5 text-[11px] font-bold text-red-400 uppercase tracking-wider">
-                  🔥 Final Exam Command Center · 35 คะแนนเต็ม
-                </span>
-              </div>
             </div>
-
-            <div className="flex items-center gap-2 text-xs text-muted-foreground">
-              <span className="inline-flex items-center gap-1">
-                <Target className="size-3.5 text-primary" />
-                {locale === "th" ? "แคลคูลัสล้วน (W08–15)" : "Pure Calculus (W08-15)"}
-              </span>
-              <span>•</span>
-              <span className="inline-flex items-center gap-1">
-                <ShieldAlert className="size-3.5 text-yellow-500" />
-                {locale === "th" ? "ข้อเขียน 100% คิดมือ" : "100% Written & No Calc"}
-              </span>
-            </div>
-          </div>
-
-          <div>
-            <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-foreground tracking-tight">
+            <h1 className="text-xl font-bold tracking-tight text-white sm:text-2xl">
               {locale === "th"
-                ? "ศูนย์บัญชาการรบ MFIT — ยุทธการพิชิตข้อสอบปลายภาค"
-                : "MFIT War Room Portal — Final Exam Operation"}
-            </h2>
-            <p className="mt-1 text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                ? "สอบปลายภาค — ศูนย์บัญชาการรบ MFIT (Final War Room)"
+                : "Final Examination — MFIT War Room"}
+            </h1>
+            <p className="line-clamp-2 text-xs text-white/80 sm:text-sm">
               {locale === "th"
-                ? "เลือกระบบเตรียมตัวสอบที่คุณต้องการ: ฝึกทำข้อสอบจำลอง 25 ข้อ, เจาะคลังข้อสอบเก่าจริงย้อนหลังทุกปี, เปิดชีทสูตรสรุปทางการ, หรือตรวจเช็คกับดักคะแนน"
-                : "Choose your battle station: 25-item mock exam simulator, authentic past paper vault, official formula decks, or score trap breakdown."}
+                ? "คลังข้อสอบเก่าฉบับจริงในระบบ · ข้อสอบจำลอง 25 ข้อ · ชีทสรุปสูตรทางการ · คู่มือยุทธศาสตร์พิชิต 35 คะแนน"
+                : "Official past exam vault, 25-item mock exam, formula sheets & 35-point strategic study guide"}
             </p>
           </div>
+        </header>
+      </div>
 
-          {/* Quick Metrics */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-2">
-            <div className="rounded-xl border border-border/50 bg-background/50 p-2.5 text-center">
-              <div className="text-lg sm:text-xl font-bold text-red-500">25 ข้อ</div>
-              <div className="text-[11px] text-muted-foreground">{locale === "th" ? "ข้อสอบจำลอง 5 เสาหลัก" : "Mock Items"}</div>
-            </div>
-            <div className="rounded-xl border border-border/50 bg-background/50 p-2.5 text-center">
-              <div className="text-lg sm:text-xl font-bold text-primary">7 ชุด</div>
-              <div className="text-[11px] text-muted-foreground">{locale === "th" ? "ข้อสอบเก่าฉบับจริงในคลัง" : "Past Exam Papers"}</div>
-            </div>
-            <div className="rounded-xl border border-border/50 bg-background/50 p-2.5 text-center">
-              <div className="text-lg sm:text-xl font-bold text-yellow-500">6 ฉบับ</div>
-              <div className="text-[11px] text-muted-foreground">{locale === "th" ? "ชีทสรุปสูตร & เอกสารติว" : "Formula Sheets"}</div>
-            </div>
-            <div className="rounded-xl border border-border/50 bg-background/50 p-2.5 text-center">
-              <div className="text-lg sm:text-xl font-bold text-emerald-500">10 จุด</div>
-              <div className="text-[11px] text-muted-foreground">{locale === "th" ? "กับดัก All-or-Nothing" : "Deadly Traps"}</div>
-            </div>
-          </div>
+      {/* ── Section 1: ข้อสอบจำลองปลายภาค (Mock Exam Simulator) ─────────── */}
+      <section className="space-y-3" id="mock-exam">
+        <TopicHeader
+          id="mock-exam-header"
+          title={locale === "th" ? "ข้อสอบจำลองปลายภาค 25 ข้อ (Final Mock Exam)" : "Final Mock Exam Simulator"}
+          aside={
+            <span className="rounded-full bg-primary/10 border border-primary/25 px-2.5 py-0.5 text-xs font-medium text-primary">
+              {locale === "th" ? "25 ข้อ · 5 เสาหลัก" : "25 Items · 5 Pillars"}
+            </span>
+          }
+        />
+
+        {/* Filter Pills */}
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 [scrollbar-width:none]">
+          <button
+            type="button"
+            onClick={() => setSelectedPillar("all")}
+            className={`rounded-full px-3 py-1.5 text-xs font-semibold transition-all shrink-0 ${
+              selectedPillar === "all"
+                ? "bg-primary text-primary-foreground shadow-sm"
+                : "bg-muted/60 text-muted-foreground hover:bg-muted hover:text-foreground"
+            }`}
+          >
+            🚀 {locale === "th" ? "ข้อสอบจำลองเต็มชุด (25 ข้อ)" : "Full Mock Exam (25 Items)"}
+          </button>
+          {MFIT_FINAL_PILLARS.map((p) => {
+            const active = selectedPillar === p.pillar;
+            return (
+              <button
+                key={p.pillar}
+                type="button"
+                onClick={() => setSelectedPillar(p.pillar)}
+                className={`rounded-full px-3 py-1.5 text-xs font-semibold transition-all shrink-0 ${
+                  active
+                    ? "bg-primary text-primary-foreground shadow-sm"
+                    : "bg-muted/60 text-muted-foreground hover:bg-muted hover:text-foreground"
+                }`}
+              >
+                {t(p.name, locale)} ({p.questionCount} {locale === "th" ? "ข้อ" : "items"})
+              </button>
+            );
+          })}
         </div>
-      </div>
 
-      {/* ── Mode Navigation Tabs ─────────────────────────────────────────── */}
-      <div className="flex items-center gap-1.5 overflow-x-auto pb-1 [scrollbar-width:none]">
-        <Button
-          variant={activeTab === "mock-exam" ? "default" : "outline"}
-          size="sm"
-          onClick={() => { setActiveTab("mock-exam"); }}
-          className="gap-2 shrink-0 rounded-full font-semibold text-xs sm:text-sm"
-        >
-          <Target className="size-3.5" />
-          <span>{locale === "th" ? "ข้อสอบจำลอง 25 ข้อ" : "Mock Exam (25)"}</span>
-          <Badge variant="secondary" className="px-1.5 py-0 text-[10px]">
-            Quiz
-          </Badge>
-        </Button>
-
-        <Button
-          variant={activeTab === "past-papers" ? "default" : "outline"}
-          size="sm"
-          onClick={() => { setActiveTab("past-papers"); }}
-          className="gap-2 shrink-0 rounded-full font-semibold text-xs sm:text-sm"
-        >
-          <BookOpen className="size-3.5" />
-          <span>{locale === "th" ? "คลังข้อสอบเก่าฉบับจริง" : "Past Papers Vault"}</span>
-          <Badge variant="secondary" className="px-1.5 py-0 text-[10px]">
-            7 ชุด
-          </Badge>
-        </Button>
-
-        <Button
-          variant={activeTab === "formula-sheets" ? "default" : "outline"}
-          size="sm"
-          onClick={() => { setActiveTab("formula-sheets"); }}
-          className="gap-2 shrink-0 rounded-full font-semibold text-xs sm:text-sm"
-        >
-          <FileText className="size-3.5" />
-          <span>{locale === "th" ? "ชีทสรุปสูตรทางการ" : "Formula Sheets"}</span>
-          <Badge variant="secondary" className="px-1.5 py-0 text-[10px]">
-            6 ชุด
-          </Badge>
-        </Button>
-
-        <Button
-          variant={activeTab === "blueprint-traps" ? "default" : "outline"}
-          size="sm"
-          onClick={() => { setActiveTab("blueprint-traps"); }}
-          className="gap-2 shrink-0 rounded-full font-semibold text-xs sm:text-sm"
-        >
-          <AlertTriangle className="size-3.5" />
-          <span>{locale === "th" ? "วิเคราะห์ 35 คะแนน & กับดัก" : "35 Pts & Traps"}</span>
-        </Button>
-
-        <Button
-          variant={activeTab === "study-guide" ? "default" : "outline"}
-          size="sm"
-          onClick={() => { setActiveTab("study-guide"); }}
-          className="gap-2 shrink-0 rounded-full font-semibold text-xs sm:text-sm"
-        >
-          <Sparkles className="size-3.5" />
-          <span>{locale === "th" ? "คู่มือวิธีทำโจทย์แบบละเอียด" : "Deep Study Guide"}</span>
-        </Button>
-      </div>
-
-      {/* ── Tab 1: Mock Exam Simulator ───────────────────────────────────── */}
-      {activeTab === "mock-exam" && (
-        <div className="space-y-4">
-          {!quizStarted ? (
-            <div className="rounded-2xl border border-border/60 bg-card p-5 sm:p-6 space-y-5">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border/50 pb-4">
-                <div>
-                  <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary mb-1">
-                    <Flame className="size-3.5" />
-                    {locale === "th" ? "ระบบจำลองสภาพห้องสอบจริง" : "Exam Simulator Briefing"}
-                  </div>
-                  <h3 className="text-lg sm:text-xl font-bold text-foreground">
-                    {locale === "th" ? "ข้อสอบจำลองเสมือนจริง MFIT Final Exam (25 ข้อ)" : "Realistic MFIT Final Mock Exam (25 Questions)"}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-muted-foreground mt-0.5">
-                    {locale === "th"
-                      ? "สร้างจากโครงสร้างข้อสอบจริง 2559–2561 ครอบคลุม 5 เสาหลักแคลคูลัส พร้อมเฉลยละเอียดและวิเคราะห์วิธีทำทีละขั้น"
-                      : "Engineered from authentic past paper blueprints (2016-2018) covering all 5 pillars of calculus with full step-by-step working."}
-                  </p>
-                </div>
-
-                <Button
-                  size="lg"
-                  onClick={() => setQuizStarted(true)}
-                  className="gap-2 bg-red-600 hover:bg-red-700 text-white font-bold shrink-0"
-                >
+        {/* Quiz launch card or runner */}
+        {!quizStarted ? (
+          <div className={`p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 ${SURFACE}`}>
+            <div className="space-y-1 min-w-0">
+              <div className="flex items-center gap-2">
+                <span className="flex size-7 items-center justify-center rounded-lg bg-red-500/10 text-red-500">
                   <Flame className="size-4" />
-                  <span>{locale === "th" ? "เริ่มทำข้อสอบจำลอง" : "Start Mock Exam"}</span>
-                  <ArrowRight className="size-4" />
-                </Button>
-              </div>
-
-              {/* 3 Core Rules */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                <div className="rounded-xl border border-border/50 bg-neutral-50/50 dark:bg-neutral-900/40 p-3.5 space-y-1.5">
-                  <div className="flex items-center gap-2 font-semibold text-xs sm:text-sm text-foreground">
-                    <span className="flex size-6 items-center justify-center rounded-md bg-primary/10 text-primary">✍️</span>
-                    <span>{locale === "th" ? "ข้อเขียนแสดงวิธีทำ 100%" : "Constructed-Response"}</span>
-                  </div>
-                  <p className="text-xs text-muted-foreground leading-relaxed">
-                    {locale === "th"
-                      ? "ข้อสอบจริงไม่มีช้อยส์ ในแบบทดสอบนี้ใช้ปรนัยเพื่อวัดความเข้าใจ แต่ในห้องสอบต้องเขียนแสดงวิธีทำทุกบรรทัด"
-                      : "The real exam is 100% written. Options here are designed for rapid self-assessment with step-by-step keys."}
-                  </p>
-                </div>
-
-                <div className="rounded-xl border border-border/50 bg-neutral-50/50 dark:bg-neutral-900/40 p-3.5 space-y-1.5">
-                  <div className="flex items-center gap-2 font-semibold text-xs sm:text-sm text-foreground">
-                    <span className="flex size-6 items-center justify-center rounded-md bg-yellow-500/10 text-yellow-500">🚫</span>
-                    <span>{locale === "th" ? "ห้ามใช้เครื่องคิดเลขเด็ดขาด" : "No Calculator Allowed"}</span>
-                  </div>
-                  <p className="text-xs text-muted-foreground leading-relaxed">
-                    {locale === "th"
-                      ? "ต้องคำนวณด้วยมือล้วน ฝึกตัดทอนเศษส่วน แยกตัวประกอบ และจัดรูปสมการให้คล่องแคล่ว"
-                      : "Manual calculations only. Practice exact fraction cancellation, factoring, and radical simplification."}
-                  </p>
-                </div>
-
-                <div className="rounded-xl border border-border/50 bg-neutral-50/50 dark:bg-neutral-900/40 p-3.5 space-y-1.5">
-                  <div className="flex items-center gap-2 font-semibold text-xs sm:text-sm text-foreground">
-                    <span className="flex size-6 items-center justify-center rounded-md bg-red-500/10 text-red-500">⚙️</span>
-                    <span>{locale === "th" ? "ปรัชญา Limit Machine" : "Limit Machine Core"}</span>
-                  </div>
-                  <p className="text-xs text-muted-foreground leading-relaxed">
-                    {locale === "th"
-                      ? "ทุกหัวข้อในครึ่งหลัง (อนุพันธ์, ปริพันธ์, พื้นที่, ปริมาตร) สร้างต่อยอดมาจากนิยามลิมิตทั้งสิ้น"
-                      : "All calculus topics (derivatives, integration, area, solids of revolution) are extensions of limit machines."}
-                  </p>
-                </div>
-              </div>
-
-              {/* Drill Filter by Pillar */}
-              <div className="space-y-3 pt-2">
-                <div className="flex items-center justify-between">
-                  <h4 className="text-xs sm:text-sm font-semibold text-foreground tracking-tight">
-                    {locale === "th" ? "เลือกขอบเขตที่ต้องการฝึกซ้อม:" : "Select Drill Scope / Topic:"}
-                  </h4>
-                  <span className="text-xs text-muted-foreground tabular-nums">
-                    {quizQuestions.length} {locale === "th" ? "ข้อในชุดที่เลือก" : "items in selected set"}
-                  </span>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-                  <button
-                    type="button"
-                    onClick={() => setSelectedPillar("all")}
-                    className={`rounded-xl border p-3 text-left transition-all ${
-                      selectedPillar === "all"
-                        ? "border-red-500 bg-red-500/10 shadow-sm"
-                        : "border-border/50 bg-neutral-50/40 dark:bg-neutral-900/30 hover:border-border hover:bg-neutral-100/50 dark:hover:bg-neutral-800/40"
-                    }`}
-                  >
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="font-bold text-xs sm:text-sm text-foreground">
-                        {locale === "th" ? "🚀 ลุยข้อสอบจำลองเต็มรูปแบบ" : "🚀 Full Mock Exam"}
-                      </span>
-                      <Badge variant={selectedPillar === "all" ? "default" : "outline"} className="text-[10px]">
-                        25 ข้อ
-                      </Badge>
-                    </div>
-                    <p className="text-[11px] text-muted-foreground line-clamp-1">
-                      {locale === "th" ? "ครบทุก 5 เสาหลักตามโครงสร้างข้อสอบจริง 35 คะแนน" : "All 5 pillars matching the full 35-point paper"}
-                    </p>
-                  </button>
-
-                  {MFIT_FINAL_PILLARS.map((p) => {
-                    const isSelected = selectedPillar === p.pillar;
-                    return (
-                      <button
-                        key={p.pillar}
-                        type="button"
-                        onClick={() => setSelectedPillar(p.pillar)}
-                        className={`rounded-xl border p-3 text-left transition-all ${
-                          isSelected
-                            ? "border-primary bg-primary/10 shadow-sm"
-                            : "border-border/50 bg-neutral-50/40 dark:bg-neutral-900/30 hover:border-border hover:bg-neutral-100/50 dark:hover:bg-neutral-800/40"
-                        }`}
-                      >
-                        <div className="flex items-center justify-between mb-1">
-                          <span className="font-bold text-xs sm:text-sm text-foreground truncate">
-                            {t(p.name, locale)}
-                          </span>
-                          <Badge variant={isSelected ? "default" : "outline"} className="text-[10px] shrink-0">
-                            {p.questionCount} ข้อ
-                          </Badge>
-                        </div>
-                        <div className="flex items-center justify-between text-[11px] text-muted-foreground">
-                          <span>{p.chapterRange}</span>
-                          <span className="font-medium text-foreground/80">{p.pointsEst}</span>
-                        </div>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* Start CTA */}
-              <div className="flex justify-end pt-2">
-                <Button
-                  size="default"
-                  onClick={() => setQuizStarted(true)}
-                  className="gap-2 bg-red-600 hover:bg-red-700 text-white font-bold"
-                >
-                  <Target className="size-4" />
-                  <span>
-                    {locale === "th"
-                      ? `เริ่มทำแบบฝึกหัด (${quizQuestions.length} ข้อ)`
-                      : `Start Drill (${quizQuestions.length} items)`}
-                  </span>
-                  <ChevronRight className="size-4" />
-                </Button>
-              </div>
-            </div>
-          ) : (
-            <div className="space-y-4">
-              <div className="flex items-center justify-between rounded-xl border border-border/50 bg-card p-3">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setQuizStarted(false)}
-                  className="gap-1.5 text-xs text-muted-foreground hover:text-foreground"
-                >
-                  <RotateCcw className="size-3.5" />
-                  <span>{locale === "th" ? "← ย้อนกลับ / เปลี่ยนโหมดฝึกซ้อม" : "← Back / Change Scope"}</span>
-                </Button>
-
-                <div className="text-xs font-medium text-muted-foreground">
+                </span>
+                <h4 className="text-sm sm:text-base font-bold text-foreground">
                   {selectedPillar === "all"
-                    ? locale === "th" ? "ข้อสอบจำลองเต็มชุด (25 ข้อ)" : "Full Mock Exam (25 items)"
+                    ? (locale === "th" ? "ชุดข้อสอบจำลองเต็มรูปแบบ (25 ข้อ · ครบทุก 5 เสาหลัก)" : "Full Final Mock Exam (25 Items)")
                     : t(MFIT_FINAL_PILLARS.find((p) => p.pillar === selectedPillar)?.name || { th: "", en: "" }, locale)}
-                </div>
+                </h4>
               </div>
-
-              <article className="overflow-hidden rounded-3xl border bg-card p-4 sm:p-6 shadow-sm">
-                <TechniqueQuiz
-                  problemId={MFIT_FINAL_MOCK_QUIZ_ID}
-                  problemName={
-                    selectedPillar === "all"
-                      ? "MFIT Final Mock Exam (Full 25 Items)"
-                      : `MFIT Final Drill - Pillar ${selectedPillar}`
-                  }
-                  questions={quizQuestions}
-                />
-              </article>
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                {locale === "th"
+                  ? "จำลองจากสถิติข้อสอบจริง 2559–2561 (22–26 ข้อ) ข้อเขียน 100% คิดมือล้วน พร้อมเฉลยละเอียดและวิเคราะห์วิธีทำทีละขั้น"
+                  : "Engineered from authentic past final exams (2016-2018), 100% manual calculation with full step-by-step working."}
+              </p>
             </div>
-          )}
-        </div>
-      )}
 
-      {/* ── Tab 2: Past Papers Vault ──────────────────────────────────────── */}
-      {activeTab === "past-papers" && (
-        <div className="space-y-4">
-          <div className="rounded-2xl border border-border/60 bg-card p-4 sm:p-5">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-              <div>
-                <h3 className="text-base sm:text-lg font-bold text-foreground">
-                  {locale === "th" ? "📚 คลังข้อสอบเก่าฉบับจริง (Past Papers Vault)" : "📚 Authentic Past Papers Vault"}
-                </h3>
-                <p className="text-xs sm:text-sm text-muted-foreground mt-0.5">
-                  {locale === "th"
-                    ? "รวบรวมข้อสอบเก่าฉบับจริงของวิชา MFIT พร้อมบันทึกเฉลยวิธีทำ สามารถกดพรีวิวอ่านบนเว็บได้ทันที หรือดาวน์โหลดเก็บไว้"
-                    : "Official past exam papers and handwritten solution keys. Preview directly in your browser or download for offline drill."}
-                </p>
-              </div>
-
-              <Badge variant="outline" className="text-xs shrink-0 self-start sm:self-auto border-primary/30 text-primary">
-                {PAST_PAPERS.length} {locale === "th" ? "ชุดเอกสารในคลัง" : "vault documents"}
-              </Badge>
-            </div>
+            <Button
+              onClick={() => setQuizStarted(true)}
+              className="gap-2 bg-red-600 hover:bg-red-700 text-white font-bold shrink-0 self-end sm:self-auto rounded-xl"
+            >
+              <Target className="size-4" />
+              <span>{locale === "th" ? `เริ่มทำข้อสอบ (${quizQuestions.length} ข้อ)` : `Start Quiz (${quizQuestions.length})`}</span>
+            </Button>
           </div>
+        ) : (
+          <div className="space-y-3">
+            <div className="flex items-center justify-between">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setQuizStarted(false)}
+                className="gap-1.5 text-xs text-muted-foreground hover:text-foreground"
+              >
+                <RotateCcw className="size-3.5" />
+                <span>{locale === "th" ? "← ย้อนกลับ / เปลี่ยนโหมด" : "← Back / Change Topic"}</span>
+              </Button>
+              <span className="text-xs font-medium text-muted-foreground">
+                {selectedPillar === "all"
+                  ? (locale === "th" ? "ข้อสอบจำลองเต็มชุด (25 ข้อ)" : "Full Mock Exam (25 items)")
+                  : t(MFIT_FINAL_PILLARS.find((p) => p.pillar === selectedPillar)?.name || { th: "", en: "" }, locale)}
+              </span>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
-            {PAST_PAPERS.map((paper) => {
-              const remoteAsset = remoteAssets.find(
-                (a) => a.fileName === paper.fileName || a.url?.includes(paper.fileName)
-              );
-              const downloadUrl = remoteAsset?.url || `/assets/it-kmitl/mfit/exams/${paper.fileName}`;
+            <article className={`p-4 sm:p-6 overflow-hidden ${SURFACE}`}>
+              <TechniqueQuiz
+                problemId={MFIT_FINAL_MOCK_QUIZ_ID}
+                problemName={
+                  selectedPillar === "all"
+                    ? "MFIT Final Mock Exam (Full 25 Items)"
+                    : `MFIT Final Drill - Pillar ${selectedPillar}`
+                }
+                questions={quizQuestions}
+              />
+            </article>
+          </div>
+        )}
+      </section>
 
-              return (
-                <div
-                  key={paper.id}
-                  className={`group rounded-2xl border p-4 sm:p-5 flex flex-col justify-between gap-4 transition-all ${
-                    paper.isSolution
-                      ? "border-emerald-500/30 bg-emerald-950/10 hover:border-emerald-500/50"
-                      : "border-border/50 bg-card hover:border-border hover:shadow-md"
-                  }`}
-                >
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between gap-2">
-                      <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 border border-primary/20 px-2.5 py-0.5 text-[11px] font-bold text-primary">
-                        {paper.year}
+      {/* ── Section 2: คลังข้อสอบเก่าฉบับจริง (Past Papers Vault) ────────── */}
+      <section className="space-y-3 pt-4" id="past-papers">
+        <TopicHeader
+          id="past-papers-header"
+          title={locale === "th" ? "คลังข้อสอบเก่าฉบับจริง (Past Papers Vault)" : "Authentic Past Papers Vault"}
+          aside={
+            <span className="rounded-full bg-primary/10 border border-primary/25 px-2.5 py-0.5 text-xs font-medium text-primary">
+              {locale === "th" ? "7 ชุดในคลัง" : "7 Papers in Vault"}
+            </span>
+          }
+        />
+
+        <div className="flex flex-col gap-2.5">
+          {PAST_PAPERS.map((paper) => {
+            const remoteAsset = remoteAssets.find(
+              (a) => a.fileName === paper.fileName || a.url?.includes(paper.fileName)
+            );
+            const downloadUrl = remoteAsset?.url || `/assets/it-kmitl/mfit/exams/${paper.fileName}`;
+
+            return (
+              <div
+                key={paper.id}
+                className="group rounded-xl border border-border/50 bg-neutral-50/70 dark:bg-neutral-900/40 p-3 sm:p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-border hover:bg-neutral-100/60 dark:hover:bg-neutral-800/50 transition-all"
+              >
+                <div className="flex items-start sm:items-center gap-2.5 min-w-0 flex-1">
+                  <span className="size-1.5 rounded-full bg-muted-foreground/50 shrink-0 mt-1.5 sm:mt-0 group-hover:bg-primary transition-colors" />
+                  <div className="min-w-0 flex-1 space-y-0.5">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <h4 className="text-xs sm:text-sm font-semibold text-foreground tracking-tight">
+                        {t(paper.title, locale)}
+                      </h4>
+                      <Badge variant={paper.isSolution ? "default" : "outline"} className="text-[10px] px-1.5 py-0">
+                        {t(paper.badge, locale)}
+                      </Badge>
+                      <span className="text-[11px] text-muted-foreground tabular-nums">
+                        {paper.pages} {locale === "th" ? "หน้า" : "pages"} · {paper.points}
                       </span>
-
-                      <div className="flex items-center gap-1.5">
-                        <Badge variant="secondary" className="text-[10px]">
-                          {t(paper.badge, locale)}
-                        </Badge>
-                        <span className="text-[11px] text-muted-foreground tabular-nums">
-                          {paper.pages} {locale === "th" ? "หน้า" : "pages"}
-                        </span>
-                      </div>
                     </div>
-
-                    <h4 className="text-sm sm:text-base font-bold text-foreground group-hover:text-primary transition-colors">
-                      {t(paper.title, locale)}
-                    </h4>
-
-                    <p className="text-xs text-muted-foreground leading-relaxed">
+                    <p className="text-xs text-muted-foreground leading-relaxed line-clamp-1">
                       {t(paper.description, locale)}
                     </p>
-
-                    <div className="flex items-center gap-3 text-[11px] text-muted-foreground pt-1">
-                      <span>{locale === "th" ? "น้ำหนัก:" : "Weight:"} <strong className="text-foreground">{paper.points}</strong></span>
-                      <span>•</span>
-                      <span>{locale === "th" ? "ปริมาณ:" : "Volume:"} <strong className="text-foreground">{paper.itemCount}</strong></span>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-2 pt-2 border-t border-border/40">
-                    <Button
-                      variant="default"
-                      size="sm"
-                      onClick={() => openPreviewForFile(paper.fileName, paper.title, paper.description)}
-                      className="gap-1.5 text-xs flex-1 rounded-xl font-semibold"
-                    >
-                      <Eye className="size-3.5" />
-                      <span>{locale === "th" ? "เปิดดูตัวอย่างทันที" : "Instant Preview"}</span>
-                    </Button>
-
-                    <Button
-                      asChild
-                      variant="outline"
-                      size="sm"
-                      className="gap-1.5 text-xs rounded-xl"
-                    >
-                      <a href={downloadUrl} download={paper.fileName} target="_blank" rel="noopener noreferrer">
-                        <Download className="size-3.5" />
-                        <span>{locale === "th" ? "ดาวน์โหลด" : "Download"}</span>
-                      </a>
-                    </Button>
                   </div>
                 </div>
-              );
-            })}
-          </div>
-        </div>
-      )}
 
-      {/* ── Tab 3: Official Formula Sheets ────────────────────────────────── */}
-      {activeTab === "formula-sheets" && (
-        <div className="space-y-4">
-          <div className="rounded-2xl border border-border/60 bg-card p-4 sm:p-5">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-              <div>
-                <h3 className="text-base sm:text-lg font-bold text-foreground">
-                  {locale === "th" ? "📑 ชีทสรุปสูตร & เอกสารทางการ (Official Formula Sheets)" : "📑 Official Formula Sheets"}
-                </h3>
-                <p className="text-xs sm:text-sm text-muted-foreground mt-0.5">
-                  {locale === "th"
-                    ? "แผ่นสรุปข้อมูลสูตรทางการของภาควิชาเทอมปัจจุบัน และชีทติวเข้มที่ครอบคลุมเนื้อหาแคลคูลัสปลายภาคทั้งหมด"
-                    : "Official useful information decks, concise formula cheatsheets, and comprehensive semester recaps."}
-                </p>
+                <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">
+                  <Button
+                    size="sm"
+                    variant="default"
+                    onClick={() => openPreviewForFile(paper.fileName, paper.title, paper.description)}
+                    className="gap-1.5 text-xs rounded-xl font-medium"
+                  >
+                    <Eye className="size-3.5" />
+                    <span>{locale === "th" ? "เปิดดูตัวอย่าง" : "Preview"}</span>
+                  </Button>
+
+                  <Button
+                    asChild
+                    size="sm"
+                    variant="outline"
+                    className="gap-1.5 text-xs rounded-xl"
+                  >
+                    <a href={downloadUrl} download={paper.fileName} target="_blank" rel="noopener noreferrer">
+                      <Download className="size-3.5" />
+                      <span>{locale === "th" ? "ดาวน์โหลด" : "Download"}</span>
+                    </a>
+                  </Button>
+                </div>
               </div>
+            );
+          })}
+        </div>
+      </section>
 
-              <Badge variant="outline" className="text-xs shrink-0 self-start sm:self-auto border-yellow-500/30 text-yellow-500">
-                {FORMULA_SHEETS.length} {locale === "th" ? "ฉบับสรุป" : "sheets available"}
-              </Badge>
-            </div>
-          </div>
+      {/* ── Section 3: ชีทสรุปสูตร & เอกสารทางการ (Official Formula Sheets) ─ */}
+      <section className="space-y-3 pt-4" id="formula-sheets">
+        <TopicHeader
+          id="formula-sheets-header"
+          title={locale === "th" ? "ชีทสรุปสูตร & เอกสารทางการ (Official Formula Sheets)" : "Official Formula Sheets"}
+          aside={
+            <span className="rounded-full bg-yellow-500/10 border border-yellow-500/25 px-2.5 py-0.5 text-xs font-medium text-yellow-600 dark:text-yellow-400">
+              {locale === "th" ? "6 ฉบับสรุป" : "6 Cheatsheets"}
+            </span>
+          }
+        />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5">
-            {FORMULA_SHEETS.map((sheet) => {
-              const remoteAsset = remoteAssets.find(
-                (a) => a.fileName === sheet.fileName || a.url?.includes(sheet.fileName)
-              );
-              const downloadUrl = remoteAsset?.url || `/assets/it-kmitl/mfit/sheets/${sheet.fileName}`;
+        <div className="flex flex-col gap-2.5">
+          {FORMULA_SHEETS.map((sheet) => {
+            const remoteAsset = remoteAssets.find(
+              (a) => a.fileName === sheet.fileName || a.url?.includes(sheet.fileName)
+            );
+            const downloadUrl = remoteAsset?.url || `/assets/it-kmitl/mfit/sheets/${sheet.fileName}`;
 
-              return (
-                <div
-                  key={sheet.id}
-                  className={`group rounded-2xl border p-4 flex flex-col justify-between gap-3.5 transition-all ${
-                    sheet.highlight
-                      ? "border-yellow-500/40 bg-yellow-950/10 hover:border-yellow-500/60"
-                      : "border-border/50 bg-card hover:border-border hover:shadow-md"
-                  }`}
-                >
-                  <div className="space-y-1.5">
-                    <div className="flex items-center justify-between gap-2">
-                      <Badge variant={sheet.highlight ? "default" : "secondary"} className="text-[10px]">
+            return (
+              <div
+                key={sheet.id}
+                className={`group rounded-xl border p-3 sm:p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 transition-all ${
+                  sheet.highlight
+                    ? "border-yellow-500/30 bg-yellow-500/5 hover:border-yellow-500/50"
+                    : "border-border/50 bg-neutral-50/70 dark:bg-neutral-900/40 hover:border-border hover:bg-neutral-100/60 dark:hover:bg-neutral-800/50"
+                }`}
+              >
+                <div className="flex items-start sm:items-center gap-2.5 min-w-0 flex-1">
+                  <span className="size-1.5 rounded-full bg-muted-foreground/50 shrink-0 mt-1.5 sm:mt-0 group-hover:bg-yellow-500 transition-colors" />
+                  <div className="min-w-0 flex-1 space-y-0.5">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <h4 className="text-xs sm:text-sm font-semibold text-foreground tracking-tight">
+                        {t(sheet.title, locale)}
+                      </h4>
+                      <Badge variant={sheet.highlight ? "default" : "outline"} className="text-[10px] px-1.5 py-0">
                         {t(sheet.badge, locale)}
                       </Badge>
                       <span className="text-[11px] text-muted-foreground tabular-nums">
                         {sheet.pages} {locale === "th" ? "หน้า" : "pages"}
                       </span>
                     </div>
-
-                    <h4 className="text-sm font-bold text-foreground group-hover:text-primary transition-colors">
-                      {t(sheet.title, locale)}
-                    </h4>
-
-                    <p className="text-xs text-muted-foreground leading-relaxed line-clamp-3">
+                    <p className="text-xs text-muted-foreground leading-relaxed line-clamp-1">
                       {t(sheet.description, locale)}
                     </p>
                   </div>
-
-                  <div className="flex items-center gap-2 pt-2 border-t border-border/40">
-                    <Button
-                      variant="default"
-                      size="sm"
-                      onClick={() => openPreviewForFile(sheet.fileName, sheet.title, sheet.description)}
-                      className="gap-1.5 text-xs flex-1 rounded-xl font-semibold"
-                    >
-                      <Eye className="size-3.5" />
-                      <span>{locale === "th" ? "เปิดดูตัวอย่าง" : "Preview"}</span>
-                    </Button>
-
-                    <Button
-                      asChild
-                      variant="outline"
-                      size="sm"
-                      className="gap-1.5 text-xs rounded-xl"
-                    >
-                      <a href={downloadUrl} download={sheet.fileName} target="_blank" rel="noopener noreferrer">
-                        <Download className="size-3.5" />
-                      </a>
-                    </Button>
-                  </div>
                 </div>
-              );
-            })}
-          </div>
-        </div>
-      )}
 
-      {/* ── Tab 4: Blueprint & Deadly Traps ───────────────────────────────── */}
-      {activeTab === "blueprint-traps" && (
-        <div className="space-y-6">
-          {/* 5 Pillars Breakdown */}
-          <div className="rounded-2xl border border-border/60 bg-card p-5 space-y-4">
-            <div>
-              <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary mb-1">
-                <Layers className="size-3.5" />
-                {locale === "th" ? "วิเคราะห์พิมพ์เขียว 35 คะแนน" : "35 Points Blueprint Breakdown"}
+                <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">
+                  <Button
+                    size="sm"
+                    variant="default"
+                    onClick={() => openPreviewForFile(sheet.fileName, sheet.title, sheet.description)}
+                    className="gap-1.5 text-xs rounded-xl font-medium"
+                  >
+                    <Eye className="size-3.5" />
+                    <span>{locale === "th" ? "เปิดดูตัวอย่าง" : "Preview"}</span>
+                  </Button>
+
+                  <Button
+                    asChild
+                    size="sm"
+                    variant="outline"
+                    className="gap-1.5 text-xs rounded-xl"
+                  >
+                    <a href={downloadUrl} download={sheet.fileName} target="_blank" rel="noopener noreferrer">
+                      <Download className="size-3.5" />
+                      <span>{locale === "th" ? "ดาวน์โหลด" : "Download"}</span>
+                    </a>
+                  </Button>
+                </div>
               </div>
-              <h3 className="text-base sm:text-lg font-bold text-foreground">
-                {locale === "th" ? "5 เสาหลักแห่งแคลคูลัส (Calculus 5 Pillars)" : "5 Pillars of Calculus"}
-              </h3>
-              <p className="text-xs sm:text-sm text-muted-foreground mt-0.5">
-                {locale === "th"
-                  ? "สัดส่วนคะแนน 35 คะแนน ในข้อสอบจริง 1/2569 แบ่งตามหัวข้อบรรยายและสไลด์"
-                  : "Expected score distribution for the 1/2569 final examination based on lecture scope."}
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
-              {MFIT_FINAL_PILLARS.map((p) => (
-                <div key={p.pillar} className="rounded-xl border border-border/50 bg-neutral-50/50 dark:bg-neutral-900/40 p-3.5 space-y-2">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[11px] font-bold text-primary">เสาที่ {p.pillar}</span>
-                    <Badge variant="outline" className="text-[10px]">
-                      {p.pointsEst}
-                    </Badge>
-                  </div>
-                  <h4 className="text-xs sm:text-sm font-bold text-foreground leading-snug">
-                    {t(p.name, locale)}
-                  </h4>
-                  <div className="text-[11px] text-muted-foreground pt-1 border-t border-border/40">
-                    {p.chapterRange}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* 10 Deadly Traps */}
-          <div className="rounded-2xl border border-red-500/30 bg-red-950/10 p-5 space-y-4">
-            <div className="flex items-center gap-2.5">
-              <span className="flex size-9 items-center justify-center rounded-xl bg-red-500/20 text-red-400">
-                <AlertTriangle className="size-5" />
-              </span>
-              <div>
-                <h3 className="text-base sm:text-lg font-bold text-foreground">
-                  {locale === "th" ? "10 กับดักจุดตาย All-or-Nothing ที่ห้ามผิดเด็ดขาด" : "10 Deadly All-or-Nothing Exam Traps"}
-                </h3>
-                <p className="text-xs text-muted-foreground">
-                  {locale === "th"
-                    ? "จุดผิดซ้ำซากที่ทำให้นักศึกษาได้ 0 คะแนนในข้อนั้น แม้ว่าจะคำนวณตัวเลขถูกก็ตาม"
-                    : "Common traps where students receive zero credit despite having correct intermediate math."}
-                </p>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              {DEADLY_TRAPS.map((trap) => (
-                <div key={trap.id} className="rounded-xl border border-border/50 bg-card p-4 space-y-2.5">
-                  <div className="flex items-start justify-between gap-2">
-                    <h4 className="text-xs sm:text-sm font-bold text-red-500 dark:text-red-400 leading-snug">
-                      {t(trap.title, locale)}
-                    </h4>
-                    <span className="inline-flex items-center text-[10px] font-semibold text-red-400 bg-red-500/10 px-2 py-0.5 rounded-full shrink-0">
-                      {t(trap.danger, locale)}
-                    </span>
-                  </div>
-
-                  <div className="space-y-1.5 text-xs text-muted-foreground leading-relaxed">
-                    <div>
-                      <strong className="text-foreground/80">{locale === "th" ? "ทำไมถึงผิด: " : "Why it fails: "}</strong>
-                      {t(trap.why, locale)}
-                    </div>
-                    <div className="pt-1 border-t border-border/40 text-emerald-600 dark:text-emerald-400">
-                      <strong className="font-semibold">{locale === "th" ? "วิธีแก้ให้ได้คะแนนเต็ม: " : "Remedy: "}</strong>
-                      {t(trap.remedy, locale)}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+            );
+          })}
         </div>
-      )}
+      </section>
 
-      {/* ── Tab 5: Deep Study Guide Fast Navigation ──────────────────────── */}
-      {activeTab === "study-guide" && (
-        <div className="rounded-2xl border border-border/60 bg-card p-5 sm:p-6 space-y-5">
-          <div>
-            <h3 className="text-base sm:text-lg font-bold text-foreground">
-              {locale === "th" ? "📖 คู่มือสรุปวิธีทำโจทย์แคลคูลัสฉบับละเอียด (Deep Study Guide)" : "📖 Deep Calculus Problem-Solving Guide"}
-            </h3>
-            <p className="text-xs sm:text-sm text-muted-foreground mt-0.5">
-              {locale === "th"
-                ? "เนื้อหาบทสรุปการคำนวณและขั้นตอนทำโจทย์แบบ Step-by-Step แสดงอยู่ด้านล่าง สามารถกดเพื่อกระโดดไปยังหัวข้อที่ต้องการได้ทันที"
-                : "Full step-by-step calculus lecture notes and solved proofs are rendered below. Click below to fast jump."}
-            </p>
-          </div>
+      {/* ── Section 4: Separator for Deep Study Guide ────────────────────── */}
+      <section className="pt-6" id="study-guide">
+        <TopicHeader
+          id="study-guide-header"
+          title={locale === "th" ? "ยุทธศาสตร์และคู่มือสรุปวิธีทำโจทย์แคลคูลัส (Deep Study Guide)" : "Deep Study Guide & Strategy"}
+          aside={
+            <span className="rounded-full bg-primary/10 border border-primary/25 px-2.5 py-0.5 text-xs font-medium text-primary">
+              {locale === "th" ? "แคลคูลัส Week 08–15 · 35 คะแนน" : "Calculus W08-15 · 35 Pts"}
+            </span>
+          }
+        />
+      </section>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => scrollToSection("เสาที่-1-ลิมิตและความต่อเนื่อง-limit-continuity-week-8")}
-              className="justify-between text-xs h-auto py-2.5 rounded-xl font-medium"
-            >
-              <span>{locale === "th" ? "1. ลิมิต & การแก้ 0/0" : "1. Limits & 0/0 Forms"}</span>
-              <ChevronRight className="size-3.5 text-muted-foreground" />
-            </Button>
-
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => scrollToSection("เสาที่-2-อนุพันธ์-กฎลูกโซ่-และฟังก์ชันแฝง-differentiation-mechanics-week-910")}
-              className="justify-between text-xs h-auto py-2.5 rounded-xl font-medium"
-            >
-              <span>{locale === "th" ? "2. ดิฟนิยาม & Implicit" : "2. Limit Def & Implicit"}</span>
-              <ChevronRight className="size-3.5 text-muted-foreground" />
-            </Button>
-
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => scrollToSection("เสาที่-3-การประยุกต์อนุพันธ์และปัญหาค่าสุดขีด-applications-optimization-week-11")}
-              className="justify-between text-xs h-auto py-2.5 rounded-xl font-medium"
-            >
-              <span>{locale === "th" ? "3. Optimization & ค่าสุดขีด" : "3. Optimization & Extrema"}</span>
-              <ChevronRight className="size-3.5 text-muted-foreground" />
-            </Button>
-
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => scrollToSection("เสาที่-4-ปริพันธ์พื้นฐาน-ftc-และ-u-substitution-integration-mechanics-week-1213")}
-              className="justify-between text-xs h-auto py-2.5 rounded-xl font-medium"
-            >
-              <span>{locale === "th" ? "4. ปริพันธ์ & u-Sub" : "4. Integrals & u-Sub"}</span>
-              <ChevronRight className="size-3.5 text-muted-foreground" />
-            </Button>
-
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => scrollToSection("เสาที่-5-by-parts-พื้นที่-และปริมาตรทรงตันหมุน-advanced-integration-applications-week-1415")}
-              className="justify-between text-xs h-auto py-2.5 rounded-xl font-medium"
-            >
-              <span>{locale === "th" ? "5. By Parts & ปริมาตรหมุน" : "5. By Parts & Volume"}</span>
-              <ChevronRight className="size-3.5 text-muted-foreground" />
-            </Button>
-
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => scrollToSection("ตารางกับดักจุดตาย-all-or-nothing-checklist")}
-              className="justify-between text-xs h-auto py-2.5 rounded-xl font-medium text-red-500 dark:text-red-400"
-            >
-              <span>{locale === "th" ? "⚠️ 10 กับดัก All-or-Nothing" : "⚠️ 10 Deadly Traps"}</span>
-              <ChevronRight className="size-3.5" />
-            </Button>
-          </div>
-
-          <div className="flex justify-center pt-2">
-            <Button
-              variant="secondary"
-              size="sm"
-              onClick={() => scrollToSection("ยุทธศาสตร์และภาพรวมการรบ-final-exam-briefing")}
-              className="gap-2 rounded-full text-xs font-semibold"
-            >
-              <ArrowRight className="size-3.5 rotate-90" />
-              <span>{locale === "th" ? "เลื่อนลงอ่านเนื้อหาเลกเชอร์ฉบับเต็ม" : "Scroll Down to Full Lecture Notes"}</span>
-            </Button>
-          </div>
-        </div>
-      )}
-
-      {/* ── Dedicated Preview Modal ───────────────────────────────────────── */}
+      {/* ── Modal Viewer ─────────────────────────────────────────────────── */}
       {preview && (
         <PreviewModal
           preview={preview}
