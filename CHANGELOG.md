@@ -24,6 +24,7 @@
      - 📑 **ชีทสรุปสูตร & เอกสารทางการ (Official Formula Sheets)**: รวม 6 ฉบับทางการ (Useful Info 2569, Holy Shit Final Part 1, Final Recap W08–13, Diff & Int Recap, Cheat Sheets 2022 & 2023)
      - 📖 **คู่มือวิธีทำโจทย์และยุทธศาสตร์ (Deep Study Guide)**: เชื่อมโยงเข้าสู่เนื้อหาบทสรุปการคำนวณ 5 เสาหลัก, กลวิธีทำโจทย์ และตารางกับดักจุดตาย 10 จุดด้านล่างอย่างไร้รอยต่อ
   3. จัดทำชุดคลังข้อสอบจำลองแคลคูลัสปลายภาค 25 ข้อ (`lib/quiz/mfit-final-mock-exam.ts`) ครอบคลุม 5 เสาหลักตามโครงสร้างข้อสอบจริง 2559–2561 และสัดส่วน 35 คะแนน 1/2569 พร้อมผูกเชื่อมโยงเข้ากับระบบแบบทดสอบ `mock_exam` ใน `lib/courses/course-bindings.ts` และอัปเดตบทเรียนปลายภาคใน `lib/quiz/mfit-quiz.ts`
+  4. ปรับมาตรฐานความกว้างของตัวอ่าน Markdown ทุกหน้าในระบบ (`components/module-reader.tsx` และ `components/library-reader.tsx`) ให้บีบเข้ามาตรงกลางด้วยขนาด `max-w-5xl xl:max-w-6xl` สำหรับหน้าหลัก และ `max-w-3xl xl:max-w-4xl mx-auto` สำหรับคอลัมน์เนื้อหาบทความ พร้อมระยะ Padding ซ้าย-ขวาที่สมดุล เพื่อประสบการณ์การอ่านที่สบายตา ไม่ยืดกว้างเกินไปบนจอภาพขนาดใหญ่
 
 - **คลังสื่อการเรียนรู้สไลด์สรุปเนื้อหาแปลไทยวิชา ICS ครึ่งหลัง บทที่ 1–7 และแนวข้อสอบปลายภาค (โดย @PhuPunnavit)** —
   1. เพิ่มสไลด์สรุปเนื้อหาฮาร์ดแวร์ครึ่งหลังแปลไทยฉบับอ่านเข้าใจง่ายในหน้าเดียวจาก Figma รวม 7 บท (`ics-sheet-ch01-computer-system-th.pdf` ถึง `ics-sheet-ch07-alu-cpu-creation-th.pdf`) ครอบคลุม Computer System, Memory & I/O Addressing, MUX/Latch/Buffer, Counter & DAC/ADC (I/II), Memory Unit, และ ALU & CPU Creation
@@ -87,6 +88,9 @@
 
 ### แก้ไข
 
+- **ฝังเอนจิน KaTeX Math Renderer สำหรับแสดงผลสูตรคณิตศาสตร์ในข้อสอบจำลองและตัวเลือกคำตอบ (`components/math-text.tsx`, `components/technique-quiz.tsx`)** —
+  1. สร้างคอมโพเนนต์ `<MathText />` รองรับการถอดรหัสและเรนเดอร์สมการคณิตศาสตร์และสัญลักษณ์ LaTeX ทั้งแบบ Inline (`$...$`, `\(...\)`) และ Display (`$$...$$`, `\[...\]`) ด้วย KaTeX โดยคงข้อความภาษาไทย/อังกฤษแวดล้อมไว้อย่างสมบูรณ์
+  2. ผูกเอนจิน `MathText` เข้ากับส่วนแสดงผลของโจทย์ (`question.prompt`), ช้อยส์ตัวเลือกคำตอบ (`opt.label`), กล่องคำอธิบายเฉลยย่อย (`opt.why`) และรายการทบทวนคำตอบตอนจบแบบทดสอบใน `TechniqueQuiz` ส่งผลให้ข้อสอบจำลอง MFIT Final 25 ข้อ และ 99 ช้อยส์แคลคูลัส (ลิมิต, อนุพันธ์, ปริพันธ์, เมทริกซ์ ฯลฯ) แสดงผลสูตรคณิตศาสตร์ที่คมชัด สวยงาม ถูกต้องตามหลักไวยากรณ์ (โดย @Jesselpetry)
 - **แก้ไขการแสดงผลไอคอน Notion SVG ในแถบโซเชียลผู้จัดทำ (`components/social-icons.tsx`)** — อัปเดต Path SVG ของ Notion สู่มาตรฐานทางการของ Simple Icons ขนาด 24x24 คมชัด ไร้บั๊กการแสดงผลเพี้ยนหรือทึบตัน (โดย @Jesselpetry)
 - **แก้ปัญหาสูตรคณิตศาสตร์ซ้อนทับกัน (LaTeX Display Stack Overlap & Math Isolation)** — แก้ไขปัญหาตัวแปร, เศษส่วน (`\frac`), ลิมิต (`\lim`) และเลขยกกำลังในเนื้อหาวิชา Math for IT และ Logic ซ้อนทับกันอันเนื่องมาจาก `white-space: normal` และการตัดคำของพารากราฟ (`overflow-wrap: anywhere`) โดยกำหนดการคำนวณ Strut และพื้นที่แสดงผลสูตรคณิตศาสตร์ใน `app/globals.css` (`white-space: nowrap !important; display: inline-block; min-width: 100%; text-align: center; overflow-wrap: normal !important;`) ควบคู่กับการรองรับ MathJax/KaTeX SVG Styling สำหรับโหมดสมุดเลกเชอร์ (โดย @Jesselpetry)
 - **แก้ไขปัญหาสระภาษาไทยลอยและแปลงบล็อกข้อความจำลองโค้ด (Pseudo-code Markdown Textarea) ในเอกสารคู่มือเตรียมสอบสู่ตารางและรายการตามมาตรฐาน** —

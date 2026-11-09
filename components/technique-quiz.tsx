@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Textarea } from "@/components/ui/textarea";
 import { MdView } from "@/components/md-view";
+import { MathText } from "@/components/math-text";
 import { useLocale, t, type LText } from "@/lib/i18n";
 import {
   gradeAnswer,
@@ -242,7 +243,9 @@ const question = questions[index];
                     ) : (
                       <XCircle className="size-4 text-destructive shrink-0 mt-0.5" />
                     )}
-                    <span className="flex-1 min-w-0">{t(q.prompt, locale)}</span>
+                    <span className="flex-1 min-w-0">
+                      <MathText text={t(q.prompt, locale)} />
+                    </span>
                   </button>
                   {isOpen && (
                     <div className="border-t bg-muted/20 px-3 py-2.5 space-y-2 text-xs">
@@ -287,8 +290,12 @@ const question = questions[index];
                                 : "rounded-lg border border-transparent p-2 opacity-60"
                           }
                         >
-                          <p className="font-medium text-foreground">{t(opt.label, locale)}</p>
-                          <p className="mt-0.5 text-muted-foreground">{t(opt.why, locale)}</p>
+                          <p className="font-medium text-foreground">
+                            <MathText text={t(opt.label, locale)} />
+                          </p>
+                          <p className="mt-0.5 text-muted-foreground">
+                            <MathText text={t(opt.why, locale)} />
+                          </p>
                         </div>
                       ))}
                       {q.explanationMd && (
@@ -398,9 +405,9 @@ const question = questions[index];
 
       {/* Prompt */}
       <div className="space-y-3">
-        <p className="text-sm font-medium text-foreground leading-relaxed">
-          {t(question.prompt, locale)}
-        </p>
+        <div className="text-sm font-medium text-foreground leading-relaxed">
+          <MathText text={t(question.prompt, locale)} />
+        </div>
 
         {question.stdin !== undefined && (
           <div className="rounded-xl border bg-muted/30 p-3">
@@ -513,12 +520,14 @@ const question = questions[index];
                 type="button"
                 onClick={() => selectOption(opt.id)}
                 disabled={checked}
-                className={`flex w-full items-start gap-2.5 rounded-xl border px-3.5 py-2.5 text-left text-sm font-medium transition-colors ${stateClass}`}
+                className={`flex w-full items-center gap-2.5 rounded-xl border px-3.5 py-2.5 text-left text-sm font-medium transition-colors ${stateClass}`}
               >
                 <span className="flex size-5 shrink-0 items-center justify-center rounded-full border border-current font-mono text-[11px]">
                   {i + 1}
                 </span>
-                <span className="flex-1 min-w-0">{t(opt.label, locale)}</span>
+                <span className="flex-1 min-w-0">
+                  <MathText text={t(opt.label, locale)} />
+                </span>
                 {checked && isCorrectOption && (
                   <CheckCircle2 className="size-4 text-primary shrink-0" />
                 )}
@@ -530,7 +539,9 @@ const question = questions[index];
                 !question.explanationMd &&
                 (isSelected || isCorrectOption) && (
                   <div className="mt-1.5 ml-2 rounded-lg border bg-muted/20 px-3 py-2 text-xs text-muted-foreground leading-relaxed">
-                    <p>{t(opt.why, locale)}</p>
+                    <p>
+                      <MathText text={t(opt.why, locale)} />
+                    </p>
                     {isCorrectOption && (
                       <p className="mt-1 font-mono text-[10px] text-muted-foreground/80">
                         {t(L.source, locale)}: {question.sourceRef}
