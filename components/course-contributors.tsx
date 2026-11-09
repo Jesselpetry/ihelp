@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import {
   BookOpen,
+  ChevronDown,
   ChevronRight,
   ExternalLink,
   Upload,
@@ -17,6 +18,7 @@ import {
   NotionIcon,
 } from "@/components/social-icons";
 import { useLocale, t } from "@/lib/i18n";
+import { cn } from "@/lib/utils";
 import {
   getContributorsForCourse,
   getContributorWithAcademicYear,
@@ -58,6 +60,14 @@ const L = {
   contributionsInCourse: {
     th: "ผลงานและเอกสารในวิชานี้",
     en: "Contributions in this course",
+  },
+  expand: {
+    th: "กดดูเอกสาร",
+    en: "View materials",
+  },
+  collapse: {
+    th: "ซ่อน",
+    en: "Hide",
   },
   itemsCount: {
     th: "รายการ",
@@ -143,8 +153,8 @@ function getMaterialActionLabel(
 
 /**
  * Clean card component for each contributed material:
- * Features a modern bullet point indicator, title, badge, description,
- * and an explicit action button on the right side.
+ * Features a plain bullet point dot indicator (no outer ring/frame), title, badge,
+ * description, and an explicit action button on the right side.
  */
 export function ContributorMaterialCard({
   material,
@@ -157,11 +167,11 @@ export function ContributorMaterialCard({
 
   return (
     <div className="group rounded-xl border border-border/50 bg-neutral-50/70 dark:bg-neutral-900/40 p-3 sm:p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-border hover:bg-neutral-100/60 dark:hover:bg-neutral-800/50 transition-all">
-      {/* Left: Bullet point dot indicator + Info */}
+      {/* Left: Plain Bullet point dot indicator + Info */}
       <div className="flex items-start sm:items-center gap-2.5 min-w-0 flex-1">
-        {/* Bullet point dot */}
+        {/* Clean, plain bullet point dot — strictly NO outer frame or ring */}
         <span
-          className="size-2 rounded-full bg-primary/80 shrink-0 mt-1 sm:mt-0 ring-4 ring-primary/10 group-hover:bg-primary transition-colors"
+          className="size-1.5 rounded-full bg-muted-foreground/50 shrink-0 mt-1.5 sm:mt-0 group-hover:bg-primary transition-colors"
           aria-hidden="true"
         />
 
@@ -227,30 +237,182 @@ export function ContributorMaterialCard({
 export const ContributorMaterialRow = ContributorMaterialCard;
 
 /**
- * Dedicated Header component for the contributed materials section.
+ * Individual Contributor Card:
+ * Keeps the contributor card clean and compact by showing only the profile section
+ * by default, with an expandable button to reveal contributed materials in this course.
  */
-function ContributorSectionHeader({
-  title,
-  count,
-  locale,
+export function CourseContributorCard({
+  rawContributor,
+  courseCode,
+  onSelectProfile,
 }: {
-  title: string;
-  count: number;
-  locale: "th" | "en";
+  rawContributor: ContributorProfile;
+  courseCode: string;
+  onSelectProfile: (contributor: ContributorProfile) => void;
 }) {
+  const { locale } = useLocale();
+  const [isExpanded, setIsExpanded] = useState(false);
+  const profile = getContributorWithAcademicYear(rawContributor);
+
+  // Only academic materials for this subject (excludes site developer tools)
+  const courseMaterials = profile.materials.filter(
+    (m) =>
+      m.courseCode.toUpperCase() === courseCode.toUpperCase() &&
+      m.type !== "tool",
+  );
+
+  if (courseMaterials.length === 0) return null;
+
+  const academicRole = getAcademicRole(courseMaterials, locale);
+
   return (
-    <div className="flex items-center justify-between gap-3 pt-3 border-t border-border/50">
-      <div className="flex items-center gap-2 min-w-0">
-        <span className="flex size-6 items-center justify-center rounded-md bg-primary/10 text-primary shrink-0">
-          <BookOpen className="size-3.5" />
-        </span>
-        <h4 className="text-xs sm:text-sm font-semibold text-foreground tracking-tight truncate">
-          {title}
-        </h4>
+    <div className={`p-4 sm:p-5 space-y-3 ${SURFACE}`}>
+      {/* Header: Avatar, Name, Pill Badge, Credential Line, Compact Actions */}
+      <div className="flex items-center justify-between gap-3">
+        {/* Left: Compact Avatar (44-48px) + Identity */}
+        <div className="flex items-center gap-3 min-w-0 flex-1">
+          <button
+            type="button"
+            onClick={() => onSelectProfile(rawContributor)}
+            className="shrink-0 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          >
+            <Avatar className="size-11 sm:size-12 rounded-full ring-1 ring-border/60 shadow-xs hover:ring-primary/60 transition-all">
+              <AvatarImage
+                src={profile.avatarUrl}
+                alt={profile.name}
+                className="rounded-full object-cover"
+              />
+              <AvatarFallback className="text-xs font-bold rounded-full bg-primary/10 text-primary">
+                {profile.avatarFallback ??
+                  profile.name.slice(0, 2).toUpperCase()}
+              </AvatarFallback>
+            </Avatar>
+          </button>
+
+          <div className="min-w-0 flex-1 space-y-1">
+            <div className="flex flex-wrap items-center gap-2 min-w-0">
+              <button
+                type="button"
+                onClick={() => onSelectProfile(rawContributor)}
+                className="text-sm sm:text-base font-semibold text-foreground hover:text-primary transition-colors truncate text-left"
+              >
+                {profile.name}
+              </button>
+
+              {/* Circular/Pill Badge: Academic Role in this Subject */}
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-neutral-100 dark:bg-neutral-800 text-xs font-medium text-foreground/80 border border-border/50 shrink-0 shadow-2xs">
+                <span
+                  className="size-1.5 rounded-full bg-primary shrink-0"
+                  aria-hidden="true"
+                />
+                {academicRole}
+              </span>
+            </div>
+
+            {/* Clean caption line: ชั้นปีที่ 1 (69070027) */}
+            <p className="text-xs text-muted-foreground truncate">
+              {formatCredentialLine(profile, locale)}
+            </p>
+          </div>
+        </div>
+
+        {/* Right: Small Monochromatic Icon Action Buttons */}
+        <div className="flex items-center gap-1 shrink-0">
+          {/* GitHub Icon Action */}
+          {profile.socials.github && (
+            <a
+              href={`https://github.com/${profile.socials.github}`}
+              target="_blank"
+              rel="noreferrer"
+              title={`GitHub: @${profile.socials.github}`}
+              className="size-8 rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800 text-muted-foreground hover:text-foreground inline-flex items-center justify-center transition-colors"
+            >
+              <GithubIcon className="size-4" />
+              <span className="sr-only">GitHub</span>
+            </a>
+          )}
+
+          {/* Instagram Icon Action */}
+          {profile.socials.instagram && (
+            <a
+              href={`https://instagram.com/${profile.socials.instagram}`}
+              target="_blank"
+              rel="noreferrer"
+              title={`Instagram: @${profile.socials.instagram}`}
+              className="size-8 rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800 text-muted-foreground hover:text-foreground inline-flex items-center justify-center transition-colors"
+            >
+              <InstagramIcon className="size-4" />
+              <span className="sr-only">Instagram</span>
+            </a>
+          )}
+
+          {/* Notion Icon Action */}
+          {profile.socials.notion && (
+            <a
+              href={profile.socials.notion}
+              target="_blank"
+              rel="noreferrer"
+              title="Notion"
+              className="size-8 rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800 text-muted-foreground hover:text-foreground inline-flex items-center justify-center transition-colors"
+            >
+              <NotionIcon className="size-4" />
+              <span className="sr-only">Notion</span>
+            </a>
+          )}
+
+          {/* Single Discreet Profile Details Action */}
+          <button
+            type="button"
+            onClick={() => onSelectProfile(rawContributor)}
+            title={t(L.viewProfile, locale)}
+            className="size-8 rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800 text-muted-foreground hover:text-foreground inline-flex items-center justify-center transition-colors"
+          >
+            <User className="size-4" />
+            <span className="sr-only">{t(L.viewProfile, locale)}</span>
+          </button>
+        </div>
       </div>
-      <span className="text-[11px] font-medium text-muted-foreground bg-neutral-100 dark:bg-neutral-800/80 px-2 py-0.5 rounded-full border border-border/40 shrink-0">
-        {count} {t(L.itemsCount, locale)}
-      </span>
+
+      {/* Expand/Collapse Toggle Button for Contributed Materials */}
+      {courseMaterials.length > 0 && (
+        <div className="pt-2 border-t border-border/40">
+          <button
+            type="button"
+            onClick={() => setIsExpanded((prev) => !prev)}
+            aria-expanded={isExpanded}
+            className="w-full flex items-center justify-between py-1 text-xs text-muted-foreground hover:text-foreground transition-colors group/toggle focus:outline-none"
+          >
+            <div className="flex items-center gap-2">
+              <BookOpen className="size-3.5 text-primary" />
+              <span className="font-medium text-foreground/90">
+                {t(L.contributionsInCourse, locale)}
+              </span>
+              <span className="text-[10px] font-mono px-1.5 py-0.2 rounded-full bg-neutral-200/70 dark:bg-neutral-800 text-muted-foreground font-semibold">
+                {courseMaterials.length}
+              </span>
+            </div>
+
+            <div className="flex items-center gap-1 text-[11px] font-medium text-muted-foreground group-hover/toggle:text-foreground transition-colors">
+              <span>{isExpanded ? t(L.collapse, locale) : t(L.expand, locale)}</span>
+              <ChevronDown
+                className={cn(
+                  "size-3.5 transition-transform duration-200",
+                  isExpanded && "rotate-180",
+                )}
+              />
+            </div>
+          </button>
+
+          {/* Collapsible Materials List */}
+          {isExpanded && (
+            <div className="flex flex-col gap-2 pt-2.5 animate-in fade-in-50 duration-200">
+              {courseMaterials.map((material, idx) => (
+                <ContributorMaterialCard key={idx} material={material} />
+              ))}
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }
@@ -284,148 +446,16 @@ export function CourseContributors({ courseCode }: CourseContributorsProps) {
         aside={aside}
       />
 
-      {/* ── Contributor Cards (Clean, compact horizontal layout) ── */}
+      {/* ── Contributor Cards (Clean, compact collapsible cards) ── */}
       <div className="flex flex-col gap-3">
-        {contributors.map((rawContributor) => {
-          const profile = getContributorWithAcademicYear(rawContributor);
-          // Only academic materials for this subject (excludes site developer tools)
-          const courseMaterials = profile.materials.filter(
-            (m) =>
-              m.courseCode.toUpperCase() === courseCode.toUpperCase() &&
-              m.type !== "tool",
-          );
-
-          if (courseMaterials.length === 0) return null;
-
-          const academicRole = getAcademicRole(courseMaterials, locale);
-
-          return (
-            <div key={profile.id} className={`p-4 sm:p-5 space-y-4 ${SURFACE}`}>
-              {/* Header: Avatar, Name, Pill Badge, Credential Line, Compact Actions */}
-              <div className="flex items-center justify-between gap-3">
-                {/* Left: Compact Avatar (44-48px) + Identity */}
-                <div className="flex items-center gap-3 min-w-0 flex-1">
-                  <button
-                    type="button"
-                    onClick={() => setSelectedContributor(rawContributor)}
-                    className="shrink-0 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-                  >
-                    <Avatar className="size-11 sm:size-12 rounded-full ring-1 ring-border/60 shadow-xs hover:ring-primary/60 transition-all">
-                      <AvatarImage
-                        src={profile.avatarUrl}
-                        alt={profile.name}
-                        className="rounded-full object-cover"
-                      />
-                      <AvatarFallback className="text-xs font-bold rounded-full bg-primary/10 text-primary">
-                        {profile.avatarFallback ??
-                          profile.name.slice(0, 2).toUpperCase()}
-                      </AvatarFallback>
-                    </Avatar>
-                  </button>
-
-                  <div className="min-w-0 flex-1 space-y-1">
-                    <div className="flex flex-wrap items-center gap-2 min-w-0">
-                      <button
-                        type="button"
-                        onClick={() => setSelectedContributor(rawContributor)}
-                        className="text-sm sm:text-base font-semibold text-foreground hover:text-primary transition-colors truncate text-left"
-                      >
-                        {profile.name}
-                      </button>
-
-                      {/* Circular/Pill Badge: Academic Role in this Subject */}
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-neutral-100 dark:bg-neutral-800 text-xs font-medium text-foreground/80 border border-border/50 shrink-0 shadow-2xs">
-                        <span
-                          className="size-1.5 rounded-full bg-primary shrink-0"
-                          aria-hidden="true"
-                        />
-                        {academicRole}
-                      </span>
-                    </div>
-
-                    {/* Clean caption line: ชั้นปีที่ 1 (69070027) */}
-                    <p className="text-xs text-muted-foreground truncate">
-                      {formatCredentialLine(profile, locale)}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Right: Small Monochromatic Icon Action Buttons */}
-                <div className="flex items-center gap-1 shrink-0">
-                  {/* GitHub Icon Action */}
-                  {profile.socials.github && (
-                    <a
-                      href={`https://github.com/${profile.socials.github}`}
-                      target="_blank"
-                      rel="noreferrer"
-                      title={`GitHub: @${profile.socials.github}`}
-                      className="size-8 rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800 text-muted-foreground hover:text-foreground inline-flex items-center justify-center transition-colors"
-                    >
-                      <GithubIcon className="size-4" />
-                      <span className="sr-only">GitHub</span>
-                    </a>
-                  )}
-
-                  {/* Instagram Icon Action */}
-                  {profile.socials.instagram && (
-                    <a
-                      href={`https://instagram.com/${profile.socials.instagram}`}
-                      target="_blank"
-                      rel="noreferrer"
-                      title={`Instagram: @${profile.socials.instagram}`}
-                      className="size-8 rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800 text-muted-foreground hover:text-foreground inline-flex items-center justify-center transition-colors"
-                    >
-                      <InstagramIcon className="size-4" />
-                      <span className="sr-only">Instagram</span>
-                    </a>
-                  )}
-
-                  {/* Notion Icon Action */}
-                  {profile.socials.notion && (
-                    <a
-                      href={profile.socials.notion}
-                      target="_blank"
-                      rel="noreferrer"
-                      title="Notion"
-                      className="size-8 rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800 text-muted-foreground hover:text-foreground inline-flex items-center justify-center transition-colors"
-                    >
-                      <NotionIcon className="size-4" />
-                      <span className="sr-only">Notion</span>
-                    </a>
-                  )}
-
-                  {/* Single Discreet Profile Details Action */}
-                  <button
-                    type="button"
-                    onClick={() => setSelectedContributor(rawContributor)}
-                    title={t(L.viewProfile, locale)}
-                    className="size-8 rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800 text-muted-foreground hover:text-foreground inline-flex items-center justify-center transition-colors"
-                  >
-                    <User className="size-4" />
-                    <span className="sr-only">{t(L.viewProfile, locale)}</span>
-                  </button>
-                </div>
-              </div>
-
-              {/* Contributed Materials Section */}
-              {courseMaterials.length > 0 && (
-                <div className="space-y-2.5">
-                  <ContributorSectionHeader
-                    title={t(L.contributionsInCourse, locale)}
-                    count={courseMaterials.length}
-                    locale={locale}
-                  />
-
-                  <div className="flex flex-col gap-2">
-                    {courseMaterials.map((material, idx) => (
-                      <ContributorMaterialCard key={idx} material={material} />
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-          );
-        })}
+        {contributors.map((rawContributor) => (
+          <CourseContributorCard
+            key={rawContributor.id}
+            rawContributor={rawContributor}
+            courseCode={courseCode}
+            onSelectProfile={setSelectedContributor}
+          />
+        ))}
       </div>
 
       {/* ── Community Invitation ── */}

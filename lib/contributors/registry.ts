@@ -36,46 +36,16 @@ export const CONTRIBUTOR_REGISTRY: Record<string, ContributorProfile> = {
       email: "69070027@kmitl.ac.th",
     },
     profilePath: "/profile/69070027",
-    courses: ["ICS", "MFIT", "COMPRO"],
+    courses: ["ALL"],
     materials: [
       {
         courseCode: "ALL",
         title: {
-          th: "ระบบเส้นทางการเรียนรู้รายวิชาและคลังสื่อการเรียนรู้",
-          en: "Course Weekly Learning Path & Learning Media Library",
+          th: "สถาปัตยกรรมระบบ iHelp, ระบบตัดเกรด, แผนที่ผังสอบ และคลังสื่อการเรียนรู้",
+          en: "iHelp Platform Architecture, Grade Calculator, Exam Seating Map & Media Library",
         },
         type: "tool",
-        badge: { th: "ระบบหลัก", en: "Core Engine" },
-      },
-      {
-        courseCode: "ICS",
-        title: {
-          th: "สรุปภาพรวมและจุดระวังสอบกลางภาค ICS (19 Pitfalls)",
-          en: "ICS Midterm Summary & 19 Pitfalls Checklist",
-        },
-        type: "sheet",
-        url: "/courses/06016411-Intro-to-Computer-Systems/summary",
-        badge: { th: "สรุปหลัก", en: "Summary" },
-      },
-      {
-        courseCode: "MFIT",
-        title: {
-          th: "คู่มือทบทวนและกลยุทธ์ทำข้อสอบ Math for IT (Q1–Q10)",
-          en: "MFIT Exam Strategy & Crash Guide (Q1–Q10)",
-        },
-        type: "sheet",
-        url: "/courses/06016401-Math-for-IT/summary",
-        badge: { th: "กลยุทธ์สอบ", en: "Strategy" },
-      },
-      {
-        courseCode: "COMPRO",
-        title: {
-          th: "สรุปเนื้อหา Computer Programming 5 บทเรียนและ Appendix",
-          en: "Computer Programming 5 Chapters & Appendix Summary",
-        },
-        type: "sheet",
-        url: "/courses/01006012-Computer-Programming/summary",
-        badge: { th: "สรุปครบ", en: "Full Recap" },
+        badge: { th: "ระบบหลัก", en: "Core Platform" },
       },
     ],
   },
@@ -117,8 +87,8 @@ export const CONTRIBUTOR_REGISTRY: Record<string, ContributorProfile> = {
       {
         courseCode: "ITF",
         title: {
-          th: "สไลด์สรุปเนื้อหาบรรยาย ITF ฉบับแปลไทย Week 08–15 (PDF 8 สัปดาห์)",
-          en: "Thai Translated Lecture Slide Summaries for ITF Weeks 08–15 (8 PDFs)",
+          th: "สไลด์สรุปเนื้อหาบรรยาย ITF ฉบับแปลไทย สัปดาห์ที่ 08–15",
+          en: "Thai Translated Lecture Slide Summaries for ITF Weeks 08–15",
         },
         type: "slide",
         description: {
@@ -139,7 +109,7 @@ export const CONTRIBUTOR_REGISTRY: Record<string, ContributorProfile> = {
       {
         courseCode: "ICS",
         title: {
-          th: "สไลด์สรุปเนื้อหาบรรยาย ICS ครึ่งหลัง บทที่ 1–7 (Figma แปลไทย 7 บท)",
+          th: "สไลด์สรุปเนื้อหาบรรยาย ICS ครึ่งหลัง บทที่ 1–7",
           en: "Thai Translated Lecture Slide Summaries for ICS Track B Chapters 1–7",
         },
         type: "slide",
@@ -202,8 +172,8 @@ export const CONTRIBUTOR_REGISTRY: Record<string, ContributorProfile> = {
       {
         courseCode: "ITF",
         title: {
-          th: "บันทึกสรุปการเรียน Notion วิชา ITF สัปดาห์ที่ 08–15 (79 ภาพสไลด์พร้อมจดเลกเชอร์)",
-          en: "ITF Notion Study Notes for Weeks 08–15 (79 Annotated Slide Images)",
+          th: "บันทึกสรุปการเรียน Notion วิชา ITF สัปดาห์ที่ 08–15",
+          en: "ITF Notion Study Notes for Weeks 08–15",
         },
         type: "notes",
         description: {
@@ -211,21 +181,21 @@ export const CONTRIBUTOR_REGISTRY: Record<string, ContributorProfile> = {
           en: "Slide annotations, key vocabulary, exam weight highlights, and conceptual walkthroughs across 8 weeks",
         },
         url: "https://app.notion.com/p/ITF-407363d85cea806abdc6c9ec2254f668",
-        badge: { th: "79 หน้าสไลด์", en: "79 Slides" },
+        badge: { th: "บันทึก Notion", en: "Notion Notes" },
       },
       {
         courseCode: "MFIT",
         title: {
-          th: "ชีตสรุปเตรียมสอบแคลคูลัส Holy Shit Final Part 1 (21 หน้า)",
-          en: "Calculus Holy Shit Final Part 1 Exam Prep Sheet (21 Pages)",
+          th: "ชีตสรุปเตรียมสอบแคลคูลัส Holy Shit Final Part 1",
+          en: "Calculus Holy Shit Final Part 1 Exam Prep Sheet",
         },
         type: "sheet",
         description: {
-          th: "สรุปสูตร เทคนิควิเคราะห์โจทย์ และตัวอย่างข้อสอบแคลคูลัสครึ่งหลังสำหรับสอบปลายภาค (21 หน้า) จัดทำโดย แบงค์ ธรรมดล (IT24)",
-          en: "Calculus Final exam summary formulas, shortcuts and problem walkthroughs (21 pages) by Tammadon Suksa (IT24)",
+          th: "สรุปสูตร เทคนิควิเคราะห์โจทย์ และตัวอย่างข้อสอบแคลคูลัสครึ่งหลังสำหรับสอบปลายภาค จัดทำโดย แบงค์ ธรรมดล (IT24)",
+          en: "Calculus Final exam summary formulas, shortcuts and problem walkthroughs by Tammadon Suksa (IT24)",
         },
         url: "/assets/it-kmitl/mfit/sheets/mfit-sheet-holyshit-final-part1.pdf",
-        badge: { th: "Holy Shit Final", en: "Holy Shit Final" },
+        badge: { th: "ชีตสรุป", en: "Cheatsheet" },
       },
     ],
   },
@@ -354,8 +324,8 @@ export const CONTRIBUTOR_REGISTRY: Record<string, ContributorProfile> = {
       {
         courseCode: "DSA",
         title: {
-          th: "ข้อสอบจำลองกลางภาค OOP & Data Structure (ปี 65 โดยพี่ฟิว)",
-          en: "Pre-Midterm OOP & Data Structure Mock (2022 by P'Few)",
+          th: "ข้อสอบจำลองกลางภาค OOP & Data Structure",
+          en: "Pre-Midterm OOP & Data Structure Mock Exam",
         },
         type: "mock_exam",
         badge: { th: "ข้อสอบจำลอง", en: "Mock Exam" },
