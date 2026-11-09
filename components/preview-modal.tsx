@@ -125,7 +125,7 @@ export function PreviewModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-0 backdrop-blur-sm sm:p-4 lg:p-6"
+      className="fixed inset-0 z-50 flex items-end justify-center bg-black/70 p-0 backdrop-blur-sm animate-in fade-in-0 duration-200"
       onPointerDown={(event) => {
         if (event.target === event.currentTarget) onClose();
       }}
@@ -138,9 +138,16 @@ export function PreviewModal({
         className={
           isFullscreen
             ? "flex size-full flex-col bg-card"
-            : "flex h-full max-h-none w-full flex-col overflow-hidden border bg-card shadow-2xl sm:h-[96vh] sm:max-h-[96vh] sm:w-[96vw] sm:max-w-7xl sm:rounded-2xl"
+            : "flex h-[94vh] sm:h-[95vh] max-h-[95vh] w-full flex-col overflow-hidden border-t border-border/80 bg-card shadow-2xl rounded-t-2xl sm:rounded-t-3xl rounded-b-none animate-in slide-in-from-bottom duration-300 ease-out"
         }
       >
+        {/* Top grab bar for bottom sheet */}
+        {!isFullscreen && (
+          <div className="flex justify-center pt-2 pb-0.5 bg-card/80 shrink-0">
+            <div className="h-1 w-10 rounded-full bg-muted-foreground/30" aria-hidden="true" />
+          </div>
+        )}
+
         {/* Header */}
         <header className="flex shrink-0 items-start justify-between gap-3 border-b bg-card/80 px-4 py-3 sm:px-6">
           <div className="flex min-w-0 items-start gap-3">
@@ -251,7 +258,7 @@ export function PreviewModal({
         </ZoomStage>
 
         {/* Footer */}
-        <footer className="shrink-0 border-t bg-card/80 px-4 py-2 sm:px-6">
+        <footer className="shrink-0 border-t bg-card/80 px-4 py-2 sm:px-6 pb-[max(0.5rem,env(safe-area-inset-bottom))]">
           <div className="flex flex-wrap items-center gap-2">
             {asset.description && (
               <p className="mr-auto line-clamp-1 text-xs leading-relaxed text-muted-foreground">
