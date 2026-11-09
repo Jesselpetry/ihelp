@@ -150,15 +150,24 @@ export function TopicHeader({
   id,
   title,
   aside,
+  description,
 }: {
   id: string;
   title: string;
   aside?: ReactNode;
+  description?: ReactNode;
 }) {
   return (
-    <div id={id} className="mb-3 flex scroll-mt-24 items-end justify-between gap-3 border-b border-primary/25 pb-2">
-      <h2 className="text-lg font-semibold text-primary sm:text-xl">{title}</h2>
-      {aside}
+    <div id={id} className="mb-3 scroll-mt-24 border-b border-primary/25 pb-2">
+      <div className="flex items-end justify-between gap-3">
+        <h2 className="text-lg font-semibold text-primary sm:text-xl">{title}</h2>
+        {aside}
+      </div>
+      {description && (
+        <p className="mt-1 text-xs text-muted-foreground/85 leading-normal">
+          {description}
+        </p>
+      )}
     </div>
   );
 }

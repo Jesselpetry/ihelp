@@ -274,6 +274,11 @@ export function MfitWarRoomPortal({
               {locale === "th" ? "25 ข้อ · 5 เสาหลัก" : "25 Items · 5 Pillars"}
             </span>
           }
+          description={
+            locale === "th"
+              ? "จำลองจากสถิติข้อสอบจริง 2559–2561 (22–26 ข้อ) ข้อเขียน 100% คิดมือล้วน พร้อมเฉลยละเอียดและวิเคราะห์วิธีทำทีละขั้น"
+              : "Engineered from authentic past final exams (2016–2018), 100% manual calculation with full step-by-step working."
+          }
         />
 
         {/* Filter Pills */}
@@ -315,43 +320,36 @@ export function MfitWarRoomPortal({
         {/* Quiz launch card or runner */}
         {!quizStarted ? (
           <div
-            className={`group flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-3.5 py-3 transition-[box-shadow,background-color] hover:bg-primary/[0.03] hover:shadow-md dark:hover:bg-primary/10 border border-primary/25 ${SURFACE}`}
+            className={`group flex items-center justify-between gap-3 px-3.5 py-2.5 transition-[box-shadow,background-color] hover:bg-primary/[0.03] hover:shadow-md dark:hover:bg-primary/10 border border-primary/25 ${SURFACE}`}
           >
             <div className="flex items-center gap-3 min-w-0 flex-1">
               <span className="flex size-8.5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
                 <Target className="size-4" />
               </span>
-              <div className="flex min-w-0 flex-1 flex-col justify-center">
-                <div className="flex items-center gap-2">
-                  <span className="min-w-0 truncate text-xs sm:text-sm font-semibold text-foreground">
-                    {selectedPillar === "all"
-                      ? locale === "th"
-                        ? "ชุดข้อสอบจำลองเต็มรูปแบบ (25 ข้อ · ครบทุก 5 เสาหลัก)"
-                        : "Full Final Mock Exam (25 Items)"
-                      : t(
-                          MFIT_FINAL_PILLARS.find(
-                            (p) => p.pillar === selectedPillar,
-                          )?.name || { th: "", en: "" },
-                          locale,
-                        )}
-                  </span>
-                  <span className="rounded-full bg-primary/10 text-primary px-2 py-0.5 text-[10px] font-semibold shrink-0">
-                    {quizQuestions.length}{" "}
-                    {locale === "th" ? "ข้อสอบ" : "items"}
-                  </span>
-                </div>
-                <p className="truncate text-xs text-muted-foreground/80 mt-0.5">
-                  {locale === "th"
-                    ? "จำลองจากสถิติข้อสอบจริง 2559–2561 (22–26 ข้อ) ข้อเขียน 100% คิดมือล้วน พร้อมเฉลยละเอียดและวิเคราะห์วิธีทำทีละขั้น"
-                    : "Engineered from authentic past final exams (2016-2018), 100% manual calculation with full step-by-step working."}
-                </p>
+              <div className="flex min-w-0 flex-1 items-center gap-2">
+                <span className="min-w-0 truncate text-xs sm:text-sm font-semibold text-foreground">
+                  {selectedPillar === "all"
+                    ? locale === "th"
+                      ? "ชุดข้อสอบจำลองเต็มรูปแบบ (25 ข้อ · ครบทุก 5 เสาหลัก)"
+                      : "Full Final Mock Exam (25 Items)"
+                    : t(
+                        MFIT_FINAL_PILLARS.find(
+                          (p) => p.pillar === selectedPillar,
+                        )?.name || { th: "", en: "" },
+                        locale,
+                      )}
+                </span>
+                <span className="rounded-full bg-primary/10 text-primary px-2 py-0.5 text-[10px] font-semibold shrink-0">
+                  {quizQuestions.length}{" "}
+                  {locale === "th" ? "ข้อสอบ" : "items"}
+                </span>
               </div>
             </div>
 
             <Button
               size="sm"
               onClick={() => setQuizStarted(true)}
-              className="gap-1.5 bg-red-600 hover:bg-red-700 text-white font-bold shrink-0 self-end sm:self-auto rounded-xl text-xs"
+              className="gap-1.5 bg-red-600 hover:bg-red-700 text-white font-bold shrink-0 rounded-xl text-xs"
             >
               <Flame className="size-3.5" />
               <span>
