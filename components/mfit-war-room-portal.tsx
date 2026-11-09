@@ -29,139 +29,84 @@ import type { FenceWarRoomConfig } from "@/lib/docs/fences";
 
 interface PastPaperItem {
   id: string;
-  year: string;
   title: LText;
-  description: LText;
   fileName: string;
   pages: number;
-  points: string;
-  badge: LText;
   isSolution?: boolean;
 }
 
 const PAST_PAPERS: PastPaperItem[] = [
   {
     id: "mfit-final-pastpaper-2561",
-    year: "2561",
     title: {
-      th: "ข้อสอบปลายภาค MFIT ปีการศึกษา 2561 (ฉบับจริง 50 คะแนน)",
-      en: "Final Exam Paper 2018 / 2561 (50 Points)",
-    },
-    description: {
-      th: "ข้อสอบปลายภาคฉบับทางการชุดล่าสุดในคลัง แสดงโจทย์ข้อเขียนแสดงวิธีทำเต็มเล่ม 22 หน้า รวม 26 ข้อคำนวณ",
-      en: "Official final exam paper from 2018, 22 constructed-response pages covering 26 calculation problems.",
+      th: "ข้อสอบปลายภาค MFIT ปีการศึกษา 2561",
+      en: "Final Exam Paper 2018 / 2561",
     },
     fileName: "mfit-final-final-mathit-2561.pdf",
     pages: 22,
-    points: "50 คะแนน",
-    badge: { th: "ฉบับจริง", en: "Official" },
   },
   {
     id: "mfit-final-pastpaper-2560",
-    year: "2560",
     title: {
-      th: "ข้อสอบปลายภาค MFIT ปีการศึกษา 2560 (ฉบับจริง 40 คะแนน)",
-      en: "Final Exam Paper 2017 / 2560 (40 Points)",
-    },
-    description: {
-      th: "ข้อสอบจริงปี 2560 แสดงโจทย์ละเอียดพร้อมพื้นที่ว่างสำหรับเขียนแสดงวิธีทำ รวม 22 ข้อ",
-      en: "Official 2017 paper with fully laid-out calculation items and working space, 22 problems.",
+      th: "ข้อสอบปลายภาค MFIT ปีการศึกษา 2560",
+      en: "Final Exam Paper 2017 / 2560",
     },
     fileName: "mfit-final-2560.pdf",
     pages: 26,
-    points: "40 คะแนน",
-    badge: { th: "ฉบับจริง", en: "Official" },
   },
   {
     id: "mfit-final-pastpaper-2559",
-    year: "2559",
     title: {
-      th: "ข้อสอบปลายภาค MFIT ปีการศึกษา 2559 (ฉบับจริง 40 คะแนน)",
-      en: "Final Exam Paper 2016 / 2559 (40 Points)",
-    },
-    description: {
-      th: "ใบข้อสอบจริงปี 2559 รวม 25 ข้อคำนวณ ครอบคลุมทั้งลิมิต อนุพันธ์ ปริพันธ์ และพื้นที่ปริมาตร",
-      en: "Official 2016 paper containing 25 calculus problems covering limits, derivatives and integrals.",
+      th: "ข้อสอบปลายภาค MFIT ปีการศึกษา 2559",
+      en: "Final Exam Paper 2016 / 2559",
     },
     fileName: "mfit-final-final-mathit-2559.pdf",
     pages: 1,
-    points: "40 คะแนน",
-    badge: { th: "ฉบับจริง", en: "Official" },
-  },
-  {
-    id: "mfit-final-notelub",
-    year: "เฉลย",
-    title: {
-      th: "บันทึกเฉลยข้อสอบปลายภาค NoteLub (ลายมือเฉลยวิธีทำละเอียด)",
-      en: "NoteLub Final Worked Solution Key (Handwritten)",
-    },
-    description: {
-      th: "บันทึกเฉลยแสดงวิธีทำทีละบรรทัด พร้อมวิเคราะห์จุดที่อาจารย์ให้คะแนนและจุดที่ห้ามผิด",
-      en: "Step-by-step handwritten working solution key showing grading breakdown.",
-    },
-    fileName: "mfit-final-notelub.pdf",
-    pages: 3,
-    points: "เฉลยวิธีทำ",
-    badge: { th: "เฉลยลายมือ", en: "Worked Key" },
-    isSolution: true,
-  },
-  {
-    id: "mfit-final-vault-cdn",
-    year: "คลังกลาง",
-    title: {
-      th: "รวมชุดข้อสอบเก่าและแนวโจทย์ปลายภาค ฉบับคลังกลาง (19 หน้า)",
-      en: "Calculus Final Exam Archive Vault Collection (19 Pages)",
-    },
-    description: {
-      th: "เอกสารรวบรวมโจทย์ข้อสอบเก่าและแบบฝึกหัดทบทวนปลายภาคแคลคูลัส 19 หน้า สำหรับฝึกจับเวลา",
-      en: "19-page collection of past final problems and calculus review drills.",
-    },
-    fileName: "mfit-final-cdn-fbsbx-com.pdf",
-    pages: 19,
-    points: "ชุดรวม",
-    badge: { th: "คลังกลาง", en: "Archive Vault" },
   },
   {
     id: "mfit-final-pastpaper-2559-copy",
-    year: "2559",
     title: {
       th: "ข้อสอบปลายภาค MFIT ปีการศึกษา 2559 (ฉบับสำเนา)",
       en: "Final Exam Paper 2016 / 2559 (Copy)",
     },
-    description: {
-      th: "สำเนาแผ่นข้อสอบจริงปี 2559 ครบทุกพาร์ต",
-      en: "Copy of the 2016 final examination question sheet.",
-    },
     fileName: "mfit-final-copy-of-final-mathit-2559.pdf",
     pages: 1,
-    points: "40 คะแนน",
-    badge: { th: "สำเนา", en: "Copy" },
+  },
+  {
+    id: "mfit-final-notelub",
+    title: {
+      th: "บันทึกเฉลยข้อสอบปลายภาค NoteLub",
+      en: "NoteLub Final Worked Solution Key",
+    },
+    fileName: "mfit-final-notelub.pdf",
+    pages: 3,
+    isSolution: true,
   },
   {
     id: "mfit-final-vault-unidentified",
-    year: "ชุดฝึกซ้อม",
     title: {
-      th: "ชุดข้อสอบรวมปลายภาค MFIT (ชุดคละหัวข้อ 6 หน้า)",
-      en: "Final Exam Mixed Problem Set (6 Pages)",
-    },
-    description: {
-      th: "ชุดโจทย์คละหัวข้อแคลคูลัสปลายภาค 6 หน้า สำหรับฝึกประยุกต์และทดสอบความเร็ว",
-      en: "Six-page mixed calculus problem set for speed testing and technique review.",
+      th: "ชุดข้อสอบรวมปลายภาค MFIT (ชุดฝึกซ้อม)",
+      en: "Final Exam Mixed Drill Set",
     },
     fileName: "mfit-final-unidentified.pdf",
     pages: 6,
-    points: "ชุดฝึกซ้อม",
-    badge: { th: "ชุดฝึกซ้อม", en: "Drill Set" },
+  },
+  {
+    id: "mfit-final-vault-cdn",
+    title: {
+      th: "รวมชุดข้อสอบเก่าและแนวโจทย์ปลายภาค (คลังกลาง)",
+      en: "Calculus Final Exam Archive Vault Collection",
+    },
+    fileName: "mfit-final-cdn-fbsbx-com.pdf",
+    pages: 19,
   },
 ];
 
 interface FormulaSheetItem {
   id: string;
   title: LText;
-  description: LText;
   fileName: string;
   pages: number;
-  badge: LText;
   highlight?: boolean;
 }
 
@@ -169,17 +114,48 @@ const FORMULA_SHEETS: FormulaSheetItem[] = [
   {
     id: "mfit-useful-info-2569",
     title: {
-      th: "แผ่นสรุปข้อมูลและสูตรสำคัญ Calculus Useful Info (เทอม 1/2569)",
-      en: "Calculus Useful Information Sheet (Semester 1/2569)",
-    },
-    description: {
-      th: "เอกสารสรุปสูตรทางการของภาควิชาเทอมปัจจุบัน ระบุสูตรที่อนุญาตและขอบเขตในห้องสอบ",
-      en: "Official departmental formula sheet for this semester's final exam.",
+      th: "แผ่นสรุปข้อมูลและสูตรสำคัญ Useful Information (1/2569)",
+      en: "Calculus Useful Information Sheet (1/2569)",
     },
     fileName: "mfit-ref-calculus-useful-info-2569.pdf",
     pages: 1,
-    badge: { th: "ทางการ 1/2569", en: "Official 2569" },
     highlight: true,
+  },
+  {
+    id: "mfit-cheat-sheet-2023",
+    title: {
+      th: "ชีทสรุปสูตรปลายภาค (ฉบับปี 2023)",
+      en: "Final Exam Formula Sheet (2023)",
+    },
+    fileName: "mfit-sheet-cheat-sheet-2023.pdf",
+    pages: 1,
+  },
+  {
+    id: "mfit-cheat-sheet-2022",
+    title: {
+      th: "ชีทสรุปสูตรปลายภาค (ฉบับปี 2022)",
+      en: "Final Exam Formula Sheet (2022)",
+    },
+    fileName: "mfit-sheet-cheat-sheet-2022.pdf",
+    pages: 3,
+  },
+  {
+    id: "mfit-recap-calculus",
+    title: {
+      th: "ชีทสรุปสูตรแคลคูลัส อนุพันธ์ และปริพันธ์",
+      en: "Calculus Differentiation & Integration Recap",
+    },
+    fileName: "mfit-sheet-recap-calculus.pdf",
+    pages: 6,
+  },
+  {
+    id: "mfit-final-recap-week08-13",
+    title: {
+      th: "ชีทติวเข้มและสรุปเนื้อหาทบทวนปลายภาค สัปดาห์ที่ 8–13",
+      en: "Final Exam Intensive Recap Weeks 08–13",
+    },
+    fileName: "mfit-sheet-final-recap-week08-13.pdf",
+    pages: 19,
   },
   {
     id: "mfit-holyshit-final-part1",
@@ -187,74 +163,15 @@ const FORMULA_SHEETS: FormulaSheetItem[] = [
       th: "ชีตสรุปเตรียมสอบแคลคูลัส Holy Shit Final Part 1",
       en: "Calculus Holy Shit Final Part 1 Cheatsheet",
     },
-    description: {
-      th: "สรุปสูตร เทคนิควิเคราะห์โจทย์ และตัวอย่างข้อสอบแคลคูลัสครึ่งหลัง (21 หน้า) จัดทำโดย แบงค์ ธรรมดล (IT24)",
-      en: "Comprehensive calculus final review, shortcuts and worked walkthroughs (21 pages) by Tammadon Suksa (IT24).",
-    },
     fileName: "mfit-sheet-holyshit-final-part1.pdf",
     pages: 21,
-    badge: { th: "21 หน้า", en: "21 Pages" },
     highlight: true,
-  },
-  {
-    id: "mfit-final-recap-week08-13",
-    title: {
-      th: "ชีทติวเข้มและสรุปเนื้อหาทบทวนปลายภาค สัปดาห์ 8–13",
-      en: "Final Exam Intensive Recap Weeks 08–13",
-    },
-    description: {
-      th: "เอกสารติวทบทวนเนื้อหาและโจทย์สำคัญ สัปดาห์ที่ 8 ถึง 13 (ลิมิต อนุพันธ์ ปริพันธ์) รวม 19 หน้า",
-      en: "19-page intensive review deck covering weeks 8 through 13.",
-    },
-    fileName: "mfit-sheet-final-recap-week08-13.pdf",
-    pages: 19,
-    badge: { th: "W08–13", en: "W08-13" },
-  },
-  {
-    id: "mfit-recap-calculus",
-    title: {
-      th: "ชีทสรุปสูตรแคลคูลัส อนุพันธ์ และปริพันธ์ (Diff & Int Recap)",
-      en: "Calculus Differentiation & Integration Formula Recap",
-    },
-    description: {
-      th: "แผ่นพับสรุปสูตรอนุพันธ์และปริพันธ์ทุกสูตร จัดหมวดหมู่อ่านง่าย 6 หน้า",
-      en: "Six-page quick reference sheet for all differentiation and integration rules.",
-    },
-    fileName: "mfit-sheet-recap-calculus.pdf",
-    pages: 6,
-    badge: { th: "สูตรครบ", en: "Formulas" },
-  },
-  {
-    id: "mfit-cheat-sheet-2023",
-    title: {
-      th: "ชีทสรุปสูตรปลายภาค ฉบับปี 2023",
-      en: "Final Exam Formula Sheet (2023 Edition)",
-    },
-    description: {
-      th: "สรุปสูตรแคลคูลัสกระชับฉบับพกพา 1 หน้า",
-      en: "Single-page ultra-compact calculus formula cheat sheet.",
-    },
-    fileName: "mfit-sheet-cheat-sheet-2023.pdf",
-    pages: 1,
-    badge: { th: "ปี 2023", en: "2023" },
-  },
-  {
-    id: "mfit-cheat-sheet-2022",
-    title: {
-      th: "ชีทสรุปสูตรปลายภาค ฉบับปี 2022",
-      en: "Final Exam Formula Sheet (2022 Edition)",
-    },
-    description: {
-      th: "สรุปสูตรและข้อควรจำแคลคูลัส 3 หน้า",
-      en: "Three-page reference guide and calculus reminders.",
-    },
-    fileName: "mfit-sheet-cheat-sheet-2022.pdf",
-    pages: 3,
-    badge: { th: "ปี 2022", en: "2022" },
   },
 ];
 
-export function MfitWarRoomPortal({ config }: { config?: FenceWarRoomConfig } = {}) {
+export function MfitWarRoomPortal({
+  config,
+}: { config?: FenceWarRoomConfig } = {}) {
   void config;
   const { locale } = useLocale();
   const [selectedPillar, setSelectedPillar] = useState<number | "all">("all");
@@ -284,17 +201,30 @@ export function MfitWarRoomPortal({ config }: { config?: FenceWarRoomConfig } = 
     if (selectedPillar === "all") return MFIT_FINAL_MOCK_EXAM;
     const chapterSet = new Set<number>();
     if (selectedPillar === 1) chapterSet.add(8);
-    else if (selectedPillar === 2) { chapterSet.add(9); chapterSet.add(10); }
-    else if (selectedPillar === 3) chapterSet.add(11);
-    else if (selectedPillar === 4) { chapterSet.add(12); chapterSet.add(13); }
-    else if (selectedPillar === 5) { chapterSet.add(14); chapterSet.add(15); }
+    else if (selectedPillar === 2) {
+      chapterSet.add(9);
+      chapterSet.add(10);
+    } else if (selectedPillar === 3) chapterSet.add(11);
+    else if (selectedPillar === 4) {
+      chapterSet.add(12);
+      chapterSet.add(13);
+    } else if (selectedPillar === 5) {
+      chapterSet.add(14);
+      chapterSet.add(15);
+    }
 
-    return MFIT_FINAL_MOCK_EXAM.filter((q) => q.chapter !== undefined && chapterSet.has(q.chapter));
+    return MFIT_FINAL_MOCK_EXAM.filter(
+      (q) => q.chapter !== undefined && chapterSet.has(q.chapter),
+    );
   }, [selectedPillar]);
 
-  function openPreviewForFile(fileName: string, title: LText, description?: LText) {
+  function openPreviewForFile(
+    fileName: string,
+    title: LText,
+    description?: LText,
+  ) {
     const found = remoteAssets.find(
-      (a) => a.fileName === fileName || a.url?.includes(fileName)
+      (a) => a.fileName === fileName || a.url?.includes(fileName),
     );
 
     const fallbackAsset: SubjectAsset = {
@@ -340,7 +270,11 @@ export function MfitWarRoomPortal({ config }: { config?: FenceWarRoomConfig } = 
       <section className="space-y-3 pt-2" id="mock-exam">
         <TopicHeader
           id="mock-exam-header"
-          title={locale === "th" ? "ข้อสอบจำลองปลายภาค 25 ข้อ (Final Mock Exam)" : "Final Mock Exam Simulator"}
+          title={
+            locale === "th"
+              ? "ข้อสอบจำลองปลายภาค 25 ข้อ (Final Mock Exam)"
+              : "Final Mock Exam Simulator"
+          }
           aside={
             <span className="rounded-full bg-primary/10 border border-primary/25 px-2.5 py-0.5 text-xs font-medium text-primary">
               {locale === "th" ? "25 ข้อ · 5 เสาหลัก" : "25 Items · 5 Pillars"}
@@ -359,7 +293,10 @@ export function MfitWarRoomPortal({ config }: { config?: FenceWarRoomConfig } = 
                 : "bg-muted/60 text-muted-foreground hover:bg-muted hover:text-foreground"
             }`}
           >
-            🚀 {locale === "th" ? "ข้อสอบจำลองเต็มชุด (25 ข้อ)" : "Full Mock Exam (25 Items)"}
+            🚀{" "}
+            {locale === "th"
+              ? "ข้อสอบจำลองเต็มชุด (25 ข้อ)"
+              : "Full Mock Exam (25 Items)"}
           </button>
           {MFIT_FINAL_PILLARS.map((p) => {
             const active = selectedPillar === p.pillar;
@@ -374,7 +311,8 @@ export function MfitWarRoomPortal({ config }: { config?: FenceWarRoomConfig } = 
                     : "bg-muted/60 text-muted-foreground hover:bg-muted hover:text-foreground"
                 }`}
               >
-                {t(p.name, locale)} ({p.questionCount} {locale === "th" ? "ข้อ" : "items"})
+                {t(p.name, locale)} ({p.questionCount}{" "}
+                {locale === "th" ? "ข้อ" : "items"})
               </button>
             );
           })}
@@ -393,11 +331,19 @@ export function MfitWarRoomPortal({ config }: { config?: FenceWarRoomConfig } = 
                 <div className="flex items-center gap-2">
                   <span className="min-w-0 truncate text-xs sm:text-sm font-semibold text-foreground">
                     {selectedPillar === "all"
-                      ? (locale === "th" ? "ชุดข้อสอบจำลองเต็มรูปแบบ (25 ข้อ · ครบทุก 5 เสาหลัก)" : "Full Final Mock Exam (25 Items)")
-                      : t(MFIT_FINAL_PILLARS.find((p) => p.pillar === selectedPillar)?.name || { th: "", en: "" }, locale)}
+                      ? locale === "th"
+                        ? "ชุดข้อสอบจำลองเต็มรูปแบบ (25 ข้อ · ครบทุก 5 เสาหลัก)"
+                        : "Full Final Mock Exam (25 Items)"
+                      : t(
+                          MFIT_FINAL_PILLARS.find(
+                            (p) => p.pillar === selectedPillar,
+                          )?.name || { th: "", en: "" },
+                          locale,
+                        )}
                   </span>
                   <span className="rounded-full bg-primary/10 text-primary px-2 py-0.5 text-[10px] font-semibold shrink-0">
-                    {quizQuestions.length} {locale === "th" ? "ข้อสอบ" : "items"}
+                    {quizQuestions.length}{" "}
+                    {locale === "th" ? "ข้อสอบ" : "items"}
                   </span>
                 </div>
                 <p className="truncate text-xs text-muted-foreground/80 mt-0.5">
@@ -414,7 +360,11 @@ export function MfitWarRoomPortal({ config }: { config?: FenceWarRoomConfig } = 
               className="gap-1.5 bg-red-600 hover:bg-red-700 text-white font-bold shrink-0 self-end sm:self-auto rounded-xl text-xs"
             >
               <Flame className="size-3.5" />
-              <span>{locale === "th" ? `เริ่มทำข้อสอบ (${quizQuestions.length} ข้อ)` : `Start Quiz (${quizQuestions.length})`}</span>
+              <span>
+                {locale === "th"
+                  ? `เริ่มทำข้อสอบ (${quizQuestions.length} ข้อ)`
+                  : `Start Quiz (${quizQuestions.length})`}
+              </span>
             </Button>
           </div>
         ) : (
@@ -427,12 +377,23 @@ export function MfitWarRoomPortal({ config }: { config?: FenceWarRoomConfig } = 
                 className="gap-1.5 text-xs text-muted-foreground hover:text-foreground"
               >
                 <RotateCcw className="size-3.5" />
-                <span>{locale === "th" ? "← ย้อนกลับ / เปลี่ยนโหมด" : "← Back / Change Topic"}</span>
+                <span>
+                  {locale === "th"
+                    ? "← ย้อนกลับ / เปลี่ยนโหมด"
+                    : "← Back / Change Topic"}
+                </span>
               </Button>
               <span className="text-xs font-medium text-muted-foreground">
                 {selectedPillar === "all"
-                  ? (locale === "th" ? "ข้อสอบจำลองเต็มชุด (25 ข้อ)" : "Full Mock Exam (25 items)")
-                  : t(MFIT_FINAL_PILLARS.find((p) => p.pillar === selectedPillar)?.name || { th: "", en: "" }, locale)}
+                  ? locale === "th"
+                    ? "ข้อสอบจำลองเต็มชุด (25 ข้อ)"
+                    : "Full Mock Exam (25 items)"
+                  : t(
+                      MFIT_FINAL_PILLARS.find(
+                        (p) => p.pillar === selectedPillar,
+                      )?.name || { th: "", en: "" },
+                      locale,
+                    )}
               </span>
             </div>
 
@@ -455,7 +416,11 @@ export function MfitWarRoomPortal({ config }: { config?: FenceWarRoomConfig } = 
       <section className="space-y-2.5 pt-4" id="past-papers">
         <TopicHeader
           id="past-papers-header"
-          title={locale === "th" ? "คลังข้อสอบเก่าฉบับจริง (Past Papers Vault)" : "Authentic Past Papers Vault"}
+          title={
+            locale === "th"
+              ? "คลังข้อสอบเก่าฉบับจริง (Past Papers Vault)"
+              : "Authentic Past Papers Vault"
+          }
           aside={
             <span className="rounded-full bg-primary/10 border border-primary/25 px-2.5 py-0.5 text-xs font-medium text-primary">
               {locale === "th" ? "7 ชุดในคลัง" : "7 Papers in Vault"}
@@ -466,9 +431,13 @@ export function MfitWarRoomPortal({ config }: { config?: FenceWarRoomConfig } = 
         <div className="flex flex-col gap-2">
           {PAST_PAPERS.map((paper) => {
             const remoteAsset = remoteAssets.find(
-              (a) => a.fileName === paper.fileName || a.url?.includes(paper.fileName)
+              (a) =>
+                a.fileName === paper.fileName ||
+                a.url?.includes(paper.fileName),
             );
-            const downloadUrl = remoteAsset?.url || `/assets/it-kmitl/mfit/exams/${paper.fileName}`;
+            const downloadUrl =
+              remoteAsset?.url ||
+              `/assets/it-kmitl/mfit/exams/${paper.fileName}`;
 
             return (
               <div
@@ -490,30 +459,20 @@ export function MfitWarRoomPortal({ config }: { config?: FenceWarRoomConfig } = 
                     )}
                   </span>
 
-                  <div className="flex min-w-0 flex-1 flex-col justify-center">
-                    <div className="flex items-center gap-2">
-                      <span className="min-w-0 truncate text-xs sm:text-sm font-medium text-foreground">
-                        {t(paper.title, locale)}
-                      </span>
-                      <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-medium text-muted-foreground shrink-0 hidden sm:inline-block">
-                        {paper.year}
-                      </span>
-                    </div>
-                    {paper.description && (
-                      <p className="truncate text-xs text-muted-foreground/80 mt-0.5">
-                        {t(paper.description, locale)}
-                      </p>
-                    )}
-                  </div>
+                  <span className="min-w-0 truncate text-xs sm:text-sm font-medium text-foreground">
+                    {t(paper.title, locale)}
+                  </span>
                 </div>
 
-                <div className="flex items-center gap-2 shrink-0">
-                  <span className="hidden md:block text-xs tabular-nums text-muted-foreground">
-                    {paper.pages} {locale === "th" ? "หน้า" : "pages"}
-                  </span>
+                <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
                   <button
                     type="button"
-                    onClick={() => openPreviewForFile(paper.fileName, paper.title, paper.description)}
+                    onClick={() =>
+                      openPreviewForFile(
+                        paper.fileName,
+                        paper.title,
+                      )
+                    }
                     className="inline-flex items-center gap-1 text-xs font-semibold text-primary hover:text-primary/80 px-2.5 py-1 rounded-lg hover:bg-primary/10 transition-colors"
                   >
                     <Eye className="size-3.5" />
@@ -540,7 +499,11 @@ export function MfitWarRoomPortal({ config }: { config?: FenceWarRoomConfig } = 
       <section className="space-y-2.5 pt-4" id="formula-sheets">
         <TopicHeader
           id="formula-sheets-header"
-          title={locale === "th" ? "ชีทสรุปสูตร & เอกสารทางการ (Official Formula Sheets)" : "Official Formula Sheets"}
+          title={
+            locale === "th"
+              ? "ชีทสรุปสูตร & เอกสารทางการ (Official Formula Sheets)"
+              : "Official Formula Sheets"
+          }
           aside={
             <span className="rounded-full bg-yellow-500/10 border border-yellow-500/25 px-2.5 py-0.5 text-xs font-medium text-yellow-600 dark:text-yellow-400">
               {locale === "th" ? "6 ฉบับสรุป" : "6 Cheatsheets"}
@@ -551,9 +514,13 @@ export function MfitWarRoomPortal({ config }: { config?: FenceWarRoomConfig } = 
         <div className="flex flex-col gap-2">
           {FORMULA_SHEETS.map((sheet) => {
             const remoteAsset = remoteAssets.find(
-              (a) => a.fileName === sheet.fileName || a.url?.includes(sheet.fileName)
+              (a) =>
+                a.fileName === sheet.fileName ||
+                a.url?.includes(sheet.fileName),
             );
-            const downloadUrl = remoteAsset?.url || `/assets/it-kmitl/mfit/sheets/${sheet.fileName}`;
+            const downloadUrl =
+              remoteAsset?.url ||
+              `/assets/it-kmitl/mfit/sheets/${sheet.fileName}`;
 
             return (
               <div
@@ -575,30 +542,20 @@ export function MfitWarRoomPortal({ config }: { config?: FenceWarRoomConfig } = 
                     <BookOpen className="size-4" />
                   </span>
 
-                  <div className="flex min-w-0 flex-1 flex-col justify-center">
-                    <div className="flex items-center gap-2">
-                      <span className="min-w-0 truncate text-xs sm:text-sm font-medium text-foreground">
-                        {t(sheet.title, locale)}
-                      </span>
-                      <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-medium text-muted-foreground shrink-0 hidden sm:inline-block">
-                        {t(sheet.badge, locale)}
-                      </span>
-                    </div>
-                    {sheet.description && (
-                      <p className="truncate text-xs text-muted-foreground/80 mt-0.5">
-                        {t(sheet.description, locale)}
-                      </p>
-                    )}
-                  </div>
+                  <span className="min-w-0 truncate text-xs sm:text-sm font-medium text-foreground">
+                    {t(sheet.title, locale)}
+                  </span>
                 </div>
 
-                <div className="flex items-center gap-2 shrink-0">
-                  <span className="hidden md:block text-xs tabular-nums text-muted-foreground">
-                    {sheet.pages} {locale === "th" ? "หน้า" : "pages"}
-                  </span>
+                <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
                   <button
                     type="button"
-                    onClick={() => openPreviewForFile(sheet.fileName, sheet.title, sheet.description)}
+                    onClick={() =>
+                      openPreviewForFile(
+                        sheet.fileName,
+                        sheet.title,
+                      )
+                    }
                     className="inline-flex items-center gap-1 text-xs font-semibold text-primary hover:text-primary/80 px-2.5 py-1 rounded-lg hover:bg-primary/10 transition-colors"
                   >
                     <Eye className="size-3.5" />
@@ -625,10 +582,16 @@ export function MfitWarRoomPortal({ config }: { config?: FenceWarRoomConfig } = 
       <section className="pt-6" id="study-guide">
         <TopicHeader
           id="study-guide-header"
-          title={locale === "th" ? "ยุทธศาสตร์และคู่มือสรุปวิธีทำโจทย์แคลคูลัส (Deep Study Guide)" : "Deep Study Guide & Strategy"}
+          title={
+            locale === "th"
+              ? "ยุทธศาสตร์และคู่มือสรุปวิธีทำโจทย์แคลคูลัส (Deep Study Guide)"
+              : "Deep Study Guide & Strategy"
+          }
           aside={
             <span className="rounded-full bg-primary/10 border border-primary/25 px-2.5 py-0.5 text-xs font-medium text-primary">
-              {locale === "th" ? "แคลคูลัส Week 08–15 · 35 คะแนน" : "Calculus W08-15 · 35 Pts"}
+              {locale === "th"
+                ? "แคลคูลัส Week 08–15 · 35 คะแนน"
+                : "Calculus W08-15 · 35 Pts"}
             </span>
           }
         />
