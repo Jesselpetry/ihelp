@@ -269,7 +269,7 @@ export function ModuleReader({
 
   return (
     <>
-      <main className={`mx-auto ${isWarRoom ? "max-w-5xl xl:max-w-6xl" : "max-w-6xl xl:max-w-7xl"} px-3 sm:px-6 py-5 sm:py-8 w-full`}>
+      <main className="mx-auto max-w-5xl xl:max-w-6xl px-3 sm:px-6 py-5 sm:py-8 w-full">
       <div className="mb-4 sm:mb-6 flex items-center justify-between gap-2 sm:gap-3 text-xs sm:text-sm">
         <Link
           href={backHref}
@@ -460,7 +460,7 @@ export function ModuleReader({
               onToggleCollapse={() => setIsTocCollapsed(!isTocCollapsed)}
             />
 
-            <div className={`min-w-0 space-y-6 ${isWarRoom ? "max-w-3xl xl:max-w-4xl mx-auto w-full" : ""}`}>
+            <div className="min-w-0 space-y-6 max-w-3xl xl:max-w-4xl mx-auto w-full">
               {isWarRoom && <MfitWarRoomPortal />}
 
               <article className="min-w-0 overflow-hidden rounded-3xl border bg-card p-4 sm:p-7 xl:p-8 shadow-sm">

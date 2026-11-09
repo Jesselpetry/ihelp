@@ -58,7 +58,7 @@ export function LibraryReader({
   }, [index]);
 
   return (
-    <main className="max-w-6xl xl:max-w-7xl mx-auto px-4 sm:px-6 py-8 w-full">
+    <main className="max-w-5xl xl:max-w-6xl mx-auto px-4 sm:px-6 py-8 w-full">
       <div className="mb-4 flex items-center justify-between text-sm">
         <Link
           href="/library"
@@ -93,7 +93,7 @@ export function LibraryReader({
           onToggleCollapse={() => setIsTocCollapsed(!isTocCollapsed)}
         />
 
-        <article className="min-w-0 bg-card rounded-3xl border shadow-sm px-6 sm:px-10 py-10">
+        <article className="min-w-0 max-w-3xl xl:max-w-4xl mx-auto w-full bg-card rounded-3xl border shadow-sm px-6 sm:px-10 py-10">
           <p className="text-xs font-semibold text-primary uppercase tracking-widest mb-1">
             {t(sectionTitle, locale)}
           </p>
