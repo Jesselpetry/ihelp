@@ -16,15 +16,21 @@ export function CourseExamMilestone({ milestone }: CourseExamMilestoneProps) {
   const isFinal = milestone.scope === "final";
   const headerId = isMidterm ? "milestone-midterm" : "milestone-final";
 
+  const defaultBadgeText = isMidterm
+    ? locale === "th"
+      ? "ขอบเขตกลางภาค"
+      : "Midterm Scope"
+    : locale === "th"
+      ? "ขอบเขตปลายภาค"
+      : "Final Scope";
+
+  const badgeText = milestone.scopeBadge
+    ? t(milestone.scopeBadge, locale)
+    : defaultBadgeText;
+
   const aside = (
-    <span className="rounded-full bg-primary/10 border border-primary/25 px-2.5 py-0.5 text-xs font-medium text-primary">
-      {isMidterm
-        ? locale === "th"
-          ? "ขอบเขตกลางภาค"
-          : "Midterm Scope"
-        : locale === "th"
-          ? "ขอบเขตปลายภาค"
-          : "Final Scope"}
+    <span className="shrink-0 rounded-full bg-primary/10 border border-primary/25 px-2.5 py-0.5 text-xs font-medium text-primary">
+      {badgeText}
     </span>
   );
 

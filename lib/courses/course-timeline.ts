@@ -313,6 +313,9 @@ export function resolveCourseTimeline(
     scope: "midterm",
     title: L.midtermTitle,
     subtitle: L.midtermSubtitle,
+    scopeBadge: code === "MFIT"
+      ? { th: "พีชคณิตเชิงเส้น Week 01–07 · 35 คะแนน", en: "Linear Algebra W01–07 · 35 Pts" }
+      : undefined,
     studyGuide: {
       title: L.midtermGuideTitle,
       subtitle: L.midtermGuideSub,
@@ -340,6 +343,9 @@ export function resolveCourseTimeline(
     scope: "final",
     title: L.finalTitle,
     subtitle: L.finalSubtitle,
+    scopeBadge: code === "MFIT"
+      ? { th: "แคลคูลัส Week 08–15 · 35 คะแนน", en: "Calculus W08–15 · 35 Pts" }
+      : undefined,
     studyGuide: {
       title: code === "MFIT"
         ? { th: "สอบปลายภาค", en: "Final Examination" }

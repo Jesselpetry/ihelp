@@ -160,7 +160,7 @@ export function TopicHeader({
     <div id={id} className="mb-3 scroll-mt-24 border-b border-primary/25 pb-2">
       <div className="flex items-end justify-between gap-3">
         <h2 className="text-lg font-semibold text-primary sm:text-xl">{title}</h2>
-        {aside}
+        {aside && <div className="shrink-0">{aside}</div>}
       </div>
       {description && (
         <p className="mt-1 text-xs text-muted-foreground/85 leading-normal">

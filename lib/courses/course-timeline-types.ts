@@ -31,6 +31,7 @@ export interface CourseExamMilestoneData {
   scope: AssetScope;
   title: LText;
   subtitle: LText;
+  scopeBadge?: LText;
   studyGuide?: CourseMilestoneCardAction;
   mockExam?: CourseMilestoneCardAction;
 }

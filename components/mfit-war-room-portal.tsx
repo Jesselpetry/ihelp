@@ -522,7 +522,7 @@ export function MfitWarRoomPortal({
             <span className="rounded-full bg-primary/10 border border-primary/25 px-2.5 py-0.5 text-xs font-medium text-primary">
               {locale === "th"
                 ? "แคลคูลัส Week 08–15 · 35 คะแนน"
-                : "Calculus W08-15 · 35 Pts"}
+                : "Calculus W08–15 · 35 Pts"}
             </span>
           }
         />
