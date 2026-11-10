@@ -3,16 +3,12 @@ import type { LText } from "@/lib/i18n";
 export interface MfitPillarCheatSheet {
   pillar: number;
   name: LText;
-  subtitle: LText;
-  badge: LText;
   status: "available" | "coming_soon";
-  chapterRange: string;
-  pointsEst: string;
-  questionCount: number;
+  badge?: LText;
   markdown?: string;
 }
 
-export const MFIT_PILLAR_1_MARKDOWN = `### 📌 Cheat Sheet: คัมภีร์แก้โจทย์ลิมิตและความต่อเนื่อง (แคลคูลัส)
+export const MFIT_PILLAR_1_MARKDOWN = `### Cheat Sheet: คัมภีร์แก้โจทย์ลิมิตและความต่อเนื่อง (แคลคูลัส)
 
 > สรุปสเต็ปการทำโจทย์ลิมิต **6 ประเภท** ที่ออกสอบไฟนอลแน่นอน ท่อง 4 สเต็ปนี้ไว้ ทำข้อสอบได้ชัวร์!
 
@@ -100,18 +96,7 @@ export const MFIT_PILLAR_CHEATSHEETS: MfitPillarCheatSheet[] = [
       th: "เสาที่ 1: ลิมิตและความต่อเนื่อง (Limits & Continuity)",
       en: "Pillar 1: Limits & Continuity",
     },
-    subtitle: {
-      th: "Week 08 (Calc-01) · สรุป 6 รูปแบบโจทย์ลิมิต ท่อง 4 สเต็ปทำข้อสอบได้ชัวร์",
-      en: "Week 08 (Calc-01) · 6 Exam Problem Types with 4-Step Working Templates",
-    },
-    badge: {
-      th: "พร้อมอ่าน (6 รูปแบบ)",
-      en: "Ready (6 Types)",
-    },
     status: "available",
-    chapterRange: "Week 08 (Calc-01)",
-    pointsEst: "~4–5 คะแนน",
-    questionCount: 5,
     markdown: MFIT_PILLAR_1_MARKDOWN,
   },
   {
@@ -120,18 +105,11 @@ export const MFIT_PILLAR_CHEATSHEETS: MfitPillarCheatSheet[] = [
       th: "เสาที่ 2: อนุพันธ์, กฎลูกโซ่ และฟังก์ชันแฝง",
       en: "Pillar 2: Derivatives, Chain Rule & Implicit",
     },
-    subtitle: {
-      th: "Week 09–10 (Calc-02, 03) · นิยามลิมิต Δx, ผลคูณ/ผลหาร, Implicit Differentiation",
-      en: "Week 09–10 (Calc-02, 03) · Limit definition, Product/Quotient rules, Implicit diff",
-    },
     badge: {
-      th: "เร็วๆ นี้",
+      th: "Coming Soon",
       en: "Coming Soon",
     },
     status: "coming_soon",
-    chapterRange: "Week 09–10 (Calc-02, 03)",
-    pointsEst: "~6–8 คะแนน",
-    questionCount: 5,
   },
   {
     pillar: 3,
@@ -139,18 +117,11 @@ export const MFIT_PILLAR_CHEATSHEETS: MfitPillarCheatSheet[] = [
       th: "เสาที่ 3: การประยุกต์อนุพันธ์ & ปัญหาค่าสุดขีด",
       en: "Pillar 3: Optimization & Extrema",
     },
-    subtitle: {
-      th: "Week 11 (Calc-04) · จุดวิกฤต, ตรวจสอบ f''(x), สเต็ปการสร้างสมการ Optimization",
-      en: "Week 11 (Calc-04) · Critical points, 2nd derivative test, Optimization protocol",
-    },
     badge: {
-      th: "เร็วๆ นี้",
+      th: "Coming Soon",
       en: "Coming Soon",
     },
     status: "coming_soon",
-    chapterRange: "Week 11 (Calc-04)",
-    pointsEst: "~7–8 คะแนน",
-    questionCount: 5,
   },
   {
     pillar: 4,
@@ -158,18 +129,11 @@ export const MFIT_PILLAR_CHEATSHEETS: MfitPillarCheatSheet[] = [
       th: "เสาที่ 4: ปริพันธ์, FTC และ u-Substitution",
       en: "Pillar 4: Indefinite/Definite Integrals & u-Sub",
     },
-    subtitle: {
-      th: "Week 12–13 (Calc-05, 06) · ทฤษฎีบทหลักมูล (FTC), กฎการเปลี่ยนขอบเขต u-sub, ฟังก์ชันคู่/คี่",
-      en: "Week 12–13 (Calc-05, 06) · FTC, u-sub with boundary change, Even/Odd symmetry",
-    },
     badge: {
-      th: "เร็วๆ นี้",
+      th: "Coming Soon",
       en: "Coming Soon",
     },
     status: "coming_soon",
-    chapterRange: "Week 12–13 (Calc-05, 06)",
-    pointsEst: "~7–8 คะแนน",
-    questionCount: 5,
   },
   {
     pillar: 5,
@@ -177,17 +141,10 @@ export const MFIT_PILLAR_CHEATSHEETS: MfitPillarCheatSheet[] = [
       th: "เสาที่ 5: By Parts, พื้นที่ & ปริมาตรทรงตันหมุน",
       en: "Pillar 5: By Parts, Area & Solids of Revolution",
     },
-    subtitle: {
-      th: "Week 14–15 (Calc-07, 08) · กฎ LIATE, ตาราง DI ลัด, Disk vs Washer Method",
-      en: "Week 14–15 (Calc-07, 08) · LIATE, DI table, Disk vs Washer Method",
-    },
     badge: {
-      th: "เร็วๆ นี้",
+      th: "Coming Soon",
       en: "Coming Soon",
     },
     status: "coming_soon",
-    chapterRange: "Week 14–15 (Calc-07, 08)",
-    pointsEst: "~7–8 คะแนน",
-    questionCount: 5,
   },
 ];

@@ -10,7 +10,6 @@ import {
   FileText,
   Flame,
   RotateCcw,
-  Sparkles,
   Target,
 } from "lucide-react";
 
@@ -722,19 +721,9 @@ export function MfitWarRoomPortal({
               : "5 Pillars Step-by-Step Cheat Sheets"
           }
           aside={
-            <div className="flex items-center gap-1.5 sm:gap-2">
-              <span className="rounded-full bg-emerald-500/10 border border-emerald-500/25 px-2.5 py-0.5 text-xs font-medium text-emerald-600 dark:text-emerald-400">
-                {locale === "th" ? "เสาที่ 1 พร้อมอ่าน" : "Pillar 1 Ready"}
-              </span>
-              <span className="rounded-full bg-primary/10 border border-primary/25 px-2.5 py-0.5 text-xs font-medium text-primary">
-                {locale === "th" ? "5 เสาหลัก" : "5 Pillars"}
-              </span>
-            </div>
-          }
-          description={
-            locale === "th"
-              ? "สรุปสเต็ปและเทคนิคการแก้โจทย์แต่ละประเภททีละขั้น (Step-by-Step) เพื่อใช้เตรียมตัวและทบทวนก่อนเข้าห้องสอบ"
-              : "Step-by-step problem-solving templates and tactics across all 5 calculus pillars."
+            <span className="rounded-full bg-primary/10 border border-primary/25 px-2.5 py-0.5 text-xs font-medium text-primary">
+              {locale === "th" ? "5 เสาหลัก" : "5 Pillars"}
+            </span>
           }
         />
 
@@ -766,26 +755,15 @@ export function MfitWarRoomPortal({
                     >
                       {item.pillar}
                     </span>
-                    <div className="min-w-0 flex-1">
-                      <div className="flex items-center gap-2 flex-wrap">
-                        <span className="text-xs sm:text-sm font-semibold text-foreground">
-                          {t(item.name, locale)}
+                    <div className="flex items-center gap-2 flex-wrap min-w-0">
+                      <span className="text-xs sm:text-sm font-semibold text-foreground">
+                        {t(item.name, locale)}
+                      </span>
+                      {item.badge && (
+                        <span className="rounded-full px-2 py-0.5 text-[10px] font-semibold bg-muted text-muted-foreground border border-border/40">
+                          {t(item.badge, locale)}
                         </span>
-                        {item.badge && (
-                          <span
-                            className={`rounded-full px-2 py-0.5 text-[10px] font-semibold ${
-                              item.status === "available"
-                                ? "bg-emerald-500/10 border border-emerald-500/25 text-emerald-600 dark:text-emerald-400"
-                                : "bg-muted text-muted-foreground border border-border/40"
-                            }`}
-                          >
-                            {t(item.badge, locale)}
-                          </span>
-                        )}
-                      </div>
-                      <p className="text-[11px] sm:text-xs text-muted-foreground truncate mt-0.5">
-                        {t(item.subtitle, locale)}
-                      </p>
+                      )}
                     </div>
                   </div>
                   <div className="flex items-center gap-2 shrink-0">
@@ -802,14 +780,11 @@ export function MfitWarRoomPortal({
                     {item.status === "available" && item.markdown ? (
                       <div className="space-y-4">
                         <div className="flex items-center justify-between gap-2 pb-2.5 border-b border-border/40">
-                          <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                            <Sparkles className="size-3.5 text-primary shrink-0" />
-                            <span>
-                              {locale === "th"
-                                ? "คัมภีร์สรุป 4 สเต็ป 6 รูปแบบข้อสอบ (แคลคูลัส)"
-                                : "4-Step Working Guide across 6 Problem Types"}
-                            </span>
-                          </div>
+                          <span className="text-xs text-muted-foreground font-medium">
+                            {locale === "th"
+                              ? "คัมภีร์สรุป 4 สเต็ป 6 รูปแบบข้อสอบ (แคลคูลัส)"
+                              : "4-Step Working Guide across 6 Problem Types"}
+                          </span>
                           <Button
                             variant="ghost"
                             size="sm"
@@ -837,39 +812,8 @@ export function MfitWarRoomPortal({
                         </article>
                       </div>
                     ) : (
-                      <div className="py-6 sm:py-8 text-center">
-                        <div className="mx-auto flex size-10 items-center justify-center rounded-full bg-muted/60 text-muted-foreground mb-3">
-                          <Sparkles className="size-5 text-muted-foreground/80" />
-                        </div>
-                        <h4 className="text-sm font-semibold text-foreground">
-                          {locale === "th"
-                            ? `กำลังจัดทำชีทสรุปสเต็ปทำโจทย์ ${t(item.name, locale)}`
-                            : `Pillar ${item.pillar} Cheat Sheet Under Construction`}
-                        </h4>
-                        <p className="mt-1 text-xs text-muted-foreground max-w-md mx-auto">
-                          {locale === "th"
-                            ? "ทีมงานกำลังรวบรวมเทคนิคและสเต็ปการทำโจทย์ของเสาหลักนี้ตามแนวข้อสอบจริงปลายภาค อดใจรออีกนิดนะครับ!"
-                            : "Step-by-step shortcuts and problem templates for this pillar are currently being prepared. Stay tuned!"}
-                        </p>
-                        <div className="mt-4">
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() => {
-                              setSelectedPillar(item.pillar);
-                              const mockExamEl = document.getElementById("mock-exam");
-                              mockExamEl?.scrollIntoView({ behavior: "smooth" });
-                            }}
-                            className="text-xs gap-1.5 rounded-xl"
-                          >
-                            <Target className="size-3.5 text-primary" />
-                            <span>
-                              {locale === "th"
-                                ? `ฝึกทำข้อสอบจำลองเสาที่ ${item.pillar} (${item.questionCount} ข้อ)`
-                                : `Practice Pillar ${item.pillar} Mock Exam`}
-                            </span>
-                          </Button>
-                        </div>
+                      <div className="py-6 text-center text-xs text-muted-foreground font-medium">
+                        Coming Soon
                       </div>
                     )}
                   </div>
