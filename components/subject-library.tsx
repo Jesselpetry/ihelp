@@ -16,6 +16,7 @@ import {
   Check,
   ChevronDown,
   Copy,
+  FolderArchive,
   LayoutGrid,
   RotateCcw,
   Rows3,
@@ -34,6 +35,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { PreviewModal, type Preview } from "@/components/preview-modal";
+import { PackDownloadModal } from "@/components/pack-download-modal";
 import { useLocale, t, type LText } from "@/lib/i18n";
 import {
   ASSET_GROUPS,
@@ -101,6 +103,8 @@ export function SubjectLibrary({
   const [openStacks, setOpenStacks] = useState<ReadonlySet<string>>(new Set());
   const [preview, setPreview] = useState<Preview | null>(null);
   const [hideDuplicates, setHideDuplicates] = useState(courseCode === "ICS");
+  const [packModalOpen, setPackModalOpen] = useState(false);
+  const [packCategory, setPackCategory] = useState<AssetCategory | "all" | "filtered">("exercise");
 
   // `?open=<asset id>` opens that file's preview on arrival — the help chat's
   // "open file" buttons link here. Read from window rather than
@@ -561,6 +565,25 @@ export function SubjectLibrary({
                 </button>
               ))}
             </div>
+
+            {/* Pack Download Button */}
+            <button
+              type="button"
+              onClick={() => {
+                setPackCategory(filter !== "all" ? filter : "exercise");
+                setPackModalOpen(true);
+              }}
+              className="inline-flex items-center gap-1.5 rounded-full border border-primary/35 bg-primary/10 px-3 py-1.5 text-xs font-semibold text-primary shadow-2xs hover:bg-primary/20 transition-all cursor-pointer select-none active:scale-95"
+              title={locale === "th" ? "ดาวน์โหลดชุดเอกสารรวมเป็นไฟล์ ZIP" : "Download resource pack as ZIP"}
+            >
+              <FolderArchive className="size-3.5 shrink-0" />
+              <span className="hidden sm:inline">
+                {locale === "th" ? "ดาวน์โหลดรวม (ZIP)" : "Download Pack"}
+              </span>
+              <span className="sm:hidden">
+                {locale === "th" ? "โหลดรวม" : "ZIP"}
+              </span>
+            </button>
           </div>
         </div>
 
@@ -640,6 +663,30 @@ export function SubjectLibrary({
                 </button>
               );
             })}
+
+            {/* Quick Category Pack Download */}
+            {filter !== "all" && counts[filter] && counts[filter] > 0 && (
+              <button
+                type="button"
+                onClick={() => {
+                  setPackCategory(filter);
+                  setPackModalOpen(true);
+                }}
+                className="inline-flex items-center gap-1 rounded-full border border-primary/30 bg-primary/10 px-2.5 py-1 text-xs font-semibold text-primary hover:bg-primary/20 transition-all cursor-pointer shadow-2xs select-none active:scale-95"
+                title={locale === "th" ? `ดาวน์โหลดรวมไฟล์หมวดนี้ (.ZIP)` : `Download category pack (.ZIP)`}
+              >
+                <FolderArchive className="size-3 shrink-0" />
+                <span>
+                  {filter === "exercise"
+                    ? locale === "th"
+                      ? `โหลดแบบฝึกหัดรวม (${counts.exercise})`
+                      : `Pack Exercises (${counts.exercise})`
+                    : locale === "th"
+                      ? `โหลดรวมหมวดนี้ (${counts[filter]})`
+                      : `Pack (${counts[filter]})`}
+                </span>
+              </button>
+            )}
 
             {/* Duplicate Filter Toggle */}
             {duplicateCount > 0 && !byWeek && (
@@ -900,6 +947,24 @@ export function SubjectLibrary({
                 </button>
               </span>
             )}
+            {filtered.length > 0 && (
+              <button
+                type="button"
+                onClick={() => {
+                  setPackCategory("filtered");
+                  setPackModalOpen(true);
+                }}
+                className="inline-flex items-center gap-1 rounded-full border border-primary/30 bg-primary/10 px-2 py-0.5 text-[11px] font-semibold text-primary hover:bg-primary/20 cursor-pointer transition-colors shadow-2xs select-none active:scale-95"
+                title={locale === "th" ? "ดาวน์โหลดไฟล์ที่ตรงกับตัวกรองทั้งหมดเป็น ZIP" : "Download filtered files as ZIP"}
+              >
+                <FolderArchive className="size-2.5 shrink-0" />
+                <span>
+                  {locale === "th"
+                    ? `โหลดรวมที่กรอง (${filtered.length})`
+                    : `Pack filtered (${filtered.length})`}
+                </span>
+              </button>
+            )}
             <button
               type="button"
               onClick={clearFilters}
@@ -967,6 +1032,16 @@ export function SubjectLibrary({
           onClose={() => setPreview(null)}
         />
       )}
+
+      <PackDownloadModal
+        open={packModalOpen}
+        onOpenChange={setPackModalOpen}
+        courseCode={courseCode}
+        courseTitle={title}
+        assets={assets}
+        filteredAssets={filtered}
+        initialCategory={packCategory}
+      />
     </main>
   );
 }

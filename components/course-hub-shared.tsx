@@ -8,6 +8,7 @@ import {
   FileCheck2,
   Flag,
   FlaskConical,
+  FolderArchive,
   Layers,
   Library,
   Map as MapIcon,
@@ -20,7 +21,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import type { ReactNode } from "react";
-import type { LText } from "@/lib/i18n";
+import { useLocale, t, type LText } from "@/lib/i18n";
 import type { ModuleId, ModuleScope, Phase, ResolvedModule } from "@/lib/courses/spine";
 import { CourseWatermark } from "@/components/course-watermark";
 import { IHELP_GRADIENT_CSS } from "@/lib/courses/course-theme";
@@ -313,3 +314,63 @@ export function ResourceItemCard({
     </div>
   );
 }
+
+export interface PackDownloadButtonProps {
+  label?: LText | string;
+  count?: number;
+  onClick: () => void;
+  variant?: "primary" | "yellow" | "emerald" | "outline";
+  size?: "sm" | "xs";
+  className?: string;
+  title?: string;
+  icon?: LucideIcon;
+}
+
+/**
+ * Standardized pill button for downloading an entire pack / bundle as a ZIP file.
+ * Perfect for section headers (TopicHeader aside) or category toolbars.
+ */
+export function PackDownloadButton({
+  label = { th: "โหลดรวม (.ZIP)", en: "Download Pack (.ZIP)" },
+  count,
+  onClick,
+  variant = "primary",
+  size = "xs",
+  className = "",
+  title,
+  icon: Icon = FolderArchive,
+}: PackDownloadButtonProps) {
+  const { locale } = useLocale();
+  const labelText = typeof label === "object" ? t(label, locale) : label;
+
+  const variantStyles = {
+    primary: "border-primary/30 bg-primary/10 text-primary hover:bg-primary/20",
+    yellow: "border-yellow-500/30 bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 hover:bg-yellow-500/20",
+    emerald: "border-emerald-500/30 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/20",
+    outline: "border-border/60 bg-background/80 text-muted-foreground hover:text-foreground hover:bg-muted",
+  }[variant];
+
+  const sizeStyles = {
+    xs: "h-6 px-2.5 text-[11px] gap-1",
+    sm: "h-7.5 px-3 text-xs gap-1.5",
+  }[size];
+
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      title={title || labelText}
+      aria-label={title || labelText}
+      className={`inline-flex items-center font-medium rounded-full border transition-all cursor-pointer shadow-2xs select-none active:scale-95 ${variantStyles} ${sizeStyles} ${className}`}
+    >
+      <Icon className={size === "xs" ? "size-3 shrink-0" : "size-3.5 shrink-0"} />
+      <span>{labelText}</span>
+      {count !== undefined && (
+        <span className="tabular-nums opacity-75 font-mono text-[10px]">
+          ({count})
+        </span>
+      )}
+    </button>
+  );
+}
+

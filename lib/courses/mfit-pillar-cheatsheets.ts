@@ -1,0 +1,193 @@
+import type { LText } from "@/lib/i18n";
+
+export interface MfitPillarCheatSheet {
+  pillar: number;
+  name: LText;
+  subtitle: LText;
+  badge: LText;
+  status: "available" | "coming_soon";
+  chapterRange: string;
+  pointsEst: string;
+  questionCount: number;
+  markdown?: string;
+}
+
+export const MFIT_PILLAR_1_MARKDOWN = `### 📌 Cheat Sheet: คัมภีร์แก้โจทย์ลิมิตและความต่อเนื่อง (แคลคูลัส)
+
+> สรุปสเต็ปการทำโจทย์ลิมิต **6 ประเภท** ที่ออกสอบไฟนอลแน่นอน ท่อง 4 สเต็ปนี้ไว้ ทำข้อสอบได้ชัวร์!
+
+---
+
+#### Type 1: ลิมิตแบบแทนค่าตรงๆ (Direct Substitution)
+**เมื่อไหร่ที่ใช้:** เป็นสเต็ปแรกของโจทย์ลิมิตทุกข้อ ลองแทนค่าดูก่อนเสมอ
+
+- **Step 1:** นำตัวเลขที่ $x$ เข้าใกล้ ไปแทนใน $x$ ทุกตัวในสมการ
+- **Step 2:** คำนวณตัวเลขบวกลบคูณหารปกติ
+- **Step 3:** ถ้าได้ตัวเลขออกมา (เช่น $5, -2, \\frac{1}{2}, 0$) ถือว่าจบเลย
+- **Step 4:** ตอบค่าที่ได้เป็นคำตอบสุดท้ายทันที *(แต่ถ้าได้ $\\frac{0}{0}$ ให้ข้ามไปใช้ Type 3 หรือ 4)*
+
+---
+
+#### Type 2: ลิมิตติดค่าสัมบูรณ์ (Absolute Value)
+**เมื่อไหร่ที่ใช้:** เจอเครื่องหมาย $| \\dots |$ ในโจทย์
+
+- **Step 1:** ดูว่า $x$ เข้าใกล้ทางไหน (เช่น $2^-$ คือน้อยกว่า $2$ ให้สมมติเป็น $1.9$, $5^+$ คือมากกว่า $5$ ให้สมมติเป็น $5.1$)
+- **Step 2:** เอาเลขสมมติไปแทนใน $| \\dots |$ เพื่อเช็กเครื่องหมาย
+  - ถ้าข้างใน **ติดลบ:** ถอด $| \\dots |$ ออก แล้ว **แปะลบ** ข้างหน้าวงเล็บ $\\rightarrow -(x - a)$
+  - ถ้าข้างใน **เป็นบวก:** ถอด $| \\dots |$ ออกได้เลย ไม่ต้องทำอะไร $\\rightarrow (x - a)$
+- **Step 3:** นำวงเล็บที่ถอดแล้วไปวางคืนในสมการ
+- **Step 4:** ตัดวงเล็บที่หน้าตาเหมือนกันบน-ล่างทิ้ง *(ส่วนใหญ่จะเหลือ $1$ หรือ $-1$)* แล้วตอบ
+
+---
+
+#### Type 3: ลิมิตพหุนาม $\\frac{0}{0}$ (จัดรูป / ดึงตัวร่วม)
+**เมื่อไหร่ที่ใช้:** แทนค่าแล้วได้ $\\frac{0}{0}$ และโจทย์ไม่มีรูท (มีแต่ $x^2, x^3$)
+
+- **Step 1: เก็บภาษี $x$ (ดึงตัวร่วม):** ดึง $x$ ออกมาวางหน้าวงเล็บ $1$ ตัวทั้งบนและล่าง  
+  *กฎเหล็ก:* $x$ ทุกก้อนข้างในวงเล็บต้องลดกำลังลง $1$ เสมอ
+- **Step 2: ขีดฆ่าตัด $x$ นอกวงเล็บทิ้งไป**
+- **Step 3: แยก 2 วงเล็บ:** มองหาก้อนที่เป็นกำลังสอง แล้วแยกวงเล็บโดยท่องว่า *"คูณกันได้ตัวหลัง บวกกันได้ตัวกลาง"*
+- **Step 4:** ตัดวงเล็บที่หน้าตาเหมือนกันบน-ล่างทิ้ง แล้วแทนค่า $x$ ตัวเดิมลงไปเพื่อหาคำตอบ
+
+---
+
+#### Type 4: ลิมิตติดรูท $\\frac{0}{0}$ (Conjugate / คูณสังยุค)
+**เมื่อไหร่ที่ใช้:** แทนค่าแล้วได้ $\\frac{0}{0}$ และโจทย์มี "รากที่สอง (รูท)"
+
+- **Step 1: โคลนนิ่งเปลี่ยนเครื่องหมาย:** ก๊อปปี้ก้อนที่มีรูทมา แล้วเปลี่ยนเครื่องหมายแค่ตรงกลาง (จากบวกเป็นลบ / ลบเป็นบวก)
+- **Step 2:** เอาตัวโคลนนิ่งไปคูณประกบทั้งก้อนบนและก้อนล่าง
+- **Step 3: ยุบก้อนด้วยสูตร $(\\text{หน้า}^2 - \\text{หลัง}^2)$:**
+  - ตัวหน้าโดนยกกำลังสอง $\\rightarrow$ รูทหายไป
+  - ตัวหลังโดนยกกำลังสอง $\rightarrow$ เป็นตัวเลข
+  - จับมาลบกัน *(ส่วนก้อนที่ไม่มีรูท ปล่อยแปะติดกันไว้อย่างนั้น)*
+- **Step 4:** ตัดวงเล็บที่เหมือนกันบน-ล่างทิ้ง *(ระวัง: ก้อนที่โดนตัดจนหมดจะเหลือเลข $1$ เสมอ)* แล้วแทนค่า $x$
+
+---
+
+#### Type 5: ความต่อเนื่องของฟังก์ชันแบบ 3 เงื่อนไข (Piecewise / หาค่า a, b)
+**ลักษณะโจทย์:** ให้ฟังก์ชันแยกเป็น 3 เงื่อนไข เช่น:
+
+$$
+f(x) = \\begin{cases} 3x + a & \\text{เมื่อ } x < 2 \\\\ 5 & \\text{เมื่อ } x = 2 \\\\ 2x + b & \\text{เมื่อ } x > 2 \\end{cases}
+$$
+
+- **Step 1: หาจุดรอยต่อ** (เช่น รอยต่อคือ $x = 2$) กฎเหล็กคือ **"ฝั่งซ้าย = ตรงกลาง = ฝั่งขวา"**
+- **Step 2: จับสมการซ้ายมาเท่ากับตรงกลาง**
+  $$\\lim_{x \\to 2^-} f(x) = f(2)$$
+  - แทน $x = 2$ ลงไป: $3(2) + a = 5$
+  - แก้สมการ: $6 + a = 5 \\implies a = -1$
+- **Step 3: จับสมการขวามาเท่ากับตรงกลาง**
+  $$\\lim_{x \\to 2^+} f(x) = f(2)$$
+  - แทน $x = 2$ ลงไป: $2(2) + b = 5$
+  - แก้สมการ: $4 + b = 5 \\implies b = 1$
+- **Step 4: สรุปคำตอบค่าตัวแปรที่โจทย์ถามได้เลย** ($a = -1, b = 1$)
+
+---
+
+#### Type 6: นิยามอนุพันธ์ (ลิมิต $\\Delta x$)
+**ลักษณะโจทย์:** $\\displaystyle\\lim_{\\Delta x \\to 0} \\frac{f(x + \\Delta x) - f(x)}{\\Delta x}$
+
+- **Step 1:** อัปเกรดร่าง $f(x)$ เป็น $f(x + \\Delta x)$ แล้วกระจายกำลังสองสมบูรณ์ $(\\text{หน้า}^2 + 2\\text{หน้าหลัง} + \\text{หลัง}^2)$
+- **Step 2:** เอาไปใส่ในสูตรลบด้วยโจทย์เดิม ตัวไหนที่ไม่มี $\\Delta x$ เกาะอยู่ มันจะลบกันหายไปเองจนหมด
+- **Step 3:** ก้อนบนที่เหลือ จะมี $\\Delta x$ เกาะอยู่ทุกตัว ให้ **"เก็บภาษี $\\Delta x$"** (ดึงตัวร่วม $\\Delta x$ ออกมา 1 ตัว)
+- **Step 4:** ตัด $\\Delta x$ นอกวงเล็บกับตัวล่างสุดทิ้งฉับ! แล้วแทนค่า $\\Delta x = 0$ เพื่อได้คำตอบสุดท้าย
+`;
+
+export const MFIT_PILLAR_CHEATSHEETS: MfitPillarCheatSheet[] = [
+  {
+    pillar: 1,
+    name: {
+      th: "เสาที่ 1: ลิมิตและความต่อเนื่อง (Limits & Continuity)",
+      en: "Pillar 1: Limits & Continuity",
+    },
+    subtitle: {
+      th: "Week 08 (Calc-01) · สรุป 6 รูปแบบโจทย์ลิมิต ท่อง 4 สเต็ปทำข้อสอบได้ชัวร์",
+      en: "Week 08 (Calc-01) · 6 Exam Problem Types with 4-Step Working Templates",
+    },
+    badge: {
+      th: "พร้อมอ่าน (6 รูปแบบ)",
+      en: "Ready (6 Types)",
+    },
+    status: "available",
+    chapterRange: "Week 08 (Calc-01)",
+    pointsEst: "~4–5 คะแนน",
+    questionCount: 5,
+    markdown: MFIT_PILLAR_1_MARKDOWN,
+  },
+  {
+    pillar: 2,
+    name: {
+      th: "เสาที่ 2: อนุพันธ์, กฎลูกโซ่ และฟังก์ชันแฝง",
+      en: "Pillar 2: Derivatives, Chain Rule & Implicit",
+    },
+    subtitle: {
+      th: "Week 09–10 (Calc-02, 03) · นิยามลิมิต Δx, ผลคูณ/ผลหาร, Implicit Differentiation",
+      en: "Week 09–10 (Calc-02, 03) · Limit definition, Product/Quotient rules, Implicit diff",
+    },
+    badge: {
+      th: "เร็วๆ นี้",
+      en: "Coming Soon",
+    },
+    status: "coming_soon",
+    chapterRange: "Week 09–10 (Calc-02, 03)",
+    pointsEst: "~6–8 คะแนน",
+    questionCount: 5,
+  },
+  {
+    pillar: 3,
+    name: {
+      th: "เสาที่ 3: การประยุกต์อนุพันธ์ & ปัญหาค่าสุดขีด",
+      en: "Pillar 3: Optimization & Extrema",
+    },
+    subtitle: {
+      th: "Week 11 (Calc-04) · จุดวิกฤต, ตรวจสอบ f''(x), สเต็ปการสร้างสมการ Optimization",
+      en: "Week 11 (Calc-04) · Critical points, 2nd derivative test, Optimization protocol",
+    },
+    badge: {
+      th: "เร็วๆ นี้",
+      en: "Coming Soon",
+    },
+    status: "coming_soon",
+    chapterRange: "Week 11 (Calc-04)",
+    pointsEst: "~7–8 คะแนน",
+    questionCount: 5,
+  },
+  {
+    pillar: 4,
+    name: {
+      th: "เสาที่ 4: ปริพันธ์, FTC และ u-Substitution",
+      en: "Pillar 4: Indefinite/Definite Integrals & u-Sub",
+    },
+    subtitle: {
+      th: "Week 12–13 (Calc-05, 06) · ทฤษฎีบทหลักมูล (FTC), กฎการเปลี่ยนขอบเขต u-sub, ฟังก์ชันคู่/คี่",
+      en: "Week 12–13 (Calc-05, 06) · FTC, u-sub with boundary change, Even/Odd symmetry",
+    },
+    badge: {
+      th: "เร็วๆ นี้",
+      en: "Coming Soon",
+    },
+    status: "coming_soon",
+    chapterRange: "Week 12–13 (Calc-05, 06)",
+    pointsEst: "~7–8 คะแนน",
+    questionCount: 5,
+  },
+  {
+    pillar: 5,
+    name: {
+      th: "เสาที่ 5: By Parts, พื้นที่ & ปริมาตรทรงตันหมุน",
+      en: "Pillar 5: By Parts, Area & Solids of Revolution",
+    },
+    subtitle: {
+      th: "Week 14–15 (Calc-07, 08) · กฎ LIATE, ตาราง DI ลัด, Disk vs Washer Method",
+      en: "Week 14–15 (Calc-07, 08) · LIATE, DI table, Disk vs Washer Method",
+    },
+    badge: {
+      th: "เร็วๆ นี้",
+      en: "Coming Soon",
+    },
+    status: "coming_soon",
+    chapterRange: "Week 14–15 (Calc-07, 08)",
+    pointsEst: "~7–8 คะแนน",
+    questionCount: 5,
+  },
+];

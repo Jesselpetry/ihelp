@@ -3,10 +3,14 @@
 import { useEffect, useMemo, useState } from "react";
 import {
   BookOpen,
+  Check,
+  ChevronDown,
+  Copy,
   FileCheck2,
   FileText,
   Flame,
   RotateCcw,
+  Sparkles,
   Target,
 } from "lucide-react";
 
@@ -14,20 +18,25 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   ExamWarRoomBanner,
+  PackDownloadButton,
   ResourceItemCard,
   TopicHeader,
   SURFACE,
 } from "@/components/course-hub-shared";
 import { PreviewModal, type Preview } from "@/components/preview-modal";
+import { PackDownloadModal } from "@/components/pack-download-modal";
 import { TechniqueQuiz } from "@/components/technique-quiz";
 import { useLocale, t, type LText } from "@/lib/i18n";
 import { assetUrl, assetDownloadUrl } from "@/lib/library/asset-url";
 import type { SubjectAsset } from "@/lib/library/subject-library-ui";
+import type { PackItem } from "@/lib/library/pack-download";
 import {
   MFIT_FINAL_MOCK_EXAM,
   MFIT_FINAL_PILLARS,
   MFIT_FINAL_MOCK_QUIZ_ID,
 } from "@/lib/quiz/mfit-final-mock-exam";
+import { MFIT_PILLAR_CHEATSHEETS } from "@/lib/courses/mfit-pillar-cheatsheets";
+import { MdView } from "@/components/md-view";
 import type { FenceWarRoomConfig } from "@/lib/docs/fences";
 
 interface PastPaperItem {
@@ -205,6 +214,30 @@ export function MfitWarRoomPortal({
   const [quizStarted, setQuizStarted] = useState(false);
   const [preview, setPreview] = useState<Preview | null>(null);
   const [fetchedAssets, setFetchedAssets] = useState<SubjectAsset[]>([]);
+  const [packModalOpen, setPackModalOpen] = useState(false);
+  const [packItems, setPackItems] = useState<PackItem[] | undefined>(undefined);
+  const [packZipName, setPackZipName] = useState<string | undefined>(undefined);
+  const [openPillars, setOpenPillars] = useState<Set<number>>(() => new Set([1]));
+  const [copiedPillar, setCopiedPillar] = useState<number | null>(null);
+
+  function togglePillar(pillarNum: number) {
+    setOpenPillars((prev) => {
+      const next = new Set(prev);
+      if (next.has(pillarNum)) {
+        next.delete(pillarNum);
+      } else {
+        next.add(pillarNum);
+      }
+      return next;
+    });
+  }
+
+  function handleCopyMarkdown(pillarNum: number, markdown?: string) {
+    if (!markdown) return;
+    navigator.clipboard.writeText(markdown);
+    setCopiedPillar(pillarNum);
+    setTimeout(() => setCopiedPillar(null), 2000);
+  }
 
   const remoteAssets = useMemo(() => {
     if (fetchedAssets.length > 0) return fetchedAssets;
@@ -227,6 +260,58 @@ export function MfitWarRoomPortal({
       .catch(() => {});
     return () => controller.abort();
   }, []);
+
+  async function handleDownloadAllPastPapers() {
+    let currentAssets = remoteAssets;
+    if (currentAssets.length === 0) {
+      try {
+        const res = await fetch("/api/library/assets?course=MFIT");
+        if (res.ok) {
+          const data = (await res.json()) as { assets?: SubjectAsset[] };
+          if (data?.assets) {
+            currentAssets = data.assets;
+            setFetchedAssets(data.assets);
+          }
+        }
+      } catch {}
+    }
+
+    const items: PackItem[] = PAST_PAPERS.map((paper) => {
+      const found = currentAssets.find(
+        (a) => a.fileName === paper.fileName || a.url?.includes(paper.fileName),
+      );
+      return {
+        id: paper.id,
+        title: paper.title,
+        fileName: paper.fileName,
+        url: found?.url || paper.path,
+        category: "exam",
+      };
+    });
+
+    setPackItems(items);
+    setPackZipName("MFIT-Final-Past-Papers.zip");
+    setPackModalOpen(true);
+  }
+
+  function handleDownloadAllFormulaSheets() {
+    const items: PackItem[] = FORMULA_SHEETS.map((sheet) => {
+      const found = remoteAssets.find(
+        (a) => a.fileName === sheet.fileName || a.url?.includes(sheet.fileName),
+      );
+      return {
+        id: sheet.id,
+        title: sheet.title,
+        fileName: sheet.fileName,
+        url: found?.url || assetUrl(sheet.path),
+        category: "cheatsheet",
+      };
+    });
+
+    setPackItems(items);
+    setPackZipName("MFIT-Final-Formula-Sheets.zip");
+    setPackModalOpen(true);
+  }
 
   async function downloadPastPaper(paper: PastPaperItem) {
     let found = remoteAssets.find(
@@ -491,9 +576,17 @@ export function MfitWarRoomPortal({
               : "Authentic Past Papers Vault"
           }
           aside={
-            <span className="rounded-full bg-primary/10 border border-primary/25 px-2.5 py-0.5 text-xs font-medium text-primary">
-              {locale === "th" ? "7 ชุดในคลัง" : "7 Papers in Vault"}
-            </span>
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <span className="rounded-full bg-primary/10 border border-primary/25 px-2.5 py-0.5 text-xs font-medium text-primary">
+                {locale === "th" ? "7 ชุดในคลัง" : "7 Papers in Vault"}
+              </span>
+              <PackDownloadButton
+                label={{ th: "โหลดรวม (.ZIP)", en: "Pack (.ZIP)" }}
+                count={PAST_PAPERS.length}
+                onClick={handleDownloadAllPastPapers}
+                title={locale === "th" ? "ดาวน์โหลดข้อสอบเก่าทั้งหมดรวมเป็นไฟล์ ZIP" : "Download all past exam papers as a ZIP pack"}
+              />
+            </div>
           }
         />
 
@@ -547,9 +640,18 @@ export function MfitWarRoomPortal({
               : "Official Formula Sheets"
           }
           aside={
-            <span className="rounded-full bg-yellow-500/10 border border-yellow-500/25 px-2.5 py-0.5 text-xs font-medium text-yellow-600 dark:text-yellow-400">
-              {locale === "th" ? "6 ฉบับสรุป" : "6 Cheatsheets"}
-            </span>
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <span className="rounded-full bg-yellow-500/10 border border-yellow-500/25 px-2.5 py-0.5 text-xs font-medium text-yellow-600 dark:text-yellow-400">
+                {locale === "th" ? "6 ฉบับสรุป" : "6 Cheatsheets"}
+              </span>
+              <PackDownloadButton
+                label={{ th: "โหลดรวม (.ZIP)", en: "Pack (.ZIP)" }}
+                count={FORMULA_SHEETS.length}
+                variant="yellow"
+                onClick={handleDownloadAllFormulaSheets}
+                title={locale === "th" ? "ดาวน์โหลดชีทสรุปสูตรทั้งหมดรวมเป็นไฟล์ ZIP" : "Download all cheatsheets as a ZIP pack"}
+              />
+            </div>
           }
         />
 
@@ -610,7 +712,175 @@ export function MfitWarRoomPortal({
         </div>
       </section>
 
-      {/* ── Section 4: Separator for Deep Study Guide ────────────────────── */}
+      {/* ── Section 4: คัมภีร์สรุปวิธีทำโจทย์ 5 เสาหลัก (5 Pillars Cheat Sheets) ─ */}
+      <section className="space-y-3 pt-4" id="pillars-cheatsheets">
+        <TopicHeader
+          id="pillars-cheatsheets-header"
+          title={
+            locale === "th"
+              ? "คัมภีร์สรุปวิธีทำโจทย์ 5 เสาหลัก (Calculus Cheat Sheets)"
+              : "5 Pillars Step-by-Step Cheat Sheets"
+          }
+          aside={
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <span className="rounded-full bg-emerald-500/10 border border-emerald-500/25 px-2.5 py-0.5 text-xs font-medium text-emerald-600 dark:text-emerald-400">
+                {locale === "th" ? "เสาที่ 1 พร้อมอ่าน" : "Pillar 1 Ready"}
+              </span>
+              <span className="rounded-full bg-primary/10 border border-primary/25 px-2.5 py-0.5 text-xs font-medium text-primary">
+                {locale === "th" ? "5 เสาหลัก" : "5 Pillars"}
+              </span>
+            </div>
+          }
+          description={
+            locale === "th"
+              ? "สรุปสเต็ปและเทคนิคการแก้โจทย์แต่ละประเภททีละขั้น (Step-by-Step) เพื่อใช้เตรียมตัวและทบทวนก่อนเข้าห้องสอบ"
+              : "Step-by-step problem-solving templates and tactics across all 5 calculus pillars."
+          }
+        />
+
+        <div className="flex flex-col gap-2.5">
+          {MFIT_PILLAR_CHEATSHEETS.map((item) => {
+            const isOpen = openPillars.has(item.pillar);
+            return (
+              <div
+                key={item.pillar}
+                className={`overflow-hidden transition-all duration-200 border ${
+                  isOpen
+                    ? "border-primary/40 bg-card shadow-sm"
+                    : "border-border/40 bg-card/60 hover:border-primary/25 hover:bg-card/90"
+                } ${SURFACE}`}
+              >
+                <button
+                  type="button"
+                  onClick={() => togglePillar(item.pillar)}
+                  className="w-full flex items-center justify-between gap-3 px-3.5 py-3 sm:px-4 sm:py-3.5 text-left transition-colors cursor-pointer select-none"
+                  aria-expanded={isOpen}
+                >
+                  <div className="flex items-center gap-2.5 sm:gap-3 min-w-0 flex-1">
+                    <span
+                      className={`flex size-8 shrink-0 items-center justify-center rounded-full text-xs font-bold transition-transform ${
+                        item.status === "available"
+                          ? "bg-primary/10 text-primary group-hover:scale-105"
+                          : "bg-muted text-muted-foreground"
+                      }`}
+                    >
+                      {item.pillar}
+                    </span>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="text-xs sm:text-sm font-semibold text-foreground">
+                          {t(item.name, locale)}
+                        </span>
+                        {item.badge && (
+                          <span
+                            className={`rounded-full px-2 py-0.5 text-[10px] font-semibold ${
+                              item.status === "available"
+                                ? "bg-emerald-500/10 border border-emerald-500/25 text-emerald-600 dark:text-emerald-400"
+                                : "bg-muted text-muted-foreground border border-border/40"
+                            }`}
+                          >
+                            {t(item.badge, locale)}
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-[11px] sm:text-xs text-muted-foreground truncate mt-0.5">
+                        {t(item.subtitle, locale)}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2 shrink-0">
+                    <ChevronDown
+                      className={`size-4 text-muted-foreground transition-transform duration-200 ${
+                        isOpen ? "rotate-180 text-primary" : ""
+                      }`}
+                    />
+                  </div>
+                </button>
+
+                {isOpen && (
+                  <div className="border-t border-border/40 px-4 py-4 sm:px-6 sm:py-5 bg-card/40">
+                    {item.status === "available" && item.markdown ? (
+                      <div className="space-y-4">
+                        <div className="flex items-center justify-between gap-2 pb-2.5 border-b border-border/40">
+                          <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                            <Sparkles className="size-3.5 text-primary shrink-0" />
+                            <span>
+                              {locale === "th"
+                                ? "คัมภีร์สรุป 4 สเต็ป 6 รูปแบบข้อสอบ (แคลคูลัส)"
+                                : "4-Step Working Guide across 6 Problem Types"}
+                            </span>
+                          </div>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => handleCopyMarkdown(item.pillar, item.markdown)}
+                            className="h-7 text-xs gap-1.5 text-muted-foreground hover:text-foreground"
+                          >
+                            {copiedPillar === item.pillar ? (
+                              <>
+                                <Check className="size-3 text-emerald-500" />
+                                <span className="text-emerald-500">
+                                  {locale === "th" ? "คัดลอกแล้ว" : "Copied"}
+                                </span>
+                              </>
+                            ) : (
+                              <>
+                                <Copy className="size-3" />
+                                <span>{locale === "th" ? "คัดลอกเนื้อหา" : "Copy"}</span>
+                              </>
+                            )}
+                          </Button>
+                        </div>
+
+                        <article className="min-w-0 overflow-hidden">
+                          <MdView markdown={item.markdown} courseCode="MFIT" />
+                        </article>
+                      </div>
+                    ) : (
+                      <div className="py-6 sm:py-8 text-center">
+                        <div className="mx-auto flex size-10 items-center justify-center rounded-full bg-muted/60 text-muted-foreground mb-3">
+                          <Sparkles className="size-5 text-muted-foreground/80" />
+                        </div>
+                        <h4 className="text-sm font-semibold text-foreground">
+                          {locale === "th"
+                            ? `กำลังจัดทำชีทสรุปสเต็ปทำโจทย์ ${t(item.name, locale)}`
+                            : `Pillar ${item.pillar} Cheat Sheet Under Construction`}
+                        </h4>
+                        <p className="mt-1 text-xs text-muted-foreground max-w-md mx-auto">
+                          {locale === "th"
+                            ? "ทีมงานกำลังรวบรวมเทคนิคและสเต็ปการทำโจทย์ของเสาหลักนี้ตามแนวข้อสอบจริงปลายภาค อดใจรออีกนิดนะครับ!"
+                            : "Step-by-step shortcuts and problem templates for this pillar are currently being prepared. Stay tuned!"}
+                        </p>
+                        <div className="mt-4">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => {
+                              setSelectedPillar(item.pillar);
+                              const mockExamEl = document.getElementById("mock-exam");
+                              mockExamEl?.scrollIntoView({ behavior: "smooth" });
+                            }}
+                            className="text-xs gap-1.5 rounded-xl"
+                          >
+                            <Target className="size-3.5 text-primary" />
+                            <span>
+                              {locale === "th"
+                                ? `ฝึกทำข้อสอบจำลองเสาที่ ${item.pillar} (${item.questionCount} ข้อ)`
+                                : `Practice Pillar ${item.pillar} Mock Exam`}
+                            </span>
+                          </Button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* ── Section 5: Separator for Deep Study Guide ────────────────────── */}
       <section className="pt-6" id="study-guide">
         <TopicHeader
           id="study-guide-header"
@@ -638,6 +908,17 @@ export function MfitWarRoomPortal({
           onClose={() => setPreview(null)}
         />
       )}
+
+      {/* ── Resource Pack Download Modal ─────────────────────────────────── */}
+      <PackDownloadModal
+        open={packModalOpen}
+        onOpenChange={setPackModalOpen}
+        courseCode="MFIT"
+        courseTitle={{ th: "คณิตศาสตร์สำหรับไอที (Final War Room)", en: "Applied Mathematics for IT (Final War Room)" }}
+        assets={remoteAssets}
+        customItems={packItems}
+        customPackName={packZipName}
+      />
     </div>
   );
 }
