@@ -793,9 +793,9 @@ export function MfitWarRoomPortal({
                       <div className="space-y-3">
                         <div className="flex items-center justify-between gap-2 pb-2 border-b border-border/40">
                           <span className="text-xs text-muted-foreground font-medium">
-                            {locale === "th"
-                              ? "คัมภีร์สรุป 4 สเต็ป 6 รูปแบบข้อสอบ (แคลคูลัส)"
-                              : "4-Step Working Guide across 6 Problem Types"}
+                            {item.subtitle
+                              ? t(item.subtitle, locale)
+                              : t(item.name, locale)}
                           </span>
                           <Button
                             variant="ghost"
