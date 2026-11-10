@@ -216,7 +216,7 @@ export function MfitWarRoomPortal({
   const [packModalOpen, setPackModalOpen] = useState(false);
   const [packItems, setPackItems] = useState<PackItem[] | undefined>(undefined);
   const [packZipName, setPackZipName] = useState<string | undefined>(undefined);
-  const [openPillars, setOpenPillars] = useState<Set<number>>(() => new Set([1]));
+  const [openPillars, setOpenPillars] = useState<Set<number>>(() => new Set());
   const [copiedPillar, setCopiedPillar] = useState<number | null>(null);
 
   function togglePillar(pillarNum: number) {
@@ -427,7 +427,7 @@ export function MfitWarRoomPortal({
           id="mock-exam-header"
           title={
             locale === "th"
-              ? "ข้อสอบจำลองปลายภาค 25 ข้อ (Final Mock Exam)"
+              ? "ข้อสอบจำลองปลายภาค 25 ข้อ"
               : "Final Mock Exam Simulator"
           }
           aside={
@@ -437,8 +437,8 @@ export function MfitWarRoomPortal({
           }
           description={
             locale === "th"
-              ? "จำลองจากสถิติข้อสอบจริง 2559–2561 (22–26 ข้อ) ข้อเขียน 100% คิดมือล้วน พร้อมเฉลยละเอียดและวิเคราะห์วิธีทำทีละขั้น"
-              : "Engineered from authentic past final exams (2016–2018), 100% manual calculation with full step-by-step working."
+              ? "Final Mock Exam Simulator"
+              : "25 Items · 5 Core Pillars"
           }
         />
 
@@ -571,7 +571,7 @@ export function MfitWarRoomPortal({
           id="past-papers-header"
           title={
             locale === "th"
-              ? "คลังข้อสอบเก่าฉบับจริง (Past Papers Vault)"
+              ? "คลังข้อสอบเก่าฉบับจริง"
               : "Authentic Past Papers Vault"
           }
           aside={
@@ -586,6 +586,11 @@ export function MfitWarRoomPortal({
                 title={locale === "th" ? "ดาวน์โหลดข้อสอบเก่าทั้งหมดรวมเป็นไฟล์ ZIP" : "Download all past exam papers as a ZIP pack"}
               />
             </div>
+          }
+          description={
+            locale === "th"
+              ? "Authentic Past Papers Vault"
+              : "Original Final Exam Archive 2016–2018"
           }
         />
 
@@ -635,22 +640,22 @@ export function MfitWarRoomPortal({
           id="formula-sheets-header"
           title={
             locale === "th"
-              ? "ชีทสรุปสูตร & เอกสารทางการ (Official Formula Sheets)"
+              ? "ชีทสรุปสูตร & เอกสารทางการ"
               : "Official Formula Sheets"
           }
           aside={
-            <div className="flex items-center gap-1.5 sm:gap-2">
-              <span className="rounded-full bg-yellow-500/10 border border-yellow-500/25 px-2.5 py-0.5 text-xs font-medium text-yellow-600 dark:text-yellow-400">
-                {locale === "th" ? "6 ฉบับสรุป" : "6 Cheatsheets"}
-              </span>
-              <PackDownloadButton
-                label={{ th: "โหลดรวม (.ZIP)", en: "Pack (.ZIP)" }}
-                count={FORMULA_SHEETS.length}
-                variant="yellow"
-                onClick={handleDownloadAllFormulaSheets}
-                title={locale === "th" ? "ดาวน์โหลดชีทสรุปสูตรทั้งหมดรวมเป็นไฟล์ ZIP" : "Download all cheatsheets as a ZIP pack"}
-              />
-            </div>
+            <PackDownloadButton
+              label={{ th: "โหลดรวม (.ZIP)", en: "Pack (.ZIP)" }}
+              count={FORMULA_SHEETS.length}
+              variant="yellow"
+              onClick={handleDownloadAllFormulaSheets}
+              title={locale === "th" ? "ดาวน์โหลดชีทสรุปสูตรทั้งหมดรวมเป็นไฟล์ ZIP" : "Download all cheatsheets as a ZIP pack"}
+            />
+          }
+          description={
+            locale === "th"
+              ? "Official Formula Sheets & Handouts"
+              : "Essential Formulas & Course Handouts"
           }
         />
 
@@ -717,7 +722,7 @@ export function MfitWarRoomPortal({
           id="pillars-cheatsheets-header"
           title={
             locale === "th"
-              ? "คัมภีร์สรุปวิธีทำโจทย์ 5 เสาหลัก (Calculus Cheat Sheets)"
+              ? "คัมภีร์สรุปวิธีทำโจทย์ 5 เสาหลัก"
               : "5 Pillars Step-by-Step Cheat Sheets"
           }
           aside={
@@ -725,38 +730,43 @@ export function MfitWarRoomPortal({
               {locale === "th" ? "5 เสาหลัก" : "5 Pillars"}
             </span>
           }
+          description={
+            locale === "th"
+              ? "5 Pillars Step-by-Step Cheat Sheets"
+              : "Problem-Solving Templates across 5 Pillars"
+          }
         />
 
-        <div className="flex flex-col gap-2.5">
+        <div className="flex flex-col gap-2">
           {MFIT_PILLAR_CHEATSHEETS.map((item) => {
             const isOpen = openPillars.has(item.pillar);
             return (
               <div
                 key={item.pillar}
-                className={`overflow-hidden transition-all duration-200 border ${
+                className={`overflow-hidden transition-all duration-200 border select-none ${
                   isOpen
                     ? "border-primary/40 bg-card shadow-sm"
-                    : "border-border/40 bg-card/60 hover:border-primary/25 hover:bg-card/90"
+                    : "border-border/40 hover:border-primary/40 hover:bg-primary/[0.04] hover:shadow-md"
                 } ${SURFACE}`}
               >
                 <button
                   type="button"
                   onClick={() => togglePillar(item.pillar)}
-                  className="w-full flex items-center justify-between gap-3 px-3.5 py-3 sm:px-4 sm:py-3.5 text-left transition-colors cursor-pointer select-none"
+                  className="group w-full flex items-center justify-between gap-3 px-3.5 py-2.5 text-left transition-colors cursor-pointer select-none"
                   aria-expanded={isOpen}
                 >
-                  <div className="flex items-center gap-2.5 sm:gap-3 min-w-0 flex-1">
+                  <div className="flex items-center gap-2 sm:gap-2.5 min-w-0 flex-1">
                     <span
-                      className={`flex size-8 shrink-0 items-center justify-center rounded-full text-xs font-bold transition-transform ${
+                      className={`flex size-8.5 shrink-0 items-center justify-center rounded-full text-xs font-bold transition-transform group-hover:scale-105 ${
                         item.status === "available"
-                          ? "bg-primary/10 text-primary group-hover:scale-105"
+                          ? "bg-primary/10 text-primary"
                           : "bg-muted text-muted-foreground"
                       }`}
                     >
                       {item.pillar}
                     </span>
                     <div className="flex items-center gap-2 flex-wrap min-w-0">
-                      <span className="text-xs sm:text-sm font-semibold text-foreground">
+                      <span className="min-w-0 truncate text-xs sm:text-sm font-medium text-foreground transition-colors group-hover:text-primary">
                         {t(item.name, locale)}
                       </span>
                       {item.badge && (
@@ -766,20 +776,22 @@ export function MfitWarRoomPortal({
                       )}
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 shrink-0">
-                    <ChevronDown
-                      className={`size-4 text-muted-foreground transition-transform duration-200 ${
-                        isOpen ? "rotate-180 text-primary" : ""
-                      }`}
-                    />
+                  <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+                    <span className="inline-flex items-center justify-center text-muted-foreground group-hover:text-foreground p-1.5 rounded-lg transition-colors">
+                      <ChevronDown
+                        className={`size-4 transition-transform duration-200 ${
+                          isOpen ? "rotate-180 text-primary" : ""
+                        }`}
+                      />
+                    </span>
                   </div>
                 </button>
 
                 {isOpen && (
-                  <div className="border-t border-border/40 px-4 py-4 sm:px-6 sm:py-5 bg-card/40">
+                  <div className="border-t border-border/40 px-3.5 py-3.5 sm:px-5 sm:py-4 bg-card/40">
                     {item.status === "available" && item.markdown ? (
-                      <div className="space-y-4">
-                        <div className="flex items-center justify-between gap-2 pb-2.5 border-b border-border/40">
+                      <div className="space-y-3">
+                        <div className="flex items-center justify-between gap-2 pb-2 border-b border-border/40">
                           <span className="text-xs text-muted-foreground font-medium">
                             {locale === "th"
                               ? "คัมภีร์สรุป 4 สเต็ป 6 รูปแบบข้อสอบ (แคลคูลัส)"
@@ -789,7 +801,7 @@ export function MfitWarRoomPortal({
                             variant="ghost"
                             size="sm"
                             onClick={() => handleCopyMarkdown(item.pillar, item.markdown)}
-                            className="h-7 text-xs gap-1.5 text-muted-foreground hover:text-foreground"
+                            className="h-7 text-xs gap-1.5 text-muted-foreground hover:text-foreground cursor-pointer"
                           >
                             {copiedPillar === item.pillar ? (
                               <>
@@ -830,7 +842,7 @@ export function MfitWarRoomPortal({
           id="study-guide-header"
           title={
             locale === "th"
-              ? "ยุทธศาสตร์และคู่มือสรุปวิธีทำโจทย์แคลคูลัส (Deep Study Guide)"
+              ? "ยุทธศาสตร์และคู่มือสรุปวิธีทำโจทย์แคลคูลัส"
               : "Deep Study Guide & Strategy"
           }
           aside={
@@ -839,6 +851,11 @@ export function MfitWarRoomPortal({
                 ? "แคลคูลัส Week 08–15 · 35 คะแนน"
                 : "Calculus W08–15 · 35 Pts"}
             </span>
+          }
+          description={
+            locale === "th"
+              ? "Deep Study Guide & Strategy"
+              : "Calculus W08–15 Full Scope · 35 Points"
           }
         />
       </section>
