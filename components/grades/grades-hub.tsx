@@ -226,10 +226,8 @@ export function GradesHub() {
                   key={course.code}
                   course={course}
                   score={matchScoreForCourse(course, scores)}
-                  authStatus={authStatus}
                   isOpen={Boolean(openCodes[course.code])}
                   onToggle={() => handleToggleCourse(course.code)}
-                  onSignIn={() => void signInWithKmitl()}
                 />
               ))}
             </div>

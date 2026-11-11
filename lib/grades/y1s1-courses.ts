@@ -1,4 +1,5 @@
 import { COURSES, courseHref, type CatalogCourse } from "@/lib/courses/catalog";
+import type { LText } from "@/lib/i18n";
 import type { CourseScoreViewResponse } from "@/lib/scores/types";
 
 export const Y1_S1_COURSE_CODES = [
@@ -34,11 +35,29 @@ export const LETTER_GRADE_OPTIONS: GradeOption[] = [
 
 export const PROBATION_GPA_THRESHOLD = 1.9;
 
+export interface ManualSubInputDef {
+  id: string;
+  label: LText;
+  defaultWeight: number;
+  editableWeight?: boolean;
+}
+
 export interface SyllabusCategory {
   id: string;
   name: string;
+  nameEn?: string;
   weight: number;
   isFinal?: boolean;
+  /** Matching key(s) in `CourseScoreViewResponse.categories` from local score sheets. */
+  sheetKeys?: string[];
+  /** Extra / bonus points on top of the 100-point scale (e.g. PSCP Exercise 3 pts). */
+  isExtra?: boolean;
+  /** Manual input behavior when not provided by a score sheet. */
+  inputMode?: "score" | "problem_count";
+  /** Problem count denominator when `inputMode === "problem_count"`. */
+  problemCountMax?: number;
+  /** Optional split sub-inputs (e.g. MFIT 1st-half / 2nd-half Attendance & Quiz). */
+  subInputs?: ManualSubInputDef[];
 }
 
 export interface GradeCutoff {
@@ -71,57 +90,247 @@ const Y1_S1_SYLLABUS: Record<Y1S1CourseCode, CourseSyllabusMeta> = {
     credits: 3,
     mode: "letter",
     categories: [
-      { id: "itf-midterm", name: "สอบกลางภาค (Midterm Exam)", weight: 30 },
-      { id: "itf-final", name: "สอบปลายภาค (Final Exam)", weight: 30, isFinal: true },
-      { id: "itf-lab", name: "งานแล็บและการบ้าน (Lab & Assignments)", weight: 30 },
-      { id: "itf-att", name: "การเข้าเรียนและการมีส่วนร่วม (Attendance)", weight: 10 },
+      {
+        id: "itf-midterm",
+        name: "สอบกลางภาค (Midterm Exam)",
+        nameEn: "Midterm Exam",
+        weight: 30,
+      },
+      {
+        id: "itf-final",
+        name: "สอบปลายภาค (Final Exam)",
+        nameEn: "Final Exam",
+        weight: 30,
+        isFinal: true,
+      },
+      {
+        id: "itf-lab-att",
+        name: "เช็คชื่อ Lab (W01–W17)",
+        nameEn: "Lab Attendance (W01–W17)",
+        weight: 15,
+        sheetKeys: ["attendance"],
+      },
+      {
+        id: "itf-lab-asg",
+        name: "งาน Lab (W01–W17)",
+        nameEn: "Lab Assignments (W01–W17)",
+        weight: 15,
+        sheetKeys: ["assignment"],
+      },
+      {
+        id: "itf-lec-att",
+        name: "เข้าเรียนภาคบรรยาย (Lecture Attendance)",
+        nameEn: "Lecture Attendance",
+        weight: 10,
+      },
     ],
     cutoffs: [...DEFAULT_CUTOFFS],
-    notes: "เกณฑ์ตามประมวลการสอน 1/2569: สอบกลางภาค 30% · ปลายภาค 30% · แล็บ 30% · เข้าเรียน 10%",
+    notes:
+      "เกณฑ์ตามประมวลการสอน 1/2569: สอบกลางภาค 30% · ปลายภาค 30% · ปฏิบัติการแล็บ 30% (เช็คชื่อ 15% + งาน 15%) · เข้าเรียนบรรยาย 10%",
   },
   ICS: {
     credits: 3,
     mode: "letter",
     categories: [
-      { id: "ics-midterm", name: "สอบกลางภาค (Midterm Exam)", weight: 50 },
-      { id: "ics-final", name: "สอบปลายภาค (Final Exam)", weight: 10, isFinal: true },
-      { id: "ics-quiz", name: "Quiz ในคาบบรรยายรายสัปดาห์ (Lecture Quizzes)", weight: 15 },
-      { id: "ics-lab", name: "งานแล็บ 1–5 (Logisim Lab Reports)", weight: 10 },
-      { id: "ics-lab-exam", name: "สอบปฏิบัติการแล็บ (Lab Exam)", weight: 15 },
+      {
+        id: "ics-midterm",
+        name: "สอบกลางภาค ครึ่งแรก (ส่งทางอีเมล)",
+        nameEn: "Midterm Exam (1st Half · Email)",
+        weight: 50,
+      },
+      {
+        id: "ics-quiz",
+        name: "Quiz ในคาบครึ่งหลัง (ch01–ch07)",
+        nameEn: "Lecture Quizzes (ch01–ch07)",
+        weight: 15,
+        sheetKeys: ["quiz"],
+      },
+      {
+        id: "ics-lab",
+        name: "งานแล็บครึ่งหลัง (Lab 1–5)",
+        nameEn: "Hardware Labs (1–5)",
+        weight: 10,
+        sheetKeys: ["lab"],
+      },
+      {
+        id: "ics-lab-exam",
+        name: "สอบปฏิบัติการแล็บ (Lab Exam)",
+        nameEn: "Lab Exam",
+        weight: 15,
+        sheetKeys: ["labExam"],
+      },
+      {
+        id: "ics-final",
+        name: "สอบปลายภาค ครึ่งหลัง (Final Exam)",
+        nameEn: "Final Exam (2nd Half)",
+        weight: 10,
+        isFinal: true,
+        sheetKeys: ["final"],
+      },
     ],
     cutoffs: [...DEFAULT_CUTOFFS],
-    notes: "ครึ่งแรกเน้นดิจิทัลลอจิก (กลางภาค 50%) · ครึ่งหลังฮาร์ดแวร์ + แล็บ (50%)",
+    notes: "ครึ่งแรกดิจิทัลลอจิก (กลางภาค 50% ส่งทางอีเมล) · ครึ่งหลังฮาร์ดแวร์ + แล็บ (50%)",
   },
   MFIT: {
     credits: 3,
     mode: "letter",
     categories: [
-      { id: "mfit-midterm", name: "สอบกลางภาค (Linear Algebra)", weight: 35 },
-      { id: "mfit-final", name: "สอบปลายภาค (Calculus)", weight: 35, isFinal: true },
-      { id: "mfit-act", name: "กิจกรรมในห้อง, การบ้าน & Quiz (Participation & Homework)", weight: 30 },
+      {
+        id: "mfit-midterm",
+        name: "สอบกลางภาค (Linear Algebra)",
+        nameEn: "Midterm Exam (Linear Algebra)",
+        weight: 35,
+      },
+      {
+        id: "mfit-final",
+        name: "สอบปลายภาค (Calculus)",
+        nameEn: "Final Exam (Calculus)",
+        weight: 35,
+        isFinal: true,
+      },
+      {
+        id: "mfit-act",
+        name: "Attendance & Quiz (ครึ่งแรก + ครึ่งหลัง)",
+        nameEn: "Attendance & Quizzes (1st & 2nd Half)",
+        weight: 30,
+        subInputs: [
+          {
+            id: "mfit-att-1",
+            label: { th: "Attendance ครึ่งแรก (Linear)", en: "Attendance · 1st Half (Linear)" },
+            defaultWeight: 5,
+            editableWeight: true,
+          },
+          {
+            id: "mfit-quiz-1",
+            label: { th: "Quiz / กิจกรรม ครึ่งแรก", en: "Quiz / Activity · 1st Half" },
+            defaultWeight: 10,
+            editableWeight: true,
+          },
+          {
+            id: "mfit-att-2",
+            label: { th: "Attendance ครึ่งหลัง (Calculus)", en: "Attendance · 2nd Half (Calculus)" },
+            defaultWeight: 5,
+            editableWeight: true,
+          },
+          {
+            id: "mfit-quiz-2",
+            label: { th: "Quiz / การบ้าน ครึ่งหลัง", en: "Quiz / Homework · 2nd Half" },
+            defaultWeight: 10,
+            editableWeight: true,
+          },
+        ],
+      },
     ],
     cutoffs: [...DEFAULT_CUTOFFS],
-    notes: "สัดส่วนสไลด์ Week 01: กลางภาค 35% · ปลายภาค 35% · กิจกรรมและการบ้าน 30%",
+    notes:
+      "สัดส่วนสไลด์ Week 01: กลางภาค 35% · ปลายภาค 35% · Attendance & Quiz 30% (ปรับคะแนนเต็มช่องย่อย 30% ได้)",
   },
   PSCP: {
     credits: 3,
     mode: "letter",
     categories: [
-      { id: "pscp-midterm", name: "สอบกลางภาค (Midterm Coding Exam)", weight: 30 },
-      { id: "pscp-final", name: "สอบปลายภาค (Final Coding Exam)", weight: 30, isFinal: true },
-      { id: "pscp-labs", name: "แบบฝึกหัดแล็บและโจทย์ iJudge (Weekly Labs & OJ)", weight: 30 },
-      { id: "pscp-quiz", name: "Quiz ย่อยและการเข้าเรียน (Quizzes & Participation)", weight: 10 },
+      {
+        id: "pscp-lecture",
+        name: "เช็คชื่อ Lecture",
+        nameEn: "Lecture Attendance",
+        weight: 7.5,
+        sheetKeys: ["lecture"],
+      },
+      {
+        id: "pscp-lab",
+        name: "เช็คชื่อ Lab",
+        nameEn: "Lab Attendance",
+        weight: 7.5,
+        sheetKeys: ["lab"],
+      },
+      {
+        id: "pscp-interview",
+        name: "สัมภาษณ์ (Interview)",
+        nameEn: "Interview",
+        weight: 5,
+        sheetKeys: ["interview"],
+      },
+      {
+        id: "pscp-mini",
+        name: "Mini Exam",
+        nameEn: "Mini Exam",
+        weight: 10,
+        sheetKeys: ["miniExam"],
+      },
+      {
+        id: "pscp-ijudge",
+        name: "iJudge",
+        nameEn: "iJudge",
+        weight: 8,
+        sheetKeys: ["ijudge"],
+      },
+      {
+        id: "pscp-ll",
+        name: "Learning Logs",
+        nameEn: "Learning Logs",
+        weight: 5,
+        sheetKeys: ["learningLogs"],
+      },
+      {
+        id: "pscp-feedback",
+        name: "Feedback Form",
+        nameEn: "Feedback Form",
+        weight: 2,
+        sheetKeys: ["feedback"],
+      },
+      {
+        id: "pscp-midterm",
+        name: "สอบกลางภาค (Midterm)",
+        nameEn: "Midterm Exam",
+        weight: 20,
+        sheetKeys: ["midterm"],
+      },
+      {
+        id: "pscp-exercise",
+        name: "Exercise (คะแนนเสริม)",
+        nameEn: "Exercise (Extra)",
+        weight: 3,
+        sheetKeys: ["exercise"],
+        isExtra: true,
+      },
+      {
+        id: "pscp-final",
+        name: "สอบปลายภาค (Final · 12 ข้อ)",
+        nameEn: "Final Exam (12 Problems)",
+        weight: 35,
+        isFinal: true,
+        sheetKeys: ["final"],
+        inputMode: "problem_count",
+        problemCountMax: 12,
+      },
     ],
     cutoffs: [...DEFAULT_CUTOFFS],
-    notes: "มาตรฐานวิชาโปรแกรมมิ่ง: กลางภาค 30% · ปลายภาค 30% · แล็บ iJudge 30% · Quiz 10%",
+    notes:
+      "เกณฑ์ 1/2569 ตามชีต: เก็บพื้นฐาน 65 (+3 Exercise เสริม) + ปลายภาค 35 (12 ข้อ) = ฐาน 100 คะแนน",
   },
   FE: {
     credits: 3,
     mode: "pass_fail",
     categories: [
-      { id: "fe-midterm", name: "สอบกลางภาค (Midterm Test)", weight: 30 },
-      { id: "fe-final", name: "สอบปลายภาค (Final Exam)", weight: 35, isFinal: true },
-      { id: "fe-quiz", name: "Quizzes, Homework & Presentation", weight: 35 },
+      {
+        id: "fe-midterm",
+        name: "สอบกลางภาค (Midterm Test)",
+        nameEn: "Midterm Test",
+        weight: 30,
+      },
+      {
+        id: "fe-final",
+        name: "สอบปลายภาค (Final Exam)",
+        nameEn: "Final Exam",
+        weight: 35,
+        isFinal: true,
+      },
+      {
+        id: "fe-quiz",
+        name: "Quizzes, Homework & Presentation",
+        nameEn: "Quizzes, Homework & Presentation",
+        weight: 35,
+      },
     ],
     cutoffs: [{ grade: "A", min: 50, point: 0 }],
     notes: "ประเมินผลแบบผ่าน/ไม่ผ่าน (S/U)",
@@ -130,9 +339,25 @@ const Y1_S1_SYLLABUS: Record<Y1S1CourseCode, CourseSyllabusMeta> = {
     credits: 2,
     mode: "pass_fail",
     categories: [
-      { id: "charm-act", name: "การเข้าเรียนและร่วมกิจกรรมกลุ่ม (Workshop & Attendance)", weight: 50 },
-      { id: "charm-midterm", name: "งานที่ได้รับมอบหมายและสอบกลางภาค (Assignments)", weight: 25 },
-      { id: "charm-final", name: "โครงงานปลายภาคและการประเมิน (Final Project)", weight: 25, isFinal: true },
+      {
+        id: "charm-act",
+        name: "การเข้าเรียนและร่วมกิจกรรมกลุ่ม (Workshop & Attendance)",
+        nameEn: "Workshop & Attendance",
+        weight: 50,
+      },
+      {
+        id: "charm-midterm",
+        name: "งานที่ได้รับมอบหมายและสอบกลางภาค (Assignments)",
+        nameEn: "Assignments",
+        weight: 25,
+      },
+      {
+        id: "charm-final",
+        name: "โครงงานปลายภาคและการประเมิน (Final Project)",
+        nameEn: "Final Project",
+        weight: 25,
+        isFinal: true,
+      },
     ],
     cutoffs: [{ grade: "A", min: 60, point: 0 }],
     notes: "วิชาศึกษาทั่วไป (GE) ตัดเกรดแบบผ่าน/ไม่ผ่าน (S/U) โดยต้องได้คะแนนรวม ≥ 60 คะแนน",
@@ -141,8 +366,19 @@ const Y1_S1_SYLLABUS: Record<Y1S1CourseCode, CourseSyllabusMeta> = {
     credits: 1,
     mode: "pass_fail",
     categories: [
-      { id: "sport-att", name: "การเข้าร่วมชั้นเรียนและฝึกปฏิบัติ (Attendance & Practice)", weight: 60 },
-      { id: "sport-test", name: "การทดสอบทักษะกีฬาและข้อเขียน (Skills Testing & Theory)", weight: 40, isFinal: true },
+      {
+        id: "sport-att",
+        name: "การเข้าร่วมชั้นเรียนและฝึกปฏิบัติ (Attendance & Practice)",
+        nameEn: "Attendance & Practice",
+        weight: 60,
+      },
+      {
+        id: "sport-test",
+        name: "การทดสอบทักษะกีฬาและข้อเขียน (Skills Testing & Theory)",
+        nameEn: "Skills Testing & Theory",
+        weight: 40,
+        isFinal: true,
+      },
     ],
     cutoffs: [{ grade: "A", min: 50, point: 0 }],
     notes: "วิชาศึกษาทั่วไป (GE) ตัดเกรดแบบผ่าน/ไม่ผ่าน (S/U)",
@@ -187,6 +423,20 @@ export const Y1_S1_GRADE_COURSES: GradesCourseEntry[] = Y1_S1_COURSE_CODES.flatM
   },
 );
 
+/** Find a Y1-S1 course descriptor by short code (`ITF`) or 8-digit code (`06016402`). */
+export function findGradeCourseByCode(
+  codeOrOfficial: string,
+): GradesCourseEntry | null {
+  const needle = codeOrOfficial.trim().toUpperCase();
+  return (
+    Y1_S1_GRADE_COURSES.find(
+      (c) =>
+        c.code.toUpperCase() === needle ||
+        c.officialCode?.toUpperCase() === needle,
+    ) ?? null
+  );
+}
+
 /** Match a score sheet response back to a catalog Y1-S1 course entry. */
 export function matchScoreForCourse(
   entry: GradesCourseEntry,
@@ -209,6 +459,38 @@ export function gradedPercentage(score: CourseScoreViewResponse | null): number 
   if (score.mySummary.status) return null;
   if (score.mySummary.gradedMax <= 0) return null;
   return (score.mySummary.total / score.mySummary.gradedMax) * 100;
+}
+
+/** Evaluate a numeric score (/100) against a course's grading cutoffs. */
+export function calculateCourseGrade(
+  totalScore: number,
+  course: GradesCourseEntry,
+): {
+  letter: LetterGrade | null;
+  passFail: PassFailGrade | null;
+  point: number | null;
+} {
+  if (course.mode === "pass_fail") {
+    const passMin = course.syllabus.cutoffs[0]?.min ?? 50;
+    return {
+      letter: null,
+      passFail: totalScore >= passMin ? "S" : "U",
+      point: null,
+    };
+  }
+
+  const sorted = [...course.syllabus.cutoffs].sort((a, b) => b.min - a.min);
+  for (const cutoff of sorted) {
+    if (totalScore >= cutoff.min) {
+      return {
+        letter: cutoff.grade,
+        passFail: null,
+        point: cutoff.point,
+      };
+    }
+  }
+
+  return { letter: "F", passFail: null, point: 0.0 };
 }
 
 export interface SemesterGpaSummary {

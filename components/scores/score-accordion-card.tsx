@@ -5,8 +5,15 @@ import Link from "next/link";
 import { ChevronDown, Trophy, User, Users } from "lucide-react";
 import { SURFACE } from "@/components/course-hub-shared";
 import { useLocale, t, type LText } from "@/lib/i18n";
-import type { CourseScoreAllRow, CourseScoreViewResponse } from "@/lib/scores/types";
+import type {
+  CourseScoreAllRow,
+  CourseScoreViewResponse,
+} from "@/lib/scores/types";
+import { findGradeCourseByCode } from "@/lib/grades/y1s1-courses";
+import { useManualScoresStore } from "@/lib/grades/manual-scores-store";
+import { mergeCourseScores } from "@/lib/grades/score-merger";
 import { AllScoresTable } from "./all-scores-table";
+import { MergedScoreBreakdown } from "./merged-score-breakdown";
 import { PersonalScoreView } from "./personal-score-view";
 import { formatScore, formatScoreDate } from "./score-utils";
 
@@ -15,8 +22,14 @@ const L = {
   notEnrolledBadge: { th: "ไม่มีรหัสในตาราง", en: "Not on sheet" },
   modePersonal: { th: "รายบุคคล", en: "My Score" },
   modeAll: { th: "ดูทั้งหมด", en: "View All" },
-  loadingAll: { th: "กำลังโหลดตารางคะแนนทั้งหมด...", en: "Loading full score sheet..." },
-  errorAll: { th: "โหลดตารางทั้งหมดไม่สำเร็จ", en: "Could not load full table" },
+  loadingAll: {
+    th: "กำลังโหลดตารางคะแนนทั้งหมด...",
+    en: "Loading full score sheet...",
+  },
+  errorAll: {
+    th: "โหลดตารางทั้งหมดไม่สำเร็จ",
+    en: "Could not load full table",
+  },
   retry: { th: "ลองอีกครั้ง", en: "Retry" },
   updatesPrefix: { th: "อัปเดต", en: "Updates" },
   gradesHubLink: { th: "ดูรวมทุกวิชา →", en: "All grades →" },
@@ -32,6 +45,12 @@ export function ScoreAccordionCard({
   lookupCode: string;
 }) {
   const { locale } = useLocale();
+  const manualState = useManualScoresStore();
+  const gradeCourse =
+    findGradeCourseByCode(data.courseCode) ?? findGradeCourseByCode(lookupCode);
+  const merged = gradeCourse
+    ? mergeCourseScores(gradeCourse, data, manualState)
+    : null;
   const [isOpen, setIsOpen] = useState(false);
   const [mode, setMode] = useState<ViewMode>("personal");
   const [allRows, setAllRows] = useState<CourseScoreAllRow[] | null>(
@@ -60,6 +79,34 @@ export function ScoreAccordionCard({
   }
 
   const summaryPill = (() => {
+    const status = data.enrolled ? data.mySummary?.status : undefined;
+    const sheetTotal = data.enrolled ? (data.mySummary?.total ?? 0) : 0;
+    const sheetMax = data.enrolled ? (data.mySummary?.gradedMax ?? 0) : 0;
+
+    if (merged && merged.hasAnyManualInput && merged.hasAnyScore) {
+      const gradeLabel =
+        merged.autoGradeReady && merged.suggestedGrade
+          ? (merged.suggestedGrade.letter ?? merged.suggestedGrade.passFail)
+          : null;
+      return (
+        <span className="inline-flex items-center gap-1.5">
+          <span className="rounded-full border border-primary/25 bg-primary/10 px-2.5 py-0.5 text-[11px] font-semibold tabular-nums text-primary">
+            {formatScore(merged.combinedEarned)} / {formatScore(merged.baseScale)}
+          </span>
+          {gradeLabel && (
+            <span className="rounded-full border border-emerald-500/30 bg-emerald-500/15 px-2 py-0.5 text-[11px] font-semibold text-emerald-400">
+              {gradeLabel}
+            </span>
+          )}
+          {status && (
+            <span className="rounded-full bg-amber-500/15 px-2 py-0.5 text-[11px] font-semibold text-amber-600 dark:text-amber-400">
+              {status}
+            </span>
+          )}
+        </span>
+      );
+    }
+
     if (!data.enrolled || !data.mySummary) {
       return (
         <span className="rounded-full bg-muted px-2.5 py-0.5 text-[11px] font-medium text-muted-foreground">
@@ -67,18 +114,19 @@ export function ScoreAccordionCard({
         </span>
       );
     }
-    const { total, gradedMax, status } = data.mySummary;
-    if (status && total === 0) {
+
+    if (status && sheetTotal === 0) {
       return (
         <span className="rounded-full bg-amber-500/15 px-2.5 py-0.5 text-[11px] font-semibold text-amber-600 dark:text-amber-400">
           {status}
         </span>
       );
     }
+
     return (
       <span className="inline-flex items-center gap-1.5">
         <span className="rounded-full bg-primary/10 border border-primary/25 px-2.5 py-0.5 text-[11px] font-semibold tabular-nums text-primary">
-          {formatScore(total)} / {formatScore(gradedMax)}
+          {formatScore(sheetTotal)} / {formatScore(sheetMax)}
         </span>
         {status && (
           <span className="rounded-full bg-amber-500/15 px-2 py-0.5 text-[11px] font-semibold text-amber-600 dark:text-amber-400">
@@ -187,7 +235,15 @@ export function ScoreAccordionCard({
 
           {/* Active view */}
           {mode === "personal" ? (
-            <PersonalScoreView data={data} onOpenAll={switchToAll} />
+            gradeCourse ? (
+              <MergedScoreBreakdown
+                course={gradeCourse}
+                sheetScore={data}
+                embedded
+              />
+            ) : (
+              <PersonalScoreView data={data} onOpenAll={switchToAll} />
+            )
           ) : loadingAll ? (
             <div className="py-8 text-center text-xs text-muted-foreground animate-pulse">
               {t(L.loadingAll, locale)}
@@ -225,7 +281,9 @@ export function ScoreAccordionCard({
                 <p>
                   {t(L.updatesPrefix, locale)}:{" "}
                   {data.updates
-                    .map((u) => `${formatScoreDate(u.date, locale)} (${u.note})`)
+                    .map(
+                      (u) => `${formatScoreDate(u.date, locale)} (${u.note})`,
+                    )
                     .join(" · ")}
                 </p>
               )}
@@ -236,4 +294,3 @@ export function ScoreAccordionCard({
     </div>
   );
 }
-

@@ -224,7 +224,7 @@ export function PersonalScoreView({
               const title = resolveLabel(cat.label, locale);
               return (
                 <TableRow key={cat.key} className="hover:bg-muted/20">
-                  <TableCell className="py-2.5 pl-3.5 align-top">
+                  <TableCell className="py-2.5 pl-3.5 align-top whitespace-normal">
                     <div className="font-medium text-foreground">{title}</div>
                     {cat.rawSummary && (
                       <div className="text-[11px] text-muted-foreground tabular-nums">

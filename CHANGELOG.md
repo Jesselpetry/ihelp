@@ -14,6 +14,19 @@
 
 ## [Unreleased]
 
+### เพิ่ม
+
+- **เพิ่มระบบกรอกคะแนนแบบ Manual ผสานคะแนนประกาศจริงบนสเกล `/100` พร้อมคำนวณเกรดและ GPA อัตโนมัติใน `/grades` และการ์ดคะแนนรายวิชา (โดย @Jesselpetry)** —
+  1. ปรับสเกลกลางทุกวิชาชั้นปีที่ 1 เทอม 1 เป็น `/100` โดยผสานคะแนนจากชีตประกาศจริง (อ่านอย่างเดียว) เข้ากับช่องกรอกคะแนนด้วยตนเองที่บันทึกในเบราว์เซอร์ (`localStorage` ผ่าน `lib/grades/manual-scores-store.ts` และ `lib/grades/score-merger.ts`) ทั้งบนหน้า `/grades` (`GradeCourseAccordion`, `GradesOverviewTable`) และการ์ดคะแนนในหน้ารายวิชา (`ScoreAccordionCard`)
+  2. รองรับการกรอกคะแนนเฉพาะทางตามโครงสร้างจริงของแต่ละวิชา: `ICS` ช่องคะแนน Midterm ครึ่งแรกจากอีเมล (`/50`) และ Lab/Lab Exam ครึ่งหลัง, `MFIT` ช่อง Linear Algebra Midterm (`/35`), Calculus Final (`/35`) และ Attendance & Quiz แยกครึ่งแรก-ครึ่งหลัง (ปรับค่าน้ำหนักย่อยได้), `PSCP` ช่องข้อสอบปลายภาค `/35` แบบกรอกจำนวนข้อที่ทำได้ `0–12 ข้อ` (สลับเป็นกรอกคะแนนตรงได้) พร้อมผสานคะแนน Pre-Final + Exercise จากชีต, และ `ITF` ช่อง Midterm (`/30`), Final (`/30`), Lecture Attendance (`/10`)
+  3. คำนวณเกรดรายวิชา (`A–F` หรือ `S/U`) อัตโนมัติเมื่อคะแนนครบสเกล `/100` และซิงก์เข้าตารางภาพรวม GPA โดยยังสลับเกรดเองได้
+
+### ปรับปรุง
+
+- ปรับหน้า `/grades` และ Accordion คะแนนทุกวิชาให้คลีนและอ่านง่ายขึ้น (`GradesOverviewTable`, `GradeCourseAccordion`, `CourseCodeBadge`, `MergedScoreBreakdown`): แสดงเฉพาะคะแนน `/100` ในตารางภาพรวมโดยตัด `%` และคำใบ้ย่อยที่ซ้ำซ้อนออก, รวมคอลัมน์เกรด `A–F` และ `S/U` ให้ใช้ shadcn `Select` แบบเดียวกัน, แยกหมายเหตุด้านล่างเป็น 2 bullet point, ปรับ badge รหัสวิชา (`CourseCodeBadge`) เป็นโทนสีฟ้า iHelp (`bg-ihelp-gradient`) และลด UI ซ้ำซ้อนใน Accordion (เอา `[Sec 1]`, ป้ายเกรดคาดการณ์บางส่วน, `%` ซ้ำ, แถบเกณฑ์ผ่านเบื้องต้น และกล่องแจ้งเตือนซ้ำออก พร้อมจัดรูปแบบหมายเหตุประมวลการสอนให้อ่านชัดขึ้น) (โดย @Jesselpetry)
+- เปลี่ยนตัวเลือกเกรดรายวิชาในตารางภาพรวม `/grades` (`GradesOverviewTable` ใน `components/grades/grades-overview-table.tsx`) จาก native `<select>` เป็น shadcn `Select` (`components/ui/select.tsx`) ให้เข้ากับธีม dark charcoal ของเว็บไซต์ (โดย @Jesselpetry)
+- ปรับเลย์เอาต์ตารางคะแนนใน Accordion ของทุกวิชา (`MergedScoreBreakdown` ใน `components/scores/merged-score-breakdown.tsx`) เป็นโครงสร้าง 2 ฝั่งมาตรฐาน (ซ้าย: ชื่อองค์ประกอบ + คำอธิบายย่อย พร้อมพับ badge รายละเอียดย่อยชิดซ้ายให้กดเปิดดูได้ / ขวา: ช่องคะแนนและเต็มชิดขวาเรียงตรงแนวเดียวกันทุกแถว รวมทั้งช่องย่อย Attendance & Quiz ของ MFIT และ Final 0–12 ข้อของ PSCP) (โดย @Jesselpetry)
+
 ---
 
 ## [1.1.0] - 11 พฤศจิกายน 2569
