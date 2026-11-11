@@ -46,7 +46,7 @@ export function CourseScoreSection({
   useEffect(() => {
     const controller = new AbortController();
 
-    fetch(`/api/local-scores/${encodeURIComponent(lookupCode)}/hub`, {
+    fetch(`/api/scores/${encodeURIComponent(lookupCode)}/hub`, {
       signal: controller.signal,
     })
       .then(async (res) => {

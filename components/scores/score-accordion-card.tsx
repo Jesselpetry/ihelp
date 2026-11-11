@@ -66,7 +66,7 @@ export function ScoreAccordionCard({
     setAllError(false);
     try {
       const res = await fetch(
-        `/api/local-scores/${encodeURIComponent(lookupCode)}/hub?view=all`,
+        `/api/scores/${encodeURIComponent(lookupCode)}/hub?view=all`,
       );
       if (!res.ok) throw new Error("fetch_failed");
       const full = (await res.json()) as CourseScoreViewResponse;

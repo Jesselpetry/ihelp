@@ -16,6 +16,7 @@
 
 ### เพิ่ม
 
+- **รองรับการดึงข้อมูลคะแนนประกาศจริงบนระบบ Production และ Staging อย่างปลอดภัยผ่าน Supabase Storage ส่วนตัว (`ihelp-scores`) (โดย @Jesselpetry)** — เพิ่ม API routes `/api/scores/overview` และ `/api/scores/[course]/hub` พร้อมคลังโหลดฝั่งเซิร์ฟเวอร์ (`lib/scores/registry.ts`, `lib/scores/roster.ts`, `lib/scores/hub-builder.ts`) และคำสั่ง `bun run scores:sync` (`scripts/sync-scores.ts`) เพื่อให้คะแนนขึ้นแสดงผลหลังเข้าสู่ระบบด้วย `@kmitl.ac.th` โดยไม่เผยแพร่ข้อมูลคะแนนหรือรายชื่อนักศึกษาลงใน public Git repository
 - **เพิ่มระบบกรอกคะแนนแบบ Manual ผสานคะแนนประกาศจริงบนสเกล `/100` พร้อมคำนวณเกรดและ GPA อัตโนมัติใน `/grades` และการ์ดคะแนนรายวิชา (โดย @Jesselpetry)** —
   1. ปรับสเกลกลางทุกวิชาชั้นปีที่ 1 เทอม 1 เป็น `/100` โดยผสานคะแนนจากชีตประกาศจริง (อ่านอย่างเดียว) เข้ากับช่องกรอกคะแนนด้วยตนเองที่บันทึกในเบราว์เซอร์ (`localStorage` ผ่าน `lib/grades/manual-scores-store.ts` และ `lib/grades/score-merger.ts`) ทั้งบนหน้า `/grades` (`GradeCourseAccordion`, `GradesOverviewTable`) และการ์ดคะแนนในหน้ารายวิชา (`ScoreAccordionCard`)
   2. รองรับการกรอกคะแนนเฉพาะทางตามโครงสร้างจริงของแต่ละวิชา: `ICS` ช่องคะแนน Midterm ครึ่งแรกจากอีเมล (`/50`) และ Lab/Lab Exam ครึ่งหลัง, `MFIT` ช่อง Linear Algebra Midterm (`/35`), Calculus Final (`/35`) และ Attendance & Quiz แยกครึ่งแรก-ครึ่งหลัง (ปรับค่าน้ำหนักย่อยได้), `PSCP` ช่องข้อสอบปลายภาค `/35` แบบกรอกจำนวนข้อที่ทำได้ `0–12 ข้อ` (สลับเป็นกรอกคะแนนตรงได้) พร้อมผสานคะแนน Pre-Final + Exercise จากชีต, และ `ITF` ช่อง Midterm (`/30`), Final (`/30`), Lecture Attendance (`/10`)

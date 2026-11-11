@@ -1,7 +1,7 @@
 import { isRestrictedAsset, type SubjectAsset } from "@/lib/library/subject-library-ui";
 
 /**
- * The five Supabase Storage buckets: the name the code uses, mapped to the id
+ * The Supabase Storage buckets: the name the code uses, mapped to the id
  * Supabase knows the bucket by.
  *
  * Application code takes every bucket id from here, so each string exists once.
@@ -20,6 +20,7 @@ export const BUCKETS = {
   exams: "ihelp-exams",
   resources: "ihelp-resources",
   avatars: "ihelp-avatars",
+  scores: "ihelp-scores",
 } as const;
 
 export type BucketId = keyof typeof BUCKETS;
@@ -49,6 +50,10 @@ export const BUCKET_ACCESS = {
   // Profile pictures students uploaded, <studentId>/<uuid>.webp. Public so an
   // <img> can load them; resolveAvatarUrl() falls back to the Google picture.
   avatars: "public",
+  // Course score sheets synced from local imports (`bun run scores:sync`).
+  // Strictly private (no public or client Storage policies); read server-side
+  // only via service role after verifying a signed-in @kmitl.ac.th student.
+  scores: "private",
 } as const satisfies Record<BucketId, BucketAccess>;
 
 /**

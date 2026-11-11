@@ -45,3 +45,32 @@ export async function signObjectUrls(
   }
   return signed;
 }
+
+export function storageConfigured(): boolean {
+  return Boolean(
+    process.env.NEXT_PUBLIC_SUPABASE_URL &&
+      process.env.SUPABASE_SERVICE_ROLE_KEY,
+  );
+}
+
+/**
+ * Downloads and parses a private JSON object using the service-role client.
+ * Callers must enforce their own session/authorization checks before reading
+ * sensitive student records.
+ */
+export async function downloadPrivateJson<T>(
+  bucket: BucketId,
+  key: string,
+): Promise<T | null> {
+  if (!storageConfigured()) return null;
+  try {
+    const { data, error } = await createAdminClient()
+      .storage.from(BUCKETS[bucket])
+      .download(key);
+    if (error || !data) return null;
+    return JSON.parse(await data.text()) as T;
+  } catch (err) {
+    console.error(`downloadPrivateJson exception for ${bucket}/${key}:`, err);
+    return null;
+  }
+}

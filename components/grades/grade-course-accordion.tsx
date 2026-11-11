@@ -79,7 +79,7 @@ export function GradeCourseAccordion({
     setAllError(null);
     try {
       const res = await fetch(
-        `/api/local-scores/${encodeURIComponent(score.courseCode)}/hub?view=all`,
+        `/api/scores/${encodeURIComponent(score.courseCode)}/hub?view=all`,
       );
       if (!res.ok) {
         setAllError(t(L.loadAllError, locale));

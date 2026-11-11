@@ -57,7 +57,7 @@ export function GradesHub() {
     async function load() {
       const [meResult, overviewResult] = await Promise.allSettled([
         fetch("/api/me", { signal: controller.signal }),
-        fetch("/api/local-scores/overview", { signal: controller.signal }),
+        fetch("/api/scores/overview", { signal: controller.signal }),
       ]);
 
       if (controller.signal.aborted) return;
