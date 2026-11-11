@@ -14,6 +14,26 @@
 
 ## [Unreleased]
 
+---
+
+## [1.1.0] - 11 พฤศจิกายน 2569
+
+> **วิวัฒนาการหลัก (v1.1.0):** Final Exam War Room & Grades Hub: ศูนย์รวมผลการเรียน `/grades`, ห้องติวสอบ MFIT 5 เสาหลัก, แพ็กดาวน์โหลด ZIP และ PSCP CodeMirror IDE
+
+**ผู้ร่วมพัฒนา:** Chatan Petry ([@Jesselpetry](https://github.com/Jesselpetry), IG: [@chatann_](https://instagram.com/chatann_)), Punnavit Tangkolchan ([@PhuPunnavit](https://github.com/PhuPunnavit), IG: [@priiu_i](https://instagram.com/priiu_i)), Tammadon Suksa ([@tammadon](https://github.com/tammadon))
+
+### เพิ่ม
+
+- **เพิ่มศูนย์รวมผลการเรียนและคะแนนสะสม `/grades` (Grades & Scores Hub) พร้อมคำนวณ GPA, จัดเก็บตารางสอบ 1/2569 เป็น Archive และปรับ Navbar ให้กระชับ (โดย @Jesselpetry)** —
+  1. สร้างหน้า `/grades` (`app/grades/page.tsx`, `components/grades/grades-hub.tsx`) ใช้แบนเนอร์ iHelp พร้อม Badge ตัวตนนักศึกษาสีขาวทรงมน (รูปโปรไฟล์ + รหัสนักศึกษา + ชื่อ) ด้านใต้คำอธิบายฝั่งซ้าย และเลย์เอาต์ 2 พาเนลแสดงครบทั้ง 7 วิชาชั้นปีที่ 1 เทอม 1 (`ITF`, `ICS`, `MFIT`, `PSCP`, `FE`, `CHARM`, `SPORT`) ด้วย `CourseCodeBadge` โทนมาตรฐาน พร้อมชื่อรายวิชาภาษาไทยในแถบข้าง
+  2. เมื่อเข้าสู่ระบบด้วย `@kmitl.ac.th` จะแสดงผลคะแนนที่ประกาศแล้วแบบรายบุคคล (`PersonalScoreView` โหมดฝังตัวแบบแบน) พร้อมแท็บสลับ `"ดูทั้งหมด"` และมีแถบเลือกเกรด (พร้อมโทกเกิล `S / U` สำหรับ `FE`, `CHARM`, `SPORT`) เพื่อคำนวณ **GPA รวม** ท้ายตารางภาพรวมและแจ้งเตือนเมื่อ GPA ต่ำกว่า 1.90
+  3. ย้ายตารางสอบและผังที่นั่ง 1/2569 ไปที่ `/exam-schedule/archive` (ให้ `/exam-schedule` ส่งต่อไป `/grades` หรือ `/exam-schedule/archive` เมื่อมีพารามิเตอร์ค้นหา), ยุบเมนู `PSCP` ออกจากแถบนำทางด้านบน, และลบหน้า `/grade-calculator` กับ `/calculator` เดิมออกทั้งหมด
+
+- **เพิ่มส่วนแสดงผลคะแนนรายวิชา (Course Scores Section) บนหน้ารายวิชา และรองรับชื่อจริง-ชื่อเล่นนักศึกษา (โดย @Jesselpetry)** —
+  1. เพิ่ม `CourseScoreSection` (`components/scores/course-score-section.tsx`) ด้านบนสุดของ stream ใน `SubjectHub` พร้อมลิงก์หัวข้อ `"คะแนน"` บน `CourseSidebar` โดยใช้ `TopicHeader` และ `SURFACE` เดิมของหน้ารายวิชา
+  2. ออกแบบการ์ด Accordion ที่พับไว้เป็นค่าเริ่มต้น รองรับทั้งมุมมองรายบุคคล (พร้อมแถบความคืบหน้าและคะแนนย่อย) และโหมด `"ดูทั้งหมด"` สำหรับค้นหาและเรียงลำดับตารางคะแนนด้วยรหัส ชื่อจริง หรือชื่อเล่นเมื่อเข้าสู่ระบบด้วยอีเมล `@kmitl.ac.th` (รองรับ ICS, ITF, PSCP และรายวิชาอื่นที่จะเพิ่มภายหลัง)
+  3. เสริมการแสดงชื่อจริงและชื่อเล่นของผู้ใช้ใน `/api/me` และหน้าตารางสอบ `/exam-schedule/archive` (ทั้งแถบข้อมูลนักศึกษาและผังที่นั่งสอบ) เมื่อเข้าสู่ระบบแล้ว
+
 ### แก้ไข
 
 - **แก้ไขบั๊ก Indented Code Block ที่ทำให้คำตอบและสูตรในคัมภีร์ MFIT เสาที่ 1 และ 2 แสดงผลเป็นข้อความธรรมดา และจัดเลย์เอาต์สูตรคณิตศาสตร์ทั้งเสา 1, 2, 4 (โดย @Jesselpetry)** —

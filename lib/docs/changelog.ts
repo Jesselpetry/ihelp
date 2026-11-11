@@ -35,6 +35,10 @@ export const CONTRIBUTORS = {
     github: "Meaookung144",
     instagram: "meaookung144",
   },
+  tammadon: {
+    name: "Tammadon Suksa",
+    github: "tammadon",
+  },
 } as const satisfies Record<string, Contributor>;
 
 export type ChangeKind = "added" | "changed" | "fixed" | "security";
@@ -122,12 +126,23 @@ export const MAJOR_EVOLUTION_MILESTONES: EvolutionMilestone[] = [
       en: "Production Release: Weekly Learning Path architecture, ICS Track A & Full Contributor Credit System",
     },
   },
+  {
+    version: "v1.1.0",
+    highlight: true,
+    summary: {
+      th: "Final Exam War Room & Grades Hub: ศูนย์รวมผลการเรียน /grades, ห้องติวสอบ MFIT 5 เสาหลัก, แพ็กดาวน์โหลด ZIP และ PSCP CodeMirror IDE",
+      en: "Final Exam War Room & Grades Hub: /grades GPA Hub, 5-Pillar MFIT War Room, ZIP Resource Packs & PSCP CodeMirror IDE",
+    },
+  },
 ];
 
 /**
  * คืนค่าหมุดหมายวิวัฒนาการหลัก (Major Evolution Milestone) ที่ตรงกับเลขเวอร์ชัน
  */
 export function getEvolutionMilestone(version: string): EvolutionMilestone | null {
+  if (version === "1.1.0" || version.startsWith("1.1.")) {
+    return MAJOR_EVOLUTION_MILESTONES.find((m) => m.version === "v1.1.0") ?? null;
+  }
   if (version === "1.0.0" || version.startsWith("1.0.")) {
     return MAJOR_EVOLUTION_MILESTONES.find((m) => m.version === "v1.0.0") ?? null;
   }
@@ -157,6 +172,94 @@ export function getEvolutionMilestone(version: string): EvolutionMilestone | nul
 
 // Mirrors CHANGELOG.md at the repo root — keep both in sync when releasing.
 export const CHANGELOG: VersionEntry[] = [
+  {
+    version: "1.1.0",
+    date: "2026-11-11",
+    contributors: [
+      CONTRIBUTORS.chatan,
+      CONTRIBUTORS.phuPunnavit,
+      CONTRIBUTORS.tammadon,
+    ],
+    changes: [
+      {
+        kind: "added",
+        text: {
+          th: "ศูนย์รวมผลการเรียน /grades (Grades & Scores Hub) พร้อมแถบข้างชื่อวิชาภาษาไทย, ตารางภาพรวมเลือกเกรดและโทกเกิล S/U สำหรับ FE/CHARM/SPORT, คำนวณ GPA พร้อมเตือนเกรดต่ำกว่า 1.90, จัดเก็บตารางสอบ 1/2569 ไว้ที่ /exam-schedule/archive, ยุบเมนู Navbar และลบ /grade-calculator เดิม (โดย @Jesselpetry)",
+          en: "Launched /grades (Grades & Scores Hub) with Thai course names in sidebar, overview grade selectors & S/U toggles for FE/CHARM/SPORT, live GPA calculation with < 1.90 probation alert, archived 1/2569 exam schedule at /exam-schedule/archive, trimmed navbar, and removed /grade-calculator (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "ส่วนแสดงผลคะแนนรายวิชา (CourseScoreSection) ด้านบนสุดของหน้ารายวิชาแบบ Accordion รายบุคคลและโหมดดูทั้งหมด (ค้นหา-เรียงตามรหัส ชื่อจริง ชื่อเล่น) สำหรับ @kmitl.ac.th พร้อมแสดงชื่อจริง-ชื่อเล่นใน /api/me และหน้าตารางสอบ (โดย @Jesselpetry)",
+          en: "Added CourseScoreSection accordion at the top of course hubs with personal breakdown & searchable View All table (ID, full name, nickname) for @kmitl.ac.th members, plus full name & nickname display in /api/me and exam seating chart (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "ศูนย์บัญชาการสอบปลายภาค MFIT Final Exam War Room พร้อมข้อสอบจำลองแคลคูลัส 25 ข้อ (5 เสาหลัก), คลังข้อสอบเก่าจริง 7 ชุด, การ์ดจุดพักสอบปลายภาคสีแดง, ตารางเอกสารสัปดาห์ที่ 08–15 และคัมภีร์แก้โจทย์ 5 เสาหลัก (เสาที่ 1, 2, 4 ครบพร้อมโจทย์ตัวอย่าง) (โดย @Jesselpetry)",
+          en: "Launched MFIT Final Exam War Room featuring 25-item Calculus Final Mock Exam across 5 pillars, 7 signed past papers, red gradient Final milestone card, Weeks 08–15 material decks, and interactive Step-by-Step 5-Pillar Calculus Cheatsheets for Pillars 1, 2, and 4 (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "ระบบดาวน์โหลดแพ็กทรัพยากรรวมเป็นไฟล์ .ZIP (PackDownloadModal & PackDownloadButton) ทั้งในคลังเรียนรู้รายวิชา (โหลดรวมตามหมวดหรือตามตัวกรองพร้อม README.txt) และหน้า MFIT War Room (โหลดรวมข้อสอบเก่า 7 ฉบับ / ชีทสรุปสูตร 6 ฉบับ) (โดย @Jesselpetry)",
+          en: "Added client-side ZIP Resource Pack download system (PackDownloadModal & PackDownloadButton) in course libraries (category/filtered packs with generated README.txt) and MFIT Final War Room (past papers & official sheets bundles) (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "คลังสื่อสไลด์สรุปเนื้อหาแปลไทยวิชา ICS ครึ่งหลัง บทที่ 1–7 จาก Figma พร้อมแนวข้อสอบปลายภาคและเฉลยข้อเขียน (โดย @PhuPunnavit)",
+          en: "Added Thai-translated ICS Part 2 summary slides (Ch. 1–7) and final exam written guide with worked solutions (by @PhuPunnavit)",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "ชีตสรุปแคลคูลัสเตรียมสอบปลายภาค MFIT Holy Shit Final Part 1 ฉบับจดละเอียด 21 หน้า พร้อมลงทะเบียนเครดิตในหน้าวิชา Math for IT (โดย @tammadon)",
+          en: "Added MFIT Holy Shit Final Part 1 handwritten calculus cheatsheet (21 pages) with contributor attribution on Math for IT (by @tammadon)",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "ยกเครื่อง PSCP Workspace IDE ด้วย CodeMirror 6 Python Editor, Tabbed Test Case Runner (ปุ่มวงกลมและ Custom Input), คู่มือรายสัปดาห์ 14 สัปดาห์ (WeeklyGuidePanel & OjProblemsDeck), แบนเนอร์ 8 โจทย์แนะนำจากพี่ TA (TA Recommend), และคลังโจทย์อ้างอิง 273 ข้อจาก branch OP (โดย @Jesselpetry)",
+          en: "Overhauled PSCP Workspace IDE with dark CodeMirror 6 Python editor, fixed 2-column circular TestCaseNavigator with custom input, 14 weekly guides (WeeklyGuidePanel & OjProblemsDeck), 8-problem TA Recommend banner & filter, and 273 verified OP-branch problems (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "อัปเกรดเอนจินแสดงผลคณิตศาสตร์สู่ MathJax v3 SVG (rehype-mathjax/svg) ทั้งในตัวอ่าน Markdown และแบบทดสอบ TechniqueQuiz, ปรับความกว้างตัวอ่านมาตรฐานกลาง (max-w-5xl / max-w-3xl), และจัดวางหัวข้อ TopicHeader ของ War Room และรายวิชาให้กระชับเท่ากัน (โดย @Jesselpetry)",
+          en: "Upgraded math rendering to MathJax v3 SVG engine across Markdown Reader & TechniqueQuiz, standardized ModuleReader/LibraryReader widths, and unified TopicHeader and single-row card layouts across MFIT War Room and Course Hubs (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "ปรับหน้าต่างพรีวิว PDF/เอกสาร (PreviewModal) สู่ Bottom Sheet Drawer เลื่อนขึ้นจากขอบล่าง, ทำ ResourceItemCard ให้คลิกพรีวิวได้ทั้งการ์ดพร้อมแบดจ์ผู้จัดทำ, และปรับการ์ดผู้จัดทำ (CourseContributors) ให้พับผลงานเป็นค่าเริ่มต้นแบบมินิมอล (โดย @Jesselpetry)",
+          en: "Redesigned PreviewModal as a mobile-friendly bottom sheet drawer, made ResourceItemCard full-card clickable with creator badges, and streamlined CourseContributors into compact collapsible credit cards (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "fixed",
+        text: {
+          th: "แก้ไขปัญหา 404/401 การเปิดชีทสรุปและข้อสอบเก่า 7 ชุดบน Production ผ่าน Public Supabase Storage URL และ Signed URL อายุ 2 ชั่วโมงแบบ On-demand ใน /api/library/assets (โดย @Jesselpetry)",
+          en: "Fixed 404/401 production errors when accessing MFIT official formula sheets and 7 past exam papers via public Supabase Storage URLs and 2-hour on-demand signed URLs in /api/library/assets (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "fixed",
+        text: {
+          th: "แก้ไข KaTeX Parse Error (อักขระ escape \\ ใน template literal), ปัญหา Indented Code Block ในคัมภีร์ MFIT เสา 1–2–4, สมการซ้อนทับ, สระไทยลอยในบล็อกสูตรคณิตศาสตร์, ไอคอน Notion SVG และบล็อกตาราง ASCII ในวิชา MFIT/ITF/Business/Chem (โดย @Jesselpetry)",
+          en: "Fixed KaTeX backslash escape parse errors, CommonMark indented code block traps in MFIT Pillars 1–2–4, overlapping display equations, floating Thai vowels inside math blocks, Notion SVG path, and ASCII code blocks across MFIT/ITF/Business/Chem guides (by @Jesselpetry)",
+        },
+      },
+    ],
+  },
   {
     version: "1.0.0",
     date: "2026-11-08",
