@@ -9,6 +9,7 @@ import { CourseSidebar } from "@/components/course-sidebar";
 import { CourseOverview } from "@/components/course-overview";
 import { CourseWeeklyTimeline } from "@/components/course-weekly-timeline";
 import { CourseContributors } from "@/components/course-contributors";
+import { CourseScoreSection } from "@/components/scores/course-score-section";
 import type { OverviewTab } from "@/components/course-hub-shared";
 import type { ScrapedCourseInfo } from "@/lib/courses/course-content";
 import type { CourseTimelineData } from "@/lib/courses/course-timeline-types";
@@ -19,6 +20,8 @@ export interface SubjectHubProps {
   backLabel: LText;
   /** Short course code, e.g. "ICS". */
   code: string;
+  /** Official 8-digit KMITL course code, e.g. "06016411". */
+  officialCode?: string;
   name: LText;
   /** Official code and credits, already joined. */
   meta: string;
@@ -49,6 +52,7 @@ export function SubjectHub({
   backHref,
   backLabel,
   code,
+  officialCode,
   name,
   meta,
   tagline,
@@ -63,6 +67,7 @@ export function SubjectHub({
   const { locale } = useLocale();
   const [scope, setScope] = useState<ModuleScope>("all");
   const [isSummaryExpanded, setIsSummaryExpanded] = useState(false);
+  const [hasScores, setHasScores] = useState(false);
 
   const overviewTabs: OverviewTab[] = [
     ...(summaryMarkdown ? (["summary"] as const) : []),
@@ -105,6 +110,7 @@ export function SubjectHub({
             modules={modules}
             scope={scope}
             onScopeChange={setScope}
+            hasScores={hasScores}
             hasOverview={overviewTabs.length > 0}
             weeksCount={timeline.weeks.length}
             hasMidtermMilestone={Boolean(timeline.midtermMilestone)}
@@ -117,6 +123,15 @@ export function SubjectHub({
         )}
 
         <div className="min-w-0 space-y-6">
+          {/* Section 0: คะแนนรายวิชา (Local-only authenticated score accordion) */}
+          {!reading && (
+            <CourseScoreSection
+              courseCode={code}
+              officialCode={officialCode}
+              onVisibilityChange={setHasScores}
+            />
+          )}
+
           {/* Section 1: ภาพรวมรายวิชา (Clean CourseOverview with Overview Version Switcher) */}
           <CourseOverview
             summaryMarkdown={summaryMarkdown}

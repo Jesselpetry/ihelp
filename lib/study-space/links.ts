@@ -27,7 +27,7 @@ export const href = {
   pscpWeek: (week: number) => `/pscp?week=${week}`,
   pscpProblem: (slug: string) => `/pscp/${slug}`,
   pscpHub: () => "/pscp",
-  examSchedule: () => "/exam-schedule",
+  examSchedule: () => "/exam-schedule/archive",
   khanDiff: (slug?: string) =>
     slug
       ? `https://www.khanacademy.org/math/differential-calculus/${slug}`

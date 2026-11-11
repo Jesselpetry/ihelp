@@ -136,6 +136,7 @@ export default async function CoursePage({
         backHref="/"
         backLabel={L.backLabel}
         code={course.code}
+        officialCode={course.officialCode}
         name={{ th: course.nameTh, en: course.nameEn }}
         meta={[course.officialCode, course.credits].filter(Boolean).join(" · ")}
         tagline={lead?.tagline ? { th: lead.tagline, en: lead.tagline } : null}

@@ -27,7 +27,6 @@ import {
   Printer,
   Plane,
   Volume2,
-  Calculator,
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -57,7 +56,6 @@ import type {
 } from "@/lib/exams/types";
 import { RoomSeatingChart } from "./room-seating-chart";
 import { PromoBanner } from "./promo-banner";
-import { GradeCalculator } from "./grade-calculator";
 import { RESIGN_SOUND } from "@/lib/exams/resign-sound";
 
 const L: Record<string, LText> = {
@@ -73,7 +71,6 @@ const L: Record<string, LText> = {
   searchButton: { th: "ค้นหา", en: "Search" },
   tabMySchedule: { th: "ตารางสอบของฉัน", en: "My Schedule" },
   tabAll: { th: "ตารางรวมทั้งคณะ", en: "All Faculty Exams" },
-  tabCalculator: { th: "คำนวณคะแนน & ตัดเกรด", en: "Grade Calculator" },
   filterAll: { th: "ทั้งหมด", en: "All Exams" },
   filterFinal: { th: "สอบปลายภาค", en: "Final Exams" },
   filterMidterm: { th: "สอบกลางภาค", en: "Midterm Exams" },
@@ -111,10 +108,19 @@ const BANNER_DISMISS_KEYS = {
 type BannerId = keyof typeof BANNER_DISMISS_KEYS;
 const BANNER_ROTATE_MS = 5000;
 
+export interface ExamStudentIdentity {
+  fullName?: string | null;
+  nickname?: string | null;
+}
+
 export function ExamScheduleView({
   isHardReload = false,
+  identitiesById = {},
+  basePath = "/exam-schedule/archive",
 }: {
   isHardReload?: boolean;
+  identitiesById?: Record<string, ExamStudentIdentity>;
+  basePath?: string;
 }) {
   const { locale } = useLocale();
   const router = useRouter();
@@ -125,7 +131,7 @@ export function ExamScheduleView({
   const [studentIdInput, setStudentIdInput] = useState(urlId || "");
   const [activeStudentId, setActiveStudentId] = useState(urlId || "");
   const [activeMainTab, setActiveMainTab] = useState<
-    "my_schedule" | "all" | "calculator"
+    "my_schedule" | "all"
   >("my_schedule");
   const [copied, setCopied] = useState(false);
   const [visibleBanners, setVisibleBanners] = useState<
@@ -468,7 +474,7 @@ export function ExamScheduleView({
     await createClient().auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: `${window.location.origin}/auth/callback?next=/exam-schedule`,
+        redirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(basePath)}`,
         queryParams: { hd: "kmitl.ac.th" },
       },
     });
@@ -476,10 +482,16 @@ export function ExamScheduleView({
 
   function handleDownloadICS() {
     if (!profile || profile.final_exams.length === 0) return;
+    const fallbackName =
+      profile.name ||
+      identitiesById[profile.student_id]?.fullName ||
+      (currentUserInfo?.studentId === profile.student_id
+        ? currentUserInfo?.fullName ?? undefined
+        : undefined);
     const icsContent = generateICS(
       profile.final_exams,
       profile.student_id,
-      profile.name,
+      fallbackName,
     );
     const blob = new Blob([icsContent], {
       type: "text/calendar;charset=utf-8",
@@ -496,7 +508,13 @@ export function ExamScheduleView({
 
   function handleCopySchedule() {
     if (!profile) return;
-    let text = `📅 ตารางสอบ IT KMITL - ${profile.student_id} ${profile.name || ""}\n\n`;
+    const fallbackName =
+      profile.name ||
+      identitiesById[profile.student_id]?.fullName ||
+      (currentUserInfo?.studentId === profile.student_id
+        ? currentUserInfo?.fullName ?? undefined
+        : undefined);
+    let text = `📅 ตารางสอบ IT KMITL - ${profile.student_id} ${fallbackName || ""}\n\n`;
 
     if (profile.final_exams.length > 0) {
       text += `📌 กำหนดการสอบปลายภาค (เทอม 1/2569):\n`;
@@ -527,7 +545,7 @@ export function ExamScheduleView({
 
     const origin =
       typeof window !== "undefined" ? window.location.origin : SITE.url;
-    text += `\nตรวจตารางสอบผ่าน ${SITE.shortName}: ${origin}/exam-schedule`;
+    text += `\nตรวจตารางสอบผ่าน ${SITE.shortName}: ${origin}${basePath}`;
 
     navigator.clipboard.writeText(text).then(() => {
       setCopied(true);
@@ -679,18 +697,6 @@ export function ExamScheduleView({
             <Layers className="size-3.5" />
             <span>{t(L.tabAll, locale)}</span>
           </button>
-
-          <button
-            onClick={() => setActiveMainTab("calculator")}
-            className={`flex items-center gap-1.5 rounded-full px-5 py-2 transition-all ${
-              activeMainTab === "calculator"
-                ? "bg-card text-foreground shadow-sm font-semibold"
-                : "text-muted-foreground hover:text-foreground"
-            }`}
-          >
-            <Calculator className="size-3.5 text-emerald-500" />
-            <span>{t(L.tabCalculator, locale)}</span>
-          </button>
         </div>
       </div>
 
@@ -721,26 +727,48 @@ export function ExamScheduleView({
               </Avatar>
 
               <div className="min-w-0">
-                <div className="flex flex-wrap items-center gap-2">
-                  <h2 className="text-lg sm:text-xl font-bold tracking-tight text-foreground truncate">
-                    {profile.name || `นักศึกษา ${profile.student_id}`}
-                  </h2>
-                  <Badge
-                    variant="outline"
-                    className="font-mono text-xs font-semibold px-2 py-0.5 bg-muted/40"
-                  >
-                    {profile.student_id}
-                  </Badge>
-                  {loggedInStudentId === profile.student_id && (
-                    <Badge
-                      variant="outline"
-                      className="text-[11px] bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/30 gap-1"
-                    >
-                      <Check className="size-3" />
-                      <span>{t(L.myScheduleBadge, locale)}</span>
-                    </Badge>
-                  )}
-                </div>
+                {(() => {
+                  const matchedIdentity = identitiesById[profile.student_id];
+                  const isViewerProfile =
+                    currentUserInfo?.studentId === profile.student_id;
+                  const resolvedName =
+                    profile.name ||
+                    matchedIdentity?.fullName ||
+                    (isViewerProfile ? currentUserInfo?.fullName : null);
+                  const resolvedNickname =
+                    matchedIdentity?.nickname ??
+                    (isViewerProfile ? currentUserInfo?.nickname : null);
+                  return (
+                    <div className="flex flex-wrap items-center gap-2">
+                      <h2 className="text-lg sm:text-xl font-bold tracking-tight text-foreground truncate">
+                        {resolvedName || `นักศึกษา ${profile.student_id}`}
+                      </h2>
+                      {resolvedNickname && (
+                        <Badge
+                          variant="secondary"
+                          className="rounded-full text-xs font-medium px-2.5 py-0.5 bg-primary/10 text-primary border border-primary/20"
+                        >
+                          {resolvedNickname}
+                        </Badge>
+                      )}
+                      <Badge
+                        variant="outline"
+                        className="font-mono text-xs font-semibold px-2 py-0.5 bg-muted/40"
+                      >
+                        {profile.student_id}
+                      </Badge>
+                      {loggedInStudentId === profile.student_id && (
+                        <Badge
+                          variant="outline"
+                          className="text-[11px] bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/30 gap-1"
+                        >
+                          <Check className="size-3" />
+                          <span>{t(L.myScheduleBadge, locale)}</span>
+                        </Badge>
+                      )}
+                    </div>
+                  );
+                })()}
 
                 <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
                   <span>{profile.faculty}</span>
@@ -983,6 +1011,7 @@ export function ExamScheduleView({
                         session={seatingSession}
                         mySeat={upcomingSeat?.seat}
                         myStudentId={profile.student_id}
+                        identitiesById={identitiesById}
                         onClose={() => setExpandedCourseCode(null)}
                       />
                     </div>
@@ -1189,6 +1218,7 @@ export function ExamScheduleView({
                                   session={seatingSession}
                                   mySeat={seatInfo?.seat}
                                   myStudentId={profile.student_id}
+                                  identitiesById={identitiesById}
                                   onClose={() => setExpandedCourseCode(null)}
                                 />
                               </div>
@@ -1385,13 +1415,6 @@ export function ExamScheduleView({
               </div>
             ))}
           </div>
-        </div>
-      )}
-
-      {/* ── TAB 3: 🧮 Grade & Score Calculator ── */}
-      {activeMainTab === "calculator" && (
-        <div className="space-y-6 animate-in fade-in-0 duration-300">
-          <GradeCalculator />
         </div>
       )}
 

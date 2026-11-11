@@ -4,8 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import {
-  CalendarDays,
-  Code2,
+  GraduationCap,
   Library,
   Menu,
   Tag,
@@ -23,14 +22,9 @@ const NAV_LINKS: { href: string; label: LText; icon: typeof Library }[] = [
     icon: Library,
   },
   {
-    href: "/pscp",
-    label: { th: "PSCP", en: "PSCP" },
-    icon: Code2,
-  },
-  {
-    href: "/exam-schedule",
-    label: { th: "ตารางสอบ", en: "Exams" },
-    icon: CalendarDays,
+    href: "/grades",
+    label: { th: "ผลการเรียน", en: "Grades" },
+    icon: GraduationCap,
   },
   { href: "/version", label: { th: "เวอร์ชัน", en: "Version" }, icon: Tag },
 ];

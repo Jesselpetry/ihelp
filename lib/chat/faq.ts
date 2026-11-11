@@ -450,7 +450,7 @@ const STATIC: Entry[] = [
     all: [["ตารางรวม", "ทั้งคณะ", "ตารางสอบทั้งหมด", "all exams", "ทุกวิชา"], ["สอบ", "exam"]],
     th: "ดูตารางสอบรวมทั้งคณะได้ครับ 🗓️\n\nในหน้าตารางสอบ เลือก 'ตารางรวมทั้งคณะ' กรองตามวันได้ และค้นหาด้วยรหัสวิชา ชื่อวิชา หรือห้องสอบได้ครับ",
     en: "You can see the whole faculty's exams 🗓️\n\nOn the exam schedule page pick 'Whole faculty', filter by day, and search by course code, name or room.",
-    links: [page("ตารางสอบ", "Exam schedule", "/exam-schedule")],
+    links: [page("ตารางสอบย้อนหลัง", "Archived exams", "/exam-schedule/archive")],
   },
   {
     // Two groups, so a course name between the words doesn't break it:
@@ -460,16 +460,22 @@ const STATIC: Entry[] = [
       ["สอบ", "exam"],
       ["วันไหน", "วันที่", "กี่โมง", "เมื่อไหร่", "ห้องไหน", "ห้องสอบ", "ที่ไหน", "ที่นั่ง", "ผัง", "ตาราง", "when", "room", "seat"],
     ],
-    th: "ดูวันและห้องสอบได้ที่เมนู 'ตารางสอบ' ด้านบนครับ 📅\n\n1. พิมพ์รหัสนักศึกษา 8 หลัก (ถ้าล็อกอินอยู่จะขึ้นให้อัตโนมัติ)\n2. เลือกสอบกลางภาค / ปลายภาค\n3. กด 'ดูผังที่นั่ง' เพื่อดูที่นั่งของตัวเอง\n\nยึดประกาศทางการของคณะเป็นหลักนะครับ 👇",
-    en: "Your exam dates and rooms are under 'Exams' in the top menu 📅\n\n1. Enter your 8-digit student ID (automatic if you're signed in)\n2. Pick midterm / final\n3. Tap 'View seat map' for your seat\n\nThe faculty's official announcement always wins 👇",
-    links: [page("ตารางสอบ", "Exam schedule", "/exam-schedule")],
+    th: "ตารางสอบ 1/2569 ถูกเก็บไว้ในคลังย้อนหลัง (Archive) แล้วครับ 📅\n\nสามารถดูผลการเรียนล่าสุดได้ที่เมนู 'ผลการเรียน' หรือเปิดดูตารางสอบย้อนหลังได้ด้านล่าง 👇",
+    en: "The 1/2569 exam schedule is now archived 📅\n\nCheck your latest scores under 'Grades', or open the archived exam schedule below 👇",
+    links: [
+      page("ผลการเรียน", "Grades", "/grades"),
+      page("ตารางสอบย้อนหลัง", "Archived exams", "/exam-schedule/archive"),
+    ],
   },
   {
     id: "exam-schedule",
     all: [["ตารางสอบ", "exam schedule", "วันสอบ", "สอบวันไหน", "สอบวันที่", "สอบกี่โมง", "ห้องสอบ", "สอบที่ไหน", "สอบห้อง", "สอบเมื่อไหร่", "สอบมิดเทอม", "สอบไฟนอล", "สอบกลางภาค", "สอบปลายภาค"]],
-    th: "ดูตารางสอบได้ที่เมนู 'ตารางสอบ' ด้านบนครับ 📅\n\n1. พิมพ์รหัสนักศึกษา 8 หลัก (ถ้าล็อกอินอยู่จะขึ้นให้อัตโนมัติ)\n2. เลือกสอบกลางภาค / ปลายภาค\n3. กด 'ดูผังที่นั่ง' หรือ 'เพิ่มลงปฏิทิน (.ics)' ได้\n\nกดปุ่มด้านล่างเพื่อเปิดได้เลยครับ 👇",
-    en: "Open 'Exams' in the top menu 📅\n\n1. Enter your 8-digit student ID (shown automatically if you're signed in)\n2. Pick midterm / final\n3. Tap 'View seat map' or 'Add to calendar (.ics)'\n\nTap below to open it 👇",
-    links: [page("ตารางสอบ", "Exam schedule", "/exam-schedule")],
+    th: "ตารางสอบ 1/2569 ถูกเก็บเป็น Archive แล้วครับ 📅\n\nตอนนี้เมนูหลักเปลี่ยนเป็น 'ผลการเรียน' เพื่อดูคะแนนเก็บแต่ละวิชา หรือดูตารางสอบย้อนหลังได้จากปุ่มด้านล่างครับ 👇",
+    en: "The 1/2569 exam schedule has been archived 📅\n\nThe top menu now opens 'Grades' for course scores, and the archived timetable remains accessible below 👇",
+    links: [
+      page("ผลการเรียน", "Grades", "/grades"),
+      page("ตารางสอบย้อนหลัง", "Archived exams", "/exam-schedule/archive"),
+    ],
   },
 
   // ── PSCP ──

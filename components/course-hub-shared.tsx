@@ -93,6 +93,7 @@ export const SCOPE_BADGE: Record<Exclude<ModuleScope, "all">, string> = {
 };
 
 /** Anchor ids the sidebar's topic list scrolls to. */
+export const SCORES_ANCHOR = "course-scores";
 export const OVERVIEW_ANCHOR = "course-overview";
 export function phaseAnchor(phase: Phase): string {
   return `topic-${phase}`;
@@ -184,6 +185,7 @@ export const OVERVIEW_TAB_LABEL: Record<OverviewTab, LText> = {
   official: { th: "ทางการ", en: "Official" },
 };
 
+export const SCORES_TITLE: LText = { th: "คะแนน", en: "Scores" };
 export const OVERVIEW_TITLE: LText = { th: "ภาพรวม", en: "Overview" };
 
 /**

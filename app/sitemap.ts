@@ -11,7 +11,8 @@ type Entry = MetadataRoute.Sitemap[number];
 /** Routes that exist regardless of what content is on disk. */
 const STATIC_ROUTES: { path: string; priority: number; changeFrequency: Entry["changeFrequency"] }[] = [
   { path: "/", priority: 1, changeFrequency: "weekly" },
-  { path: "/pscp", priority: 0.9, changeFrequency: "daily" },
+  { path: "/grades", priority: 0.8, changeFrequency: "weekly" },
+  { path: "/pscp", priority: 0.8, changeFrequency: "daily" },
   { path: "/recommended", priority: 0.8, changeFrequency: "weekly" },
   { path: "/library", priority: 0.6, changeFrequency: "monthly" },
   { path: "/make/submission", priority: 0.6, changeFrequency: "monthly" },

@@ -15,6 +15,8 @@ import {
   OVERVIEW_TITLE,
   PHASE_ICONS,
   PHASE_SHORT,
+  SCORES_ANCHOR,
+  SCORES_TITLE,
   SCOPE_ICON,
   SCOPE_LABEL,
   SCOPE_OPTIONS,
@@ -33,6 +35,8 @@ export interface CourseSidebarProps {
   modules: ResolvedModule[];
   scope: ModuleScope;
   onScopeChange: (scope: ModuleScope) => void;
+  /** Whether the stream renders the score section at the top. */
+  hasScores?: boolean;
   /** Whether the stream renders the overview section. */
   hasOverview: boolean;
   weeksCount?: number;
@@ -71,6 +75,7 @@ export function CourseSidebar({
   modules,
   scope,
   onScopeChange,
+  hasScores,
   hasOverview,
   weeksCount,
   hasMidtermMilestone,
@@ -184,9 +189,17 @@ export function CourseSidebar({
     }));
   }, [groups, weeksCount, hasMidtermMilestone, hasFinalMilestone, hasSecondHalf, scope]);
 
+  const topAnchors = useMemo(
+    () => [
+      ...(hasScores ? [{ id: SCORES_ANCHOR, title: SCORES_TITLE }] : []),
+      ...(hasOverview ? [{ id: OVERVIEW_ANCHOR, title: OVERVIEW_TITLE }] : []),
+    ],
+    [hasScores, hasOverview],
+  );
+
   const ids = useMemo(
-    () => [...(hasOverview ? [OVERVIEW_ANCHOR] : []), ...links.map((link) => link.id)],
-    [hasOverview, links],
+    () => [...topAnchors.map((a) => a.id), ...links.map((link) => link.id)],
+    [topAnchors, links],
   );
   const activeId = useActiveSection(ids);
 
@@ -246,16 +259,17 @@ export function CourseSidebar({
           aria-label={t(L.topics, locale)}
           className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1 lg:hidden [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
-          {hasOverview && (
+          {topAnchors.map(({ id, title }) => (
             <a
-              href={`#${OVERVIEW_ANCHOR}`}
-              onClick={(event) => jump(event, OVERVIEW_ANCHOR)}
-              aria-current={activeId === OVERVIEW_ANCHOR ? "location" : undefined}
-              className={`shrink-0 rounded-full border border-border px-2.5 py-1 text-xs ${rowClass(OVERVIEW_ANCHOR, false)}`}
+              key={id}
+              href={`#${id}`}
+              onClick={(event) => jump(event, id)}
+              aria-current={activeId === id ? "location" : undefined}
+              className={`shrink-0 rounded-full border border-border px-2.5 py-1 text-xs ${rowClass(id, false)}`}
             >
-              {t(OVERVIEW_TITLE, locale)}
+              {t(title, locale)}
             </a>
-          )}
+          ))}
           {links.map(({ id, title, Icon, count }) => (
             <a
               key={id}
@@ -272,16 +286,17 @@ export function CourseSidebar({
 
         {/* Desktop: a vertical jump list with counts. */}
         <nav aria-label={t(L.topics, locale)} className="hidden space-y-0.5 lg:block">
-          {hasOverview && (
+          {topAnchors.map(({ id, title }) => (
             <a
-              href={`#${OVERVIEW_ANCHOR}`}
-              onClick={(event) => jump(event, OVERVIEW_ANCHOR)}
-              aria-current={activeId === OVERVIEW_ANCHOR ? "location" : undefined}
-              className={`rounded-lg px-2 py-1.5 ${rowClass(OVERVIEW_ANCHOR, false)}`}
+              key={id}
+              href={`#${id}`}
+              onClick={(event) => jump(event, id)}
+              aria-current={activeId === id ? "location" : undefined}
+              className={`rounded-lg px-2 py-1.5 ${rowClass(id, false)}`}
             >
-              {t(OVERVIEW_TITLE, locale)}
+              {t(title, locale)}
             </a>
-          )}
+          ))}
           {links.map(({ id, title, Icon, count }) => (
             <a
               key={id}

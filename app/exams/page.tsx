@@ -39,11 +39,11 @@ export default async function ExamsPage() {
               หากคุณควรมีสิทธิ์เข้าถึง กรุณาติดต่อผู้ดูแลระบบ
             </p>
             <Link
-              href="/exam-schedule"
+              href="/grades"
               className="mt-2 inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-xs font-semibold text-primary hover:bg-primary/20 transition-colors"
             >
               <CalendarDays className="size-4" />
-              <span>ค้นหาตารางสอบ & ผังที่นั่งสอบรายบุคคล</span>
+              <span>ดูผลการเรียนและคะแนนสะสม</span>
             </Link>
           </main>
         </>

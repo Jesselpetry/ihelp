@@ -10,6 +10,8 @@ export type MeResponse = {
   studentId: string;
   /** Null until the student has finished onboarding. */
   displayName: string | null;
+  fullName: string | null;
+  nickname: string | null;
   avatarUrl: string | null;
   initial: string;
   onboarded: boolean;
@@ -33,6 +35,8 @@ export async function GET() {
     const body: MeResponse = {
       studentId,
       displayName: null,
+      fullName: null,
+      nickname: null,
       avatarUrl: null,
       initial: studentId.charAt(0),
       onboarded: false,
@@ -40,9 +44,15 @@ export async function GET() {
     return NextResponse.json(body);
   }
 
+  const fullName =
+    [user.firstName, user.lastName].filter(Boolean).join(" ").trim() || null;
+  const nickname = user.nickname?.trim() || null;
+
   const body: MeResponse = {
     studentId: user.studentId,
-    displayName: user.nickname ?? user.firstName ?? user.studentId,
+    displayName: nickname ?? user.firstName ?? user.studentId,
+    fullName,
+    nickname,
     avatarUrl: resolveAvatarUrl(user),
     initial: avatarInitial(user),
     onboarded: true,

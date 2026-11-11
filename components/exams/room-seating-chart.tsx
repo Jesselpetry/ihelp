@@ -11,10 +11,16 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import type { RoomSeatingSession, RoomSeatStudent } from "@/lib/exams/types";
 
+export interface RoomSeatIdentity {
+  fullName?: string | null;
+  nickname?: string | null;
+}
+
 interface RoomSeatingChartProps {
   session: RoomSeatingSession;
   mySeat?: string;
   myStudentId?: string;
+  identitiesById?: Record<string, RoomSeatIdentity>;
   onClose?: () => void;
 }
 
@@ -22,6 +28,7 @@ export function RoomSeatingChart({
   session,
   mySeat,
   myStudentId,
+  identitiesById,
   onClose,
 }: RoomSeatingChartProps) {
   const [selectedSeat, setSelectedSeat] = useState<string | null>(mySeat || null);
@@ -291,8 +298,18 @@ export function RoomSeatingChart({
             <div className="min-w-0">
               <div className="flex flex-wrap items-center gap-2">
                 <span className="font-semibold text-sm sm:text-base text-foreground truncate">
-                  {selectedStudent.name}
+                  {selectedStudent.name ||
+                    identitiesById?.[selectedStudent.student_id]?.fullName ||
+                    selectedStudent.student_id}
                 </span>
+                {identitiesById?.[selectedStudent.student_id]?.nickname && (
+                  <Badge
+                    variant="secondary"
+                    className="rounded-full text-[11px] bg-muted text-foreground/90"
+                  >
+                    {identitiesById[selectedStudent.student_id].nickname}
+                  </Badge>
+                )}
                 {selectedSeat === mySeat && (
                   <Badge className="rounded-full text-[10px] bg-primary/20 text-primary border-primary/30">
                     คุณ (You)
