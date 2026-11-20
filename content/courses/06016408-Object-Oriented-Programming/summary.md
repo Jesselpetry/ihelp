@@ -10,8 +10,8 @@ term: 2
 termId: Y1-S2
 prerequisites: ["06066303 PSCP"]
 language: th
-semester: "2 (ข้อมูลปีก่อน)"
-updated: "2026-09-26"
+semester: "2 (เตรียมเปิดภาคเรียน 2/2569)"
+updated: "2026-11-21"
 sources:
   - สไลด์บรรยายบทที่ 0–14 (ภาษา Java)
   - ตำราประกอบ Java · ชีทสรุป · ข้อสอบเก่า 2023
@@ -22,7 +22,7 @@ sources:
 > การโปรแกรมเชิงวัตถุด้วยภาษา Java — ครึ่งแรกไวยากรณ์และ 4 เสาของ OOP
 > ครึ่งหลัง GUI, event, collection, exception, file I/O และ thread
 >
-> **อัปเดตล่าสุด** 26 ก.ย. 2569 · ข้อมูลจากคลังปีก่อน (ภาคเรียนที่ 2/2569 ยังไม่เริ่ม)
+> **อัปเดตล่าสุด** 21 พ.ย. 2569 · ข้อมูลหลักสูตรทางการ สจล. (ปรับปรุง 2565) และเตรียมพร้อมภาคเรียนที่ 2/2569
 
 ## 1. ข้อมูลรายวิชา
 
@@ -39,10 +39,14 @@ sources:
 
 ### คำอธิบายรายวิชา
 
-วิชาสอนแนวคิดการโปรแกรมเชิงวัตถุด้วยภาษา Java ตั้งแต่ไวยากรณ์พื้นฐาน
-ไปจนถึงหลักการ OOP ครบทั้ง 4 เสา (encapsulation, inheritance, polymorphism, abstraction)
-แล้วต่อยอดสู่ GUI, event handling, collection, exception, file I/O, thread
-และแนวคิดขั้นสูงอย่าง dependency injection
+**คำอธิบายรายวิชาตามหลักสูตร (ภาษาไทย):**
+การออกแบบและพัฒนาโปรแกรมเชิงอ็อบเจกต์ หลักการห่อหุ้ม คลาสและอ็อบเจกต์ เมธอดและการส่งสาร การสืบทอดคุณลักษณะ ภาวะพหุสัณฐาน การพัฒนาส่วนต่อประสานกราฟิกกับผู้ใช้และการจัดการกับเหตุการณ์ อาร์เรย์และคอลเลคชัน การจัดการกับสิ่งผิดปกติ คลาสที่เกี่ยวข้องกับอินพุตและเอาต์พุต เธรด
+
+**Course Description (English):**
+Object-oriented program design and development, encapsulation, classes and objects, methods and message passing, inheritance, polymorphism, graphical user interface development and event handling, arrays and collections, exception handling, input/output related classes, threads.
+
+**ภาพรวมการเรียน:**
+วิชาสอนแนวคิดการโปรแกรมเชิงวัตถุด้วยภาษา Java ตั้งแต่ไวยากรณ์พื้นฐาน ไปจนถึงหลักการ OOP ครบทั้ง 4 เสา (encapsulation, inheritance, polymorphism, abstraction) แล้วต่อยอดสู่ GUI, event handling, collection, exception, file I/O, thread และแนวคิดขั้นสูงอย่าง dependency injection
 
 ### สัดส่วนคะแนน
 

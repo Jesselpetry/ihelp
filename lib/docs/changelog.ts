@@ -134,12 +134,23 @@ export const MAJOR_EVOLUTION_MILESTONES: EvolutionMilestone[] = [
       en: "Final Exam War Room & Grades Hub: /grades GPA Hub, 5-Pillar MFIT War Room, ZIP Resource Packs & PSCP CodeMirror IDE",
     },
   },
+  {
+    version: "v1.2.0",
+    highlight: true,
+    summary: {
+      th: "Semester 2 Kickoff: เตรียมความพร้อม 6 รายวิชาปี 1 เทอม 2, บรรจุคำอธิบายรายวิชาและผู้สอนทางการ สจล. 2565 พร้อมระบบคะแนนสะสมและคำนวณ GPA",
+      en: "Semester 2 Kickoff: Year 1 Semester 2 preparation for 6 subjects, official 2022 KMITL syllabus & faculty cataloging, alongside GPA & score hub",
+    },
+  },
 ];
 
 /**
  * คืนค่าหมุดหมายวิวัฒนาการหลัก (Major Evolution Milestone) ที่ตรงกับเลขเวอร์ชัน
  */
 export function getEvolutionMilestone(version: string): EvolutionMilestone | null {
+  if (version === "1.2.0" || version.startsWith("1.2.")) {
+    return MAJOR_EVOLUTION_MILESTONES.find((m) => m.version === "v1.2.0") ?? null;
+  }
   if (version === "1.1.0" || version.startsWith("1.1.")) {
     return MAJOR_EVOLUTION_MILESTONES.find((m) => m.version === "v1.1.0") ?? null;
   }
@@ -172,6 +183,50 @@ export function getEvolutionMilestone(version: string): EvolutionMilestone | nul
 
 // Mirrors CHANGELOG.md at the repo root — keep both in sync when releasing.
 export const CHANGELOG: VersionEntry[] = [
+  {
+    version: "1.2.0",
+    date: "2026-11-21",
+    contributors: [
+      CONTRIBUTORS.chatan,
+    ],
+    changes: [
+      {
+        kind: "added",
+        text: {
+          th: "เตรียมความพร้อม 6 รายวิชาชั้นปีที่ 1 เทอม 2 (BFIT, DSA, OOP, PSTAT, FE2, DL) บรรจุคำอธิบายรายวิชาทางการทั้งภาษาไทยและอังกฤษตามหลักสูตร สจล. ปรับปรุง 2565 พร้อมอัปเดตผู้สอนและจัดหมวดหมู่หน้าแรกชูเทอม 2 เป็นภาคเรียนปัจจุบัน (โดย @Jesselpetry)",
+          en: "Prepared all 6 Year 1 Semester 2 courses (BFIT, DSA, OOP, PSTAT, FE2, DL) with official bilingual 2022 KMITL course descriptions and instructors, reordering directory to feature Semester 2 as current (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "จัดระเบียบคลังสื่อการเรียนรู้วิชาความน่าจะเป็นและสถิติ (06066001 PSTAT) ครบ 117 สื่อ พร้อมสร้างทะเบียนคลังสื่อถาวร (RESOURCES_MANIFEST.md) และผสานแผนการสอนรายสัปดาห์ (โดย @Jesselpetry)",
+          en: "Curated all 117 learning resources for Probability & Statistics (06066001 PSTAT) with permanent resource manifest (RESOURCES_MANIFEST.md) and weekly schedule integration (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "ระบบดึงข้อมูลคะแนนประกาศจริงผ่าน Supabase Storage ส่วนตัว (ihelp-scores) บน API /api/scores/overview และ /api/scores/[course]/hub พร้อมคำสั่ง bun run scores:sync สำหรับล็อกอิน @kmitl.ac.th อย่างปลอดภัย (โดย @Jesselpetry)",
+          en: "Secure grade score synchronization via private Supabase Storage (ihelp-scores) on /api/scores/overview & /api/scores/[course]/hub with bun run scores:sync for authenticated @kmitl.ac.th students (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "ระบบกรอกคะแนน Manual ผสานคะแนนประกาศจริงบนสเกล /100 คำนวณเกรดและ GPA อัตโนมัติใน /grades และการ์ดคะแนนหน้ารายวิชา พร้อมโครงสร้างเฉพาะทางของ ICS, MFIT, PSCP, ITF (โดย @Jesselpetry)",
+          en: "Manual score input merged with published scores on a /100 scale, automatic grade and GPA calculation in /grades and course hubs with custom schemas for ICS, MFIT, PSCP, ITF (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "ปรับแต่งหน้า /grades และ Accordion ตารางคะแนนเป็นโครงสร้าง 2 ฝั่งมาตรฐาน พร้อมเปลี่ยนตัวเลือกเกรดเป็น shadcn Select โทน Dark Charcoal (โดย @Jesselpetry)",
+          en: "Refined /grades hub and score accordions with a standardized 2-column layout and shadcn Select dropdowns in dark charcoal palette (by @Jesselpetry)",
+        },
+      },
+    ],
+  },
   {
     version: "1.1.0",
     date: "2026-11-11",

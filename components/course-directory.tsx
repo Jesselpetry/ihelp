@@ -158,9 +158,16 @@ export function CourseDirectory({
                 <div className="flex items-center gap-2.5">
                   <SemesterCalendar groupId={group.id} />
                   <div>
-                    <h2 className="text-sm font-bold tracking-tight text-foreground">
-                      {t(group.label, locale)}
-                    </h2>
+                    <div className="flex items-center gap-2">
+                      <h2 className="text-sm font-bold tracking-tight text-foreground">
+                        {t(group.label, locale)}
+                      </h2>
+                      {group.id === "Y1-S2" && (
+                        <span className="inline-flex items-center rounded-full bg-emerald-500/10 px-2 py-0.5 text-[10px] font-medium text-emerald-500 border border-emerald-500/20">
+                          {locale === "th" ? "ภาคเรียนปัจจุบัน" : "Current"}
+                        </span>
+                      )}
+                    </div>
                     <p className="mt-0.5 text-[11px] text-muted-foreground/70">
                       {t(group.note, locale)}
                     </p>

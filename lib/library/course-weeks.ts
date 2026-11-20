@@ -155,11 +155,41 @@ const MFIT_SCHEDULE: CourseSchedule = {
   ],
 };
 
+const PSTAT_SCHEDULE: CourseSchedule = {
+  parts: {
+    midterm: {
+      label: { th: "ขอบเขตกลางภาค", en: "Midterm scope" },
+      detail: { th: "บทที่ 1–7 (ความน่าจะเป็น, ตัวแปรสุ่มร่วม)", en: "Chapters 1–7 (Probability, Joint RV)" },
+    },
+    final: {
+      label: { th: "ขอบเขตปลายภาค", en: "Final scope" },
+      detail: { th: "บทที่ 8–13 (ตัวแปรสุ่มต่อเนื่อง, สถิติอนุมาน)", en: "Chapters 8–13 (Continuous RV, Inferential Stat)" },
+    },
+  },
+  weeks: [
+    { week: 1, scope: "midterm", title: { th: "ความน่าจะเป็นเบื้องต้นและแซมเปิลสเปซ", en: "Basic Probability & Sample Space" } },
+    { week: 2, scope: "midterm", title: { th: "การนับ การเรียงสับเปลี่ยน และการจัดหมู่", en: "Combinatorial Analysis & Counting" } },
+    { week: 3, scope: "midterm", title: { th: "ความน่าจะเป็นแบบมีเงื่อนไขและกฎของเบส์", en: "Conditional Probability & Bayes' Rule" } },
+    { week: 4, scope: "midterm", title: { th: "ตัวแปรสุ่มไม่ต่อเนื่องและการแจกแจงความน่าจะเป็น", en: "Discrete Random Variables & PMF" } },
+    { week: 5, scope: "midterm", title: { th: "ค่าคาดหมาย ความแปรปรวน และโมเมนต์", en: "Expected Value, Variance & Moments" } },
+    { week: 6, scope: "midterm", title: { th: "การแจกแจงไม่ต่อเนื่องที่สำคัญ (ทวินาม, ปัวซง)", en: "Common Discrete Distributions (Binomial, Poisson)" } },
+    { week: 7, scope: "midterm", title: { th: "ตัวแปรสุ่มร่วมและการแจกแจงร่วม", en: "Joint Probability Distributions" } },
+    { week: 8, scope: "final", title: { th: "ตัวแปรสุ่มต่อเนื่องและฟังก์ชันความหนาแน่น", en: "Continuous Random Variables & PDF" } },
+    { week: 9, scope: "final", title: { th: "การแจกแจงต่อเนื่องที่สำคัญ (ปกติ, เอกซ์โพเนนเชียล)", en: "Common Continuous Distributions (Normal, Exponential)" } },
+    { week: 10, scope: "final", title: { th: "ทฤษฎีบทขีดจำกัดส่วนกลางและการแจกแจงของตัวอย่าง", en: "Central Limit Theorem & Sampling Distributions" } },
+    { week: 11, scope: "final", title: { th: "การประมาณค่าและการหาช่วงความเชื่อมั่น", en: "Parameter Estimation & Confidence Intervals" } },
+    { week: 12, scope: "final", title: { th: "การทดสอบสมมติฐานทางสถิติ", en: "Hypothesis Testing" } },
+    { week: 13, scope: "final", title: { th: "การวิเคราะห์การถดถอยเชิงเส้นและสหสัมพันธ์", en: "Linear Regression & Correlation" } },
+    { week: 14, scope: "final", title: { th: "การถดถอยเชิงเส้นอย่างง่ายและการทบทวนปลายภาค", en: "Simple Linear Regression & Final Review" } },
+  ],
+};
+
 export const COURSE_SCHEDULES: Record<string, CourseSchedule> = {
   ITF: ITF_SCHEDULE,
   ICS: ICS_SCHEDULE,
   PSCP: PSCP_SCHEDULE,
   MFIT: MFIT_SCHEDULE,
+  PSTAT: PSTAT_SCHEDULE,
 };
 
 export function scheduleForCourse(code: string): CourseSchedule | undefined {

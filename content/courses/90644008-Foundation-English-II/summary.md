@@ -10,8 +10,8 @@ term: 2
 termId: Y1-S2
 prerequisites: ["90644007 Foundation English 1"]
 language: th
-semester: "2 (ข้อมูลปีก่อน)"
-updated: "2026-09-26"
+semester: "2 (เตรียมเปิดภาคเรียน 2/2569)"
+updated: "2026-11-21"
 sources:
   - Worksheet รายหน่วย (Unit 3–5, 8–10)
   - ชุดคำถามสอบพูดกลางภาคและปลายภาค
@@ -22,7 +22,7 @@ sources:
 > ต่อยอด FE 1 ด้วยการสื่อสารเชิงปฏิบัติ — worksheet รายหน่วยที่ออกแบบให้ได้พูด และสอบพูดทั้งกลางภาคและปลายภาค
 > ประเมินผลแบบผ่าน/ไม่ผ่าน (S/U)
 >
-> **อัปเดตล่าสุด** 26 ก.ย. 2569 · ข้อมูลจากคลังปีก่อน (ภาคเรียนที่ 2/2569 ยังไม่เริ่ม)
+> **อัปเดตล่าสุด** 21 พ.ย. 2569 · ข้อมูลหลักสูตรหมวดวิชาศึกษาทั่วไป สจล. และเตรียมพร้อมภาคเรียนที่ 2/2569
 
 ## 1. ข้อมูลรายวิชา
 
@@ -33,15 +33,20 @@ sources:
 | หน่วยกิต | 3 (3-0-6) |
 | ชั้นปี / ภาคเรียน | ปี 1 ภาคเรียนที่ 2 · หมวดศึกษาทั่วไป กลุ่มวิชาภาษาและการสื่อสาร |
 | วิชาบังคับก่อน | ภาษาอังกฤษพื้นฐาน 1 (`90644007`) |
-| ผู้สอน | *ยังไม่ยืนยัน* |
+| ผู้สอน | สำนักวิชาศึกษาทั่วไป สจล. (*ยังไม่ยืนยันรายชื่อผู้สอนเฉพาะกลุ่ม*) |
 | ตำรา / สื่อหลัก | Worksheet รายหน่วยของรายวิชา (Listening & Speaking · Reading & Grammar) |
 | ช่องทางเรียน | ชั้นเรียนแบบ communicative task |
 
 ### คำอธิบายรายวิชา
 
-ต่อยอดจาก FE 1 โดยเน้น **การสื่อสารเชิงปฏิบัติ** มากขึ้น worksheet ระบุไว้ชัดว่า
-*"designed to encourage the student's speaking"* แต่ละหน่วยแบ่งเป็นสองแผ่นงาน —
-**Listening & Speaking** และ **Reading & Grammar**
+**คำอธิบายรายวิชาตามหลักสูตร (ภาษาไทย):**
+ฝึกการใช้ทักษะทั้งสี่ของภาษาอังกฤษ ได้แก่ การฟัง การพูด การอ่าน และการเขียน ในบริบทและสถานการณ์ที่หลากหลายยิ่งขึ้น เพื่อใช้ในชีวิตประจำวันและเพื่อการศึกษาในระดับที่สูงขึ้น ผู้เรียนควรผ่านระดับ B1 หรือสูงกว่า ของกรอบอ้างอิงความสามารถทางภาษาของสภายุโรป (Common European Framework of Reference for Languages-CEFR)
+
+**Course Description (English):**
+A practice of four skills in English: listening, speaking, reading, and writing, within a wider variety of contexts and situations, for daily use as well as for further studies. Students are expected to reach the B1 or a higher level of Common European Framework of Reference for Languages (CEFR).
+
+**ภาพรวมการเรียน:**
+ต่อยอดจาก FE 1 โดยเน้น **การสื่อสารเชิงปฏิบัติ** มากขึ้น worksheet ระบุไว้ชัดว่า *"designed to encourage the student's speaking"* แต่ละหน่วยแบ่งเป็นสองแผ่นงาน — **Listening & Speaking** และ **Reading & Grammar**
 
 ### สัดส่วนคะแนน
 

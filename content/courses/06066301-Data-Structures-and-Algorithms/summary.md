@@ -10,8 +10,8 @@ term: 2
 termId: Y1-S2
 prerequisites: ["06066303 PSCP"]
 language: th
-semester: "2 (ข้อมูลปีก่อน)"
-updated: "2026-09-26"
+semester: "2 (เตรียมเปิดภาคเรียน 2/2569)"
+updated: "2026-11-21"
 sources:
   - สไลด์บรรยาย 14 บท
   - แบบฝึกหัดพร้อมเฉลย · Posttest 8–14 · ข้อสอบเก่า
@@ -22,7 +22,7 @@ sources:
 > วิชาแกนของสายโปรแกรม — ครึ่งแรกโครงสร้างข้อมูล (list, stack, queue, tree, graph)
 > ครึ่งหลังการวิเคราะห์และออกแบบอัลกอริทึม (Big-O, search, sort, greedy, recursion, D&C, DP)
 >
-> **อัปเดตล่าสุด** 26 ก.ย. 2569 · ข้อมูลจากคลังปีก่อน (ภาคเรียนที่ 2/2569 ยังไม่เริ่ม)
+> **อัปเดตล่าสุด** 21 พ.ย. 2569 · ข้อมูลหลักสูตรทางการ สจล. (ปรับปรุง 2565) และเตรียมพร้อมภาคเรียนที่ 2/2569
 
 ## 1. ข้อมูลรายวิชา
 
@@ -39,10 +39,14 @@ sources:
 
 ### คำอธิบายรายวิชา
 
-วิชาแกนที่สอนโครงสร้างข้อมูลพื้นฐานและอัลกอริทึมมาตรฐาน แบ่งชัดเป็นสองครึ่ง:
-**ครึ่งแรกเป็นโครงสร้างข้อมูล** (list, stack, queue, tree, graph)
-**ครึ่งหลังเป็นการวิเคราะห์และออกแบบอัลกอริทึม** (Big-O, searching, sorting, greedy,
-recursion, divide & conquer, dynamic programming)
+**คำอธิบายรายวิชาตามหลักสูตร (ภาษาไทย):**
+ชนิดของข้อมูล โครงสร้างข้อมูลและชนิดข้อมูลแบบนามธรรม โครงสร้างข้อมูลพื้นฐาน เช่น ลิสท์ สแต็ก และคิว โครงสร้างข้อมูลแบบพลวัต คำศัพท์เฉพาะเกี่ยวกับทรี ไบนารีทรี ไบนารีเสิร์ชทรี เอวีแอลทรี กราฟ การวิเคราะห์โปรแกรมเชิงเวลาและพื้นที่ อัลกอริทึมการเรียงลำดับและการค้นหาข้อมูล อัลกอริทึมแบบละโมบ อัลกอริทึมแบบแบ่งเพื่อเอาชนะ อัลกอริทึมเกี่ยวกับกราฟ และการเขียนโปรแกรมพลวัต
+
+**Course Description (English):**
+Data types, data structures and abstract data types, basic data structures e.g. list, stack, and queue, dynamic data structures, terminology of trees, binary trees, binary search trees, AVL trees, graph, time and space analysis of programs, sorting and searching algorithms, greedy algorithm, divide and conquer algorithm, graph algorithms, and dynamic programming.
+
+**ภาพรวมการเรียน:**
+วิชาแกนที่สอนโครงสร้างข้อมูลพื้นฐานและอัลกอริทึมมาตรฐาน แบ่งชัดเป็นสองครึ่ง: ครึ่งแรกเป็นโครงสร้างข้อมูล (list, stack, queue, tree, graph) ครึ่งหลังเป็นการวิเคราะห์และออกแบบอัลกอริทึม (Big-O, searching, sorting, greedy, recursion, divide & conquer, dynamic programming)
 
 ### สัดส่วนคะแนน
 

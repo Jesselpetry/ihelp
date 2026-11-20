@@ -239,6 +239,31 @@ export const ASSET_GROUPS: Record<string, LText> = {
     th: "ชีทสรุปย่อวิชา ICS (รวมทุกฉบับ)",
     en: "ICS Condensed Summary Cheatsheets (All Editions)",
   },
+  // ── PSTAT (06066001) Groups ────────────────────────────────────────────────
+  "pstat-notes": {
+    th: "เอกสารคำสอน ปุจฉา–วิสัชนา (ศ.ดร. สุขสันต์ พาณิชพาพิบูล)",
+    en: "Lecture Notes (Prof. Dr. Sooksan Panichpapiboon)",
+  },
+  "pstat-notes-week": {
+    th: "โน้ตสรุปเนื้อหารายสัปดาห์ (ฉบับคู่ขนาน)",
+    en: "Weekly Lecture Notes (Parallel Edition)",
+  },
+  "pstat-lec-clean": {
+    th: "สไลด์บรรยายทางการ (Clean Presentation Slides)",
+    en: "Clean Presentation Slides",
+  },
+  "pstat-lec-annotated": {
+    th: "สไลด์บรรยายพร้อมจดประกอบ (In-Class Annotated Slides)",
+    en: "In-Class Annotated Slides",
+  },
+  "pstat-ex-sets": {
+    th: "แบบฝึกหัดโจทย์ประจำบท (Exercise Sets 01–13)",
+    en: "Chapter Exercise Sets (Sets 01–13)",
+  },
+  "pstat-sol-sets": {
+    th: "เฉลยละเอียดแบบฝึกหัดประจำบท (Solution Sets 04–13)",
+    en: "Exercise Solution Sets (Sets 04–13)",
+  },
 };
 
 // Tag vocabularies the library already uses, mapped onto gallery shelves. The

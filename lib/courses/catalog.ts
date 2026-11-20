@@ -34,14 +34,14 @@ export type CourseGroup = "Y1-S1" | "Y1-S2" | "EN-KMITL";
 
 export const GROUPS: { id: CourseGroup; label: LText; note: LText }[] = [
   {
-    id: "Y1-S1",
-    label: { th: "ปี 1 เทอม 1", en: "Year 1 · Semester 1" },
-    note: { th: "หลักสูตร IT สจล. (ปรับปรุง 2565)", en: "IT KMITL curriculum (2022 revision)" },
-  },
-  {
     id: "Y1-S2",
     label: { th: "ปี 1 เทอม 2", en: "Year 1 · Semester 2" },
-    note: { th: "หลักสูตร IT สจล. (ปรับปรุง 2565)", en: "IT KMITL curriculum (2022 revision)" },
+    note: { th: "หลักสูตร IT สจล. (ปรับปรุง 2565) · ภาคเรียนปัจจุบัน", en: "IT KMITL curriculum (2022 revision) · Current semester" },
+  },
+  {
+    id: "Y1-S1",
+    label: { th: "ปี 1 เทอม 1", en: "Year 1 · Semester 1" },
+    note: { th: "จบภาคเรียนแล้ว · คลังสรุปและข้อสอบเก่า", en: "Completed · Summaries and past exams archive" },
   },
   {
     id: "EN-KMITL",
@@ -178,7 +178,7 @@ export const COURSES: CatalogCourse[] = [
     officialCode: "06066101",
     slug: "Business-for-IT",
     nameTh: "พื้นฐานทางธุรกิจสำหรับเทคโนโลยีสารสนเทศ",
-    nameEn: "Business for IT",
+    nameEn: "Business Fundamentals for Information Technology",
     credits: "3 (3-0-6)",
     group: "Y1-S2",
     portalHref: "/courses/06066101-Business-for-IT",
@@ -242,7 +242,7 @@ export const COURSES: CatalogCourse[] = [
     officialCode: "90644008",
     slug: "Foundation-English-II",
     nameTh: "ภาษาอังกฤษพื้นฐาน 2",
-    nameEn: "Foundation English II",
+    nameEn: "Foundation English 2",
     credits: "3 (3-0-6)",
     group: "Y1-S2",
     portalHref: "/courses/90644008-Foundation-English-II",
@@ -253,7 +253,7 @@ export const COURSES: CatalogCourse[] = [
     officialCode: "90641002",
     slug: "Digital-Literacy",
     nameTh: "ความฉลาดทางดิจิทัล",
-    nameEn: "Digital Literacy",
+    nameEn: "Digital Intelligence Quotient",
     credits: "3 (3-0-6)",
     group: "Y1-S2",
     portalHref: "/courses/90641002-Digital-Literacy",
