@@ -1,0 +1,169 @@
+[
+  {
+    "abbr": "ITF",
+    "officialCode": "06016402",
+    "nameTh": "พื้นฐานทางด้านเทคโนโลยีสารสนเทศ",
+    "nameEn": "IT Fundamentals",
+    "credits": "3 (2-2-5)",
+    "group": "Y1-S1",
+    "slug": "IT-Fundamentals",
+    "portalHref": "/courses/06016402-IT-Fundamentals",
+    "category": "วิชาบังคับ"
+  },
+  {
+    "abbr": "ICS",
+    "officialCode": "06016411",
+    "nameTh": "ระบบคอมพิวเตอร์เบื้องต้น",
+    "nameEn": "Intro to Computer Systems",
+    "credits": "3 (2-2-5)",
+    "group": "Y1-S1",
+    "slug": "Intro-to-Computer-Systems",
+    "portalHref": "/courses/06016411-Intro-to-Computer-Systems",
+    "category": "วิชาบังคับ"
+  },
+  {
+    "abbr": "MFIT",
+    "officialCode": "06016401",
+    "nameTh": "คณิตศาสตร์สำหรับเทคโนโลยีสารสนเทศ",
+    "nameEn": "Mathematics for Information Technology",
+    "credits": "3 (3-0-6)",
+    "group": "Y1-S1",
+    "slug": "Math-for-IT",
+    "portalHref": "/courses/06016401-Math-for-IT",
+    "category": "วิชาบังคับ"
+  },
+  {
+    "abbr": "PSCP",
+    "officialCode": "06066303",
+    "nameTh": "การแก้ปัญหาและการโปรแกรมคอมพิวเตอร์",
+    "nameEn": "Problem Solving and Computer Programming",
+    "credits": "3 (2-2-5)",
+    "group": "Y1-S1",
+    "slug": "Problem-Solving-and-Computer-Programming",
+    "portalHref": "/courses/06066303-Problem-Solving-and-Computer-Programming",
+    "category": "วิชาบังคับ"
+  },
+  {
+    "abbr": "CHARM",
+    "officialCode": "90641001",
+    "nameTh": "โรงเรียนสร้างเสน่ห์",
+    "nameEn": "Charm School",
+    "credits": "2 (1-2-3)",
+    "group": "Y1-S1",
+    "slug": "Charm-School",
+    "portalHref": "/courses/90641001-Charm-School",
+    "category": "วิชาศึกษาทั่วไป"
+  },
+  {
+    "abbr": "FE",
+    "officialCode": "90644007",
+    "nameTh": "ภาษาอังกฤษพื้นฐาน 1",
+    "nameEn": "Foundation English",
+    "credits": "3 (3-0-6)",
+    "group": "Y1-S1",
+    "slug": "Foundation-English",
+    "portalHref": "/courses/90644007-Foundation-English",
+    "category": "วิชาศึกษาทั่วไป"
+  },
+  {
+    "abbr": "SPORT",
+    "officialCode": "90641003",
+    "nameTh": "กีฬาและนันทนาการ",
+    "nameEn": "Sports and Recreational Activities",
+    "credits": "1 (0-2-1)",
+    "group": "Y1-S1",
+    "slug": "Sports-and-Recreational-Activities",
+    "portalHref": "/courses/90641003-Sports-and-Recreational-Activities",
+    "category": "วิชาศึกษาทั่วไป"
+  },
+  {
+    "abbr": "BFIT",
+    "officialCode": "06066101",
+    "nameTh": "พื้นฐานทางธุรกิจสำหรับเทคโนโลยีสารสนเทศ",
+    "nameEn": "Business for IT",
+    "credits": "3 (3-0-6)",
+    "group": "Y1-S2",
+    "slug": "Business-for-IT",
+    "portalHref": "/courses/06066101-Business-for-IT",
+    "category": "วิชาบังคับ"
+  },
+  {
+    "abbr": "DSA",
+    "officialCode": "06066301",
+    "nameTh": "โครงสร้างข้อมูลและอัลกอริทึม",
+    "nameEn": "Data Structures and Algorithms",
+    "credits": "3 (2-2-5)",
+    "group": "Y1-S2",
+    "slug": "Data-Structures-and-Algorithms",
+    "portalHref": "/courses/06066301-Data-Structures-and-Algorithms",
+    "category": "วิชาบังคับ"
+  },
+  {
+    "abbr": "OOP",
+    "officialCode": "06016408",
+    "nameTh": "การสร้างโปรแกรมเชิงวัตถุ",
+    "nameEn": "Object-Oriented Programming",
+    "credits": "3 (2-2-5)",
+    "group": "Y1-S2",
+    "slug": "Object-Oriented-Programming",
+    "portalHref": "/courses/06016408-Object-Oriented-Programming",
+    "category": "วิชาบังคับ"
+  },
+  {
+    "abbr": "PSTAT",
+    "officialCode": "06066001",
+    "nameTh": "ความน่าจะเป็นและสถิติ",
+    "nameEn": "Probability and Statistics",
+    "credits": "3 (3-0-6)",
+    "group": "Y1-S2",
+    "slug": "Probability-and-Statistics",
+    "portalHref": "/courses/06066001-Probability-and-Statistics",
+    "category": "วิชาบังคับ"
+  },
+  {
+    "abbr": "FE2",
+    "officialCode": "90644008",
+    "nameTh": "ภาษาอังกฤษพื้นฐาน 2",
+    "nameEn": "Foundation English II",
+    "credits": "3 (3-0-6)",
+    "group": "Y1-S2",
+    "slug": "Foundation-English-II",
+    "portalHref": "/courses/90644008-Foundation-English-II",
+    "category": "วิชาศึกษาทั่วไป"
+  },
+  {
+    "abbr": "DC",
+    "officialCode": "90641007",
+    "nameTh": "พลเมืองดิจิทัล",
+    "nameEn": "Digital Citizen",
+    "credits": "3 (3-0-6)",
+    "group": "Y1-S2",
+    "slug": "Digital-Literacy",
+    "portalHref": "/courses/90641002-Digital-Literacy",
+    "category": "วิชาศึกษาทั่วไป",
+    "legacyCode": "90641002",
+    "legacyAbbr": "DL"
+  },
+  {
+    "abbr": "COMPRO",
+    "officialCode": "01006012",
+    "nameTh": "การเขียนโปรแกรมคอมพิวเตอร์",
+    "nameEn": "Computer Programming",
+    "credits": "3 (2-2-5)",
+    "group": "EN-KMITL",
+    "slug": "Computer-Programming",
+    "portalHref": "/courses/01006012-Computer-Programming",
+    "category": "วิชาข้ามคณะ"
+  },
+  {
+    "abbr": "CHEM",
+    "officialCode": null,
+    "nameTh": "เคมีทั่วไป",
+    "nameEn": "General Chemistry",
+    "credits": "3 (3-0-6)",
+    "group": "EN-KMITL",
+    "slug": "General-Chemistry",
+    "portalHref": "/courses/General-Chemistry",
+    "category": "วิชาข้ามคณะ"
+  }
+]

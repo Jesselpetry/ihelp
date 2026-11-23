@@ -1,7 +1,9 @@
 import { cn } from "@/lib/utils";
+import { getCourseAbbr } from "@/lib/courses/catalog";
 
 /**
- * Signature iHelp gradient blue course code pill used in the Grades Hub.
+ * Signature iHelp gradient blue course code pill used across Grades, Timetable, and Course Hubs.
+ * Automatically resolves numeric KMITL codes to standard abbreviations (e.g. 06066101 -> BFIT).
  */
 export function CourseCodeBadge({
   code,
@@ -10,6 +12,8 @@ export function CourseCodeBadge({
   code: string;
   className?: string;
 }) {
+  const displayCode = getCourseAbbr(code) || code;
+
   return (
     <span
       className={cn(
@@ -17,7 +21,7 @@ export function CourseCodeBadge({
         className,
       )}
     >
-      {code}
+      {displayCode}
     </span>
   );
 }

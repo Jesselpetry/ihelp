@@ -25,10 +25,92 @@ export const COURSE_COLORS: Record<string, string> = {
   OOP: "#2357A5",
   PSTAT: "#2357A5",
   FE2: "#2357A5",
+  DC: "#2357A5",
   DL: "#2357A5",
   COMPRO: "#2357A5",
   CHEM: "#2357A5",
 };
+
+/**
+ * Standard course abbreviations to official 8-digit KMITL subject codes.
+ * Single source of truth for all short names and abbreviations across iHelp.
+ */
+export const COURSE_ABBREVIATIONS = {
+  // ── Year 1 · Semester 1 ─────────────────────────────────────────────────────
+  ITF: "06016402",
+  ICS: "06016411",
+  MFIT: "06016401",
+  PSCP: "06066303",
+  CHARM: "90641001",
+  FE: "90644007",
+  SPORT: "90641003",
+
+  // ── Year 1 · Semester 2 ─────────────────────────────────────────────────────
+  BFIT: "06066101",
+  DSA: "06066301",
+  OOP: "06016408",
+  PSTAT: "06066001",
+  FE2: "90644008",
+  DC: "90641007",
+  DL: "90641002",
+
+  // ── EN-KMITL Cross Faculty ──────────────────────────────────────────────────
+  COMPRO: "01006012",
+  CHEM: "CHEM",
+} as const;
+
+export type CourseAbbreviation = keyof typeof COURSE_ABBREVIATIONS;
+
+/**
+ * Official KMITL course code to canonical abbreviation mapping.
+ */
+export const OFFICIAL_CODE_TO_ABBR: Record<string, CourseAbbreviation> = {
+  "06016402": "ITF",
+  "06016411": "ICS",
+  "06016401": "MFIT",
+  "06066303": "PSCP",
+  "90641001": "CHARM",
+  "90644007": "FE",
+  "90641003": "SPORT",
+  "06066101": "BFIT",
+  "06066301": "DSA",
+  "06016408": "OOP",
+  "06066001": "PSTAT",
+  "90644008": "FE2",
+  "90641007": "DC",
+  "90641002": "DL",
+  "01006012": "COMPRO",
+  // Common aliases & alternate course codes
+  "06016409": "PSCP", // Physical Computing / legacy PSCP lab course code
+  "90642999": "CHARM",
+};
+
+/**
+ * Returns the canonical course abbreviation (e.g. "BFIT", "PSTAT", "OOP")
+ * from an official 8-digit code or already-abbreviated code.
+ */
+export function getCourseAbbr(param: string | null | undefined): string {
+  if (!param) return "";
+  const trimmed = param.trim();
+  const upper = trimmed.toUpperCase() as CourseAbbreviation;
+  if (upper in COURSE_ABBREVIATIONS) return upper;
+  if (trimmed in OFFICIAL_CODE_TO_ABBR) return OFFICIAL_CODE_TO_ABBR[trimmed];
+  const course = resolveCourse(param);
+  return course?.code ?? trimmed;
+}
+
+/**
+ * Returns the official KMITL course code (e.g. "06066101") from an abbreviation.
+ */
+export function getCourseOfficialCode(
+  param: string | null | undefined,
+): string | undefined {
+  if (!param) return undefined;
+  const upper = param.trim().toUpperCase() as CourseAbbreviation;
+  if (upper in COURSE_ABBREVIATIONS) return COURSE_ABBREVIATIONS[upper];
+  const course = resolveCourse(param);
+  return course?.officialCode;
+}
 
 export type CourseGroup = "Y1-S1" | "Y1-S2" | "EN-KMITL";
 
@@ -296,13 +378,21 @@ export function coursesByGroup(group: CourseGroup): CatalogCourse[] {
 export function resolveCourse(param: string): CatalogCourse | undefined {
   const decoded = decodeURIComponent(param).trim();
   const lower = decoded.toLowerCase();
-  return COURSES.find(
+  const direct = COURSES.find(
     (c) =>
       courseDir(c).toLowerCase() === lower ||
       c.code.toLowerCase() === lower ||
       c.slug.toLowerCase() === lower ||
       (c.officialCode && c.officialCode.toLowerCase() === lower),
   );
+  if (direct) return direct;
+
+  const mapped = OFFICIAL_CODE_TO_ABBR[decoded];
+  if (mapped) {
+    return COURSES.find((c) => c.code.toLowerCase() === mapped.toLowerCase());
+  }
+
+  return undefined;
 }
 
 export function findCourse(dir: string): CatalogCourse | undefined {

@@ -24,6 +24,7 @@ export function isGeCourse(code: string, officialCode?: string): boolean {
     c === "FE2" ||
     c === "SPORT" ||
     c === "DL" ||
+    c === "DC" ||
     Boolean(officialCode?.startsWith("9064"))
   );
 }
