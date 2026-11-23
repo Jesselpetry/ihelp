@@ -67,8 +67,14 @@ function readGradeStore(): GradeSelections {
     }
     const parsed = JSON.parse(raw) as Partial<GradeSelections>;
     cachedParsed = {
-      letters: parsed?.letters && typeof parsed.letters === "object" ? parsed.letters : {},
-      passFail: parsed?.passFail && typeof parsed.passFail === "object" ? parsed.passFail : {},
+      letters:
+        parsed?.letters && typeof parsed.letters === "object"
+          ? parsed.letters
+          : {},
+      passFail:
+        parsed?.passFail && typeof parsed.passFail === "object"
+          ? parsed.passFail
+          : {},
     };
     return cachedParsed;
   } catch {
@@ -134,8 +140,8 @@ const L = {
     en: `A cumulative GPA below ${PROBATION_GPA_THRESHOLD.toFixed(2)} triggers academic probation.`,
   },
   probationNote2: {
-    th: "วิชาประเมินผลแบบ S/U (FE, CHARM, SPORT) ไม่นำมาคิดรวมในการคำนวณ GPA",
-    en: "S/U courses (FE, CHARM, SPORT) are excluded from GPA calculation.",
+    th: "วิชาประเมินผลแบบ S/U (FE, CHARM) ไม่นำมาคิดรวมในการคำนวณ GPA",
+    en: "S/U courses (FE, CHARM) are excluded from GPA calculation.",
   },
   signInTitle: {
     th: "เข้าสู่ระบบด้วยอีเมล @kmitl.ac.th เพื่อดูคะแนนของฉันในแต่ละรายวิชา",
@@ -327,7 +333,8 @@ export function GradesOverviewTable({
     hasCourseManualEntries(manualState, c.code),
   );
 
-  const effectiveLetters: Partial<Record<Y1S1CourseCode, LetterGrade | "">> = {};
+  const effectiveLetters: Partial<Record<Y1S1CourseCode, LetterGrade | "">> =
+    {};
 
   const rows = courses.map((course) => {
     const score = matchScoreForCourse(course, scores);
@@ -343,7 +350,8 @@ export function GradesOverviewTable({
       scoreCell = `${formatScore(merged.combinedEarned)} / ${formatScore(merged.baseScale)}`;
     }
 
-    const manualLetter: LetterGrade | "" = selections.letters[course.code] ?? "";
+    const manualLetter: LetterGrade | "" =
+      selections.letters[course.code] ?? "";
     const autoLetter: LetterGrade | "" =
       merged.autoGradeReady && merged.suggestedGrade?.letter
         ? merged.suggestedGrade.letter
@@ -524,10 +532,16 @@ export function GradesOverviewTable({
                 <TableHead scope="col" className="pl-4 text-xs">
                   {t(L.colCourse, locale)}
                 </TableHead>
-                <TableHead scope="col" className="w-28 md:w-32 text-right text-xs">
+                <TableHead
+                  scope="col"
+                  className="w-28 md:w-32 text-right text-xs"
+                >
                   {t(L.colGraded, locale)}
                 </TableHead>
-                <TableHead scope="col" className="w-40 md:w-44 text-right text-xs">
+                <TableHead
+                  scope="col"
+                  className="w-40 md:w-44 text-right text-xs"
+                >
                   {t(L.colGrade, locale)}
                 </TableHead>
                 <TableHead scope="col" className="w-9 pr-4" />
@@ -693,7 +707,9 @@ export function GradesOverviewTable({
       >
         <AlertTriangle
           className={`mt-0.5 size-3.5 shrink-0 ${
-            gpaSummary.isProbation ? "text-amber-500" : "text-muted-foreground/80"
+            gpaSummary.isProbation
+              ? "text-amber-500"
+              : "text-muted-foreground/80"
           }`}
         />
         <ul className="list-disc space-y-0.5 pl-4">

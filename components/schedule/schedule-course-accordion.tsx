@@ -168,14 +168,14 @@ export function ScheduleCourseAccordion({
           <div className="min-w-0">
             <div className="flex items-center gap-2 flex-wrap">
               <span className="text-sm font-bold text-foreground">
-                {course.nameEn}
+                {course.nameTh}
               </span>
-              <span className="text-xs text-muted-foreground">
+              <span className="text-xs text-muted-foreground font-mono">
                 ({course.code})
               </span>
             </div>
             <div className="text-xs text-muted-foreground truncate">
-              {course.nameTh}
+              {course.nameEn}
             </div>
           </div>
         </div>

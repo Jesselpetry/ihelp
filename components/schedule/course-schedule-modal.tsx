@@ -66,14 +66,14 @@ export function CourseScheduleModal({
             <div className="flex items-center gap-2 flex-wrap">
               <CourseCodeBadge code={course.abbr || course.code} />
               <DialogTitle className="text-base font-bold text-foreground">
-                {course.nameEn}
+                {course.nameTh}
               </DialogTitle>
               <span className="text-xs text-muted-foreground font-mono">
                 ({course.code})
               </span>
             </div>
             <div className="flex items-center gap-2 text-xs text-muted-foreground">
-              <span>{course.nameTh}</span>
+              <span>{course.nameEn}</span>
               <span>•</span>
               <span>{course.credits}</span>
               <span>•</span>
