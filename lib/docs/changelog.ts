@@ -70,6 +70,14 @@ export interface EvolutionMilestone {
  */
 export const MAJOR_EVOLUTION_MILESTONES: EvolutionMilestone[] = [
   {
+    version: "v1.5.0",
+    highlight: true,
+    summary: {
+      th: "Super Library คลังเอกสารนักพัฒนาและสถาปัตยกรรมระบบ 12 ส่วน (docs/README.md), หน้าพอร์ทัล /docs และปรับปรุงหน้าตารางเรียน /schedule",
+      en: "Super Library Developer Documentation Hub covering 12 core subsystems (docs/README.md), in-app /docs reader portal, and schedule page overhaul",
+    },
+  },
+  {
     version: "v1.4.0",
     highlight: true,
     summary: {
@@ -172,6 +180,9 @@ export const MAJOR_EVOLUTION_MILESTONES: EvolutionMilestone[] = [
  * คืนค่าหมุดหมายวิวัฒนาการหลัก (Major Evolution Milestone) ที่ตรงกับเลขเวอร์ชัน
  */
 export function getEvolutionMilestone(version: string): EvolutionMilestone | null {
+  if (version === "1.5.0" || version.startsWith("1.5.")) {
+    return MAJOR_EVOLUTION_MILESTONES.find((m) => m.version === "v1.5.0") ?? null;
+  }
   if (version === "1.4.0" || version.startsWith("1.4.")) {
     return MAJOR_EVOLUTION_MILESTONES.find((m) => m.version === "v1.4.0") ?? null;
   }
@@ -213,6 +224,43 @@ export function getEvolutionMilestone(version: string): EvolutionMilestone | nul
 
 // Mirrors CHANGELOG.md at the repo root — keep both in sync when releasing.
 export const CHANGELOG: VersionEntry[] = [
+  {
+    version: "1.5.0",
+    date: "2026-11-23",
+    contributors: [
+      CONTRIBUTORS.chatan,
+    ],
+    changes: [
+      {
+        kind: "added",
+        text: {
+          th: "จัดทำ Super Library คลังเอกสารนักพัฒนาและสถาปัตยกรรมระบบทั้ง 12 ส่วน (docs/README.md) พร้อมพอร์ทัล /docs และตัวอ่าน Markdown (โดย @Jesselpetry)",
+          en: "Super Library Developer Documentation Hub covering all 12 core subsystems (docs/README.md) with in-app /docs reader portal (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "เพิ่มปุ่ม 'คลังเอกสารนักพัฒนา' ในหน้า /version และเชื่อมโยงเข้าสู่ศูนย์กลางเอกสาร (โดย @Jesselpetry)",
+          en: "Added Developer Docs button and links on /version page and navigation (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "เพิ่มกฎข้อบังคับข้อที่ 13 ใน AGENTS.md บังคับให้อัปเดตเอกสารใน docs/ ทุกครั้งที่มีการพัฒนาฟังก์ชันใหม่ (โดย @Jesselpetry)",
+          en: "Added Rule 13 to AGENTS.md mandating developer documentation updates for all architectural and feature changes (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "ยกระดับหน้าตารางเรียน (/schedule): แยก Section วิชา GenEd, รองรับการเลือก Section อิสระสำหรับผู้ใช้ทั่วไป, และปรับปรุง Navbar (โดย @Jesselpetry)",
+          en: "Enhanced Schedule Page (/schedule): decoupled GenEd sections, supported guest section selection, and refined navigation bar (by @Jesselpetry)",
+        },
+      },
+    ],
+  },
   {
     version: "1.4.0",
     date: "2026-11-23",
