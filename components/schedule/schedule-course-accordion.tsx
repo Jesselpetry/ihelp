@@ -29,15 +29,15 @@ function SectionSelectTable({
       <div className="overflow-x-auto rounded-xl border border-border/60 bg-card">
         <table className="w-full text-left text-xs">
           <thead>
-            <tr className="border-b border-border/60 bg-muted/40 font-mono text-[11px] text-muted-foreground font-semibold">
-              <th className="w-12 py-2 px-2.5 text-center">เลือก</th>
-              <th className="py-2 px-2.5">Section</th>
-              <th className="py-2 px-2.5">วัน</th>
-              <th className="py-2 px-2.5">เวลา</th>
-              <th className="py-2 px-2.5">ห้องเรียน</th>
-              <th className="py-2 px-2.5">อาคาร</th>
-              <th className="py-2 px-2.5">อาจารย์ผู้สอน</th>
-              <th className="py-2 px-3">เงื่อนไข / หมายเหตุ</th>
+            <tr className="border-b border-border/60 bg-muted/40 text-xs text-muted-foreground font-semibold">
+              <th className="w-12 py-2.5 px-3 text-center">เลือก</th>
+              <th className="py-2.5 px-3">Section</th>
+              <th className="py-2.5 px-3">วัน</th>
+              <th className="py-2.5 px-3">เวลา</th>
+              <th className="py-2.5 px-3">ห้องเรียน</th>
+              <th className="py-2.5 px-3">อาคาร</th>
+              <th className="py-2.5 px-3">อาจารย์ผู้สอน</th>
+              <th className="py-2.5 px-3">เงื่อนไข / หมายเหตุ</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-border/40">
@@ -54,7 +54,7 @@ function SectionSelectTable({
                       : "hover:bg-muted/30 text-foreground"
                   }`}
                 >
-                  <td className="py-2.5 px-2.5 text-center align-middle">
+                  <td className="py-2.5 px-3 text-center align-middle">
                     <div
                       className={`mx-auto flex size-4 items-center justify-center rounded-full border transition-all ${
                         isSelected
@@ -66,38 +66,38 @@ function SectionSelectTable({
                     </div>
                   </td>
 
-                  <td className="py-2.5 px-2.5 font-bold font-mono whitespace-nowrap">
+                  <td className="py-2.5 px-3 font-bold whitespace-nowrap">
                     Section {sec.section}
                   </td>
 
-                  <td className="py-2.5 px-2.5 whitespace-nowrap">
-                    <span className="rounded-md bg-muted px-1.5 py-0.5 text-[11px] font-medium text-foreground">
+                  <td className="py-2.5 px-3 whitespace-nowrap">
+                    <span className="rounded-md bg-muted px-1.5 py-0.5 text-xs font-medium text-foreground">
                       วัน{sec.timeSlot.day}
                     </span>
                   </td>
 
-                  <td className="py-2.5 px-2.5 font-mono whitespace-nowrap">
-                    <div className="flex items-center gap-1">
+                  <td className="py-2.5 px-3 whitespace-nowrap">
+                    <div className="flex items-center gap-1.5">
                       <Clock className="size-3 text-primary" />
                       <span>{sec.timeSlot.timeStr}</span>
                     </div>
                   </td>
 
-                  <td className="py-2.5 px-2.5 font-mono whitespace-nowrap">
-                    <div className="flex items-center gap-1">
+                  <td className="py-2.5 px-3 whitespace-nowrap">
+                    <div className="flex items-center gap-1.5">
                       <MapPin className="size-3 text-primary" />
                       <span>{sec.timeSlot.room}</span>
                     </div>
                   </td>
 
-                  <td className="py-2.5 px-2.5 whitespace-nowrap text-muted-foreground">
+                  <td className="py-2.5 px-3 whitespace-nowrap text-muted-foreground">
                     {sec.timeSlot.building}
                   </td>
 
-                  <td className="py-2.5 px-2.5 whitespace-nowrap">
+                  <td className="py-2.5 px-3 whitespace-nowrap">
                     <div className="space-y-0.5 max-w-[220px]">
                       {sec.instructors.slice(0, 2).map((inst, i) => (
-                        <div key={i} className="flex items-center gap-1 text-[11px] truncate">
+                        <div key={i} className="flex items-center gap-1 text-xs truncate">
                           <User className="size-2.5 shrink-0 text-primary" />
                           <span className="truncate">{inst}</span>
                         </div>
@@ -105,7 +105,7 @@ function SectionSelectTable({
                     </div>
                   </td>
 
-                  <td className="py-2.5 px-3 text-[11px] text-muted-foreground">
+                  <td className="py-2.5 px-3 text-xs text-foreground/80">
                     {sec.condition}
                   </td>
                 </tr>
@@ -159,7 +159,7 @@ export function ScheduleCourseAccordion({
               <span className="rounded-md bg-primary/10 px-1.5 py-0.5 text-[10px] font-medium text-primary">
                 {course.category}
               </span>
-              <span className="rounded-md border border-primary/30 bg-primary/10 px-1.5 py-0.5 font-mono text-[10px] font-semibold text-primary">
+              <span className="rounded-md border border-primary/30 bg-primary/10 px-1.5 py-0.5 text-xs font-semibold text-primary">
                 Sec {selectedTheorySec}
                 {course.hasLab && selectedLabSec ? ` / Lab ${selectedLabSec}` : ""}
               </span>

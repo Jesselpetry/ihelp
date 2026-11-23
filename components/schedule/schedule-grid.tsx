@@ -209,7 +209,7 @@ export function ScheduleGrid({ slots }: { slots: ScheduledClassSlot[] }) {
         <div ref={timetableRef} className="overflow-x-auto p-1 bg-card rounded-xl">
           <table className="w-full min-w-[980px] table-fixed border-collapse text-left text-xs">
             <thead>
-              <tr className="border-b border-border/60 bg-muted/40 font-mono text-[11px] text-muted-foreground font-semibold">
+              <tr className="border-b border-border/60 bg-muted/40 text-xs text-muted-foreground font-semibold">
                 <th className="w-[84px] py-2.5 px-2 text-center border-r border-border/40">
                   วัน
                 </th>
@@ -258,7 +258,7 @@ export function ScheduleGrid({ slots }: { slots: ScheduledClassSlot[] }) {
                                     code={s.courseCode}
                                     className="text-[10px] py-0 px-1.5 min-w-10"
                                   />
-                                  <span className="rounded-md bg-muted px-1.5 py-0.2 font-mono text-[10px] font-semibold text-foreground">
+                                  <span className="rounded-md bg-muted px-1.5 py-0.2 text-[10px] font-semibold text-foreground">
                                     {s.type} Sec {s.section}
                                   </span>
                                 </div>
@@ -268,11 +268,11 @@ export function ScheduleGrid({ slots }: { slots: ScheduledClassSlot[] }) {
                               </div>
 
                               <div className="flex items-center justify-between gap-1 text-[10px] text-muted-foreground border-t border-border/40 pt-1">
-                                <div className="flex items-center gap-1 font-mono">
+                                <div className="flex items-center gap-1">
                                   <Clock className="size-2.5 text-primary" />
                                   <span>{s.timeStr}</span>
                                 </div>
-                                <div className="flex items-center gap-1 font-mono">
+                                <div className="flex items-center gap-1">
                                   <MapPin className="size-2.5 text-primary" />
                                   <span>{s.room}</span>
                                 </div>
@@ -299,7 +299,7 @@ export function ScheduleGrid({ slots }: { slots: ScheduledClassSlot[] }) {
                             colSpan={cell.colSpan}
                             className="p-1 text-center align-middle"
                           >
-                            <div className="flex h-[105px] items-center justify-center rounded-xl border border-dashed border-border/40 bg-muted/20 px-1 text-center font-mono text-[11px] text-muted-foreground">
+                            <div className="flex h-[105px] items-center justify-center rounded-xl border border-dashed border-border/40 bg-muted/20 px-1 text-center text-xs text-muted-foreground">
                               {cell.label}
                             </div>
                           </td>
@@ -382,7 +382,7 @@ export function ScheduleGrid({ slots }: { slots: ScheduledClassSlot[] }) {
                 </div>
 
                 <div className="space-y-1.5 border-t border-border/40 pt-2 text-xs text-muted-foreground">
-                  <div className="flex items-center gap-1.5 font-mono">
+                  <div className="flex items-center gap-1.5">
                     <Clock className="size-3.5 text-primary" />
                     <span>{s.timeStr}</span>
                   </div>

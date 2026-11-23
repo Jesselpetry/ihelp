@@ -103,7 +103,7 @@ export function ScheduleSidebar({
                 <Calendar className="size-3.5 shrink-0" />
                 <span className="truncate">{t(L.timetable, locale)}</span>
               </span>
-              <span className="shrink-0 font-mono text-[11px] text-muted-foreground">
+              <span className="shrink-0 text-xs text-muted-foreground">
                 จ.-ศ.
               </span>
             </button>
