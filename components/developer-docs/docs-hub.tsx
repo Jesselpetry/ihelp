@@ -257,15 +257,17 @@ function DocRowCard({ doc, index }: { doc: DevDocMeta; index: number }) {
   return (
     <Link
       href={`/docs/${doc.slug}`}
-      className={`group flex items-center gap-3 px-3.5 py-3 transition-[box-shadow,background-color] hover:bg-primary/[0.03] hover:shadow-md dark:hover:bg-primary/10 no-underline ${SURFACE} ${
-        isMaster ? "border-primary/40 bg-primary/[0.015]" : ""
+      className={`group flex items-center gap-3 px-3.5 py-3.5 transition-all duration-200 no-underline ${
+        isMaster
+          ? "rounded-2xl border border-white/20 bg-ihelp-gradient text-white shadow-md hover:shadow-lg hover:brightness-105"
+          : `${SURFACE} hover:bg-primary/[0.03] hover:shadow-md dark:hover:bg-primary/10`
       }`}
     >
       {/* Circular icon with 2-digit number (matching CourseWeekCard) */}
       <span
         className={`flex size-8.5 shrink-0 items-center justify-center rounded-full text-xs font-bold tabular-nums shadow-2xs ${
           isMaster
-            ? "bg-primary text-primary-foreground"
+            ? "bg-white/20 text-white border border-white/30 backdrop-blur-xs"
             : "bg-primary/10 text-primary"
         }`}
       >
@@ -275,29 +277,38 @@ function DocRowCard({ doc, index }: { doc: DevDocMeta; index: number }) {
       {/* Content info */}
       <div className="flex min-w-0 flex-1 flex-col justify-center">
         <div className="flex items-center gap-2">
-          <span className="truncate text-xs sm:text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
+          <span
+            className={`truncate text-xs sm:text-sm font-semibold transition-colors ${
+              isMaster ? "text-white font-bold" : "text-foreground group-hover:text-primary"
+            }`}
+          >
             {doc.title}
           </span>
           {isMaster && (
-            <span className="hidden sm:inline-block rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-semibold text-primary">
+            <span className="hidden sm:inline-block rounded-full bg-white/20 border border-white/30 px-2 py-0.5 text-[10px] font-semibold text-white">
               Master Blueprint
             </span>
           )}
         </div>
 
         {doc.description && (
-          <p className="truncate text-xs text-muted-foreground/80 mt-0.5">
+          <p
+            className={`truncate text-xs mt-0.5 ${
+              isMaster ? "text-white/85" : "text-muted-foreground/80"
+            }`}
+          >
             {doc.description}
           </p>
         )}
       </div>
 
-      {/* Right meta badge + Chevron */}
-      <div className="flex shrink-0 items-center gap-2">
-        <span className="hidden sm:inline text-[11px] font-mono text-muted-foreground/70">
-          docs/{doc.fileName}
-        </span>
-        <ChevronRight className="size-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5" />
+      {/* Right Chevron only (removed docs/fileName to eliminate visual clutter) */}
+      <div className="flex shrink-0 items-center">
+        <ChevronRight
+          className={`size-4 shrink-0 transition-transform group-hover:translate-x-0.5 ${
+            isMaster ? "text-white/80" : "text-muted-foreground"
+          }`}
+        />
       </div>
     </Link>
   );

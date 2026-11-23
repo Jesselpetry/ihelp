@@ -69,6 +69,39 @@ export const SEMESTER_CONFIG_2_2569: SemesterCalendarConfig = {
   totalCalendarWeeks: 16,
 };
 
+export interface ThaiAcademicHoliday {
+  dateIso: string;
+  nameTh: string;
+  nameEn: string;
+}
+
+/**
+ * Official Thai Public Holidays occurring during the 15 teaching weeks of Semester 2/2569.
+ * Classes are not held on these government-gazetted dates.
+ */
+export const THAI_PUBLIC_HOLIDAYS_2_2569: ThaiAcademicHoliday[] = [
+  {
+    dateIso: "2026-12-10",
+    nameTh: "วันรัฐธรรมนูญ",
+    nameEn: "Constitution Day",
+  },
+  {
+    dateIso: "2026-12-31",
+    nameTh: "วันสิ้นปี",
+    nameEn: "New Year's Eve",
+  },
+  {
+    dateIso: "2027-01-01",
+    nameTh: "วันขึ้นปีใหม่",
+    nameEn: "New Year's Day",
+  },
+  {
+    dateIso: "2027-02-22",
+    nameTh: "วันหยุดชดเชยวันมาฆบูชา",
+    nameEn: "Makha Bucha Day Observed",
+  },
+];
+
 export const SEMESTER_MEETINGS: SemesterMeeting[] = rawMeetings as SemesterMeeting[];
 
 /**

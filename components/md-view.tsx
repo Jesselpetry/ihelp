@@ -307,6 +307,11 @@ export interface MdViewProps {
    * Default stays plain so exam papers and formal documents are not marked up.
    */
   variant?: MdViewVariant;
+  /**
+   * When true, disables transforming markdown tables into SessionMaterialsDeck
+   * or OjProblemsDeck, rendering them as standard clean tables instead.
+   */
+  disableDocTables?: boolean;
 }
 
 /**
@@ -427,6 +432,7 @@ export function MdView({
   onOpenPreview,
   onOpenProblem,
   variant = "default",
+  disableDocTables = false,
 }: MdViewProps) {
   const notebook = variant === "notebook";
   const components: Components = useMemo(() => {
@@ -434,24 +440,28 @@ export function MdView({
       ...mdComponents,
       ...(notebook ? notebookComponents : {}),
       table: ({ node, ...p }) => {
-        const sessionDocs = parseSessionDocTable(node, assets);
-        if (sessionDocs) {
-          return (
-            <SessionMaterialsDeck
-              items={sessionDocs}
-              courseCode={courseCode}
-              onOpenPreview={onOpenPreview}
-            />
-          );
+        if (!disableDocTables && assets && assets.length > 0) {
+          const sessionDocs = parseSessionDocTable(node, assets);
+          if (sessionDocs && sessionDocs.length > 0 && sessionDocs.some((d) => d.matchedAsset)) {
+            return (
+              <SessionMaterialsDeck
+                items={sessionDocs}
+                courseCode={courseCode}
+                onOpenPreview={onOpenPreview}
+              />
+            );
+          }
         }
-        const ojProblems = parseOjProblemTable(node);
-        if (ojProblems) {
-          return (
-            <OjProblemsDeck
-              items={ojProblems}
-              onOpenProblem={onOpenProblem}
-            />
-          );
+        if (!disableDocTables) {
+          const ojProblems = parseOjProblemTable(node);
+          if (ojProblems) {
+            return (
+              <OjProblemsDeck
+                items={ojProblems}
+                onOpenProblem={onOpenProblem}
+              />
+            );
+          }
         }
         return (
           <div className="md-scroll-x my-4 overflow-x-auto overscroll-x-contain [scrollbar-width:thin] rounded-lg border">
@@ -460,7 +470,7 @@ export function MdView({
         );
       },
     };
-  }, [assets, courseCode, onOpenPreview, onOpenProblem, notebook]);
+  }, [assets, courseCode, onOpenPreview, onOpenProblem, notebook, disableDocTables]);
 
   /*
    * font-sarabun: every Markdown body in the app renders in THSarabunNew. It

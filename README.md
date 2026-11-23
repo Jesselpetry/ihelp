@@ -4,18 +4,14 @@
 >
 > 🌐 เว็บไซต์จริง: **[ihelp.chatan.in.th](https://ihelp.chatan.in.th)**
 
-<p align="center">
-  <img src="./public/og-image-hd.png" alt="iHelp Platform Preview" width="100%" />
-</p>
+![iHelp Platform Preview](/og-image-hd.png)
 
-<p align="left">
-  <img src="https://img.shields.io/badge/Next.js-16-000000?style=flat-square&logo=nextdotjs&logoColor=white" alt="Next.js 16" />
-  <img src="https://img.shields.io/badge/React-19.2-61DAFB?style=flat-square&logo=react&logoColor=000000" alt="React 19" />
-  <img src="https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript 5" />
-  <img src="https://img.shields.io/badge/Tailwind-4-38B2AC?style=flat-square&logo=tailwindcss&logoColor=white" alt="Tailwind 4" />
-  <img src="https://img.shields.io/badge/Supabase-Storage%20%26%20Auth-3ECF8E?style=flat-square&logo=supabase&logoColor=white" alt="Supabase" />
-  <img src="https://img.shields.io/badge/license-MIT-green?style=flat-square" alt="License" />
-</p>
+![Next.js 16](https://img.shields.io/badge/Next.js-16-000000?style=flat-square&logo=nextdotjs&logoColor=white)
+![React 19](https://img.shields.io/badge/React-19.2-61DAFB?style=flat-square&logo=react&logoColor=000000)
+![TypeScript 5](https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![Tailwind 4](https://img.shields.io/badge/Tailwind-4-38B2AC?style=flat-square&logo=tailwindcss&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-Storage%20%26%20Auth-3ECF8E?style=flat-square&logo=supabase&logoColor=white)
+![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)
 
 ---
 

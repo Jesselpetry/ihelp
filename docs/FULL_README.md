@@ -12,21 +12,16 @@
 | **15** วิชา | **14** วิชา | **750** รายการ | **733** ไฟล์ | **13,622** หน้า | พฤศจิกายน 2569 |
 <!-- stats:end -->
 
-<p>
-  <img src="https://img.shields.io/badge/version-1.0.0-db2777?style=flat-square" alt="Version" />
-  <img src="https://img.shields.io/badge/branch-staging-blue?style=flat-square" alt="Staging Branch" />
-  <img src="https://img.shields.io/badge/Next.js-16-000000?style=flat-square&logo=nextdotjs&logoColor=white" alt="Next.js 16" />
-  <img src="https://img.shields.io/badge/React-19.2-61DAFB?style=flat-square&logo=react&logoColor=000000" alt="React 19" />
-  <img src="https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript 5" />
-  <img src="https://img.shields.io/badge/Tailwind-4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white" alt="Tailwind CSS 4" />
-  <img src="https://img.shields.io/badge/router-App-000000?style=flat-square" alt="App Router" />
-  <img src="https://img.shields.io/badge/Drizzle-ORM-C5F74F?style=flat-square&logo=drizzle&logoColor=000000" alt="Drizzle ORM" />
-  <img src="https://img.shields.io/badge/Supabase-Storage%20%2B%20Auth-3FCF8E?style=flat-square&logo=supabase&logoColor=white" alt="Supabase" />
-  <img src="https://img.shields.io/badge/license-MIT-3da639?style=flat-square" alt="MIT" />
-</p>
-
-> เว็บนี้ไม่เขียนเนื้อหาแทนคุณ — เครื่องมือสร้างไฟล์ทุกตัวเก็บคำตอบที่คุณเขียนเอง
-> แล้วจัดลง template ทางการของรายวิชา ไม่มีการส่งอะไรไปที่ OJ
+![Version](https://img.shields.io/badge/version-1.5.0-db2777?style=flat-square)
+![Staging Branch](https://img.shields.io/badge/branch-staging-blue?style=flat-square)
+![Next.js 16](https://img.shields.io/badge/Next.js-16-000000?style=flat-square&logo=nextdotjs&logoColor=white)
+![React 19](https://img.shields.io/badge/React-19.2-61DAFB?style=flat-square&logo=react&logoColor=000000)
+![TypeScript 5](https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![Tailwind CSS 4](https://img.shields.io/badge/Tailwind-4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
+![App Router](https://img.shields.io/badge/router-App-000000?style=flat-square)
+![Drizzle ORM](https://img.shields.io/badge/Drizzle-ORM-C5F74F?style=flat-square&logo=drizzle&logoColor=000000)
+![Supabase](https://img.shields.io/badge/Supabase-Storage%20%2B%20Auth-3FCF8E?style=flat-square&logo=supabase&logoColor=white)
+![MIT](https://img.shields.io/badge/license-MIT-3da639?style=flat-square)
 
 > **AI agent:** เริ่มที่ [AGENTS.md](../AGENTS.md) — กฎที่พลาดง่าย ตาราง "แก้ที่ไหน" และวิธีค้นหาในคลัง
 >
@@ -139,6 +134,9 @@ Supabase Storage และเว็บเสิร์ฟจากที่นั
 
 ## ฟีเจอร์เครื่องมือ PSCP
 
+> เว็บนี้ไม่เขียนเนื้อหาแทนคุณ — เครื่องมือสร้างไฟล์ทุกตัวเก็บคำตอบที่คุณเขียนเอง
+> แล้วจัดลง template ทางการของรายวิชา ไม่มีการส่งอะไรไปที่ OJ
+
 - **รายการโจทย์** (`/pscp`) — จาก registry `data/pscp/problems.json` พร้อมระดับความยาก
   วันหมดเขต ป้าย Learning Log / แนะนำ และแท็บกรองรายสัปดาห์ กดโจทย์เพื่อเปิด workspace
   (drawer บนหน้ารายการ หรือหน้า `/pscp/<slug>`) ที่ตรวจโค้ดในเบราว์เซอร์ได้
@@ -231,137 +229,41 @@ Personal Study Space ส่วนตัวสำหรับเจ้าขอ�
 
 ### Framework & ภาษา
 
-<table>
-  <tr>
-    <td align="center" width="96">
-      <img src="https://cdn.simpleicons.org/nextdotjs/000000/FFFFFF" width="48" height="48" alt="Next.js" /><br>
-      <sub><b>Next.js 16</b></sub>
-    </td>
-    <td><strong>App Router</strong> รันบน Node (ห้าม <code>bun --bun next</code> — build crash SIGTRAP บน Bun 1.2.x) หลาย route เป็น <code>force-static</code> เพื่ออยู่ในโควตา 12 serverless function ของ Vercel Hobby (ตามบันทึกใน CHANGELOG) · <a href="proxy.ts">proxy.ts</a> refresh session Supabase และกัน <code>/onboarding</code> <code>/upload</code> <code>/exams</code> · redirect ของ route เก่าอยู่ใน <a href="next.config.ts">next.config.ts</a> · dev รันบน Turbopack</td>
-  </tr>
-  <tr>
-    <td align="center" width="96">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" width="48" height="48" alt="React" /><br>
-      <sub><b>React 19</b></sub>
-    </td>
-    <td>เรนเดอร์ทั้งหมด ส่วนใหญ่เป็น Server Component — หน้า <code>/pscp</code> โหลด registry ตอน build, ฝั่ง client มีแค่ตัวกรอง/มุมมองตาราง-การ์ดและ workspace drawer</td>
-  </tr>
-  <tr>
-    <td align="center" width="96">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" width="48" height="48" alt="TypeScript" /><br>
-      <sub><b>TypeScript 5</b></sub>
-    </td>
-    <td>ทั้ง codebase · <code>lib/schemas/content.ts</code> + <code>bun run content:check</code> ตรวจคลังข้อสอบตอน build — ทุกข้อต้องมีแหล่งอ้างอิง (<code>sourceRef</code>) ตัวเลือกห้าม id ซ้ำ progress key (<code>quizId</code>) ห้ามชน</td>
-  </tr>
-</table>
+| เทคโนโลยี | เวอร์ชัน / บทบาท | รายละเอียดการใช้งานใน iHelp |
+|---|---|---|
+| **Next.js** | Next.js 16 (App Router) | App Router รันบน Node (ห้าม `bun --bun next` — build crash SIGTRAP บน Bun 1.2.x) หลาย route เป็น `force-static` เพื่ออยู่ในโควตา 12 serverless function ของ Vercel Hobby · `proxy.ts` refresh session Supabase และกักกัน `/onboarding` `/upload` `/exams` · dev รันบน Turbopack |
+| **React** | React 19.2 | เรนเดอร์ทั้งหมด ส่วนใหญ่เป็น Server Component — หน้า `/pscp` โหลด registry ตอน build, ฝั่ง client มีเฉพาะตัวกรอง มุมมองตาราง/การ์ด และ workspace drawer |
+| **TypeScript** | TypeScript 5 | ควบคุม Type ความปลอดภัยทั้ง codebase · `lib/schemas/content.ts` + `bun run content:check` ตรวจคลังข้อสอบตอน build ทุกข้อ |
 
 ### UI & Styling
 
-<table>
-  <tr>
-    <td align="center" width="96">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" width="48" height="48" alt="Tailwind CSS" /><br>
-      <sub><b>Tailwind 4</b></sub>
-    </td>
-    <td>Styling ทั้งเว็บ ผ่าน <code>@tailwindcss/postcss</code> ไม่มี <code>tailwind.config</code> · token อยู่ใน <a href="app/globals.css">globals.css</a> · <code>--primary</code> หลักเป็นสีฟ้า <code>#2357A5</code> — <code>.pscp-theme</code> rebind เป็น PSCP Pink (<code>#db2777</code> / dark <code>#ec4899</code>) และ <code>app/courses/[dir]/layout.tsx</code> rebind ต่อวิชา (<code>COURSE_COLORS</code>) · ธีม Dark ได้รับแรงบันดาลใจจาก Figma ด้วย neutral charcoal palette หลายระดับชั้น (<code>#141416</code> canvas, <code>#1c1c1f</code> cards, <code>#222226</code> popovers) และ subtle white opacity borders (<code>oklch(1 0 0 / 8.5%)</code>) คมชัด สบายตา และอ่านง่าย · <code>tw-animate-css</code> สำหรับ animation utility</td>
-  </tr>
-  <tr>
-    <td align="center" width="96">
-      <img src="https://cdn.simpleicons.org/radixui/161618/FFFFFF" width="48" height="48" alt="Radix UI" /><br>
-      <sub><b>Radix UI</b></sub>
-    </td>
-    <td>Primitive ที่เข้าถึงได้ใน <a href="components/ui/">components/ui/</a> — dialog, select, dropdown-menu, tooltip ฯลฯ ใช้ที่ที่ focus trap และคีย์บอร์ดสำคัญกว่าสไตล์ เช่น workspace drawer ของโจทย์</td>
-  </tr>
-  <tr>
-    <td align="center" width="96">
-      <img src="https://cdn.simpleicons.org/shadcnui/000000/FFFFFF" width="48" height="48" alt="shadcn/ui" /><br>
-      <sub><b>shadcn/ui</b></sub>
-    </td>
-    <td>วิธีที่ primitive พวกนั้นมาถึง — generate ลง repo (<a href="components.json">components.json</a>, base neutral, CSS variable) ไม่ได้ลงเป็น dependency แต่ละตัวจึงเป็น source ที่แก้ได้ ใช้ convention <code>cn()</code> + <code>cva</code></td>
-  </tr>
-  <tr>
-    <td align="center" width="96">
-      <img src="https://cdn.simpleicons.org/lucide/db2777" width="48" height="48" alt="Lucide" /><br>
-      <sub><b>Lucide</b></sub>
-    </td>
-    <td>ไอคอนชุดเดียวทั้งเว็บ (<code>lucide-react</code>) มากับ shadcn/ui</td>
-  </tr>
-</table>
+| เทคโนโลยี | เวอร์ชัน / เครื่องมือ | รายละเอียดการใช้งานใน iHelp |
+|---|---|---|
+| **Tailwind CSS** | Tailwind CSS 4 | Styling ทั้งเว็บผ่าน `@tailwindcss/postcss` ไม่มี `tailwind.config` · Design Token ทั้งหมดอยู่ใน `app/globals.css` · ธีม Dark ได้รับแรงบันดาลใจจาก Figma Neutral Charcoal (`#141416`, `#1c1c1f`, `#222226`) และขอบโปร่งแสง (`oklch(1 0 0 / 8.5%)`) |
+| **Radix UI** | Primitives | UI Primitives ใน `components/ui/` (dialog, select, dropdown-menu, tooltip) รองรับ focus trap และ accessibility |
+| **shadcn/ui** | Components | สถาปัตยกรรม Component ที่ generate ลง repo ใน `components/ui/` ควบคุมผ่าน `cn()` + `cva` |
+| **Lucide Icons** | Icons | ชุดไอคอนมาตรฐาน (`lucide-react`) สำหรับการแสดงผลทั่วทั้งเว็บไซต์ |
 
 ### เนื้อหา & Markdown
 
-<table>
-  <tr>
-    <td align="center" width="96">
-      <img src="https://cdn.simpleicons.org/markdown/000000/FFFFFF" width="48" height="48" alt="react-markdown" /><br>
-      <sub><b>react-markdown</b></sub>
-    </td>
-    <td>เรนเดอร์สรุปเนื้อหา ชีท หน้ารายสัปดาห์ และเอกสาร AI-Guidelines ทุกหน้า pipeline: <code>remark-frontmatter</code> + <code>remark-gfm</code> + <code>remark-math</code> + <code>remarkNotebook</code> (<code>lib/docs/remark-notebook.ts</code>: <code>{==ไฮไลต์==}</code> <code>{++ขีดเส้นใต้++}</code> <code>&lt;sub&gt;</code> <code>&lt;sup&gt;</code>) → <code>rehype-katex</code> · fence <code>youtube</code> เล่นคลิปในหน้า · สารบัญด้านข้างแบบ scroll-spy สร้างจาก heading ที่ parse ได้</td>
-  </tr>
-  <tr>
-    <td align="center" width="96">
-      <img src="https://cdn.simpleicons.org/latex/008080" width="48" height="48" alt="KaTeX" /><br>
-      <sub><b>KaTeX</b></sub>
-    </td>
-    <td>สูตรคณิตศาสตร์ใน markdown (MFIT, PSTAT, DL) รองรับ inline <code>$…$</code> และ block <code>$$…$$</code> หลายบรรทัด · CSS โหลดผ่าน <code>app/globals.css</code></td>
-  </tr>
-  <tr>
-    <td align="center" width="96">
-      <img src="https://cdn.simpleicons.org/python/3776AB" width="48" height="48" alt="Pyodide" /><br>
-      <sub><b>Pyodide</b></sub>
-    </td>
-    <td>รัน Python ตรวจโจทย์ในเบราว์เซอร์ (WebAssembly) ใน Web Worker — client-side grader ของ <code>/pscp/[slug]</code> และ <code>/recommended/[slug]</code> ไม่ส่งโค้ดขึ้น server และไม่ยิงอะไรไป OJ · runtime อยู่ใน <code>public/pyodide/</code> (<code>scripts/copy-pyodide-assets.mjs</code> คัดลอกจาก <code>node_modules</code>)</td>
-  </tr>
-</table>
+| เทคโนโลยี | บทบาท | รายละเอียดการใช้งานใน iHelp |
+|---|---|---|
+| **react-markdown** | Markdown Engine | เรนเดอร์สรุปเนื้อหา ชีท หน้ารายสัปดาห์ และคลังเอกสาร Pipeline: `remark-frontmatter` + `remark-gfm` + `remark-math` + `remarkNotebook` สารบัญ ScrollSpy ด้านข้างสร้างจาก heading |
+| **KaTeX** | Math Rendering | แสดงสูตรคณิตศาสตร์ใน markdown (MFIT, PSTAT, DL) รองรับทั้ง inline `$…$` และ block `$$…$$` หลายบรรทัด · โหลดผ่าน `app/globals.css` |
+| **Pyodide** | WebAssembly Python | รัน Python ตรวจโจทย์ในเบราว์เซอร์ผ่าน WebAssembly Web Worker สำหรับ `/pscp/[slug]` และ `/recommended/[slug]` ไม่ส่งโค้ดขึ้น server และไม่ยิงอะไรไป OJ |
 
 ### ข้อมูล & แพลตฟอร์ม
 
-<table>
-  <tr>
-    <td align="center" width="96">
-      <img src="https://cdn.simpleicons.org/supabase/3FCF8E" width="48" height="48" alt="Supabase" /><br>
-      <sub><b>Supabase</b></sub>
-    </td>
-    <td>Auth (Google OAuth จำกัด <code>@kmitl.ac.th</code> รหัสคณะ <code>07</code> ผ่าน <code>@supabase/ssr</code>) + Storage: <code>ihelp-library</code> (สื่อการเรียนรู้) · <code>ihelp-resources</code> (ไฟล์ที่ผู้ใช้แชร์) · <code>ihelp-avatars</code> (รูปโปรไฟล์) — สื่อการเรียนอยู่บน bucket ไม่ได้อยู่ใน git (จำนวนและขนาดดู <code>totals</code> ใน <code>resource-index.json</code>)</td>
-  </tr>
-  <tr>
-    <td align="center" width="96">
-      <img src="https://cdn.simpleicons.org/drizzle/C5F74F" width="48" height="48" alt="Drizzle ORM" /><br>
-      <sub><b>Drizzle ORM</b></sub>
-    </td>
-    <td>Schema ใน <a href="db/">db/</a> ต่อ Postgres ผ่านไดรเวอร์ <code>postgres</code> · <code>drizzle-kit</code> สำหรับ generate / push / studio (<a href="drizzle.config.ts">drizzle.config.ts</a>) เก็บโปรไฟล์ผู้ใช้ ข้อมูลข้อสอบเก่า (<code>ihelp.exams</code>) ทรัพยากรที่แชร์ ตัวนับผู้เข้าชม · ฐานข้อมูลใช้ร่วมกับแอป itgg-2026 — iHelp เป็นเจ้าของเฉพาะ schema <code>ihelp</code> (<code>schemaFilter</code>)</td>
-  </tr>
-  <tr>
-    <td align="center" width="96">
-      <img src="https://cdn.simpleicons.org/zod/3E67B1" width="48" height="48" alt="Zod" /><br>
-      <sub><b>Zod</b></sub>
-    </td>
-    <td>Schema ของ content contract และ payload ฟอร์ม — ตรวจฝั่ง client เป็นชั้น UX ส่วน API ตรวจแยกอิสระ</td>
-  </tr>
-  <tr>
-    <td align="center" width="96">
-      <img src="https://cdn.simpleicons.org/vercel/000000/FFFFFF" width="48" height="48" alt="Vercel" /><br>
-      <sub><b>Vercel</b></sub>
-    </td>
-    <td>Deploy target (Hobby) · <code>@vercel/analytics</code> + <code>@vercel/speed-insights</code> mount ใน root layout · <code>prebuild</code> รัน <code>content:check</code> ก่อนทุก build</td>
-  </tr>
-  <tr>
-    <td align="center" width="96">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bun/bun-original.svg" width="48" height="48" alt="Bun" /><br>
-      <sub><b>Bun</b></sub>
-    </td>
-    <td>Package manager / script runner — <code>bun.lock</code> เป็น lockfile ที่ commit ไว้ Next.js เองยังรันบน Node · สคริปต์ TypeScript ใน <code>scripts/</code> รันผ่าน <code>tsx</code> ส่วนสคริปต์ PSCP เป็น Python 3</td>
-  </tr>
-  <tr>
-    <td align="center" width="96">
-      <img src="https://cdn.simpleicons.org/eslint/4B32C3" width="48" height="48" alt="ESLint" /><br>
-      <sub><b>ESLint</b></sub>
-    </td>
-    <td>Flat config (<a href="eslint.config.mjs">eslint.config.mjs</a>) บน <code>eslint-config-next</code> · ยังไม่มี test runner — gate ตอนนี้คือ <code>tsc --noEmit</code> + <code>lint</code> (ห้ามเพิ่ม error — ยังมี error เดิมค้างอยู่) + <code>content:check</code> + build ที่ผ่าน</td>
-  </tr>
-</table>
+| เทคโนโลยี | บริการ / เครื่องมือ | รายละเอียดการใช้งานใน iHelp |
+|---|---|---|
+| **Supabase** | Auth & Storage | Google OAuth จำกัด `@kmitl.ac.th` คณะไอที (รหัส 07) ผ่าน `@supabase/ssr` และ Storage จัดเก็บสื่อใน Bucket `ihelp-library`, `ihelp-resources`, `ihelp-avatars` |
+| **Drizzle ORM** | Database ORM | Schema ใน `db/` เชื่อมต่อ Postgres เก็บโปรไฟล์ผู้ใช้ ข้อมูลข้อสอบเก่า (`ihelp.exams`) ทรัพยากรที่แชร์ และตัวนับผู้เข้าชม (ใช้ schema `ihelp`) |
+| **Zod** | Schema Validation | Schema ของ content contract และ payload ฟอร์ม ตรวจสอบความถูกต้องทั้ง Client และ API |
+| **Vercel** | Deployment | โฮสต์หลัก (Hobby) พร้อม `@vercel/analytics` และ `@vercel/speed-insights` |
+| **Bun** | Package Manager | ตัวจัดการแพ็กเกจและรันสคริปต์หลัก (`bun.lock`, สคริปต์ใน `scripts/` ผ่าน `tsx`) |
+| **ESLint** | Code Quality | Flat config (`eslint.config.mjs`) ตรวจสอบความถูกต้องร่วมกับ `tsc --noEmit` |
 
-**ไลบรารีเสริม:** <code>react-easy-crop</code> (ครอบรูปโปรไฟล์ในเบราว์เซอร์ ย่อเป็น WebP 512px) · <code>class-variance-authority</code> + <code>tailwind-merge</code> + <code>clsx</code> (ตัวช่วย <code>cn()</code>) · <code>katex</code> (CSS โหลดผ่าน <code>app/globals.css</code>)
+**ไลบรารีเสริม:** `react-easy-crop` (ครอบรูปโปรไฟล์ในเบราว์เซอร์ ย่อเป็น WebP 512px) · `class-variance-authority` + `tailwind-merge` + `clsx` (ตัวช่วย `cn()`) · `katex` (CSS โหลดผ่าน `app/globals.css`)
 
 ## Scripts
 
@@ -425,11 +327,11 @@ Open source — อยากเพิ่มวิชาใหม่ เขีย
 
 | โปรไฟล์ | ชื่อ-นามสกุล | รหัสนักศึกษา | อีเมลนักศึกษา (KMITL) | บทบาทและความรับผิดชอบหลัก | ช่องทางติดต่อ |
 |:---:|:---|:---:|:---|:---|:---:|
-| <a href="https://github.com/Jesselpetry"><img src="https://github.com/Jesselpetry.png" width="48" height="48" alt="Chatan Petry" /></a> | **Chatan Petry**<br>`@Jesselpetry` | `69070027` | `69070027@kmitl.ac.th` | **ผู้ก่อตั้งและผู้ดูแลหลัก (Lead Maintainer)**<br>สถาปัตยกรรมหลักของ iHelp, ระบบตัดเกรด, ธีมมืด Figma, คลังเอกสาร และเครื่องมือเตรียมสอบ | [GitHub](https://github.com/Jesselpetry)<br>[IG: @chatann_](https://instagram.com/chatann_) |
-| <a href="https://github.com/PhuPunnavit"><img src="https://github.com/PhuPunnavit.png" width="48" height="48" alt="Punnavit Tangkolchan" /></a> | **Punnavit Tangkolchan**<br>`@PhuPunnavit` | `69070119` | `69070119@kmitl.ac.th` | **ผู้ร่วมพัฒนาหลัก (Core Contributor)**<br>ระบบ Help Desk Chat Widget และสรุปสไลด์บรรยาย ITF ฉบับแปลไทย Week 08–15 | [GitHub](https://github.com/PhuPunnavit)<br>[IG: @priiu_i](https://instagram.com/priiu_i) |
-| <a href="https://github.com/PGTHEGOD"><img src="https://github.com/PGTHEGOD.png" width="48" height="48" alt="Akarapach Yootsukprasert" /></a> | **Akarapach Yootsukprasert**<br>`@PGTHEGOD` | `69070225` | `69070225@kmitl.ac.th` | **ผู้ร่วมพัฒนา (Contributor)**<br>หน้า Landing Page และระบบเชื่อมต่อ PG IJUDGE Extension (`/pro`) | [GitHub](https://github.com/PGTHEGOD)<br>[IG: @pgthegod_x](https://instagram.com/pgthegod_x) |
-| <a href="https://github.com/Meaookung144"><img src="https://github.com/Meaookung144.png" width="48" height="48" alt="Kittinan Atthasiri" /></a> | **Kittinan Atthasiri**<br>`@Meaookung144` | `6907xxxx` | `6907xxxx@kmitl.ac.th` | **ผู้ร่วมพัฒนา (Contributor)**<br>ระบบฟอร์มแก้ไขไฟล์ส่งงาน PSCP และการเชื่อมต่อ GitHub | [GitHub](https://github.com/Meaookung144)<br>[IG: @meaookung144](https://instagram.com/meaookung144) |
-| <img src="https://github.com/identicons/tammadon.png" width="48" height="48" alt="Tammadon Suksa" /> | **Tammadon Suksa** | `69070082` | `69070082@kmitl.ac.th` | **ผู้ร่วมแบ่งปันเนื้อหา (Content Contributor)**<br>บันทึกสรุปการเรียน Notion วิชา ITF สัปดาห์ที่ 08–15 พร้อมภาพประกอบคำอธิบาย | [Notion Notes](https://app.notion.com/p/ITF-407363d85cea806abdc6c9ec2254f668) |
+| [![Chatan Petry](https://github.com/Jesselpetry.png)](https://github.com/Jesselpetry) | **Chatan Petry**<br>`@Jesselpetry` | `69070027` | `69070027@kmitl.ac.th` | **ผู้ก่อตั้งและผู้ดูแลหลัก (Lead Maintainer)**<br>สถาปัตยกรรมหลักของ iHelp, ระบบตัดเกรด, ธีมมืด Figma, คลังเอกสาร และเครื่องมือเตรียมสอบ | [GitHub](https://github.com/Jesselpetry)<br>[IG: @chatann_](https://instagram.com/chatann_) |
+| [![Punnavit Tangkolchan](https://github.com/PhuPunnavit.png)](https://github.com/PhuPunnavit) | **Punnavit Tangkolchan**<br>`@PhuPunnavit` | `69070119` | `69070119@kmitl.ac.th` | **ผู้ร่วมพัฒนาหลัก (Core Contributor)**<br>ระบบ Help Desk Chat Widget และสรุปสไลด์บรรยาย ITF ฉบับแปลไทย Week 08–15 | [GitHub](https://github.com/PhuPunnavit)<br>[IG: @priiu_i](https://instagram.com/priiu_i) |
+| [![Akarapach Yootsukprasert](https://github.com/PGTHEGOD.png)](https://github.com/PGTHEGOD) | **Akarapach Yootsukprasert**<br>`@PGTHEGOD` | `69070225` | `69070225@kmitl.ac.th` | **ผู้ร่วมพัฒนา (Contributor)**<br>หน้า Landing Page และระบบเชื่อมต่อ PG IJUDGE Extension (`/pro`) | [GitHub](https://github.com/PGTHEGOD)<br>[IG: @pgthegod_x](https://instagram.com/pgthegod_x) |
+| [![Kittinan Atthasiri](https://github.com/Meaookung144.png)](https://github.com/Meaookung144) | **Kittinan Atthasiri**<br>`@Meaookung144` | `6907xxxx` | `6907xxxx@kmitl.ac.th` | **ผู้ร่วมพัฒนา (Contributor)**<br>ระบบฟอร์มแก้ไขไฟล์ส่งงาน PSCP และการเชื่อมต่อ GitHub | [GitHub](https://github.com/Meaookung144)<br>[IG: @meaookung144](https://instagram.com/meaookung144) |
+| ![Tammadon Suksa](https://github.com/identicons/tammadon.png) | **Tammadon Suksa** | `69070082` | `69070082@kmitl.ac.th` | **ผู้ร่วมแบ่งปันเนื้อหา (Content Contributor)**<br>บันทึกสรุปการเรียน Notion วิชา ITF สัปดาห์ที่ 08–15 พร้อมภาพประกอบคำอธิบาย | [Notion Notes](https://app.notion.com/p/ITF-407363d85cea806abdc6c9ec2254f668) |
 
 > 💡 **สำหรับผู้ร่วมพัฒนารายใหม่:** สามารถส่ง Pull Request เพื่อเพิ่มหรือปรับปรุงข้อมูลโปรไฟล์ รหัสนักศึกษา และอีเมลสถาบันของตนเองในตารางนี้ได้เมื่อมีส่วนร่วมในโครงการ
 

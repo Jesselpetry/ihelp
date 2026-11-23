@@ -149,14 +149,6 @@ export function DocsReader({ doc, sections }: DocsReaderProps) {
                         {currentIndex + 1}/{allDocs.length}
                       </span>
                       <span className="truncate">{doc.title}</span>
-                      <span className="hidden md:inline-flex shrink-0">
-                        <Badge
-                          variant="outline"
-                          className="text-[10px] font-mono px-1.5 py-0 border-primary/30 text-primary"
-                        >
-                          docs/{doc.fileName}
-                        </Badge>
-                      </span>
                     </div>
                     <ChevronDown className="size-3.5 sm:size-4 shrink-0 text-muted-foreground ml-1" />
                   </button>
@@ -306,9 +298,6 @@ export function DocsReader({ doc, sections }: DocsReaderProps) {
                   >
                     {t(doc.section.title, locale)}
                   </Badge>
-                  <span className="text-xs text-muted-foreground font-mono">
-                    docs/{doc.fileName}
-                  </span>
                 </div>
 
                 <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
@@ -322,9 +311,9 @@ export function DocsReader({ doc, sections }: DocsReaderProps) {
                 )}
               </header>
 
-              {/* Markdown Content rendered via MdView */}
+              {/* Markdown Content rendered via MdView (disableDocTables prevents course decks) */}
               <div className="prose-neutral dark:prose-invert max-w-none">
-                <MdView markdown={doc.content} />
+                <MdView markdown={doc.content} disableDocTables />
               </div>
             </div>
           </article>

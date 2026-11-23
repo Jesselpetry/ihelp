@@ -18,7 +18,8 @@
 │   ├── types.ts                           # Interface ทั้งหมด (Term, Course, Section, Slot)
 │   ├── registry.ts                        # Central Registry ศูนย์รวมภาคการศึกษาทั้งหมด
 │   ├── y1s2-data.ts                       # ข้อมูลรายวิชาและกลุ่มเรียนของปี 1 เทอม 2
-│   └── semester-dates.ts                  # Helper ตรวจสอบปฏิทินวันเรียนจริง 15 สัปดาห์
+│   ├── semester-dates.ts                  # Helper ตรวจสอบปฏิทินวันเรียนจริง 15 สัปดาห์
+│   └── ics-export.ts                      # ฟังก์ชันสร้างไฟล์ปฏิทิน .ics (RFC 5545) พร้อมวันหยุดราชการ
 │
 ├── scripts/                               # เครื่องมือตรวจสอบอัตโนมัติ
 │   └── audit-schedule.ts                  # Script ตรวจสอบความถูกต้องของข้อมูล (`bun run schedule:audit`)
@@ -29,7 +30,8 @@
     ├── schedule-sidebar.tsx               # เมนูด้านข้างและ Jump Navigation
     ├── schedule-grid.tsx                  # ตารางเรียน Fixed-size (Weekly & Daily View)
     ├── schedule-course-accordion.tsx      # การ์ดรายวิชาและตารางเลือก Section
-    └── schedule-export-card.tsx           # เครื่องมือส่งออก JSON / CSV
+    ├── course-schedule-modal.tsx          # Dialog แสดงรายการวัน-เวลาเรียนจริงตลอดเทอมรายวิชา
+    └── schedule-export-card.tsx           # เครื่องมือส่งออกปฏิทิน ICS / JSON / CSV
 ```
 
 ---
