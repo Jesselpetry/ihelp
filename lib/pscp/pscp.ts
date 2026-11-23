@@ -14,7 +14,7 @@ import { loadCourseDoc } from "@/lib/courses/course-content";
 const REGISTRY_FILE =
   process.env.NODE_ENV !== "production" && process.env.PSCP_REGISTRY_PATH
     ? process.env.PSCP_REGISTRY_PATH
-    : path.join(ROOT, "data", "pscp", "problems.json");
+    : path.join(ROOT, "data", "it-kmitl", "pscp", "problems.json");
 
 export interface PscpStatement {
   description: string;

@@ -40,9 +40,13 @@ OP_ROOT = Path(
 _OP_DETAIL_JSON = OP_ROOT / "data" / "all_problems_detail.json"
 DETAIL_JSON = (
     _OP_DETAIL_JSON if _OP_DETAIL_JSON.is_file()
-    else PROJECT / "data" / "all_problems_detail.json"
+    else PROJECT / "data" / "it-kmitl" / "pscp" / "all_problems_detail.json"
 )
-INDEX_JSON = OP_ROOT / "data" / "oj_problems.json"
+_OP_INDEX_JSON = OP_ROOT / "data" / "oj_problems.json"
+INDEX_JSON = (
+    _OP_INDEX_JSON if _OP_INDEX_JSON.is_file()
+    else PROJECT / "data" / "it-kmitl" / "pscp" / "oj_problems.json"
+)
 
 RUN_TIMEOUT_SEC = 10
 STUB_MARKER = "# solution code here"

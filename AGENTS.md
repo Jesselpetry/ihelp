@@ -47,7 +47,7 @@ Node — use `bun run dev`, never `bun --bun next`.
    | `lib/library/library-stats.json` | `bun run library:stats` |
    | `lib/library/resource-index.json` | `bun run library:index` |
    | all three, in order | `bun run library:build` |
-   | `data/pscp/problems.json` | `bun run pscp:build` (reads the archive repo's `OP` worktree, see `scripts/build_pscp_registry.py`) |
+   | `data/it-kmitl/pscp/problems.json` | `bun run pscp:build` (reads the archive repo's `OP` worktree, see `scripts/build_pscp_registry.py`) |
    | `data/en-kmitl/compro/labs.json` | `bun run compro:labs` |
 
 3. **Client bundles must not see library data.** A Client Component never imports

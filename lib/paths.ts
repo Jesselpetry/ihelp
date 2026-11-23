@@ -9,7 +9,7 @@ const DATA_DIR = path.join(ROOT, "data");
 export const OJ_PROBLEMS_FILE =
   process.env.NODE_ENV !== "production" && process.env.OJ_PROBLEMS_PATH
     ? process.env.OJ_PROBLEMS_PATH
-    : path.join(DATA_DIR, "oj_problems.json");
+    : path.join(DATA_DIR, "it-kmitl", "pscp", "oj_problems.json");
 
 const TEMPLATES_DIR = path.join(DATA_DIR, "templates");
 

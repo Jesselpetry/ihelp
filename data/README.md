@@ -32,22 +32,21 @@ data/
 │   ├── room-seating-map.json     # ผังที่นั่งสอบและ Grid Layout ของแต่ละห้องสอบ
 │   └── faculty-07-master.json    # รายชื่อวิชาและกลุ่มสอบของคณะ IT
 │
-├── it-kmitl/                     # เอกสารวิชาการขนาดยาวของคณะ IT (ผูกกับ 11 โมดูล)
+├── it-kmitl/                     # เอกสารและชุดข้อมูลของคณะ IT
 │   ├── itf/                      # Information Technology Fundamentals (06016402)
 │   ├── ics/                      # Intro to Computer Systems (06016411)
-│   └── mfit/                     # Mathematics for IT (06016401)
+│   ├── mfit/                     # Mathematics for IT (06016401)
+│   └── pscp/                     # Problem Solving and Computer Programming (06066303)
+│       ├── problems.json         # Master Registry โจทย์ 273 ข้อ (สร้างโดย bun run pscp:build)
+│       ├── oj_problems.json      # รายการโจทย์ iJudge 273 ข้อ (คัดลอกจาก OP branch)
+│       ├── all_problems_detail.json # รายละเอียดโจทย์ + Official Testcases (input ของ pscp:build)
+│       └── seat-map.ts           # ผังที่นั่งสอบแล็บปฏิบัติการ
 │
 ├── en-kmitl/                     # เอกสารและแล็บของวิชาข้ามคณะ (วิศวกรรมศาสตร์)
 │   ├── chem/                     # Chemistry (01006004)
 │   └── compro/                   # Computer Programming (01006012)
 │       └── labs.json             # คลังโจทย์แล็บคอมโปร (สร้างโดย bun run compro:labs)
 │
-├── pscp/                         # ระบบคลังโจทย์วิชา PSCP (06066303)
-│   ├── problems.json             # Master Registry โจทย์ 273 ข้อ (สร้างโดย bun run pscp:build)
-│   └── seat-map.ts               # ผังที่นั่งสอบแล็บปฏิบัติการ
-│
-├── oj_problems.json              # รายการโจทย์ iJudge 273 ข้อ (คัดลอกจาก OP branch)
-├── all_problems_detail.json      # รายละเอียดโจทย์ + Official Testcases (input ของ pscp:build)
 ├── recommended/                  # โฟลเดอร์โจทย์แนะนำ 15 ข้อ (problem.md, problem.th.md, main.py)
 ├── templates/                    # แม่แบบสำหรับส่งงานและการสะท้อนคิด (Learning Log Wizard)
 │
@@ -61,22 +60,25 @@ data/
 
 ---
 
-## 3. สถาปัตยกรรมคลังโจทย์ PSCP กับเหตุผลในการจัดโครงสร้าง
+## 3. สถาปัตยกรรมคลังโจทย์ PSCP (`data/it-kmitl/pscp/`)
 
-### ทำไม PSCP จึงไม่ถูกย้ายไปอยู่ใต้ `data/it-kmitl/`?
-ในเชิงโครงสร้าง คณะ IT เป็นเจ้าของวิชา PSCP แต่ระบบคลังโจทย์ของ PSCP ถูกแยกออกมาเป็นเอกเทศเนื่องจากเหตุผลทางสถาปัตยกรรมที่สำคัญ:
+ชุดข้อมูลหลักของวิชา PSCP ทั้งหมดได้รับการจัดระเบียบรวมอยู่ภายใต้ `data/it-kmitl/pscp/` เพื่อให้เป็นมาตรฐานเดียวกันกับวิชาอื่น ๆ ของคณะ IT (`itf`, `ics`, `mfit`):
 
-1. **กลไกการสร้างดัชนีคลังสื่อ (`DOC_ROOTS` ใน `scripts/library-shared.ts`):**
-   - ระบบ Library Indexer กำหนดให้ `const DOC_ROOTS = ["content/courses", "data/it-kmitl", "data/en-kmitl"]` เป็นรากในการค้นหาเอกสารสรุปวิชาการ
-   - หากนำ `recommended/` (ซึ่งมี 15 โฟลเดอร์ย่อย รวม 30+ ไฟล์ Markdown เช่น `problem.md`, `problem.th.md`) หรือ `templates/` ย้ายเข้าไปไว้ใต้ `data/it-kmitl/` ตัว Indexer จะมองว่าไฟล์เหล่านั้นเป็น "เอกสารสรุปประจำวิชา" และเมื่อไม่มีการผูกใน `course-bindings.ts` คำสั่ง `bun run library:audit` จะแจ้งเตือนข้อผิดพลาด `orphan-doc` ทันที 30+ จุด
-2. **ระบบรันโค้ดและ Grader แบบ Interactive:**
-   - PSCP ทำงานร่วมกับ CodeMirror 6, Pyodide WebAssembly, Testcase runner และ Edge Case Generator (`scripts/build_pscp_edge_cases.py`) ซึ่งต้องการโครงสร้างที่เสถียรและทำงานร่วมกับคลังต้นทาง (`branch OP`)
+1. **การรวมศูนย์ไฟล์โจทย์ PSCP:**
+   - `problems.json`: Master registry ของโจทย์ทั้ง 273 ข้อพร้อมเคสทดสอบและ Edge Cases
+   - `oj_problems.json`: ดัชนีโจทย์ดิบจาก iJudge (สถิติ, ความยาก, สัปดาห์, Deadline)
+   - `all_problems_detail.json`: รายละเอียดโจทย์และ Official Testcases ที่ scraped จากระบบ
+   - `seat-map.ts`: ผังที่นั่งสอบแล็บคอมพิวเตอร์
+2. **การแยกโฟลเดอร์แบบฝึกหัดและแม่แบบ:**
+   - `data/recommended/`: คัดเลือกโจทย์แนะนำ 15 ข้อสำหรับการฝึกเขียนโค้ดและทำควิซ
+   - `data/templates/`: แม่แบบ Markdown สำหรับสร้างเอกสารส่งงานและสะท้อนคิด (Learning Log Wizard)
+   - แยกโฟลเดอร์เหล่านี้ไว้ที่รากของ `data/` เพื่อไม่ให้ตัวรวบรวมดัชนีคลังสื่อ (`DOC_ROOTS` ใน `scripts/library-shared.ts`) สแกนไฟล์ Markdown ของโจทย์เหล่านี้เป็นเอกสารสรุปประจำวิชา ซึ่งจะทำให้เกิดข้อผิดพลาด `orphan-doc`
 3. **การเข้าถึงผ่านตัวแปรกลางที่ได้มาตรฐาน:**
-   - โค้ดทั้งหมดเข้าถึงข้อมูล PSCP ผ่านตัวแปรและฟังก์ชันกลางใน `@/lib/paths` และ `@/lib/pscp/` เสมอ เช่น:
-     - `OJ_PROBLEMS_FILE` (จาก `@/lib/paths`)
-     - `REGISTRY_FILE` (จาก `@/lib/pscp/pscp`)
-     - `getRecommendedDir()` (จาก `@/lib/pscp/recommended`)
-     - `submissionTemplatePath()` และ `reflectionTemplatePath()` (จาก `@/lib/paths`)
+   - โค้ดทั้งหมดเข้าถึงข้อมูล PSCP ผ่านตัวแปรและฟังก์ชันกลางใน `@/lib/paths` และ `@/lib/pscp/` เสมอ:
+     - `OJ_PROBLEMS_FILE` (จาก `@/lib/paths`) ➔ `data/it-kmitl/pscp/oj_problems.json`
+     - `REGISTRY_FILE` (จาก `@/lib/pscp/pscp`) ➔ `data/it-kmitl/pscp/problems.json`
+     - `getRecommendedDir()` (จาก `@/lib/pscp/recommended`) ➔ `data/recommended`
+     - `submissionTemplatePath()` และ `reflectionTemplatePath()` (จาก `@/lib/paths`) ➔ `data/templates`
 
 ---
 
@@ -106,7 +108,9 @@ data/
 | Exam Seating | `data/exams/student-seating-index.json` | `lib/exams/schedule.ts` | Server & Client |
 | Course Docs (IT) | `data/it-kmitl/<subject>/` | `lib/courses/it-kmitl.ts` | Server-only |
 | Course Docs (EN) | `data/en-kmitl/<subject>/` | `lib/courses/en-kmitl.ts` | Server-only |
-| PSCP Registry | `data/pscp/problems.json` | `lib/pscp/pscp.ts` | Server-only |
+| PSCP Registry | `data/it-kmitl/pscp/problems.json` | `lib/pscp/pscp.ts` | Server-only |
+| PSCP OJ Master | `data/it-kmitl/pscp/oj_problems.json` | `lib/paths.ts`, `lib/pscp/master.ts` | Server-only |
+| PSCP Problem Details | `data/it-kmitl/pscp/all_problems_detail.json` | `scripts/build_pscp_registry.py` | Build scripts |
 | Recommended OJ | `data/recommended/` | `lib/pscp/recommended.ts` | Server-only |
 | Submission Templates | `data/templates/` | `lib/paths.ts`, `lib/submission/markdown.ts` | Server-only |
 

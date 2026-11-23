@@ -35,7 +35,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parent
-OUT_FILE = PROJECT / "data" / "pscp" / "problems.json"
+OUT_FILE = PROJECT / "data" / "it-kmitl" / "pscp" / "problems.json"
 
 # The archive repo's main branch (problem folders + the student's own code).
 ARCHIVE_REPO = Path(
@@ -667,7 +667,7 @@ def main() -> int:
     ap.add_argument("--archive", default=os.environ.get("PSCP_ARCHIVE", str(DEFAULT_OP)),
                     help="OP worktree root (default: $PSCP_OP_ROOT or <archive repo>/.op)")
     ap.add_argument("--out", default=str(OUT_FILE),
-                    help="output JSON path (default: data/pscp/problems.json)")
+                    help="output JSON path (default: data/it-kmitl/pscp/problems.json)")
     args = ap.parse_args()
 
     op = Path(args.archive).expanduser().resolve()
@@ -678,7 +678,11 @@ def main() -> int:
     out_file = Path(args.out).expanduser().resolve()
 
     index_file = op / "data" / "oj_problems.json"
+    if not index_file.is_file():
+        index_file = PROJECT / "data" / "it-kmitl" / "pscp" / "oj_problems.json"
     detail_file = op / "data" / "all_problems_detail.json"
+    if not detail_file.is_file():
+        detail_file = PROJECT / "data" / "it-kmitl" / "pscp" / "all_problems_detail.json"
     if not index_file.is_file():
         print(f"error: missing {index_file}", file=sys.stderr)
         return 1

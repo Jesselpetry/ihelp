@@ -35,7 +35,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parent
-REGISTRY = PROJECT / "data" / "pscp" / "problems.json"
+REGISTRY = PROJECT / "data" / "it-kmitl" / "pscp" / "problems.json"
 
 MAX_EDGE_CASES = 6
 RUN_TIMEOUT_SEC = 10

@@ -241,6 +241,13 @@ export const CHANGELOG: VersionEntry[] = [
           en: "Brand identity overhaul: unified <Wordmark /> component, Brand Banner, Brand Badge, and deprecated modal pruning (by @Jesselpetry)",
         },
       },
+      {
+        kind: "changed",
+        text: {
+          th: "จัดระเบียบชุดข้อมูลโจทย์วิชา PSCP ทั้งหมดเข้าสู่ data/it-kmitl/pscp/ อย่างเป็นเอกภาพ (โดย @Jesselpetry)",
+          en: "Consolidated all PSCP problem datasets into data/it-kmitl/pscp/ under the IT faculty domain (by @Jesselpetry)",
+        },
+      },
     ],
   },
   {

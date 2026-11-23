@@ -40,6 +40,12 @@
   3. ถอดคอมโพเนนต์ป๊อปอัปเก่าที่ซ้ำซ้อน (`disclaimer-modal.tsx`, `welcome-choice-modal.tsx`) เพื่อลด bundle size
   4. ปรับปรุงคู่มือมาตรฐานแบรนด์และสถาปัตยกรรมอัตลักษณ์ [`docs/BRANDING.md`](./docs/BRANDING.md)
 
+### ปรับปรุง
+
+- **รวมชุดข้อมูลวิชา PSCP เข้าสู่ `data/it-kmitl/pscp/` อย่างเป็นเอกภาพ (โดย @Jesselpetry)** —
+  1. จัดระเบียบไฟล์ข้อมูลโจทย์ PSCP ทั้งหมด (`problems.json`, `oj_problems.json`, `all_problems_detail.json`, และ `seat-map.ts`) จากเดิมที่วางกระจายในรากของ `data/` เข้าไปรวมอยู่ภายใต้ `data/it-kmitl/pscp/` ร่วมกับวิชาอื่น ๆ ของคณะ IT
+  2. อัปเดตตัวแปรกลางและสคริปต์ที่เกี่ยวข้อง (`lib/paths.ts`, `lib/pscp/pscp.ts`, `build_pscp_registry.py`, `build_pscp_edge_cases.py`, `verify_solutions.py`) ให้ชี้ไปยังพาธมาตรฐานใหม่ เพื่อความสะอาดและเป็นระเบียบของระบบข้อมูล
+
 ---
 
 ## [1.3.1] - 23 พฤศจิกายน 2569

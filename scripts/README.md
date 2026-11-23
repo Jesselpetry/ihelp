@@ -22,8 +22,8 @@ public/assets/ (ไฟล์บนเครื่อง)
 [PSCP Problem Registry Pipeline]
 OJ / Archive branch OP
     │
-    ├── 1. bun run pscp:registry ──▶ data/pscp/problems.json (273 problems)
-    ├── 2. bun run pscp:edges    ──▶ data/pscp/problems.json (+ edge testcases)
+    ├── 1. bun run pscp:registry ──▶ data/it-kmitl/pscp/problems.json (273 problems)
+    ├── 2. bun run pscp:edges    ──▶ data/it-kmitl/pscp/problems.json (+ edge testcases)
     └── 3. bun run pscp:verify   ──▶ ตรวจสอบ reference solutions 100% ผ่านทุกเคส
     (รันรวมทั้ง 3 ขั้นตอนด้วย: bun run pscp:build)
 
@@ -70,9 +70,9 @@ OJ / Archive branch OP
 
 | สคริปต์ | คำสั่งรัน | Input | Output | คำอธิบาย |
 |---|---|---|---|---|
-| `build_pscp_registry.py` | `bun run pscp:registry` | `data/oj_problems.json`, `data/all_problems_detail.json` | `data/pscp/problems.json` | รวมโจทย์ทั้ง 273 ข้อเข้าด้วยกัน: คำอธิบาย, ข้อมูลนำเข้า/ส่งออก, ตัวอย่างทางการ, takeaway tags |
-| `build_pscp_edge_cases.py` | `bun run pscp:edges` | `data/pscp/problems.json`, reference Python | `data/pscp/problems.json` | สังเคราะห์ Edge Cases 900+ เคส โดยรันเฉลยอ้างอิงกับชุดอินพุตขอบเขต แล้วบรรจุลงใน registry |
-| `verify_solutions.py` | `bun run pscp:verify` | `data/pscp/problems.json`, reference Python | ผลทดสอบ Terminal | รันโค้ดเฉลยภาษา Python ของโจทย์ทุกข้อเทียบกับ Testcases และ Edge Cases ยืนยันผลลัพธ์ถูกต้อง 100% |
+| `build_pscp_registry.py` | `bun run pscp:registry` | `data/it-kmitl/pscp/oj_problems.json`, `data/it-kmitl/pscp/all_problems_detail.json` | `data/it-kmitl/pscp/problems.json` | รวมโจทย์ทั้ง 273 ข้อเข้าด้วยกัน: คำอธิบาย, ข้อมูลนำเข้า/ส่งออก, ตัวอย่างทางการ, takeaway tags |
+| `build_pscp_edge_cases.py` | `bun run pscp:edges` | `data/it-kmitl/pscp/problems.json`, reference Python | `data/it-kmitl/pscp/problems.json` | สังเคราะห์ Edge Cases 900+ เคส โดยรันเฉลยอ้างอิงกับชุดอินพุตขอบเขต แล้วบรรจุลงใน registry |
+| `verify_solutions.py` | `bun run pscp:verify` | `data/it-kmitl/pscp/problems.json`, reference Python | ผลทดสอบ Terminal | รันโค้ดเฉลยภาษา Python ของโจทย์ทุกข้อเทียบกับ Testcases และ Edge Cases ยืนยันผลลัพธ์ถูกต้อง 100% |
 | `copy-pyodide-assets.mjs` | `node scripts/copy-pyodide-assets.mjs` | `node_modules/pyodide` | `public/pyodide/` | คัดลอก WebAssembly runtime และ binaries ของ Pyodide มาไว้ที่ public สำหรับรัน Python บนเบราว์เซอร์ |
 
 ---
@@ -99,7 +99,7 @@ OJ / Archive branch OP
 ## 3. กฎเกณฑ์สำหรับนักพัฒนาและ AI Agent
 
 1. **ห้ามแก้มือไฟล์ Output ที่สร้างจากสคริปต์:**
-   - ห้ามแก้ไข `data/pscp/problems.json`, `lib/library/library-manifest.json`, `lib/library/library-stats.json`, หรือ `lib/library/resource-index.json` ด้วยมือโดยเด็ดขาด หากต้องการแก้ไข ให้แก้ที่ต้นทาง (Source of Truth) แล้วสั่งรันสคริปต์สร้างใหม่
+   - ห้ามแก้ไข `data/it-kmitl/pscp/problems.json`, `lib/library/library-manifest.json`, `lib/library/library-stats.json`, หรือ `lib/library/resource-index.json` ด้วยมือโดยเด็ดขาด หากต้องการแก้ไข ให้แก้ที่ต้นทาง (Source of Truth) แล้วสั่งรันสคริปต์สร้างใหม่
 2. **การเลือกภาษาของสคริปต์:**
    - **TypeScript (`tsx`):** ใช้กับสคริปต์ที่ต้องอิง types จากโมเดลหลัก, เชื่อมโยง Supabase, Drizzle ORM, หรือประมวลผล AST ของเว็บ
    - **Python 3:** ใช้กับงานประมวลผลด้าน Algorithms, การรัน Test Suite กับไพทอนโค้ด (เช่น PSCP/Pyodide), และการวาดภาพกราฟิกด้วย Pillow

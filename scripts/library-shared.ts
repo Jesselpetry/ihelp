@@ -371,8 +371,12 @@ function walkMarkdown(dir: string, out: string[]): void {
   if (!fs.existsSync(dir)) return;
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     const full = path.join(dir, entry.name);
-    if (entry.isDirectory()) walkMarkdown(full, out);
-    else if (entry.name.endsWith(".md")) out.push(full);
+    if (entry.isDirectory()) {
+      if (entry.name === "pscp" && path.basename(dir) === "it-kmitl") continue;
+      walkMarkdown(full, out);
+    } else if (entry.name.endsWith(".md")) {
+      out.push(full);
+    }
   }
 }
 
