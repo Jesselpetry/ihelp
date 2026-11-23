@@ -57,6 +57,7 @@ export const QUICK_NAV_PILL_ITEMS: QuickNavPillItem[] = [
     label: { th: "ผังที่นั่งสอบรายบุคคล", en: "Exam Seating Locator" },
     description: { th: "ค้นหาห้องสอบด้วยรหัส 8 หลัก", en: "Search seating by 8-digit student ID" },
     icon: "compass",
+    badge: { th: "Exam", en: "Exam" },
   },
   {
     id: "docs",

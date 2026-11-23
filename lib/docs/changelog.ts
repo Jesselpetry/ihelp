@@ -245,8 +245,8 @@ export const CHANGELOG: VersionEntry[] = [
       {
         kind: "added",
         text: {
-          th: "หน้าแรก Index โฉมใหม่ (Academic Command Center): Hero Carousel, Quick Navigation Pills 5 บริการด่วน, แบดจ์โปรไฟล์นักศึกษาคลีน 2 บรรทัด และคลังรายวิชา Card Accordion ครบทุกเทอม (โดย @Jesselpetry & Antigravity)",
-          en: "Homepage Index Overhaul (Academic Command Center): Hero Carousel, Quick Nav Pills, 2-line clean Student Profile Capsule, and Card-based Accordion Library for all semesters (by @Jesselpetry & Antigravity)",
+          th: "หน้าแรก Index โฉมใหม่ (Academic Command Center): Hero Carousel, Quick Navigation Pills 5 บริการด่วนรูปแบบ 2 บรรทัดพร้อมไอคอน ArrowUpRight, แบดจ์โปรไฟล์นักศึกษาคลีน 2 บรรทัด และคลังรายวิชา Card Accordion ครบทุกเทอม (โดย @Jesselpetry & Antigravity)",
+          en: "Homepage Index Overhaul (Academic Command Center): Hero Carousel, 2-line Quick Nav Pills with ArrowUpRight icon, 2-line clean Student Profile Capsule, and Card-based Accordion Library for all semesters (by @Jesselpetry & Antigravity)",
         },
       },
       {
