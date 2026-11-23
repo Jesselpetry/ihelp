@@ -116,15 +116,26 @@ const mdComponents: Components = {
    * Markdown images carry no width of their own, so one screenshot wider than
    * the phone used to push the whole article sideways.
    */
-  img: ({ node: _node, ref: _ref, alt, ...p }) => (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
-      alt={alt ?? ""}
-      loading="lazy"
-      className="my-4 h-auto w-auto max-w-full rounded-xl border"
-      {...p}
-    />
-  ),
+  img: ({ node: _node, ref: _ref, alt, src, ...p }) => {
+    let cleanSrc = src;
+    if (typeof cleanSrc === "string") {
+      if (cleanSrc.startsWith("../public/")) {
+        cleanSrc = cleanSrc.replace(/^\.\.\/public\//, "/");
+      } else if (cleanSrc.startsWith("./public/")) {
+        cleanSrc = cleanSrc.replace(/^\.\/public\//, "/");
+      }
+    }
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
+        alt={alt ?? ""}
+        src={cleanSrc}
+        loading="lazy"
+        className="my-4 h-auto w-auto max-w-full rounded-xl border"
+        {...p}
+      />
+    );
+  },
   li: ({ node: _node, ref: _ref, ...p }) => (
     <li className="leading-[1.9]" {...p} />
   ),
