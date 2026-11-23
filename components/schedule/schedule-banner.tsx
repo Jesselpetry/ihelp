@@ -29,7 +29,7 @@ export function ScheduleBanner({
   avatarUrl,
   avatarInitial,
   isSignedIn,
-  termInfo,
+  groupName,
 }: {
   viewerId: string | null;
   viewerFullName: string | null;
@@ -39,6 +39,7 @@ export function ScheduleBanner({
   isSignedIn: boolean;
   assignedGroup?: StudentScheduleGroupInfo | null;
   termInfo?: SemesterTermInfo;
+  groupName?: string;
 }) {
   const { locale } = useLocale();
 
@@ -49,15 +50,6 @@ export function ScheduleBanner({
     .filter(Boolean)
     .join(" ");
 
-  const termLabel =
-    locale === "th"
-      ? termInfo?.labelTh ?? "ภาคเรียนที่ 2 / 2569"
-      : termInfo?.labelEn ?? "Semester 2 / 2026";
-  const termSubtitle =
-    locale === "th"
-      ? termInfo?.subtitleTh ?? "ระดับปริญญาตรี ชั้นปีที่ 1"
-      : termInfo?.subtitleEn ?? "Undergraduate Year 1";
-
   return (
     <header
       className="relative overflow-hidden rounded-2xl border border-white/10 p-4 shadow-sm sm:p-5"
@@ -66,10 +58,8 @@ export function ScheduleBanner({
       <CourseWatermark code="IT" size="banner" />
 
       <div className="relative z-10 min-w-0 space-y-1.5">
-        <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-2.5 py-0.5 text-xs font-semibold text-white/90 backdrop-blur-xs">
-          <span>{termLabel}</span>
-          <span className="size-1 rounded-full bg-white/40" />
-          <span>{termSubtitle}</span>
+        <div className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/15 px-3 py-0.5 text-xs font-bold text-white shadow-xs backdrop-blur-xs">
+          <span>{groupName || (locale === "th" ? "กลุ่ม 1" : "Group 1")}</span>
         </div>
 
         <h1 className="text-xl font-bold tracking-tight text-white sm:text-2xl">

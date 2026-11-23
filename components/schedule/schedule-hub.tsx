@@ -2,22 +2,23 @@
 
 import { useEffect, useState } from "react";
 import {
-  AlertCircle,
   CheckCircle2,
   Search,
   X,
 } from "lucide-react";
 import type { MeResponse } from "@/app/api/me/route";
 import { TopicHeader } from "@/components/course-hub-shared";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { useLocale, t, type LText } from "@/lib/i18n";
 import type { SchedulePreset, UserScheduleSelection } from "@/lib/schedule/types";
-import {
-  detectScheduleClashes,
-  getScheduledSlots,
-} from "@/lib/schedule/y1s2-data";
 import {
   getAllRegisteredTerms,
   getTermSchedule,
@@ -26,7 +27,6 @@ import type { StudentScheduleGroupInfo } from "@/lib/schedule/types";
 import { ScheduleBanner } from "./schedule-banner";
 import { ScheduleCourseAccordion } from "./schedule-course-accordion";
 import { ScheduleExportCard } from "./schedule-export-card";
-import { ScheduleGrid } from "./schedule-grid";
 import { ScheduleSidebar } from "./schedule-sidebar";
 
 const L = {
@@ -144,6 +144,10 @@ export function ScheduleHub({
   const [activeStudentId, setActiveStudentId] = useState<string | null>(
     () => getInitialStudentId(),
   );
+  const [searchFeedback, setSearchFeedback] = useState<{
+    type: "found" | "not_found";
+    message: string;
+  } | null>(null);
   const [activeGroup, setActiveGroup] =
     useState<StudentScheduleGroupInfo | null>(() => {
       const id = getInitialStudentId();
@@ -254,14 +258,23 @@ export function ScheduleHub({
         if (matchedPreset) {
           saveSelection(matchedPreset.selections);
         }
+        setSearchFeedback({
+          type: "found",
+          message: `พบข้อมูลกลุ่มเรียนสำหรับรหัส ${cleanId}: ${groupInfo.name} (เลือก Section ให้แล้ว)`,
+        });
       } else {
         setActiveGroup(null);
+        setSearchFeedback({
+          type: "not_found",
+          message: `ไม่พบข้อมูลกลุ่มเรียนสำหรับรหัส ${cleanId} (คุณสามารถเลือก Section ได้เองในตารางด้านล่าง)`,
+        });
       }
     }
   }
 
   function handleResetStudentId() {
     setStudentIdInput("");
+    setSearchFeedback(null);
     if (viewer.studentId) {
       handleApplyStudentId(viewer.studentId);
     } else {
@@ -279,25 +292,44 @@ export function ScheduleHub({
     }
   }
 
-  function handleApplyPreset(preset: SchedulePreset) {
-    saveSelection(preset.selections);
-    if (preset.id === "group-1") {
-      setActiveGroup({ group: 1, name: "กลุ่ม 1", presetId: "group-1" });
-    } else if (preset.id === "group-2") {
-      setActiveGroup({ group: 2, name: "กลุ่ม 2", presetId: "group-2" });
-    } else if (preset.id === "group-3") {
-      setActiveGroup({ group: 3, name: "กลุ่ม 3", presetId: "group-3" });
-    }
+  function handleSelectGroupTheorySec(sec: number) {
+    const labSec = sec + 3;
+    const next: UserScheduleSelection = {
+      ...selection,
+      theory: {
+        ...selection.theory,
+        "06016409": sec, // OOP
+        "06016410": sec, // DSA
+        "06016403": sec, // PSTAT
+        "06016408": sec, // BFIT
+      },
+      lab: {
+        ...selection.lab,
+        "06016409": labSec, // OOP Lab
+        "06016410": labSec, // DSA Lab
+      },
+    };
+    const groupNum = (sec === 2 ? 2 : sec === 3 ? 3 : 1) as 1 | 2 | 3;
+    const presetId = `group-${groupNum}` as "group-1" | "group-2" | "group-3";
+    setActiveGroup({
+      group: groupNum,
+      name: `กลุ่ม ${groupNum}`,
+      presetId,
+    });
+    setSearchFeedback(null);
+    saveSelection(next);
   }
 
-  function isMatchingPreset(preset: SchedulePreset): boolean {
-    for (const [code, sec] of Object.entries(preset.selections.theory)) {
-      if (selection.theory[code] !== sec) return false;
-    }
-    for (const [code, sec] of Object.entries(preset.selections.lab)) {
-      if (selection.lab[code] !== sec) return false;
-    }
-    return true;
+  function handleSelectGroupLabSec(sec: number) {
+    const next: UserScheduleSelection = {
+      ...selection,
+      lab: {
+        ...selection.lab,
+        "06016409": sec, // OOP Lab
+        "06016410": sec, // DSA Lab
+      },
+    };
+    saveSelection(next);
   }
 
   function handleSelectTheorySec(courseCode: string, sec: number) {
@@ -381,9 +413,42 @@ export function ScheduleHub({
     setOpenCodes(nextState);
   }
 
-  // Calculated Slots & Conflicts
-  const slots = getScheduledSlots(selection, courses);
-  const conflicts = detectScheduleClashes(slots);
+  const isSignedIn = authStatus === "authenticated";
+  const isAutoAssigned =
+    isSignedIn &&
+    Boolean(assignedGroup) &&
+    (!activeStudentId || activeStudentId === viewer.studentId);
+
+  // Effective group context (defaults to Group 1 if not set)
+  const effectiveGroup = activeGroup || {
+    group: 1,
+    name: "กลุ่ม 1",
+    presetId: "group-1",
+  };
+
+  const currentTheorySec =
+    selection.theory["06016409"] ??
+    effectiveGroup.group;
+
+  const currentLabSec =
+    selection.lab["06016409"] ??
+    (effectiveGroup.group + 3);
+
+  const displayGroupName = (() => {
+    if (isAutoAssigned && assignedGroup) return assignedGroup.name;
+    if (activeGroup?.name) return activeGroup.name;
+    if (currentTheorySec === 1 && currentLabSec === 4) return "กลุ่ม 1";
+    if (currentTheorySec === 2 && currentLabSec === 5) return "กลุ่ม 2";
+    if (currentTheorySec === 3 && currentLabSec === 6) return "กลุ่ม 3";
+    return `กลุ่ม ${currentTheorySec} (Lab ${currentLabSec})`;
+  })();
+
+  const dcCourse = courses.find((c) => c.code === "90641007" || c.abbr === "DC");
+  const feCourse = courses.find((c) => c.code === "90644008" || c.abbr === "FE2");
+  const dcSections = dcCourse?.sections.map((s) => s.section) ?? [601, 602, 603, 604];
+  const feSections = feCourse?.sections.map((s) => s.section) ?? [
+    921, 922, 923, 924, 925, 926, 927, 928, 929, 930, 931,
+  ];
 
   return (
     <main className="mx-auto w-full max-w-5xl space-y-5 px-3 py-5 sm:px-5 sm:py-6">
@@ -394,9 +459,10 @@ export function ScheduleHub({
         viewerNickname={viewer.nickname}
         avatarUrl={viewer.avatarUrl}
         avatarInitial={viewer.avatarInitial}
-        isSignedIn={authStatus === "authenticated"}
+        isSignedIn={isSignedIn}
         assignedGroup={assignedGroup}
         termInfo={termInfo}
+        groupName={displayGroupName}
       />
 
       <div className="grid gap-5 lg:grid-cols-[268px_minmax(0,1fr)] lg:gap-6">
@@ -484,273 +550,285 @@ export function ScheduleHub({
               </form>
             </div>
 
-            {/* Active Student Profile Pill & Assigned Sections Table */}
-            {activeStudentId && (
-              <div className="space-y-3">
-                {/* Profile Badge (Clean Banner Style) */}
-                <div className="flex flex-wrap items-center justify-between gap-2.5">
-                  <div className="inline-flex items-center gap-2.5 rounded-full border border-border/70 bg-card py-1.5 pl-1.5 pr-3 shadow-2xs">
-                    <Avatar className="size-8 shrink-0 border border-border/80">
-                      {viewer.studentId === activeStudentId && viewer.avatarUrl ? (
-                        <AvatarImage
-                          src={viewer.avatarUrl}
-                          alt={viewer.fullName || activeStudentId}
-                          className="object-cover"
-                        />
-                      ) : null}
-                      <AvatarFallback className="bg-primary/10 text-xs font-bold text-primary">
-                        {viewer.studentId === activeStudentId
-                          ? viewer.avatarInitial
-                          : activeStudentId.charAt(0)}
-                      </AvatarFallback>
-                    </Avatar>
-
-                    <div className="min-w-0 leading-tight">
-                      <div className="text-[11px] font-semibold text-muted-foreground tabular-nums">
-                        รหัส {activeStudentId}
-                      </div>
-                      <div className="truncate text-xs font-bold text-foreground">
-                        {viewer.studentId === activeStudentId
-                          ? viewer.fullName || viewer.nickname || "ตารางเรียนของคุณ"
-                          : "นักศึกษา IT KMITL"}
-                      </div>
-                    </div>
-
-                    {activeGroup && (
-                      <span className="rounded-full bg-primary text-primary-foreground px-2.5 py-0.5 text-[11px] font-bold shrink-0">
-                        {activeGroup.name}
-                      </span>
-                    )}
-                  </div>
-
-                  {viewer.studentId && activeStudentId !== viewer.studentId && (
-                    <Button
-                      type="button"
-                      size="xs"
-                      variant="outline"
-                      onClick={() => handleApplyStudentId(viewer.studentId!)}
-                      className="rounded-full text-xs cursor-pointer"
-                    >
-                      กลับไปตารางของฉัน
-                    </Button>
-                  )}
-                </div>
-
-                {/* Assigned Sections Table */}
-                {activeGroup ? (
-                  <div className="overflow-x-auto rounded-xl border border-border/60 bg-card shadow-xs">
-                    <table className="w-full text-left text-xs">
-                      <thead>
-                        <tr className="border-b border-border/60 bg-muted/40 text-xs text-muted-foreground font-semibold">
-                          <th className="py-2.5 px-3.5">หมวดวิชา</th>
-                          <th className="py-2.5 px-3.5">Section</th>
-                          <th className="py-2.5 px-3.5">รายวิชา</th>
-                          <th className="py-2.5 px-3.5 text-right">สถานะ</th>
-                        </tr>
-                      </thead>
-                      <tbody className="divide-y divide-border/40">
-                        <tr>
-                          <td className="py-2.5 px-3.5 whitespace-nowrap">
-                            <div className="font-semibold text-foreground">
-                              วิชาทฤษฎี
-                            </div>
-                            <div className="text-[11px] text-muted-foreground font-normal">
-                              Lecture
-                            </div>
-                          </td>
-                          <td className="py-2.5 px-3.5 whitespace-nowrap">
-                            <span className="rounded-full bg-primary text-primary-foreground px-2.5 py-0.5 text-xs font-bold">
-                              Section {activeGroup.group}
-                            </span>
-                          </td>
-                          <td className="py-2.5 px-3.5 text-muted-foreground">
-                            OOP, DSA, PSTAT, BFIT
-                          </td>
-                          <td className="py-2.5 px-3.5 text-right whitespace-nowrap">
-                            <span className="inline-flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-medium">
-                              <CheckCircle2 className="size-3" />
-                              เลือกให้อัตโนมัติแล้ว
-                            </span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="py-2.5 px-3.5 whitespace-nowrap">
-                            <div className="font-semibold text-foreground">
-                              วิชาปฏิบัติ
-                            </div>
-                            <div className="text-[11px] text-muted-foreground font-normal">
-                              Lab
-                            </div>
-                          </td>
-                          <td className="py-2.5 px-3.5 whitespace-nowrap">
-                            <span className="rounded-full bg-primary text-primary-foreground px-2.5 py-0.5 text-xs font-bold">
-                              Section {activeGroup.group + 3}
-                            </span>
-                          </td>
-                          <td className="py-2.5 px-3.5 text-muted-foreground">
-                            OOP Lab (ศุกร์), DSA Lab (ศุกร์)
-                          </td>
-                          <td className="py-2.5 px-3.5 text-right whitespace-nowrap">
-                            <span className="inline-flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-medium">
-                              <CheckCircle2 className="size-3" />
-                              เลือกให้อัตโนมัติแล้ว
-                            </span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="py-2.5 px-3.5 whitespace-nowrap">
-                            <div className="font-semibold text-foreground">
-                              วิชาศึกษาทั่วไป
-                            </div>
-                            <div className="text-[11px] text-muted-foreground font-normal">
-                              GenEd
-                            </div>
-                          </td>
-                          <td className="py-2.5 px-3.5 whitespace-nowrap">
-                            <div className="flex items-center gap-2 flex-wrap">
-                              <label className="inline-flex items-center gap-1.5 text-xs">
-                                <span className="text-[11px] text-muted-foreground">
-                                  DC:
-                                </span>
-                                <select
-                                  value={
-                                    selection.theory["90641007"] ??
-                                    (600 + activeGroup.group)
-                                  }
-                                  onChange={(e) =>
-                                    handleSelectTheorySec(
-                                      "90641007",
-                                      Number(e.target.value),
-                                    )
-                                  }
-                                  className="h-6 rounded-full bg-primary text-primary-foreground font-bold px-2.5 text-xs cursor-pointer focus:outline-none focus:ring-1 focus:ring-primary"
-                                  title="เลือก Section วิชา Digital Citizen"
-                                >
-                                  {[601, 602, 603, 604].map((s) => (
-                                    <option
-                                      key={s}
-                                      value={s}
-                                      className="bg-card text-foreground"
-                                    >
-                                      Sec {s}
-                                    </option>
-                                  ))}
-                                </select>
-                              </label>
-
-                              <label className="inline-flex items-center gap-1.5 text-xs">
-                                <span className="text-[11px] text-muted-foreground">
-                                  FE2:
-                                </span>
-                                <select
-                                  value={
-                                    selection.theory["90644008"] ??
-                                    (920 + activeGroup.group)
-                                  }
-                                  onChange={(e) =>
-                                    handleSelectTheorySec(
-                                      "90644008",
-                                      Number(e.target.value),
-                                    )
-                                  }
-                                  className="h-6 rounded-full bg-primary text-primary-foreground font-bold px-2.5 text-xs cursor-pointer focus:outline-none focus:ring-1 focus:ring-primary"
-                                  title="เลือก Section วิชา Foundation English 2"
-                                >
-                                  {[
-                                    921, 922, 923, 924, 925, 926, 927, 928, 929,
-                                    930, 931,
-                                  ].map((s) => (
-                                    <option
-                                      key={s}
-                                      value={s}
-                                      className="bg-card text-foreground"
-                                    >
-                                      Sec {s}
-                                    </option>
-                                  ))}
-                                </select>
-                              </label>
-                            </div>
-                          </td>
-                          <td className="py-2.5 px-3.5 text-muted-foreground">
-                            Digital Citizen (พุธ), Foundation English 2 (พฤหัสบดี)
-                          </td>
-                          <td className="py-2.5 px-3.5 text-right whitespace-nowrap">
-                            <span className="inline-flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-medium">
-                              <CheckCircle2 className="size-3" />
-                              เลือกแล้ว (เปลี่ยนได้)
-                            </span>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                ) : (
-                  <div className="rounded-xl border border-dashed border-border/70 p-3 text-center text-xs text-muted-foreground">
-                    ไม่พบข้อมูลกลุ่มเรียนอัตโนมัติสำหรับรหัสนี้ (คุณสามารถเลือก Section ได้เองในรายการวิชาด้านล่าง)
-                  </div>
-                )}
+            {/* Search Feedback Note */}
+            {searchFeedback && (
+              <div
+                className={`flex items-center justify-between gap-2 rounded-xl border px-3.5 py-2 text-xs transition-all ${
+                  searchFeedback.type === "found"
+                    ? "border-emerald-500/40 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300"
+                    : "border-border/60 bg-muted/40 text-muted-foreground"
+                }`}
+              >
+                <span>{searchFeedback.message}</span>
+                <button
+                  type="button"
+                  onClick={() => setSearchFeedback(null)}
+                  className="p-0.5 text-muted-foreground hover:text-foreground cursor-pointer"
+                >
+                  <X className="size-3.5" />
+                </button>
               </div>
             )}
 
-            {/* Quick Presets row for comparison */}
-            <div className="flex flex-wrap items-center justify-between gap-2 pt-1 text-xs">
-              <div className="flex flex-wrap items-center gap-1.5">
-                <span className="text-[11px] text-muted-foreground mr-1">
-                  หรือเลือกดูตามกลุ่ม:
+            {/* Return to personal schedule if signed-in user searched another ID */}
+            {isSignedIn && viewer.studentId && activeStudentId && activeStudentId !== viewer.studentId && (
+              <div className="flex items-center justify-between rounded-xl border border-primary/30 bg-primary/5 px-3.5 py-2 text-xs">
+                <span className="text-muted-foreground">
+                  กำลังดูตารางของรหัส <strong className="text-foreground">{activeStudentId}</strong>
                 </span>
-                {presets.map((preset) => {
-                  const isActive = isMatchingPreset(preset);
-                  const isStudentGroup = assignedGroup?.presetId === preset.id;
-
-                  return (
-                    <button
-                      key={preset.id}
-                      type="button"
-                      onClick={() => handleApplyPreset(preset)}
-                      className={`inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-[11px] transition-colors cursor-pointer ${
-                        isActive
-                          ? "border-primary bg-primary text-primary-foreground font-semibold shadow-2xs"
-                          : "border-border/60 bg-card hover:bg-muted text-foreground"
-                      }`}
-                    >
-                      <span>
-                        {preset.name.split(" ")[0]} {preset.name.split(" ")[1] || ""}
-                      </span>
-                      {isStudentGroup && (
-                        <span
-                          className={`inline-flex items-center gap-0.5 rounded-full px-1 py-0.2 text-[9px] font-bold ${
-                            isActive
-                              ? "bg-white/20 text-white"
-                              : "bg-primary/15 text-primary"
-                          }`}
-                        >
-                          กลุ่มคุณ
-                        </span>
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            {conflicts.length > 0 && (
-              <div className="flex items-start gap-2.5 rounded-xl border border-destructive/40 bg-destructive/10 p-3 text-xs text-destructive">
-                <AlertCircle className="size-4 shrink-0 text-destructive mt-0.5" />
-                <div className="min-w-0 space-y-0.5">
-                  <div className="font-bold">
-                    พบเวลาเรียนชนกัน ({conflicts.length} รายการ)
-                  </div>
-                  <ul className="list-disc pl-4 space-y-0.5 text-[11px] text-destructive/90">
-                    {conflicts.map((c, i) => (
-                      <li key={i}>{c.details}</li>
-                    ))}
-                  </ul>
-                </div>
+                <Button
+                  type="button"
+                  size="xs"
+                  variant="outline"
+                  onClick={() => {
+                    handleApplyStudentId(viewer.studentId!);
+                    setSearchFeedback(null);
+                  }}
+                  className="rounded-full text-xs cursor-pointer"
+                >
+                  กลับไปตารางของฉัน
+                </Button>
               </div>
             )}
 
-            <ScheduleGrid slots={slots} />
+            {/* Redesigned Assigned Sections Table */}
+            <div className="overflow-x-auto rounded-xl border border-border/60 bg-card shadow-xs">
+              <table className="w-full text-left text-xs">
+                <thead>
+                  <tr className="border-b border-border/60 bg-muted/40 text-xs text-muted-foreground font-semibold">
+                    <th className="py-2.5 px-3.5">หมวดวิชา</th>
+                    <th className="py-2.5 px-3.5">รายวิชา</th>
+                    <th className="py-2.5 px-3.5">Section</th>
+                    <th className="py-2.5 px-3.5 text-right">สถานะ</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border/40">
+                  {/* Row 1: Theory */}
+                  <tr>
+                    <td className="py-3 px-3.5 whitespace-nowrap align-middle">
+                      <div className="font-semibold text-foreground">
+                        วิชาทฤษฎี
+                      </div>
+                      <div className="text-[11px] text-muted-foreground font-normal">
+                        Lecture
+                      </div>
+                    </td>
+                    <td className="py-3 px-3.5 align-middle">
+                      <div className="font-medium text-foreground">
+                        OOP, DSA, PSTAT, BFIT
+                      </div>
+                      <div className="text-[11px] text-muted-foreground">
+                        วิชาบังคับคณะ 4 รายวิชา
+                      </div>
+                    </td>
+                    <td className="py-3 px-3.5 whitespace-nowrap align-middle">
+                      {isAutoAssigned && assignedGroup ? (
+                        <span className="rounded-full bg-primary text-primary-foreground px-2.5 py-1 text-xs font-bold inline-flex items-center">
+                          Section {assignedGroup.group}
+                        </span>
+                      ) : (
+                        <Select
+                          value={String(currentTheorySec)}
+                          onValueChange={(val) =>
+                            handleSelectGroupTheorySec(Number(val))
+                          }
+                        >
+                          <SelectTrigger
+                            size="sm"
+                            className="h-7 w-[105px] rounded-full border-primary/40 bg-primary/10 text-primary font-bold text-xs hover:bg-primary/15 transition-colors focus:ring-1 focus:ring-primary cursor-pointer"
+                          >
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {[1, 2, 3].map((s) => (
+                              <SelectItem
+                                key={s}
+                                value={String(s)}
+                                className="text-xs font-medium cursor-pointer"
+                              >
+                                Section {s}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      )}
+                    </td>
+                    <td className="py-3 px-3.5 text-right whitespace-nowrap align-middle">
+                      <span className="inline-flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-medium">
+                        <CheckCircle2 className="size-3" />
+                        {isAutoAssigned ? "เลือกให้อัตโนมัติแล้ว" : "เลือกเองได้"}
+                      </span>
+                    </td>
+                  </tr>
+
+                  {/* Row 2: Lab */}
+                  <tr>
+                    <td className="py-3 px-3.5 whitespace-nowrap align-middle">
+                      <div className="font-semibold text-foreground">
+                        วิชาปฏิบัติ
+                      </div>
+                      <div className="text-[11px] text-muted-foreground font-normal">
+                        Lab
+                      </div>
+                    </td>
+                    <td className="py-3 px-3.5 align-middle">
+                      <div className="font-medium text-foreground">
+                        OOP Lab, DSA Lab
+                      </div>
+                      <div className="text-[11px] text-muted-foreground">
+                        ปฏิบัติการวันศุกร์
+                      </div>
+                    </td>
+                    <td className="py-3 px-3.5 whitespace-nowrap align-middle">
+                      {isAutoAssigned && assignedGroup ? (
+                        <span className="rounded-full bg-primary text-primary-foreground px-2.5 py-1 text-xs font-bold inline-flex items-center">
+                          Section {assignedGroup.group + 3}
+                        </span>
+                      ) : (
+                        <Select
+                          value={String(currentLabSec)}
+                          onValueChange={(val) =>
+                            handleSelectGroupLabSec(Number(val))
+                          }
+                        >
+                          <SelectTrigger
+                            size="sm"
+                            className="h-7 w-[105px] rounded-full border-primary/40 bg-primary/10 text-primary font-bold text-xs hover:bg-primary/15 transition-colors focus:ring-1 focus:ring-primary cursor-pointer"
+                          >
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {[4, 5, 6].map((s) => (
+                              <SelectItem
+                                key={s}
+                                value={String(s)}
+                                className="text-xs font-medium cursor-pointer"
+                              >
+                                Section {s}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      )}
+                    </td>
+                    <td className="py-3 px-3.5 text-right whitespace-nowrap align-middle">
+                      <span className="inline-flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-medium">
+                        <CheckCircle2 className="size-3" />
+                        {isAutoAssigned ? "เลือกให้อัตโนมัติแล้ว" : "เลือกเองได้"}
+                      </span>
+                    </td>
+                  </tr>
+
+                  {/* Row 3: Digital Citizen (GenEd) */}
+                  <tr>
+                    <td className="py-3 px-3.5 whitespace-nowrap align-middle">
+                      <div className="font-semibold text-foreground">
+                        วิชาศึกษาทั่วไป
+                      </div>
+                      <div className="text-[11px] text-muted-foreground font-normal">
+                        GenEd
+                      </div>
+                    </td>
+                    <td className="py-3 px-3.5 align-middle">
+                      <div className="font-medium text-foreground">
+                        Digital Citizen (พลเมืองดิจิทัล)
+                      </div>
+                      <div className="text-[11px] text-muted-foreground">
+                        เรียนวันพุธ 09:00 - 12:00
+                      </div>
+                    </td>
+                    <td className="py-3 px-3.5 whitespace-nowrap align-middle">
+                      <Select
+                        value={String(
+                          selection.theory["90641007"] ?? (600 + effectiveGroup.group)
+                        )}
+                        onValueChange={(val) =>
+                          handleSelectTheorySec("90641007", Number(val))
+                        }
+                      >
+                        <SelectTrigger
+                          size="sm"
+                          className="h-7 w-[96px] rounded-full border-primary/40 bg-primary/10 text-primary font-bold text-xs hover:bg-primary/15 transition-colors focus:ring-1 focus:ring-primary cursor-pointer"
+                        >
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {dcSections.map((s) => (
+                            <SelectItem
+                              key={s}
+                              value={String(s)}
+                              className="text-xs font-medium cursor-pointer"
+                            >
+                              Sec {s}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </td>
+                    <td className="py-3 px-3.5 text-right whitespace-nowrap align-middle">
+                      <span className="inline-flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-medium">
+                        <CheckCircle2 className="size-3" />
+                        เลือกแล้ว (เปลี่ยนได้)
+                      </span>
+                    </td>
+                  </tr>
+
+                  {/* Row 4: Foundation English 2 (GenEd) */}
+                  <tr>
+                    <td className="py-3 px-3.5 whitespace-nowrap align-middle">
+                      <div className="font-semibold text-foreground">
+                        วิชาศึกษาทั่วไป
+                      </div>
+                      <div className="text-[11px] text-muted-foreground font-normal">
+                        GenEd
+                      </div>
+                    </td>
+                    <td className="py-3 px-3.5 align-middle">
+                      <div className="font-medium text-foreground">
+                        Foundation English 2 (ภาษาอังกฤษพื้นฐาน 2)
+                      </div>
+                      <div className="text-[11px] text-muted-foreground">
+                        เรียนวันพฤหัสบดี
+                      </div>
+                    </td>
+                    <td className="py-3 px-3.5 whitespace-nowrap align-middle">
+                      <Select
+                        value={String(
+                          selection.theory["90644008"] ?? (920 + effectiveGroup.group)
+                        )}
+                        onValueChange={(val) =>
+                          handleSelectTheorySec("90644008", Number(val))
+                        }
+                      >
+                        <SelectTrigger
+                          size="sm"
+                          className="h-7 w-[96px] rounded-full border-primary/40 bg-primary/10 text-primary font-bold text-xs hover:bg-primary/15 transition-colors focus:ring-1 focus:ring-primary cursor-pointer"
+                        >
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {feSections.map((s) => (
+                            <SelectItem
+                              key={s}
+                              value={String(s)}
+                              className="text-xs font-medium cursor-pointer"
+                            >
+                              Sec {s}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </td>
+                    <td className="py-3 px-3.5 text-right whitespace-nowrap align-middle">
+                      <span className="inline-flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-medium">
+                        <CheckCircle2 className="size-3" />
+                        เลือกแล้ว (เปลี่ยนได้)
+                      </span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </section>
 
           {/* Section 2: Faculty Courses Section */}

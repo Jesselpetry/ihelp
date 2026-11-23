@@ -87,7 +87,7 @@ export function ScheduleSidebar({
       <aside className="hidden lg:block">
         <div className="sticky top-20 space-y-3">
           <nav
-            aria-label="เมนูจัดตารางเรียน"
+            aria-label="เมนูตารางเรียน"
             className={`${SURFACE} border border-border/40 p-2.5 space-y-1`}
           >
             <button
