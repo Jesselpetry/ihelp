@@ -598,9 +598,8 @@ export const COURSE_BINDINGS: Record<string, CourseBinding> = {
     archive: {},
   },
 
-  CHARM: baseline("90641001-Charm-School"),
+  CHARM: baseline("90642999-Charm-School"),
   FE: baseline("90644007-Foundation-English"),
-  SPORT: baseline("90641003-Sports-and-Recreational-Activities", { archive: false }),
 
   // ── ปี 1 เทอม 2 ───────────────────────────────────────────────────────────
   BFIT: baseline("06066101-Business-for-IT"),
@@ -608,7 +607,8 @@ export const COURSE_BINDINGS: Record<string, CourseBinding> = {
   OOP: baseline("06016408-Object-Oriented-Programming"),
   PSTAT: baseline("06066001-Probability-and-Statistics"),
   FE2: baseline("90644008-Foundation-English-II"),
-  DL: baseline("90641002-Digital-Literacy"),
+  DC: baseline("90641007-Digital-Citizen"),
+  DL: baseline("90641007-Digital-Citizen"),
 
   // ── EN-KMITL ──────────────────────────────────────────────────────────────
   COMPRO: {

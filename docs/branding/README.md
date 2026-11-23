@@ -102,7 +102,7 @@
 | **ITF** | Amber / Gold (`#d97706` / `#f59e0b`) | ป้ายสัญลักษณ์ ITF และการบรรยายพื้นฐานไอที |
 | **ICS** | Indigo / Violet (`#4f46e5` / `#6366f1`) | ป้ายสัญลักษณ์วิชาคอมพิวเตอร์และระบบตรรกะ |
 | **MFIT** | Cyan / Sky Blue (`#0284c7` / `#0ea5e9`) | ป้ายสัญลักษณ์คณิตศาสตร์สำหรับไอที |
-| **GE (ศึกษาทั่วไป)** | Emerald Green / Teal | CHARM, FE, SPORT |
+| **GE (ศึกษาทั่วไป)** | Emerald Green / Teal | CHARM, FE, DC, FE2 |
 
 ---
 

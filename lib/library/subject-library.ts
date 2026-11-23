@@ -8422,6 +8422,7 @@ export const SUBJECT_ASSETS: Record<string, SubjectAsset[]> = {
   BFIT: BFIT_ASSETS,
   FE2: FE2_ASSETS,
   DL: DL_ASSETS,
+  DC: DL_ASSETS,
   COMPRO: COMPRO_ASSETS,
   CHEM: CHEM_ASSETS,
 };

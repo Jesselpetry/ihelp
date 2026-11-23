@@ -27,7 +27,8 @@ export function sanitizeStudentId(id: string): string {
 export function resolveCatalogCourseByCode(courseCode: string) {
   const code = courseCode.trim();
   const aliasMap: Record<string, string> = {
-    "90642999": "90641001",
+    "90641001": "90642999",
+    "90641002": "90641007",
     "06016409": "06066303",
   };
   const targetCode = aliasMap[code] ?? code;

@@ -140,15 +140,14 @@ Resolve to one of these codes. The `<subject>` folder is the code **lowercased**
 | `ICS` | 06016411 | it-kmitl | `06016411-Intro-to-Computer-Systems` |
 | `MFIT` | 06016401 | it-kmitl | `06016401-Math-for-IT` |
 | `PSCP` | 06066303 | it-kmitl | `06066303-Problem-Solving-and-Computer-Programming` |
-| `CHARM` | 90641001 | it-kmitl | `90641001-Charm-School` |
+| `CHARM` | 90642999 | it-kmitl | `90642999-Charm-School` |
 | `FE` | 90644007 | it-kmitl | `90644007-Foundation-English` |
-| `SPORT` | 90641003 | it-kmitl | `90641003-Sports-and-Recreational-Activities` |
 | `BFIT` | 06066101 | it-kmitl | `06066101-Business-for-IT` |
 | `DSA` | 06066301 | it-kmitl | `06066301-Data-Structures-and-Algorithms` |
 | `OOP` | 06016408 | it-kmitl | `06016408-Object-Oriented-Programming` |
 | `PSTAT` | 06066001 | it-kmitl | `06066001-Probability-and-Statistics` |
 | `FE2` | 90644008 | it-kmitl | `90644008-Foundation-English-II` |
-| `DL` | 90641002 | it-kmitl | `90641002-Digital-Literacy` |
+| `DC` | 90641007 | it-kmitl | `90641007-Digital-Citizen` *(Alias DL)* |
 | `COMPRO` | 01006012 | **en-kmitl** | `01006012-Computer-Programming` |
 | `CHEM` | — | **en-kmitl** | `General-Chemistry` |
 

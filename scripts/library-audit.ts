@@ -305,7 +305,8 @@ async function main() {
     }
 
     const folder = asset.path.split("/")[3];
-    if (folder !== asset.course.toLowerCase()) {
+    const isAllowedFolderAlias = folder === "dl" && asset.course === "DC";
+    if (folder !== asset.course.toLowerCase() && !isAllowedFolderAlias) {
       report(
         "course-mismatch",
         asset.id,

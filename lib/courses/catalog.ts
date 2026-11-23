@@ -41,9 +41,8 @@ export const COURSE_ABBREVIATIONS = {
   ICS: "06016411",
   MFIT: "06016401",
   PSCP: "06066303",
-  CHARM: "90641001",
+  CHARM: "90642999",
   FE: "90644007",
-  SPORT: "90641003",
 
   // ── Year 1 · Semester 2 ─────────────────────────────────────────────────────
   BFIT: "06066101",
@@ -69,20 +68,21 @@ export const OFFICIAL_CODE_TO_ABBR: Record<string, CourseAbbreviation> = {
   "06016411": "ICS",
   "06016401": "MFIT",
   "06066303": "PSCP",
+  "90642999": "CHARM",
   "90641001": "CHARM",
+  "96642999": "CHARM",
   "90644007": "FE",
-  "90641003": "SPORT",
   "06066101": "BFIT",
   "06066301": "DSA",
   "06016408": "OOP",
   "06066001": "PSTAT",
   "90644008": "FE2",
   "90641007": "DC",
-  "90641002": "DL",
+  "96641007": "DC",
+  "90641002": "DC",
   "01006012": "COMPRO",
   // Common aliases & alternate course codes
   "06016409": "PSCP", // Physical Computing / legacy PSCP lab course code
-  "90642999": "CHARM",
 };
 
 /**
@@ -221,14 +221,14 @@ export const COURSES: CatalogCourse[] = [
   },
   {
     code: "CHARM",
-    officialCode: "90641001",
+    officialCode: "90642999",
     slug: "Charm-School",
     nameTh: "โรงเรียนสร้างเสน่ห์",
     nameEn: "Charm School",
-    credits: "2 (1-2-3)",
+    credits: "3 (3-0-6)",
     group: "Y1-S1",
-    portalHref: "/courses/90641001-Charm-School",
-    officialUrl: "https://www.it.kmitl.ac.th/th/subjects/90641001-charm-school",
+    portalHref: "/courses/90642999-Charm-School",
+    officialUrl: "https://gened.kmitl.ac.th",
   },
   {
     code: "FE",
@@ -240,18 +240,6 @@ export const COURSES: CatalogCourse[] = [
     group: "Y1-S1",
     portalHref: "/courses/90644007-Foundation-English",
     officialUrl: "https://www.it.kmitl.ac.th/th/subjects/90644007-foundation-english-1",
-  },
-  {
-    code: "SPORT",
-    officialCode: "90641003",
-    slug: "Sports-and-Recreational-Activities",
-    nameTh: "กีฬาและนันทนาการ",
-    nameEn: "Sports and Recreational Activities",
-    credits: "1 (0-2-1)",
-    group: "Y1-S1",
-    portalHref: "/courses/90641003-Sports-and-Recreational-Activities",
-    officialUrl:
-      "https://www.it.kmitl.ac.th/th/subjects/90641003-sports-and-recreational-activities",
   },
 
   // ── ปี 1 เทอม 2 ─────────────────────────────────────────────────────────────
@@ -331,16 +319,15 @@ export const COURSES: CatalogCourse[] = [
     officialUrl: "https://www.it.kmitl.ac.th/th/subjects/90644008-foundation-english-2",
   },
   {
-    code: "DL",
-    officialCode: "90641002",
-    slug: "Digital-Literacy",
-    nameTh: "ความฉลาดทางดิจิทัล",
-    nameEn: "Digital Literacy",
+    code: "DC",
+    officialCode: "90641007",
+    slug: "Digital-Citizen",
+    nameTh: "พลเมืองดิจิทัล",
+    nameEn: "Digital Citizen",
     credits: "3 (3-0-6)",
     group: "Y1-S2",
-    portalHref: "/courses/90641002-Digital-Literacy",
-    officialUrl:
-      "https://www.it.kmitl.ac.th/th/subjects/90641002-digital-intelligence-quotient",
+    portalHref: "/courses/90641007-Digital-Citizen",
+    officialUrl: "https://gened.kmitl.ac.th",
   },
 
   // ── EN-KMITL ───────────────────────────────────────────────────────────────
@@ -378,6 +365,21 @@ export function coursesByGroup(group: CourseGroup): CatalogCourse[] {
 export function resolveCourse(param: string): CatalogCourse | undefined {
   const decoded = decodeURIComponent(param).trim();
   const lower = decoded.toLowerCase();
+
+  // Legacy aliases for backward compatibility
+  const legacyAliases: Record<string, string> = {
+    "90641001": "CHARM",
+    "90641001-charm-school": "CHARM",
+    "90641002": "DC",
+    "90641002-digital-literacy": "DC",
+    "digital-literacy": "DC",
+    "dl": "DC",
+  };
+  if (lower in legacyAliases) {
+    const aliasCode = legacyAliases[lower];
+    return COURSES.find((c) => c.code.toLowerCase() === aliasCode.toLowerCase());
+  }
+
   const direct = COURSES.find(
     (c) =>
       courseDir(c).toLowerCase() === lower ||

@@ -45,14 +45,15 @@
   },
   {
     "abbr": "CHARM",
-    "officialCode": "90641001",
+    "officialCode": "90642999",
     "nameTh": "โรงเรียนสร้างเสน่ห์",
     "nameEn": "Charm School",
-    "credits": "2 (1-2-3)",
+    "credits": "3 (3-0-6)",
     "group": "Y1-S1",
     "slug": "Charm-School",
-    "portalHref": "/courses/90641001-Charm-School",
-    "category": "วิชาศึกษาทั่วไป"
+    "portalHref": "/courses/90642999-Charm-School",
+    "category": "วิชาศึกษาทั่วไป",
+    "legacyCode": "90641001"
   },
   {
     "abbr": "FE",
@@ -63,17 +64,6 @@
     "group": "Y1-S1",
     "slug": "Foundation-English",
     "portalHref": "/courses/90644007-Foundation-English",
-    "category": "วิชาศึกษาทั่วไป"
-  },
-  {
-    "abbr": "SPORT",
-    "officialCode": "90641003",
-    "nameTh": "กีฬาและนันทนาการ",
-    "nameEn": "Sports and Recreational Activities",
-    "credits": "1 (0-2-1)",
-    "group": "Y1-S1",
-    "slug": "Sports-and-Recreational-Activities",
-    "portalHref": "/courses/90641003-Sports-and-Recreational-Activities",
     "category": "วิชาศึกษาทั่วไป"
   },
   {
@@ -138,8 +128,8 @@
     "nameEn": "Digital Citizen",
     "credits": "3 (3-0-6)",
     "group": "Y1-S2",
-    "slug": "Digital-Literacy",
-    "portalHref": "/courses/90641002-Digital-Literacy",
+    "slug": "Digital-Citizen",
+    "portalHref": "/courses/90641007-Digital-Citizen",
     "category": "วิชาศึกษาทั่วไป",
     "legacyCode": "90641002",
     "legacyAbbr": "DL"

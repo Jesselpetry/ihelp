@@ -32,7 +32,7 @@ const OUT = path.join(ROOT, "lib", "library", "library-manifest.json");
 const SUBJECT_CODE = {
   itf: "ITF", ics: "ICS", mfit: "MFIT", pscp: "PSCP", charm: "CHARM",
   fe: "FE", fe2: "FE2", dsa: "DSA", oop: "OOP", pstat: "PSTAT",
-  bfit: "BFIT", dl: "DL", compro: "COMPRO", chem: "CHEM",
+  bfit: "BFIT", dl: "DL", dc: "DC", compro: "COMPRO", chem: "CHEM",
 };
 
 /** Category folder -> gallery shelf (AssetCategory in subject-library.ts). */

@@ -1,14 +1,14 @@
 {
-  "courses": 15,
+  "courses": 14,
   "coursesWithLibrary": 14,
-  "docs": 121,
-  "renderedDocs": 93,
-  "assets": 750,
+  "docs": 119,
+  "renderedDocs": 92,
+  "assets": 749,
   "curated": 514,
-  "generated": 236,
+  "generated": 235,
   "insider": 171,
-  "files": 733,
-  "sizeBytes": 1157005428,
-  "pages": 13622,
+  "files": 732,
+  "sizeBytes": 1156892427,
+  "pages": 13620,
   "updatedMonth": "พ.ย. 2569"
 }

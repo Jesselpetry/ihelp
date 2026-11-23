@@ -9,7 +9,6 @@ export const Y1_S1_COURSE_CODES = [
   "PSCP",
   "FE",
   "CHARM",
-  "SPORT",
 ] as const;
 
 export type Y1S1CourseCode = (typeof Y1_S1_COURSE_CODES)[number];
@@ -336,7 +335,7 @@ const Y1_S1_SYLLABUS: Record<Y1S1CourseCode, CourseSyllabusMeta> = {
     notes: "ประเมินผลแบบผ่าน/ไม่ผ่าน (S/U)",
   },
   CHARM: {
-    credits: 2,
+    credits: 3,
     mode: "pass_fail",
     categories: [
       {
@@ -361,27 +360,6 @@ const Y1_S1_SYLLABUS: Record<Y1S1CourseCode, CourseSyllabusMeta> = {
     ],
     cutoffs: [{ grade: "A", min: 60, point: 0 }],
     notes: "วิชาศึกษาทั่วไป (GE) ตัดเกรดแบบผ่าน/ไม่ผ่าน (S/U) โดยต้องได้คะแนนรวม ≥ 60 คะแนน",
-  },
-  SPORT: {
-    credits: 1,
-    mode: "pass_fail",
-    categories: [
-      {
-        id: "sport-att",
-        name: "การเข้าร่วมชั้นเรียนและฝึกปฏิบัติ (Attendance & Practice)",
-        nameEn: "Attendance & Practice",
-        weight: 60,
-      },
-      {
-        id: "sport-test",
-        name: "การทดสอบทักษะกีฬาและข้อเขียน (Skills Testing & Theory)",
-        nameEn: "Skills Testing & Theory",
-        weight: 40,
-        isFinal: true,
-      },
-    ],
-    cutoffs: [{ grade: "A", min: 50, point: 0 }],
-    notes: "วิชาศึกษาทั่วไป (GE) ตัดเกรดแบบผ่าน/ไม่ผ่าน (S/U)",
   },
 };
 
