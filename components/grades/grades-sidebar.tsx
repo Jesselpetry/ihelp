@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Archive, LayoutList } from "lucide-react";
+import { Archive, Calendar, LayoutList } from "lucide-react";
 import { SURFACE } from "@/components/course-hub-shared";
 import { type GradesCourseEntry } from "@/lib/grades/y1s1-courses";
 import { useLocale, t, type LText } from "@/lib/i18n";
@@ -10,6 +10,7 @@ import { CourseCodeBadge } from "./course-code-badge";
 const L = {
   overview: { th: "ภาพรวมทั้งหมด", en: "Overview" },
   coursesHeading: { th: "รายวิชา", en: "Courses" },
+  schedulePlanner: { th: "จัดตารางเรียน 2/2569", en: "2/2569 Schedule Planner" },
   archive: { th: "ตารางสอบ 1/2569 (Archive)", en: "1/2569 Exam Archive" },
   courseCount: { th: "7 วิชา", en: "7 courses" },
 } satisfies Record<string, LText>;
@@ -122,7 +123,14 @@ export function GradesSidebar({
             </div>
           </nav>
 
-          <div className={`${SURFACE} border border-border/40 p-2.5`}>
+          <div className={`${SURFACE} border border-border/40 p-2.5 space-y-1`}>
+            <Link
+              href="/schedule"
+              className="flex items-center gap-2 rounded-xl px-2.5 py-2 text-xs text-foreground/85 transition-colors hover:bg-muted/70"
+            >
+              <Calendar className="size-3.5 shrink-0 text-primary" />
+              <span>{t(L.schedulePlanner, locale)}</span>
+            </Link>
             <Link
               href="/exam-schedule/archive"
               className="flex items-center gap-2 rounded-xl px-2.5 py-2 text-xs text-foreground/85 transition-colors hover:bg-muted/70"

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import {
+  Calendar,
   GraduationCap,
   Library,
   Menu,
@@ -25,6 +26,11 @@ const NAV_LINKS: { href: string; label: LText; icon: typeof Library }[] = [
     href: "/grades",
     label: { th: "ผลการเรียน", en: "Grades" },
     icon: GraduationCap,
+  },
+  {
+    href: "/schedule",
+    label: { th: "จัดตารางเรียน", en: "Schedule" },
+    icon: Calendar,
   },
   { href: "/version", label: { th: "เวอร์ชัน", en: "Version" }, icon: Tag },
 ];
