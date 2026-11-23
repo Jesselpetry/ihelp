@@ -70,6 +70,14 @@ export interface EvolutionMilestone {
  */
 export const MAJOR_EVOLUTION_MILESTONES: EvolutionMilestone[] = [
   {
+    version: "v1.6.0",
+    highlight: true,
+    summary: {
+      th: "Academic Command Center: ยกเครื่องหน้าแรก Index โฉมใหม่, PSCP Specialized Portal, ปรับปรุงหลักสูตรศึกษาทั่วไป (GenEd KMITL 2568) และระบบส่งออกปฏิทิน .ics สำหรับตารางเรียน",
+      en: "Academic Command Center: Homepage Index Overhaul, PSCP Specialized Portal, KMITL 2025 GenEd Curriculum Updates, and Timetable .ics Calendar Export",
+    },
+  },
+  {
     version: "v1.5.0",
     highlight: true,
     summary: {
@@ -180,6 +188,9 @@ export const MAJOR_EVOLUTION_MILESTONES: EvolutionMilestone[] = [
  * คืนค่าหมุดหมายวิวัฒนาการหลัก (Major Evolution Milestone) ที่ตรงกับเลขเวอร์ชัน
  */
 export function getEvolutionMilestone(version: string): EvolutionMilestone | null {
+  if (version === "1.6.0" || version.startsWith("1.6.")) {
+    return MAJOR_EVOLUTION_MILESTONES.find((m) => m.version === "v1.6.0") ?? null;
+  }
   if (version === "1.5.0" || version.startsWith("1.5.")) {
     return MAJOR_EVOLUTION_MILESTONES.find((m) => m.version === "v1.5.0") ?? null;
   }
@@ -224,6 +235,50 @@ export function getEvolutionMilestone(version: string): EvolutionMilestone | nul
 
 // Mirrors CHANGELOG.md at the repo root — keep both in sync when releasing.
 export const CHANGELOG: VersionEntry[] = [
+  {
+    version: "1.6.0",
+    date: "2026-11-23",
+    contributors: [
+      CONTRIBUTORS.chatan,
+    ],
+    changes: [
+      {
+        kind: "added",
+        text: {
+          th: "หน้าแรก Index โฉมใหม่ (Academic Command Center): Hero Carousel, Quick Navigation Pills 5 บริการด่วน, แบดจ์โปรไฟล์นักศึกษาคลีน 2 บรรทัด และคลังรายวิชา Card Accordion ครบทุกเทอม (โดย @Jesselpetry & Antigravity)",
+          en: "Homepage Index Overhaul (Academic Command Center): Hero Carousel, Quick Nav Pills, 2-line clean Student Profile Capsule, and Card-based Accordion Library for all semesters (by @Jesselpetry & Antigravity)",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "PSCP Specialized Portal: ทางลัดสู่คลังโจทย์ 100+ ข้อ, 14 โจทย์เตรียมสอบแนะนำ และ Modal ติดตั้ง PG IJUDGE Pro VS Code Extension (โดย @Jesselpetry & Antigravity)",
+          en: "PSCP Specialized Portal: Direct access to 100+ problem workspace, 14 recommended problems, and PG IJUDGE Pro VS Code modal (by @Jesselpetry & Antigravity)",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "ระบบส่งออกปฏิทินตารางเรียนไฟล์ .ics สำหรับ Apple Calendar, Google Calendar และ Modal แสดงตารางวันเรียนจริง 15 สัปดาห์ (โดย @Jesselpetry)",
+          en: "Timetable .ics calendar export with holiday detection and 15-week class session modal (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "ปรับปรุงหลักสูตรศึกษาทั่วไป (GenEd KMITL 2568): CHARM School เป็น 3 หน่วยกิต, ปลดวิชา SPORT ออก และเปลี่ยนผ่าน Digital Literacy สู่ Digital Citizen (DC · 90641007) (โดย @Jesselpetry & Antigravity)",
+          en: "KMITL 2025 GenEd updates: CHARM School to 3 credits, removed SPORT, and transitioned Digital Literacy to Digital Citizen (DC · 90641007) (by @Jesselpetry & Antigravity)",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "จัดมาตรฐานชื่อรายวิชาให้ภาษาไทยอยู่ด้านบน ภาษาอังกฤษอยู่ด้านล่างอย่างสม่ำเสมอ และปลดเมนูรายวิชาซ้ำซ้อนใน Navbar (โดย @Jesselpetry & Antigravity)",
+          en: "Standardized course title ordering (Thai top, English below) and removed redundant courses link in Navbar (by @Jesselpetry & Antigravity)",
+        },
+      },
+    ],
+  },
   {
     version: "1.5.0",
     date: "2026-11-23",

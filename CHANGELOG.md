@@ -14,7 +14,22 @@
 
 ## [Unreleased]
 
+## [1.6.0] - 23 พฤศจิกายน 2569
+
+**ผู้ร่วมพัฒนา:** Chatan Petry ([@Jesselpetry](https://github.com/Jesselpetry), IG: [@chatann_](https://instagram.com/chatann_)) & Antigravity
+
 ### เพิ่ม
+
+- **หน้า Index โฉมใหม่แบบครบวงจร (Academic Command Center) (`app/page.tsx`, `components/home/`, `lib/home/`) (โดย @Jesselpetry & Antigravity)** —
+  1. **Hero Highlights Carousel (`HeroCarousel`)**: สไลด์ประชาสัมพันธ์หลัก 3 รายการ ไฮไลต์เทอมปัจจุบัน Y1-S2, ระบบคำนวณเกรดและจำลอง GPAX, และผังที่นั่งสอบ/ตารางเรียน พร้อมสัดส่วนความสูงกระชับ (`h-[205px]`), ขยายโลโก้ไอทีลายน้ำขวาล่างให้เด่นชัด, เคลียร์วิดเจ็ตจำลองด้านขวาเพื่อพื้นที่ข้อความเต็มตา และแอนิเมชัน Fade-in เมื่อสลับสไลด์
+  2. **Quick Navigation Pills (`QuickNavPillsSection`)**: แถบทางลัด 5 บริการหลักรูปแบบ Rounded-Full Pills พร้อมไอคอนสีฟ้า iHelp (ตัดคลังสื่อซ้ำซ้อนออก และเปลี่ยนเป็น Developer สำหรับคู่มือระบบ)
+  3. **Student Profile Capsule (`StudentProfileCapsule`)**: แบดจ์โปรไฟล์นักศึกษาคลีน ๆ 2 บรรทัด (รูปโปรไฟล์ซ้าย ชื่อด้านบน รหัสนักศึกษาด้านล่าง) ในกรอบ Rounded-Full และปุ่มล็อกอินด้วย Google (@kmitl.ac.th) เมื่อยังไม่ได้ล็อกอิน
+  4. **Learning Library (`LearningLibrary`)**: ปรับปรุงส่วนหัวคลังเรียนรู้ให้ชิดซ้ายตรงแนวและสูงเท่ากับ Section หัวเรื่องบริการด่วนอย่างสมบูรณ์แบบ พร้อมแถบ Filter Pills ที่สะอาดตา (ปลดจุดกะพริบ) และโครงสร้าง Accordion Card ครบทุกเทอม (Y1-S2, Y1-S1, EN-KMITL) กาง-หุบได้อย่างนุ่มนวล
+  5. **ปรับปรุง UI Navbar & Schedule (`components/navbar.tsx`, `components/schedule/`)**: ปลดเมนู "รายวิชา" ที่ซ้ำซ้อนกับโลโก้หน้าแรกออกจาก Navbar, จัดลำดับชื่อรายวิชาให้ชื่อภาษาไทยอยู่ด้านบนและชื่อภาษาอังกฤษอยู่ด้านล่างอย่างสม่ำเสมอ และตัด Footer ซ้ำซ้อนใน `app/page.tsx` ออก
+
+- **PSCP Course Hub Specialized Portal (`components/pscp/pscp-portal-section.tsx`, `components/pscp/pg-ijudge-modal.tsx`) (โดย @Jesselpetry & Antigravity)** —
+  1. เพิ่ม Section ด้านบนสุดในหน้ารายวิชา PSCP เชื่อมต่อสู่คลังโจทย์และพื้นที่เขียนโค้ด (`/pscp`) และ 14 โจทย์แนะนำเตรียมสอบ (`/recommended`)
+  2. เพิ่มหน้าต่าง Modal ข้อมูลและคู่มือติดตั้ง PG IJUDGE Pro VS Code Extension พร้อมปุ่มขอ License Key ไปยังผู้พัฒนา
 
 - **ระบบส่งออกปฏิทินตารางเรียนไฟล์ .ics สำหรับ Apple Calendar, Google Calendar และ Outlook (`components/schedule/schedule-export-card.tsx`, `lib/schedule/ics-export.ts`) (โดย @Jesselpetry)** —
   1. เพิ่มตัวเลือกและปุ่มดาวน์โหลด/คัดลอกไฟล์ `.ics` (iCalendar RFC 5545) ในการ์ดส่งออกข้อมูลตารางเรียน (`ScheduleExportCard`)
@@ -27,6 +42,12 @@
   3. แสดงสถานะวันหยุดราชการไทยและสัปดาห์สอบกลางภาคที่งดการเรียนการสอนอย่างชัดเจน พร้อมรองรับการสลับดูระหว่างกลุ่มทฤษฎี (Lecture) และกลุ่มปฏิบัติ (Lab) หรือ Section อื่นได้ทันที
 
 ### ปรับปรุง
+
+- **อัปเดตโครงสร้างรายวิชาศึกษาทั่วไป (GenEd) KMITL: ปรับปรุง CHARM School เป็น 3 หน่วยกิต, ปลดวิชา SPORT ออก และเปลี่ยนผ่าน Digital Literacy สู่ Digital Citizen (`lib/courses/`, `content/courses/`, `lib/grades/`) (โดย @Jesselpetry & Antigravity)** —
+  1. **CHARM School (`90642999`)**: ปรับปรุงหน่วยกิตจาก 2 เป็น 3 หน่วยกิต (`3 (3-0-6)`) โดยรวมหน่วยกิตจากวิชาเลือกกิจกรรมกีฬาเข้าด้วยกัน พร้อมอัปเดตรหัสวิชาทางการเป็น `90642999` (หลักสูตรไทย) / `96642999` (Inter Program), ปรับย้ายโฟลเดอร์เนื้อหาเป็น `content/courses/90642999-Charm-School`, ปรับปรุงคำอธิบายรายวิชาสองภาษาและทักษะที่มุ่งเน้น 7 ด้านตามหลักสูตรสำนักวิชาศึกษาทั่วไป สจล. ปรับปรุง 1/2568
+  2. **ปลดวิชา Sport and Recreational Activities (SPORT · `90641003`)**: ลบรายวิชากีฬาและนันทนาการออกจากสารบบรายวิชาและหน้าคำนวณเกรด Y1-S1 อย่างสมบูรณ์ เนื่องจากหลักสูตรใหม่ได้รวมหน่วยกิตเข้ากับวิชา CHARM School แล้ว
+  3. **Digital Citizen (`90641007`)**: เปลี่ยนผ่านรายวิชาศึกษาทั่วไปในภาคเรียนที่ 2 จาก Digital Literacy สู่ **Digital Citizen (พลเมืองดิจิทัล · DC)** รหัส `90641007` (หลักสูตรไทย) / `96641007` (Inter Program) จำนวน 3 หน่วยกิต (`3 (3-0-6)`), ปรับย้ายโฟลเดอร์เนื้อหาเป็น `content/courses/90641007-Digital-Citizen`, อัปเดตคำอธิบายรายวิชาภาษาไทย-อังกฤษและ 6 ทักษะสำคัญ (Complex Problem Solving, Integrity & Perseverance, Leadership & Social Influence, Communication, Entrepreneurship & Startup, Digital Quotient Literacy & Digital Media Production) พร้อมเนื้อหาการผลิตสื่ออย่างมีสติสัมปชัญญะและการรู้เท่าทันการลงทุนสมัยใหม่
+  4. **ระบบคำนวณเกรดและแคตตาล็อก (`lib/grades/y1s1-courses.ts`, `lib/courses/catalog.ts`)**: ปรับปรุงเกณฑ์การคำนวณเกรด Y1-S1 ให้มี 6 รายวิชา (ตัดเกรด S/U เหลือ FE และ CHARM) โดย CHARM เพิ่มเป็น 3 หน่วยกิต ทำให้ยอดหน่วยกิตรวมของภาคเรียนยังคงอยู่ที่ 18 หน่วยกิตตามเกณฑ์ พร้อมรองรับ Legacy Alias อัตโนมัติสำหรับ URL หรือรหัสเดิม
 
 - **ปรับปรุงการจัดวางตาราง Section ในการ์ดรายวิชาและการ์ดแจ้งเตือน ICS (`components/schedule/schedule-course-accordion.tsx`, `components/schedule/schedule-export-card.tsx`) (โดย @Jesselpetry)** —
   1. ขยายความกว้างของคอลัมน์ห้องเรียน (Room) เป็น `w-48` เพื่อรองรับชื่อห้องเรียนขนาดยาว เช่น "Project Based 4 ชั้น 3" ป้องกันการทับซ้อนกับคอลัมน์อาคาร

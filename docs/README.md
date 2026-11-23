@@ -36,6 +36,7 @@
 
 ### กลุ่มที่ 1: ภาพรวมและสถาปัตยกรรมระบบ (Architecture & Blueprints)
 - [`FULL_README.md`](file:///Users/chatan/Desktop/Keep/KMITL/IT-KMITL/ihelp/docs/FULL_README.md) — คู่มือแนะนำโครงการฉบับสมบูรณ์ พันธกิจ เป้าหมาย ฟีเจอร์ทั้งหมด และ Tech Stack
+- [`INDEX_ARCHITECTURE.md`](file:///Users/chatan/Desktop/Keep/KMITL/IT-KMITL/ihelp/docs/INDEX_ARCHITECTURE.md) — สถาปัตยกรรมหน้า Index โฉมใหม่ (Academic Command Center), การจัดกลุ่มคอมโพเนนต์, สเตตรีแอกทีฟ และระบบนำทาง
 - [`Current_Architecture_Report.md`](file:///Users/chatan/Desktop/Keep/KMITL/IT-KMITL/ihelp/docs/Current_Architecture_Report.md) — รายงานการตรวจสอบสถานะสถาปัตยกรรม ประเด็นทางเทคนิค และจุดที่ต้องระวัง
 - [`LEARNING_BLUEPRINT.md`](file:///Users/chatan/Desktop/Keep/KMITL/IT-KMITL/ihelp/docs/LEARNING_BLUEPRINT.md) — พิมพ์เขียวการเรียนรู้ สัญญาโครงสร้าง 11 โมดูลที่ทุกรายวิชาต้องปฏิบัติตาม
 - [`LIBRARY_ARCHITECTURE_AND_WORKFLOW.md`](file:///Users/chatan/Desktop/Keep/KMITL/IT-KMITL/ihelp/docs/LIBRARY_ARCHITECTURE_AND_WORKFLOW.md) — สถาปัตยกรรมคลังสื่อการเรียนรู้ ระบบ Manifest ดัชนีทรัพยากร และ Supabase Storage
@@ -145,12 +146,13 @@ iHelp พัฒนาขึ้นด้วยเทคโนโลยีเว�
 - **Multi-Term Registry**: รองรับข้อมูลหลายภาคการศึกษาผ่าน `lib/schedule/registry.ts` เช่น ภาคการศึกษา 1/2569, 2/2569 และพร้อมขยายสำหรับปีต่อๆ ไป
 - **Overlap & Conflict Engine**: ตรวจสอบเวลาเรียนและเวลาสอบที่ทับซ้อนกัน แจ้งเตือนเมื่อมีการชนกันของเซกชัน
 - **Calendar Matrix**: เรนเดอร์ตารางเรียนในรูปแบบกริด 7 วัน x 24 ชั่วโมง พร้อมรหัสสีประจำวิชาและรายละเอียดอาจารย์ผู้สอน
-- **Export & Share**: บันทึกภาพตารางเรียนหรือคัดลอกรหัสเซกชันไปใช้งานได้อย่างสะดวกรวดเร็ว
+- **Export & Share**: บันทึกภาพตารางเรียน ส่งออกปฏิทินไฟล์ `.ics` (iCalendar RFC 5545) พร้อมคำนวณวันหยุดราชการไทยและสัปดาห์สอบกลางภาค และหน้าต่าง Modal แสดงตารางวัน-เวลาเรียนจริง 15 สัปดาห์
 
 ---
 
 ### 3.6 พื้นที่เขียนโค้ดและรันโปรแกรม PSCP (PSCP Coding Workspace & IDE)
 ระบบสนับสนุนการเรียนและฝึกแก้โจทย์รายวิชาการแก้ปัญหาและการโปรแกรมคอมพิวเตอร์ (`/pscp` และ `/pscp/[slug]`):
+- **PSCP Course Hub Portal**: พอร์ทัลเฉพาะทางด้านบนสุดของหน้ารายวิชา PSCP (`components/pscp/pscp-portal-section.tsx`) เชื่อมต่อทางลัดสู่คลังโจทย์ 100+ ข้อ, 14 โจทย์เตรียมสอบแนะนำ, และหน้าต่าง Modal ข้อมูลส่วนขยาย PG IJUDGE Pro สำหรับ VS Code
 - **Problem Registry**: สารบบโจทย์สร้างขึ้นโดยอัตโนมัติจาก Archive ผ่าน `scripts/build_pscp_registry.py` รวบรวมคำอธิบาย, ข้อจำกัดเวลา/หน่วยความจำ, Input/Output Specification และ Sample Cases
 - **Embedded Editor**: บูรณาการ CodeMirror 6 Python Editor ที่ปรับแต่งธีมให้เข้ากับ Figma Charcoal Dark มี Line Numbers และ Auto-completion
 - **Pyodide WASM Runtime**: รันโค้ด Python 3 ในเบราว์เซอร์ของนักศึกษาโดยตรงผ่าน WebAssembly สามารถส่ง Input และตรวจสอบผลลัพธ์กับ Testcases ได้ทันที
