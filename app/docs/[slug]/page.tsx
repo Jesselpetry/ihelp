@@ -7,9 +7,7 @@ import { SITE, absoluteUrl } from "@/lib/site";
 export const dynamic = "force-static";
 
 export async function generateStaticParams() {
-  return getAllDocMetas()
-    .filter((doc) => doc.slug !== "readme")
-    .map((doc) => ({ slug: doc.slug }));
+  return getAllDocMetas().map((doc) => ({ slug: doc.slug }));
 }
 
 export async function generateMetadata({

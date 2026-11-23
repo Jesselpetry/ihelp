@@ -234,8 +234,8 @@ export const CHANGELOG: VersionEntry[] = [
       {
         kind: "added",
         text: {
-          th: "จัดทำ Super Library คลังเอกสารนักพัฒนาและสถาปัตยกรรมระบบทั้ง 12 ส่วน (docs/README.md) พร้อมพอร์ทัล /docs และตัวอ่าน Markdown (โดย @Jesselpetry)",
-          en: "Super Library Developer Documentation Hub covering all 12 core subsystems (docs/README.md) with in-app /docs reader portal (by @Jesselpetry)",
+          th: "จัดทำ Super Library คลังเอกสารนักพัฒนาและสถาปัตยกรรมระบบทั้ง 12 ส่วน (docs/README.md) พร้อมพอร์ทัล /docs และตัวอ่าน Markdown สไตล์หน้ารายวิชา (โดย @Jesselpetry)",
+          en: "Super Library Developer Documentation Hub covering all 12 core subsystems (docs/README.md) with course-styled /docs hub and reader portal (by @Jesselpetry)",
         },
       },
       {

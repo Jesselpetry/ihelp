@@ -1,13 +1,12 @@
-import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { DocsReader } from "@/components/developer-docs/docs-reader";
-import { getDeveloperDocs, getDocBySlug } from "@/lib/docs/dev-docs";
+import { DocsHub } from "@/components/developer-docs/docs-hub";
+import { getDeveloperDocs } from "@/lib/docs/dev-docs";
 import { SITE, absoluteUrl } from "@/lib/site";
 
 export const dynamic = "force-static";
 
 export const metadata: Metadata = {
-  title: "Developer Documentation Hub · Master Architecture",
+  title: "Developer Documentation Hub · คลังเอกสารนักพัฒนา",
   description: `พิมพ์เขียวสถาปัตยกรรมระบบ 12 ระบบหลัก และคู่มือวิศวกรรมของ ${SITE.plainName}`,
   alternates: { canonical: "/docs" },
   openGraph: {
@@ -19,10 +18,6 @@ export const metadata: Metadata = {
 };
 
 export default function DocsPage() {
-  const doc = getDocBySlug("readme");
-  if (!doc) notFound();
-
   const sections = getDeveloperDocs();
-
-  return <DocsReader doc={doc} sections={sections} />;
+  return <DocsHub sections={sections} />;
 }

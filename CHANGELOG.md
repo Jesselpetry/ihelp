@@ -26,7 +26,7 @@
 
 - **จัดทำ Super Library คลังเอกสารนักพัฒนาและสถาปัตยกรรมระบบฉบับสมบูรณ์ (`docs/README.md`, `/docs`, `/version`) (โดย @Jesselpetry)** —
   1. จัดทำเอกสารแม่บท `docs/README.md` สรุปสารบรรณเอกสารทั้ง 16 ฉบับใน `docs/` และอธิบายเชิงลึกสถาปัตยกรรมระบบหลักทั้ง 12 Subsystems ของ iHelp (Course Hubs 11 โมดูล, Media Library Supabase Storage, Grade Calculator, Exam Schedule Seating Map, Timetable Planner, PSCP IDE Pyodide Runner, Chat Widget Security Guards, Study Space, PG IJUDGE Pro, Contributor System, Charcoal Dark Theme และ Auth/RLS)
-  2. พัฒนาระบบแสดงผลเอกสารนักพัฒนาบนหน้าเว็บ (`app/docs/page.tsx` และ `app/docs/[slug]/page.tsx`) พร้อมตัวอ่านเอกสาร Markdown (`components/developer-docs/docs-reader.tsx`) ที่ต่อยอดจากระบบคลัง PSCP รองรับแถบสารบัญหัวข้ออัตโนมัติ (TocSidePanel) และระบบนำทางสารบัญเอกสารฝั่งซ้าย
+  2. พัฒนาระบบแสดงผลเอกสารนักพัฒนาบนหน้าเว็บ (`app/docs/page.tsx` และ `app/docs/[slug]/page.tsx`) โดยหน้ารวมเอกสาร `/docs` ใช้ `CourseBanner`, `TopicHeader` และการ์ดเอกสารสไตล์หน้ารายวิชา (ITF) และตัวอ่านเอกสาร Markdown (`components/developer-docs/docs-reader.tsx`) ถอดแบบจาก `ModuleReader` รองรับ Dropdown เลือกเอกสาร, Stepper < >, แถบ Horizontal Pill Rail และสารบัญหัวข้ออัตโนมัติ (TocSidePanel)
   3. เพิ่มปุ่มเชื่อมโยง "คลังเอกสารนักพัฒนา" (Developer Docs) บริเวณมุมขวาบนของหน้า `/version` และเพิ่มลิงก์เข้าสู่คลังเอกสารในกล่อง Sidebar
   4. เพิ่มกฎข้อบังคับข้อที่ 13 ใน `AGENTS.md` (Maintain Developer Documentation Hub) กำหนดให้อัปเดตเอกสารใน `docs/` และ `docs/README.md` ทุกครั้งที่มีการเพิ่มหรือแก้ไขฟังก์ชันระบบ
 

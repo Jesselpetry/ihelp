@@ -9,6 +9,7 @@ export interface DevDocMeta {
   slug: string;
   fileName: string;
   title: string;
+  shortTitle: string;
   description: string;
   category: string;
   order: number;
@@ -33,6 +34,7 @@ interface RawDocConfig {
   slug: string;
   category: "architecture" | "subsystems" | "standards" | "design";
   order: number;
+  shortTitle: string;
   customTitle?: string;
   customDescription?: string;
 }
@@ -44,6 +46,7 @@ const DOC_CONFIGS: RawDocConfig[] = [
     slug: "readme",
     category: "architecture",
     order: 1,
+    shortTitle: "Master Blueprint",
     customTitle: "Master Developer Hub & Architecture Blueprint",
     customDescription: "ศูนย์กลางคลังข้อมูลวิศวกรรม สถาปัตยกรรมระบบทั้ง 12 ส่วน และคู่มือแม่บท",
   },
@@ -52,6 +55,7 @@ const DOC_CONFIGS: RawDocConfig[] = [
     slug: "full-readme",
     category: "architecture",
     order: 2,
+    shortTitle: "Platform Overview",
     customTitle: "Full README & Platform Overview",
     customDescription: "ภาพรวมแพลตฟอร์ม iHelp ทั้งหมด พันธกิจ และฟีเจอร์เด่นสำหรับนักศึกษา IT KMITL",
   },
@@ -60,6 +64,7 @@ const DOC_CONFIGS: RawDocConfig[] = [
     slug: "current-architecture-report",
     category: "architecture",
     order: 3,
+    shortTitle: "State Report",
     customTitle: "State of the Architecture Report",
     customDescription: "รายงานการตรวจสอบสถานะสถาปัตยกรรมและประเด็นทางวิศวกรรมซอฟต์แวร์",
   },
@@ -68,6 +73,7 @@ const DOC_CONFIGS: RawDocConfig[] = [
     slug: "learning-blueprint",
     category: "architecture",
     order: 4,
+    shortTitle: "11-Module Spine",
     customTitle: "Learning Blueprint & 11-Module Spine",
     customDescription: "พิมพ์เขียวการเรียนรู้และสัญญาข้อกำหนด 11 โมดูลของศูนย์การเรียนรู้รายวิชา",
   },
@@ -78,6 +84,7 @@ const DOC_CONFIGS: RawDocConfig[] = [
     slug: "library-architecture-and-workflow",
     category: "subsystems",
     order: 1,
+    shortTitle: "Media Library",
     customTitle: "Library Architecture & Workflow Guide",
     customDescription: "สถาปัตยกรรมคลังสื่อการเรียนรู้ Supabase Storage, Manifests และ Resource Index",
   },
@@ -86,6 +93,7 @@ const DOC_CONFIGS: RawDocConfig[] = [
     slug: "schedule-data-guide",
     category: "subsystems",
     order: 2,
+    shortTitle: "Schedule Guide",
     customTitle: "Schedule & Multi-Term Timetable Data Guide",
     customDescription: "คู่มือโครงสร้างข้อมูลตารางเรียน การบริหารจัดการหลายเทอม และการส่งต่อระบบ",
   },
@@ -94,6 +102,7 @@ const DOC_CONFIGS: RawDocConfig[] = [
     slug: "study-space",
     category: "subsystems",
     order: 3,
+    shortTitle: "Study Space",
     customTitle: "Study Space & Exam Quota Tracker",
     customDescription: "ข้อกำหนดพื้นที่อ่านหนังสือส่วนบุคคล แผนรายวัน ตัวจับเวลา และโควตาสอบ 22 วัน",
   },
@@ -102,6 +111,7 @@ const DOC_CONFIGS: RawDocConfig[] = [
     slug: "contributor-system",
     category: "subsystems",
     order: 4,
+    shortTitle: "Contributors",
     customTitle: "Contributor Attribution & Academic Promotion",
     customDescription: "ระบบจัดเก็บเครดิตผู้ร่วมพัฒนา โปรไฟล์นักศึกษา และตรรกะเลื่อนชั้นปีอัตโนมัติ",
   },
@@ -112,6 +122,7 @@ const DOC_CONFIGS: RawDocConfig[] = [
     slug: "course-overview-standard",
     category: "standards",
     order: 1,
+    shortTitle: "Course Overview",
     customTitle: "Course Overview (summary.md) Standard",
     customDescription: "มาตรฐานโครงสร้างไฟล์สรุปภาพรวมรายวิชา summary.md และ blueprint.md",
   },
@@ -120,6 +131,7 @@ const DOC_CONFIGS: RawDocConfig[] = [
     slug: "dropzone-sop",
     category: "standards",
     order: 2,
+    shortTitle: "Dropzone SOP",
     customTitle: "Dropzone Ingestion SOP",
     customDescription: "ขั้นตอนมาตรฐานในการคัดแยก จัดหมวดหมู่ ตั้งชื่อ kebab-case และบีบอัดไฟล์สื่อ",
   },
@@ -128,6 +140,7 @@ const DOC_CONFIGS: RawDocConfig[] = [
     slug: "file-structure",
     category: "standards",
     order: 3,
+    shortTitle: "File Structure",
     customTitle: "File Structure & Scope Taxonomy",
     customDescription: "ผังโครงสร้างโฟลเดอร์ นามบัญญัติไฟล์ และอนุกรมวิธานขอบเขตเนื้อหา",
   },
@@ -136,6 +149,7 @@ const DOC_CONFIGS: RawDocConfig[] = [
     slug: "version-control-guide",
     category: "standards",
     order: 4,
+    shortTitle: "SemVer Guide",
     customTitle: "Version Control & Changelog Standard",
     customDescription: "มาตรฐานการตัดเวอร์ชัน SemVer บันทึกประวัติ และการผูกข้อมูลหน้ารายการเวอร์ชัน",
   },
@@ -146,6 +160,7 @@ const DOC_CONFIGS: RawDocConfig[] = [
     slug: "branding",
     category: "design",
     order: 1,
+    shortTitle: "Brand Identity",
     customTitle: "Brand Identity & Style Guide",
     customDescription: "คู่มือมาตรฐานแบรนด์ iHelp การสะกดเครื่องหมายคำ <i\\>Help และรหัสสี",
   },
@@ -154,6 +169,7 @@ const DOC_CONFIGS: RawDocConfig[] = [
     slug: "fonts",
     category: "design",
     order: 2,
+    shortTitle: "Typography",
     customTitle: "Typography & Font Family Standard",
     customDescription: "มาตรฐานการใช้งานฟอนต์ IBM Plex Sans Thai และการจัดลำดับชั้นตัวอักษร",
   },
@@ -162,6 +178,7 @@ const DOC_CONFIGS: RawDocConfig[] = [
     slug: "quarantine-audit",
     category: "design",
     order: 3,
+    shortTitle: "PDPA Audit",
     customTitle: "Quarantine Assets & PDPA Audit",
     customDescription: "รายงานตรวจสอบไฟล์กักกันความปลอดภัย สิทธิความเป็นส่วนตัว และการให้เครดิต",
   },
@@ -170,6 +187,7 @@ const DOC_CONFIGS: RawDocConfig[] = [
     slug: "full-contributing",
     category: "design",
     order: 4,
+    shortTitle: "Contributing",
     customTitle: "Contribution Guidelines",
     customDescription: "คู่มือการร่วมพัฒนาเว็บไซต์ สำหรับนักศึกษา สรุปเนื้อหา หรือส่งโค้ดเข้าระบบ",
   },
@@ -256,6 +274,7 @@ export function getDeveloperDocs(): DevDocSection[] {
       slug: cfg.slug,
       fileName: cfg.fileName,
       title,
+      shortTitle: cfg.shortTitle,
       description,
       category: cfg.category,
       order: cfg.order,
