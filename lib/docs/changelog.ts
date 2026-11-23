@@ -142,12 +142,23 @@ export const MAJOR_EVOLUTION_MILESTONES: EvolutionMilestone[] = [
       en: "Semester 2 Kickoff: Year 1 Semester 2 preparation for 6 subjects, official 2022 KMITL syllabus & faculty cataloging, alongside GPA & score hub",
     },
   },
+  {
+    version: "v1.3.0",
+    highlight: true,
+    summary: {
+      th: "Timetable Planner & Pre-Registration: ระบบจัดตารางเรียนส่วนตัวล่วงหน้า ภาคเรียนที่ 2/2569 (/schedule), ตารางเรียน Fixed-Size, สลับมุมมองรายสัปดาห์/รายวัน, Auto-Hide Accordion, และส่งออกภาพถ่าย PNG/PDF",
+      en: "Timetable Planner & Pre-Registration: Y1-S2 personal schedule planner (/schedule), fixed-size timetable, weekly grid & daily view switcher, auto-hide course accordions, and PNG/PDF export",
+    },
+  },
 ];
 
 /**
  * คืนค่าหมุดหมายวิวัฒนาการหลัก (Major Evolution Milestone) ที่ตรงกับเลขเวอร์ชัน
  */
 export function getEvolutionMilestone(version: string): EvolutionMilestone | null {
+  if (version === "1.3.0" || version.startsWith("1.3.")) {
+    return MAJOR_EVOLUTION_MILESTONES.find((m) => m.version === "v1.3.0") ?? null;
+  }
   if (version === "1.2.0" || version.startsWith("1.2.")) {
     return MAJOR_EVOLUTION_MILESTONES.find((m) => m.version === "v1.2.0") ?? null;
   }
@@ -183,6 +194,29 @@ export function getEvolutionMilestone(version: string): EvolutionMilestone | nul
 
 // Mirrors CHANGELOG.md at the repo root — keep both in sync when releasing.
 export const CHANGELOG: VersionEntry[] = [
+  {
+    version: "1.3.0",
+    date: "2026-11-23",
+    contributors: [
+      CONTRIBUTORS.chatan,
+    ],
+    changes: [
+      {
+        kind: "added",
+        text: {
+          th: "ระบบจัดตารางเรียนส่วนตัวล่วงหน้า ภาคเรียนที่ 2/2569 (/schedule) เลือก Section วิชาบังคับคณะและ GenEd อิสระ ตรวจจับเวลาเรียนชนกัน พร้อมตาราง Fixed-Size สลับมุมมองรายสัปดาห์/รายวัน และเซฟรูปภาพ PNG / พิมพ์ PDF (โดย @Jesselpetry)",
+          en: "Year 1 Semester 2 Timetable Planner & Pre-Registration (/schedule) with independent core/GenEd section selection, clash detection, fixed-size grid, daily view switcher, and PNG/PDF export (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "ปรับปรุง Accordion รายวิชาเป็นแบบ Auto-Hide พับซ่อนอัตโนมัติเมื่อเปิดวิชาอื่น พร้อมแสดง Badge Section ที่เลือก และแยกชื่ออาจารย์ผู้สอน 2 บรรทัด (โดย @Jesselpetry)",
+          en: "Enhanced course accordions with Auto-Hide behavior on selection, selected section badge on closed headers, and multi-line instructor display (by @Jesselpetry)",
+        },
+      },
+    ],
+  },
   {
     version: "1.2.0",
     date: "2026-11-21",
