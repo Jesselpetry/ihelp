@@ -18,7 +18,7 @@ export const DAYS_OF_WEEK: DayOfWeek[] = [
 export const Y1S2_COURSES: TimetableCourse[] = [
   {
     code: "06016408",
-    nameTh: "การเขียนโปรแกรมเชิงวัตถุ",
+    nameTh: "การสร้างโปรแกรมเชิงวัตถุ",
     nameEn: "OBJECT-ORIENTED PROGRAMMING",
     credits: "3(2-2-5)",
     creditHours: 3,
@@ -260,7 +260,7 @@ export const Y1S2_COURSES: TimetableCourse[] = [
   },
   {
     code: "06066101",
-    nameTh: "พื้นฐานธุรกิจสำหรับเทคโนโลยีสารสนเทศ",
+    nameTh: "พื้นฐานทางธุรกิจสำหรับเทคโนโลยีสารสนเทศ",
     nameEn: "BUSINESS FUNDAMENTALS FOR INFORMATION",
     credits: "3(3-0-6)",
     creditHours: 3,
@@ -330,7 +330,7 @@ export const Y1S2_COURSES: TimetableCourse[] = [
   },
   {
     code: "06066301",
-    nameTh: "โครงสร้างข้อมูลและขั้นตอนวิธี",
+    nameTh: "โครงสร้างข้อมูลและอัลกอริทึม",
     nameEn: "DATA STRUCTURES AND ALGORITHMS",
     credits: "3(2-2-5)",
     creditHours: 3,
