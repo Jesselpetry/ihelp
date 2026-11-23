@@ -2784,7 +2784,7 @@
       "dir": "06066101-Business-for-IT",
       "name": {
         "th": "พื้นฐานทางธุรกิจสำหรับเทคโนโลยีสารสนเทศ",
-        "en": "Business Fundamentals for Information Technology"
+        "en": "Business for IT"
       },
       "group": "Y1-S2",
       "credits": "3 (3-0-6)",
@@ -4439,7 +4439,7 @@
       "dir": "90644008-Foundation-English-II",
       "name": {
         "th": "ภาษาอังกฤษพื้นฐาน 2",
-        "en": "Foundation English 2"
+        "en": "Foundation English II"
       },
       "group": "Y1-S2",
       "credits": "3 (3-0-6)",
@@ -4570,7 +4570,7 @@
       "dir": "90641002-Digital-Literacy",
       "name": {
         "th": "ความฉลาดทางดิจิทัล",
-        "en": "Digital Intelligence Quotient"
+        "en": "Digital Literacy"
       },
       "group": "Y1-S2",
       "credits": "3 (3-0-6)",
@@ -7281,7 +7281,7 @@
         }
       ],
       "week": null,
-      "updated": "2026-11-21",
+      "updated": "2026-09-26",
       "assetRefs": [],
       "unresolvedRefs": []
     },
@@ -7410,7 +7410,7 @@
         }
       ],
       "week": null,
-      "updated": "2026-11-21",
+      "updated": "2026-09-26",
       "assetRefs": [],
       "unresolvedRefs": []
     },
