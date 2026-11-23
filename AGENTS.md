@@ -86,6 +86,11 @@ Node — use `bun run dev`, never `bun --bun next`.
    `fix(reader): …`, `docs: …`, `chore(pscp): …`. User-visible changes get a line in
    `CHANGELOG.md` under `## [Unreleased]` with the Thai headings `### เพิ่ม` / `### ปรับปรุง` /
    `### แก้ไข` / `### ความปลอดภัย`.
+13. **Keep Developer Documentation Up to Date.** Whenever a new feature, subsystem,
+   data pipeline, or architectural workflow is introduced or modified, the developer
+   documentation under `docs/` and its corresponding summary/taxonomy in `docs/README.md`
+   **must be updated** before committing changes or pushing code. Code changes without
+   matching developer documentation updates are considered incomplete.
 
 ## Where things live — edit the source of truth
 
@@ -110,6 +115,7 @@ Node — use `bun run dev`, never `bun --bun next`.
 | Landing page PG IJUDGE (`/pro`) | `app/pro/page.tsx`, `app/pro/layout.tsx` | `tsc` |
 | Study space (`/profile/<id>/study`, owner only) — a student's day plan; course weeks, links, exam dates | personal plans: `lib/study-space/plans/` (`server-only`; `plans/index.ts` maps student ID → plan, and the page renders only when the session's verified ID matches the URL and has a plan) · shared: `lib/study-space/units.ts`, `links.ts`, `subjects.ts` ([docs/STUDY_SPACE.md](./docs/STUDY_SPACE.md)) | `tsc`, then open every changed link |
 | PSCP problems & workspace | `components/pscp/` (CodeMirror editor, header, I/O section, test runner) and archive `OP` branch | `tsc` |
+| Developer docs, system architecture, workflow specs | `docs/*.md` and `docs/README.md` | `tsc`, verify `/docs` |
 | UI | `app/`, `components/` (`components/ui/` = shadcn primitives) | `lint` |
 
 Paths, naming rules and the scope taxonomy: [FILE_STRUCTURE.md](./docs/FILE_STRUCTURE.md).
