@@ -29,7 +29,7 @@ const NAV_LINKS: { href: string; label: LText; icon: typeof Library }[] = [
   },
   {
     href: "/schedule",
-    label: { th: "จัดตารางเรียน", en: "Schedule" },
+    label: { th: "ตารางเรียน", en: "Schedule" },
     icon: Calendar,
   },
   { href: "/version", label: { th: "เวอร์ชัน", en: "Version" }, icon: Tag },
@@ -38,6 +38,9 @@ const NAV_LINKS: { href: string; label: LText; icon: typeof Library }[] = [
 // "/" is an exact match only — otherwise the home link lights up everywhere.
 function isActive(pathname: string, href: string): boolean {
   if (href === "/") return pathname === "/";
+  if (href === "/version" && (pathname === "/docs" || pathname.startsWith("/docs/"))) {
+    return true;
+  }
   return pathname === href || pathname.startsWith(href + "/");
 }
 

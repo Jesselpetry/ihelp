@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import {
   ArrowLeft,
+  BookOpen,
   Calendar,
   Code2,
   ExternalLink,
@@ -51,6 +52,14 @@ const L = {
   versionGuide: {
     th: "คู่มือการจัดการเวอร์ชัน",
     en: "Version Control Guide",
+  },
+  devDocs: {
+    th: "คลังเอกสารนักพัฒนา",
+    en: "Developer Docs",
+  },
+  superLibrary: {
+    th: "คลังเอกสาร & สถาปัตยกรรม (Docs Hub)",
+    en: "Developer Docs & Architecture",
   },
   viewCommit: { th: "ดู commit บน GitHub", en: "View commit on GitHub" },
   viewDiff: { th: "ดูการเปลี่ยนแปลงบน GitHub", en: "View changes on GitHub" },
@@ -116,8 +125,16 @@ export function VersionView() {
           </p>
         </div>
 
-        {/* Current Version Pill — Top Right (Clean, no green dot) */}
-        <div className="flex items-center gap-2 self-start sm:self-center">
+        {/* Actions — Top Right */}
+        <div className="flex flex-wrap items-center gap-2 self-start sm:self-center">
+          <Link
+            href="/docs"
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-primary/30 bg-primary/[0.06] hover:bg-primary/10 hover:border-primary/50 text-foreground transition-all shadow-2xs text-xs font-medium cursor-pointer"
+          >
+            <BookOpen className="size-3.5 text-primary" />
+            <span>{t(L.devDocs, locale)}</span>
+          </Link>
+
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border bg-card/90 shadow-sm text-xs">
             <Tag className="size-3.5 text-primary" />
             <span className="text-muted-foreground">{t(L.currentVersion, locale)}:</span>
@@ -379,11 +396,18 @@ export function VersionView() {
                 : "Version history synced from CHANGELOG.md and Git commits."}
             </p>
             <div className="pt-1 flex flex-col gap-1.5">
+              <Link
+                href="/docs"
+                className="inline-flex items-center gap-1.5 text-primary hover:underline font-medium"
+              >
+                <BookOpen className="size-3" />
+                <span>{t(L.superLibrary, locale)}</span>
+              </Link>
               <a
                 href={`${SITE.repo.url}/blob/${SITE.repo.branch}/docs/VERSION_CONTROL_GUIDE.md`}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-1.5 text-primary hover:underline"
+                className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-foreground transition-colors"
               >
                 <Tag className="size-3" />
                 <span>{t(L.versionGuide, locale)}</span>
