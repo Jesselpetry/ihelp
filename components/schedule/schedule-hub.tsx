@@ -1,10 +1,18 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AlertCircle, Sparkles } from "lucide-react";
+import {
+  AlertCircle,
+  CheckCircle2,
+  Search,
+  Sparkles,
+  X,
+} from "lucide-react";
 import type { MeResponse } from "@/app/api/me/route";
 import { TopicHeader } from "@/components/course-hub-shared";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { useLocale, t, type LText } from "@/lib/i18n";
 import type { SchedulePreset, UserScheduleSelection } from "@/lib/schedule/types";
 import {
@@ -39,12 +47,40 @@ const L = {
   collapseAll: { th: "พับทั้งหมด", en: "Collapse all" },
 } satisfies Record<string, LText>;
 
+function getInitialStudentId(): string | null {
+  if (typeof window !== "undefined") {
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlId = urlParams.get("id");
+      if (urlId) {
+        return urlId.replace(/\D/g, "").trim() || null;
+      }
+    } catch {
+      // ignore
+    }
+  }
+  return null;
+}
+
 function getInitialSelection(
   termId: string,
   defaultSelections: UserScheduleSelection,
+  presets: SchedulePreset[],
+  getStudentGroup?: (
+    id: string | null | undefined,
+  ) => StudentScheduleGroupInfo | null,
 ): UserScheduleSelection {
   if (typeof window !== "undefined") {
     try {
+      const urlId = getInitialStudentId();
+      if (urlId && getStudentGroup) {
+        const group = getStudentGroup(urlId);
+        if (group) {
+          const matched = presets.find((p) => p.id === group.presetId);
+          if (matched) return matched.selections;
+        }
+      }
+
       const storageKey = `ihelp_schedule_selection_${termId}`;
       const saved =
         localStorage.getItem(storageKey) ||
@@ -102,9 +138,29 @@ export function ScheduleHub({
   const [assignedGroup, setAssignedGroup] =
     useState<StudentScheduleGroupInfo | null>(null);
 
+  // Student ID search & active group detection
+  const [studentIdInput, setStudentIdInput] = useState<string>(
+    () => getInitialStudentId() ?? "",
+  );
+  const [activeStudentId, setActiveStudentId] = useState<string | null>(
+    () => getInitialStudentId(),
+  );
+  const [activeGroup, setActiveGroup] =
+    useState<StudentScheduleGroupInfo | null>(() => {
+      const id = getInitialStudentId();
+      return id && termData.getStudentGroup
+        ? termData.getStudentGroup(id)
+        : null;
+    });
+
   // Schedule State: Selectable courses
   const [selection, setSelection] = useState<UserScheduleSelection>(() =>
-    getInitialSelection(termInfo.id, termData.defaultSelections),
+    getInitialSelection(
+      termInfo.id,
+      termData.defaultSelections,
+      presets,
+      termData.getStudentGroup,
+    ),
   );
 
   const [activeSection, setActiveSection] = useState<string>("timetable");
@@ -133,23 +189,29 @@ export function ScheduleHub({
           if (me.studentId && termData.getStudentGroup) {
             const groupInfo = termData.getStudentGroup(me.studentId);
             setAssignedGroup(groupInfo);
-            // If user never had custom localStorage selection, auto-apply student group preset
-            if (groupInfo) {
-              const storageKey = `ihelp_schedule_selection_${termInfo.id}`;
-              const saved =
-                typeof window !== "undefined"
-                  ? localStorage.getItem(storageKey) ||
-                    localStorage.getItem("ihelp_y1s2_schedule_selection_v3")
-                  : null;
-              if (!saved) {
-                const matchedPreset = presets.find(
-                  (p) => p.id === groupInfo.presetId,
-                );
-                if (matchedPreset) {
-                  setSelection(matchedPreset.selections);
+
+            // If no active student ID was already set from URL, auto-set viewer's ID and group
+            setActiveStudentId((prev) => {
+              if (prev) return prev;
+              if (groupInfo) {
+                setActiveGroup(groupInfo);
+                const storageKey = `ihelp_schedule_selection_${termInfo.id}`;
+                const saved =
+                  typeof window !== "undefined"
+                    ? localStorage.getItem(storageKey) ||
+                      localStorage.getItem("ihelp_y1s2_schedule_selection_v3")
+                    : null;
+                if (!saved) {
+                  const matchedPreset = presets.find(
+                    (p) => p.id === groupInfo.presetId,
+                  );
+                  if (matchedPreset) {
+                    setSelection(matchedPreset.selections);
+                  }
                 }
               }
-            }
+              return me.studentId;
+            });
           }
         } else {
           setAuthStatus("unauthenticated");
@@ -174,8 +236,59 @@ export function ScheduleHub({
     }
   }
 
+  function handleApplyStudentId(rawId: string) {
+    const cleanId = rawId.replace(/\D/g, "").trim();
+    if (!cleanId) return;
+
+    setActiveStudentId(cleanId);
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      params.set("id", cleanId);
+      window.history.replaceState(null, "", `?${params.toString()}`);
+    }
+
+    if (termData.getStudentGroup) {
+      const groupInfo = termData.getStudentGroup(cleanId);
+      if (groupInfo) {
+        setActiveGroup(groupInfo);
+        const matchedPreset = presets.find((p) => p.id === groupInfo.presetId);
+        if (matchedPreset) {
+          saveSelection(matchedPreset.selections);
+        }
+      } else {
+        setActiveGroup(null);
+      }
+    }
+  }
+
+  function handleResetStudentId() {
+    setStudentIdInput("");
+    if (viewer.studentId) {
+      handleApplyStudentId(viewer.studentId);
+    } else {
+      setActiveStudentId(null);
+      setActiveGroup(null);
+      if (typeof window !== "undefined") {
+        const params = new URLSearchParams(window.location.search);
+        params.delete("id");
+        window.history.replaceState(
+          null,
+          "",
+          params.toString() ? `?${params.toString()}` : window.location.pathname,
+        );
+      }
+    }
+  }
+
   function handleApplyPreset(preset: SchedulePreset) {
     saveSelection(preset.selections);
+    if (preset.id === "group-1") {
+      setActiveGroup({ group: 1, name: "กลุ่ม 1", presetId: "group-1" });
+    } else if (preset.id === "group-2") {
+      setActiveGroup({ group: 2, name: "กลุ่ม 2", presetId: "group-2" });
+    } else if (preset.id === "group-3") {
+      setActiveGroup({ group: 3, name: "กลุ่ม 3", presetId: "group-3" });
+    }
   }
 
   function isMatchingPreset(preset: SchedulePreset): boolean {
@@ -326,11 +439,7 @@ export function ScheduleHub({
 
             <TopicHeader
               id="timetable"
-              title={
-                locale === "th"
-                  ? `ตารางเรียนประจำสัปดาห์ (${termInfo.semester}/${termInfo.academicYear})`
-                  : `Weekly Timetable (${termInfo.semester}/${termInfo.academicYear})`
-              }
+              title={locale === "th" ? "ตารางเรียน" : "Timetable"}
               aside={
                 <span className="rounded-full bg-primary/10 px-2.5 py-1 text-[11px] font-semibold text-primary">
                   {totalCredits} หน่วยกิต ({courses.length} วิชา)
@@ -338,45 +447,226 @@ export function ScheduleHub({
               }
             />
 
-            {/* Quick Presets Bar */}
-            <div className="flex flex-wrap items-center gap-2 rounded-xl border border-border/50 bg-card/60 p-2.5">
-              <span className="text-xs font-semibold text-muted-foreground mr-1">
-                สูตรตารางล่วงหน้า:
-              </span>
-              {presets.map((preset) => {
-                const isActive = isMatchingPreset(preset);
-                const isStudentGroup = assignedGroup?.presetId === preset.id;
-
-                return (
+            {/* Search Input Box (Course Directory Design) */}
+            <div className="mx-auto w-full max-w-xl">
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  handleApplyStudentId(studentIdInput);
+                }}
+                role="search"
+                className="relative flex items-center shadow-xs rounded-full border border-border/70 bg-card p-1.5 transition-all focus-within:border-primary/50 focus-within:ring-2 focus-within:ring-primary/20"
+              >
+                <Search className="ml-3.5 size-4 text-muted-foreground shrink-0" />
+                <Input
+                  value={studentIdInput}
+                  onChange={(e) => setStudentIdInput(e.target.value)}
+                  placeholder="พิมพ์รหัสนักศึกษา 8 หลักเพื่อดูตารางเรียน (เช่น 69070123)..."
+                  maxLength={10}
+                  className="h-9 border-0 bg-transparent px-3 text-sm focus-visible:ring-0 focus-visible:ring-offset-0"
+                />
+                {studentIdInput && (
                   <button
-                    key={preset.id}
                     type="button"
-                    onClick={() => handleApplyPreset(preset)}
-                    className={`inline-flex items-center gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs transition-all cursor-pointer ${
-                      isActive
-                        ? "border-primary bg-primary text-primary-foreground shadow-2xs font-semibold"
-                        : "border-border/60 bg-muted/40 hover:bg-muted text-foreground"
-                    }`}
+                    onClick={handleResetStudentId}
+                    title="ล้างคำค้นหา"
+                    className="p-1 text-muted-foreground hover:text-foreground mr-1 transition-colors cursor-pointer"
                   >
-                    <span>
-                      {preset.name.split(" ")[0]}{" "}
-                      {preset.name.split(" ")[1] || ""}
-                    </span>
-                    {isStudentGroup && (
-                      <span
-                        className={`inline-flex items-center gap-0.5 rounded-full px-1.5 py-0.2 text-[10px] font-bold ${
-                          isActive
-                            ? "bg-white/20 text-white"
-                            : "bg-primary/15 text-primary"
-                        }`}
-                      >
-                        <Sparkles className="size-2.5" />
-                        กลุ่มคุณ
+                    <X className="size-4" />
+                  </button>
+                )}
+                <Button
+                  type="submit"
+                  size="sm"
+                  className="rounded-full px-5 text-xs font-semibold cursor-pointer shrink-0"
+                >
+                  ค้นหา
+                </Button>
+              </form>
+            </div>
+
+            {/* Active Student Profile Pill & Assigned Sections Table */}
+            {activeStudentId && (
+              <div className="space-y-3">
+                {/* Profile Badge (Clean Banner Style) */}
+                <div className="flex flex-wrap items-center justify-between gap-2.5">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <div className="inline-flex items-center gap-2.5 rounded-full border border-border/70 bg-card py-1.5 pl-1.5 pr-4 shadow-2xs">
+                      <Avatar className="size-8 shrink-0 border border-border/80">
+                        {viewer.studentId === activeStudentId && viewer.avatarUrl ? (
+                          <AvatarImage
+                            src={viewer.avatarUrl}
+                            alt={viewer.fullName || activeStudentId}
+                            className="object-cover"
+                          />
+                        ) : null}
+                        <AvatarFallback className="bg-primary/10 text-xs font-bold text-primary">
+                          {viewer.studentId === activeStudentId
+                            ? viewer.avatarInitial
+                            : activeStudentId.charAt(0)}
+                        </AvatarFallback>
+                      </Avatar>
+
+                      <div className="min-w-0 leading-tight">
+                        <div className="text-[11px] font-semibold text-muted-foreground tabular-nums">
+                          รหัส {activeStudentId}
+                        </div>
+                        <div className="truncate text-xs font-bold text-foreground">
+                          {viewer.studentId === activeStudentId
+                            ? viewer.fullName || viewer.nickname || "ตารางเรียนของคุณ"
+                            : "นักศึกษา IT KMITL"}
+                        </div>
+                      </div>
+                    </div>
+
+                    {activeGroup && (
+                      <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 border border-primary/20 px-3 py-1.5 text-xs font-bold text-primary">
+                        <Sparkles className="size-3" />
+                        {activeGroup.name}
                       </span>
                     )}
-                  </button>
-                );
-              })}
+
+                    {viewer.studentId === activeStudentId && (
+                      <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-2.5 py-1 text-[11px] font-medium text-emerald-600 dark:text-emerald-400">
+                        <span className="size-1.5 rounded-full bg-emerald-500" />
+                        ตารางเรียนของคุณ
+                      </span>
+                    )}
+                  </div>
+
+                  {viewer.studentId && activeStudentId !== viewer.studentId && (
+                    <Button
+                      type="button"
+                      size="xs"
+                      variant="outline"
+                      onClick={() => handleApplyStudentId(viewer.studentId!)}
+                      className="rounded-full text-xs cursor-pointer"
+                    >
+                      กลับไปตารางของฉัน
+                    </Button>
+                  )}
+                </div>
+
+                {/* Assigned Sections Table */}
+                {activeGroup ? (
+                  <div className="overflow-x-auto rounded-xl border border-border/60 bg-card shadow-xs">
+                    <table className="w-full text-left text-xs">
+                      <thead>
+                        <tr className="border-b border-border/60 bg-muted/40 text-xs text-muted-foreground font-semibold">
+                          <th className="py-2.5 px-3.5">หมวดวิชา</th>
+                          <th className="py-2.5 px-3.5">Section แนะนำ</th>
+                          <th className="py-2.5 px-3.5">รายวิชาที่จัดให้</th>
+                          <th className="py-2.5 px-3.5 text-right">สถานะ</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-border/40">
+                        <tr>
+                          <td className="py-2.5 px-3.5 font-semibold text-foreground whitespace-nowrap">
+                            วิชาทฤษฎี (Lecture)
+                          </td>
+                          <td className="py-2.5 px-3.5 whitespace-nowrap">
+                            <span className="rounded-md bg-primary/10 border border-primary/25 px-2 py-0.5 text-xs font-bold text-primary">
+                              Section {activeGroup.group}
+                            </span>
+                          </td>
+                          <td className="py-2.5 px-3.5 text-muted-foreground">
+                            OOP, DSA, PSTAT, BFIT
+                          </td>
+                          <td className="py-2.5 px-3.5 text-right whitespace-nowrap">
+                            <span className="inline-flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-medium">
+                              <CheckCircle2 className="size-3" />
+                              เลือกให้อัตโนมัติแล้ว
+                            </span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="py-2.5 px-3.5 font-semibold text-foreground whitespace-nowrap">
+                            วิชาปฏิบัติ (Lab)
+                          </td>
+                          <td className="py-2.5 px-3.5 whitespace-nowrap">
+                            <span className="rounded-md bg-primary/10 border border-primary/25 px-2 py-0.5 text-xs font-bold text-primary">
+                              Section {activeGroup.group + 3}
+                            </span>
+                          </td>
+                          <td className="py-2.5 px-3.5 text-muted-foreground">
+                            OOP Lab (ศุกร์), DSA Lab (ศุกร์)
+                          </td>
+                          <td className="py-2.5 px-3.5 text-right whitespace-nowrap">
+                            <span className="inline-flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-medium">
+                              <CheckCircle2 className="size-3" />
+                              เลือกให้อัตโนมัติแล้ว
+                            </span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="py-2.5 px-3.5 font-semibold text-foreground whitespace-nowrap">
+                            วิชาศึกษาทั่วไป (GenEd)
+                          </td>
+                          <td className="py-2.5 px-3.5 whitespace-nowrap">
+                            <span className="rounded-md bg-primary/10 border border-primary/25 px-2 py-0.5 text-xs font-bold text-primary">
+                              Sec 60{activeGroup.group} / Sec 92{activeGroup.group}
+                            </span>
+                          </td>
+                          <td className="py-2.5 px-3.5 text-muted-foreground">
+                            Digital Citizen (พุธ), Foundation English 2 (พฤหัสบดี)
+                          </td>
+                          <td className="py-2.5 px-3.5 text-right whitespace-nowrap">
+                            <span className="inline-flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-medium">
+                              <CheckCircle2 className="size-3" />
+                              เลือกให้อัตโนมัติแล้ว
+                            </span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                ) : (
+                  <div className="rounded-xl border border-dashed border-border/70 p-3 text-center text-xs text-muted-foreground">
+                    ไม่พบข้อมูลกลุ่มเรียนอัตโนมัติสำหรับรหัสนี้ (คุณสามารถเลือก Section ได้เองในรายการวิชาด้านล่าง)
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Quick Presets row for comparison */}
+            <div className="flex flex-wrap items-center justify-between gap-2 pt-1 text-xs">
+              <div className="flex flex-wrap items-center gap-1.5">
+                <span className="text-[11px] text-muted-foreground mr-1">
+                  หรือเลือกดูตามกลุ่ม:
+                </span>
+                {presets.map((preset) => {
+                  const isActive = isMatchingPreset(preset);
+                  const isStudentGroup = assignedGroup?.presetId === preset.id;
+
+                  return (
+                    <button
+                      key={preset.id}
+                      type="button"
+                      onClick={() => handleApplyPreset(preset)}
+                      className={`inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-[11px] transition-colors cursor-pointer ${
+                        isActive
+                          ? "border-primary bg-primary text-primary-foreground font-semibold shadow-2xs"
+                          : "border-border/60 bg-card hover:bg-muted text-foreground"
+                      }`}
+                    >
+                      <span>
+                        {preset.name.split(" ")[0]} {preset.name.split(" ")[1] || ""}
+                      </span>
+                      {isStudentGroup && (
+                        <span
+                          className={`inline-flex items-center gap-0.5 rounded-full px-1 py-0.2 text-[9px] font-bold ${
+                            isActive
+                              ? "bg-white/20 text-white"
+                              : "bg-primary/15 text-primary"
+                          }`}
+                        >
+                          กลุ่มคุณ
+                        </span>
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
 
             {conflicts.length > 0 && (

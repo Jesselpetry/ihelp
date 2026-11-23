@@ -34,6 +34,18 @@ export function getStudentScheduleGroup(
   if (studentGroupsData.group3.includes(cleanId)) {
     return { group: 3, name: "กลุ่ม 3", presetId: "group-3" };
   }
+  const num = Number.parseInt(cleanId, 10);
+  if (!Number.isNaN(num)) {
+    if (num >= 69070001 && num <= 69070098) {
+      return { group: 1, name: "กลุ่ม 1", presetId: "group-1" };
+    }
+    if (num >= 69070100 && num <= 69070201) {
+      return { group: 2, name: "กลุ่ม 2", presetId: "group-2" };
+    }
+    if (num >= 69070203 && num <= 69070331) {
+      return { group: 3, name: "กลุ่ม 3", presetId: "group-3" };
+    }
+  }
   return null;
 }
 

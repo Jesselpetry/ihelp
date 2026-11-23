@@ -1,6 +1,6 @@
 "use client";
 
-import { Lock, Sparkles } from "lucide-react";
+import { Lock } from "lucide-react";
 import { CourseWatermark } from "@/components/course-watermark";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { IHELP_GRADIENT_CSS } from "@/lib/courses/course-theme";
@@ -9,16 +9,16 @@ import type { SemesterTermInfo, StudentScheduleGroupInfo } from "@/lib/schedule/
 
 const L = {
   title: {
-    th: "จัดตารางเรียนส่วนบุคคล",
-    en: "Timetable Simulator",
+    th: "ตารางเรียน",
+    en: "Timetable",
   },
   subtitle: {
-    th: "ระบบจำลองและวางแผนตารางเรียนส่วนบุคคล ออกแบบสูตรตื่นสาย เลี่ยงตื่นเช้า และตรวจการชนของคาบเรียนและวันสอบ",
-    en: "Personalized schedule planner, optimize for late mornings, avoid 9 AM wakeups, and check class & exam clashes",
+    th: "ตารางเรียนและข้อมูลรายวิชา ตรวจสอบ Section เวลาเรียน ห้องเรียน และตรวจการชนของคาบเรียนและวันสอบ",
+    en: "Class schedules, sections, study hours, classroom venues, and timetable clash detection",
   },
   signedOutHint: {
-    th: "เข้าสู่ระบบด้วย @kmitl.ac.th เพื่อบันทึกตารางเรียนส่วนตัว",
-    en: "Sign in with @kmitl.ac.th to save your personal timetable",
+    th: "เข้าสู่ระบบด้วย @kmitl.ac.th เพื่อดูตารางเรียนของคุณโดยอัตโนมัติ",
+    en: "Sign in with @kmitl.ac.th to view your schedule automatically",
   },
 } satisfies Record<string, LText>;
 
@@ -29,7 +29,6 @@ export function ScheduleBanner({
   avatarUrl,
   avatarInitial,
   isSignedIn,
-  assignedGroup,
   termInfo,
 }: {
   viewerId: string | null;
@@ -99,7 +98,7 @@ export function ScheduleBanner({
                 </Avatar>
 
                 <div className="min-w-0 leading-tight">
-                  <div className="font-mono text-[11px] font-semibold text-slate-500 tabular-nums">
+                  <div className="text-[11px] font-semibold text-slate-500 tabular-nums">
                     {viewerId}
                   </div>
                   <div className="truncate text-xs font-bold text-slate-900">
@@ -107,13 +106,6 @@ export function ScheduleBanner({
                   </div>
                 </div>
               </div>
-
-              {assignedGroup && (
-                <div className="inline-flex items-center gap-1.5 rounded-full border border-amber-300/40 bg-amber-400/20 px-3 py-1 text-xs font-bold text-white shadow-xs backdrop-blur-xs">
-                  <Sparkles className="size-3 text-amber-200" />
-                  <span>{assignedGroup.name} (เซกแนะนำตามรหัส)</span>
-                </div>
-              )}
             </>
           ) : (
             <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/12 px-3.5 py-1.5 text-xs text-white/90 backdrop-blur-xs">

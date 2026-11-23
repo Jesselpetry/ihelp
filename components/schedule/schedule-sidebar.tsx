@@ -8,7 +8,7 @@ import { useLocale, t, type LText } from "@/lib/i18n";
 import type { TimetableCourse } from "@/lib/schedule/types";
 
 const L = {
-  timetable: { th: "ตารางเรียน (Timetable)", en: "Weekly Timetable" },
+  timetable: { th: "ตารางเรียน", en: "Timetable" },
   facultyHeading: { th: "วิชาบังคับคณะ (4 วิชา)", en: "Faculty Courses (4)" },
   genedHeading: { th: "วิชาศึกษาทั่วไป (2 วิชา)", en: "GenEd Electives (2)" },
   export: { th: "ส่งออกข้อมูล (Export)", en: "Export Data" },

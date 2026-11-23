@@ -370,7 +370,7 @@ export function ScheduleGrid({ slots }: { slots: ScheduledClassSlot[] }) {
                   <div className="flex items-center justify-between gap-1">
                     <div className="flex items-center gap-1.5">
                       <CourseCodeBadge code={s.abbr || s.courseCode} />
-                      <span className="font-mono text-xs text-muted-foreground">
+                      <span className="text-xs text-muted-foreground">
                         {s.courseCode}
                       </span>
                     </div>

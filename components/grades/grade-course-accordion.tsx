@@ -184,8 +184,14 @@ export function GradeCourseAccordion({
         </button>
       </h3>
 
-      {isOpen && (
-        <div id={panelId} className="border-t border-border/50">
+      {/* Accordion Content with seamless CSS Grid slide down/up animation */}
+      <div
+        className={`grid transition-[grid-template-rows] duration-250 ease-in-out ${
+          isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+        }`}
+      >
+        <div className="overflow-hidden">
+          <div id={panelId} className="border-t border-border/50">
           {/* Single compact action bar */}
           <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border/40 bg-muted/15 px-3.5 py-2 sm:px-4">
             <div className="flex flex-wrap items-center gap-1.5">
@@ -313,7 +319,8 @@ export function GradeCourseAccordion({
             ) : null}
           </div>
         </div>
-      )}
+      </div>
+    </div>
     </article>
   );
 }

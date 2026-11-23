@@ -185,9 +185,14 @@ export function ScoreAccordionCard({
         </div>
       </button>
 
-      {/* Expanded content */}
-      {isOpen && (
-        <div className="border-t border-border/40 px-3.5 py-3.5 sm:px-5 sm:py-4 bg-card/40 space-y-3.5">
+      {/* Expanded content with seamless CSS Grid slide down/up animation */}
+      <div
+        className={`grid transition-[grid-template-rows] duration-250 ease-in-out ${
+          isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+        }`}
+      >
+        <div className="overflow-hidden">
+          <div className="border-t border-border/40 px-3.5 py-3.5 sm:px-5 sm:py-4 bg-card/40 space-y-3.5">
           {/* View mode switcher */}
           <div className="flex flex-wrap items-center justify-between gap-2">
             <div
@@ -290,7 +295,8 @@ export function ScoreAccordionCard({
             </div>
           )}
         </div>
-      )}
+      </div>
     </div>
-  );
+  </div>
+);
 }

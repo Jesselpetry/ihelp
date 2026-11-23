@@ -27,17 +27,27 @@ function SectionSelectTable({
       </div>
 
       <div className="overflow-x-auto rounded-xl border border-border/60 bg-card">
-        <table className="w-full text-left text-xs">
+        <table className="w-full min-w-[880px] table-fixed text-left text-xs">
+          <colgroup>
+            <col className="w-12" />
+            <col className="w-24" />
+            <col className="w-20" />
+            <col className="w-32" />
+            <col className="w-24" />
+            <col className="w-20" />
+            <col className="w-48" />
+            <col className="min-w-[280px]" />
+          </colgroup>
           <thead>
             <tr className="border-b border-border/60 bg-muted/40 text-xs text-muted-foreground font-semibold">
-              <th className="w-12 py-2.5 px-3 text-center">เลือก</th>
-              <th className="py-2.5 px-3">Section</th>
-              <th className="py-2.5 px-3">วัน</th>
-              <th className="py-2.5 px-3">เวลา</th>
-              <th className="py-2.5 px-3">ห้องเรียน</th>
-              <th className="py-2.5 px-3">อาคาร</th>
-              <th className="py-2.5 px-3">อาจารย์ผู้สอน</th>
-              <th className="py-2.5 px-3">เงื่อนไข / หมายเหตุ</th>
+              <th className="w-12 py-3 px-3.5 text-center">เลือก</th>
+              <th className="w-24 py-3 px-3.5">Section</th>
+              <th className="w-20 py-3 px-3.5">วัน</th>
+              <th className="w-32 py-3 px-3.5">เวลา</th>
+              <th className="w-24 py-3 px-3.5">ห้องเรียน</th>
+              <th className="w-20 py-3 px-3.5">อาคาร</th>
+              <th className="w-48 py-3 px-3.5">อาจารย์ผู้สอน</th>
+              <th className="py-3 px-3.5">เงื่อนไข / หมายเหตุ</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-border/40">
@@ -54,7 +64,7 @@ function SectionSelectTable({
                       : "hover:bg-muted/30 text-foreground"
                   }`}
                 >
-                  <td className="py-2.5 px-3 text-center align-middle">
+                  <td className="py-3 px-3.5 text-center align-middle">
                     <div
                       className={`mx-auto flex size-4 items-center justify-center rounded-full border transition-all ${
                         isSelected
@@ -66,36 +76,36 @@ function SectionSelectTable({
                     </div>
                   </td>
 
-                  <td className="py-2.5 px-3 font-bold whitespace-nowrap">
+                  <td className="py-3 px-3.5 font-bold whitespace-nowrap">
                     Section {sec.section}
                   </td>
 
-                  <td className="py-2.5 px-3 whitespace-nowrap">
+                  <td className="py-3 px-3.5 whitespace-nowrap">
                     <span className="rounded-md bg-muted px-1.5 py-0.5 text-xs font-medium text-foreground">
                       วัน{sec.timeSlot.day}
                     </span>
                   </td>
 
-                  <td className="py-2.5 px-3 whitespace-nowrap">
+                  <td className="py-3 px-3.5 whitespace-nowrap">
                     <div className="flex items-center gap-1.5">
                       <Clock className="size-3 text-primary" />
                       <span>{sec.timeSlot.timeStr}</span>
                     </div>
                   </td>
 
-                  <td className="py-2.5 px-3 whitespace-nowrap">
+                  <td className="py-3 px-3.5 whitespace-nowrap">
                     <div className="flex items-center gap-1.5">
                       <MapPin className="size-3 text-primary" />
                       <span>{sec.timeSlot.room}</span>
                     </div>
                   </td>
 
-                  <td className="py-2.5 px-3 whitespace-nowrap text-muted-foreground">
+                  <td className="py-3 px-3.5 whitespace-nowrap text-muted-foreground">
                     {sec.timeSlot.building}
                   </td>
 
-                  <td className="py-2.5 px-3 whitespace-nowrap">
-                    <div className="space-y-0.5 max-w-[220px]">
+                  <td className="py-3 px-3.5">
+                    <div className="space-y-0.5 truncate">
                       {sec.instructors.slice(0, 2).map((inst, i) => (
                         <div key={i} className="flex items-center gap-1 text-xs truncate">
                           <User className="size-2.5 shrink-0 text-primary" />
@@ -105,7 +115,7 @@ function SectionSelectTable({
                     </div>
                   </td>
 
-                  <td className="py-2.5 px-3 text-xs text-foreground/80">
+                  <td className="py-3 px-3.5 text-xs text-foreground/80 leading-relaxed">
                     {sec.condition}
                   </td>
                 </tr>
@@ -143,7 +153,7 @@ export function ScheduleCourseAccordion({
       id={`course-${course.code}`}
       className={`${SURFACE} border border-border/40 overflow-hidden transition-all h-auto`}
     >
-      {/* Clean Accordion Header without credits formula or complex summary */}
+      {/* Clean Accordion Header */}
       <button
         type="button"
         onClick={onToggle}
@@ -156,15 +166,8 @@ export function ScheduleCourseAccordion({
               <span className="text-sm font-bold text-foreground">
                 {course.nameEn}
               </span>
-              <span className="font-mono text-xs text-muted-foreground">
+              <span className="text-xs text-muted-foreground">
                 ({course.code})
-              </span>
-              <span className="inline-flex items-center rounded-md border border-primary/30 bg-primary/10 px-2 py-0.5 text-xs font-semibold text-primary whitespace-nowrap">
-                {course.category}
-              </span>
-              <span className="inline-flex items-center rounded-md border border-primary/30 bg-primary/10 px-2 py-0.5 text-xs font-semibold text-primary whitespace-nowrap">
-                Sec {selectedTheorySec}
-                {course.hasLab && selectedLabSec ? ` / Lab ${selectedLabSec}` : ""}
               </span>
             </div>
             <div className="text-xs text-muted-foreground truncate">
@@ -173,53 +176,66 @@ export function ScheduleCourseAccordion({
           </div>
         </div>
 
-        <ChevronDown
-          className={`size-4 text-muted-foreground transition-transform duration-200 shrink-0 ${
-            isOpen ? "rotate-180" : ""
-          }`}
-        />
+        {/* Section Badge aligned to the right, beside the toggle chevron */}
+        <div className="flex items-center gap-2.5 shrink-0">
+          <span className="inline-flex items-center rounded-lg border border-primary/30 bg-primary/10 px-2.5 py-1 text-xs font-bold text-primary whitespace-nowrap">
+            Sec {selectedTheorySec}
+            {course.hasLab && selectedLabSec ? ` / Lab ${selectedLabSec}` : ""}
+          </span>
+          <ChevronDown
+            className={`size-4 text-muted-foreground transition-transform duration-200 shrink-0 ${
+              isOpen ? "rotate-180" : ""
+            }`}
+          />
+        </div>
       </button>
 
-      {/* Accordion Content */}
-      {isOpen && (
-        <div className="border-t border-border/40 bg-muted/15 p-3.5 space-y-4 sm:p-4">
-          {/* Exam Dates Info */}
-          <div className="flex flex-wrap gap-2 text-xs">
-            <div className="inline-flex items-center gap-1.5 rounded-xl border border-border/50 bg-card px-2.5 py-1 text-muted-foreground">
-              <Calendar className="size-3 text-primary" />
-              <span>
-                <strong>Midterm:</strong> {course.midterm.date}{" "}
-                {course.midterm.time !== "-" ? `(${course.midterm.time})` : ""}
-              </span>
+      {/* Accordion Content with smooth CSS Grid slide down/up animation */}
+      <div
+        className={`grid transition-[grid-template-rows] duration-250 ease-in-out ${
+          isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+        }`}
+      >
+        <div className="overflow-hidden">
+          <div className="border-t border-border/40 bg-muted/15 p-3.5 space-y-4 sm:p-4">
+            {/* Exam Dates Info */}
+            <div className="flex flex-wrap gap-2 text-xs">
+              <div className="inline-flex items-center gap-1.5 rounded-xl border border-border/50 bg-card px-2.5 py-1 text-muted-foreground">
+                <Calendar className="size-3 text-primary" />
+                <span>
+                  <strong>Midterm:</strong> {course.midterm.date}{" "}
+                  {course.midterm.time !== "-" ? `(${course.midterm.time})` : ""}
+                </span>
+              </div>
+              <div className="inline-flex items-center gap-1.5 rounded-xl border border-border/50 bg-card px-2.5 py-1 text-muted-foreground">
+                <Calendar className="size-3 text-primary" />
+                <span>
+                  <strong>Final:</strong> {course.final.date}{" "}
+                  {course.final.time !== "-" ? `(${course.final.time})` : ""}
+                </span>
+              </div>
             </div>
-            <div className="inline-flex items-center gap-1.5 rounded-xl border border-border/50 bg-card px-2.5 py-1 text-muted-foreground">
-              <Calendar className="size-3 text-primary" />
-              <span>
-                <strong>Final:</strong> {course.final.date}{" "}
-                {course.final.time !== "-" ? `(${course.final.time})` : ""}
-              </span>
-            </div>
-          </div>
 
-          {/* Theory Section Table */}
-          <SectionSelectTable
-            title="กลุ่มเรียนทฤษฎี (Lecture)"
-            sections={theorySections}
-            selectedSec={selectedTheorySec}
-            onSelectSec={onSelectTheorySec}
-          />
-
-          {/* Lab Section Table (if course has lab) */}
-          {course.hasLab && labSections.length > 0 && onSelectLabSec && (
+            {/* Theory Section Table */}
             <SectionSelectTable
-              title="กลุ่มเรียนปฏิบัติ (Lab)"
-              sections={labSections}
-              selectedSec={selectedLabSec ?? labSections[0].section}
-              onSelectSec={onSelectLabSec}
+              title="กลุ่มเรียนทฤษฎี (Lecture)"
+              sections={theorySections}
+              selectedSec={selectedTheorySec}
+              onSelectSec={onSelectTheorySec}
             />
-          )}
+
+            {/* Lab Section Table (if course has lab) */}
+            {course.hasLab && labSections.length > 0 && onSelectLabSec && (
+              <SectionSelectTable
+                title="กลุ่มเรียนปฏิบัติ (Lab)"
+                sections={labSections}
+                selectedSec={selectedLabSec ?? labSections[0].section}
+                onSelectSec={onSelectLabSec}
+              />
+            )}
+          </div>
         </div>
-      )}
+      </div>
     </div>
   );
 }

@@ -3,7 +3,7 @@ import { Navbar } from "@/components/navbar";
 import { ScheduleHub } from "@/components/schedule/schedule-hub";
 import { SITE, absoluteUrl } from "@/lib/site";
 
-const TITLE = "จัดตารางเรียนล่วงหน้า 2/2569";
+const TITLE = "ตารางเรียน";
 const DESCRIPTION =
   "ระบบจำลองและวางแผนตารางเรียนส่วนบุคคล เลือก Section จำลองการตื่นสาย เลี่ยงตื่นเช้า และตรวจการชนของคาบเรียนและวันสอบ IT KMITL ชั้นปีที่ 1 ภาคเรียนที่ 2";
 
