@@ -18,6 +18,7 @@ const STATIC_ROUTES: { path: string; priority: number; changeFrequency: Entry["c
   { path: "/make/submission", priority: 0.6, changeFrequency: "monthly" },
   { path: "/make/reflection", priority: 0.6, changeFrequency: "monthly" },
   { path: "/version", priority: 0.3, changeFrequency: "weekly" },
+  { path: "/docs", priority: 0.5, changeFrequency: "weekly" },
 ];
 
 /**
