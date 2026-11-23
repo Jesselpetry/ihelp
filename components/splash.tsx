@@ -10,7 +10,7 @@ const SEEN_KEY = "ihelp-splash-seen";
 // Shown once per browser session, only on a full page load.
 //
 // The typing is pure CSS and counts characters, so it is tied to the length of
-// the wordmark — 7 for "<ihelp>" — in three places that SITE.wordmark cannot
+// the wordmark — 7 for "<i>Help" — in three places that SITE.wordmark cannot
 // feed: `steps(7,end)` and `w-[7ch]` below (Tailwind reads class names from
 // source text, so a number interpolated at runtime would never become a class)
 // and `to { width: 7ch }` in @keyframes ihelp-typing in app/globals.css. A

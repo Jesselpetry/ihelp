@@ -29,7 +29,7 @@ export async function generateMetadata({
     openGraph: {
       type: "website",
       url: absoluteUrl(canonical),
-      title: `${title} · ${SITE.shortName}`,
+      title: `${title} · ${SITE.name}`,
       description,
       images: [
         {
@@ -42,7 +42,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: `${title} · ${SITE.shortName}`,
+      title: `${title} · ${SITE.name}`,
       description,
       images: [SITE.og.library],
     },

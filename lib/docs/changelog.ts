@@ -70,6 +70,14 @@ export interface EvolutionMilestone {
  */
 export const MAJOR_EVOLUTION_MILESTONES: EvolutionMilestone[] = [
   {
+    version: "v1.4.0",
+    highlight: true,
+    summary: {
+      th: "Brand Identity Overhaul, สถาปัตยกรรมเอกสาร data/ และ scripts/, ระบบตรวจสอบตารางเรียนแบบไดนามิก (Multi-Term Schedule Audit), และแนวทางมาตรฐานสำหรับ AI Agent",
+      en: "Brand Identity Overhaul, scripts/ & data/ architecture, Multi-Term Schedule Audit, and AI Agent Standardization Guidelines",
+    },
+  },
+  {
     version: "v0.1.x",
     summary: {
       th: "จุดเริ่มต้น PSCP Learning-Log Maker & AI Guidelines",
@@ -143,6 +151,14 @@ export const MAJOR_EVOLUTION_MILESTONES: EvolutionMilestone[] = [
     },
   },
   {
+    version: "v1.4.0",
+    highlight: true,
+    summary: {
+      th: "Brand Identity Unification & Zero-Friction Entry: ปรับมาตรฐานอัตลักษณ์แบรนด์ <i>Help และเครื่องหมาย < > ครอบเฉพาะตัว i, ถอดป๊อปอัปต้อนรับ/ข้อกำหนดตอนเข้าเว็บออกทั้งหมด, เพิ่ม Brand Components Library (@/components/brand), จัดระเบียบ Metadata ป้องกันชื่อซ้ำซ้อน และวางรากฐาน Multi-Term Dynamic Schedule Registry",
+      en: "Brand Identity Unification & Zero-Friction Entry: Unified <i>Help code syntax branding with angle brackets enclosing letter i, removed entry modal popups, added brand components library, standardized metadata, and built multi-term dynamic schedule registry",
+    },
+  },
+  {
     version: "v1.3.0",
     highlight: true,
     summary: {
@@ -156,6 +172,9 @@ export const MAJOR_EVOLUTION_MILESTONES: EvolutionMilestone[] = [
  * คืนค่าหมุดหมายวิวัฒนาการหลัก (Major Evolution Milestone) ที่ตรงกับเลขเวอร์ชัน
  */
 export function getEvolutionMilestone(version: string): EvolutionMilestone | null {
+  if (version === "1.4.0" || version.startsWith("1.4.")) {
+    return MAJOR_EVOLUTION_MILESTONES.find((m) => m.version === "v1.4.0") ?? null;
+  }
   if (version === "1.3.0" || version.startsWith("1.3.")) {
     return MAJOR_EVOLUTION_MILESTONES.find((m) => m.version === "v1.3.0") ?? null;
   }
@@ -194,6 +213,66 @@ export function getEvolutionMilestone(version: string): EvolutionMilestone | nul
 
 // Mirrors CHANGELOG.md at the repo root — keep both in sync when releasing.
 export const CHANGELOG: VersionEntry[] = [
+  {
+    version: "1.4.0",
+    date: "2026-11-23",
+    contributors: [
+      CONTRIBUTORS.chatan,
+    ],
+    changes: [
+      {
+        kind: "added",
+        text: {
+          th: "จัดทำแผนผังนำทางสถาปัตยกรรมข้อมูล data/ และ 6 แนวทางมาตรฐานสำหรับ AI Agent (data/README.md) (โดย @Jesselpetry)",
+          en: "Data architecture navigation map and 6 AI Agent Standardization Guidelines in data/README.md (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "จัดทำคู่มือและสารบัญสคริปต์ทั้งระบบ 23 สคริปต์ พร้อม Pipeline การทำงาน (scripts/README.md) (โดย @Jesselpetry)",
+          en: "Comprehensive scripts directory reference for all 23 scripts and build pipelines in scripts/README.md (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "ยกระดับระบบอัตลักษณ์แบรนด์ <i>Help: คอมโพเนนต์ <Wordmark />, Brand Banner, Brand Badge และถอดโมดัลเก่าที่ซ้ำซ้อน (โดย @Jesselpetry)",
+          en: "Brand identity overhaul: unified <Wordmark /> component, Brand Banner, Brand Badge, and deprecated modal pruning (by @Jesselpetry)",
+        },
+      },
+    ],
+  },
+  {
+    version: "1.3.1",
+    date: "2026-11-23",
+    contributors: [
+      CONTRIBUTORS.chatan,
+    ],
+    changes: [
+      {
+        kind: "added",
+        text: {
+          th: "สถาปัตยกรรมตารางเรียนแบบ Multi-term Dynamic Registry (lib/schedule/registry.ts) สลับภาคเรียนแบบ White-label พร้อมชุดคำสั่งตรวจสอบข้อมูลอัตโนมัติ bun run schedule:audit และคู่มือการดูแลส่งต่อระบบ docs/SCHEDULE_DATA_GUIDE.md (โดย @Jesselpetry)",
+          en: "Multi-term Dynamic Registry for timetables (lib/schedule/registry.ts) with white-label semester switching, automated audit suite (bun run schedule:audit), and maintainer guide docs/SCHEDULE_DATA_GUIDE.md (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "added",
+        text: {
+          th: "บรรจุชุดข้อมูลวัน-เวลาเรียนจริง 118 คาบเรียนตลอดเทอม 2/2569 (data/schedule/y1s2-meeting-dates.json, lib/schedule/semester-dates.ts) และมาตรฐานชื่อย่อรายวิชาทางการ (Course Abbreviations) (โดย @Jesselpetry)",
+          en: "Enriched with 118 official class meeting dates for semester 2/2569 and canonical course identity abbreviations (by @Jesselpetry)",
+        },
+      },
+      {
+        kind: "changed",
+        text: {
+          th: "ปรับฟอนต์ตารางและส่วนหัวทั้งหมดเป็น IBM Plex Sans Thai สม่ำเสมอ นำ font-mono ออก และจัดขนาด Badge กลุ่มเรียนให้เท่ากันสม่ำเสมอ (โดย @Jesselpetry)",
+          en: "Standardized all timetable fonts to IBM Plex Sans Thai, removed font-mono from headers, and balanced category/section badges to equal sizing (by @Jesselpetry)",
+        },
+      },
+    ],
+  },
   {
     version: "1.3.0",
     date: "2026-11-23",

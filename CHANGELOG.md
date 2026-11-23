@@ -14,12 +14,48 @@
 
 ## [Unreleased]
 
+---
+
+## [1.4.0] - 23 พฤศจิกายน 2569
+
+> **วิวัฒนาการหลัก (v1.4.0):** Brand Identity Overhaul, สถาปัตยกรรมเอกสาร `data/` และ `scripts/`, ระบบแผนผังนำทางข้อมูล พร้อม 6 แนวทางมาตรฐานสำหรับ AI Agent (AI Standardization Guidelines)
+
+**ผู้ร่วมพัฒนา:** Chatan Petry ([@Jesselpetry](https://github.com/Jesselpetry), IG: [@chatann_](https://instagram.com/chatann_))
+
+### เพิ่ม
+
+- **จัดทำแผนผังนำทางสถาปัตยกรรมข้อมูลและมาตรฐานสำหรับ AI Agent (`data/README.md`) (โดย @Jesselpetry)** —
+  1. จัดทำแผนผังนำทาง (Navigation Map) ระบุเส้นทางและหน้าที่ของข้อมูลทุกส่วนใน `data/` (`courses/`, `schedule/`, `exams/`, `it-kmitl/`, `en-kmitl/`, `pscp/`, `ai-guidelines/`)
+  2. วิเคราะห์และอธิบายเหตุผลเชิงสถาปัตยกรรมของคลังโจทย์ PSCP และการแยกขอบเขต `DOC_ROOTS` ของคลังสื่อ เพื่อป้องกันข้อผิดพลาด `orphan-doc`
+  3. ชี้แจงมาตรฐานความปลอดภัยและการแยก Database Schema ระหว่าง `ihelp` และ `itgg_2026` ใน Supabase อย่างชัดเจน
+  4. กำหนด 6 กฎเหล็กสำหรับ AI Agent ในการบันทึกและจัดการข้อมูล (Single Source of Truth, Standard Course Codes, kebab-case, Client Isolation, Schema Boundaries, Academic Integrity)
+
+- **จัดทำคู่มือและสารบัญสคริปต์ทั้งระบบ (`scripts/README.md`) (โดย @Jesselpetry)** —
+  1. บันทึกรายละเอียดการทำงานของสคริปต์ทั้ง 23 ไฟล์ใน `scripts/` ครอบคลุมคำสั่งรัน, Input, Output, และบทบาทในระบบ
+  2. สรุปลำดับขั้นตอนของ 3 Pipeline สำคัญ: Media Library Pipeline (`library:build`), PSCP Registry Pipeline (`pscp:build`), และ Prebuild / Verification Quality Gates
+
+- **ยกระดับระบบอัตลักษณ์แบรนด์ `<i>Help` และส่วนประกอบใหม่ (โดย @Jesselpetry)** —
+  1. ปรับปรุงคอมโพเนนต์ `<Wordmark />` แบบมาตรฐานที่แสดงผล `<span className="font-semibold italic">i</span>` เสมอ
+  2. เพิ่ม Brand Banner (`brand-banner.tsx`) และ Brand Badge (`brand-badge.tsx`) สำหรับแสดงผลแบรนด์และลิงก์ทางการอย่างเป็นเอกภาพ
+  3. ถอดคอมโพเนนต์ป๊อปอัปเก่าที่ซ้ำซ้อน (`disclaimer-modal.tsx`, `welcome-choice-modal.tsx`) เพื่อลด bundle size
+  4. ปรับปรุงคู่มือมาตรฐานแบรนด์และสถาปัตยกรรมอัตลักษณ์ [`docs/BRANDING.md`](./docs/BRANDING.md)
+
+---
+
+## [1.3.1] - 23 พฤศจิกายน 2569
+
+> **วิวัฒนาการหลัก (v1.3.1):** Multi-Term Dynamic Registry, Automated Schedule Audit Suite, Master Course Identity Standards & Schedule Data Maintenance SOP.
+
+**ผู้ร่วมพัฒนา:** Chatan Petry ([@Jesselpetry](https://github.com/Jesselpetry), IG: [@chatann_](https://instagram.com/chatann_))
+
 ### เพิ่ม
 
 - **สถาปัตยกรรมข้อมูลตารางเรียนแบบไดนามิกและการตรวจสอบอัตโนมัติ (Multi-term Dynamic Registry & Schedule Audit) (โดย @Jesselpetry)** —
   1. สร้าง **Term Registry** (`lib/schedule/registry.ts`) และ Interface `SemesterTermInfo` / `TermScheduleData` รองรับการสลับภาคการศึกษาแบบไดนามิก (White-label) เพื่อให้ง่ายต่อการขึ้นชั้นปี 2 เทอม 1 หรือส่งต่อระบบให้นักศึกษารุ่นถัดไปใช้งานต่อได้ทันที
   2. สร้างชุดคำสั่งตรวจสอบข้อมูลอัตโนมัติ `bun run schedule:audit` (`scripts/audit-schedule.ts`) ตรวจสอบความถูกต้องของข้อมูลมากกว่า 440 รายการ ครอบคลุมความถูกต้องของรหัสวิชา, คาบเวลา, ห้องเรียน, ที่นั่ง, ตารางสอบ, วันที่เรียนจริง 118 คาบ, และโควตารหัสนักศึกษา 213 รายการ
-  3. จัดทำเอกสารคู่มือการจัดการข้อมูลตารางเรียนและการส่งต่อระบบอย่างเป็นทางการ [`docs/SCHEDULE_DATA_GUIDE.md`](./docs/SCHEDULE_DATA_GUIDE.md)
+  3. เพิ่มชุดข้อมูลวันที่เรียนจริงตลอดภาคการศึกษา 2/2569 ครบทั้ง 118 คาบเรียน (`data/schedule/y1s2-meeting-dates.json`, `lib/schedule/semester-dates.ts`) พร้อม Helper ในการสืบค้นรายสัปดาห์
+  4. กำหนดมาตรฐานอัตลักษณ์รายวิชาและรหัสวิชาย่อทางการ (Course Abbreviations) ใน `lib/courses/catalog.ts` และ `data/courses/courses-master.json` พร้อมเอกสารมาตรฐาน `lib/courses/README.md`
+  5. จัดทำเอกสารคู่มือการจัดการข้อมูลตารางเรียนและการส่งต่อระบบอย่างเป็นทางการ [`docs/SCHEDULE_DATA_GUIDE.md`](./docs/SCHEDULE_DATA_GUIDE.md)
 
 ### ปรับปรุง
 

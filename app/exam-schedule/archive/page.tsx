@@ -12,7 +12,7 @@ import {
 import { currentStudentId } from "@/lib/auth/guards";
 import { SITE, absoluteUrl } from "@/lib/site";
 
-const TITLE = `ตารางสอบย้อนหลัง (1/2569) IT KMITL · ${SITE.name}`;
+const TITLE = "ตารางสอบย้อนหลัง (1/2569) IT KMITL";
 const DESCRIPTION =
   "คลังข้อมูลย้อนหลังตารางสอบปลายภาคและผังที่นั่งสอบ คณะเทคโนโลยีสารสนเทศ สจล. ประจำภาคเรียนที่ 1/2569";
 
@@ -24,20 +24,20 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: absoluteUrl("/exam-schedule/archive"),
-    title: TITLE,
+    title: `${TITLE} · ${SITE.name}`,
     description: DESCRIPTION,
     images: [
       {
         url: SITE.og.examSchedule,
         width: SITE.og.width,
         height: SITE.og.height,
-        alt: TITLE,
+        alt: `${TITLE} · ${SITE.name}`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: TITLE,
+    title: `${TITLE} · ${SITE.name}`,
     description: DESCRIPTION,
     images: [SITE.og.examSchedule],
   },

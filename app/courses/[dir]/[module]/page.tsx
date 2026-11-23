@@ -165,7 +165,7 @@ export async function generateMetadata({
     openGraph: {
       type: "website",
       url: absoluteUrl(canonical),
-      title: `${pageTitle} · ${SITE.shortName}`,
+      title: `${pageTitle} · ${SITE.name}`,
       description,
       images: [
         {
@@ -178,7 +178,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: `${pageTitle} · ${SITE.shortName}`,
+      title: `${pageTitle} · ${SITE.name}`,
       description,
       images: [ogImage],
     },

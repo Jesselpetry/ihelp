@@ -1,27 +1,42 @@
 import { SITE } from "@/lib/site";
 
+export interface WordmarkProps {
+  /** If true, renders unformatted string without colored tag markup: `<i>Help` */
+  plain?: boolean;
+  /** If true, renders natural prose text: `iHelp` */
+  asProse?: boolean;
+  /** Custom wrapper class */
+  className?: string;
+  /** Accent color class for `<i>`, defaults to `text-primary` */
+  accentClassName?: string;
+}
+
 /**
- * The wordmark as inline content: the brackets in the primary colour around
- * plain text.
+ * Standard iHelp Wordmark component.
  *
- * It renders no wrapper element on purpose. Every call site already owns the
- * element that sets its font, size and layout (a link in the navbar, a <p> in
- * the disclaimer, the typing span in the splash), so this emits only the three
- * children and each of them keeps the markup it had when it spelled the
- * wordmark out by hand.
+ * Renders the brand logo with the code syntax metaphor:
+ * The angle brackets `<` and `>` enclose ONLY the letter `i` (`<i>`),
+ * highlighted in iHelp Signature Blue (`text-primary`), followed by `Help` in foreground text.
  *
- * `plain` is for the one place that sets it inside a sentence, where the
- * brackets are ordinary text: the heading on the onboarding page.
+ * Font family should be monospace (`font-mono`) and bold.
  */
-export function Wordmark({ plain = false }: { plain?: boolean }) {
+export function Wordmark({
+  plain = false,
+  asProse = false,
+  className = "",
+  accentClassName = "text-primary",
+}: WordmarkProps) {
+  if (asProse) return <>{SITE.wordmark.prose}</>;
   if (plain) return <>{SITE.wordmark.plain}</>;
 
-  const { open, text, close } = SITE.wordmark;
+  const { tagOpen, tagText, tagClose, text } = SITE.wordmark;
+
   return (
-    <>
-      <span className="text-primary">{open}</span>
-      {text}
-      <span className="text-primary">{close}</span>
-    </>
+    <span className={className}>
+      <span className={accentClassName}>{tagOpen}</span>
+      <span className={accentClassName}>{tagText}</span>
+      <span className={accentClassName}>{tagClose}</span>
+      <span>{text}</span>
+    </span>
   );
 }

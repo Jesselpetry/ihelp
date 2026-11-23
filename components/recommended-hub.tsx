@@ -388,7 +388,7 @@ export function RecommendedHub({ data }: { data: RecommendedHubData }) {
         </div>
       </div>
 
-      {/* Clean Exam Day Briefing Banner (iHelp Pink Theme, Solid Badges, 2-Column Textbook Grid) */}
+      {/* Clean Exam Day Briefing Banner (PSCP Pink Theme, Solid Badges, 2-Column Textbook Grid) */}
       <ExamBriefingCard locale={locale} />
 
       {/* GitHub Sync Banner */}

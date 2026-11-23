@@ -44,27 +44,46 @@ function resolveUrl(): string {
 }
 
 export const SITE = {
-  /** Display name: tab titles, `applicationName`, og:title and its alt text. */
+  /**
+   * Display name: tab titles, `applicationName`, og:title and its alt text.
+   * Features the angle-bracket syntax enclosing the letter `i`: `<i>Help`.
+   */
   name: "<i>Help",
-  /** The name as it is typed in running prose and in search keywords. */
-  plainName: "ihelp",
+  /** Canonical prose name for running text, copy, FAQ, chatbot, and announcements. */
+  proseName: "iHelp",
+  /** The name as it is typed in search keywords and running prose. */
+  plainName: "iHelp",
+  /** Technical identifier (all lowercase, no spaces): storage keys, DB schemas, URLs */
+  identifier: "ihelp",
   /**
    * Label under a home-screen icon (iOS `appleWebApp.title`, PWA `short_name`),
    * and how the manifest's full name and the PSCP section's titles begin.
    */
   shortName: "iHelp",
   /**
-   * The wordmark as <Wordmark /> draws it: `open` and `close` take the primary
-   * colour and `text` stays plain, which spells "<ihelp>" on screen.
-   * components/splash.tsx types it one character per animation step, 7 of
-   * them — read the note there before changing its length.
+   * The wordmark specification:
+   * The angle brackets `<` and `>` enclose ONLY the letter `i` (`<i>`),
+   * representing Information Technology (IT) and code syntax, followed by `Help`.
    *
-   * `plain` is the wordmark written as text: descriptions, keywords,
-   * og:site_name and the onboarding heading. It is NOT open + text + close.
-   * The drawn mark closes the bracket at the end, the written one closes the
-   * tag after the i ("<i>Help"), so each is spelled out rather than derived.
+   * In UI rendering (<Wordmark />):
+   * `tagOpen: "<"`, `tagText: "i"`, `tagClose: ">"` render in `text-primary` (#2357A5),
+   * while `text: "Help"` renders in `text-foreground` in `font-mono`.
+   *
+   * Total length is 7 characters ("<", "i", ">", "H", "e", "l", "p"),
+   * matching components/splash.tsx typing steps and keyframe width.
    */
-  wordmark: { open: "<i", text: "help", close: ">", plain: "<i>Help" },
+  wordmark: {
+    tagOpen: "<",
+    tagText: "i",
+    tagClose: ">",
+    tag: "<i>",
+    text: "Help",
+    plain: "<i>Help",
+    prose: "iHelp",
+    // Backwards compatibility aliases
+    open: "<i>",
+    close: "",
+  },
 
   /**
    * Public origin with no trailing slash: metadataBase, og:url, robots, sitemap.
