@@ -82,15 +82,22 @@ export function CourseBookCard({
         {/* ── Instructors / Professors ── */}
         {course.instructors && course.instructors.length > 0 && (
           <div
-            className="mt-1 flex items-center gap-1.5 text-[11px] text-muted-foreground/85"
-            title={course.instructors.join(", ")}
+            className="mt-1 flex min-w-0 items-center gap-1.5 text-[11px] text-muted-foreground/85"
+            title={course.instructors.join(" · ")}
+            aria-label={`${locale === "th" ? "ผู้สอน: " : "Instructors: "}${course.instructors.join(", ")}`}
           >
             {course.instructors.length > 1 ? (
-              <Users className="size-3 shrink-0 text-muted-foreground/60" />
+              <Users
+                className="size-3 shrink-0 text-muted-foreground/60"
+                aria-hidden="true"
+              />
             ) : (
-              <User className="size-3 shrink-0 text-muted-foreground/60" />
+              <User
+                className="size-3 shrink-0 text-muted-foreground/60"
+                aria-hidden="true"
+              />
             )}
-            <span className="line-clamp-1 font-normal">
+            <span className="min-w-0 truncate font-normal">
               {course.instructors.join(" · ")}
             </span>
           </div>

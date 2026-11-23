@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 import {
   Calendar,
   GraduationCap,
-  Library,
   Menu,
   Tag,
   X,
@@ -16,12 +15,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { AccountMenu } from "@/components/account/account-menu";
 import { Wordmark } from "@/components/brand/wordmark";
 
-const NAV_LINKS: { href: string; label: LText; icon: typeof Library }[] = [
-  {
-    href: "/",
-    label: { th: "รายวิชา", en: "Courses" },
-    icon: Library,
-  },
+const NAV_LINKS: { href: string; label: LText; icon: typeof GraduationCap }[] = [
   {
     href: "/grades",
     label: { th: "ผลการเรียน", en: "Grades" },
@@ -101,25 +95,22 @@ export function Navbar() {
           <ThemeToggle />
           <AccountMenu />
         </div>
-
-        {/* Mobile controls & hamburger button */}
         <div className="flex items-center gap-2 md:hidden">
           <ThemeToggle />
+          <AccountMenu />
           <button
-            onClick={() => setIsOpen((prev) => !prev)}
-            aria-label="Toggle navigation menu"
-            aria-expanded={isOpen}
-            className="inline-flex items-center justify-center rounded-lg p-2 text-muted-foreground hover:bg-muted hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 transition-colors"
+            onClick={() => setIsOpen(!isOpen)}
+            className="rounded-lg p-2 text-muted-foreground hover:bg-muted"
+            aria-label="Toggle menu"
           >
-            {isOpen ? <X className="size-6" /> : <Menu className="size-6" />}
+            {isOpen ? <X className="size-5" /> : <Menu className="size-5" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile menu panel */}
       {isOpen && (
-        <div className="mx-auto mt-2 max-w-6xl rounded-3xl border bg-card/95 px-4 py-4 shadow-lg shadow-black/5 backdrop-blur-md dark:shadow-none md:hidden flex flex-col gap-3 animate-in fade-in-0 slide-in-from-top-2 duration-200">
-          <div className="flex flex-col gap-1">
+        <div className="mt-2 rounded-2xl border bg-card/95 p-4 shadow-xl backdrop-blur-md md:hidden animate-in fade-in-0 slide-in-from-top-2 duration-200">
+          <div className="flex flex-col gap-2">
             {NAV_LINKS.map(({ href, label, icon: Icon }) => {
               const active = isActive(pathname, href);
               return (
@@ -128,42 +119,33 @@ export function Navbar() {
                   href={href}
                   onClick={() => setIsOpen(false)}
                   className={
-                    "flex items-center justify-between rounded-lg px-3 py-2.5 text-base font-medium transition-colors " +
+                    "flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm font-medium " +
                     (active
                       ? "bg-primary/10 text-primary"
                       : "text-muted-foreground hover:bg-muted hover:text-foreground")
                   }
                 >
-                  <div className="flex items-center gap-3">
-                    <Icon className="size-5" />
-                    <span>{t(label, locale)}</span>
-                  </div>
+                  <Icon className="size-4" />
+                  <span>{t(label, locale)}</span>
                 </Link>
               );
             })}
-          </div>
-
-          <hr className="border-border" />
-
-          <div className="flex justify-start pt-1">
-            <AccountMenu onNavigate={() => setIsOpen(false)} />
-          </div>
-
-          <div className="flex items-center pt-1">
-            <div className="flex items-center gap-2">
-              <span className="text-xs text-muted-foreground font-medium">
-                {locale === "th" ? "ภาษา" : "Language"}
-              </span>
-              <div className="flex rounded-full border overflow-hidden text-xs font-semibold">
+            <div className="my-2 border-t" />
+            <div className="flex items-center justify-between px-2">
+              <span className="text-xs text-muted-foreground">ภาษา / Language</span>
+              <div className="flex rounded-lg border overflow-hidden text-xs font-medium">
                 {(["th", "en"] as const).map((l) => (
                   <button
                     key={l}
-                    onClick={() => setLocale(l)}
+                    onClick={() => {
+                      setLocale(l);
+                      setIsOpen(false);
+                    }}
                     className={
-                      "px-3 py-1.5 transition-colors " +
+                      "px-2.5 py-1 transition-colors " +
                       (locale === l
                         ? "bg-primary text-primary-foreground"
-                        : "bg-card text-muted-foreground hover:text-foreground")
+                        : "bg-card text-muted-foreground")
                     }
                   >
                     {l.toUpperCase()}
