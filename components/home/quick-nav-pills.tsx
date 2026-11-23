@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import {
-  ChevronRight,
+  ArrowUpRight,
   Compass,
   Calculator,
   CalendarClock,
@@ -36,26 +36,26 @@ export function QuickNavPill({ item }: { item: QuickNavPillItem }) {
   return (
     <Link
       href={item.href}
-      className="group relative flex items-center justify-between gap-3 rounded-full border border-border/80 bg-card px-3.5 py-2 sm:px-4 sm:py-2.5 shadow-xs transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/40 hover:bg-accent/40 hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 dark:border-white/10 cursor-pointer"
+      className="group relative flex items-center justify-between gap-2.5 rounded-full border border-border/80 bg-card px-3.5 py-2 sm:px-4 sm:py-2.5 shadow-xs transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/40 hover:bg-accent/40 hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 dark:border-white/10 cursor-pointer min-h-[46px]"
     >
-      {/* ── Left: iHelp Blue Icon + Normal Foreground Text ── */}
-      <div className="flex items-center gap-2.5 min-w-0">
+      {/* ── Left: iHelp Blue Icon + Full Text (Wraps naturally to next line if needed) ── */}
+      <div className="flex items-center gap-2.5 min-w-0 flex-1">
         <div className="flex size-7 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary transition-transform duration-200 group-hover:scale-110">
           <Icon className="size-4 text-primary shrink-0" strokeWidth={2.25} />
         </div>
-        <span className="truncate text-xs sm:text-sm font-semibold text-foreground tracking-tight transition-colors group-hover:text-primary">
+        <span className="text-xs sm:text-sm font-semibold text-foreground tracking-tight transition-colors group-hover:text-primary leading-snug break-words">
           {t(item.label, locale)}
         </span>
       </div>
 
-      {/* ── Right: Subtle Chevron Indicator ── */}
-      <div className="flex items-center gap-1.5 shrink-0 text-muted-foreground/40 transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-primary">
+      {/* ── Right: Arrow Up-Right Indicator ── */}
+      <div className="flex items-center gap-1.5 shrink-0 text-muted-foreground/40 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary">
         {item.badge && (
           <span className="hidden sm:inline-block rounded-full bg-muted px-2 py-0.5 font-mono text-[10px] font-medium text-muted-foreground">
             {t(item.badge, locale)}
           </span>
         )}
-        <ChevronRight className="size-3.5" />
+        <ArrowUpRight className="size-4 shrink-0" />
       </div>
     </Link>
   );

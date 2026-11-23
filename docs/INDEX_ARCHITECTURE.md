@@ -62,7 +62,7 @@ app/page.tsx (Server Component Entrypoint with ItemList JSON-LD)
   3. **คลังโจทย์ PSCP Lab** (`/pscp`)
   4. **ผังที่นั่งสอบรายบุคคล** (`/exam-schedule/archive`)
   5. **Developer Docs** (`/docs`)
-- ใช้สไตล์ **Rounded-Full Capsule** ขอบซ้ายเป็นไอคอนสีฟ้าแบรนด์ iHelp (`bg-primary/10 text-primary`) ข้อความสีปกติ และขอบขวาเป็นลูกศรบ่งชี้พร้อมป้ายสถานะ
+- ใช้สไตล์ **Rounded-Full Capsule** ขอบซ้ายเป็นไอคอนสีฟ้าแบรนด์ iHelp (`bg-primary/10 text-primary`) ข้อความแสดงผลเต็มขนาดโดยตัดขึ้นบรรทัดใหม่เมื่อเนื้อหายาว (Zero Truncation) และขอบขวาเป็นลูกศรเฉียงขวาบน (`ArrowUpRight`) พร้อมป้ายสถานะ
 
 ### 3.3 แบดจ์โปรไฟล์นักศึกษา (`components/home/student-profile-capsule.tsx`)
 - **กรณีเข้าสู่ระบบแล้ว (Authenticated)**:
