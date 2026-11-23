@@ -1,19 +1,22 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AlertCircle } from "lucide-react";
+import { AlertCircle, Sparkles } from "lucide-react";
 import type { MeResponse } from "@/app/api/me/route";
 import { TopicHeader } from "@/components/course-hub-shared";
 import { Button } from "@/components/ui/button";
 import { useLocale, t, type LText } from "@/lib/i18n";
-import type { UserScheduleSelection } from "@/lib/schedule/types";
+import type { SchedulePreset, UserScheduleSelection } from "@/lib/schedule/types";
 import {
   DEFAULT_SCHEDULE_SELECTIONS,
   detectScheduleClashes,
   FACULTY_COURSES,
   GENED_COURSES,
   getScheduledSlots,
+  getStudentScheduleGroup,
+  SCHEDULE_PRESETS,
   Y1S2_COURSES,
+  type StudentScheduleGroupInfo,
 } from "@/lib/schedule/y1s2-data";
 import { ScheduleBanner } from "./schedule-banner";
 import { ScheduleCourseAccordion } from "./schedule-course-accordion";
@@ -81,6 +84,8 @@ export function ScheduleHub() {
     avatarUrl: null,
     avatarInitial: "I",
   });
+  const [assignedGroup, setAssignedGroup] =
+    useState<StudentScheduleGroupInfo | null>(null);
 
   // Schedule State: All 6 courses selectable
   const [selection, setSelection] = useState<UserScheduleSelection>(
@@ -109,6 +114,26 @@ export function ScheduleHub() {
               me.initial || (me.studentId ? me.studentId.charAt(0) : "I"),
           });
           setAuthStatus("authenticated");
+
+          if (me.studentId) {
+            const groupInfo = getStudentScheduleGroup(me.studentId);
+            setAssignedGroup(groupInfo);
+            // If user never had custom localStorage selection, auto-apply student group preset
+            if (groupInfo) {
+              const saved =
+                typeof window !== "undefined"
+                  ? localStorage.getItem(STORAGE_KEY)
+                  : null;
+              if (!saved) {
+                const matchedPreset = SCHEDULE_PRESETS.find(
+                  (p) => p.id === groupInfo.presetId,
+                );
+                if (matchedPreset) {
+                  setSelection(matchedPreset.selections);
+                }
+              }
+            }
+          }
         } else {
           setAuthStatus("unauthenticated");
         }
@@ -129,6 +154,20 @@ export function ScheduleHub() {
     } catch {
       // ignore
     }
+  }
+
+  function handleApplyPreset(preset: SchedulePreset) {
+    saveSelection(preset.selections);
+  }
+
+  function isMatchingPreset(preset: SchedulePreset): boolean {
+    for (const [code, sec] of Object.entries(preset.selections.theory)) {
+      if (selection.theory[code] !== sec) return false;
+    }
+    for (const [code, sec] of Object.entries(preset.selections.lab)) {
+      if (selection.lab[code] !== sec) return false;
+    }
+    return true;
   }
 
   function handleSelectTheorySec(courseCode: string, sec: number) {
@@ -226,6 +265,7 @@ export function ScheduleHub() {
         avatarUrl={viewer.avatarUrl}
         avatarInitial={viewer.avatarInitial}
         isSignedIn={authStatus === "authenticated"}
+        assignedGroup={assignedGroup}
       />
 
       <div className="grid gap-5 lg:grid-cols-[268px_minmax(0,1fr)] lg:gap-6">
@@ -250,6 +290,47 @@ export function ScheduleHub() {
                 </span>
               }
             />
+
+            {/* Quick Presets Bar */}
+            <div className="flex flex-wrap items-center gap-2 rounded-xl border border-border/50 bg-card/60 p-2.5">
+              <span className="text-xs font-semibold text-muted-foreground mr-1">
+                สูตรตารางล่วงหน้า:
+              </span>
+              {SCHEDULE_PRESETS.map((preset) => {
+                const isActive = isMatchingPreset(preset);
+                const isStudentGroup = assignedGroup?.presetId === preset.id;
+
+                return (
+                  <button
+                    key={preset.id}
+                    type="button"
+                    onClick={() => handleApplyPreset(preset)}
+                    className={`inline-flex items-center gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs transition-all cursor-pointer ${
+                      isActive
+                        ? "border-primary bg-primary text-primary-foreground shadow-2xs font-semibold"
+                        : "border-border/60 bg-muted/40 hover:bg-muted text-foreground"
+                    }`}
+                  >
+                    <span>
+                      {preset.name.split(" ")[0]}{" "}
+                      {preset.name.split(" ")[1] || ""}
+                    </span>
+                    {isStudentGroup && (
+                      <span
+                        className={`inline-flex items-center gap-0.5 rounded-full px-1.5 py-0.2 text-[10px] font-bold ${
+                          isActive
+                            ? "bg-white/20 text-white"
+                            : "bg-primary/15 text-primary"
+                        }`}
+                      >
+                        <Sparkles className="size-2.5" />
+                        กลุ่มคุณ
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
 
             {conflicts.length > 0 && (
               <div className="flex items-start gap-2.5 rounded-xl border border-destructive/40 bg-destructive/10 p-3 text-xs text-destructive">

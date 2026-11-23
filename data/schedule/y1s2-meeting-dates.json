@@ -1,0 +1,2332 @@
+[
+  {
+    "courseCode": "06016408",
+    "courseNameTh": "การสร้างโปรแกรมเชิงวัตถุ",
+    "courseNameEn": "OBJECT-ORIENTED PROGRAMMING",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 1,
+    "day": "จันทร์",
+    "dateStr": "14 ธันวาคม 2569",
+    "fullDateTh": "จันทร์ 14 ธันวาคม 2569",
+    "isoDate": "2026-12-14",
+    "timeStr": "09:00 - 11:00",
+    "room": "M 22",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "รศ. ดร. รัชนี กุลยานนท์"
+    ],
+    "teachingWeek": 2
+  },
+  {
+    "courseCode": "06016408",
+    "courseNameTh": "การสร้างโปรแกรมเชิงวัตถุ",
+    "courseNameEn": "OBJECT-ORIENTED PROGRAMMING",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 2,
+    "day": "จันทร์",
+    "dateStr": "21 ธันวาคม 2569",
+    "fullDateTh": "จันทร์ 21 ธันวาคม 2569",
+    "isoDate": "2026-12-21",
+    "timeStr": "09:00 - 11:00",
+    "room": "M 22",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "รศ. ดร. รัชนี กุลยานนท์"
+    ],
+    "teachingWeek": 3
+  },
+  {
+    "courseCode": "06016408",
+    "courseNameTh": "การสร้างโปรแกรมเชิงวัตถุ",
+    "courseNameEn": "OBJECT-ORIENTED PROGRAMMING",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 3,
+    "day": "จันทร์",
+    "dateStr": "28 ธันวาคม 2569",
+    "fullDateTh": "จันทร์ 28 ธันวาคม 2569",
+    "isoDate": "2026-12-28",
+    "timeStr": "09:00 - 11:00",
+    "room": "M 22",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "รศ. ดร. รัชนี กุลยานนท์"
+    ],
+    "teachingWeek": 4
+  },
+  {
+    "courseCode": "06016408",
+    "courseNameTh": "การสร้างโปรแกรมเชิงวัตถุ",
+    "courseNameEn": "OBJECT-ORIENTED PROGRAMMING",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 4,
+    "day": "จันทร์",
+    "dateStr": "4 มกราคม 2570",
+    "fullDateTh": "จันทร์ 4 มกราคม 2570",
+    "isoDate": "2027-01-04",
+    "timeStr": "09:00 - 11:00",
+    "room": "M 22",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "รศ. ดร. รัชนี กุลยานนท์"
+    ],
+    "teachingWeek": 5
+  },
+  {
+    "courseCode": "06016408",
+    "courseNameTh": "การสร้างโปรแกรมเชิงวัตถุ",
+    "courseNameEn": "OBJECT-ORIENTED PROGRAMMING",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 5,
+    "day": "จันทร์",
+    "dateStr": "11 มกราคม 2570",
+    "fullDateTh": "จันทร์ 11 มกราคม 2570",
+    "isoDate": "2027-01-11",
+    "timeStr": "09:00 - 11:00",
+    "room": "M 22",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "รศ. ดร. รัชนี กุลยานนท์"
+    ],
+    "teachingWeek": 6
+  },
+  {
+    "courseCode": "06016408",
+    "courseNameTh": "การสร้างโปรแกรมเชิงวัตถุ",
+    "courseNameEn": "OBJECT-ORIENTED PROGRAMMING",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 6,
+    "day": "จันทร์",
+    "dateStr": "18 มกราคม 2570",
+    "fullDateTh": "จันทร์ 18 มกราคม 2570",
+    "isoDate": "2027-01-18",
+    "timeStr": "09:00 - 11:00",
+    "room": "M 22",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "รศ. ดร. รัชนี กุลยานนท์"
+    ],
+    "teachingWeek": 7
+  },
+  {
+    "courseCode": "06016408",
+    "courseNameTh": "การสร้างโปรแกรมเชิงวัตถุ",
+    "courseNameEn": "OBJECT-ORIENTED PROGRAMMING",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 7,
+    "day": "จันทร์",
+    "dateStr": "25 มกราคม 2570",
+    "fullDateTh": "จันทร์ 25 มกราคม 2570",
+    "isoDate": "2027-01-25",
+    "timeStr": "09:00 - 11:00",
+    "room": "M 22",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "รศ. ดร. รัชนี กุลยานนท์"
+    ],
+    "teachingWeek": 8
+  },
+  {
+    "courseCode": "06016408",
+    "courseNameTh": "การสร้างโปรแกรมเชิงวัตถุ",
+    "courseNameEn": "OBJECT-ORIENTED PROGRAMMING",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 8,
+    "day": "จันทร์",
+    "dateStr": "8 กุมภาพันธ์ 2570",
+    "fullDateTh": "จันทร์ 8 กุมภาพันธ์ 2570",
+    "isoDate": "2027-02-08",
+    "timeStr": "09:00 - 11:00",
+    "room": "M 22",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "รศ. ดร. รัชนี กุลยานนท์"
+    ],
+    "teachingWeek": 9
+  },
+  {
+    "courseCode": "06016408",
+    "courseNameTh": "การสร้างโปรแกรมเชิงวัตถุ",
+    "courseNameEn": "OBJECT-ORIENTED PROGRAMMING",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 9,
+    "day": "จันทร์",
+    "dateStr": "15 กุมภาพันธ์ 2570",
+    "fullDateTh": "จันทร์ 15 กุมภาพันธ์ 2570",
+    "isoDate": "2027-02-15",
+    "timeStr": "09:00 - 11:00",
+    "room": "M 22",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "รศ. ดร. รัชนี กุลยานนท์"
+    ],
+    "teachingWeek": 10
+  },
+  {
+    "courseCode": "06016408",
+    "courseNameTh": "การสร้างโปรแกรมเชิงวัตถุ",
+    "courseNameEn": "OBJECT-ORIENTED PROGRAMMING",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 10,
+    "day": "จันทร์",
+    "dateStr": "22 กุมภาพันธ์ 2570",
+    "fullDateTh": "จันทร์ 22 กุมภาพันธ์ 2570",
+    "isoDate": "2027-02-22",
+    "timeStr": "09:00 - 11:00",
+    "room": "M 22",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "รศ. ดร. รัชนี กุลยานนท์"
+    ],
+    "teachingWeek": 11
+  },
+  {
+    "courseCode": "06016408",
+    "courseNameTh": "การสร้างโปรแกรมเชิงวัตถุ",
+    "courseNameEn": "OBJECT-ORIENTED PROGRAMMING",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 11,
+    "day": "จันทร์",
+    "dateStr": "1 มีนาคม 2570",
+    "fullDateTh": "จันทร์ 1 มีนาคม 2570",
+    "isoDate": "2027-03-01",
+    "timeStr": "09:00 - 11:00",
+    "room": "M 22",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "รศ. ดร. รัชนี กุลยานนท์"
+    ],
+    "teachingWeek": 12
+  },
+  {
+    "courseCode": "06016408",
+    "courseNameTh": "การสร้างโปรแกรมเชิงวัตถุ",
+    "courseNameEn": "OBJECT-ORIENTED PROGRAMMING",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 12,
+    "day": "จันทร์",
+    "dateStr": "8 มีนาคม 2570",
+    "fullDateTh": "จันทร์ 8 มีนาคม 2570",
+    "isoDate": "2027-03-08",
+    "timeStr": "09:00 - 11:00",
+    "room": "M 22",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "รศ. ดร. รัชนี กุลยานนท์"
+    ],
+    "teachingWeek": 13
+  },
+  {
+    "courseCode": "06016408",
+    "courseNameTh": "การสร้างโปรแกรมเชิงวัตถุ",
+    "courseNameEn": "OBJECT-ORIENTED PROGRAMMING",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 13,
+    "day": "จันทร์",
+    "dateStr": "15 มีนาคม 2570",
+    "fullDateTh": "จันทร์ 15 มีนาคม 2570",
+    "isoDate": "2027-03-15",
+    "timeStr": "09:00 - 11:00",
+    "room": "M 22",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "รศ. ดร. รัชนี กุลยานนท์"
+    ],
+    "teachingWeek": 14
+  },
+  {
+    "courseCode": "06016408",
+    "courseNameTh": "การสร้างโปรแกรมเชิงวัตถุ",
+    "courseNameEn": "OBJECT-ORIENTED PROGRAMMING",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 14,
+    "day": "จันทร์",
+    "dateStr": "22 มีนาคม 2570",
+    "fullDateTh": "จันทร์ 22 มีนาคม 2570",
+    "isoDate": "2027-03-22",
+    "timeStr": "09:00 - 11:00",
+    "room": "M 22",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "รศ. ดร. รัชนี กุลยานนท์"
+    ],
+    "teachingWeek": 15
+  },
+  {
+    "courseCode": "06016408",
+    "courseNameTh": "การสร้างโปรแกรมเชิงวัตถุ",
+    "courseNameEn": "OBJECT-ORIENTED PROGRAMMING",
+    "section": 4,
+    "type": "ปฏิบัติ",
+    "sessionNumber": 1,
+    "day": "ศุกร์",
+    "dateStr": "11 ธันวาคม 2569",
+    "fullDateTh": "ศุกร์ 11 ธันวาคม 2569",
+    "isoDate": "2026-12-11",
+    "timeStr": "09:00 - 11:00",
+    "room": "Lab 1",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "รศ. ดร. รัชนี กุลยานนท์"
+    ],
+    "teachingWeek": 1
+  },
+  {
+    "courseCode": "06016408",
+    "courseNameTh": "การสร้างโปรแกรมเชิงวัตถุ",
+    "courseNameEn": "OBJECT-ORIENTED PROGRAMMING",
+    "section": 4,
+    "type": "ปฏิบัติ",
+    "sessionNumber": 2,
+    "day": "ศุกร์",
+    "dateStr": "18 ธันวาคม 2569",
+    "fullDateTh": "ศุกร์ 18 ธันวาคม 2569",
+    "isoDate": "2026-12-18",
+    "timeStr": "09:00 - 11:00",
+    "room": "Lab 1",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "รศ. ดร. รัชนี กุลยานนท์"
+    ],
+    "teachingWeek": 2
+  },
+  {
+    "courseCode": "06016408",
+    "courseNameTh": "การสร้างโปรแกรมเชิงวัตถุ",
+    "courseNameEn": "OBJECT-ORIENTED PROGRAMMING",
+    "section": 4,
+    "type": "ปฏิบัติ",
+    "sessionNumber": 3,
+    "day": "ศุกร์",
+    "dateStr": "25 ธันวาคม 2569",
+    "fullDateTh": "ศุกร์ 25 ธันวาคม 2569",
+    "isoDate": "2026-12-25",
+    "timeStr": "09:00 - 11:00",
+    "room": "Lab 1",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "รศ. ดร. รัชนี กุลยานนท์"
+    ],
+    "teachingWeek": 3
+  },
+  {
+    "courseCode": "06016408",
+    "courseNameTh": "การสร้างโปรแกรมเชิงวัตถุ",
+    "courseNameEn": "OBJECT-ORIENTED PROGRAMMING",
+    "section": 4,
+    "type": "ปฏิบัติ",
+    "sessionNumber": 4,
+    "day": "ศุกร์",
+    "dateStr": "1 มกราคม 2570",
+    "fullDateTh": "ศุกร์ 1 มกราคม 2570",
+    "isoDate": "2027-01-01",
+    "timeStr": "09:00 - 11:00",
+    "room": "Lab 1",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "รศ. ดร. รัชนี กุลยานนท์"
+    ],
+    "teachingWeek": 4
+  },
+  {
+    "courseCode": "06016408",
+    "courseNameTh": "การสร้างโปรแกรมเชิงวัตถุ",
+    "courseNameEn": "OBJECT-ORIENTED PROGRAMMING",
+    "section": 4,
+    "type": "ปฏิบัติ",
+    "sessionNumber": 5,
+    "day": "ศุกร์",
+    "dateStr": "8 มกราคม 2570",
+    "fullDateTh": "ศุกร์ 8 มกราคม 2570",
+    "isoDate": "2027-01-08",
+    "timeStr": "09:00 - 11:00",
+    "room": "Lab 1",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "รศ. ดร. รัชนี กุลยานนท์"
+    ],
+    "teachingWeek": 5
+  },
+  {
+    "courseCode": "06016408",
+    "courseNameTh": "การสร้างโปรแกรมเชิงวัตถุ",
+    "courseNameEn": "OBJECT-ORIENTED PROGRAMMING",
+    "section": 4,
+    "type": "ปฏิบัติ",
+    "sessionNumber": 6,
+    "day": "ศุกร์",
+    "dateStr": "15 มกราคม 2570",
+    "fullDateTh": "ศุกร์ 15 มกราคม 2570",
+    "isoDate": "2027-01-15",
+    "timeStr": "09:00 - 11:00",
+    "room": "Lab 1",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "รศ. ดร. รัชนี กุลยานนท์"
+    ],
+    "teachingWeek": 6
+  },
+  {
+    "courseCode": "06016408",
+    "courseNameTh": "การสร้างโปรแกรมเชิงวัตถุ",
+    "courseNameEn": "OBJECT-ORIENTED PROGRAMMING",
+    "section": 4,
+    "type": "ปฏิบัติ",
+    "sessionNumber": 7,
+    "day": "ศุกร์",
+    "dateStr": "22 มกราคม 2570",
+    "fullDateTh": "ศุกร์ 22 มกราคม 2570",
+    "isoDate": "2027-01-22",
+    "timeStr": "09:00 - 11:00",
+    "room": "Lab 1",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "รศ. ดร. รัชนี กุลยานนท์"
+    ],
+    "teachingWeek": 7
+  },
+  {
+    "courseCode": "06016408",
+    "courseNameTh": "การสร้างโปรแกรมเชิงวัตถุ",
+    "courseNameEn": "OBJECT-ORIENTED PROGRAMMING",
+    "section": 4,
+    "type": "ปฏิบัติ",
+    "sessionNumber": 8,
+    "day": "ศุกร์",
+    "dateStr": "29 มกราคม 2570",
+    "fullDateTh": "ศุกร์ 29 มกราคม 2570",
+    "isoDate": "2027-01-29",
+    "timeStr": "09:00 - 11:00",
+    "room": "Lab 1",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "รศ. ดร. รัชนี กุลยานนท์"
+    ],
+    "teachingWeek": 8
+  },
+  {
+    "courseCode": "06016408",
+    "courseNameTh": "การสร้างโปรแกรมเชิงวัตถุ",
+    "courseNameEn": "OBJECT-ORIENTED PROGRAMMING",
+    "section": 4,
+    "type": "ปฏิบัติ",
+    "sessionNumber": 9,
+    "day": "ศุกร์",
+    "dateStr": "12 กุมภาพันธ์ 2570",
+    "fullDateTh": "ศุกร์ 12 กุมภาพันธ์ 2570",
+    "isoDate": "2027-02-12",
+    "timeStr": "09:00 - 11:00",
+    "room": "Lab 1",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "รศ. ดร. รัชนี กุลยานนท์"
+    ],
+    "teachingWeek": 9
+  },
+  {
+    "courseCode": "06016408",
+    "courseNameTh": "การสร้างโปรแกรมเชิงวัตถุ",
+    "courseNameEn": "OBJECT-ORIENTED PROGRAMMING",
+    "section": 4,
+    "type": "ปฏิบัติ",
+    "sessionNumber": 10,
+    "day": "ศุกร์",
+    "dateStr": "19 กุมภาพันธ์ 2570",
+    "fullDateTh": "ศุกร์ 19 กุมภาพันธ์ 2570",
+    "isoDate": "2027-02-19",
+    "timeStr": "09:00 - 11:00",
+    "room": "Lab 1",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "รศ. ดร. รัชนี กุลยานนท์"
+    ],
+    "teachingWeek": 10
+  },
+  {
+    "courseCode": "06016408",
+    "courseNameTh": "การสร้างโปรแกรมเชิงวัตถุ",
+    "courseNameEn": "OBJECT-ORIENTED PROGRAMMING",
+    "section": 4,
+    "type": "ปฏิบัติ",
+    "sessionNumber": 11,
+    "day": "ศุกร์",
+    "dateStr": "26 กุมภาพันธ์ 2570",
+    "fullDateTh": "ศุกร์ 26 กุมภาพันธ์ 2570",
+    "isoDate": "2027-02-26",
+    "timeStr": "09:00 - 11:00",
+    "room": "Lab 1",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "รศ. ดร. รัชนี กุลยานนท์"
+    ],
+    "teachingWeek": 11
+  },
+  {
+    "courseCode": "06016408",
+    "courseNameTh": "การสร้างโปรแกรมเชิงวัตถุ",
+    "courseNameEn": "OBJECT-ORIENTED PROGRAMMING",
+    "section": 4,
+    "type": "ปฏิบัติ",
+    "sessionNumber": 12,
+    "day": "ศุกร์",
+    "dateStr": "5 มีนาคม 2570",
+    "fullDateTh": "ศุกร์ 5 มีนาคม 2570",
+    "isoDate": "2027-03-05",
+    "timeStr": "09:00 - 11:00",
+    "room": "Lab 1",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "รศ. ดร. รัชนี กุลยานนท์"
+    ],
+    "teachingWeek": 12
+  },
+  {
+    "courseCode": "06016408",
+    "courseNameTh": "การสร้างโปรแกรมเชิงวัตถุ",
+    "courseNameEn": "OBJECT-ORIENTED PROGRAMMING",
+    "section": 4,
+    "type": "ปฏิบัติ",
+    "sessionNumber": 13,
+    "day": "ศุกร์",
+    "dateStr": "12 มีนาคม 2570",
+    "fullDateTh": "ศุกร์ 12 มีนาคม 2570",
+    "isoDate": "2027-03-12",
+    "timeStr": "09:00 - 11:00",
+    "room": "Lab 1",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "รศ. ดร. รัชนี กุลยานนท์"
+    ],
+    "teachingWeek": 13
+  },
+  {
+    "courseCode": "06016408",
+    "courseNameTh": "การสร้างโปรแกรมเชิงวัตถุ",
+    "courseNameEn": "OBJECT-ORIENTED PROGRAMMING",
+    "section": 4,
+    "type": "ปฏิบัติ",
+    "sessionNumber": 14,
+    "day": "ศุกร์",
+    "dateStr": "19 มีนาคม 2570",
+    "fullDateTh": "ศุกร์ 19 มีนาคม 2570",
+    "isoDate": "2027-03-19",
+    "timeStr": "09:00 - 11:00",
+    "room": "Lab 1",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "รศ. ดร. รัชนี กุลยานนท์"
+    ],
+    "teachingWeek": 14
+  },
+  {
+    "courseCode": "06016408",
+    "courseNameTh": "การสร้างโปรแกรมเชิงวัตถุ",
+    "courseNameEn": "OBJECT-ORIENTED PROGRAMMING",
+    "section": 4,
+    "type": "ปฏิบัติ",
+    "sessionNumber": 15,
+    "day": "ศุกร์",
+    "dateStr": "26 มีนาคม 2570",
+    "fullDateTh": "ศุกร์ 26 มีนาคม 2570",
+    "isoDate": "2027-03-26",
+    "timeStr": "09:00 - 11:00",
+    "room": "Lab 1",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "รศ. ดร. รัชนี กุลยานนท์"
+    ],
+    "teachingWeek": 15
+  },
+  {
+    "courseCode": "06066001",
+    "courseNameTh": "ความน่าจะเป็นและสถิติ",
+    "courseNameEn": "PROBABILITY AND STATISTICS",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 1,
+    "day": "อังคาร",
+    "dateStr": "8 ธันวาคม 2569",
+    "fullDateTh": "อังคาร 8 ธันวาคม 2569",
+    "isoDate": "2026-12-08",
+    "timeStr": "09:00 - 12:00",
+    "room": "415",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. เสาวรภย์ ดวงพัตรา",
+      "ผศ. ดร. สุขุมาล กิติสิน"
+    ],
+    "teachingWeek": 1
+  },
+  {
+    "courseCode": "06066001",
+    "courseNameTh": "ความน่าจะเป็นและสถิติ",
+    "courseNameEn": "PROBABILITY AND STATISTICS",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 2,
+    "day": "อังคาร",
+    "dateStr": "15 ธันวาคม 2569",
+    "fullDateTh": "อังคาร 15 ธันวาคม 2569",
+    "isoDate": "2026-12-15",
+    "timeStr": "09:00 - 12:00",
+    "room": "415",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. เสาวรภย์ ดวงพัตรา",
+      "ผศ. ดร. สุขุมาล กิติสิน"
+    ],
+    "teachingWeek": 2
+  },
+  {
+    "courseCode": "06066001",
+    "courseNameTh": "ความน่าจะเป็นและสถิติ",
+    "courseNameEn": "PROBABILITY AND STATISTICS",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 3,
+    "day": "อังคาร",
+    "dateStr": "22 ธันวาคม 2569",
+    "fullDateTh": "อังคาร 22 ธันวาคม 2569",
+    "isoDate": "2026-12-22",
+    "timeStr": "09:00 - 12:00",
+    "room": "415",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. เสาวรภย์ ดวงพัตรา",
+      "ผศ. ดร. สุขุมาล กิติสิน"
+    ],
+    "teachingWeek": 3
+  },
+  {
+    "courseCode": "06066001",
+    "courseNameTh": "ความน่าจะเป็นและสถิติ",
+    "courseNameEn": "PROBABILITY AND STATISTICS",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 4,
+    "day": "อังคาร",
+    "dateStr": "29 ธันวาคม 2569",
+    "fullDateTh": "อังคาร 29 ธันวาคม 2569",
+    "isoDate": "2026-12-29",
+    "timeStr": "09:00 - 12:00",
+    "room": "415",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. เสาวรภย์ ดวงพัตรา",
+      "ผศ. ดร. สุขุมาล กิติสิน"
+    ],
+    "teachingWeek": 4
+  },
+  {
+    "courseCode": "06066001",
+    "courseNameTh": "ความน่าจะเป็นและสถิติ",
+    "courseNameEn": "PROBABILITY AND STATISTICS",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 5,
+    "day": "อังคาร",
+    "dateStr": "5 มกราคม 2570",
+    "fullDateTh": "อังคาร 5 มกราคม 2570",
+    "isoDate": "2027-01-05",
+    "timeStr": "09:00 - 12:00",
+    "room": "415",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. เสาวรภย์ ดวงพัตรา",
+      "ผศ. ดร. สุขุมาล กิติสิน"
+    ],
+    "teachingWeek": 5
+  },
+  {
+    "courseCode": "06066001",
+    "courseNameTh": "ความน่าจะเป็นและสถิติ",
+    "courseNameEn": "PROBABILITY AND STATISTICS",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 6,
+    "day": "อังคาร",
+    "dateStr": "12 มกราคม 2570",
+    "fullDateTh": "อังคาร 12 มกราคม 2570",
+    "isoDate": "2027-01-12",
+    "timeStr": "09:00 - 12:00",
+    "room": "415",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. เสาวรภย์ ดวงพัตรา",
+      "ผศ. ดร. สุขุมาล กิติสิน"
+    ],
+    "teachingWeek": 6
+  },
+  {
+    "courseCode": "06066001",
+    "courseNameTh": "ความน่าจะเป็นและสถิติ",
+    "courseNameEn": "PROBABILITY AND STATISTICS",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 7,
+    "day": "อังคาร",
+    "dateStr": "19 มกราคม 2570",
+    "fullDateTh": "อังคาร 19 มกราคม 2570",
+    "isoDate": "2027-01-19",
+    "timeStr": "09:00 - 12:00",
+    "room": "415",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. เสาวรภย์ ดวงพัตรา",
+      "ผศ. ดร. สุขุมาล กิติสิน"
+    ],
+    "teachingWeek": 7
+  },
+  {
+    "courseCode": "06066001",
+    "courseNameTh": "ความน่าจะเป็นและสถิติ",
+    "courseNameEn": "PROBABILITY AND STATISTICS",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 8,
+    "day": "อังคาร",
+    "dateStr": "26 มกราคม 2570",
+    "fullDateTh": "อังคาร 26 มกราคม 2570",
+    "isoDate": "2027-01-26",
+    "timeStr": "09:00 - 12:00",
+    "room": "415",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. เสาวรภย์ ดวงพัตรา",
+      "ผศ. ดร. สุขุมาล กิติสิน"
+    ],
+    "teachingWeek": 8
+  },
+  {
+    "courseCode": "06066001",
+    "courseNameTh": "ความน่าจะเป็นและสถิติ",
+    "courseNameEn": "PROBABILITY AND STATISTICS",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 9,
+    "day": "อังคาร",
+    "dateStr": "9 กุมภาพันธ์ 2570",
+    "fullDateTh": "อังคาร 9 กุมภาพันธ์ 2570",
+    "isoDate": "2027-02-09",
+    "timeStr": "09:00 - 12:00",
+    "room": "415",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. เสาวรภย์ ดวงพัตรา",
+      "ผศ. ดร. สุขุมาล กิติสิน"
+    ],
+    "teachingWeek": 9
+  },
+  {
+    "courseCode": "06066001",
+    "courseNameTh": "ความน่าจะเป็นและสถิติ",
+    "courseNameEn": "PROBABILITY AND STATISTICS",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 10,
+    "day": "อังคาร",
+    "dateStr": "16 กุมภาพันธ์ 2570",
+    "fullDateTh": "อังคาร 16 กุมภาพันธ์ 2570",
+    "isoDate": "2027-02-16",
+    "timeStr": "09:00 - 12:00",
+    "room": "415",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. เสาวรภย์ ดวงพัตรา",
+      "ผศ. ดร. สุขุมาล กิติสิน"
+    ],
+    "teachingWeek": 10
+  },
+  {
+    "courseCode": "06066001",
+    "courseNameTh": "ความน่าจะเป็นและสถิติ",
+    "courseNameEn": "PROBABILITY AND STATISTICS",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 11,
+    "day": "อังคาร",
+    "dateStr": "23 กุมภาพันธ์ 2570",
+    "fullDateTh": "อังคาร 23 กุมภาพันธ์ 2570",
+    "isoDate": "2027-02-23",
+    "timeStr": "09:00 - 12:00",
+    "room": "415",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. เสาวรภย์ ดวงพัตรา",
+      "ผศ. ดร. สุขุมาล กิติสิน"
+    ],
+    "teachingWeek": 11
+  },
+  {
+    "courseCode": "06066001",
+    "courseNameTh": "ความน่าจะเป็นและสถิติ",
+    "courseNameEn": "PROBABILITY AND STATISTICS",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 12,
+    "day": "อังคาร",
+    "dateStr": "2 มีนาคม 2570",
+    "fullDateTh": "อังคาร 2 มีนาคม 2570",
+    "isoDate": "2027-03-02",
+    "timeStr": "09:00 - 12:00",
+    "room": "415",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. เสาวรภย์ ดวงพัตรา",
+      "ผศ. ดร. สุขุมาล กิติสิน"
+    ],
+    "teachingWeek": 12
+  },
+  {
+    "courseCode": "06066001",
+    "courseNameTh": "ความน่าจะเป็นและสถิติ",
+    "courseNameEn": "PROBABILITY AND STATISTICS",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 13,
+    "day": "อังคาร",
+    "dateStr": "9 มีนาคม 2570",
+    "fullDateTh": "อังคาร 9 มีนาคม 2570",
+    "isoDate": "2027-03-09",
+    "timeStr": "09:00 - 12:00",
+    "room": "415",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. เสาวรภย์ ดวงพัตรา",
+      "ผศ. ดร. สุขุมาล กิติสิน"
+    ],
+    "teachingWeek": 13
+  },
+  {
+    "courseCode": "06066001",
+    "courseNameTh": "ความน่าจะเป็นและสถิติ",
+    "courseNameEn": "PROBABILITY AND STATISTICS",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 14,
+    "day": "อังคาร",
+    "dateStr": "16 มีนาคม 2570",
+    "fullDateTh": "อังคาร 16 มีนาคม 2570",
+    "isoDate": "2027-03-16",
+    "timeStr": "09:00 - 12:00",
+    "room": "415",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. เสาวรภย์ ดวงพัตรา",
+      "ผศ. ดร. สุขุมาล กิติสิน"
+    ],
+    "teachingWeek": 14
+  },
+  {
+    "courseCode": "06066001",
+    "courseNameTh": "ความน่าจะเป็นและสถิติ",
+    "courseNameEn": "PROBABILITY AND STATISTICS",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 15,
+    "day": "อังคาร",
+    "dateStr": "23 มีนาคม 2570",
+    "fullDateTh": "อังคาร 23 มีนาคม 2570",
+    "isoDate": "2027-03-23",
+    "timeStr": "09:00 - 12:00",
+    "room": "415",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. เสาวรภย์ ดวงพัตรา",
+      "ผศ. ดร. สุขุมาล กิติสิน"
+    ],
+    "teachingWeek": 15
+  },
+  {
+    "courseCode": "06066101",
+    "courseNameTh": "พื้นฐานทางธุรกิจสำหรับเทคโนโลยีสารสนเทศ",
+    "courseNameEn": "BUSINESS FUNDAMENTALS FOR INFORMATION",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 1,
+    "day": "อังคาร",
+    "dateStr": "8 ธันวาคม 2569",
+    "fullDateTh": "อังคาร 8 ธันวาคม 2569",
+    "isoDate": "2026-12-08",
+    "timeStr": "13:00 - 16:00",
+    "room": "415",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. วิชญ์ เนียรนาทธำรง",
+      "ดร. บุญชัย ถิราติ"
+    ],
+    "teachingWeek": 1
+  },
+  {
+    "courseCode": "06066101",
+    "courseNameTh": "พื้นฐานทางธุรกิจสำหรับเทคโนโลยีสารสนเทศ",
+    "courseNameEn": "BUSINESS FUNDAMENTALS FOR INFORMATION",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 2,
+    "day": "อังคาร",
+    "dateStr": "15 ธันวาคม 2569",
+    "fullDateTh": "อังคาร 15 ธันวาคม 2569",
+    "isoDate": "2026-12-15",
+    "timeStr": "13:00 - 16:00",
+    "room": "415",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. วิชญ์ เนียรนาทธำรง",
+      "ดร. บุญชัย ถิราติ"
+    ],
+    "teachingWeek": 2
+  },
+  {
+    "courseCode": "06066101",
+    "courseNameTh": "พื้นฐานทางธุรกิจสำหรับเทคโนโลยีสารสนเทศ",
+    "courseNameEn": "BUSINESS FUNDAMENTALS FOR INFORMATION",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 3,
+    "day": "อังคาร",
+    "dateStr": "22 ธันวาคม 2569",
+    "fullDateTh": "อังคาร 22 ธันวาคม 2569",
+    "isoDate": "2026-12-22",
+    "timeStr": "13:00 - 16:00",
+    "room": "415",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. วิชญ์ เนียรนาทธำรง",
+      "ดร. บุญชัย ถิราติ"
+    ],
+    "teachingWeek": 3
+  },
+  {
+    "courseCode": "06066101",
+    "courseNameTh": "พื้นฐานทางธุรกิจสำหรับเทคโนโลยีสารสนเทศ",
+    "courseNameEn": "BUSINESS FUNDAMENTALS FOR INFORMATION",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 4,
+    "day": "อังคาร",
+    "dateStr": "29 ธันวาคม 2569",
+    "fullDateTh": "อังคาร 29 ธันวาคม 2569",
+    "isoDate": "2026-12-29",
+    "timeStr": "13:00 - 16:00",
+    "room": "415",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. วิชญ์ เนียรนาทธำรง",
+      "ดร. บุญชัย ถิราติ"
+    ],
+    "teachingWeek": 4
+  },
+  {
+    "courseCode": "06066101",
+    "courseNameTh": "พื้นฐานทางธุรกิจสำหรับเทคโนโลยีสารสนเทศ",
+    "courseNameEn": "BUSINESS FUNDAMENTALS FOR INFORMATION",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 5,
+    "day": "อังคาร",
+    "dateStr": "5 มกราคม 2570",
+    "fullDateTh": "อังคาร 5 มกราคม 2570",
+    "isoDate": "2027-01-05",
+    "timeStr": "13:00 - 16:00",
+    "room": "415",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. วิชญ์ เนียรนาทธำรง",
+      "ดร. บุญชัย ถิราติ"
+    ],
+    "teachingWeek": 5
+  },
+  {
+    "courseCode": "06066101",
+    "courseNameTh": "พื้นฐานทางธุรกิจสำหรับเทคโนโลยีสารสนเทศ",
+    "courseNameEn": "BUSINESS FUNDAMENTALS FOR INFORMATION",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 6,
+    "day": "อังคาร",
+    "dateStr": "12 มกราคม 2570",
+    "fullDateTh": "อังคาร 12 มกราคม 2570",
+    "isoDate": "2027-01-12",
+    "timeStr": "13:00 - 16:00",
+    "room": "415",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. วิชญ์ เนียรนาทธำรง",
+      "ดร. บุญชัย ถิราติ"
+    ],
+    "teachingWeek": 6
+  },
+  {
+    "courseCode": "06066101",
+    "courseNameTh": "พื้นฐานทางธุรกิจสำหรับเทคโนโลยีสารสนเทศ",
+    "courseNameEn": "BUSINESS FUNDAMENTALS FOR INFORMATION",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 7,
+    "day": "อังคาร",
+    "dateStr": "19 มกราคม 2570",
+    "fullDateTh": "อังคาร 19 มกราคม 2570",
+    "isoDate": "2027-01-19",
+    "timeStr": "13:00 - 16:00",
+    "room": "415",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. วิชญ์ เนียรนาทธำรง",
+      "ดร. บุญชัย ถิราติ"
+    ],
+    "teachingWeek": 7
+  },
+  {
+    "courseCode": "06066101",
+    "courseNameTh": "พื้นฐานทางธุรกิจสำหรับเทคโนโลยีสารสนเทศ",
+    "courseNameEn": "BUSINESS FUNDAMENTALS FOR INFORMATION",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 8,
+    "day": "อังคาร",
+    "dateStr": "26 มกราคม 2570",
+    "fullDateTh": "อังคาร 26 มกราคม 2570",
+    "isoDate": "2027-01-26",
+    "timeStr": "13:00 - 16:00",
+    "room": "415",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. วิชญ์ เนียรนาทธำรง",
+      "ดร. บุญชัย ถิราติ"
+    ],
+    "teachingWeek": 8
+  },
+  {
+    "courseCode": "06066101",
+    "courseNameTh": "พื้นฐานทางธุรกิจสำหรับเทคโนโลยีสารสนเทศ",
+    "courseNameEn": "BUSINESS FUNDAMENTALS FOR INFORMATION",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 9,
+    "day": "อังคาร",
+    "dateStr": "9 กุมภาพันธ์ 2570",
+    "fullDateTh": "อังคาร 9 กุมภาพันธ์ 2570",
+    "isoDate": "2027-02-09",
+    "timeStr": "13:00 - 16:00",
+    "room": "415",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. วิชญ์ เนียรนาทธำรง",
+      "ดร. บุญชัย ถิราติ"
+    ],
+    "teachingWeek": 9
+  },
+  {
+    "courseCode": "06066101",
+    "courseNameTh": "พื้นฐานทางธุรกิจสำหรับเทคโนโลยีสารสนเทศ",
+    "courseNameEn": "BUSINESS FUNDAMENTALS FOR INFORMATION",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 10,
+    "day": "อังคาร",
+    "dateStr": "16 กุมภาพันธ์ 2570",
+    "fullDateTh": "อังคาร 16 กุมภาพันธ์ 2570",
+    "isoDate": "2027-02-16",
+    "timeStr": "13:00 - 16:00",
+    "room": "415",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. วิชญ์ เนียรนาทธำรง",
+      "ดร. บุญชัย ถิราติ"
+    ],
+    "teachingWeek": 10
+  },
+  {
+    "courseCode": "06066101",
+    "courseNameTh": "พื้นฐานทางธุรกิจสำหรับเทคโนโลยีสารสนเทศ",
+    "courseNameEn": "BUSINESS FUNDAMENTALS FOR INFORMATION",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 11,
+    "day": "อังคาร",
+    "dateStr": "23 กุมภาพันธ์ 2570",
+    "fullDateTh": "อังคาร 23 กุมภาพันธ์ 2570",
+    "isoDate": "2027-02-23",
+    "timeStr": "13:00 - 16:00",
+    "room": "415",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. วิชญ์ เนียรนาทธำรง",
+      "ดร. บุญชัย ถิราติ"
+    ],
+    "teachingWeek": 11
+  },
+  {
+    "courseCode": "06066101",
+    "courseNameTh": "พื้นฐานทางธุรกิจสำหรับเทคโนโลยีสารสนเทศ",
+    "courseNameEn": "BUSINESS FUNDAMENTALS FOR INFORMATION",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 12,
+    "day": "อังคาร",
+    "dateStr": "2 มีนาคม 2570",
+    "fullDateTh": "อังคาร 2 มีนาคม 2570",
+    "isoDate": "2027-03-02",
+    "timeStr": "13:00 - 16:00",
+    "room": "415",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. วิชญ์ เนียรนาทธำรง",
+      "ดร. บุญชัย ถิราติ"
+    ],
+    "teachingWeek": 12
+  },
+  {
+    "courseCode": "06066101",
+    "courseNameTh": "พื้นฐานทางธุรกิจสำหรับเทคโนโลยีสารสนเทศ",
+    "courseNameEn": "BUSINESS FUNDAMENTALS FOR INFORMATION",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 13,
+    "day": "อังคาร",
+    "dateStr": "9 มีนาคม 2570",
+    "fullDateTh": "อังคาร 9 มีนาคม 2570",
+    "isoDate": "2027-03-09",
+    "timeStr": "13:00 - 16:00",
+    "room": "415",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. วิชญ์ เนียรนาทธำรง",
+      "ดร. บุญชัย ถิราติ"
+    ],
+    "teachingWeek": 13
+  },
+  {
+    "courseCode": "06066101",
+    "courseNameTh": "พื้นฐานทางธุรกิจสำหรับเทคโนโลยีสารสนเทศ",
+    "courseNameEn": "BUSINESS FUNDAMENTALS FOR INFORMATION",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 14,
+    "day": "อังคาร",
+    "dateStr": "16 มีนาคม 2570",
+    "fullDateTh": "อังคาร 16 มีนาคม 2570",
+    "isoDate": "2027-03-16",
+    "timeStr": "13:00 - 16:00",
+    "room": "415",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. วิชญ์ เนียรนาทธำรง",
+      "ดร. บุญชัย ถิราติ"
+    ],
+    "teachingWeek": 14
+  },
+  {
+    "courseCode": "06066101",
+    "courseNameTh": "พื้นฐานทางธุรกิจสำหรับเทคโนโลยีสารสนเทศ",
+    "courseNameEn": "BUSINESS FUNDAMENTALS FOR INFORMATION",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 15,
+    "day": "อังคาร",
+    "dateStr": "23 มีนาคม 2570",
+    "fullDateTh": "อังคาร 23 มีนาคม 2570",
+    "isoDate": "2027-03-23",
+    "timeStr": "13:00 - 16:00",
+    "room": "415",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. วิชญ์ เนียรนาทธำรง",
+      "ดร. บุญชัย ถิราติ"
+    ],
+    "teachingWeek": 15
+  },
+  {
+    "courseCode": "06066301",
+    "courseNameTh": "โครงสร้างข้อมูลและอัลกอริทึม",
+    "courseNameEn": "DATA STRUCTURES AND ALGORITHMS",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 1,
+    "day": "จันทร์",
+    "dateStr": "14 ธันวาคม 2569",
+    "fullDateTh": "จันทร์ 14 ธันวาคม 2569",
+    "isoDate": "2026-12-14",
+    "timeStr": "11:00 - 13:00",
+    "room": "M 22",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "อ. นันท์นภัส ธีรโชติมงคล"
+    ],
+    "teachingWeek": 2
+  },
+  {
+    "courseCode": "06066301",
+    "courseNameTh": "โครงสร้างข้อมูลและอัลกอริทึม",
+    "courseNameEn": "DATA STRUCTURES AND ALGORITHMS",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 2,
+    "day": "จันทร์",
+    "dateStr": "21 ธันวาคม 2569",
+    "fullDateTh": "จันทร์ 21 ธันวาคม 2569",
+    "isoDate": "2026-12-21",
+    "timeStr": "11:00 - 13:00",
+    "room": "M 22",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "อ. นันท์นภัส ธีรโชติมงคล"
+    ],
+    "teachingWeek": 3
+  },
+  {
+    "courseCode": "06066301",
+    "courseNameTh": "โครงสร้างข้อมูลและอัลกอริทึม",
+    "courseNameEn": "DATA STRUCTURES AND ALGORITHMS",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 3,
+    "day": "จันทร์",
+    "dateStr": "28 ธันวาคม 2569",
+    "fullDateTh": "จันทร์ 28 ธันวาคม 2569",
+    "isoDate": "2026-12-28",
+    "timeStr": "11:00 - 13:00",
+    "room": "M 22",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "อ. นันท์นภัส ธีรโชติมงคล"
+    ],
+    "teachingWeek": 4
+  },
+  {
+    "courseCode": "06066301",
+    "courseNameTh": "โครงสร้างข้อมูลและอัลกอริทึม",
+    "courseNameEn": "DATA STRUCTURES AND ALGORITHMS",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 4,
+    "day": "จันทร์",
+    "dateStr": "4 มกราคม 2570",
+    "fullDateTh": "จันทร์ 4 มกราคม 2570",
+    "isoDate": "2027-01-04",
+    "timeStr": "11:00 - 13:00",
+    "room": "M 22",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "อ. นันท์นภัส ธีรโชติมงคล"
+    ],
+    "teachingWeek": 5
+  },
+  {
+    "courseCode": "06066301",
+    "courseNameTh": "โครงสร้างข้อมูลและอัลกอริทึม",
+    "courseNameEn": "DATA STRUCTURES AND ALGORITHMS",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 5,
+    "day": "จันทร์",
+    "dateStr": "11 มกราคม 2570",
+    "fullDateTh": "จันทร์ 11 มกราคม 2570",
+    "isoDate": "2027-01-11",
+    "timeStr": "11:00 - 13:00",
+    "room": "M 22",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "อ. นันท์นภัส ธีรโชติมงคล"
+    ],
+    "teachingWeek": 6
+  },
+  {
+    "courseCode": "06066301",
+    "courseNameTh": "โครงสร้างข้อมูลและอัลกอริทึม",
+    "courseNameEn": "DATA STRUCTURES AND ALGORITHMS",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 6,
+    "day": "จันทร์",
+    "dateStr": "18 มกราคม 2570",
+    "fullDateTh": "จันทร์ 18 มกราคม 2570",
+    "isoDate": "2027-01-18",
+    "timeStr": "11:00 - 13:00",
+    "room": "M 22",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "อ. นันท์นภัส ธีรโชติมงคล"
+    ],
+    "teachingWeek": 7
+  },
+  {
+    "courseCode": "06066301",
+    "courseNameTh": "โครงสร้างข้อมูลและอัลกอริทึม",
+    "courseNameEn": "DATA STRUCTURES AND ALGORITHMS",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 7,
+    "day": "จันทร์",
+    "dateStr": "25 มกราคม 2570",
+    "fullDateTh": "จันทร์ 25 มกราคม 2570",
+    "isoDate": "2027-01-25",
+    "timeStr": "11:00 - 13:00",
+    "room": "M 22",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "อ. นันท์นภัส ธีรโชติมงคล"
+    ],
+    "teachingWeek": 8
+  },
+  {
+    "courseCode": "06066301",
+    "courseNameTh": "โครงสร้างข้อมูลและอัลกอริทึม",
+    "courseNameEn": "DATA STRUCTURES AND ALGORITHMS",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 8,
+    "day": "จันทร์",
+    "dateStr": "8 กุมภาพันธ์ 2570",
+    "fullDateTh": "จันทร์ 8 กุมภาพันธ์ 2570",
+    "isoDate": "2027-02-08",
+    "timeStr": "11:00 - 13:00",
+    "room": "M 22",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "อ. นันท์นภัส ธีรโชติมงคล"
+    ],
+    "teachingWeek": 9
+  },
+  {
+    "courseCode": "06066301",
+    "courseNameTh": "โครงสร้างข้อมูลและอัลกอริทึม",
+    "courseNameEn": "DATA STRUCTURES AND ALGORITHMS",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 9,
+    "day": "จันทร์",
+    "dateStr": "15 กุมภาพันธ์ 2570",
+    "fullDateTh": "จันทร์ 15 กุมภาพันธ์ 2570",
+    "isoDate": "2027-02-15",
+    "timeStr": "11:00 - 13:00",
+    "room": "M 22",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "อ. นันท์นภัส ธีรโชติมงคล"
+    ],
+    "teachingWeek": 10
+  },
+  {
+    "courseCode": "06066301",
+    "courseNameTh": "โครงสร้างข้อมูลและอัลกอริทึม",
+    "courseNameEn": "DATA STRUCTURES AND ALGORITHMS",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 10,
+    "day": "จันทร์",
+    "dateStr": "22 กุมภาพันธ์ 2570",
+    "fullDateTh": "จันทร์ 22 กุมภาพันธ์ 2570",
+    "isoDate": "2027-02-22",
+    "timeStr": "11:00 - 13:00",
+    "room": "M 22",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "อ. นันท์นภัส ธีรโชติมงคล"
+    ],
+    "teachingWeek": 11
+  },
+  {
+    "courseCode": "06066301",
+    "courseNameTh": "โครงสร้างข้อมูลและอัลกอริทึม",
+    "courseNameEn": "DATA STRUCTURES AND ALGORITHMS",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 11,
+    "day": "จันทร์",
+    "dateStr": "1 มีนาคม 2570",
+    "fullDateTh": "จันทร์ 1 มีนาคม 2570",
+    "isoDate": "2027-03-01",
+    "timeStr": "11:00 - 13:00",
+    "room": "M 22",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "อ. นันท์นภัส ธีรโชติมงคล"
+    ],
+    "teachingWeek": 12
+  },
+  {
+    "courseCode": "06066301",
+    "courseNameTh": "โครงสร้างข้อมูลและอัลกอริทึม",
+    "courseNameEn": "DATA STRUCTURES AND ALGORITHMS",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 12,
+    "day": "จันทร์",
+    "dateStr": "8 มีนาคม 2570",
+    "fullDateTh": "จันทร์ 8 มีนาคม 2570",
+    "isoDate": "2027-03-08",
+    "timeStr": "11:00 - 13:00",
+    "room": "M 22",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "อ. นันท์นภัส ธีรโชติมงคล"
+    ],
+    "teachingWeek": 13
+  },
+  {
+    "courseCode": "06066301",
+    "courseNameTh": "โครงสร้างข้อมูลและอัลกอริทึม",
+    "courseNameEn": "DATA STRUCTURES AND ALGORITHMS",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 13,
+    "day": "จันทร์",
+    "dateStr": "15 มีนาคม 2570",
+    "fullDateTh": "จันทร์ 15 มีนาคม 2570",
+    "isoDate": "2027-03-15",
+    "timeStr": "11:00 - 13:00",
+    "room": "M 22",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "อ. นันท์นภัส ธีรโชติมงคล"
+    ],
+    "teachingWeek": 14
+  },
+  {
+    "courseCode": "06066301",
+    "courseNameTh": "โครงสร้างข้อมูลและอัลกอริทึม",
+    "courseNameEn": "DATA STRUCTURES AND ALGORITHMS",
+    "section": 1,
+    "type": "ทฤษฎี",
+    "sessionNumber": 14,
+    "day": "จันทร์",
+    "dateStr": "22 มีนาคม 2570",
+    "fullDateTh": "จันทร์ 22 มีนาคม 2570",
+    "isoDate": "2027-03-22",
+    "timeStr": "11:00 - 13:00",
+    "room": "M 22",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "อ. นันท์นภัส ธีรโชติมงคล"
+    ],
+    "teachingWeek": 15
+  },
+  {
+    "courseCode": "06066301",
+    "courseNameTh": "โครงสร้างข้อมูลและอัลกอริทึม",
+    "courseNameEn": "DATA STRUCTURES AND ALGORITHMS",
+    "section": 4,
+    "type": "ปฏิบัติ",
+    "sessionNumber": 1,
+    "day": "ศุกร์",
+    "dateStr": "11 ธันวาคม 2569",
+    "fullDateTh": "ศุกร์ 11 ธันวาคม 2569",
+    "isoDate": "2026-12-11",
+    "timeStr": "11:00 - 13:00",
+    "room": "Lab 1",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "อ. นันท์นภัส ธีรโชติมงคล"
+    ],
+    "teachingWeek": 1
+  },
+  {
+    "courseCode": "06066301",
+    "courseNameTh": "โครงสร้างข้อมูลและอัลกอริทึม",
+    "courseNameEn": "DATA STRUCTURES AND ALGORITHMS",
+    "section": 4,
+    "type": "ปฏิบัติ",
+    "sessionNumber": 2,
+    "day": "ศุกร์",
+    "dateStr": "18 ธันวาคม 2569",
+    "fullDateTh": "ศุกร์ 18 ธันวาคม 2569",
+    "isoDate": "2026-12-18",
+    "timeStr": "11:00 - 13:00",
+    "room": "Lab 1",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "อ. นันท์นภัส ธีรโชติมงคล"
+    ],
+    "teachingWeek": 2
+  },
+  {
+    "courseCode": "06066301",
+    "courseNameTh": "โครงสร้างข้อมูลและอัลกอริทึม",
+    "courseNameEn": "DATA STRUCTURES AND ALGORITHMS",
+    "section": 4,
+    "type": "ปฏิบัติ",
+    "sessionNumber": 3,
+    "day": "ศุกร์",
+    "dateStr": "25 ธันวาคม 2569",
+    "fullDateTh": "ศุกร์ 25 ธันวาคม 2569",
+    "isoDate": "2026-12-25",
+    "timeStr": "11:00 - 13:00",
+    "room": "Lab 1",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "อ. นันท์นภัส ธีรโชติมงคล"
+    ],
+    "teachingWeek": 3
+  },
+  {
+    "courseCode": "06066301",
+    "courseNameTh": "โครงสร้างข้อมูลและอัลกอริทึม",
+    "courseNameEn": "DATA STRUCTURES AND ALGORITHMS",
+    "section": 4,
+    "type": "ปฏิบัติ",
+    "sessionNumber": 4,
+    "day": "ศุกร์",
+    "dateStr": "1 มกราคม 2570",
+    "fullDateTh": "ศุกร์ 1 มกราคม 2570",
+    "isoDate": "2027-01-01",
+    "timeStr": "11:00 - 13:00",
+    "room": "Lab 1",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "อ. นันท์นภัส ธีรโชติมงคล"
+    ],
+    "teachingWeek": 4
+  },
+  {
+    "courseCode": "06066301",
+    "courseNameTh": "โครงสร้างข้อมูลและอัลกอริทึม",
+    "courseNameEn": "DATA STRUCTURES AND ALGORITHMS",
+    "section": 4,
+    "type": "ปฏิบัติ",
+    "sessionNumber": 5,
+    "day": "ศุกร์",
+    "dateStr": "8 มกราคม 2570",
+    "fullDateTh": "ศุกร์ 8 มกราคม 2570",
+    "isoDate": "2027-01-08",
+    "timeStr": "11:00 - 13:00",
+    "room": "Lab 1",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "อ. นันท์นภัส ธีรโชติมงคล"
+    ],
+    "teachingWeek": 5
+  },
+  {
+    "courseCode": "06066301",
+    "courseNameTh": "โครงสร้างข้อมูลและอัลกอริทึม",
+    "courseNameEn": "DATA STRUCTURES AND ALGORITHMS",
+    "section": 4,
+    "type": "ปฏิบัติ",
+    "sessionNumber": 6,
+    "day": "ศุกร์",
+    "dateStr": "15 มกราคม 2570",
+    "fullDateTh": "ศุกร์ 15 มกราคม 2570",
+    "isoDate": "2027-01-15",
+    "timeStr": "11:00 - 13:00",
+    "room": "Lab 1",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "อ. นันท์นภัส ธีรโชติมงคล"
+    ],
+    "teachingWeek": 6
+  },
+  {
+    "courseCode": "06066301",
+    "courseNameTh": "โครงสร้างข้อมูลและอัลกอริทึม",
+    "courseNameEn": "DATA STRUCTURES AND ALGORITHMS",
+    "section": 4,
+    "type": "ปฏิบัติ",
+    "sessionNumber": 7,
+    "day": "ศุกร์",
+    "dateStr": "22 มกราคม 2570",
+    "fullDateTh": "ศุกร์ 22 มกราคม 2570",
+    "isoDate": "2027-01-22",
+    "timeStr": "11:00 - 13:00",
+    "room": "Lab 1",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "อ. นันท์นภัส ธีรโชติมงคล"
+    ],
+    "teachingWeek": 7
+  },
+  {
+    "courseCode": "06066301",
+    "courseNameTh": "โครงสร้างข้อมูลและอัลกอริทึม",
+    "courseNameEn": "DATA STRUCTURES AND ALGORITHMS",
+    "section": 4,
+    "type": "ปฏิบัติ",
+    "sessionNumber": 8,
+    "day": "ศุกร์",
+    "dateStr": "29 มกราคม 2570",
+    "fullDateTh": "ศุกร์ 29 มกราคม 2570",
+    "isoDate": "2027-01-29",
+    "timeStr": "11:00 - 13:00",
+    "room": "Lab 1",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "อ. นันท์นภัส ธีรโชติมงคล"
+    ],
+    "teachingWeek": 8
+  },
+  {
+    "courseCode": "06066301",
+    "courseNameTh": "โครงสร้างข้อมูลและอัลกอริทึม",
+    "courseNameEn": "DATA STRUCTURES AND ALGORITHMS",
+    "section": 4,
+    "type": "ปฏิบัติ",
+    "sessionNumber": 9,
+    "day": "ศุกร์",
+    "dateStr": "12 กุมภาพันธ์ 2570",
+    "fullDateTh": "ศุกร์ 12 กุมภาพันธ์ 2570",
+    "isoDate": "2027-02-12",
+    "timeStr": "11:00 - 13:00",
+    "room": "Lab 1",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "อ. นันท์นภัส ธีรโชติมงคล"
+    ],
+    "teachingWeek": 9
+  },
+  {
+    "courseCode": "06066301",
+    "courseNameTh": "โครงสร้างข้อมูลและอัลกอริทึม",
+    "courseNameEn": "DATA STRUCTURES AND ALGORITHMS",
+    "section": 4,
+    "type": "ปฏิบัติ",
+    "sessionNumber": 10,
+    "day": "ศุกร์",
+    "dateStr": "19 กุมภาพันธ์ 2570",
+    "fullDateTh": "ศุกร์ 19 กุมภาพันธ์ 2570",
+    "isoDate": "2027-02-19",
+    "timeStr": "11:00 - 13:00",
+    "room": "Lab 1",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "อ. นันท์นภัส ธีรโชติมงคล"
+    ],
+    "teachingWeek": 10
+  },
+  {
+    "courseCode": "06066301",
+    "courseNameTh": "โครงสร้างข้อมูลและอัลกอริทึม",
+    "courseNameEn": "DATA STRUCTURES AND ALGORITHMS",
+    "section": 4,
+    "type": "ปฏิบัติ",
+    "sessionNumber": 11,
+    "day": "ศุกร์",
+    "dateStr": "26 กุมภาพันธ์ 2570",
+    "fullDateTh": "ศุกร์ 26 กุมภาพันธ์ 2570",
+    "isoDate": "2027-02-26",
+    "timeStr": "11:00 - 13:00",
+    "room": "Lab 1",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "อ. นันท์นภัส ธีรโชติมงคล"
+    ],
+    "teachingWeek": 11
+  },
+  {
+    "courseCode": "06066301",
+    "courseNameTh": "โครงสร้างข้อมูลและอัลกอริทึม",
+    "courseNameEn": "DATA STRUCTURES AND ALGORITHMS",
+    "section": 4,
+    "type": "ปฏิบัติ",
+    "sessionNumber": 12,
+    "day": "ศุกร์",
+    "dateStr": "5 มีนาคม 2570",
+    "fullDateTh": "ศุกร์ 5 มีนาคม 2570",
+    "isoDate": "2027-03-05",
+    "timeStr": "11:00 - 13:00",
+    "room": "Lab 1",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "อ. นันท์นภัส ธีรโชติมงคล"
+    ],
+    "teachingWeek": 12
+  },
+  {
+    "courseCode": "06066301",
+    "courseNameTh": "โครงสร้างข้อมูลและอัลกอริทึม",
+    "courseNameEn": "DATA STRUCTURES AND ALGORITHMS",
+    "section": 4,
+    "type": "ปฏิบัติ",
+    "sessionNumber": 13,
+    "day": "ศุกร์",
+    "dateStr": "12 มีนาคม 2570",
+    "fullDateTh": "ศุกร์ 12 มีนาคม 2570",
+    "isoDate": "2027-03-12",
+    "timeStr": "11:00 - 13:00",
+    "room": "Lab 1",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "อ. นันท์นภัส ธีรโชติมงคล"
+    ],
+    "teachingWeek": 13
+  },
+  {
+    "courseCode": "06066301",
+    "courseNameTh": "โครงสร้างข้อมูลและอัลกอริทึม",
+    "courseNameEn": "DATA STRUCTURES AND ALGORITHMS",
+    "section": 4,
+    "type": "ปฏิบัติ",
+    "sessionNumber": 14,
+    "day": "ศุกร์",
+    "dateStr": "19 มีนาคม 2570",
+    "fullDateTh": "ศุกร์ 19 มีนาคม 2570",
+    "isoDate": "2027-03-19",
+    "timeStr": "11:00 - 13:00",
+    "room": "Lab 1",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "อ. นันท์นภัส ธีรโชติมงคล"
+    ],
+    "teachingWeek": 14
+  },
+  {
+    "courseCode": "06066301",
+    "courseNameTh": "โครงสร้างข้อมูลและอัลกอริทึม",
+    "courseNameEn": "DATA STRUCTURES AND ALGORITHMS",
+    "section": 4,
+    "type": "ปฏิบัติ",
+    "sessionNumber": 15,
+    "day": "ศุกร์",
+    "dateStr": "26 มีนาคม 2570",
+    "fullDateTh": "ศุกร์ 26 มีนาคม 2570",
+    "isoDate": "2027-03-26",
+    "timeStr": "11:00 - 13:00",
+    "room": "Lab 1",
+    "building": "IT",
+    "instructors": [
+      "ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์",
+      "อ. นันท์นภัส ธีรโชติมงคล"
+    ],
+    "teachingWeek": 15
+  },
+  {
+    "courseCode": "90641007",
+    "courseNameTh": "พลเมืองดิจิทัล",
+    "courseNameEn": "DIGITAL CITIZEN",
+    "section": 602,
+    "type": "ทฤษฎี",
+    "sessionNumber": 1,
+    "day": "พุธ",
+    "dateStr": "9 ธันวาคม 2569",
+    "fullDateTh": "พุธ 9 ธันวาคม 2569",
+    "isoDate": "2026-12-09",
+    "timeStr": "09:00 - 12:00",
+    "room": "412",
+    "building": "IT",
+    "instructors": [
+      "อ. ดร. ทรงพันธ์ ชุณหกิติยานนท์"
+    ],
+    "teachingWeek": 1
+  },
+  {
+    "courseCode": "90641007",
+    "courseNameTh": "พลเมืองดิจิทัล",
+    "courseNameEn": "DIGITAL CITIZEN",
+    "section": 602,
+    "type": "ทฤษฎี",
+    "sessionNumber": 2,
+    "day": "พุธ",
+    "dateStr": "16 ธันวาคม 2569",
+    "fullDateTh": "พุธ 16 ธันวาคม 2569",
+    "isoDate": "2026-12-16",
+    "timeStr": "09:00 - 12:00",
+    "room": "412",
+    "building": "IT",
+    "instructors": [
+      "อ. ดร. ทรงพันธ์ ชุณหกิติยานนท์"
+    ],
+    "teachingWeek": 2
+  },
+  {
+    "courseCode": "90641007",
+    "courseNameTh": "พลเมืองดิจิทัล",
+    "courseNameEn": "DIGITAL CITIZEN",
+    "section": 602,
+    "type": "ทฤษฎี",
+    "sessionNumber": 3,
+    "day": "พุธ",
+    "dateStr": "23 ธันวาคม 2569",
+    "fullDateTh": "พุธ 23 ธันวาคม 2569",
+    "isoDate": "2026-12-23",
+    "timeStr": "09:00 - 12:00",
+    "room": "412",
+    "building": "IT",
+    "instructors": [
+      "อ. ดร. ทรงพันธ์ ชุณหกิติยานนท์"
+    ],
+    "teachingWeek": 3
+  },
+  {
+    "courseCode": "90641007",
+    "courseNameTh": "พลเมืองดิจิทัล",
+    "courseNameEn": "DIGITAL CITIZEN",
+    "section": 602,
+    "type": "ทฤษฎี",
+    "sessionNumber": 4,
+    "day": "พุธ",
+    "dateStr": "30 ธันวาคม 2569",
+    "fullDateTh": "พุธ 30 ธันวาคม 2569",
+    "isoDate": "2026-12-30",
+    "timeStr": "09:00 - 12:00",
+    "room": "412",
+    "building": "IT",
+    "instructors": [
+      "อ. ดร. ทรงพันธ์ ชุณหกิติยานนท์"
+    ],
+    "teachingWeek": 4
+  },
+  {
+    "courseCode": "90641007",
+    "courseNameTh": "พลเมืองดิจิทัล",
+    "courseNameEn": "DIGITAL CITIZEN",
+    "section": 602,
+    "type": "ทฤษฎี",
+    "sessionNumber": 5,
+    "day": "พุธ",
+    "dateStr": "6 มกราคม 2570",
+    "fullDateTh": "พุธ 6 มกราคม 2570",
+    "isoDate": "2027-01-06",
+    "timeStr": "09:00 - 12:00",
+    "room": "412",
+    "building": "IT",
+    "instructors": [
+      "อ. ดร. ทรงพันธ์ ชุณหกิติยานนท์"
+    ],
+    "teachingWeek": 5
+  },
+  {
+    "courseCode": "90641007",
+    "courseNameTh": "พลเมืองดิจิทัล",
+    "courseNameEn": "DIGITAL CITIZEN",
+    "section": 602,
+    "type": "ทฤษฎี",
+    "sessionNumber": 6,
+    "day": "พุธ",
+    "dateStr": "13 มกราคม 2570",
+    "fullDateTh": "พุธ 13 มกราคม 2570",
+    "isoDate": "2027-01-13",
+    "timeStr": "09:00 - 12:00",
+    "room": "412",
+    "building": "IT",
+    "instructors": [
+      "อ. ดร. ทรงพันธ์ ชุณหกิติยานนท์"
+    ],
+    "teachingWeek": 6
+  },
+  {
+    "courseCode": "90641007",
+    "courseNameTh": "พลเมืองดิจิทัล",
+    "courseNameEn": "DIGITAL CITIZEN",
+    "section": 602,
+    "type": "ทฤษฎี",
+    "sessionNumber": 7,
+    "day": "พุธ",
+    "dateStr": "20 มกราคม 2570",
+    "fullDateTh": "พุธ 20 มกราคม 2570",
+    "isoDate": "2027-01-20",
+    "timeStr": "09:00 - 12:00",
+    "room": "412",
+    "building": "IT",
+    "instructors": [
+      "อ. ดร. ทรงพันธ์ ชุณหกิติยานนท์"
+    ],
+    "teachingWeek": 7
+  },
+  {
+    "courseCode": "90641007",
+    "courseNameTh": "พลเมืองดิจิทัล",
+    "courseNameEn": "DIGITAL CITIZEN",
+    "section": 602,
+    "type": "ทฤษฎี",
+    "sessionNumber": 8,
+    "day": "พุธ",
+    "dateStr": "27 มกราคม 2570",
+    "fullDateTh": "พุธ 27 มกราคม 2570",
+    "isoDate": "2027-01-27",
+    "timeStr": "09:00 - 12:00",
+    "room": "412",
+    "building": "IT",
+    "instructors": [
+      "อ. ดร. ทรงพันธ์ ชุณหกิติยานนท์"
+    ],
+    "teachingWeek": 8
+  },
+  {
+    "courseCode": "90641007",
+    "courseNameTh": "พลเมืองดิจิทัล",
+    "courseNameEn": "DIGITAL CITIZEN",
+    "section": 602,
+    "type": "ทฤษฎี",
+    "sessionNumber": 9,
+    "day": "พุธ",
+    "dateStr": "10 กุมภาพันธ์ 2570",
+    "fullDateTh": "พุธ 10 กุมภาพันธ์ 2570",
+    "isoDate": "2027-02-10",
+    "timeStr": "09:00 - 12:00",
+    "room": "412",
+    "building": "IT",
+    "instructors": [
+      "อ. ดร. ทรงพันธ์ ชุณหกิติยานนท์"
+    ],
+    "teachingWeek": 9
+  },
+  {
+    "courseCode": "90641007",
+    "courseNameTh": "พลเมืองดิจิทัล",
+    "courseNameEn": "DIGITAL CITIZEN",
+    "section": 602,
+    "type": "ทฤษฎี",
+    "sessionNumber": 10,
+    "day": "พุธ",
+    "dateStr": "17 กุมภาพันธ์ 2570",
+    "fullDateTh": "พุธ 17 กุมภาพันธ์ 2570",
+    "isoDate": "2027-02-17",
+    "timeStr": "09:00 - 12:00",
+    "room": "412",
+    "building": "IT",
+    "instructors": [
+      "อ. ดร. ทรงพันธ์ ชุณหกิติยานนท์"
+    ],
+    "teachingWeek": 10
+  },
+  {
+    "courseCode": "90641007",
+    "courseNameTh": "พลเมืองดิจิทัล",
+    "courseNameEn": "DIGITAL CITIZEN",
+    "section": 602,
+    "type": "ทฤษฎี",
+    "sessionNumber": 11,
+    "day": "พุธ",
+    "dateStr": "24 กุมภาพันธ์ 2570",
+    "fullDateTh": "พุธ 24 กุมภาพันธ์ 2570",
+    "isoDate": "2027-02-24",
+    "timeStr": "09:00 - 12:00",
+    "room": "412",
+    "building": "IT",
+    "instructors": [
+      "อ. ดร. ทรงพันธ์ ชุณหกิติยานนท์"
+    ],
+    "teachingWeek": 11
+  },
+  {
+    "courseCode": "90641007",
+    "courseNameTh": "พลเมืองดิจิทัล",
+    "courseNameEn": "DIGITAL CITIZEN",
+    "section": 602,
+    "type": "ทฤษฎี",
+    "sessionNumber": 12,
+    "day": "พุธ",
+    "dateStr": "3 มีนาคม 2570",
+    "fullDateTh": "พุธ 3 มีนาคม 2570",
+    "isoDate": "2027-03-03",
+    "timeStr": "09:00 - 12:00",
+    "room": "412",
+    "building": "IT",
+    "instructors": [
+      "อ. ดร. ทรงพันธ์ ชุณหกิติยานนท์"
+    ],
+    "teachingWeek": 12
+  },
+  {
+    "courseCode": "90641007",
+    "courseNameTh": "พลเมืองดิจิทัล",
+    "courseNameEn": "DIGITAL CITIZEN",
+    "section": 602,
+    "type": "ทฤษฎี",
+    "sessionNumber": 13,
+    "day": "พุธ",
+    "dateStr": "10 มีนาคม 2570",
+    "fullDateTh": "พุธ 10 มีนาคม 2570",
+    "isoDate": "2027-03-10",
+    "timeStr": "09:00 - 12:00",
+    "room": "412",
+    "building": "IT",
+    "instructors": [
+      "อ. ดร. ทรงพันธ์ ชุณหกิติยานนท์"
+    ],
+    "teachingWeek": 13
+  },
+  {
+    "courseCode": "90641007",
+    "courseNameTh": "พลเมืองดิจิทัล",
+    "courseNameEn": "DIGITAL CITIZEN",
+    "section": 602,
+    "type": "ทฤษฎี",
+    "sessionNumber": 14,
+    "day": "พุธ",
+    "dateStr": "17 มีนาคม 2570",
+    "fullDateTh": "พุธ 17 มีนาคม 2570",
+    "isoDate": "2027-03-17",
+    "timeStr": "09:00 - 12:00",
+    "room": "412",
+    "building": "IT",
+    "instructors": [
+      "อ. ดร. ทรงพันธ์ ชุณหกิติยานนท์"
+    ],
+    "teachingWeek": 14
+  },
+  {
+    "courseCode": "90641007",
+    "courseNameTh": "พลเมืองดิจิทัล",
+    "courseNameEn": "DIGITAL CITIZEN",
+    "section": 602,
+    "type": "ทฤษฎี",
+    "sessionNumber": 15,
+    "day": "พุธ",
+    "dateStr": "24 มีนาคม 2570",
+    "fullDateTh": "พุธ 24 มีนาคม 2570",
+    "isoDate": "2027-03-24",
+    "timeStr": "09:00 - 12:00",
+    "room": "412",
+    "building": "IT",
+    "instructors": [
+      "อ. ดร. ทรงพันธ์ ชุณหกิติยานนท์"
+    ],
+    "teachingWeek": 15
+  },
+  {
+    "courseCode": "90644008",
+    "courseNameTh": "ภาษาอังกฤษพื้นฐาน 2",
+    "courseNameEn": "FOUNDATION ENGLISH 2",
+    "section": 922,
+    "type": "ทฤษฎี",
+    "sessionNumber": 1,
+    "day": "พฤหัสบดี",
+    "dateStr": "10 ธันวาคม 2569",
+    "fullDateTh": "พฤหัสบดี 10 ธันวาคม 2569",
+    "isoDate": "2026-12-10",
+    "timeStr": "09:00 - 12:00",
+    "room": "1102",
+    "building": "11 ชั้น",
+    "instructors": [
+      "อาจารย์ผู้สอนคณะศิลปศาสตร์"
+    ],
+    "teachingWeek": 1
+  },
+  {
+    "courseCode": "90644008",
+    "courseNameTh": "ภาษาอังกฤษพื้นฐาน 2",
+    "courseNameEn": "FOUNDATION ENGLISH 2",
+    "section": 922,
+    "type": "ทฤษฎี",
+    "sessionNumber": 2,
+    "day": "พฤหัสบดี",
+    "dateStr": "17 ธันวาคม 2569",
+    "fullDateTh": "พฤหัสบดี 17 ธันวาคม 2569",
+    "isoDate": "2026-12-17",
+    "timeStr": "09:00 - 12:00",
+    "room": "1102",
+    "building": "11 ชั้น",
+    "instructors": [
+      "อาจารย์ผู้สอนคณะศิลปศาสตร์"
+    ],
+    "teachingWeek": 2
+  },
+  {
+    "courseCode": "90644008",
+    "courseNameTh": "ภาษาอังกฤษพื้นฐาน 2",
+    "courseNameEn": "FOUNDATION ENGLISH 2",
+    "section": 922,
+    "type": "ทฤษฎี",
+    "sessionNumber": 3,
+    "day": "พฤหัสบดี",
+    "dateStr": "24 ธันวาคม 2569",
+    "fullDateTh": "พฤหัสบดี 24 ธันวาคม 2569",
+    "isoDate": "2026-12-24",
+    "timeStr": "09:00 - 12:00",
+    "room": "1102",
+    "building": "11 ชั้น",
+    "instructors": [
+      "อาจารย์ผู้สอนคณะศิลปศาสตร์"
+    ],
+    "teachingWeek": 3
+  },
+  {
+    "courseCode": "90644008",
+    "courseNameTh": "ภาษาอังกฤษพื้นฐาน 2",
+    "courseNameEn": "FOUNDATION ENGLISH 2",
+    "section": 922,
+    "type": "ทฤษฎี",
+    "sessionNumber": 4,
+    "day": "พฤหัสบดี",
+    "dateStr": "31 ธันวาคม 2569",
+    "fullDateTh": "พฤหัสบดี 31 ธันวาคม 2569",
+    "isoDate": "2026-12-31",
+    "timeStr": "09:00 - 12:00",
+    "room": "1102",
+    "building": "11 ชั้น",
+    "instructors": [
+      "อาจารย์ผู้สอนคณะศิลปศาสตร์"
+    ],
+    "teachingWeek": 4
+  },
+  {
+    "courseCode": "90644008",
+    "courseNameTh": "ภาษาอังกฤษพื้นฐาน 2",
+    "courseNameEn": "FOUNDATION ENGLISH 2",
+    "section": 922,
+    "type": "ทฤษฎี",
+    "sessionNumber": 5,
+    "day": "พฤหัสบดี",
+    "dateStr": "7 มกราคม 2570",
+    "fullDateTh": "พฤหัสบดี 7 มกราคม 2570",
+    "isoDate": "2027-01-07",
+    "timeStr": "09:00 - 12:00",
+    "room": "1102",
+    "building": "11 ชั้น",
+    "instructors": [
+      "อาจารย์ผู้สอนคณะศิลปศาสตร์"
+    ],
+    "teachingWeek": 5
+  },
+  {
+    "courseCode": "90644008",
+    "courseNameTh": "ภาษาอังกฤษพื้นฐาน 2",
+    "courseNameEn": "FOUNDATION ENGLISH 2",
+    "section": 922,
+    "type": "ทฤษฎี",
+    "sessionNumber": 6,
+    "day": "พฤหัสบดี",
+    "dateStr": "14 มกราคม 2570",
+    "fullDateTh": "พฤหัสบดี 14 มกราคม 2570",
+    "isoDate": "2027-01-14",
+    "timeStr": "09:00 - 12:00",
+    "room": "1102",
+    "building": "11 ชั้น",
+    "instructors": [
+      "อาจารย์ผู้สอนคณะศิลปศาสตร์"
+    ],
+    "teachingWeek": 6
+  },
+  {
+    "courseCode": "90644008",
+    "courseNameTh": "ภาษาอังกฤษพื้นฐาน 2",
+    "courseNameEn": "FOUNDATION ENGLISH 2",
+    "section": 922,
+    "type": "ทฤษฎี",
+    "sessionNumber": 7,
+    "day": "พฤหัสบดี",
+    "dateStr": "21 มกราคม 2570",
+    "fullDateTh": "พฤหัสบดี 21 มกราคม 2570",
+    "isoDate": "2027-01-21",
+    "timeStr": "09:00 - 12:00",
+    "room": "1102",
+    "building": "11 ชั้น",
+    "instructors": [
+      "อาจารย์ผู้สอนคณะศิลปศาสตร์"
+    ],
+    "teachingWeek": 7
+  },
+  {
+    "courseCode": "90644008",
+    "courseNameTh": "ภาษาอังกฤษพื้นฐาน 2",
+    "courseNameEn": "FOUNDATION ENGLISH 2",
+    "section": 922,
+    "type": "ทฤษฎี",
+    "sessionNumber": 8,
+    "day": "พฤหัสบดี",
+    "dateStr": "28 มกราคม 2570",
+    "fullDateTh": "พฤหัสบดี 28 มกราคม 2570",
+    "isoDate": "2027-01-28",
+    "timeStr": "09:00 - 12:00",
+    "room": "1102",
+    "building": "11 ชั้น",
+    "instructors": [
+      "อาจารย์ผู้สอนคณะศิลปศาสตร์"
+    ],
+    "teachingWeek": 8
+  },
+  {
+    "courseCode": "90644008",
+    "courseNameTh": "ภาษาอังกฤษพื้นฐาน 2",
+    "courseNameEn": "FOUNDATION ENGLISH 2",
+    "section": 922,
+    "type": "ทฤษฎี",
+    "sessionNumber": 9,
+    "day": "พฤหัสบดี",
+    "dateStr": "11 กุมภาพันธ์ 2570",
+    "fullDateTh": "พฤหัสบดี 11 กุมภาพันธ์ 2570",
+    "isoDate": "2027-02-11",
+    "timeStr": "09:00 - 12:00",
+    "room": "1102",
+    "building": "11 ชั้น",
+    "instructors": [
+      "อาจารย์ผู้สอนคณะศิลปศาสตร์"
+    ],
+    "teachingWeek": 9
+  },
+  {
+    "courseCode": "90644008",
+    "courseNameTh": "ภาษาอังกฤษพื้นฐาน 2",
+    "courseNameEn": "FOUNDATION ENGLISH 2",
+    "section": 922,
+    "type": "ทฤษฎี",
+    "sessionNumber": 10,
+    "day": "พฤหัสบดี",
+    "dateStr": "18 กุมภาพันธ์ 2570",
+    "fullDateTh": "พฤหัสบดี 18 กุมภาพันธ์ 2570",
+    "isoDate": "2027-02-18",
+    "timeStr": "09:00 - 12:00",
+    "room": "1102",
+    "building": "11 ชั้น",
+    "instructors": [
+      "อาจารย์ผู้สอนคณะศิลปศาสตร์"
+    ],
+    "teachingWeek": 10
+  },
+  {
+    "courseCode": "90644008",
+    "courseNameTh": "ภาษาอังกฤษพื้นฐาน 2",
+    "courseNameEn": "FOUNDATION ENGLISH 2",
+    "section": 922,
+    "type": "ทฤษฎี",
+    "sessionNumber": 11,
+    "day": "พฤหัสบดี",
+    "dateStr": "25 กุมภาพันธ์ 2570",
+    "fullDateTh": "พฤหัสบดี 25 กุมภาพันธ์ 2570",
+    "isoDate": "2027-02-25",
+    "timeStr": "09:00 - 12:00",
+    "room": "1102",
+    "building": "11 ชั้น",
+    "instructors": [
+      "อาจารย์ผู้สอนคณะศิลปศาสตร์"
+    ],
+    "teachingWeek": 11
+  },
+  {
+    "courseCode": "90644008",
+    "courseNameTh": "ภาษาอังกฤษพื้นฐาน 2",
+    "courseNameEn": "FOUNDATION ENGLISH 2",
+    "section": 922,
+    "type": "ทฤษฎี",
+    "sessionNumber": 12,
+    "day": "พฤหัสบดี",
+    "dateStr": "4 มีนาคม 2570",
+    "fullDateTh": "พฤหัสบดี 4 มีนาคม 2570",
+    "isoDate": "2027-03-04",
+    "timeStr": "09:00 - 12:00",
+    "room": "1102",
+    "building": "11 ชั้น",
+    "instructors": [
+      "อาจารย์ผู้สอนคณะศิลปศาสตร์"
+    ],
+    "teachingWeek": 12
+  },
+  {
+    "courseCode": "90644008",
+    "courseNameTh": "ภาษาอังกฤษพื้นฐาน 2",
+    "courseNameEn": "FOUNDATION ENGLISH 2",
+    "section": 922,
+    "type": "ทฤษฎี",
+    "sessionNumber": 13,
+    "day": "พฤหัสบดี",
+    "dateStr": "11 มีนาคม 2570",
+    "fullDateTh": "พฤหัสบดี 11 มีนาคม 2570",
+    "isoDate": "2027-03-11",
+    "timeStr": "09:00 - 12:00",
+    "room": "1102",
+    "building": "11 ชั้น",
+    "instructors": [
+      "อาจารย์ผู้สอนคณะศิลปศาสตร์"
+    ],
+    "teachingWeek": 13
+  },
+  {
+    "courseCode": "90644008",
+    "courseNameTh": "ภาษาอังกฤษพื้นฐาน 2",
+    "courseNameEn": "FOUNDATION ENGLISH 2",
+    "section": 922,
+    "type": "ทฤษฎี",
+    "sessionNumber": 14,
+    "day": "พฤหัสบดี",
+    "dateStr": "18 มีนาคม 2570",
+    "fullDateTh": "พฤหัสบดี 18 มีนาคม 2570",
+    "isoDate": "2027-03-18",
+    "timeStr": "09:00 - 12:00",
+    "room": "1102",
+    "building": "11 ชั้น",
+    "instructors": [
+      "อาจารย์ผู้สอนคณะศิลปศาสตร์"
+    ],
+    "teachingWeek": 14
+  },
+  {
+    "courseCode": "90644008",
+    "courseNameTh": "ภาษาอังกฤษพื้นฐาน 2",
+    "courseNameEn": "FOUNDATION ENGLISH 2",
+    "section": 922,
+    "type": "ทฤษฎี",
+    "sessionNumber": 15,
+    "day": "พฤหัสบดี",
+    "dateStr": "25 มีนาคม 2570",
+    "fullDateTh": "พฤหัสบดี 25 มีนาคม 2570",
+    "isoDate": "2027-03-25",
+    "timeStr": "09:00 - 12:00",
+    "room": "1102",
+    "building": "11 ชั้น",
+    "instructors": [
+      "อาจารย์ผู้สอนคณะศิลปศาสตร์"
+    ],
+    "teachingWeek": 15
+  }
+]

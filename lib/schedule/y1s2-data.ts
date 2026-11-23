@@ -6,6 +6,34 @@ import type {
   TimetableCourse,
   UserScheduleSelection,
 } from "./types";
+import studentGroupsData from "@/data/schedule/y1s2-student-groups.json";
+
+export interface StudentScheduleGroupInfo {
+  group: 1 | 2 | 3;
+  name: string;
+  presetId: "group-1" | "group-2" | "group-3";
+}
+
+/**
+ * Returns the official assigned group (1, 2, or 3) for a given student ID.
+ * Based on the live KMITL registration quota and roster data for 2/2569.
+ */
+export function getStudentScheduleGroup(
+  studentId: string | null | undefined,
+): StudentScheduleGroupInfo | null {
+  if (!studentId) return null;
+  const cleanId = studentId.replace(/\D/g, "").trim();
+  if (studentGroupsData.group1.includes(cleanId)) {
+    return { group: 1, name: "กลุ่ม 1", presetId: "group-1" };
+  }
+  if (studentGroupsData.group2.includes(cleanId)) {
+    return { group: 2, name: "กลุ่ม 2", presetId: "group-2" };
+  }
+  if (studentGroupsData.group3.includes(cleanId)) {
+    return { group: 3, name: "กลุ่ม 3", presetId: "group-3" };
+  }
+  return null;
+}
 
 export const DAYS_OF_WEEK: DayOfWeek[] = [
   "จันทร์",
@@ -47,8 +75,8 @@ export const Y1S2_COURSES: TimetableCourse[] = [
           building: "IT",
         },
         instructors: ["ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์"],
-        condition: "กลุ่ม 1 (เฉพาะรหัส 67070235)",
-        seats: { total: 73, used: 0, remain: 0 },
+        condition: "กลุ่ม 1 (รหัส 69070001 - 69070098 และตกค้าง)",
+        seats: { total: 73, used: 14, remain: 59 },
       },
       {
         section: 2,
@@ -64,8 +92,8 @@ export const Y1S2_COURSES: TimetableCourse[] = [
           building: "IT",
         },
         instructors: ["ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์"],
-        condition: "กลุ่ม 2 (เฉพาะรหัส 67070235)",
-        seats: { total: 73, used: 0, remain: 0 },
+        condition: "กลุ่ม 2 (รหัส 69070100 - 69070201 และตกค้าง)",
+        seats: { total: 73, used: 10, remain: 63 },
       },
       {
         section: 3,
@@ -81,8 +109,8 @@ export const Y1S2_COURSES: TimetableCourse[] = [
           building: "IT",
         },
         instructors: ["ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์"],
-        condition: "กลุ่ม 3 (เฉพาะรหัส 67070235)",
-        seats: { total: 73, used: 0, remain: 0 },
+        condition: "กลุ่ม 3 (รหัส 69070203 - 69070331 และตกค้าง)",
+        seats: { total: 73, used: 5, remain: 68 },
       },
       {
         section: 4,
@@ -98,8 +126,8 @@ export const Y1S2_COURSES: TimetableCourse[] = [
           building: "IT",
         },
         instructors: ["ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์"],
-        condition: "กลุ่ม 1 (เฉพาะรหัส 67070235)",
-        seats: { total: 73, used: 0, remain: 0 },
+        condition: "กลุ่ม 1 (รหัส 69070001 - 69070098 และตกค้าง)",
+        seats: { total: 73, used: 14, remain: 59 },
       },
       {
         section: 5,
@@ -115,8 +143,8 @@ export const Y1S2_COURSES: TimetableCourse[] = [
           building: "IT",
         },
         instructors: ["ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์"],
-        condition: "กลุ่ม 2 (เฉพาะรหัส 67070235)",
-        seats: { total: 73, used: 0, remain: 0 },
+        condition: "กลุ่ม 2 (รหัส 69070100 - 69070201 และตกค้าง)",
+        seats: { total: 73, used: 10, remain: 63 },
       },
       {
         section: 6,
@@ -132,8 +160,8 @@ export const Y1S2_COURSES: TimetableCourse[] = [
           building: "IT",
         },
         instructors: ["ผศ. ดร. ธราวิเชษฐ์ ธิติจรูญโรจน์"],
-        condition: "กลุ่ม 3 (เฉพาะรหัส 67070235)",
-        seats: { total: 73, used: 0, remain: 0 },
+        condition: "กลุ่ม 3 (รหัส 69070203 - 69070331 และตกค้าง)",
+        seats: { total: 73, used: 5, remain: 68 },
       },
     ],
   },
@@ -168,8 +196,8 @@ export const Y1S2_COURSES: TimetableCourse[] = [
           building: "IT",
         },
         instructors: ["ศ. ดร. สุขสันต์ พาณิชพาพิบูล"],
-        condition: "กลุ่ม 1 (เฉพาะรหัส 69070001)",
-        seats: { total: 71, used: 0, remain: 0 },
+        condition: "กลุ่ม 1 (รหัส 69070001 - 69070098)",
+        seats: { total: 71, used: 14, remain: 57 },
       },
       {
         section: 2,
@@ -185,8 +213,8 @@ export const Y1S2_COURSES: TimetableCourse[] = [
           building: "IT",
         },
         instructors: ["ศ. ดร. สุขสันต์ พาณิชพาพิบูล"],
-        condition: "กลุ่ม 2 (เฉพาะรหัส 69070100)",
-        seats: { total: 71, used: 0, remain: 0 },
+        condition: "กลุ่ม 2 (รหัส 69070100 - 69070201)",
+        seats: { total: 71, used: 10, remain: 61 },
       },
       {
         section: 3,
@@ -202,8 +230,8 @@ export const Y1S2_COURSES: TimetableCourse[] = [
           building: "IT",
         },
         instructors: ["ศ. ดร. สุขสันต์ พาณิชพาพิบูล"],
-        condition: "กลุ่ม 3 (เฉพาะรหัส 69070203)",
-        seats: { total: 71, used: 0, remain: 0 },
+        condition: "กลุ่ม 3 (รหัส 69070203 - 69070331)",
+        seats: { total: 71, used: 5, remain: 66 },
       },
       {
         section: 4,
@@ -219,8 +247,8 @@ export const Y1S2_COURSES: TimetableCourse[] = [
           building: "IT",
         },
         instructors: ["ศ. ดร. สุขสันต์ พาณิชพาพิบูล"],
-        condition: "รับเฉพาะนักศึกษาเก็บตก IT 3-5",
-        seats: { total: 22, used: 0, remain: 0 },
+        condition: "รับเฉพาะนักศึกษาตกค้าง / ชั้นปี 2-4 (65 คน)",
+        seats: { total: 22, used: 0, remain: 22 },
       },
       {
         section: 5,
@@ -236,8 +264,8 @@ export const Y1S2_COURSES: TimetableCourse[] = [
           building: "IT",
         },
         instructors: ["ศ. ดร. สุขสันต์ พาณิชพาพิบูล"],
-        condition: "รับเฉพาะนักศึกษาเก็บตก IT 3-5",
-        seats: { total: 22, used: 0, remain: 0 },
+        condition: "รับเฉพาะนักศึกษาตกค้าง / ชั้นปี 2-4 (65 คน)",
+        seats: { total: 22, used: 1, remain: 21 },
       },
       {
         section: 6,
@@ -253,8 +281,8 @@ export const Y1S2_COURSES: TimetableCourse[] = [
           building: "IT",
         },
         instructors: ["ศ. ดร. สุขสันต์ พาณิชพาพิบูล"],
-        condition: "รับเฉพาะนักศึกษาเก็บตก IT 3-5",
-        seats: { total: 22, used: 0, remain: 0 },
+        condition: "รับเฉพาะนักศึกษาตกค้าง / ชั้นปี 2-4 (65 คน)",
+        seats: { total: 22, used: 4, remain: 18 },
       },
     ],
   },
@@ -289,8 +317,8 @@ export const Y1S2_COURSES: TimetableCourse[] = [
           building: "IT",
         },
         instructors: ["ศ. ดร. อาริต ธรรมโน", "ผศ. ดร. พรสุรีย์ แจ่มศรี"],
-        condition: "กลุ่ม 1 (เฉพาะรหัส 66070257)",
-        seats: { total: 77, used: 0, remain: 0 },
+        condition: "กลุ่ม 1 (รหัส 69070001 - 69070098 และตกค้าง)",
+        seats: { total: 77, used: 14, remain: 63 },
       },
       {
         section: 2,
@@ -306,8 +334,8 @@ export const Y1S2_COURSES: TimetableCourse[] = [
           building: "IT",
         },
         instructors: ["ศ. ดร. อาริต ธรรมโน", "ผศ. ดร. พรสุรีย์ แจ่มศรี"],
-        condition: "กลุ่ม 2 (เฉพาะรหัส 66070257)",
-        seats: { total: 77, used: 0, remain: 0 },
+        condition: "กลุ่ม 2 (รหัส 69070100 - 69070201 และตกค้าง)",
+        seats: { total: 77, used: 9, remain: 68 },
       },
       {
         section: 3,
@@ -323,8 +351,8 @@ export const Y1S2_COURSES: TimetableCourse[] = [
           building: "IT",
         },
         instructors: ["ศ. ดร. อาริต ธรรมโน", "ผศ. ดร. พรสุรีย์ แจ่มศรี"],
-        condition: "กลุ่ม 3 (เฉพาะรหัส 66070257)",
-        seats: { total: 77, used: 0, remain: 0 },
+        condition: "กลุ่ม 3 (รหัส 69070203 - 69070331 และตกค้าง)",
+        seats: { total: 77, used: 5, remain: 72 },
       },
     ],
   },
@@ -359,8 +387,8 @@ export const Y1S2_COURSES: TimetableCourse[] = [
           building: "IT",
         },
         instructors: ["ผศ. ดร. สุพัณณดา โชติพันธ์"],
-        condition: "กลุ่ม 1 (เฉพาะรหัส 67070011)",
-        seats: { total: 78, used: 0, remain: 0 },
+        condition: "กลุ่ม 1 (รหัส 69070001 - 69070098 และตกค้าง)",
+        seats: { total: 78, used: 14, remain: 64 },
       },
       {
         section: 2,
@@ -376,8 +404,8 @@ export const Y1S2_COURSES: TimetableCourse[] = [
           building: "IT",
         },
         instructors: ["ผศ. ดร. สุพัณณดา โชติพันธ์"],
-        condition: "กลุ่ม 2 (เฉพาะรหัส 67070011)",
-        seats: { total: 78, used: 0, remain: 0 },
+        condition: "กลุ่ม 2 (รหัส 69070100 - 69070201 และตกค้าง)",
+        seats: { total: 78, used: 10, remain: 68 },
       },
       {
         section: 3,
@@ -393,8 +421,8 @@ export const Y1S2_COURSES: TimetableCourse[] = [
           building: "IT",
         },
         instructors: ["ผศ. ดร. สุพัณณดา โชติพันธ์"],
-        condition: "กลุ่ม 3 (เฉพาะรหัส 67070011)",
-        seats: { total: 78, used: 0, remain: 0 },
+        condition: "กลุ่ม 3 (รหัส 69070203 - 69070331 และตกค้าง)",
+        seats: { total: 78, used: 6, remain: 72 },
       },
       {
         section: 4,
@@ -410,8 +438,8 @@ export const Y1S2_COURSES: TimetableCourse[] = [
           building: "IT",
         },
         instructors: ["ผศ. ดร. สุพัณณดา โชติพันธ์"],
-        condition: "กลุ่ม 1 (เฉพาะรหัส 67070011)",
-        seats: { total: 78, used: 0, remain: 0 },
+        condition: "กลุ่ม 1 (รหัส 69070001 - 69070098 และตกค้าง)",
+        seats: { total: 78, used: 14, remain: 64 },
       },
       {
         section: 5,
@@ -427,8 +455,8 @@ export const Y1S2_COURSES: TimetableCourse[] = [
           building: "IT",
         },
         instructors: ["ผศ. ดร. สุพัณณดา โชติพันธ์"],
-        condition: "กลุ่ม 2 (เฉพาะรหัส 67070011)",
-        seats: { total: 78, used: 0, remain: 0 },
+        condition: "กลุ่ม 2 (รหัส 69070100 - 69070201 และตกค้าง)",
+        seats: { total: 78, used: 10, remain: 68 },
       },
       {
         section: 6,
@@ -444,8 +472,8 @@ export const Y1S2_COURSES: TimetableCourse[] = [
           building: "IT",
         },
         instructors: ["ผศ. ดร. สุพัณณดา โชติพันธ์"],
-        condition: "กลุ่ม 3 (เฉพาะรหัส 67070011)",
-        seats: { total: 78, used: 0, remain: 0 },
+        condition: "กลุ่ม 3 (รหัส 69070203 - 69070331 และตกค้าง)",
+        seats: { total: 78, used: 6, remain: 72 },
       },
     ],
   },
@@ -482,8 +510,8 @@ export const Y1S2_COURSES: TimetableCourse[] = [
           building: "IT",
         },
         instructors: ["ผศ. ดร. กนกวรรณ อัจฉริยะชาญวณิช"],
-        condition: "ช่วงรหัส 69070001 - 69079999",
-        seats: { total: 83, used: 0, remain: 0 },
+        condition: "เฉพาะรหัสนักศึกษา 69070001 - 69079999",
+        seats: { total: 83, used: 5, remain: 78 },
       },
       {
         section: 602,
@@ -499,8 +527,8 @@ export const Y1S2_COURSES: TimetableCourse[] = [
           building: "พระเทพฯ-D",
         },
         instructors: ["ผศ. ดร. ชุติมา ไวยสุระสิงห์"],
-        condition: "ช่วงรหัส 69070001 - 69079999",
-        seats: { total: 83, used: 0, remain: 0 },
+        condition: "เฉพาะรหัสนักศึกษา 69070001 - 69079999",
+        seats: { total: 83, used: 15, remain: 68 },
       },
       {
         section: 603,
@@ -516,8 +544,8 @@ export const Y1S2_COURSES: TimetableCourse[] = [
           building: "IT",
         },
         instructors: ["ผศ. ดร. อนันตพัฒน์ อนันตชัย"],
-        condition: "ช่วงรหัส 69070001 - 69079999",
-        seats: { total: 83, used: 0, remain: 0 },
+        condition: "เฉพาะรหัสนักศึกษา 69070001 - 69079999",
+        seats: { total: 83, used: 20, remain: 63 },
       },
       {
         section: 604,
@@ -533,8 +561,8 @@ export const Y1S2_COURSES: TimetableCourse[] = [
           building: "IT",
         },
         instructors: ["รศ. ดร. พนารัตน์ เชิญถนอมวงศ์"],
-        condition: "ช่วงรหัส 69070001 - 69079999",
-        seats: { total: 83, used: 0, remain: 0 },
+        condition: "เฉพาะรหัสนักศึกษา 69070001 - 69079999",
+        seats: { total: 83, used: 9, remain: 74 },
       },
     ],
   },
@@ -571,8 +599,8 @@ export const Y1S2_COURSES: TimetableCourse[] = [
           building: "พระเทพฯ-D",
         },
         instructors: ["ดร. ANDY CUBALIT", "อ. ณัฏฐริณันท์ ปั้นเฉย"],
-        condition: "ช่วงรหัส 69050001 - 69059999 / IT ปี 1",
-        seats: { total: 55, used: 0, remain: 0 },
+        condition: "เฉพาะรหัสนักศึกษา 69050001 - 69059999 และ 69070001 - 69079999",
+        seats: { total: 55, used: 10, remain: 45 },
       },
       {
         section: 922,
@@ -588,8 +616,8 @@ export const Y1S2_COURSES: TimetableCourse[] = [
           building: "พระเทพฯ-D",
         },
         instructors: ["ดร. ANDY CUBALIT", "อ. ณัฏฐริณันท์ ปั้นเฉย"],
-        condition: "ช่วงรหัส 69050001 - 69059999 / IT ปี 1",
-        seats: { total: 55, used: 0, remain: 0 },
+        condition: "เฉพาะรหัสนักศึกษา 69050001 - 69059999 และ 69070001 - 69079999",
+        seats: { total: 55, used: 29, remain: 26 },
       },
       {
         section: 923,
@@ -605,8 +633,8 @@ export const Y1S2_COURSES: TimetableCourse[] = [
           building: "พระเทพฯ-D",
         },
         instructors: ["อ. ธัญณัฐพรรณ สินถิรมั่น", "ดร. MANASHI DUTTA"],
-        condition: "ช่วงรหัส 69050001 - 69059999 / IT ปี 1",
-        seats: { total: 55, used: 0, remain: 0 },
+        condition: "เฉพาะรหัสนักศึกษา 69050001 - 69059999 และ 69070001 - 69079999",
+        seats: { total: 55, used: 21, remain: 34 },
       },
       {
         section: 924,
@@ -622,8 +650,8 @@ export const Y1S2_COURSES: TimetableCourse[] = [
           building: "พระเทพฯ-D",
         },
         instructors: ["อ. ธัญณัฐพรรณ สินถิรมั่น", "ดร. MANASHI DUTTA"],
-        condition: "ช่วงรหัส 69050001 - 69059999 / IT ปี 1",
-        seats: { total: 55, used: 0, remain: 0 },
+        condition: "เฉพาะรหัสนักศึกษา 69050001 - 69059999 และ 69070001 - 69079999",
+        seats: { total: 55, used: 21, remain: 34 },
       },
       {
         section: 925,
@@ -639,8 +667,8 @@ export const Y1S2_COURSES: TimetableCourse[] = [
           building: "พระเทพฯ-D",
         },
         instructors: ["อ. รัตนสุดา กิตติก้องนภางค์", "อ. สุรีรัตน์ ทองอินทร์"],
-        condition: "ช่วงรหัส 69050001 - 69059999 / IT ปี 1",
-        seats: { total: 55, used: 0, remain: 0 },
+        condition: "เฉพาะรหัสนักศึกษา 69050001 - 69059999 และ 69070001 - 69079999",
+        seats: { total: 55, used: 97, remain: 0 },
       },
       {
         section: 926,
@@ -656,8 +684,8 @@ export const Y1S2_COURSES: TimetableCourse[] = [
           building: "พระเทพฯ-D",
         },
         instructors: ["อ. รัตนสุดา กิตติก้องนภางค์", "อ. สุรีรัตน์ ทองอินทร์"],
-        condition: "ช่วงรหัส 69050001 - 69059999 / IT ปี 1",
-        seats: { total: 55, used: 0, remain: 0 },
+        condition: "เฉพาะรหัสนักศึกษา 69050001 - 69059999 และ 69070001 - 69079999",
+        seats: { total: 55, used: 24, remain: 31 },
       },
       {
         section: 927,
@@ -673,8 +701,8 @@ export const Y1S2_COURSES: TimetableCourse[] = [
           building: "พระเทพฯ-D",
         },
         instructors: ["อ. สิริรัตน์ ปัญญาสุขสกุล", "อ. นพนันท์ อะดุงเดชจรูญ"],
-        condition: "ช่วงรหัส 69050001 - 69059999 / IT ปี 1",
-        seats: { total: 55, used: 0, remain: 0 },
+        condition: "เฉพาะรหัสนักศึกษา 69050001 - 69059999 และ 69070001 - 69079999",
+        seats: { total: 55, used: 10, remain: 45 },
       },
       {
         section: 928,
@@ -690,8 +718,8 @@ export const Y1S2_COURSES: TimetableCourse[] = [
           building: "พระเทพฯ-D",
         },
         instructors: ["อ. สิริรัตน์ ปัญญาสุขสกุล", "อ. นพนันท์ อะดุงเดชจรูญ"],
-        condition: "ช่วงรหัส 69050001 - 69059999 / IT ปี 1",
-        seats: { total: 55, used: 0, remain: 0 },
+        condition: "เฉพาะรหัสนักศึกษา 69050001 - 69059999 และ 69070001 - 69079999",
+        seats: { total: 55, used: 9, remain: 46 },
       },
       {
         section: 929,
@@ -707,8 +735,8 @@ export const Y1S2_COURSES: TimetableCourse[] = [
           building: "พระเทพฯ-D",
         },
         instructors: ["ดร. หทัยมาตร เมฆนาคา", "อ. วรัญญา โรงคำ"],
-        condition: "ช่วงรหัส 69050001 - 69059999 / IT ปี 1",
-        seats: { total: 55, used: 0, remain: 0 },
+        condition: "เฉพาะรหัสนักศึกษา 69050001 - 69059999 และ 69070001 - 69079999",
+        seats: { total: 55, used: 15, remain: 40 },
       },
       {
         section: 930,
@@ -724,8 +752,8 @@ export const Y1S2_COURSES: TimetableCourse[] = [
           building: "พระเทพฯ-D",
         },
         instructors: ["ดร. หทัยมาตร เมฆนาคา", "อ. วรัญญา โรงคำ"],
-        condition: "ช่วงรหัส 69050001 - 69059999 / IT ปี 1",
-        seats: { total: 55, used: 0, remain: 0 },
+        condition: "เฉพาะรหัสนักศึกษา 69050001 - 69059999 และ 69070001 - 69079999",
+        seats: { total: 55, used: 6, remain: 49 },
       },
       {
         section: 931,
@@ -741,8 +769,8 @@ export const Y1S2_COURSES: TimetableCourse[] = [
           building: "พระเทพฯ-D",
         },
         instructors: ["อ. ยิหวามาดา ลิลา", "ผศ. ดร. มธุรดา จิโนรส"],
-        condition: "ช่วงรหัส 69050001 - 69059999 / IT ปี 1",
-        seats: { total: 55, used: 0, remain: 0 },
+        condition: "เฉพาะรหัสนักศึกษา 69050001 - 69059999 และ 69070001 - 69079999",
+        seats: { total: 55, used: 10, remain: 45 },
       },
     ],
   },

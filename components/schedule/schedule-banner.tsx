@@ -1,10 +1,11 @@
 "use client";
 
-import { Lock } from "lucide-react";
+import { Lock, Sparkles } from "lucide-react";
 import { CourseWatermark } from "@/components/course-watermark";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { IHELP_GRADIENT_CSS } from "@/lib/courses/course-theme";
 import { useLocale, t, type LText } from "@/lib/i18n";
+import type { StudentScheduleGroupInfo } from "@/lib/schedule/y1s2-data";
 
 const L = {
   title: {
@@ -28,6 +29,7 @@ export function ScheduleBanner({
   avatarUrl,
   avatarInitial,
   isSignedIn,
+  assignedGroup,
 }: {
   viewerId: string | null;
   viewerFullName: string | null;
@@ -35,6 +37,7 @@ export function ScheduleBanner({
   avatarUrl: string | null;
   avatarInitial: string;
   isSignedIn: boolean;
+  assignedGroup?: StudentScheduleGroupInfo | null;
 }) {
   const { locale } = useLocale();
 
@@ -61,31 +64,40 @@ export function ScheduleBanner({
         </p>
 
         {/* Identity Pill directly under description on the left */}
-        <div className="pt-1.5">
+        <div className="pt-1.5 flex flex-wrap items-center gap-2">
           {isSignedIn && viewerId ? (
-            <div className="inline-flex items-center gap-2.5 rounded-full bg-white py-1.5 pl-1.5 pr-4 text-slate-900 shadow-xs">
-              <Avatar className="size-8 shrink-0 border border-slate-200">
-                {avatarUrl && (
-                  <AvatarImage
-                    src={avatarUrl}
-                    alt={identityDisplay || viewerId}
-                    className="object-cover"
-                  />
-                )}
-                <AvatarFallback className="bg-slate-100 text-xs font-bold text-slate-700">
-                  {avatarInitial || viewerId.charAt(0)}
-                </AvatarFallback>
-              </Avatar>
+            <>
+              <div className="inline-flex items-center gap-2.5 rounded-full bg-white py-1.5 pl-1.5 pr-4 text-slate-900 shadow-xs">
+                <Avatar className="size-8 shrink-0 border border-slate-200">
+                  {avatarUrl && (
+                    <AvatarImage
+                      src={avatarUrl}
+                      alt={identityDisplay || viewerId}
+                      className="object-cover"
+                    />
+                  )}
+                  <AvatarFallback className="bg-slate-100 text-xs font-bold text-slate-700">
+                    {avatarInitial || viewerId.charAt(0)}
+                  </AvatarFallback>
+                </Avatar>
 
-              <div className="min-w-0 leading-tight">
-                <div className="font-mono text-[11px] font-semibold text-slate-500 tabular-nums">
-                  {viewerId}
-                </div>
-                <div className="truncate text-xs font-bold text-slate-900">
-                  {identityDisplay || viewerId}
+                <div className="min-w-0 leading-tight">
+                  <div className="font-mono text-[11px] font-semibold text-slate-500 tabular-nums">
+                    {viewerId}
+                  </div>
+                  <div className="truncate text-xs font-bold text-slate-900">
+                    {identityDisplay || viewerId}
+                  </div>
                 </div>
               </div>
-            </div>
+
+              {assignedGroup && (
+                <div className="inline-flex items-center gap-1.5 rounded-full border border-amber-300/40 bg-amber-400/20 px-3 py-1 text-xs font-bold text-white shadow-xs backdrop-blur-xs">
+                  <Sparkles className="size-3 text-amber-200" />
+                  <span>{assignedGroup.name} (เซกแนะนำตามรหัส)</span>
+                </div>
+              )}
+            </>
           ) : (
             <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/12 px-3.5 py-1.5 text-xs text-white/90 backdrop-blur-xs">
               <Lock className="size-3.5 shrink-0 text-white/85" />
