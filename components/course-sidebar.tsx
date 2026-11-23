@@ -31,6 +31,8 @@ import { useLocale, t, type LText } from "@/lib/i18n";
 import type { ModuleScope, ResolvedModule } from "@/lib/courses/spine";
 
 export interface CourseSidebarProps {
+  /** Course code (e.g. "PSCP", "ITF") */
+  courseCode?: string;
   /** All eleven, from lib/courses/spine. */
   modules: ResolvedModule[];
   scope: ModuleScope;
@@ -72,6 +74,7 @@ interface TopicLink {
  * two controls first.
  */
 export function CourseSidebar({
+  courseCode,
   modules,
   scope,
   onScopeChange,
@@ -192,9 +195,17 @@ export function CourseSidebar({
   const topAnchors = useMemo(
     () => [
       ...(hasScores ? [{ id: SCORES_ANCHOR, title: SCORES_TITLE }] : []),
+      ...(courseCode?.toUpperCase() === "PSCP"
+        ? [
+            {
+              id: "pscp-portal",
+              title: { th: "คลังโจทย์ & เครื่องมือ", en: "Tools & Workspace" } satisfies LText,
+            },
+          ]
+        : []),
       ...(hasOverview ? [{ id: OVERVIEW_ANCHOR, title: OVERVIEW_TITLE }] : []),
     ],
-    [hasScores, hasOverview],
+    [hasScores, courseCode, hasOverview],
   );
 
   const ids = useMemo(

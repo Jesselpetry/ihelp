@@ -10,6 +10,7 @@ import { CourseOverview } from "@/components/course-overview";
 import { CourseWeeklyTimeline } from "@/components/course-weekly-timeline";
 import { CourseContributors } from "@/components/course-contributors";
 import { CourseScoreSection } from "@/components/scores/course-score-section";
+import { PscpPortalSection } from "@/components/pscp/pscp-portal-section";
 import type { OverviewTab } from "@/components/course-hub-shared";
 import type { ScrapedCourseInfo } from "@/lib/courses/course-content";
 import type { CourseTimelineData } from "@/lib/courses/course-timeline-types";
@@ -107,6 +108,7 @@ export function SubjectHub({
       >
         {!reading && (
           <CourseSidebar
+            courseCode={code}
             modules={modules}
             scope={scope}
             onScopeChange={setScope}
@@ -130,6 +132,11 @@ export function SubjectHub({
               officialCode={officialCode}
               onVisibilityChange={setHasScores}
             />
+          )}
+
+          {/* Section 0.5: คลังโจทย์และเครื่องมือ PSCP (สำหรับวิชา PSCP เท่านั้น) */}
+          {!reading && code.toUpperCase() === "PSCP" && (
+            <PscpPortalSection />
           )}
 
           {/* Section 1: ภาพรวมรายวิชา (Clean CourseOverview with Overview Version Switcher) */}
