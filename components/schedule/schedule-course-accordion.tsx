@@ -178,7 +178,7 @@ export function ScheduleCourseAccordion({
 
         {/* Section Badge aligned to the right, beside the toggle chevron */}
         <div className="flex items-center gap-2.5 shrink-0">
-          <span className="inline-flex items-center rounded-lg border border-primary/30 bg-primary/10 px-2.5 py-1 text-xs font-bold text-primary whitespace-nowrap">
+          <span className="inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-2.5 py-1 text-xs font-bold text-primary whitespace-nowrap">
             Sec {selectedTheorySec}
             {course.hasLab && selectedLabSec ? ` / Lab ${selectedLabSec}` : ""}
           </span>

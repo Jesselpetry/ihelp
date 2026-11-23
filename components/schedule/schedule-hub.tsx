@@ -5,7 +5,6 @@ import {
   AlertCircle,
   CheckCircle2,
   Search,
-  Sparkles,
   X,
 } from "lucide-react";
 import type { MeResponse } from "@/app/api/me/route";
@@ -447,8 +446,8 @@ export function ScheduleHub({
               }
             />
 
-            {/* Search Input Box (Course Directory Design) */}
-            <div className="mx-auto w-full max-w-xl">
+            {/* Search Input Box (Course Directory Design - Full Width) */}
+            <div className="w-full">
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
@@ -490,46 +489,36 @@ export function ScheduleHub({
               <div className="space-y-3">
                 {/* Profile Badge (Clean Banner Style) */}
                 <div className="flex flex-wrap items-center justify-between gap-2.5">
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <div className="inline-flex items-center gap-2.5 rounded-full border border-border/70 bg-card py-1.5 pl-1.5 pr-4 shadow-2xs">
-                      <Avatar className="size-8 shrink-0 border border-border/80">
-                        {viewer.studentId === activeStudentId && viewer.avatarUrl ? (
-                          <AvatarImage
-                            src={viewer.avatarUrl}
-                            alt={viewer.fullName || activeStudentId}
-                            className="object-cover"
-                          />
-                        ) : null}
-                        <AvatarFallback className="bg-primary/10 text-xs font-bold text-primary">
-                          {viewer.studentId === activeStudentId
-                            ? viewer.avatarInitial
-                            : activeStudentId.charAt(0)}
-                        </AvatarFallback>
-                      </Avatar>
+                  <div className="inline-flex items-center gap-2.5 rounded-full border border-border/70 bg-card py-1.5 pl-1.5 pr-3 shadow-2xs">
+                    <Avatar className="size-8 shrink-0 border border-border/80">
+                      {viewer.studentId === activeStudentId && viewer.avatarUrl ? (
+                        <AvatarImage
+                          src={viewer.avatarUrl}
+                          alt={viewer.fullName || activeStudentId}
+                          className="object-cover"
+                        />
+                      ) : null}
+                      <AvatarFallback className="bg-primary/10 text-xs font-bold text-primary">
+                        {viewer.studentId === activeStudentId
+                          ? viewer.avatarInitial
+                          : activeStudentId.charAt(0)}
+                      </AvatarFallback>
+                    </Avatar>
 
-                      <div className="min-w-0 leading-tight">
-                        <div className="text-[11px] font-semibold text-muted-foreground tabular-nums">
-                          รหัส {activeStudentId}
-                        </div>
-                        <div className="truncate text-xs font-bold text-foreground">
-                          {viewer.studentId === activeStudentId
-                            ? viewer.fullName || viewer.nickname || "ตารางเรียนของคุณ"
-                            : "นักศึกษา IT KMITL"}
-                        </div>
+                    <div className="min-w-0 leading-tight">
+                      <div className="text-[11px] font-semibold text-muted-foreground tabular-nums">
+                        รหัส {activeStudentId}
+                      </div>
+                      <div className="truncate text-xs font-bold text-foreground">
+                        {viewer.studentId === activeStudentId
+                          ? viewer.fullName || viewer.nickname || "ตารางเรียนของคุณ"
+                          : "นักศึกษา IT KMITL"}
                       </div>
                     </div>
 
                     {activeGroup && (
-                      <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 border border-primary/20 px-3 py-1.5 text-xs font-bold text-primary">
-                        <Sparkles className="size-3" />
+                      <span className="rounded-full bg-primary text-primary-foreground px-2.5 py-0.5 text-[11px] font-bold shrink-0">
                         {activeGroup.name}
-                      </span>
-                    )}
-
-                    {viewer.studentId === activeStudentId && (
-                      <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-2.5 py-1 text-[11px] font-medium text-emerald-600 dark:text-emerald-400">
-                        <span className="size-1.5 rounded-full bg-emerald-500" />
-                        ตารางเรียนของคุณ
                       </span>
                     )}
                   </div>
@@ -554,18 +543,23 @@ export function ScheduleHub({
                       <thead>
                         <tr className="border-b border-border/60 bg-muted/40 text-xs text-muted-foreground font-semibold">
                           <th className="py-2.5 px-3.5">หมวดวิชา</th>
-                          <th className="py-2.5 px-3.5">Section แนะนำ</th>
-                          <th className="py-2.5 px-3.5">รายวิชาที่จัดให้</th>
+                          <th className="py-2.5 px-3.5">Section</th>
+                          <th className="py-2.5 px-3.5">รายวิชา</th>
                           <th className="py-2.5 px-3.5 text-right">สถานะ</th>
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-border/40">
                         <tr>
-                          <td className="py-2.5 px-3.5 font-semibold text-foreground whitespace-nowrap">
-                            วิชาทฤษฎี (Lecture)
+                          <td className="py-2.5 px-3.5 whitespace-nowrap">
+                            <div className="font-semibold text-foreground">
+                              วิชาทฤษฎี
+                            </div>
+                            <div className="text-[11px] text-muted-foreground font-normal">
+                              Lecture
+                            </div>
                           </td>
                           <td className="py-2.5 px-3.5 whitespace-nowrap">
-                            <span className="rounded-md bg-primary/10 border border-primary/25 px-2 py-0.5 text-xs font-bold text-primary">
+                            <span className="rounded-full bg-primary text-primary-foreground px-2.5 py-0.5 text-xs font-bold">
                               Section {activeGroup.group}
                             </span>
                           </td>
@@ -580,11 +574,16 @@ export function ScheduleHub({
                           </td>
                         </tr>
                         <tr>
-                          <td className="py-2.5 px-3.5 font-semibold text-foreground whitespace-nowrap">
-                            วิชาปฏิบัติ (Lab)
+                          <td className="py-2.5 px-3.5 whitespace-nowrap">
+                            <div className="font-semibold text-foreground">
+                              วิชาปฏิบัติ
+                            </div>
+                            <div className="text-[11px] text-muted-foreground font-normal">
+                              Lab
+                            </div>
                           </td>
                           <td className="py-2.5 px-3.5 whitespace-nowrap">
-                            <span className="rounded-md bg-primary/10 border border-primary/25 px-2 py-0.5 text-xs font-bold text-primary">
+                            <span className="rounded-full bg-primary text-primary-foreground px-2.5 py-0.5 text-xs font-bold">
                               Section {activeGroup.group + 3}
                             </span>
                           </td>
@@ -599,13 +598,79 @@ export function ScheduleHub({
                           </td>
                         </tr>
                         <tr>
-                          <td className="py-2.5 px-3.5 font-semibold text-foreground whitespace-nowrap">
-                            วิชาศึกษาทั่วไป (GenEd)
+                          <td className="py-2.5 px-3.5 whitespace-nowrap">
+                            <div className="font-semibold text-foreground">
+                              วิชาศึกษาทั่วไป
+                            </div>
+                            <div className="text-[11px] text-muted-foreground font-normal">
+                              GenEd
+                            </div>
                           </td>
                           <td className="py-2.5 px-3.5 whitespace-nowrap">
-                            <span className="rounded-md bg-primary/10 border border-primary/25 px-2 py-0.5 text-xs font-bold text-primary">
-                              Sec 60{activeGroup.group} / Sec 92{activeGroup.group}
-                            </span>
+                            <div className="flex items-center gap-2 flex-wrap">
+                              <label className="inline-flex items-center gap-1.5 text-xs">
+                                <span className="text-[11px] text-muted-foreground">
+                                  DC:
+                                </span>
+                                <select
+                                  value={
+                                    selection.theory["90641007"] ??
+                                    (600 + activeGroup.group)
+                                  }
+                                  onChange={(e) =>
+                                    handleSelectTheorySec(
+                                      "90641007",
+                                      Number(e.target.value),
+                                    )
+                                  }
+                                  className="h-6 rounded-full bg-primary text-primary-foreground font-bold px-2.5 text-xs cursor-pointer focus:outline-none focus:ring-1 focus:ring-primary"
+                                  title="เลือก Section วิชา Digital Citizen"
+                                >
+                                  {[601, 602, 603, 604].map((s) => (
+                                    <option
+                                      key={s}
+                                      value={s}
+                                      className="bg-card text-foreground"
+                                    >
+                                      Sec {s}
+                                    </option>
+                                  ))}
+                                </select>
+                              </label>
+
+                              <label className="inline-flex items-center gap-1.5 text-xs">
+                                <span className="text-[11px] text-muted-foreground">
+                                  FE2:
+                                </span>
+                                <select
+                                  value={
+                                    selection.theory["90644008"] ??
+                                    (920 + activeGroup.group)
+                                  }
+                                  onChange={(e) =>
+                                    handleSelectTheorySec(
+                                      "90644008",
+                                      Number(e.target.value),
+                                    )
+                                  }
+                                  className="h-6 rounded-full bg-primary text-primary-foreground font-bold px-2.5 text-xs cursor-pointer focus:outline-none focus:ring-1 focus:ring-primary"
+                                  title="เลือก Section วิชา Foundation English 2"
+                                >
+                                  {[
+                                    921, 922, 923, 924, 925, 926, 927, 928, 929,
+                                    930, 931,
+                                  ].map((s) => (
+                                    <option
+                                      key={s}
+                                      value={s}
+                                      className="bg-card text-foreground"
+                                    >
+                                      Sec {s}
+                                    </option>
+                                  ))}
+                                </select>
+                              </label>
+                            </div>
                           </td>
                           <td className="py-2.5 px-3.5 text-muted-foreground">
                             Digital Citizen (พุธ), Foundation English 2 (พฤหัสบดี)
@@ -613,7 +678,7 @@ export function ScheduleHub({
                           <td className="py-2.5 px-3.5 text-right whitespace-nowrap">
                             <span className="inline-flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-medium">
                               <CheckCircle2 className="size-3" />
-                              เลือกให้อัตโนมัติแล้ว
+                              เลือกแล้ว (เปลี่ยนได้)
                             </span>
                           </td>
                         </tr>
