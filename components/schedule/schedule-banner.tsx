@@ -5,16 +5,16 @@ import { CourseWatermark } from "@/components/course-watermark";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { IHELP_GRADIENT_CSS } from "@/lib/courses/course-theme";
 import { useLocale, t, type LText } from "@/lib/i18n";
-import type { StudentScheduleGroupInfo } from "@/lib/schedule/y1s2-data";
+import type { SemesterTermInfo, StudentScheduleGroupInfo } from "@/lib/schedule/types";
 
 const L = {
   title: {
-    th: "จัดตารางเรียนล่วงหน้า 2/2569",
-    en: "Timetable & Pre-Registration Planner 2/2569",
+    th: "จัดตารางเรียนส่วนบุคคล",
+    en: "Timetable Simulator",
   },
   subtitle: {
-    th: "ระบบจำลองและวางแผนตารางเรียนส่วนบุคคล ออกแบบสูตรตื่นสาย เลี่ยงตื่นเช้า และตรวจการชนของคาบเรียนและวันสอบ IT KMITL ปี 1 เทอม 2",
-    en: "Personalized schedule planner, optimize for late mornings, avoid 9 AM wakeups, and check class & exam clashes for IT KMITL Year 1 Semester 2",
+    th: "ระบบจำลองและวางแผนตารางเรียนส่วนบุคคล ออกแบบสูตรตื่นสาย เลี่ยงตื่นเช้า และตรวจการชนของคาบเรียนและวันสอบ",
+    en: "Personalized schedule planner, optimize for late mornings, avoid 9 AM wakeups, and check class & exam clashes",
   },
   signedOutHint: {
     th: "เข้าสู่ระบบด้วย @kmitl.ac.th เพื่อบันทึกตารางเรียนส่วนตัว",
@@ -30,6 +30,7 @@ export function ScheduleBanner({
   avatarInitial,
   isSignedIn,
   assignedGroup,
+  termInfo,
 }: {
   viewerId: string | null;
   viewerFullName: string | null;
@@ -38,6 +39,7 @@ export function ScheduleBanner({
   avatarInitial: string;
   isSignedIn: boolean;
   assignedGroup?: StudentScheduleGroupInfo | null;
+  termInfo?: SemesterTermInfo;
 }) {
   const { locale } = useLocale();
 
@@ -48,6 +50,15 @@ export function ScheduleBanner({
     .filter(Boolean)
     .join(" ");
 
+  const termLabel =
+    locale === "th"
+      ? termInfo?.labelTh ?? "ภาคเรียนที่ 2 / 2569"
+      : termInfo?.labelEn ?? "Semester 2 / 2026";
+  const termSubtitle =
+    locale === "th"
+      ? termInfo?.subtitleTh ?? "ระดับปริญญาตรี ชั้นปีที่ 1"
+      : termInfo?.subtitleEn ?? "Undergraduate Year 1";
+
   return (
     <header
       className="relative overflow-hidden rounded-2xl border border-white/10 p-4 shadow-sm sm:p-5"
@@ -56,6 +67,12 @@ export function ScheduleBanner({
       <CourseWatermark code="IT" size="banner" />
 
       <div className="relative z-10 min-w-0 space-y-1.5">
+        <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-2.5 py-0.5 text-xs font-semibold text-white/90 backdrop-blur-xs">
+          <span>{termLabel}</span>
+          <span className="size-1 rounded-full bg-white/40" />
+          <span>{termSubtitle}</span>
+        </div>
+
         <h1 className="text-xl font-bold tracking-tight text-white sm:text-2xl">
           {t(L.title, locale)}
         </h1>

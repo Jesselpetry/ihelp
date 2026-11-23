@@ -1,8 +1,10 @@
+import { getCourseAbbr } from "@/lib/courses/catalog";
 import type {
   DayOfWeek,
   ScheduleConflict,
   SchedulePreset,
   ScheduleStats,
+  SemesterTermInfo,
   TimetableCourse,
   UserScheduleSelection,
 } from "./types";
@@ -46,6 +48,7 @@ export const DAYS_OF_WEEK: DayOfWeek[] = [
 export const Y1S2_COURSES: TimetableCourse[] = [
   {
     code: "06016408",
+    abbr: "OOP",
     nameTh: "การสร้างโปรแกรมเชิงวัตถุ",
     nameEn: "OBJECT-ORIENTED PROGRAMMING",
     credits: "3(2-2-5)",
@@ -167,6 +170,7 @@ export const Y1S2_COURSES: TimetableCourse[] = [
   },
   {
     code: "06066001",
+    abbr: "PSTAT",
     nameTh: "ความน่าจะเป็นและสถิติ",
     nameEn: "PROBABILITY AND STATISTICS",
     credits: "3(3-0-6)",
@@ -288,6 +292,7 @@ export const Y1S2_COURSES: TimetableCourse[] = [
   },
   {
     code: "06066101",
+    abbr: "BFIT",
     nameTh: "พื้นฐานทางธุรกิจสำหรับเทคโนโลยีสารสนเทศ",
     nameEn: "BUSINESS FUNDAMENTALS FOR INFORMATION",
     credits: "3(3-0-6)",
@@ -358,6 +363,7 @@ export const Y1S2_COURSES: TimetableCourse[] = [
   },
   {
     code: "06066301",
+    abbr: "DSA",
     nameTh: "โครงสร้างข้อมูลและอัลกอริทึม",
     nameEn: "DATA STRUCTURES AND ALGORITHMS",
     credits: "3(2-2-5)",
@@ -479,6 +485,7 @@ export const Y1S2_COURSES: TimetableCourse[] = [
   },
   {
     code: "90641007",
+    abbr: "DC",
     nameTh: "พลเมืองดิจิทัล",
     nameEn: "DIGITAL CITIZEN",
     credits: "3(3-0-6)",
@@ -568,6 +575,7 @@ export const Y1S2_COURSES: TimetableCourse[] = [
   },
   {
     code: "90644008",
+    abbr: "FE2",
     nameTh: "ภาษาอังกฤษพื้นฐาน 2",
     nameEn: "FOUNDATION ENGLISH 2",
     credits: "3(3-0-6)",
@@ -788,8 +796,8 @@ export const DEFAULT_SCHEDULE_SELECTIONS: UserScheduleSelection = {
   theory: {
     "06016408": 2, // OOP Mon 11:00-13:00
     "06066301": 2, // DSA Mon 14:00-16:00
-    "06066001": 2, // ProbStat Tue 13:00-16:00
-    "06066101": 2, // BizFund Wed 13:00-16:00
+    "06066001": 2, // PSTAT Tue 13:00-16:00
+    "06066101": 2, // BFIT Wed 13:00-16:00
     "90641007": 602, // Digital Citizen Wed 09:00-12:00
     "90644008": 922, // Foundation English 2 Thu 09:00-12:00
   },
@@ -813,16 +821,16 @@ export const SCHEDULE_PRESETS: SchedulePreset[] = [
     recommended: true,
     selections: {
       theory: {
-        "06016408": 2, // Mon 11-13
-        "06066301": 2, // Mon 14-16
-        "06066001": 2, // Tue 13-16
-        "06066101": 2, // Wed 13-16
-        "90641007": 602, // Wed 09-12
-        "90644008": 922, // Thu 09-12
+        "06016408": 2, // OOP Mon 11-13
+        "06066301": 2, // DSA Mon 14-16
+        "06066001": 2, // PSTAT Tue 13-16
+        "06066101": 2, // BFIT Wed 13-16
+        "90641007": 602, // DC Wed 09-12
+        "90644008": 922, // FE2 Thu 09-12
       },
       lab: {
-        "06016408": 5, // Fri 11-13
-        "06066301": 5, // Fri 14-16
+        "06016408": 5, // OOP Fri 11-13
+        "06066301": 5, // DSA Fri 14-16
       },
     },
   },
@@ -835,16 +843,16 @@ export const SCHEDULE_PRESETS: SchedulePreset[] = [
     recommended: false,
     selections: {
       theory: {
-        "06016408": 1, // Mon 09-11
-        "06066301": 1, // Mon 11-13
-        "06066001": 1, // Tue 09-12
-        "06066101": 1, // Tue 13-16
-        "90641007": 601, // Wed 09-12
-        "90644008": 921, // Thu 09-12
+        "06016408": 1, // OOP Mon 09-11
+        "06066301": 1, // DSA Mon 11-13
+        "06066001": 1, // PSTAT Tue 09-12
+        "06066101": 1, // BFIT Tue 13-16
+        "90641007": 601, // DC Wed 09-12
+        "90644008": 921, // FE2 Thu 09-12
       },
       lab: {
-        "06016408": 4, // Fri 09-11
-        "06066301": 4, // Fri 11-13
+        "06016408": 4, // OOP Fri 09-11
+        "06066301": 4, // DSA Fri 11-13
       },
     },
   },
@@ -857,16 +865,16 @@ export const SCHEDULE_PRESETS: SchedulePreset[] = [
     recommended: false,
     selections: {
       theory: {
-        "06016408": 3, // Mon 14-16
-        "06066301": 3, // Mon 09-11
-        "06066001": 3, // Wed 13-16
-        "06066101": 3, // Tue 09-12
-        "90641007": 603, // Wed 09-12
-        "90644008": 923, // Thu 09-12
+        "06016408": 3, // OOP Mon 14-16
+        "06066301": 3, // DSA Mon 09-11
+        "06066001": 3, // PSTAT Wed 13-16
+        "06066101": 3, // BFIT Tue 09-12
+        "90641007": 603, // DC Wed 09-12
+        "90644008": 923, // FE2 Thu 09-12
       },
       lab: {
-        "06016408": 6, // Fri 14-16
-        "06066301": 6, // Fri 09-11
+        "06016408": 6, // OOP Fri 14-16
+        "06066301": 6, // DSA Fri 09-11
       },
     },
   },
@@ -875,20 +883,20 @@ export const SCHEDULE_PRESETS: SchedulePreset[] = [
     name: "สลับช่วงบ่าย (Hybrid ทางเลือก)",
     badge: "ตื่นเช้า 2 วัน / สลับวิชาบ่าย",
     description:
-      "ทางเลือกสำรองในกรณี Sec 2 ของบางวิชาเต็ม โดยสลับ Business Fundamentals มาวันอังคารบ่าย (Sec 1) และสลับ Prob & Stat ไปวันพุธบ่าย (Sec 3) ได้เวลาตื่นสายเหมือนกลุ่ม 2 ทุกประการ",
+      "ทางเลือกสำรองในกรณี Sec 2 ของบางวิชาเต็ม โดยสลับ BFIT มาวันอังคารบ่าย (Sec 1) และสลับ PSTAT ไปวันพุธบ่าย (Sec 3) ได้เวลาตื่นสายเหมือนกลุ่ม 2 ทุกประการ",
     recommended: false,
     selections: {
       theory: {
-        "06016408": 2, // Mon 11-13
-        "06066301": 2, // Mon 14-16
-        "06066001": 3, // Wed 13-16
-        "06066101": 1, // Tue 13-16
-        "90641007": 602, // Wed 09-12
-        "90644008": 922, // Thu 09-12
+        "06016408": 2, // OOP Mon 11-13
+        "06066301": 2, // DSA Mon 14-16
+        "06066001": 3, // PSTAT Wed 13-16
+        "06066101": 1, // BFIT Tue 13-16
+        "90641007": 602, // DC Wed 09-12
+        "90644008": 922, // FE2 Thu 09-12
       },
       lab: {
-        "06016408": 5, // Fri 11-13
-        "06066301": 5, // Fri 14-16
+        "06016408": 5, // OOP Fri 11-13
+        "06066301": 5, // DSA Fri 14-16
       },
     },
   },
@@ -896,6 +904,7 @@ export const SCHEDULE_PRESETS: SchedulePreset[] = [
 
 export interface ScheduledClassSlot {
   courseCode: string;
+  abbr: string;
   courseNameTh: string;
   courseNameEn: string;
   category: "วิชาบังคับ" | "วิชาเลือก / GenEd";
@@ -927,6 +936,7 @@ export function getScheduledSlots(
       if (sec) {
         result.push({
           courseCode: course.code,
+          abbr: course.abbr || getCourseAbbr(course.code),
           courseNameTh: course.nameTh,
           courseNameEn: course.nameEn,
           category: course.category,
@@ -954,6 +964,7 @@ export function getScheduledSlots(
         if (sec) {
           result.push({
             courseCode: course.code,
+            abbr: course.abbr || getCourseAbbr(course.code),
             courseNameTh: course.nameTh,
             courseNameEn: course.nameEn,
             category: course.category,
@@ -1074,15 +1085,18 @@ export function calculateScheduleStats(
 export function exportScheduleAsJson(
   selection: UserScheduleSelection,
   courses: TimetableCourse[] = Y1S2_COURSES,
+  termInfo?: SemesterTermInfo,
 ): string {
   const slots = getScheduledSlots(selection, courses);
   const stats = calculateScheduleStats(slots, courses);
   const conflicts = detectScheduleClashes(slots);
 
   const payload = {
-    semester: "2/2569",
-    faculty: "คณะเทคโนโลยีสารสนเทศ",
-    program: "เทคโนโลยีสารสนเทศ (ชั้นปีที่ 1)",
+    semester: termInfo ? `${termInfo.semester}/${termInfo.academicYear}` : "2/2569",
+    faculty: termInfo ? `คณะ${termInfo.faculty}` : "คณะเทคโนโลยีสารสนเทศ",
+    program: termInfo
+      ? `${termInfo.department} (${termInfo.subtitleTh})`
+      : "เทคโนโลยีสารสนเทศ (ชั้นปีที่ 1)",
     totalCredits: stats.totalCredits,
     stats: {
       morningDaysCount: stats.morningDays,

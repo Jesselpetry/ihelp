@@ -255,7 +255,7 @@ export function ScheduleGrid({ slots }: { slots: ScheduledClassSlot[] }) {
                               <div className="space-y-0.5">
                                 <div className="flex items-center justify-between gap-1 flex-wrap">
                                   <CourseCodeBadge
-                                    code={s.courseCode}
+                                    code={s.abbr || s.courseCode}
                                     className="text-[10px] py-0 px-1.5 min-w-10"
                                   />
                                   <span className="rounded-md bg-muted px-1.5 py-0.2 text-[10px] font-semibold text-foreground">
@@ -368,7 +368,12 @@ export function ScheduleGrid({ slots }: { slots: ScheduledClassSlot[] }) {
               >
                 <div className="space-y-1">
                   <div className="flex items-center justify-between gap-1">
-                    <CourseCodeBadge code={s.courseCode} />
+                    <div className="flex items-center gap-1.5">
+                      <CourseCodeBadge code={s.abbr || s.courseCode} />
+                      <span className="font-mono text-xs text-muted-foreground">
+                        {s.courseCode}
+                      </span>
+                    </div>
                     <span className="rounded-md bg-muted px-2 py-0.5 text-xs font-semibold text-foreground">
                       {s.type} Sec {s.section}
                     </span>

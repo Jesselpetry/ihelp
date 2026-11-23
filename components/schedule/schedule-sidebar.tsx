@@ -64,7 +64,7 @@ export function ScheduleSidebar({
                   : "border-border/50 bg-card hover:border-border"
               }`}
             >
-              <CourseCodeBadge code={course.code} />
+              <CourseCodeBadge code={course.abbr || course.code} />
             </button>
           );
         })}
@@ -131,7 +131,7 @@ export function ScheduleSidebar({
                         : "text-foreground/85 hover:bg-muted/70"
                     }`}
                   >
-                    <CourseCodeBadge code={course.code} />
+                    <CourseCodeBadge code={course.abbr || course.code} />
                     <span className="min-w-0 flex-1 truncate">
                       {courseTitle}
                     </span>
@@ -163,7 +163,7 @@ export function ScheduleSidebar({
                         : "text-foreground/85 hover:bg-muted/70"
                     }`}
                   >
-                    <CourseCodeBadge code={course.code} />
+                    <CourseCodeBadge code={course.abbr || course.code} />
                     <span className="min-w-0 flex-1 truncate">
                       {courseTitle}
                     </span>

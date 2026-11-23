@@ -8,16 +8,14 @@ import { Button } from "@/components/ui/button";
 import { useLocale, t, type LText } from "@/lib/i18n";
 import type { SchedulePreset, UserScheduleSelection } from "@/lib/schedule/types";
 import {
-  DEFAULT_SCHEDULE_SELECTIONS,
   detectScheduleClashes,
-  FACULTY_COURSES,
-  GENED_COURSES,
   getScheduledSlots,
-  getStudentScheduleGroup,
-  SCHEDULE_PRESETS,
-  Y1S2_COURSES,
-  type StudentScheduleGroupInfo,
 } from "@/lib/schedule/y1s2-data";
+import {
+  getAllRegisteredTerms,
+  getTermSchedule,
+} from "@/lib/schedule/registry";
+import type { StudentScheduleGroupInfo } from "@/lib/schedule/types";
 import { ScheduleBanner } from "./schedule-banner";
 import { ScheduleCourseAccordion } from "./schedule-course-accordion";
 import { ScheduleExportCard } from "./schedule-export-card";
@@ -25,17 +23,13 @@ import { ScheduleGrid } from "./schedule-grid";
 import { ScheduleSidebar } from "./schedule-sidebar";
 
 const L = {
-  timetableHeading: {
-    th: "ตารางเรียนประจำสัปดาห์ (2/2569)",
-    en: "Weekly Timetable (2/2569)",
-  },
   facultyHeading: {
-    th: "วิชาบังคับคณะ (4 วิชา)",
-    en: "Faculty Core Courses (4)",
+    th: "วิชาบังคับคณะ",
+    en: "Faculty Core Courses",
   },
   genedHeading: {
-    th: "วิชาศึกษาทั่วไป (2 วิชา)",
-    en: "GenEd Electives (2)",
+    th: "วิชาศึกษาทั่วไป",
+    en: "GenEd Electives",
   },
   exportHeading: {
     th: "ส่งออกข้อมูลตารางเรียน",
@@ -45,12 +39,18 @@ const L = {
   collapseAll: { th: "พับทั้งหมด", en: "Collapse all" },
 } satisfies Record<string, LText>;
 
-const STORAGE_KEY = "ihelp_y1s2_schedule_selection_v3";
-
-function getInitialSelection(): UserScheduleSelection {
+function getInitialSelection(
+  termId: string,
+  defaultSelections: UserScheduleSelection,
+): UserScheduleSelection {
   if (typeof window !== "undefined") {
     try {
-      const saved = localStorage.getItem(STORAGE_KEY);
+      const storageKey = `ihelp_schedule_selection_${termId}`;
+      const saved =
+        localStorage.getItem(storageKey) ||
+        (termId === "2569-2"
+          ? localStorage.getItem("ihelp_y1s2_schedule_selection_v3")
+          : null);
       if (saved) {
         const parsed = JSON.parse(saved);
         if (parsed?.theory && parsed?.lab) {
@@ -61,11 +61,26 @@ function getInitialSelection(): UserScheduleSelection {
       // ignore
     }
   }
-  return DEFAULT_SCHEDULE_SELECTIONS;
+  return defaultSelections;
 }
 
-export function ScheduleHub() {
+export function ScheduleHub({
+  initialTermId,
+}: {
+  initialTermId?: string;
+} = {}) {
   const { locale } = useLocale();
+
+  const [selectedTermId, setSelectedTermId] = useState<string>(
+    initialTermId || "2569-2",
+  );
+  const termData = getTermSchedule(selectedTermId);
+  const allTerms = getAllRegisteredTerms();
+  const { termInfo, courses, presets } = termData;
+
+  const facultyCourses = courses.filter((c) => c.category === "วิชาบังคับ");
+  const genedCourses = courses.filter((c) => c.category === "วิชาเลือก / GenEd");
+  const totalCredits = courses.reduce((acc, c) => acc + c.creditHours, 0);
 
   // Authentication & Viewer state
   const [authStatus, setAuthStatus] = useState<
@@ -87,9 +102,9 @@ export function ScheduleHub() {
   const [assignedGroup, setAssignedGroup] =
     useState<StudentScheduleGroupInfo | null>(null);
 
-  // Schedule State: All 6 courses selectable
-  const [selection, setSelection] = useState<UserScheduleSelection>(
-    () => getInitialSelection(),
+  // Schedule State: Selectable courses
+  const [selection, setSelection] = useState<UserScheduleSelection>(() =>
+    getInitialSelection(termInfo.id, termData.defaultSelections),
   );
 
   const [activeSection, setActiveSection] = useState<string>("timetable");
@@ -115,17 +130,19 @@ export function ScheduleHub() {
           });
           setAuthStatus("authenticated");
 
-          if (me.studentId) {
-            const groupInfo = getStudentScheduleGroup(me.studentId);
+          if (me.studentId && termData.getStudentGroup) {
+            const groupInfo = termData.getStudentGroup(me.studentId);
             setAssignedGroup(groupInfo);
             // If user never had custom localStorage selection, auto-apply student group preset
             if (groupInfo) {
+              const storageKey = `ihelp_schedule_selection_${termInfo.id}`;
               const saved =
                 typeof window !== "undefined"
-                  ? localStorage.getItem(STORAGE_KEY)
+                  ? localStorage.getItem(storageKey) ||
+                    localStorage.getItem("ihelp_y1s2_schedule_selection_v3")
                   : null;
               if (!saved) {
-                const matchedPreset = SCHEDULE_PRESETS.find(
+                const matchedPreset = presets.find(
                   (p) => p.id === groupInfo.presetId,
                 );
                 if (matchedPreset) {
@@ -145,12 +162,13 @@ export function ScheduleHub() {
     void loadMe();
 
     return () => controller.abort();
-  }, []);
+  }, [termData, termInfo.id, presets]);
 
   function saveSelection(next: UserScheduleSelection) {
     setSelection(next);
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+      const storageKey = `ihelp_schedule_selection_${termInfo.id}`;
+      localStorage.setItem(storageKey, JSON.stringify(next));
     } catch {
       // ignore
     }
@@ -225,34 +243,34 @@ export function ScheduleHub() {
     });
   }
 
-  const allFacultyExpanded = FACULTY_COURSES.every((c) =>
+  const allFacultyExpanded = facultyCourses.every((c) =>
     Boolean(openCodes[c.code]),
   );
 
   function handleToggleAllFaculty() {
     const nextValue = !allFacultyExpanded;
     const nextState: Record<string, boolean> = { ...openCodes };
-    for (const c of FACULTY_COURSES) {
+    for (const c of facultyCourses) {
       nextState[c.code] = nextValue;
     }
     setOpenCodes(nextState);
   }
 
-  const allGenedExpanded = GENED_COURSES.every((c) =>
+  const allGenedExpanded = genedCourses.every((c) =>
     Boolean(openCodes[c.code]),
   );
 
   function handleToggleAllGened() {
     const nextValue = !allGenedExpanded;
     const nextState: Record<string, boolean> = { ...openCodes };
-    for (const c of GENED_COURSES) {
+    for (const c of genedCourses) {
       nextState[c.code] = nextValue;
     }
     setOpenCodes(nextState);
   }
 
   // Calculated Slots & Conflicts
-  const slots = getScheduledSlots(selection, Y1S2_COURSES);
+  const slots = getScheduledSlots(selection, courses);
   const conflicts = detectScheduleClashes(slots);
 
   return (
@@ -266,13 +284,14 @@ export function ScheduleHub() {
         avatarInitial={viewer.avatarInitial}
         isSignedIn={authStatus === "authenticated"}
         assignedGroup={assignedGroup}
+        termInfo={termInfo}
       />
 
       <div className="grid gap-5 lg:grid-cols-[268px_minmax(0,1fr)] lg:gap-6">
         {/* Left Side Panel */}
         <ScheduleSidebar
-          facultyCourses={FACULTY_COURSES}
-          genedCourses={GENED_COURSES}
+          facultyCourses={facultyCourses}
+          genedCourses={genedCourses}
           activeSection={activeSection}
           onSelectSection={handleSelectSidebar}
         />
@@ -281,12 +300,40 @@ export function ScheduleHub() {
         <div className="min-w-0 space-y-6">
           {/* Section 1: Weekly Timetable Grid */}
           <section className="space-y-3">
+            {allTerms.length > 1 && (
+              <div className="flex items-center gap-2 pb-1">
+                <span className="text-xs font-semibold text-muted-foreground">
+                  ภาคการศึกษา:
+                </span>
+                <div className="flex rounded-lg border border-border/60 bg-muted/40 p-0.5 text-xs">
+                  {allTerms.map((t) => (
+                    <button
+                      key={t.id}
+                      type="button"
+                      onClick={() => setSelectedTermId(t.id)}
+                      className={`rounded-md px-2.5 py-1 text-xs font-medium transition-colors cursor-pointer ${
+                        selectedTermId === t.id
+                          ? "bg-primary text-primary-foreground font-semibold shadow-2xs"
+                          : "text-muted-foreground hover:text-foreground"
+                      }`}
+                    >
+                      {locale === "th" ? t.labelTh : t.labelEn}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
             <TopicHeader
               id="timetable"
-              title={t(L.timetableHeading, locale)}
+              title={
+                locale === "th"
+                  ? `ตารางเรียนประจำสัปดาห์ (${termInfo.semester}/${termInfo.academicYear})`
+                  : `Weekly Timetable (${termInfo.semester}/${termInfo.academicYear})`
+              }
               aside={
                 <span className="rounded-full bg-primary/10 px-2.5 py-1 text-[11px] font-semibold text-primary">
-                  18 หน่วยกิต (6 วิชา)
+                  {totalCredits} หน่วยกิต ({courses.length} วิชา)
                 </span>
               }
             />
@@ -296,7 +343,7 @@ export function ScheduleHub() {
               <span className="text-xs font-semibold text-muted-foreground mr-1">
                 สูตรตารางล่วงหน้า:
               </span>
-              {SCHEDULE_PRESETS.map((preset) => {
+              {presets.map((preset) => {
                 const isActive = isMatchingPreset(preset);
                 const isStudentGroup = assignedGroup?.presetId === preset.id;
 
@@ -355,7 +402,11 @@ export function ScheduleHub() {
           <section aria-labelledby="faculty-courses" className="space-y-3">
             <TopicHeader
               id="faculty-courses"
-              title={t(L.facultyHeading, locale)}
+              title={
+                locale === "th"
+                  ? `วิชาบังคับคณะ (${facultyCourses.length} วิชา)`
+                  : `Faculty Core Courses (${facultyCourses.length})`
+              }
               aside={
                 <Button
                   type="button"
@@ -373,7 +424,7 @@ export function ScheduleHub() {
             />
 
             <div className="space-y-2.5">
-              {FACULTY_COURSES.map((course) => (
+              {facultyCourses.map((course) => (
                 <ScheduleCourseAccordion
                   key={course.code}
                   course={course}
@@ -398,7 +449,11 @@ export function ScheduleHub() {
           <section aria-labelledby="gened-courses" className="space-y-3">
             <TopicHeader
               id="gened-courses"
-              title={t(L.genedHeading, locale)}
+              title={
+                locale === "th"
+                  ? `วิชาศึกษาทั่วไป (${genedCourses.length} วิชา)`
+                  : `GenEd Electives (${genedCourses.length})`
+              }
               aside={
                 <Button
                   type="button"
@@ -416,7 +471,7 @@ export function ScheduleHub() {
             />
 
             <div className="space-y-2.5">
-              {GENED_COURSES.map((course) => (
+              {genedCourses.map((course) => (
                 <ScheduleCourseAccordion
                   key={course.code}
                   course={course}
@@ -440,7 +495,11 @@ export function ScheduleHub() {
           {/* Section 4: Export Card */}
           <section className="space-y-3">
             <TopicHeader id="export" title={t(L.exportHeading, locale)} />
-            <ScheduleExportCard selection={selection} />
+            <ScheduleExportCard
+              selection={selection}
+              courses={courses}
+              termInfo={termInfo}
+            />
           </section>
         </div>
       </div>

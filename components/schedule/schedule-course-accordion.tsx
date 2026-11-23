@@ -150,11 +150,14 @@ export function ScheduleCourseAccordion({
         className="flex w-full items-center justify-between gap-3 p-3.5 text-left transition-colors hover:bg-muted/40 sm:p-4 cursor-pointer"
       >
         <div className="flex items-center gap-2.5 min-w-0">
-          <CourseCodeBadge code={course.code} />
+          <CourseCodeBadge code={course.abbr || course.code} />
           <div className="min-w-0">
             <div className="flex items-center gap-2 flex-wrap">
               <span className="text-sm font-bold text-foreground">
                 {course.nameEn}
+              </span>
+              <span className="font-mono text-xs text-muted-foreground">
+                ({course.code})
               </span>
               <span className="inline-flex items-center rounded-md border border-primary/30 bg-primary/10 px-2 py-0.5 text-xs font-semibold text-primary whitespace-nowrap">
                 {course.category}

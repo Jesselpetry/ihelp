@@ -8,18 +8,26 @@ import {
   exportScheduleAsCsv,
   exportScheduleAsJson,
 } from "@/lib/schedule/y1s2-data";
-import type { UserScheduleSelection } from "@/lib/schedule/types";
+import type {
+  SemesterTermInfo,
+  TimetableCourse,
+  UserScheduleSelection,
+} from "@/lib/schedule/types";
 
 export function ScheduleExportCard({
   selection,
+  courses,
+  termInfo,
 }: {
   selection: UserScheduleSelection;
+  courses?: TimetableCourse[];
+  termInfo?: SemesterTermInfo;
 }) {
   const [format, setFormat] = useState<"json" | "csv">("json");
   const [copied, setCopied] = useState(false);
 
-  const jsonContent = exportScheduleAsJson(selection);
-  const csvContent = exportScheduleAsCsv(selection);
+  const jsonContent = exportScheduleAsJson(selection, courses, termInfo);
+  const csvContent = exportScheduleAsCsv(selection, courses);
   const activeContent = format === "json" ? jsonContent : csvContent;
 
   function handleCopy() {
@@ -29,18 +37,18 @@ export function ScheduleExportCard({
   }
 
   function handleDownload() {
-    const filename = `kmitl_it_schedule_2_2569.${format}`;
+    const termSuffix = termInfo ? `${termInfo.semester}_${termInfo.academicYear}` : "2_2569";
+    const filename = `kmitl_it_schedule_${termSuffix}.${format}`;
     const blob = new Blob([activeContent], {
       type: format === "json" ? "application/json" : "text/csv;charset=utf-8;",
     });
-    const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
-    link.href = url;
+    link.href = URL.createObjectURL(blob);
     link.download = filename;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    URL.revokeObjectURL(url);
+    URL.revokeObjectURL(link.href);
   }
 
   return (

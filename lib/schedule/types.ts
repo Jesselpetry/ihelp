@@ -34,6 +34,7 @@ export interface ExamInfo {
 
 export interface TimetableCourse {
   code: string;
+  abbr?: string;
   nameTh: string;
   nameEn: string;
   credits: string;
@@ -78,3 +79,44 @@ export interface SchedulePreset {
   recommended?: boolean;
   selections: UserScheduleSelection;
 }
+
+export interface StudentScheduleGroupInfo {
+  group: 1 | 2 | 3;
+  name: string;
+  presetId: "group-1" | "group-2" | "group-3";
+}
+
+/**
+ * Metadata defining an academic term/semester.
+ * Enables dynamic white-label switching between semesters (e.g. 2569-2, 2570-1)
+ * and seamless handoff to future academic batches.
+ */
+export interface SemesterTermInfo {
+  id: string; // e.g. "2569-2"
+  academicYear: string; // e.g. "2569"
+  semester: number; // e.g. 2
+  yearLevel: number; // e.g. 1
+  faculty: string; // e.g. "เทคโนโลยีสารสนเทศ"
+  department: string; // e.g. "เทคโนโลยีสารสนเทศ"
+  labelTh: string; // e.g. "ภาคเรียนที่ 2 / 2569"
+  labelEn: string; // e.g. "Semester 2 / 2026"
+  subtitleTh: string; // e.g. "ระดับปริญญาตรี ชั้นปีที่ 1"
+  subtitleEn: string; // e.g. "Undergraduate Year 1"
+  startDateTh: string; // e.g. "8 ธันวาคม 2569"
+  endDateTh: string; // e.g. "26 มีนาคม 2570"
+  startIsoDate: string; // e.g. "2026-12-08"
+  endIsoDate: string; // e.g. "2027-03-26"
+  isActive: boolean;
+}
+
+/**
+ * Complete bundle of schedule data for a single academic term.
+ */
+export interface TermScheduleData {
+  termInfo: SemesterTermInfo;
+  courses: TimetableCourse[];
+  presets: SchedulePreset[];
+  defaultSelections: UserScheduleSelection;
+  getStudentGroup?: (studentId: string | null | undefined) => StudentScheduleGroupInfo | null;
+}
+
