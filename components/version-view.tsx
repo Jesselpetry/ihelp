@@ -129,7 +129,7 @@ export function VersionView() {
         <div className="flex flex-wrap items-center gap-2 self-start sm:self-center">
           <Link
             href="/docs"
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-primary/30 bg-primary/[0.06] hover:bg-primary/10 hover:border-primary/50 text-foreground transition-all shadow-2xs text-xs font-medium cursor-pointer"
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border bg-card/90 hover:bg-card hover:border-primary/40 text-foreground transition-all shadow-sm text-xs font-medium cursor-pointer"
           >
             <BookOpen className="size-3.5 text-primary" />
             <span>{t(L.devDocs, locale)}</span>

@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
   ArrowLeft,
-  ArrowRight,
   Check,
   ChevronDown,
   ChevronLeft,
@@ -278,82 +277,97 @@ export function DocsReader({ doc, sections }: DocsReaderProps) {
         </div>
       </nav>
 
-      {/* ── 3. Reader Grid: Article (Center) + Outline Panel (Right) ── */}
-      <div className="grid grid-cols-1 lg:grid-cols-[1fr_260px] gap-8 items-start">
-        {/* Main Article Column */}
-        <article className="min-w-0 max-w-3xl w-full space-y-6">
-          {/* Header Card */}
-          <header className="rounded-2xl border bg-card/60 p-5 sm:p-6 space-y-3 shadow-2xs">
-            <div className="flex flex-wrap items-center gap-2">
-              <Badge variant="outline" className="text-[11px] font-medium border-primary/30 text-primary">
-                {t(doc.section.title, locale)}
-              </Badge>
-              <span className="text-xs text-muted-foreground font-mono">
-                docs/{doc.fileName}
-              </span>
+      {/* ── 3. Reader Grid: Left TocSidePanel + Right Article Card (Matching ModuleReader 1:1) ── */}
+      <div
+        className={`grid grid-cols-1 ${
+          isTocCollapsed
+            ? "lg:grid-cols-[56px_1fr]"
+            : "lg:grid-cols-[290px_1fr] xl:grid-cols-[330px_1fr]"
+        } gap-6 xl:gap-8 items-start transition-all duration-300`}
+      >
+        {/* Left Column: TocSidePanel (Sticky with collapse toggle) */}
+        <TocSidePanel
+          items={tocItems}
+          title={L.documentOutline}
+          isCollapsed={isTocCollapsed}
+          onToggleCollapse={() => setIsTocCollapsed(!isTocCollapsed)}
+        />
+
+        {/* Right Column: Article Card & Steppers */}
+        <div className="min-w-0 space-y-6 max-w-3xl xl:max-w-4xl mx-auto w-full">
+          <article className="min-w-0 overflow-hidden rounded-3xl border bg-card p-4 sm:p-7 xl:p-8 shadow-sm">
+            <div className="min-w-0">
+              {/* Header inside the article card */}
+              <header className="mb-6 pb-6 border-b border-border/40 space-y-3">
+                <div className="flex flex-wrap items-center gap-2">
+                  <Badge
+                    variant="outline"
+                    className="text-[11px] font-medium border-primary/30 text-primary"
+                  >
+                    {t(doc.section.title, locale)}
+                  </Badge>
+                  <span className="text-xs text-muted-foreground font-mono">
+                    docs/{doc.fileName}
+                  </span>
+                </div>
+
+                <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
+                  {doc.title}
+                </h1>
+
+                {doc.description && (
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {doc.description}
+                  </p>
+                )}
+              </header>
+
+              {/* Markdown Content rendered via MdView */}
+              <div className="prose-neutral dark:prose-invert max-w-none">
+                <MdView markdown={doc.content} />
+              </div>
             </div>
+          </article>
 
-            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
-              {doc.title}
-            </h1>
-
-            {doc.description && (
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                {doc.description}
-              </p>
-            )}
-          </header>
-
-          {/* Markdown Content rendered via MdView */}
-          <div className="prose-neutral dark:prose-invert max-w-none">
-            <MdView markdown={doc.content} />
-          </div>
-
-          {/* Bottom Next/Prev Navigation Cards (Matching ModuleReader/Course layout) */}
-          <footer className="pt-8 border-t grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {/* Bottom Next/Prev Navigation Cards */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-4 border-t">
             {prevDoc ? (
               <Link
                 href={`/docs/${prevDoc.slug}`}
-                className="group rounded-xl border bg-card/40 p-4 hover:border-primary/40 hover:bg-card transition-all space-y-1 text-left"
+                className="group inline-flex items-center gap-2.5 rounded-2xl border bg-card/60 p-3.5 sm:p-4 hover:border-primary/40 hover:bg-card transition-all text-left flex-1"
               >
-                <div className="inline-flex items-center gap-1.5 text-xs text-muted-foreground group-hover:text-primary transition-colors">
-                  <ArrowLeft className="size-3.5" />
-                  <span>{t(L.prevDoc, locale)}</span>
-                </div>
-                <div className="font-medium text-sm text-foreground line-clamp-1">
-                  {prevDoc.title}
+                <ChevronLeft className="size-4 text-muted-foreground group-hover:text-primary transition-colors shrink-0" />
+                <div className="min-w-0">
+                  <div className="text-[10px] uppercase font-semibold text-muted-foreground group-hover:text-primary transition-colors">
+                    {t(L.prevDoc, locale)}
+                  </div>
+                  <div className="font-medium text-xs sm:text-sm text-foreground truncate">
+                    {prevDoc.title}
+                  </div>
                 </div>
               </Link>
             ) : (
-              <div />
+              <div className="flex-1" />
             )}
 
-            {nextDoc ? (
+            {nextDoc && (
               <Link
                 href={`/docs/${nextDoc.slug}`}
-                className="group rounded-xl border bg-card/40 p-4 hover:border-primary/40 hover:bg-card transition-all space-y-1 text-right sm:col-start-2"
+                className="group inline-flex items-center justify-end gap-2.5 rounded-2xl border bg-card/60 p-3.5 sm:p-4 hover:border-primary/40 hover:bg-card transition-all text-right flex-1"
               >
-                <div className="inline-flex items-center gap-1.5 text-xs text-muted-foreground group-hover:text-primary transition-colors justify-end w-full">
-                  <span>{t(L.nextDoc, locale)}</span>
-                  <ArrowRight className="size-3.5" />
+                <div className="min-w-0">
+                  <div className="text-[10px] uppercase font-semibold text-muted-foreground group-hover:text-primary transition-colors">
+                    {t(L.nextDoc, locale)}
+                  </div>
+                  <div className="font-medium text-xs sm:text-sm text-foreground truncate">
+                    {nextDoc.title}
+                  </div>
                 </div>
-                <div className="font-medium text-sm text-foreground line-clamp-1">
-                  {nextDoc.title}
-                </div>
+                <ChevronRight className="size-4 text-muted-foreground group-hover:text-primary transition-colors shrink-0" />
               </Link>
-            ) : null}
-          </footer>
-        </article>
-
-        {/* Outline / Table of Contents Panel (Sticky Right) */}
-        <aside className="hidden lg:block sticky top-24 space-y-4">
-          <TocSidePanel
-            items={tocItems}
-            title={L.documentOutline}
-            isCollapsed={isTocCollapsed}
-            onToggleCollapse={() => setIsTocCollapsed((prev) => !prev)}
-          />
-        </aside>
+            )}
+          </div>
+        </div>
       </div>
     </main>
   );
