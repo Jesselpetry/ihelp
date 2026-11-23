@@ -103,6 +103,7 @@ Node — use `bun run dev`, never `bun --bun next`.
 | Quiz banks | `lib/quiz/*.ts`, notes in `data/it-kmitl/<subject>/` | `content:check` |
 | Grade calculator — Y1-S1 presets, score categories, cutoffs, arithmetic parser | `lib/exams/grade-calculator.ts` | `tsc` |
 | Exam schedule & room seating map — schedules, seat mapping, sound alert | `lib/exams/schedule.ts`, `components/exams/room-seating-chart.tsx` | `tsc` |
+| Timetable & Schedule planner — term registry, courses, section times, presets, meeting calendar | `lib/schedule/registry.ts`, `y1s2-data.ts`, `semester-dates.ts` | `schedule:audit`, `tsc` |
 | Help desk chat — written FAQs, file search patterns, security guard | `lib/chat/faq.ts`, `lib/chat/file-search.ts`, `lib/chat/guard.ts` | `tsc` |
 | Site identity, metadata, URLs, branding | `lib/site.ts` | `tsc` |
 | Dark theme tokens & palette | `app/globals.css` | `bun run build` |
@@ -190,6 +191,7 @@ Known baseline (16 Oct 2026): `bun run lint` already exits 1 — 13 errors in th
 | [docs/FONTS.md](./docs/FONTS.md) | typography rules for the reader |
 | [docs/STUDY_SPACE.md](./docs/STUDY_SPACE.md) | personal study space, timer preset and 22-day exam quota tracker |
 | [docs/BRANDING.md](./docs/BRANDING.md) | iHelp brand identity, naming standards, and wordmark guide |
+| [docs/SCHEDULE_DATA_GUIDE.md](./docs/SCHEDULE_DATA_GUIDE.md) | timetable data architecture, multi-term registry, and future semester maintenance SOP |
 | [docs/CONTRIBUTOR_SYSTEM.md](./docs/CONTRIBUTOR_SYSTEM.md) | contributor credit system, student profile schema, and auto academic year promotion |
 | [lib/README.md](./lib/README.md) | the `lib/` folder and its import boundaries |
 | [content/courses/README.md](./content/courses/README.md) | course content status and gaps |
