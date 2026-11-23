@@ -156,10 +156,10 @@ export function ScheduleCourseAccordion({
               <span className="text-sm font-bold text-foreground">
                 {course.nameEn}
               </span>
-              <span className="rounded-md bg-primary/10 px-1.5 py-0.5 text-[10px] font-medium text-primary">
+              <span className="inline-flex items-center rounded-md border border-primary/30 bg-primary/10 px-2 py-0.5 text-xs font-semibold text-primary whitespace-nowrap">
                 {course.category}
               </span>
-              <span className="rounded-md border border-primary/30 bg-primary/10 px-1.5 py-0.5 text-xs font-semibold text-primary">
+              <span className="inline-flex items-center rounded-md border border-primary/30 bg-primary/10 px-2 py-0.5 text-xs font-semibold text-primary whitespace-nowrap">
                 Sec {selectedTheorySec}
                 {course.hasLab && selectedLabSec ? ` / Lab ${selectedLabSec}` : ""}
               </span>
